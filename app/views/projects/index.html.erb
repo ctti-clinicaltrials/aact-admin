@@ -1,0 +1,37 @@
+<div class="wrap">
+
+  <p>
+  Download:
+  <%= link_to "CSV", projects_path(format: "csv") %> |
+  <%= link_to "Excel", projects_path(format: "xls") %>
+</p>
+  <div class="projects">
+    <h4> <%=number_with_delimiter(@project_count, :delimiter => ',') %> AACT Projects</h4>
+
+    <table id='projects' class='table dataTable'>
+
+        <tr>
+            <th class='projectTableHeader'>name</th>
+            <th class='projectTableHeader'>investigators</th>
+            <th class='projectTableHeader'>year</th>
+            <th class='projectTableHeader'>description</th>
+            <th class='projectTableHeader'></th>
+        </tr>
+
+        <tbody class='projects'>
+          <% @projects.each do |proj| %>
+            <tr>
+              <td><%= proj.name %></td>
+              <td><%= proj.investigators %></td>
+              <td><%= proj.year %></td>
+              <td><%= proj.description %></td>
+              <td><%= link_to 'Detail', project_path(:id => proj.id) %></td>
+            </tr>
+          <% end %>
+       </tbody>
+
+    </table>
+
+  </div>
+
+</div>
