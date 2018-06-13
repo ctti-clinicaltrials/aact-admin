@@ -1,0 +1,1222 @@
+CONDITION|CARDIOLOGY|DERMATOLOGY|ENDOCRINOLOGY|GI_HEPATOLOGY|IMMUNO_RHEUMATOLOGY|INFECTIOUS_DISEASES|NEPHROLOGY|NEUROLOGY|PSYCH_GENERAL|PSYCH_SPECIFIC|ONCOLOGY_GENERAL|ONCOLOGY_SPECIFIC|OTOLARYNGOLOGY|PULMONARY_MEDICINE|REPRODUCTIVE_MEDICINE|PAD|PVD|BONE_GENERAL|BONE_SPECIFIC|DIABETES_GENERAL|DIABETES_SPECIFIC|THYROID_GENERAL|HEPATOLOGY_SPECIFIC
+Bleeding|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Deep Vein Thrombosis|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N
+Degenerative Disc Disease|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Diabetes Type 2|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+Growth Hormone Deficiency|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+HIV-1 Infection|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Peripheral Artery Disease|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Recurrent Adult Diffuse Large Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Grade 3 Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Soft Tissue Sarcoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Acute Ischemic Stroke|Y|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Adult Acute Myeloid Leukemia With 11q23 (MLL) Abnormalities|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Brain Injury|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Brain Tumor|Y|N|N|N|N|N|N|Y|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N
+Diabetic Foot Ulcers|N|N|Y|N|N|Y|N|N|N|N|N|N|N|N|N|M|N|N|N|Y|Y|N|N
+Epithelial Ovarian Cancer|N|N|Y|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N
+HCV Infection|N|N|N|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y
+In Vitro Fertilization|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Percutaneous Coronary Intervention|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Primary Insomnia|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Psychosocial Effects of Cancer and Its Treatment|N|N|N|N|N|N|N|N|Y|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N
+Severe Sepsis|N|N|N|N|N|y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Skin Cancer|N|y|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stress Urinary Incontinence|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Urinary Tract Infection|N|N|N|N|N|y|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Acute Renal Failure|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Adult Acute Myeloid Leukemia With T(16;16)(p13;q22)|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Advanced Cancers|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Hodgkin Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Japanese Encephalitis|N|N|N|N|N|y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Kidney Disease|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Lower Urinary Tract Symptoms|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Mechanical Ventilation|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Metastatic Pancreatic Cancer|N|N|Y|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Nausea and Vomiting|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Nodal Marginal Zone B-cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Peripheral Neuropathy|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Prematurity|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Psoriasis Vulgaris|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Adult Acute Myeloid Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Adult Burkitt Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Marginal Zone Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Refractory Multiple Myeloma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Respiratory Failure|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Small Intestine Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Splenic Marginal Zone Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Systemic Sclerosis|N|y|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Tobacco Dependence|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Acne|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Avascular Necrosis|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Drug Abuse|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Extranodal Marginal Zone B-cell Lymphoma of Mucosa-associated Lymphoid Tissue|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Myelofibrosis|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Postherpetic Neuralgia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Adult Diffuse Small Cleaved Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Adult Lymphoblastic Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Cutaneous T-cell Non-Hodgkin Lymphoma|N|y|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Ventilator Associated Pneumonia|N|N|N|N|N|y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Abdominal Aortic Aneurysm|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Acute Respiratory Distress Syndrome|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Adult Acute Myeloid Leukemia With Inv(16)(p13;q22)|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Adult Acute Myeloid Leukemia With T(8;21)(q22;q22)|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Anaplastic Astrocytoma|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Bacterial Vaginosis|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Chemotherapeutic Agent Toxicity|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Congenital Heart Disease|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Coronary Artery Stenosis|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+De Novo Myelodysplastic Syndromes|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Functional Dyspepsia|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+General Anesthesia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Hip Fracture|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N
+Liver Disease|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y
+MDS|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Mild Cognitive Impairment|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Nonneoplastic Condition|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Obsessive Compulsive Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Obstructive Sleep Apnea Syndrome|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N
+Open Angle Glaucoma|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Prevention|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Recurrent Adult Diffuse Mixed Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Adult Immunoblastic Large Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Small Lymphocytic Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Solid Cancers|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Acute Pain|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Adult Acute Myeloid Leukemia With T(15;17)(q22;q12)|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Advanced Non-Small Cell Lung Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Advanced Solid Malignancies|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Anxiety Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Brain Metastases|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Cataracts|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Cognitive Impairment|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Meningococcal Disease|N|N|N|N|N|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Methamphetamine Dependence|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Nonalcoholic Steatohepatitis|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y
+Primary Peritoneal Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N
+Recurrent Mycosis Fungoides/Sezary Syndrome|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Relapsing Remitting Multiple Sclerosis|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Small Lymphocytic Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Acute Lymphocytic Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Advanced Malignancies|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Anaplastic Large Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Chronic Constipation|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Chronic Plaque Psoriasis|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Contrast Induced Nephropathy|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Critically Ill|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Endothelial Function|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+GERD|N|N|N|Y|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Helicobacter Pylori Infection|N|N|N|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Malignant Glioma|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Metastatic Renal Cell Carcinoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Non-Small-Cell Lung Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Preeclampsia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Psychosis|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Rotavirus Gastroenteritis|N|N|N|Y|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Substance Dependence|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Transient Ischemic Attack|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Vascular Disease|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|M|N|N|N|N|N|N
+Adult Acute Myeloid Leukemia With Del(5q)|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Adult Acute Myeloid Leukemia in Remission|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Advanced Breast Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Angioimmunoblastic T-cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Arrhythmia|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+B-cell Chronic Lymphocytic Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Bipolar I Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Bone Metastases|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Brain Tumors|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Burn|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Chemotherapy|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Childhood Obesity|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Diabetic Foot Ulcer|N|N|Y|N|N|Y|N|N|N|N|N|N|N|N|N|M|N|N|N|Y|Y|N|N|
+Diabetic Neuropathy|N|N|Y|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|
+Duchenne Muscular Dystrophy|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Dysphagia|N|N|N|Y|N|N|N|Y|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|
+Falls|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Gastroesophageal Reflux Disease (GERD)|N|N|N|Y|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|
+Human Immunodeficiency Virus|N|N|N|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+IGA Nephropathy|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Infection| Human Immunodeficiency Virus|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Infections|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Migraine Headache|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+NSCLC|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Neurotoxicity|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|
+Non-Alcoholic Fatty Liver Disease|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|
+Non-Hodgkin Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Pandemic Influenza|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Peripheral T-Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Peritoneal Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N
+Post-Traumatic Arthritis|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Previously Treated Myelodysplastic Syndromes|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Proliferative Diabetic Retinopathy|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+Secondary Myelodysplastic Syndromes|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Varicella|N|y|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Adult Nasal Type Extranodal NK/T-cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N
+Aplastic Anemia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Autism Spectrum Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Basal Cell Carcinoma|N|y|N|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N
+Breast Reconstruction|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Cancer Survivor|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N
+Cardiovascular Risk|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Chronic Pancreatitis|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Cognitive Function|N|N|N|N|N|N|N|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Coronary Atherosclerosis|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Critical Limb Ischemia|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Dengue Fever|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Dilated Cardiomyopathy|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Gestational Diabetes|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|Y|Y|N|N
+Hematological Malignancies|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Human Papillomavirus Infection|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Myelodysplasia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Opioid Dependency|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Paroxysmal Atrial Fibrillation|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Periodontal Disease|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Recurrent Adult Hodgkin Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Ventricular Tachycardia|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Acute Coronary Syndromes|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Adult Acute Lymphoblastic Leukemia in Remission|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Alcohol Consumption|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Anaemia|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Blastic Phase Chronic Myelogenous Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Breastfeeding|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+CML|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Cardiomyopathy|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Chronic Fatigue Syndrome|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Chronic Sinusitis|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Fungal Infection|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+HIV/AIDS|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Hepatic Impairment|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y
+Huntington's Disease|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Insulin Sensitivity|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N
+Intracerebral Hemorrhage|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Major Depressive Disorder (MDD)|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Nasopharyngeal Carcinoma|N|N|N|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N
+Obesity Prevention|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Oral Mucositis|N|y|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Recurrent Adult Grade III Lymphomatoid Granulomatosis|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N
+Refractive Error|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Respiratory Distress Syndrome|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Stage III Adult Diffuse Large Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Adult Diffuse Large Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Substance Use Disorders|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Sudden Cardiac Death|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Treatment|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Tumor|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Accelerated Phase Chronic Myelogenous Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Actinic Keratoses|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Adenocarcinoma of the Gastroesophageal Junction|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Allergic Asthma|N|N|N|N|Y|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N
+Attention-Deficit/Hyperactivity Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Bioavailability|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Chronic Lymphocytic Leukemia (CLL)|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Chronic Renal Insufficiency|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Colorectal Carcinoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Cutaneous B-cell Non-Hodgkin Lymphoma|N|y|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Dry Eye Syndrome|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Endotracheal Intubation|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N
+Gallbladder Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|Y
+Gastrointestinal Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Gastrointestinal Stromal Tumor|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Haemophilus Influenzae Type B|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+High Blood Pressure|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Interstitial Cystitis|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Intraventricular Hemorrhage|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Labor|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Liver Metastases|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Lumbar Spinal Stenosis|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Metastasis|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Neoplasm|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Non-Hodgkins Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Peripheral Arterial Occlusive Disease|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Portal Hypertension|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|M|N|N|N|N|N|Y
+Prediabetes|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N
+Recurrent Adult Acute Lymphoblastic Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Refractory Chronic Lymphocytic Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Relapsing Chronic Myelogenous Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Renal Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Secondary Acute Myeloid Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Squamous Cell Carcinoma of the Head and Neck|N|N|N|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N
+Stage III Grade 1 Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage III Grade 2 Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage III Grade 3 Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage III Mantle Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage III Small Lymphocytic Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Breast Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Grade 1 Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Grade 2 Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Grade 3 Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Mantle Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Small Lymphocytic Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Unstable Angina|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Vulvar Cancer|N|y|N|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N
+Abdominal Obesity|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Acute Myeloid Leukemia (AML)|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Acute Otitis Media|N|N|N|N|N|y|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Adenocarcinoma of the Prostate|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Ankle Sprain|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Breast Neoplasm|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Bronchial Asthma|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|
+Chronic Bronchitis|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|
+Chronic Phase Chronic Myelogenous Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Complications|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Dental Pain|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Diabetic Neuropathy| Painful|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+Diastolic Heart Failure|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Dry Eye Disease|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Facial Wrinkles|N|y|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|
+Fractures|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Graft-Versus-Host Disease|N|y|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+HIV-1 Infections|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Haemophilus Influenzae Type b Disease|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Hematopoietic/Lymphoid Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Hormone Refractory Prostate Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Idiopathic Parkinson's Disease|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Impotence|N|N|Y|N|N|N|N|N|Y|N|N|N|N|N|N|M|N|N|N|N|N|N|N
+Kidney Stones|N|N|Y|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Laparoscopic Cholecystectomy|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Left Ventricular Dysfunction|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Myelodysplastic Syndrome (MDS)|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Nasolabial Folds|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Healthy|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Breast Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Prostate Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Type 2 Diabetes|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+Type 2 Diabetes Mellitus|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+Colorectal Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Rheumatoid Arthritis|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Lung Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Diabetes|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|
+Influenza|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Ovarian Cancer|N|N|Y|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N|
+Chronic Obstructive Pulmonary Disease|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|
+Pancreatic Cancer|N|N|Y|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Head and Neck Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N|
+Alzheimer's Disease|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Healthy Volunteers|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Non-small Cell Lung Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Major Depressive Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Cardiovascular Disease|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Solid Tumors|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Parkinson's Disease|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Unspecified Adult Solid Tumor| Protocol Specific|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Metabolic Syndrome|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Chronic Kidney Disease|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Hepatocellular Carcinoma|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|Y
+Acute Myeloid Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Non Small Cell Lung Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Healthy Subjects|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Brain and Central Nervous System Tumors|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Multiple Myeloma and Plasma Cell Neoplasm|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Advanced Solid Tumors|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Gastric Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Metastatic Breast Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Myelodysplastic Syndrome|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Esophageal Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Cervical Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N
+Type 1 Diabetes|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+Postoperative Pain|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Attention Deficit Hyperactivity Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Chronic Lymphocytic Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Allergic Rhinitis|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Insomnia|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Liver Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|Y
+Obstructive Sleep Apnea|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N
+Crohn's Disease|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Fallopian Tube Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N
+Metastatic Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Non-Hodgkin's Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+COPD|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Atopic Dermatitis|N|y|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Ulcerative Colitis|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Alcohol Dependence|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Bladder Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Healthy Volunteer|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+HIV Infection|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Chronic Hepatitis C|N|N|N|Y|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y
+Acute Lymphoblastic Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Kidney Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Schizoaffective Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Traumatic Brain Injury|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Advanced Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Seasonal Allergic Rhinitis|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Colon Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Metastatic Colorectal Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Rectal Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Chronic Obstructive Pulmonary Disease (COPD)|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Congestive Heart Failure|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Migraine|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Overactive Bladder|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Acute Myocardial Infarction|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Coronary Heart Disease|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Dyslipidemia|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Type 1 Diabetes Mellitus|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+Generalized Anxiety Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Precancerous Condition|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N
+Hyperlipidemia|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Renal Cell Carcinoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+End Stage Renal Disease|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|M|M|N|N|N|N|N|N
+Chronic Pain|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Glioblastoma Multiforme|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Peritoneal Cavity Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N
+Endometrial Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N
+Hemodialysis|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Essential Hypertension|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Nicotine Dependence|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Pulmonary Arterial Hypertension|Y|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Cocaine Dependence|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Posttraumatic Stress Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Pulmonary Hypertension|Y|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Spinal Cord Injury|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Cardiac Surgery|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Major Depression|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Systemic Lupus Erythematosus|N|y|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Benign Prostatic Hyperplasia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Dry Eye|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Melanoma (Skin)|N|y|Y|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Gastroesophageal Reflux Disease|N|N|N|Y|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Solid Tumor|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Post-Traumatic Stress Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Acute Myelogenous Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Osteoarthritis of the Knee|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Age-Related Macular Degeneration|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Cirrhosis|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y
+Elderly|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Chronic Low Back Pain|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Heart Disease|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Metastatic Melanoma|N|y|Y|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N
+Open-Angle Glaucoma|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Diabetic Macular Edema|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+Substance Abuse|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Chronic Myeloproliferative Disorders|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Influenza Infection|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Knee Osteoarthritis|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Pertussis|N|N|N|N|N|y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Autism|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Mantle Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Ischemic Stroke|Y|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Peripheral Arterial Disease|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Sedation|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Septic Shock|N|N|N|N|N|y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Stress|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+ADHD|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Allergy|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Chronic Hepatitis B|N|N|N|Y|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y
+Chronic Myelogenous Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Graft Versus Host Disease|N|y|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Myelodysplastic/Myeloproliferative Neoplasms|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Sickle Cell Disease|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Surgery|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Malignant Melanoma|N|y|Y|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N
+Alcohol Abuse|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Attention Deficit Disorder With Hyperactivity|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Endothelial Dysfunction|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Morbid Obesity|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Neuropathic Pain|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Impaired Glucose Tolerance|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N
+AML|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Brain Cancer|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Cigarette Smoking|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Physical Activity|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Plaque Psoriasis|N|y|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Small Cell Lung Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Allergic Conjunctivitis|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Diabetic Nephropathy|N|N|Y|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+Sleep Apnea|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N
+Inflammatory Bowel Disease|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Osteopenia|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N
+Peripheral Vascular Disease|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|M|N|N|N|N|N|N
+Renal Impairment|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Bipolar Depression|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Cerebrovascular Accident|Y|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Diabetes Mellitus Type 2|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+End-Stage Renal Disease|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|M|M|N|N|N|N|N|N|
+Hepatitis C Virus|N|N|N|Y|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|
+PTSD|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Uterine Fibroids|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|
+Wounds|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|M|N|N|N|N|N|N|N|
+Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Iron Deficiency Anemia|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Kidney Transplant|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Renal Transplantation|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Seasonal Influenza|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Squamous Cell Carcinoma|N|y|N|N|N|N|N|N|N|N|Y|Y|Y|N|Y|N|N|N|N|N|N|N|N|
+Unspecified Childhood Solid Tumor| Protocol Specific|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Ankylosing Spondylitis|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Lymphoproliferative Disorder|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Renal Failure|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Total Knee Arthroplasty|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Tumors|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+AIDS|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Age Related Macular Degeneration|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Cardiac Arrest|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Chronic Heart Failure|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Hodgkin's Disease|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Inguinal Hernia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Iron Deficiency|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Ischemic Heart Disease|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Non-Small Cell Lung Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Perennial Allergic Rhinitis|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Pneumococcal Disease|N|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Secondary Hyperparathyroidism|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Trauma|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Chronic Myeloid Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Chronic Myelomonocytic Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Chronic Renal Failure|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Diffuse Large B-cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Hematologic Malignancies|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Hodgkin's Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Myeloma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Opiate Dependence|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Grade 1 Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Grade 2 Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Mantle Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Thyroid Cancer|N|N|Y|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|Y|N
+Actinic Keratosis|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Advanced Gastric Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Chronic Granulomatous Disease|N|y|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Chronic Pelvic Pain Syndrome|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Clear Cell Renal Cell Carcinoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Cognitive Development|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Community Acquired Pneumonia|N|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|
+Contact Dermatitis|N|y|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Contact Lens Wear|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Contiguous Stage II Adult Burkitt Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Contiguous Stage II Adult Immunoblastic Large Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Contiguous Stage II Adult Lymphoblastic Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Contiguous Stage II Marginal Zone Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Continuous Ambulatory Peritoneal Dialysis|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Corneal Ectasia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|M|N|N|N|N|N|N|N|
+Coronary Artery Disease (CAD)|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Coronary Artery Diseases|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Crohns Disease|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Cryptococcal Meningitis|N|N|N|N|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Degenerative Spondylolisthesis|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Detrusor Overactivity|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Diabetes Mellitus| Type I|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+Diabetes| Type I|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+Diarrhoea|N|N|N|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Disability|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Distress|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Efficacy|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Energy Expenditure|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Esophageal Varices|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|
+Ewing's Sarcoma|N|N|Y|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Extragonadal Germ Cell Tumor|N|N|Y|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Femoral Neck Fracture|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Fibromyalgia Syndrome|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+First Episode Psychosis|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Food Allergy|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+GBM|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Gastrointestinal Stromal Tumor (GIST)|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Gastrointestinal Symptoms|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Gaucher Disease| Type 1|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Glucose Metabolism|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|
+HPV|N|y|N|N|N|Y|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|
+Haemodialysis|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Haemophilus Influenzae Infections|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Head & Neck Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N|
+Healthy Controls|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Healthy Males|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Heart Valve Disease|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Hepatitis C Infection|N|N|N|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|
+Hiatal Hernia|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Hodgkins Disease|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Hormone-Refractory Prostate Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Human Immunodeficiency Virus (HIV)|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Hypertrophic Cardiomyopathy|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Idiopathic Membranous Nephropathy|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Impaired Fasting Glucose|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N||
+In-Stent Restenosis|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N||
+Inborn Errors of Metabolism|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Infantile Colic|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Infectious Diseases|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Injury|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Intraocular Melanoma|N|N|Y|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Intrauterine Growth Retardation|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N||
+Invasive Candidiasis|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Ischemia Reperfusion Injury|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|M|N|N|N|N|N|N|N||
+Islet Cell Tumor|N|N|Y|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Kidney Injury|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Knee Injury|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Leukemia| Lymphocytic| Chronic|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Long-term Effects Secondary to Cancer Therapy in Adults|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Low Bone Mineral Density|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N||
+Lymphoblastic Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Lymphoblastic Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Lymphoma| Small Lymphocytic|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+MRSA Infection|N|y|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Major Abdominal Surgery|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Major Depressive Episode|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Malignant Ascites|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Mantle-Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Marginal Zone Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Metastatic Solid Tumors|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Migraine Headaches|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Mild Alzheimer's Disease|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Mild Asthma|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|
+Myalgia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Myelodysplastic/Myeloproliferative Neoplasm| Unclassifiable|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+NHL|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Nasopharyngeal Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N|
+Neonatal Sepsis|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Neonates|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Neoplasms| Colorectal|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Neovascular Age Related Macular Degeneration|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Neuroendocrine Tumor|N|N|Y|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Neurogenic Bladder|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Neuromuscular Disease|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Neuropathy|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Non-Hodgkin's Lymphoma (NHL)|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Non-melanomatous Skin Cancer|N|y|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Nonunion of Femoral Fractures|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Obese|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Obstructive Sleep Apnea (OSA)|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|
+Ocular Inflammation|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Opioid Abuse|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Oppositional Defiant Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Oral Contraceptive|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Oropharyngeal Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N
+Overweight and Obesity|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Pancreatic Insufficiency|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Parenteral Nutrition Associated Liver Disease|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y
+Paroxysmal Nocturnal Hemoglobinuria|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Partial Onset Seizures|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Peanut Allergy|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Pediatric|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Pediculosis|N|y|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Peripheral Arterial Disease (PAD)|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Persistent Atrial Fibrillation|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Pharmacokinetic|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Pneumococcal Diseases|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Post Traumatic Stress Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Post-Traumatic Stress Disorders|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Postoperative|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Postoperative Cognitive Dysfunction|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Postoperative Ileus|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Posttraumatic Stress Disorder (PTSD)|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Premature Ovarian Failure|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Preterm Delivery|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Primary Breast Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Primary Dysmenorrhea|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Primary Hypercholesterolemia|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Primary Hyperparathyroidism|N|N|Y|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Primary Immune Deficiency|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Procedural Sedation|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Progressive Keratoconus|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Childhood Large Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Childhood Lymphoblastic Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Childhood Small Noncleaved Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Colon Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Glioblastoma|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Malignant Testicular Germ Cell Tumor|N|N|Y|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Rectal Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Refractory Anemia With Ringed Sideroblasts|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Refractory Cytopenia With Multilineage Dysplasia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Refractory Partial Seizures|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Satiety|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Schizoaffective|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Schizophrenic Disorders|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Secondary Hypogonadism|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Sedentary|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Shingles|N|y|N|N|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Snake Bite|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Solid Tumor Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Sore Throat|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Spina Bifida|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Spinal Anesthesia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Spondyloarthritis|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Sprain|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Stage I Adult Burkitt Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage I Adult Immunoblastic Large Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage I Adult Lymphoblastic Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage I Cutaneous T-cell Non-Hodgkin Lymphoma|N|y|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage I Marginal Zone Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage I Prostate Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage II Cutaneous T-cell Non-Hodgkin Lymphoma|N|y|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage III Ovarian Epithelial Cancer|N|N|Y|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N
+Stage IV Ovarian Epithelial Cancer|N|N|Y|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N
+Stroke Prevention|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Subfertility|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Testicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Therapy|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Thymic Carcinoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Thyroid Neoplasm|N|N|Y|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|Y|N
+Travelers' Diarrhea|N|N|N|Y|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Treatment Resistant Depression|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Triple Negative Breast Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Type 2 Diabetes Mellitus (T2DM)|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+Type II Diabetes|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+Umbilical Hernia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Uncomplicated Malaria|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Upper Respiratory Tract Infection|N|N|N|N|N|y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Uterine Myomas|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Valve Surgery|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Vascular Surgery|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|M|N|N|N|N|N|N
+Venous Ulcer|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N
+Ventricular Arrythmias|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Vertebral Fracture|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Vision|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Wegener's Granulomatosis|N|N|N|N|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Wet Age-Related Macular Degeneration|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Wheezing|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Wound|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|M|N|N|N|N|N|N|N
+Non-Small-Cell Lung Carcinoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Pancreatic Adenocarcinoma|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Post Operative Pain|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|Y|N|N|N|N|N|N|N|N
+Postpartum Depression|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Posttraumatic Stress Disorders|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Pressure Ulcers|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Preterm Birth|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Radiation Toxicity|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Adult T-cell Leukemia/Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Breast Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Relapsing-Remitting Multiple Sclerosis|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Rotator Cuff Tear|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Social Anxiety Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Social Phobia|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Stage III Adult Diffuse Mixed Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage III Adult Diffuse Small Cleaved Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage III Chronic Lymphocytic Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Adult Diffuse Mixed Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Adult Diffuse Small Cleaved Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Chronic Lymphocytic Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Substance Use|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Surgical Site Infection|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Type II Diabetes Mellitus|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+Vasomotor Symptoms|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+ALL|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Abdominal Surgery|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Advanced Hepatocellular Carcinoma|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|Y|
+Advanced Solid Tumor|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Anal Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Barrett's Esophagus|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Bone Loss|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|
+Chemotherapy-Induced Nausea and Vomiting|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Chronic Liver Disease|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|
+Colorectal Cancer Screening|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Congenital Hip Dysplasia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Cutaneous Leishmaniasis|N|y|N|N|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Diabetes Mellitus| Type II|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+Diabetic Polyneuropathy|N|N|Y|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|
+Drug Dependence|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Fracture|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Idiopathic Thrombocytopenic Purpura|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Infant Nutrition|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Low Birth Weight|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Malignancy|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Mitral Regurgitation|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Neurofibromatosis Type 1|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Noncontiguous Stage II Mantle Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Noncontiguous Stage II Small Lymphocytic Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Nonmalignant Neoplasm|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Nutrition|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Ovarian Carcinoma|N|N|Y|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N
+Painful Diabetic Neuropathy|N|N|Y|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+Pediatric Obesity|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Phenylketonuria|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Post-operative Pain|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|Y|N|N|N|N|N|N|N|N
+Postmenopausal Osteoporosis|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N
+Premature Ejaculation|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Renal Transplant|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Sickle Cell Anemia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Stable Angina|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Stage III Adult Burkitt Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage III Adult Immunoblastic Large Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage III Adult Lymphoblastic Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage III Marginal Zone Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IIIC Breast Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Adult Burkitt Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Adult Immunoblastic Large Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Adult Lymphoblastic Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Marginal Zone Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Total Knee Replacement|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Waldenstrom's Macroglobulinemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Advanced Colorectal Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+B-Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Binge Eating Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|
+CLL|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Cannabis Dependence|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Carotid Artery Disease|Y|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|
+Childhood Myelodysplastic Syndromes|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Chronic Insomnia|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Cytomegalovirus Infection|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Diabetic Peripheral Neuropathy|N|N|Y|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|
+Diastolic Dysfunction|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Eosinophilic Esophagitis|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Extrahepatic Bile Duct Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|Y|
+Head Lice|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Head and Neck Squamous Cell Carcinoma|N|N|N|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N|
+Heart Failure| Congestive|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Hemiparesis|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Hereditary Angioedema|N|y|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|
+Intraocular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Juvenile Myelomonocytic Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Lung Disease|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Mania|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Meningococcal Meningitis|N|N|N|N|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Non Hodgkin's Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Nonalcoholic Fatty Liver Disease|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y
+Noncontiguous Stage II Adult Diffuse Large Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Noncontiguous Stage II Adult Diffuse Mixed Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Noncontiguous Stage II Adult Diffuse Small Cleaved Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Noncontiguous Stage II Grade 1 Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Noncontiguous Stage II Grade 2 Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Noncontiguous Stage II Grade 3 Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Orthostatic Hypotension|Y|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Physical Inactivity|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Plasmodium Falciparum Malaria|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Preterm Infants|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Psoriatic Arthritis|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Pulmonary Tuberculosis|N|N|N|N|N|y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Relapsing Multiple Sclerosis|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Renal Cell Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Rhinoconjunctivitis|N|N|N|N|Y|Y|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Scars|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Schizophreniform Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Sexually Transmitted Infections|N|y|N|N|N|Y|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Stage I Breast Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage I Multiple Myeloma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage II Breast Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage II Multiple Myeloma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage III Multiple Myeloma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IIIA Breast Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IIIB Breast Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Melanoma|N|y|Y|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Stomach Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Stroke| Acute|Y|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Testicular Germ Cell Tumor|N|N|Y|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Tetraplegia|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Tobacco Use|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Uterine Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N|
+Vaginal Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N|
+brca1 Mutation Carrier|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N|
+Acute Decompensated Heart Failure|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Acute Stroke|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|
+Agitation|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Anaesthesia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Anaplastic Oligodendroglioma|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Autism Spectrum Disorders|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Balance|N|N|N|N|N|N|N|Y|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|
+Breast Augmentation|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Candidemia|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Cardiovascular Risk Factors|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Childhood Acute Myeloid Leukemia in Remission|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Childhood Chronic Myelogenous Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Children|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Chronic Rhinosinusitis|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|
+Cocaine Addiction|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Coronary Artery Bypass Graft Surgery|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Coronary Artery Bypass Grafting|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Coronary Artery Bypass Surgery|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Depressive Symptoms|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Diabetes Mellitus| Non-Insulin-Dependent|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+Ductal Carcinoma In Situ|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Focal Segmental Glomerulosclerosis|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Gastric Ulcer|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Incontinence|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N||
+Influenza Disease|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Juvenile Idiopathic Arthritis|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Leukemia| Lymphoblastic| Acute|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Malignant Mesothelioma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Malignant Pleural Mesothelioma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Mood Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Myelodysplastic/Myeloproliferative Diseases|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Noncontiguous Stage II Adult Burkitt Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Noncontiguous Stage II Adult Immunoblastic Large Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Noncontiguous Stage II Adult Lymphoblastic Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Noncontiguous Stage II Marginal Zone Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Ocular Physiology|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Opioid Dependence|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Oral Cancer|N|y|N|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N||
+Pancreas Cancer|N|N|Y|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Patent Ductus Arteriosus|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Plaque-Type Psoriasis|N|y|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Post-Menopausal Osteoporosis|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N
+Postmenopausal|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Postural Tachycardia Syndrome|Y|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Pre-Hypertension|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Primary Peritoneal Carcinoma|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N
+Recurrent Childhood Acute Myeloid Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Prostate Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Renal Artery Stenosis|Y|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Secondary Progressive Multiple Sclerosis|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Sexual Dysfunction|N|N|Y|N|N|N|N|N|Y|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Sleep Disordered Breathing|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N
+To Determine Bioequivalence Under Fasting Conditions|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Tracheal Intubation|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N
+Visceral Leishmaniasis|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+brca2 Mutation Carrier|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N|
+Abdominal Aortic Aneurysms|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|
+Acute Gout|N|N|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Acute Heart Failure|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Acute Kidney Injury|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Acute Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Acute Respiratory Failure|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|
+Allergic Rhinoconjunctivitis|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|
+Allergies|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|
+Bowel Preparation|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Breast Carcinoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Carcinoma| Non Small Cell Lung|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Carcinoma| Non-Small Cell Lung|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Central Retinal Vein Occlusion|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|M|N|N|N|N|N|N|
+Cesarean Delivery|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|
+Chronic|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Chronic Urticaria|N|y|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Coronary Arteriosclerosis|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Deep Venous Thrombosis|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|
+Disease| Hodgkin|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Edentulism|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Essential Thrombocythemia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Excessive Daytime Sleepiness|N|N|N|N|N|N|N|Y|Y|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|
+Friedreich's Ataxia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Gastrointestinal Carcinoid Tumor|N|N|Y|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Gastrointestinal Complications|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+HCV|N|N|N|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|
+HIV Prevention|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Haemophilia A|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Hay Fever|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|
+Hematological Malignancy|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Hepatitis B Virus|N|N|N|Y|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|
+Hepatosplenic T-cell Lymphoma|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Hip Arthroplasty|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Hip Osteoarthritis|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Hypoxia|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N||
+Incisional Hernia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Invasive Breast Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Knee Arthroplasty|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Lateral Canthal Lines|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Leukemia| Myeloid| Chronic|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Liver Metastasis|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Lymphomas|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Malaria in Pregnancy|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N||
+Metastases|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Methicillin-resistant Staphylococcus Aureus|N|y|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Mood|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Neoplasms| Breast|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Neoplasms| Malignant|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Non Hodgkin Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Opiate Addiction|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Pain Management|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Partial Epilepsy|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Polycystic Ovarian Syndrome|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|
+Port Wine Stain|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Post-transplant Lymphoproliferative Disorder|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Pre-diabetes|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|
+Premature Infants|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Primary Biliary Cirrhosis|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|
+Pseudomonas Aeruginosa|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Recurrent Adult Brain Tumor|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Recurrent Ovarian Germ Cell Tumor|N|N|Y|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N|
+Resistant Hypertension|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|
+Respiratory Infection|N|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|
+Scleroderma|N|y|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Separation Anxiety Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Sleep Disorder|N|N|N|N|N|N|N|N|Y|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Solid Malignancies|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Spasticity|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Stable Coronary Artery Disease|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Stage III Adult Hodgkin Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Adult Hodgkin Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Staphylococcus Aureus|N|y|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Swine-origin A/H1N1 Influenza|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Tobacco Smoking|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Tolerability|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Tooth Extractions|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Transitional Cell Cancer of the Renal Pelvis and Ureter|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Traumatic Arthritis|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Untreated Adult Acute Myeloid Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Urea Cycle Disorders|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Vaccines| Pneumococcal Conjugate Vaccine|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Variceal Bleeding|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|
+Acquired Immune Deficiency Syndrome|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Active Rheumatoid Arthritis|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Acute HIV Infection|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Acute Pancreatitis|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Adhesive Capsulitis|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Advanced Malignant Solid Tumors|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Advanced Melanoma|N|y|Y|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Airway Inflammation|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|
+Allogeneic Stem Cell Transplantation|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Androgenetic Alopecia|N|y|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Antibiotic-Associated Diarrhea|N|N|N|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Aortic Stenosis|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Arterial Hypertension|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|M|N|N|N|N|N|N|N|
+Atopic Eczema|N|y|N|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Bacterial Infection|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Becker Muscular Dystrophy|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Behavior Problems|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Biliary Tract Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|Y
+Bipolar|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Breast Abnormalities|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+CNS Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Cancer of the Breast|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Cerebrovascular Stroke|Y|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Cervical Dystonia|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Childhood Acute Lymphoblastic Leukemia in Remission|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Chronic Allograft Nephropathy|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Chronic Eosinophilic Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Chronic Hepatitis C Infection|N|N|N|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y
+Chronic Kidney Failure|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Chronic Neck Pain|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Cognitive Decline|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Cognitive Dysfunction|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Cognitive/Functional Effects|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Colorectal Neoplasm|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Community-Acquired Pneumonia|N|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Contiguous Stage II Adult Diffuse Large Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Contiguous Stage II Mantle Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Contiguous Stage II Small Lymphocytic Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Cutaneous T-Cell Lymphoma|N|y|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Diabetic Gastroparesis|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N
+Distal Radius Fractures|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Dyslipidaemia|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+ESRD|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Falciparum Malaria|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Familial Hypercholesterolemia|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Frailty|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Glycemic Control|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|
+HPV Infections|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|
+Healthy| no Evidence of Disease|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Hepatic Cirrhosis|N|N|N|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|
+Hepatitis C Virus Infection|N|N|N|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|
+Hepatocellular Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|Y|
+Hypovitaminosis D|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Hypoxemia|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|
+Induction of Labor|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|
+Inflammatory Response|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Interstitial Lung Disease|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|
+Ischemic Cardiomyopathy|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Knee Pain|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Left Ventricular Hypertrophy|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Liver Fibrosis|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|
+Lower Back Pain|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Male Breast Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Melasma|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Meningococcal Infection|N|N|N|N|N|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Meningococcemia|N|N|N|N|N|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Musculoskeletal Complications|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Myocardial Injury|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Nasal Congestion|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Necrotizing Enterocolitis|N|N|N|Y|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Nephropathy|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Oncology|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Orthopedic Surgery|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Otitis Media With Effusion|N|N|N|N|N|y|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Overactive Bladder Syndrome|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Pathological Gambling|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Perioperative/Postoperative Complications|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Physical Function|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Primary Open Angle Glaucoma|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Primary Sclerosing Cholangitis|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y
+Prolymphocytic Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Ovarian Epithelial Cancer|N|N|Y|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N
+Refractory Anemia With Excess Blasts|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Refractory Solid Tumors|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Relapse|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Relapsed Multiple Myeloma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Relapsed or Refractory Multiple Myeloma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Restenosis|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+ST-Elevation Myocardial Infarction|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Seborrheic Dermatitis|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Secondary Myelofibrosis|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Severe Traumatic Brain Injury|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Sleep Apnea Syndrome|N|N|N|N|N|N|N|Y|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Stage I Adult Diffuse Large Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage I Small Lymphocytic Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage III Cutaneous T-cell Non-Hodgkin Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Colon Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Cutaneous T-cell Non-Hodgkin Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stent Thrombosis|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Subjective Tinnitus|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Systemic Lupus Erythematosus (SLE)|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Temporomandibular Disorders|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Transient Insomnia|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Transitional Cell Carcinoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Uveal Melanoma|N|N|Y|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Venous Stasis Ulcers|Y|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N
+Ventral Hernia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Weight Changes|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Acute Promyelocytic Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Adhesions|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Adult Anaplastic Astrocytoma|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Adult Giant Cell Glioblastoma|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Adult Glioblastoma|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Adult Gliosarcoma|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Adult Mixed Glioma|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Advanced Heart Failure|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+AlzheimerAZs Disease|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Amnestic Mild Cognitive Impairment|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Aneurysmal Subarachnoid Hemorrhage|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|M|N|N|N|N|N|N|N
+Apathy|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Atelectasis|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Atopic Asthma|N|N|N|N|Y|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Bacterial Conjunctivitis|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Benign Prostatic Hyperplasia (BPH)|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Beta-Thalassemia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Bile Duct Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|Y
+Biliary Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|Y
+Bioequivalency|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Breast Tumors|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Cardiac Toxicity|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Cat Allergy|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Cerebral Stroke|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Cerebral Vasospasm|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Chronic Hepatitis C Virus Infection|N|N|N|Y|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y
+Chronic Migraine|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Chronic Neutrophilic Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Collagen Disorders|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Complex Regional Pain Syndrome|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Congenital Hyperinsulinism|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Connective Tissue Disease|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Contiguous Stage II Adult Diffuse Mixed Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Contiguous Stage II Adult Diffuse Small Cleaved Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Contiguous Stage II Grade 1 Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Contiguous Stage II Grade 2 Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Contiguous Stage II Grade 3 Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Crow's Feet|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Dementia With Lewy Bodies|N|N|N|N|N|N|N|y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Diabetes Prevention|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|
+Drug Addiction|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Esophageal Carcinoma|N|N|N|Y|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N|
+Familial Adenomatous Polyposis|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Femur Fracture|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Foot Ulcer| Diabetic|N|N|Y|N|N|Y|N|N|N|N|N|N|N|N|N|M|N|N|N|Y|Y|N|N
+Gastrointestinal Disease|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Genital Warts|N|y|N|N|N|Y|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|
+Gestational Diabetes Mellitus|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|Y|Y|N|N|
+H1N1 Influenza Virus|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|
+Head and Neck Cancers|N|N|N|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N
+Health-Related Quality of Life|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Healthy Adults|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Hemophilia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Hepatoma|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|Y
+Hypoactive Sexual Desire Disorder|N|N|Y|N|N|N|N|N|Y|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Hypoxic-Ischemic Encephalopathy|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Immune Thrombocytopenic Purpura|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Immunodeficiencies|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Inactivity|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Induced Abortion|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Infective Endocarditis|Y|N|N|N|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Intensive Care Unit|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Iron-Deficiency Anemia|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Laparoscopic Surgery|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Latent Tuberculosis Infection|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Lateral Epicondylitis|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Leukemia| Lymphocytic| Acute|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Liver Tumors|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|Y||
+Localized Prostate Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Locally Advanced Pancreatic Cancer|N|N|Y|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Lumbar Degenerative Disc Disease|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Lymphocytic Leukemia| Chronic|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|
+Lymphomas: Non-Hodgkin|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Malignant Gliomas|N|N|N|N|N|N|N|y|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Marijuana Dependence|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Medical Abortion|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N||
+Metastatic Prostate Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N||
+Methamphetamine Addiction|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Migraine With Aura|N|N|N|N|N|N|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Mild Traumatic Brain Injury|N|N|N|N|N|N|N|y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N||
+Minimal Hepatic Encephalopathy|N|N|N|Y|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|Y||
+Mitral Valve Regurgitation|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Myxovirus Infection|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Neurogenic Detrusor Overactivity|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Non Small Cell Lung Cancer (NSCLC)|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Non Small Cell Lung Carcinoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Non-small Cell Lung Cancer (NSCLC)|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Normal Pressure Hydrocephalus|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Opioid-induced Constipation|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Ovarian Stimulation|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+PCOS|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Pain Relief|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Pancreatic Neoplasm|N|N|Y|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Parastomal Hernia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Phantom Limb Pain|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Pharmacodynamics|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Plantar Fasciitis|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Polyneuropathy|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Post Operative Analgesia|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Postmenopausal Women|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Postprandial Lipemia|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Progressive Supranuclear Palsy|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Recurrent Childhood Acute Lymphoblastic Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Refractory Hairy Cell Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Rhinosinusitis|N|N|N|N|Y|Y|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N
+Scar Prevention|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Severe Hemophilia A|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Sexual Dysfunction and Infertility|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Small Intestine Lymphoma|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Smokers|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Squamous Cell Cancer|N|y|N|N|N|N|N|N|N|N|Y|Y|Y|N|Y|N|N|N|N|N|N|N|N
+Stage I Adult Diffuse Mixed Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage I Adult Diffuse Small Cleaved Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage I Chronic Lymphocytic Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage I Grade 1 Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage I Grade 2 Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage I Grade 3 Follicular Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage I Mantle Cell Lymphoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage II Chronic Lymphocytic Leukemia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage II Prostate Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage III Mycosis Fungoides/Sezary Syndrome|N|y|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage III Prostate Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Mycosis Fungoides/Sezary Syndrome|N|y|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Prostate Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Rectal Cancer|N|N|N|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Stage IV Renal Cell Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Thrombotic Thrombocytopenic Purpura|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Thyroid Carcinoma|N|N|Y|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|Y|N
+To Determine Bioequivalence Under Fed Conditions.|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Transfusional Iron Overload|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Transplant|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|M
+Ulcers|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|M|N|N|N|N|N|N|N
+Unipolar Depression|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Upper Respiratory Tract Infections|N|N|N|N|N|y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N
+Urethral Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Urinary Complications|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Urothelial Cancer|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Vaginal Prolapse|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Vitamin D Status|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Von Willebrand Disease|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Zinc Deficiency|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+ALS|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Acute Asthma|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Acute Kidney Failure|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Acute Mountain Sickness|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Acute Respiratory Infection|N|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Adult Acute Megakaryoblastic Leukemia (M7)|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Adult Acute Monoblastic Leukemia (M5a)|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Adult Acute Monocytic Leukemia (M5b)|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Adult Anaplastic Oligodendroglioma|N|N|N|N|N|N|N|Y|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Adult Erythroleukemia (M6a)|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Adult Pure Erythroid Leukemia (M6b)|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Advanced Renal Cell Carcinoma|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Advanced Solid Tumours|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Advanced or Metastatic Solid Tumors|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Adverse Drug Events|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Age-Related Maculopathy|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Anal Fistula|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Angina|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Aortic Valve Disease|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Arterial Occlusive Disease|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Asperger's Disorder|N|N|N|N|N|N|N|Y|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Attention Deficit Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Attention Deficit/Hyperactivity Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Autoimmune Hepatitis|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y
+Autosomal Dominant Polycystic Kidney Disease|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Body Dysmorphic Disorder|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N|N|N
+Bone Metabolism|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Branch Retinal Vein Occlusion|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Bronchospasm|N|N|N|N|Y|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N
+Cancer of the Prostate|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Cancer-related Fatigue|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N
+Carcinoid Syndrome|N|N|Y|Y|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Cardiac Catheterization|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Cardiac Disease|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Cardiac Transplantation|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Carotid Artery Stenosis|Y|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N
+Cellulite|N|y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Central Nervous System Tumors|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
+Cervical Degenerative Disc Disease|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N|N|N|N|N|N|N|N
+Cervical Neoplasia|N|N|N|N|N|N|N|N|N|N|Y|Y|N|N|Y|N|N|N|N|N|N|N|N
+Childbirth|N|N|N|N|N|N|N|N|N|N|N|N|N|N|Y|N|N|N|N|N|N|N|N
+Childhood Germ Cell Tumor|N|N|Y|N|N|N|N|N|N|N|Y|Y|N|N|N|N|N|N|N|N|N|N|N
