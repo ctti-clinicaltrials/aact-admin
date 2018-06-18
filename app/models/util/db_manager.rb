@@ -8,7 +8,7 @@ module Util
       if params[:event]
         @event = params[:event]
       else
-        @event = Admin::LoadEvent.create({:event_type=>'',:status=>'',:description=>'',:problems=>''})
+        @event = Admin::UserEvent.new
       end
     end
 
