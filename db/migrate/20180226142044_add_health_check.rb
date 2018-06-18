@@ -1,11 +1,6 @@
 class AddHealthCheck < ActiveRecord::Migration
   def change
 
-    add_column :sanity_checks, :column_name, :string
-    add_column :sanity_checks, :check_type, :string
-    add_index  :sanity_checks, :column_name
-    add_index  :sanity_checks, :check_type
-
     create_table(:enumerations) do |t|
       t.string  :table_name
       t.string  :column_name
@@ -24,5 +19,6 @@ class AddHealthCheck < ActiveRecord::Migration
       t.string :description
       t.timestamps null: false
     end
+
   end
 end
