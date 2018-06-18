@@ -2,14 +2,18 @@ require 'active_support/all'
 module Admin
   class DataDefinition < Admin::AdminBase
 
-    def self.populate(data=Util::FileManager.new.default_data_definitions)
+    def self.default_data_definitions
+      Roo::Spreadsheet.open("#{Rails.public_path}/documentation/aact_data_definitions.xlsx")
+    end
+
+    def self.populate(data=self.default_data_definitions)
       self.destroy_all
       self.populate_from_file(data)
       self.populate_row_counts
       Admin::Enumeration.populate
     end
 
-    def self.populate_from_file(data=Util::FileManager.new.default_data_definitions)
+    def self.populate_from_file(data=self.default_data_definitions)
       header = data.first
       dataOut = []
       (2..data.last_row).each do |i|
@@ -46,6 +50,18 @@ module Admin
       results=ActiveRecord::Base.connection.execute("select count(*) from #{row.table_name}")
       row.row_count=results.getvalue(0,0) if results.ntuples == 1
       row.save
+    end
+
+    def self.single_study_tables
+      [
+        'brief_summaries',
+        'designs',
+        'detailed_descriptions',
+        'eligibilities',
+        'participant_flows',
+        'calculated_values',
+        'studies'
+      ]
     end
 
   end
