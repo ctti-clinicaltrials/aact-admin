@@ -35,7 +35,7 @@
 #
 # Global options
 # --------------
-  set :repo_url, "git@github.com:tibbs001/aact-1.git"
+  set :repo_url, "git@github.com:tibbs001/aact-admin-1.git"
   set :deploy_to, '/srv/web/aact-dev.oit.duke.edu'
   set :ssh_options, {
     keys: %w(/home/ctti-aact/.ssh/id_rsa),
