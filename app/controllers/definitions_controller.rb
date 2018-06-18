@@ -62,15 +62,16 @@ class DefinitionsController < ApplicationController
 
     if enum_tabs.include? tab and enum_cols.include? col
       dd=Admin::DataDefinition.where('table_name=? and column_name=?',tab,col).first
-      return if dd.enumerations.nil?
-      str="<select>"
-      dd.enumerations.each{|e|
-        cnt=e.last.first
-        pct=e.last.last
-        str=str+"<option>"+cnt+" ("+pct+")&nbsp&nbsp; - "+e.first+"</option>"
-      }
-      str=str+'</select>'
-      hash['enumerations'] = str.html_safe
+      if dd and !dd.enumerations.nil?
+        str="<select>"
+        dd.enumerations.each{|e|
+          cnt=e.last.first
+          pct=e.last.last
+          str=str+"<option>"+cnt+" ("+pct+")&nbsp&nbsp; - "+e.first+"</option>"
+        }
+        str=str+'</select>'
+        hash['enumerations'] = str.html_safe
+      end
     end
 
     if hash['nlm doc'].present?
