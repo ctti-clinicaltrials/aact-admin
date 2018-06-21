@@ -1,4 +1,4 @@
-class User < Admin::AdminBase
+class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   include ActiveModel::Validations
@@ -42,7 +42,7 @@ class User < Admin::AdminBase
   end
 
   def create_db_account
-    event=Admin::UserEvent.create( { :event_type  => 'create', :email => self.email })
+    event=UserEvent.create( { :event_type  => 'create', :email => self.email })
     mgr=Util::UserDbManager.new({ :event => event })
     if mgr.can_create_user_account?(self)
       mgr.create_user_account(self)
@@ -54,12 +54,12 @@ class User < Admin::AdminBase
   end
 
   def grant_db_privs
-    event=Admin::UserEvent.create( { :email => self.email, :event_type => 'confirm' })
+    event=UserEvent.create( { :email => self.email, :event_type => 'confirm' })
     Util::UserDbManager.new({ :event => event }).grant_db_privs(self.username)
   end
 
   def change_password(pwd)
-    event=Admin::UserEvent.create( { :email=>self.email, :event_type=>'change-pwd' })
+    event=UserEvent.create( { :email=>self.email, :event_type=>'change-pwd' })
     db_mgr=Util::UserDbManager.new({:event => event})
     db_mgr.change_password(self, pwd)
   end
@@ -72,7 +72,7 @@ class User < Admin::AdminBase
       user.skip_password_validation=true
       user.update_attributes({:password=>params[:password], :password_confirmation=>params[:password_confirmation]})
       user.change_password(params[:password]) if user.errors.empty?
-      event=Admin::UserEvent.create( { :email=>user.email, :event_type=>'reset-pwd' })
+      event=UserEvent.create( { :email=>user.email, :event_type=>'reset-pwd' })
     end
     user
   end
@@ -97,7 +97,7 @@ class User < Admin::AdminBase
     update_successful=super
 
     if update_successful
-      event=Admin::UserEvent.create( { :email => self.email, :event_type =>'update' })
+      event=UserEvent.create( { :email => self.email, :event_type =>'update' })
       db_mgr=Util::UserDbManager.new({ :event => event })
       db_mgr.change_password(self, params[:password]) if params[:password]
       self
@@ -107,9 +107,9 @@ class User < Admin::AdminBase
   def remove
     begin
       return false if !can_access_db?
-      event=Admin::UserEvent.create( { :email => self.email, :event_type =>'remove' })
+      event=UserEvent.create( { :email => self.email, :event_type =>'remove' })
+      Public::Study.connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE usename = '#{self.username}'")
       db_mgr=Util::UserDbManager.new({ :event=> event })
-      db_mgr.pub_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE usename = '#{self.username}'")
       db_mgr.remove_user(self.username)
       destroy
     rescue => e

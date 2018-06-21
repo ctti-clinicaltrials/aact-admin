@@ -61,13 +61,13 @@
   </div>
 </div>
 
-<% if Admin::PublicAnnouncement.count > 0 %>
+<% if PublicAnnouncement.count > 0 %>
   <section class='basicHero'>
   <div class='copy announcement'>
     <h1 class='announcement'>Announcement</h1>
     <div class='wrap'>
       <ul class='announcement'>
-        <% Admin::PublicAnnouncement.all.each do |announcement| %>
+        <% PublicAnnouncement.all.each do |announcement| %>
           <li><%= announcement.description %></li>
         <% end %>
       </ul>

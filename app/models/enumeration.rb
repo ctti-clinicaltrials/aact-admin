@@ -1,6 +1,5 @@
 require 'active_support/all'
-module Admin
-  class Enumeration < Admin::AdminBase
+  class Enumeration <ActiveRecord::Base
 
     def self.populate
       new.populate
@@ -42,7 +41,7 @@ module Admin
             create_from(hc_hash) if hc_hash.size > 2
             entries=entries-1
           end
-          row=Admin::DataDefinition.where("table_name=? and column_name=?",table_name,column_name).first
+          row=DataDefinition.where("table_name=? and column_name=?",table_name,column_name).first
           if row
             row.enumerations=hash.to_json
             row.save
@@ -56,7 +55,7 @@ module Admin
 
     def create_from(hash)
       # Bi-Monthly creation of Enumeration rows.
-      Admin::Enumeration.new(
+      Enumeration.new(
         {:table_name     => hash[:table_name],
          :column_name    => hash[:column_name],
          :column_value   => hash[:column_value],
@@ -73,7 +72,7 @@ module Admin
     end
 
     def self.get_values_for(table_name, column_name)
-      col_values=Admin::Enumeration.where("table_name=? and column_name=?", table_name, column_name)
+      col_values=Enumeration.where("table_name=? and column_name=?", table_name, column_name)
         .select("column_value")
         .group_by &:column_value
     end
@@ -157,5 +156,4 @@ module Admin
       ]
     end
 
-  end
 end

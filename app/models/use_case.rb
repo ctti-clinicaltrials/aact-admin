@@ -1,4 +1,4 @@
-class UseCase < Admin::AdminBase
+class UseCase < ActiveRecord::Base
   has_many :use_case_attachments, :dependent => :destroy
   has_many :use_case_publications, :dependent => :destroy
   has_many :use_case_datasets, :dependent => :destroy

@@ -8,7 +8,7 @@ module Util
       if params[:event]
         @event = params[:event]
       else
-        @event = Admin::UserEvent.new
+        @event = UserEvent.new
       end
     end
 
@@ -70,20 +70,18 @@ module Util
 
     def grant_db_privs
       revoke_db_privs # to avoid errors, ensure privs revoked first
-      c = PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
+      c = Public::Study.connection
       c.execute("grant connect on database #{public_db_name} to public;")
       c.execute("grant usage on schema ctgov TO public;")
       c.execute('grant select on all tables in schema ctgov to public;')
-      c.disconnect!
-      c=nil
     end
 
     def revoke_db_privs
       log "db_manager.revoking db privs..."
       begin
-        pub_con.execute("revoke connect on database #{public_db_name} from public;")
-        pub_con.execute("revoke select on all tables in schema ctgov from public;")
-        pub_con.execute("revoke all on schema ctgov from public;")
+        Public::Study.connection.execute("revoke connect on database #{public_db_name} from public;")
+        Public::Study.connection.execute("revoke select on all tables in schema ctgov from public;")
+        Public::Study.connection.execute("revoke all on schema ctgov from public;")
       rescue => error
         # error raised if schema missing. Ignore. Will be created in a pg_restore.
         log "db_manager.revoke_db_privs - error encountered:  #{error}"
@@ -91,7 +89,7 @@ module Util
     end
 
     def public_db_accessible?
-      result=pub_con.execute("select count(*) from information_schema.role_table_grants where grantee='PUBLIC' and table_schema='ctgov';").first["count"]
+      result=Public::Study.connection.execute("select count(*) from information_schema.role_table_grants where grantee='PUBLIC' and table_schema='ctgov';").first["count"]
       result.to_i > 0
     end
 
@@ -112,15 +110,15 @@ module Util
     end
 
     def terminate_db_sessions
-      pub_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = '#{public_db_name}'")
+      Public::Study.connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = '#{public_db_name}'")
     end
 
     def terminate_alt_db_sessions
-      pub_con.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = 'aact_alt'")
+      Public::Study.connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = 'aact_alt'")
     end
 
     def public_study_count
-      pub_con.execute("select count(*) from studies").values.flatten.first.to_i
+      Public::Study.connection.execute("select count(*) from studies").values.flatten.first.to_i
     end
 
     def background_study_count
@@ -136,7 +134,7 @@ module Util
     end
 
     def pub_con
-      @pub_con ||= PublicBase.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
+      @pub_con ||= ActiveRecord::Base.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
     end
 
     def public_host_name
