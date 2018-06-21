@@ -111,7 +111,7 @@ class User < ActiveRecord::Base
       Public::Study.connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE usename = '#{self.username}'")
       db_mgr=Util::UserDbManager.new({ :event=> event })
       db_mgr.remove_user(self.username)
-      destroy
+      self.destroy
     rescue => e
       self.errors.add(e.message)
       puts e.message
