@@ -37,8 +37,4 @@ class PagesController < ApplicationController
     @show_dictionary_link = true
   end
 
-  def sanity_check
-    @sanity_check_report = Admin::SanityCheck.last.report
-  end
-
 end
