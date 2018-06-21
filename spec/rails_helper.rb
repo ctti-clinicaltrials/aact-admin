@@ -44,6 +44,16 @@ RSpec.configure do |config|
 
     DatabaseCleaner.start
     DatabaseCleaner[:active_record, { model: UserEvent }].start
+
+    # ensure app user logged into db connections
+    Public::PublicBase.establish_connection(
+      adapter: 'postgresql',
+      encoding: 'utf8',
+      hostname: ENV['AACT_PUBLIC_HOSTNAME'],
+      database: ENV['AACT_PUBLIC_DATABASE_NAME'],
+      username: ENV['DB_SUPER_USERNAME'])
+    @dbconfig = YAML.load(File.read('config/database.yml'))
+    ActiveRecord::Base.establish_connection @dbconfig[:test]
   end
 
   config.after(:each) do

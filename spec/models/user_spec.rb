@@ -95,9 +95,8 @@ describe User do
     rescue => e
       e.inspect
       expect(e.message).to eq("FATAL:  role \"rspec\" is not permitted to log in\n")
-      expect(con).to be(nil)
     end
-    #  Go back to superuser-owned connections...
+    #  To confirm the user, make sure app owner (superuser) logged into db connections
     @dbconfig = YAML.load(File.read('config/database.yml'))
     ActiveRecord::Base.establish_connection @dbconfig[:test]
     con=Public::PublicBase.establish_connection(
@@ -147,16 +146,6 @@ describe User do
       database: ENV['AACT_PUBLIC_DATABASE_NAME'],
       username: user.username,
     ).connection}.to raise_error(PG::ConnectionBad)
-    # Subsequent spec tests use this public db connection. Force reset back to test db.
-    ActiveRecord::Base.establish_connection @dbconfig[:test]
-    Public::PublicBase.establish_connection(
-      adapter: 'postgresql',
-      encoding: 'utf8',
-      hostname: ENV['AACT_PUBLIC_HOSTNAME'],
-      database: ENV['AACT_PUBLIC_DATABASE_NAME'],
-      username: ENV['DB_SUPER_USERNAME'],
-    ).connection
-
   end
 
   it "isn't accepted if special char in username" do
@@ -178,17 +167,6 @@ describe User do
       expect(e.class).to eq(PG::ConnectionBad)
       expect(e.message).to eq("FATAL:  password authentication failed for user \"rspec!_test\"\n")
     end
-    # Should factor this out to happen before each test
-    @dbconfig = YAML.load(File.read('config/database.yml'))
-    ActiveRecord::Base.establish_connection @dbconfig[:test]
-    con=Public::PublicBase.establish_connection(
-      adapter: 'postgresql',
-      encoding: 'utf8',
-      hostname: ENV['AACT_PUBLIC_HOSTNAME'],
-      database: ENV['AACT_PUBLIC_DATABASE_NAME'],
-      username: ENV['DB_SUPER_USERNAME'],
-    ).connection
-
   end
 
 end
