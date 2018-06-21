@@ -1,7 +1,7 @@
 class AddHealthCheck < ActiveRecord::Migration
   def change
 
-    create_table(:enumerations) do |t|
+    create_table "admin.enumerations" do |t|
       t.string  :table_name
       t.string  :column_name
       t.string  :column_value
@@ -11,7 +11,7 @@ class AddHealthCheck < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table(:health_checks) do |t|
+    create_table "admin.health_checks" do |t|
       t.text    :query
       t.string  :cost
       t.float   :actual_time,  :precision => 4, :scale => 2
