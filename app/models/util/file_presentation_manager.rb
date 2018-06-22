@@ -28,6 +28,10 @@ module Util
       Util::FileManager.new.files_in('exported_files','daily')
     end
 
+    def support_schema_diagram
+      "/static/documentation/aact_support_schema.png"
+    end
+
     def admin_schema_diagram
       "/static/documentation/aact_admin_schema.png"
     end

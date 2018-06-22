@@ -36,6 +36,10 @@ module Util
       "#{Rails.public_path}/static/xml_downloads"
     end
 
+    def support_schema_diagram
+      "#{Rails.public_path}/static/documentation/aact_support_schema.png"
+    end
+
     def admin_schema_diagram
       "#{Rails.public_path}/static/documentation/aact_admin_schema.png"
     end
