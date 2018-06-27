@@ -6,15 +6,15 @@ module Util
     end
 
     def create_user_account(user)
-      #begin
+      begin
         return false if !can_create_user_account?(user)
         Public::Study.connection.execute("create user \"#{user.username}\" password '#{user.password}';")
         Public::Study.connection.execute("alter user #{user.username} nologin;")  # can't login until they confirm their email
         return true
-      #rescue => e
-      #  user.errors.add(:base, e.message)
-      #  return false
-      #end
+      rescue => e
+        user.errors.add(:base, e.message)
+        return false
+      end
     end
 
     def can_create_user_account?(user)
@@ -26,22 +26,17 @@ module Util
     def user_account_exists?(username)
       return true if username == 'postgres'
       return true if username == 'ctti'
-      x=Public::Study.connection.execute("SELECT usename FROM pg_catalog.pg_user where usename = '#{username}' UNION
+      Public::Study.connection.execute("SELECT usename FROM pg_catalog.pg_user where usename = '#{username}' UNION
                   SELECT groname  FROM pg_catalog.pg_group where groname = '#{username}'").count > 0
-      puts "======================="
-      puts Public::Study.connection.current_database
-      puts x
-      puts "======================="
-      x
     end
 
     def remove_user(username)
       begin
         return false if !user_account_exists?(username)
         revoke_db_privs(username)
-        Public::Study.connection.execute("reassign owned by #{username} to postgres;")
-        Public::Study.connection.execute("drop owned by #{username};")
-        Public::Study.connection.execute("drop user #{username};")
+        Public::Study.connection.execute("reassign owned by \"#{username}\" to postgres;")
+        Public::Study.connection.execute("drop owned by \"#{username}\";")
+        Public::Study.connection.execute("drop user \"#{username}\";")
         return true
       rescue => e
         raise e
