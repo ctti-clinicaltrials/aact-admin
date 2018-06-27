@@ -638,7 +638,7 @@ CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING b
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO ctgov, support, public;
+SET search_path TO ctgov, support, admin, public;
 
 INSERT INTO schema_migrations (version) VALUES ('20160212191640');
 
