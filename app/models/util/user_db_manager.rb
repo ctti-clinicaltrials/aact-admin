@@ -9,7 +9,7 @@ module Util
       begin
         return false if !can_create_user_account?(user)
         Public::Study.connection.execute("create user \"#{user.username}\" password '#{user.password}';")
-        Public::Study.connection.execute("alter user #{user.username} nologin;")  # can't login until they confirm their email
+        Public::Study.connection.execute("alter user \"#{user.username}\" nologin;")  # can't login until they confirm their email
         return true
       rescue => e
         user.errors.add(:base, e.message)
@@ -89,15 +89,11 @@ module Util
 
     def revoke_db_privs(username)
       terminate_sessions_for(username)
-      Public::Study.connection.execute("alter user #{username} nologin;")
+      Public::Study.connection.execute("alter user \"#{username}\" nologin;")
     end
 
     def terminate_sessions_for(username)
-       Public::Study.connection.select_all("select * from pg_stat_activity order by pid;").each { |session|
-        if session['usename']=="#{username}"
-          Public::Study.execute("select pg_terminate_backend(#{session['pid']})")
-        end
-      }
+       Public::Study.connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND usename ='#{username}'")
     end
   end
 end
