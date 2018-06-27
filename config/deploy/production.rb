@@ -38,6 +38,7 @@
 # http://net-ssh.github.io/net-ssh/classes/Net/SSH.html#method-c-start
 #
 # Global options
+  set :repo_url, "git@github.com:ctti-clinicaltrials/aact-admin.git"
   set :deploy_to, '/srv/web/aact.ctti-clinicaltrials.org'
   set :ssh_options, {
     keys: %w(/home/ctti-aact/.ssh/id_rsa),

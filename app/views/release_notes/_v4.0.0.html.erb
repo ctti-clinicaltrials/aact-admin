@@ -1,0 +1,16 @@
+ <h3>AACT 4.0.0 <i>(September 5, 2018)</i></h3>
+
+  <h5>Divide AACT into Two Applications</h5>
+  <p>The AACT application has been modified to remove functionality not directly related to populating the relational database with data from ClinicalTrials.gov. Other functionality (such as user registration, the presentation of a website/knowledgebase, etc.) has been moved to a separate Ruby on Rails application: <a href='https://github.com/ctti-clinicaltrials/aact-admin' target='_blank'>AACT Administration</a>. This change will have no direct impact on AACT users but makes it easier to support the system and positions AACT to be more easily replicated by other organizations/people.</p>
+  </p>
+
+  <h5>Ensure No Information about Removed User Accounts is Retained</h5>
+  <p>To comply with <a href='https://gdpr-info.eu/art-17-gdpr/' target='_blank'>Article 17 of the General Data Protection Regulation</a> (aka 'The Right to be Forgotten'), we have verifyied that AACT does not save any information about a user who has chosen to be removed from AACT.</p>
+
+  <h5>Correct Data Dictionary</h5>
+  <p>Tables added to AACT in version 3.1.2 (Documents & Pending_Results) were not defined in the Table Definition table on the Data Dictionary page of the AACT website.</p>
+
+  <h5>Prevent Mixed-Case Database Usernames</h5>
+  <p>PostgreSQL recognizes mixed-case objects and requires double quotes when managing such objects.  To avoid confusion, we now prevent the creation of mixed-case database usernames.</p>
+
+

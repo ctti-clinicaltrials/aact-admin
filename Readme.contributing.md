@@ -3,7 +3,7 @@ Contributing to the Project
 
 The AACT project uses a fork and pull-request contribution model.  Developers
 wishing to use github to contribute to the project should fork the
-['official' repo](https://github.com/ctti-clinicaltrials/aact-admin) into your
+['official' repo](https://github.com/ctti-clinicaltrials/aact) into your
 personal github account.  You should then set up a 'development' branch, if it does
 not already exist.  You can (and should) delete the 'production' branch if it
 exists, as we will never allow pull requests into production from forked repos.

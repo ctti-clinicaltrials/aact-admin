@@ -10,7 +10,7 @@
      <li>Provide value-added attributes, identify them as such, and keep them separate from the raw ClinicalTrials.gov content. (The <i>Calculated_Values</i> table contains data elements that were derived from existing data.)</li>
    </ul>
 
-   <h4>Naming Conventions</h4>
+   <h4 id='namingConventions'>Naming Conventions</h4>
    <ul class='regularDisplay'>
      <li>Table names are all plural. (ie. <i>studies, facilities, interventions,</i> etc.)</li>
      <li>Column names are all singular. (ie. <i>description, phase, name</i>, etc.)</li>
@@ -19,7 +19,7 @@
      <li>Information about study design entered into ClinicalTrials.gov during registration is stored in AACT tables prefixed with <i>Design_</i> to distinguish it from the results data. For example, the <i>Design_Groups</i> table contains registry information about anticipated participant groups, whereas the <i>Result_Groups</i> table contains information that was entered after the study has completed to describe actual participant groups. <i>Design_Outcomes</i> contains information about the outcomes to be measured and <i>Outcomes</i> contains info about the actual outcomes reported when the study completed.</li>
      <li>Where possible, tables & columns are given fully qualified names; abbreviations are avoided. (ie. <i>description</i> rather than <i>desc</i>; <i>category</i> rather than <i>ctgry</i>)</li>
      <li>Unnecssary and duplicate verbiage is avoided. For example: <i>Studies.source</i> instead of <i>Studies.study_source</i></li>
-     <li>Columns that end with <i>_id</i> represent foreign keys. The prefix to the <i>_id</i> suffix is always the singular name of the parent table to which the child table is related. These foreign keys always link to the <i>id</i> column of the parent table.</p>
+     <li id='idInformation'>Columns that end with <i>_id</i> represent foreign keys. The prefix to the <i>_id</i> suffix is always the singular name of the parent table to which the child table is related. These foreign keys always link to the <i>id</i> column of the parent table.</p>
        <p><i>Child_Table.parent_table_id = Parent_Tables.id</i></p>
        <p>For example, a row in <i>Facility_Contacts</i> links to it’s facility through the <i>facility_id</i> column.</p>
        <p><i>Facility_Contacts.facility_id = Facilities.id</i>

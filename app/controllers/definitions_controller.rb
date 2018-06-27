@@ -49,7 +49,7 @@ class DefinitionsController < ApplicationController
   end
 
   def fix_attribs(hash)
-    enums=Admin::Enumeration.new.enums
+    enums=Enumeration.new.enums
     enum_tabs=enums.map {|row| row[0]}
     enum_cols=enums.map {|row| row[1]}
     tab=hash['table'].downcase
@@ -61,16 +61,17 @@ class DefinitionsController < ApplicationController
     end
 
     if enum_tabs.include? tab and enum_cols.include? col
-      dd=Admin::DataDefinition.where('table_name=? and column_name=?',tab,col).first
-      return if dd.enumerations.nil?
-      str="<select>"
-      dd.enumerations.each{|e|
-        cnt=e.last.first
-        pct=e.last.last
-        str=str+"<option>"+cnt+" ("+pct+")&nbsp&nbsp; - "+e.first+"</option>"
-      }
-      str=str+'</select>'
-      hash['enumerations'] = str.html_safe
+      dd=DataDefinition.where('table_name=? and column_name=?',tab,col).first
+      if dd and !dd.enumerations.nil?
+        str="<select>"
+        dd.enumerations.each{|e|
+          cnt=e.last.first
+          pct=e.last.last
+          str=str+"<option>"+cnt+" ("+pct+")&nbsp&nbsp; - "+e.first+"</option>"
+        }
+        str=str+'</select>'
+        hash['enumerations'] = str.html_safe
+      end
     end
 
     if hash['nlm doc'].present?
@@ -80,7 +81,7 @@ class DefinitionsController < ApplicationController
 
     if (col == 'id') or (tab.downcase == 'studies' and col == 'nct_id')
       # If this is the table's primary key, display row count.
-      results=Admin::AdminBase.connection.execute("SELECT row_count FROM data_definitions WHERE table_name='#{tab}' and column_name='#{col}'")
+      results=ActiveRecord::Base.connection.execute("SELECT row_count FROM data_definitions WHERE table_name='#{tab}' and column_name='#{col}'")
       if results.ntuples > 0
         row_count=results.getvalue(0,0).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
         hash['row count']=row_count

@@ -1,5 +1,5 @@
-# AACT Admin
-Admin Tools for AACT: Aggregated Analysis of ClinicalTrials.gov
+# AACT
+Administer AACT: Aggregated Analysis of ClinicalTrials.gov
 
 ## Getting Started
 

@@ -1,8 +1,7 @@
 # config valid only for current version of Capistrano
 lock "3.8.2"
 
-set :application, "aact"
-set :repo_url, "git@github.com:ctti-clinicaltrials/aact.git"
+set :application, "aact-admin"
 
 # Default branch is :master
 ask :branch, 'development'

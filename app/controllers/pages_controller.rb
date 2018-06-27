@@ -14,6 +14,7 @@ class PagesController < ApplicationController
 
   def points_to_consider
     fpm=Util::FilePresentationManager.new
+    @support_schema_diagram=fpm.support_schema_diagram
     @admin_schema_diagram=fpm.admin_schema_diagram
     @schema_diagram=fpm.schema_diagram
     @data_dictionary=fpm.data_dictionary
@@ -22,6 +23,7 @@ class PagesController < ApplicationController
 
   def learn_more
     fpm=Util::FilePresentationManager.new
+    @support_schema_diagram=fpm.support_schema_diagram
     @admin_schema_diagram=fpm.admin_schema_diagram
     @schema_diagram=fpm.schema_diagram
     @data_dictionary=fpm.data_dictionary
@@ -30,15 +32,12 @@ class PagesController < ApplicationController
 
   def schema
     fpm=Util::FilePresentationManager.new
+    @support_schema_diagram=fpm.support_schema_diagram
     @admin_schema_diagram=fpm.admin_schema_diagram
     @schema_diagram=fpm.schema_diagram
     @data_dictionary=fpm.data_dictionary
     @table_dictionary=fpm.table_dictionary
     @show_dictionary_link = true
-  end
-
-  def sanity_check
-    @sanity_check_report = Admin::SanityCheck.last.report
   end
 
 end
