@@ -107,7 +107,7 @@ class User < ActiveRecord::Base
   def remove
     begin
       return false if !can_access_db?
-      event=UserEvent.create( { :email => self.email, :event_type =>'remove' })
+      event=UserEvent.create( { :email => 'annon', :event_type =>'remove' })
       Public::Study.connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE usename = '#{self.username}'")
       db_mgr=Util::UserDbManager.new({ :event=> event })
       db_mgr.remove_user(self.username)
