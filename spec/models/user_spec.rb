@@ -30,14 +30,21 @@ describe User do
     expect(User.count).to eq(0)
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'1rspec_test',:password=>'aact',:password_confirmation=>'aact')
     expect( user.valid? ).to eq(false)
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username cannot contain special chars, Username must start with an alpha character")
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username can contain only lowercase characters and numbers, Username must start with a lowercase character")
     expect(User.count).to eq(0)
   end
 
   it "isn't accepted if username has a hyphen" do
     allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'r1-ectest',:password=>'aact',:password_confirmation=>'aact')
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username cannot contain special chars")
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username can contain only lowercase characters and numbers")
+    expect(User.count).to eq(0)
+  end
+
+  it "isn't accepted if username is mixed case" do
+    allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
+    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'EcTest',:password=>'aact',:password_confirmation=>'aact')
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username can contain only lowercase characters and numbers, Username must start with a lowercase character")
     expect(User.count).to eq(0)
   end
 
@@ -152,7 +159,7 @@ describe User do
     allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
     User.all.each{|user| user.remove}  # remove all existing users - both from Users table and db accounts
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>'rspec!_test',:password=>'aact')
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username cannot contain special chars')
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username can contain only lowercase characters and numbers')
     expect(User.count).to eq(0)
     begin
       Public::PublicBase.establish_connection(
