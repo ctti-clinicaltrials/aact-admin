@@ -1,0 +1,29 @@
+<section class="techDoc">
+  <h3 id="techDoc">Technical Documentation</h3>
+  <p>
+  The application that creates the AACT database is a Ruby on Rails app that anyone can <a target='_blank' href='https://github.com/ctti-clinicaltrials/aact'>download from github</a>. This ap is responsible for creating and populating/refreshing the relational database using data retrieved from the ClinicalTrials.gov API and also creating static copies of the database.
+  Another application, <i>AACT Administrator</i> is responsible for all administrative functions required to support CTTI's live instance of the AACT database such as user registration and this website/knowledgebase. This app is also available as a <a target='_blank' href='https://github.com/ctti-clinicaltrials/aact-admin'>github repository</a>.  </p>
+
+  <h4 id="Overview"></h4>
+  <p></p>
+
+  <h4 id="faq">FAQ</h4>
+
+  <p>This section lists frequently encountered issues.</p>
+
+
+  <h4 id="architecture">High Level Architecture</h4>
+  <p>An OIT serverThe AACT application is deployed to an OIT server<a href='/schema'>here</a>
+  </p>
+
+  <h4 id="schemaDiagrams">Schema Diagrams</h4>
+  <p>To ensure accuracy, the process that pulls data into the AACT database from ClinicalTrials.gov includes a set of validation and sanity checks.</p>
+  <p>AACT schema diagrams and documentation may be downloaded from the following links:</p>
+  <ul class='regularDisplay'>
+        <li><a href=<%= @schema_diagram %> target="_blank" onClick="ga('send','event','download','download schema')"  >downloadable schema diagram</a> (right click on the resulting page to download)</li>
+        <li><a href=<%= @support_schema_diagram %> target="_blank" onClick="ga('send','event','download','download schema')"  >downloadable diagram of support tables</a> (right click on the resulting page to download)</li>
+        <li><a href=<%= @admin_schema_diagram %> target="_blank" onClick="ga('send','event','download','download schema')"  >downloadable diagram of admin tables</a> (right click on the resulting page to download)</li>
+
+  </ul>
+
+</section>

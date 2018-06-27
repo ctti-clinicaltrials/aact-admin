@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get "/sas"                  => "pages#sas"
   get "/psql"                 => "pages#psql"
   get "/frequently_asked_questions" => "pages#frequently_asked_questions"
-  get "/background"           => "pages#background"
+  get "/technical_documentation"    => "pages#technical_documentation"
   get "/release_notes"        => "pages#release_notes"
   get "/update_policy"        => "pages#update_policy"
 
