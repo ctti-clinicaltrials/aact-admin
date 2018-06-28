@@ -64,15 +64,15 @@ module Util
       File.delete(account_file_name) if File.exist?(account_file_name)
 
       log "dumping Users table..."
-      cmd="pg_dump --no-owner --host=localhost -U #{ENV['DB_SUPER_USERNAME']} --table=Users  --data-only aact_dmin > #{table_file_name}"
+      cmd="pg_dump --no-owner --host=localhost -U #{ENV['AACT_DB_SUPER_USERNAME']} --table=Users  --data-only aact_dmin > #{table_file_name}"
       run_command_line(cmd)
 
       log "dumping User events..."
-      cmd="pg_dump --no-owner --host=localhost -U #{ENV['DB_SUPER_USERNAME']} --table=User_Events  --data-only aact_admin > #{event_file_name}"
+      cmd="pg_dump --no-owner --host=localhost -U #{ENV['AACT_DB_SUPER_USERNAME']} --table=User_Events  --data-only aact_admin > #{event_file_name}"
       run_command_line(cmd)
 
       log "dumping User accounts..."
-      cmd="/opt/rh/rh-postgresql96/root/bin/pg_dumpall -U  #{ENV['DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{account_file_name}"
+      cmd="/opt/rh/rh-postgresql96/root/bin/pg_dumpall -U  #{ENV['AACT_DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{account_file_name}"
       run_command_line(cmd)
 
       event=UserEvent.new({:event_type=>'backup', :file_names=>" #{table_file_name}, #{event_file_name}, #{account_file_name}" })
