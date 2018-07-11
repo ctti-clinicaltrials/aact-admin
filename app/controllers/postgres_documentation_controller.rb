@@ -1,0 +1,3 @@
+class PostgresDocumentationController < ApplicationController
+
+end

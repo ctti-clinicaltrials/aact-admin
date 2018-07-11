@@ -1,0 +1,76 @@
+<div class="wrap">
+  <div class="basicHero">
+    <h1>Hints for Installing PostgreSQL on Windows 10</h1>
+  </div>
+
+  <p>The following information is based on our experience downloading PostgreSQL 9.6.9 from the <a target='_blank' href='https://www.enterprisedb.com/downloads/postgres-postgresql-downloads'>Enterprise DB website</a> and installing it on a Windows 10 machine. This was done in early July, 2018.</p>
+
+  <div class="step">
+     <span class="stepNumber">1</span>
+     <h3 class="stepName">Go to the PostgreSQL Download Site</h3>
+  </div>
+
+  <p> <%= image_tag("postgres-documentation/download_postgres.png", :size => '420x350', :class => 'centerImage') %> </p>
+
+  <p>The site starts by asking which version of PostgreSQL you want and the operating system of your machine. On Windows, you need to know whether you're on a 32 or 64 bit platform.</p>
+
+  <div class="step">
+     <span class="stepNumber">2</span>
+     <h3 class="stepName">Determine if your Windows machine is 32 or 64 bit</h3>
+  </div>
+  <p> <%= image_tag("postgres-documentation/pg-windows-system-type2.png", :size => '420x150', :class => 'centerImage') %> </p>
+
+  <p>When we did this, we determined our machine to be 64 bit (see the value for 'System type:' in the next screenshot), so we selected 'Windows x86-64' from the dropdown.</p>
+
+  <p> <%= image_tag("postgres-documentation/pg-windows-system-type.png", :size => '350x350', :class => 'centerImage') %> </p>
+
+  <p>We then pressed the [Download Now] button.</p>
+
+  <p> <%= image_tag("postgres-documentation/windows_system_type_select.png", :size => '350x200', :class => 'centerImage') %> </p>
+
+  <div class="step">
+     <span class="stepNumber">3</span>
+     <h3 class="stepName">Run the executable that was just downloaded</h3>
+  </div>
+  <p>The download website will then ask you what you want to do once the file finishes downloading.  Select [Run].</p>
+
+  <p> <%= image_tag("postgres-documentation/run_executable.png", :size => '420x70', :class => 'centerImage') %> </p>
+  <p>Choose [Yes] when it asks if you allow the app to make changes to your device.</p>
+  <p> <%= image_tag("postgres-documentation/allow_changes.png", :size => '420x270', :class => 'centerImage') %> </p>
+  <p>This will launch the setup wizard</p>
+  <p> <%= image_tag("postgres-documentation/launch_setup_wizard.png", :size => '420x270', :class => 'centerImage') %> </p>
+  <p>Click [ Next > ] buttons until you get to</p>
+  <p>You will need to enter the password for the PostgreSQL superuser. <b>Remember this password! You will need it to create the AACT database.</b></p>
+  <p>You should see a progress bar showing that it is installing PostgreSQL</p>
+  <p> <%= image_tag("postgres-documentation/installing_progress_bar.png", :size => '420x270', :class => 'centerImage') %> </p>
+
+  <div class="step">
+     <span class="stepNumber">4</span>
+     <h3 class="stepName">Launch pgAdmin to create a new database</h3>
+  </div>
+
+  <p>Left click the Windows icon in the lower left and scroll down the list of icons that display until you see to PostgreSQL icon. Click on it to expand the list of PostgreSQL tools and click on [pgAdmin 4].</p>
+  <p> <%= image_tag("postgres-documentation/pg_admin_4_icon.png", :size => '320x170', :class => 'centerImage') %> </p>
+  <p>When you click on pgAdmin, it should launch the tool that will let you create a local version of the AACT database and populate it from a downloaded static copy. It should present a window that looks something like this:</p>
+  <p> <%= image_tag("postgres-documentation/launch_pg_admin.png", :size => '320x170', :class => 'centerImage') %> </p>
+
+  <p>Double Click on 'Servers' and navigate down to 'Databases' Once there, click on [Objects] in the upper menu, and select 'Create' and then 'Database'. This should present an input dialog box that allows you to provide information about your new database.</p>
+
+  <p> <%= image_tag("postgres-documentation/objects_create_database.png", :size => '320x170', :class => 'centerImage') %> </p>
+
+  <p>Enter the database name: 'AACT' in the first input box and press [Save].  An icon for the AACT database should appear on the left under 'Databases'.</p>
+
+  <p> <%= image_tag("postgres-documentation/create_database_aact.png", :size => '320x170', :class => 'centerImage') %> </p>
+
+  <div class="step">
+     <span class="stepNumber">5</span>
+     <h3 class="stepName">Populate the new database from the static copy downloaded from the AACT website</h3>
+  </div>
+
+  <p>Download a static copy of the AACT database from the <a target='_blank' href=''>AACT Download Page</a>, and unzip/open the resulting zip file.  It will unpack a set of files that include documentation and the AACT database. The file you need for populating your local database copy is <i>database.dmp</i>. </p>
+
+  <p> <%= image_tag("postgres-documentation/aact_zip_file_contents.png", :size => '420x170', :class => 'centerImage') %> </p>
+
+  <p>You can import the content of this file into your new database by clicking [Tools] from the upper menu bar in pgAdmin and then click on 'Restore...'</p>
+  <p> <%= image_tag("postgres-documentation/restore_aact_db.png", :size => '420x170', :class => 'centerImage') %> </p>
+</div>

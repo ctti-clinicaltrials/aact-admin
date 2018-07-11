@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get "/update_policy"        => "pages#update_policy"
 
   get "/points_to_consider"   => "pages#points_to_consider"
-  get "/news"                 => "pages#news"
+  get "/install_postgres"     => "postgres_documentation#install_postgres"
 
   get "/download"             => "pages#download"
   get "/snapshots"            => "pages#snapshots"
