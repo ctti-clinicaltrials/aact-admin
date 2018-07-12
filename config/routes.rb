@@ -18,13 +18,13 @@ Rails.application.routes.draw do
   get "/r"                    => "pages#r"
   get "/sas"                  => "pages#sas"
   get "/psql"                 => "pages#psql"
-  get "/frequently_asked_questions" => "pages#frequently_asked_questions"
   get "/technical_documentation"    => "pages#technical_documentation"
   get "/release_notes"        => "pages#release_notes"
   get "/update_policy"        => "pages#update_policy"
 
   get "/points_to_consider"   => "pages#points_to_consider"
   get "/install_postgres"     => "postgres_documentation#install_postgres"
+  get "/faq"                  => "faq#index"
 
   get "/download"             => "pages#download"
   get "/snapshots"            => "pages#snapshots"
