@@ -20,11 +20,11 @@
   <p> <%= image_tag("postgres-documentation/pg-windows-system-type2.png", :size => '420x150', :class => 'centerImage') %> </p>
   <p>When we did this, we determined our machine to be 64 bit (see the value for 'System type:' in the screenshot below). Therefore we selected <i>Windows x86-64</i> from the dropdown.</p>
 
-  <p> <%= image_tag("postgres-documentation/pg-windows-system-type.png", :size => '420x350', :class => 'centerImage') %> </p>
+  <p> <%= image_tag("postgres-documentation/pg-windows-system-type.png", :size => '460x350', :class => 'centerImage') %> </p>
 
   <p>With these two values specified, we pressed the <i>[Download Now]</i> button.</p>
 
-  <p> <%= image_tag("postgres-documentation/windows_system_type_select.png", :size => '350x200', :class => 'centerImage') %> </p>
+  <p> <%= image_tag("postgres-documentation/windows_system_type_select.png", :size => '450x200', :class => 'centerImage') %> </p>
 
   <div class="step">
      <span class="stepNumber">2</span>
@@ -32,14 +32,14 @@
   </div>
   <p>The website will ask what you want to do once the file finishes downloading.  Select [Run] so that it automatically launches the process that installs the software.</p>
 
-  <p> <%= image_tag("postgres-documentation/run_executable.png", :size => '420x70', :class => 'centerImage') %> </p>
+  <p> <%= image_tag("postgres-documentation/run_executable.png", :size => '600x70', :class => 'centerImage') %> </p>
   <p>Choose [Yes] when it asks if you allow the app to make changes to your device.</p>
   <p> <%= image_tag("postgres-documentation/allow_changes.png", :size => '420x270', :class => 'centerImage') %> </p>
   <p>This will fire off the setup wizard. Click <i>[ Next > ]</i> buttons (accepting all defaults) until it prompts you for the superuser password. <b>Enter a password you will remember!</b> You'll need it later to access PostgreSql & create the AACT database.</b></p>
   <p> <%= image_tag("postgres-documentation/launch_setup_wizard.png", :size => '420x270', :class => 'centerImage') %> </p>
 
   <p>You should see a progress bar showing that it is installing PostgreSQL</p>
-  <p> <%= image_tag("postgres-documentation/installing_progress_bar.png", :size => '420x270', :class => 'centerImage') %> </p>
+  <p> <%= image_tag("postgres-documentation/installing_progress_bar.png", :size => '420x320', :class => 'centerImage') %> </p>
 
   <p>Unless you intend to develop an application or additional functionality that uses PostgreSQL databases, you will not need to install additional PostgreSQL features/utilitites, so exit when it completes the main installation.</p>
 
@@ -57,12 +57,41 @@
 
   <p> <%= image_tag("postgres-documentation/objects_create_database.png", :size => '320x170', :class => 'centerImage') %> </p>
 
-  <p> This should present an input dialog box that allows you to define a new database. Enter the database name: 'AACT' in the first input box and press <i>[Save]</i>.  An icon for the AACT database should appear on the left under 'Databases'.</p>
+  <p> This should present an input dialog box that allows you to define a new database. Enter the database name: 'AACT' in the first input box, and before you press <i>[Save]</i>, click the <i>Security</i> tab.</p>
 
-  <p> <%= image_tag("postgres-documentation/create_database_aact.png", :size => '320x170', :class => 'centerImage') %> </p>
+  <p> <%= image_tag("postgres-documentation/create_database_aact.png", :size => '320x320', :class => 'centerImage') %> </p>
+
+  <p>Click the little plus icon to the right of 'Privileges' and then under 'Grantee' select <i>PUBLIC</i> from the drop down and assign it <b>All</b> Privileges by clicking in the 'Privileges' cell next to <i>PUBLIC</i> and checking the box next to 'All'.</p>
+
+  <p> <%= image_tag("postgres-documentation/grant_public_rights_to_db.png", :size => '320x320', :class => 'centerImage') %> </p>
+  <p> <%= image_tag("postgres-documentation/grant_db_access_to_public.png", :size => '320x320', :class => 'centerImage') %> </p>
+
+  <p>Now you can press <i>[Save]</i>. </p>
 
   <div class="step">
      <span class="stepNumber">4</span>
+     <h3 class="stepName">Create database role: ctti</h3>
+  </div>
+  <p>You need to create a specific database user/role to import data from AACT. This is because all database objects in the AACT dump file (the file which will be used to populate your local instance of AACT) are owned by a user named <i>ctti</i>.  If the role doesn't exist, you will get error messages that look something like:</P>
+  <p> <%= image_tag("postgres-documentation/missing_ctti_role_error_message.png", :size => '560x170', :class => 'centerImage') %> </p>
+
+  <p>(We intend to modify the database dump process to avoid the need for you to create a database user/role named <i>ctti</i>, but for now, it's necessary.)</p>
+
+  <p>In the left pane, select <i>PostgreSQL 9.6</i> and then select <i>Object</i> - <i>Create</i> - <i>Login/Group Role</i>.
+  <p> <%= image_tag("postgres-documentation/create_role.png", :size => '320x170', :class => 'centerImage') %> </p>
+
+  <p>In the 'Create - Login/Group Role' dialog that pops up, enter <i>ctti</i> in the Name input field.</p>
+
+  <p> <%= image_tag("postgres-documentation/create_ctti_role.png", :size => '320x250', :class => 'centerImage') %> </p>
+
+  <p>Then select the 'Privileges' tab at the top of the dialog and set 'Can Login?' to 'Yes'.</p>
+
+  <p> <%= image_tag("postgres-documentation/create_role_ctti_privs.png", :size => '320x350', :class => 'centerImage') %> </p>
+
+  <p>Then press <i>[Save]</i></p>
+
+  <div class="step">
+     <span class="stepNumber">5</span>
      <h3 class="stepName">Populate the AACT database</h3>
   </div>
 
@@ -72,22 +101,22 @@
 
   <p> <%= image_tag("postgres-documentation/aact_zipfile_contents.png", :size => '420x170', :class => 'centerImage') %> </p>
 
-  <p>You can import the content of <i>postgres_data.dmp</i> file into your new database by clicking <i>[Tools]</i> in the top menu bar of pgAdmin and then click <i>Restore...</i> in the dropdown menu.</p>
+  <p>You can import the content of <i>postgres_data.dmp</i> file into your new database by selecting the <i>AACT</i> database in the left pane and then clicking <i>[Tools]</i> in the top menu bar of pgAdmin and then click <i>Restore...</i> in the dropdown menu.</p>
   <p> <%= image_tag("postgres-documentation/restore_aact_db.png", :size => '420x270', :class => 'centerImage') %> </p>
 
-  <p>You need to click the elipses to the right of the Filename input box. This will present a 'Select file' dialog box.</p>
+  <p>You'll need to click the elipses to the right of the Filename input box. This will present a 'Select file' dialog box.</p>
 
   <p> <%= image_tag("postgres-documentation/select_restore_file.png", :size => '420x270', :class => 'centerImage') %> </p>
 
-  <p>Navigate to the directory where the <i>postgres_data.dmp</i> file is.  Important: You need to select 'All Files' in the dropdown that appears in the lower right corner. The <i>postgres_data.dmp</i> file will not display unless 'All files' is selected.'</p>
+  <p>Navigate to the directory where the <i>postgres_data.dmp</i> file has been downloaded to your machine. <b>Before you can do this though, you must select 'All Files' in the dropdown that appears in the lower right corner</b>. The <i>postgres_data.dmp</i> file will not display unless 'All files' is selected.</p>
 
-  <p> <%= image_tag("postgres-documentation/select_restore_file_dropdown.png", :size => '420x270', :class => 'centerImage') %> </p>
+  <p> <%= image_tag("postgres-documentation/select_restore_file_dropdown.png", :size => '420x360', :class => 'centerImage') %> </p>
 
-  <p>Double click on <i>postgres_data.dmp</i>.  You'll return to the 'Restore (Database: AACT)' dialog box where you can press [Restore] to initiate the process that will import the contents of the dump file into the new AACT database.</p>
+  <p>Double click on <i>postgres_data.dmp</i>.  You'll return to the 'Restore (Database: AACT)' dialog box where you can press <i>[Restore]</i> to initiate the process that will import the contents of the dump file into the new AACT database.</p>
 
   <p> <%= image_tag("postgres-documentation/restore_from_static_copy.png", :size => '420x270', :class => 'centerImage') %> </p>
 
-  <p>The process will take a few minutes. While it is loading, the following message will display:</p>
+  <p>The process will take several minutes. While it's loading, the following message will display:</p>
 
-  <p> <%= image_tag("postgres-documentation/restoring_db_message.png", :size => '420x270', :class => 'centerImage') %> </p>
+  <p> <%= image_tag("postgres-documentation/restoring_db_message.png", :size => '420x140', :class => 'centerImage') %> </p>
 </div>
