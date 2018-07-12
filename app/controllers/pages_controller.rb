@@ -33,7 +33,7 @@ class PagesController < ApplicationController
 
   def learn_more
     fpm=Util::FilePresentationManager.new
-    @daily_process_flow_diagram=fpm.daily_process_flow_diagram
+    @process_flow_diagram=fpm.process_flow_diagram
     @support_schema_diagram=fpm.support_schema_diagram
     @admin_schema_diagram=fpm.admin_schema_diagram
     @schema_diagram=fpm.schema_diagram
