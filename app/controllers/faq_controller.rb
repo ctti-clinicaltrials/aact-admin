@@ -1,2 +1,3 @@
-class PostgresDocumentationController < ApplicationController
+class FaqController < ApplicationController
+
 end
