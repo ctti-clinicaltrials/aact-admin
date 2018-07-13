@@ -1,0 +1,20 @@
+<h4>How to Access the Servers</h4>
+<p>AACT needs 2 servers:</p>
+<ul class='regularDisplay'>
+  <li>Data Processing Server - Performs all activities such as refreshing the database, registering users, presenting the website. This server is maintained by Duke Office of Information Technology.  Both Ruby on Rails applications (aact & aact_admin) reside on this server.</li>
+  <li>Public Database Server - Hosts the publicly accessible database. This server is hosted by DigitalOcean.com</li>
+</ul>
+
+<p>Both servers include a symbolic link directory <i>/aact-files</i> where critical (and often large) files are saved. The files on <i>/aact-files</i> include log files, the xml downloaded from ClinicalTrials.gov, AACT documentation that gets displayed on the website, etc.</p>
+
+
+<%= render 'accessing_servers' %>
+
+<pre>
+  <p class='code'>
+    <span class='command-prompt'>(local command line prompt) &gt; </span><span class='command-entry'> ssh ctti-aact@ctti-web-01.oit.duke.edu</span>
+    <span class='command-prompt'>ctti-aact@ctti-web-01  ~ $ </span><span class='command-entry'> cd bin</span>
+    <span class='command-prompt'>ctti-aact@ctti-web-01  ~/bin $ </span><span class='command-entry'> ./run_incremental_load.sh &</span>
+  </p>
+</pre>
+
