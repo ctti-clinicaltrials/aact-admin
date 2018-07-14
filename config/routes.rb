@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   get "/faq"                  => "faq#home"
   get "/admin_run_loads"      => "faq#admin_run_loads"
   get "/admin_remove_user"    => "faq#admin_remove_user"
-  get "/tech_access_servers"  => "faq#access_servers"
+  get "/tech_access_servers"  => "faq#tech_access_servers"
 
 
   resources :definitions
