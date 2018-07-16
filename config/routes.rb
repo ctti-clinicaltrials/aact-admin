@@ -28,14 +28,22 @@ Rails.application.routes.draw do
   get "/snapshot_archive"     => "pages#snapshot_archive"
   get "/technical_documentation"    => "pages#technical_documentation"
   get "/update_policy"        => "pages#update_policy"
+  get "/deploy_code"          => "pages#deploy_code"
 
   get "/install_postgres"     => "postgres_documentation#install_postgres"
   get "/credentials"          => "credentials#show"
+
   get "/faq"                  => "faq#home"
   get "/admin_run_loads"      => "faq#admin_run_loads"
   get "/admin_remove_user"    => "faq#admin_remove_user"
-  get "/tech_access_servers"  => "faq#tech_access_servers"
 
+  get "/support_grant_permission"  => "faq#support_grant_permission"
+  get "/support_registration_failed"  => "faq#support_registration_failed"
+  get "/support_user_cannot_access_db"  => "faq#support_user_cannot_access_db"
+
+  get "/tech_access_servers"  => "faq#tech_access_servers"
+  get "/tech_apply_ctgov_changes"  => "faq#tech_apply_ctgov_changes"
+  get "/tech_deploy_code"     => "faq#tech_deploy_code"
 
   resources :definitions
   resources :users

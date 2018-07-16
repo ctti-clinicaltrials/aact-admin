@@ -1,0 +1,58 @@
+<h2>How to Update AACT When ClinicalTrials.gov Changes Their API</h2>
+
+<p>When changes are made to the ClinicalTrials.gov API, we need to apply those changes to the AACT database. Almost all the code that parses the XML content we pull from the ClinicalTrials.gov API is done using <a target='_blank' href='http://www.nokogiri.org/'>nokogiri</a> in the models of the <a target='_blank' href='https://github.com/ctti-clinicaltrials/aact'>aact</a> RoR application.</p>
+
+<h3>Setup Working Environment on Your Laptop</h3>
+<p>You need to set up a working environment on your local machine that will allow you to make changes to the code, test these changes, push the code back to the GitHub repository and deploy the revised application to the AACT servers. After installing Ruby on Rails and Postgres, you'll need to do the following:</p>
+
+<h4>Set Environment Variables</h4>
+
+  <p>AACT depends on the following set of environment variables which need to be defined for AACT to run correctly.</p>
+
+  <table class='regularDisplay'>
+    <tr>
+      <td></td>
+      <tr><td>AACT_ADMIN_DATABASE_URL</td></tr>
+      <tr><td>AACT_ADMIN_EMAILS</td></tr>
+      <tr><td>AACT_ADMIN_USERNAMES</td></tr>
+      <tr><td>AACT_BACK_DATABASE_URL</td></tr>
+      <tr><td>AACT_DB_SUPER_USERNAME</td></tr>
+      <tr><td>AACT_DB_VERSION</td></tr>
+      <tr><td>AACT_DEV_DEPLOY_TO</td></tr>
+      <tr><td>AACT_DEV_PUBLIC_HOSTNAME</td></tr>
+      <tr><td>AACT_DEV_REPO_URL</td></tr>
+      <tr><td>AACT_DEV_SERVER</td></tr>
+      <tr><td>AACT_DEV_SSH_KEY_DIR</td></tr>
+      <tr><td>AACT_OWNER_EMAIL</td></tr>
+      <tr><td>AACT_PROD_DEPLOY_TO</td></tr>
+      <tr><td>AACT_PROD_REPO_URL</td></tr>
+      <tr><td>AACT_PROD_SERVER</td></tr>
+      <tr><td>AACT_PROD_SSH_KEY_DIR</td></tr>
+      <tr><td>AACT_PUBLIC_DATABASE_URL</td></tr>
+      <tr><td>AACT_SERVER_USERNAME</td></tr>
+      <tr><td>AACT_STAGE_DATABASE_URL</td></tr>
+      <tr><td>AACT_SUPER_PWD</td></tr>
+      <tr><td>AACT_VIEW_PASSWORD</td></tr>
+      <tr><td>DB_SUPER_USERNAME</td></tr>
+    </table>
+
+<h4>Fork from GitHub</h4>
+
+<p>To make changes to the aact application, create a fork from the <a target='_blank' href='https://github.com/ctti-clinicaltrials/aact'>github repository</a>, clone a copy to your local machine and make changes to this forked copy. When you're done with the change and have tested it, you can submit a pull request to the official version of aact.</p>
+
+<h4>Make Changes</h4>
+
+<p>Most models are related to the Study model and are subclassed off StudyRelationship which contains a number of convenience methods for getting data elements from the XML.  If new data elements have been added, we first need to decide where to add new tables and/or columns and then create a migration to update the database schema. We then add a new model and a relationship in Study if the addition requires a whole new table.  Then we add or change nokogiri code in the model to add new attribute(s) or change/remove existing ones.</p>
+
+<h4>Write Spec Tests</h4>
+
+<p>We depend on spec model tests. When something changes in the ClinicalTrials.gov API, we go out and find a study in ClinicalTrials.gov that represents that change, add it to our collection of sample studies in spec/support/xml_data and then write a test that uses that study to confirm the new/changed data element appears as expected in the database.</p>
+
+<h4>Update Schema Diagram(s)</h4>
+
+<p>To update the schema diagram, you can use the <a target='_blank' href='https://github.com/tibbs001/aact-schema'>aact-schema</a> RoR application. (We probably should create an official copy of this app in the ctti-clinicaltrials github account.) In a new branch of aact-schema, make appropriate changes to files in db/migrate. Then run the shell script 'doit' (saved at the root directory of aact-schema). This just creates a database named <i>aact_schema</i> on the development DigitalOcean server which is for the most part, an identical copy of the actual aact database except that it explicitly defines foreign key relationships. You can then point <a target='_blank' href='https://pgmodeler.io/'>pgModeler</a> to the aact_schema database on the dev server to create an updated schema diagram.  Once the diagram is created/formatted, it needs to be copied to /aact-files/documentation/aact_schema.png on the OIT Data Processing Server so that the AACT website can and render it on the database schema page.</p>
+
+<h4>Deploy to Server</h4>
+
+<p>Refer to the <a target='_blank' href='tech_deploy_code'>page</a> that describes the process of deploying code to the server.</p>
+
