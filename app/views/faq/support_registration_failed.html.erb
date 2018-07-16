@@ -1,128 +1,25 @@
-<h2>How to Access AACT Servers & Databases</h2>
+<h2>Handle Situation: User Registration Fails</h2>
 
-<h3>Overview</h3>
-<p>AACT operates on two linux servers:</p>
-<ul class='regularDisplay'>
-  <li><i><u>Data Processing Server</u></i> - Hosts all activities that keep AACT running such as pulling data from ClinicalTrials.gov to populate the AACT database, registering users and presenting the website. This server is maintained by Duke's Office of Information Technology (OIT).  Both of AACT's Ruby on Rails (RoR) applications (<b>aact & aact_admin</b>) run on this server.</li>
-  <li><i><u>Public Database Server</u></i> - Hosts the publicly accessible database. The Data Processing Server pushes the latest version of the AACT database to this server every night. This is a DigitalOcean server.</li>
-</ul>
+<p>If a user happens to register right when the public database is being restored, their info will be saved to the Users table in the aact_admin database, but theiir user account will not get created in the public database.  (The process to restore the public database typically takes about 15 minutes around 1:30am EST.) We've had a few occassions where this happened.  Following are the steps we took to resolve this problem. This simulates the process for a user with username: sampleuser</p>
 
-<p>Since we have two environments: Development & Production, we have 4 servers:</p>
+<pre>
+  <p class='code'>
+    <span class='command-note'>(Log onto OIT Prod Server) </span><span class='command-prompt'> &gt; </span><span class='command-entry'> ssh ctti-aact@ctti-web-01.oit.duke.edu</span>
+    <span class='command-note'>(Log into aact_admin database) </span><span class='command-prompt'>ctti-aact@ctti-web-01  ~ $ </span><span class='command-entry'> psql aact_admin</span>
+    <span class='command-note'>(Confirm the user is in the Users table.) </span><span class='command-prompt'>aact_admin=# </span><span class='command-entry'> select id, email, username, first_name, last_name from users where username like 'sampleus%';</span>
+    <span class='command-response'>id | email | username | first_name | last_name</span>
+    <span class='command-response'>-----+----------------------+------------+------------+-----------</span>
+    <span class='command-response'> 345 | sc@gmail.com | sampleuser | Sample | User</span>
+    <span class='command-note'>(Quit psql.) </span><span class='command-prompt'>aact_admin=# </span><span class='command-entry'> \q</span>
+    <span class='command-note'>(Access the console for the aact rails app.) </span><span class='command-prompt'>ctti-aact@ctti-web-01  ~ $ </span><span class='command-entry'> cd /apps/aact/current/</span>
+    <span class='command-prompt'>ctti-aact@ctti-web-01  ~/bin $ </span><span class='command-entry'> bundle exec rails c</span>
+    <span class='command-note'>(Create an instance of the user.) </span><span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'> user = User.where('username=?', 'sampleuser').first</span>
+    <span class='command-response'>=&gt; #&lt;User id: 2, email: "sample.name@gmail.com", first_name: "Sample", last_name: "User", username: "sampleuser"</span>
+    <span class='command-note'>(Create an instance of the database manager.) </span><span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'>d=Util::UserDbManager.new</span>
+    <span class='command-note'>(This shold returned true.) </span><span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'>d.can_create_user_account?(user)</span>
+    <span class='command-note'>(Create the user's db account.) </span><span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'>d.create_user_account(user)</span>
+    <span class='command-note'>(Send the user an email so they can confirm their account.) </span><span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'>user.send_confirmation_instructions</span>
+    <span class='command-note'>(Leave the app.)</span><span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'>exit</span>
+    <span class='command-note'>(Access the public AACT database.) </span><span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'>PGPASSWORD=xxx psql --host aact-db.ctti-clinicaltrials.org --port=5432 --username=ctti --dbname=aact</span>
+    <span class='command-note'>(Confirm the user's db account was created.) </span><span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'>\du</span>
 
-<table class='regularDisplay'>
-  <th>
-    <td>Environment</td>
-    <td>Purpose</td>
-    <td>Login ID</td>
-    <td>IP Address</td>
-    <td>Domain Name</td>
-    <td>Responsible Party</td>
-    <td>Command</td>
-  </th>
-  <tr>
-    <td></td>
-    <td>Prod</td>
-    <td>Data Processing Server</td>
-    <td>ctti-aact</td>
-    <td>152.3.101.93</td>
-    <td>ctti-web-01.oit.duke.edu or aact.ctti-clinicaltrials.org</td>
-    <td>Duke OIT</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Prod</td>
-    <td>Database Server</td>
-    <td>ctti</td>
-    <td>174.138.61.222</td>
-    <td>aact-db.ctti-clinicaltrials.org</td>
-    <td>Digital Ocean</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Dev</td>
-    <td>Data Processing Server</td>
-    <td>ctti-aact</td>
-    <td>152.3.104.15 </td>
-    <td>ctti-web-dev-01.oit.duke.edu</td>
-    <td>Duke OIT</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Dev</td>
-    <td>Database Server</td>
-    <td>ctti</td>
-    <td>159.203.80.25 </td>
-    <td>has no domain name</td>
-    <td>Digital Ocean</td>
-    <td></td>
-  </tr>
-</table>
-
-<h3>Gaining Access</h3>
-
-<p>The Duke Service Account: <i>ctti-aact</i> is the primary source of access to AACT servers. You can get to the Dev & Prod <i>Data Processing Servers</i> by logging in as ctti-aact. To ssh to the AACT servers hosted at Duke, you need to be on the Duke VPN & know the ctti-aact service account password (ask an AACT Administrators: Sara Calvert, Karen Chiswell & Sheri Tibbs). Sample login commands:</p>
-
-<p>ssh ctti-aact@aact.ctti-clinicaltrials.org (for Prod)</p>
-<p>ssh ctti-aact@ctti-web-dev-01.oit.duke.edu (for Dev)</p>
-
-<p>From the OIT servers, you can ssh over to the DigitalOcean <i>Database Servers</i>. There are scripts in ctti-aact's personal bin directory (/home/ctti-aact/bin) on both OIT servers (do-prod & do-dev) that contain the command that will log you onto the DigitalOcean servers. Because OIT servers are behind the Duke firewall, you can't get to them from the DigitalOcean servers.</p>
-
-<p>You can also access the DigitalOcean.org account by logging in as ctti-aact@duke.edu</p>
-
-
-<table class='regularDisplay'>
-  <th>
-    <td>Thing</td>
-    <td>Username</td>
-    <td>Password</td>
-  </th>
-  <tr>
-    <td></td>
-    <td>DigitalOcean account login</td>
-    <td>ctti-aact@duke.edu</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Prod Data Processing Server</td>
-    <td>ctti-aact</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Prod Database Server</td>
-    <td>ctti</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Dev Data Processing Server</td>
-    <td>ctti-aact</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Dev Database Server</td>
-    <td>ctti</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>PostgresSQL SuperUser on Dev Database Server</td>
-    <td>ctti</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>PostgresSQL SuperUser on Prod Database Server</td>
-    <td>ctti</td>
-    <td></td>
-  </tr>
-</table>
-
-
-
-<p>BTW: Both servers include a root-level directory named <i>/aact-files</i> where critical (and often large) files are saved. <i>/aact-files</i> on the Data Processing Server includes directories that house static db copies & pipe-delimited files sets, xml downloaded from ClinicalTrials.gov, log files and AACT documentation that gets displayed on the website. The <i>/aact-files</i> on the Database Server is primarily for database activity log files. </p>
