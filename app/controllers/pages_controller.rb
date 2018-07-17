@@ -22,6 +22,7 @@ class PagesController < ApplicationController
   end
 
   def technical_documentation
+    render plain: "Sorry - This page is only accessible to administrators." if !current_user_is_an_admin?
     fpm=Util::FilePresentationManager.new
     @process_flow_diagram=fpm.process_flow_diagram
     @support_schema_diagram=fpm.support_schema_diagram
@@ -49,6 +50,14 @@ class PagesController < ApplicationController
     @data_dictionary=fpm.data_dictionary
     @table_dictionary=fpm.table_dictionary
     @show_dictionary_link = true
+  end
+
+  private
+
+  def current_user_is_an_admin?
+    return false if !current_user
+    col=ENV['AACT_ADMIN_USERNAMES'].split(',')
+    col.include? current_user.username
   end
 
 end
