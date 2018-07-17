@@ -9,7 +9,7 @@ module Util
       begin
         return false if !can_create_user_account?(user)
         Public::Study.connection.execute("create user \"#{user.username}\" password '#{user.password}';")
-        Public::Study.connection.execute("alter user #{user.username} nologin;")  # can't login until they confirm their email
+        Public::Study.connection.execute("alter user \"#{user.username}\" nologin;")  # can't login until they confirm their email
         return true
       rescue => e
         user.errors.add(:base, e.message)
@@ -64,15 +64,15 @@ module Util
       File.delete(account_file_name) if File.exist?(account_file_name)
 
       log "dumping Users table..."
-      cmd="pg_dump --no-owner --host=localhost -U #{ENV['DB_SUPER_USERNAME']} --table=Users  --data-only aact_dmin > #{table_file_name}"
+      cmd="pg_dump --no-owner --host=localhost -U #{ENV['AACT_DB_SUPER_USERNAME']} --table=Users  --data-only aact_dmin > #{table_file_name}"
       run_command_line(cmd)
 
       log "dumping User events..."
-      cmd="pg_dump --no-owner --host=localhost -U #{ENV['DB_SUPER_USERNAME']} --table=User_Events  --data-only aact_admin > #{event_file_name}"
+      cmd="pg_dump --no-owner --host=localhost -U #{ENV['AACT_DB_SUPER_USERNAME']} --table=User_Events  --data-only aact_admin > #{event_file_name}"
       run_command_line(cmd)
 
       log "dumping User accounts..."
-      cmd="/opt/rh/rh-postgresql96/root/bin/pg_dumpall -U  #{ENV['DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{account_file_name}"
+      cmd="/opt/rh/rh-postgresql96/root/bin/pg_dumpall -U  #{ENV['AACT_DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{account_file_name}"
       run_command_line(cmd)
 
       event=UserEvent.new({:event_type=>'backup', :file_names=>" #{table_file_name}, #{event_file_name}, #{account_file_name}" })
@@ -89,15 +89,11 @@ module Util
 
     def revoke_db_privs(username)
       terminate_sessions_for(username)
-      Public::Study.connection.execute("alter user #{username} nologin;")
+      Public::Study.connection.execute("alter user \"#{username}\" nologin;")
     end
 
     def terminate_sessions_for(username)
-       Public::Study.connection.select_all("select * from pg_stat_activity order by pid;").each { |session|
-        if session['usename']=="#{username}"
-          Public::Study.execute("select pg_terminate_backend(#{session['pid']})")
-        end
-      }
+       Public::Study.connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND usename ='#{username}'")
     end
   end
 end

@@ -72,7 +72,7 @@ describe User do
       encoding: 'utf8',
       hostname: ENV['AACT_PUBLIC_HOSTNAME'],
       database: ENV['AACT_PUBLIC_DATABASE_NAME'],
-      username: ENV['DB_SUPER_USERNAME'],
+      username: ENV['AACT_DB_SUPER_USERNAME'],
     ).connection
     allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
     User.all.each{|user| user.remove }  # remove all existing users - both from Users table and db accounts
@@ -111,7 +111,7 @@ describe User do
       encoding: 'utf8',
       hostname: ENV['AACT_PUBLIC_HOSTNAME'],
       database: ENV['AACT_PUBLIC_DATABASE_NAME'],
-      username: ENV['DB_SUPER_USERNAME'],
+      username: ENV['AACT_DB_SUPER_USERNAME'],
     ).connection
     # once db connections are back to normal, confirm the user
     user.confirm  #simulate user email response confirming their account
@@ -139,7 +139,7 @@ describe User do
       encoding: 'utf8',
       hostname: ENV['AACT_PUBLIC_HOSTNAME'],
       database: ENV['AACT_PUBLIC_DATABASE_NAME'],
-      username: ENV['DB_SUPER_USERNAME'],
+      username: ENV['AACT_DB_SUPER_USERNAME'],
     ).connection
 
     # Then remove the user

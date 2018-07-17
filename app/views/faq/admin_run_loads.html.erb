@@ -1,0 +1,24 @@
+<h4>Manually Run Process that Loads the AACT Database</h4>
+<p>The processes that populate the AACT database run as cron jobs on the OIT server. The 'cron' is a standard linux service that lets us configure jobs to automatically run on a routine schedule. We've configured the 'cron' to run the full load at midnight on the first day of the month and the incremental load every night (other than the first) at midnight. Entries in the crontab look like:</p>
+
+<p> <%= image_tag("technical_documentation/cron_jobs.png", :size => '520x40') %> </p>
+
+<p>You can run these jobs by hand. If so, you should temporarily comment these lines out in the crontab to prevent them from starting while the manually deployed process is running.</p>
+
+<pre>
+  <p class='code'>
+    <span class='command-prompt'>(local command line prompt) &gt; </span><span class='command-entry'> ssh ctti-aact@ctti-web-01.oit.duke.edu</span>
+    <span class='command-prompt'>ctti-aact@ctti-web-01  ~ $ </span><span class='command-entry'> cd bin</span>
+    <span class='command-prompt'>ctti-aact@ctti-web-01  ~/bin $ </span><span class='command-entry'> ./run_incremental_load.sh &</span>
+  </p>
+</pre>
+
+<p>Adding the ampersand to the end of the command causes it to run in the background.  You'll almost certainly want to do this for the full load since it will take several hours to run, so you won't want it dependent upon maintaining an active session.</p>
+
+<p>Log files are saved on the server to <i>/aact-files/logs</i> You can monitor progress by tailing the end of the latest log file in that directory. For example:</p>
+
+<pre>
+  <p class='code'>
+    <span class='command-prompt'>ctti-aact@ctti-web-01  ~ $ </span><span class='command-entry'> tail -f /aact-files/logs/20180708-00-incremental.log</span>
+  </p>
+</pre>
