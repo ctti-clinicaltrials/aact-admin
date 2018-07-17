@@ -101,8 +101,17 @@
 
   <p> <%= image_tag("postgres-documentation/aact_zipfile_contents.png", :size => '420x170', :class => 'centerImage') %> </p>
 
+  <p>You can populate the database using the following command:</p>
+
+  <pre>
+    <p class='code'>
+      <span class='command-prompt'> &gt; </span><span class='command-entry'> C:\Program Files\PostgreSQL\9.6.9\bin\pg_restore.exe --host "127.0.0.1" --port "5432" --username "postgres"  --no-password --role "ctti" --dbname "aact"  --verbose "C:\\</span><span class='command-note'>&lt;directory containing downloaded file&gt;</span><span class='command-entry'>\\postgres_data.dmp"</span>
+    </p>
+  </pre>
+
+  <p>Alternatively, you can take the following steps to populate the database using the pgAdmin tool.</p>
   <p>You can import the content of <i>postgres_data.dmp</i> file into your new database by selecting the <i>AACT</i> database in the left pane and then clicking <i>[Tools]</i> in the top menu bar of pgAdmin and then click <i>Restore...</i> in the dropdown menu.</p>
-  <p> <%= image_tag("postgres-documentation/restore_aact_db.png", :size => '420x270', :class => 'centerImage') %> </p>
+  <p> <%= image_tag("postgres-documentation/restore_aact_db.png", :size => '420x360', :class => 'centerImage') %> </p>
 
   <p>You'll need to click the elipses to the right of the Filename input box. This will present a 'Select file' dialog box.</p>
 
