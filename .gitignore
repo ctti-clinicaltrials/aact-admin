@@ -1,0 +1,17 @@
+!.keep
+*.DS_Store
+*.swo
+*.swp
+server.env
+/.bundle
+/.env.local
+/coverage/*
+/db/*.sqlite3
+/log/*
+/public/system
+/public/assets
+/tags
+/vendor
+/tmp/*
+.env
+*.secret
