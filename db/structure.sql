@@ -185,6 +185,15 @@ ALTER SEQUENCE admin.public_announcements_id_seq OWNED BY admin.public_announcem
 
 
 --
+-- Name: schema_migrations; Type: TABLE; Schema: admin; Owner: -
+--
+
+CREATE TABLE admin.schema_migrations (
+    version character varying NOT NULL
+);
+
+
+--
 -- Name: use_case_attachments; Type: TABLE; Schema: admin; Owner: -
 --
 
@@ -413,15 +422,6 @@ ALTER SEQUENCE admin.users_id_seq OWNED BY admin.users.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.schema_migrations (
-    version character varying NOT NULL
-);
-
-
---
 -- Name: data_definitions id; Type: DEFAULT; Schema: admin; Owner: -
 --
 
@@ -628,10 +628,10 @@ CREATE UNIQUE INDEX "index_admin.users_on_reset_password_token" ON admin.users U
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
+-- Name: unique_schema_migrations; Type: INDEX; Schema: admin; Owner: -
 --
 
-CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
+CREATE UNIQUE INDEX unique_schema_migrations ON admin.schema_migrations USING btree (version);
 
 
 --
@@ -639,8 +639,6 @@ CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING b
 --
 
 SET search_path TO ctgov, support, admin, public;
-
-INSERT INTO schema_migrations (version) VALUES ('20160212191640');
 
 INSERT INTO schema_migrations (version) VALUES ('20160214191640');
 
