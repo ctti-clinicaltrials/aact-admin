@@ -1,0 +1,33 @@
+<h4>Remove a User</h4>
+<p>When someone registers with AACT, their information is stored in 2 places:</p>
+<ul class='regularDisplay'>
+  <li>As a row in the Users table of the <i>aact_admin</i> database on the OIT server</li>
+  <li>As a PostgreSQL user/role account on the public database server (DigitalOcean)</li>
+</ul>
+
+<p>To remove both these elements about a user by hand, you can log onto the OIT server, navigate to where the <i>aact_admin</i> application runs, launch the app, find the user & tell aact_admin to remove them. The following is an example session to remove an AACT user with the username 'sample'. (Commands you need to enter are the white text.  System responses to what you enter are displayed as <span class='command-response'>blue</span> text.)</p>
+<pre>
+  <p class='code'>
+    <span class='command-prompt'>(local command line prompt) &gt; </span><span class='command-entry'> ssh ctti-aact@ctti-web-01.oit.duke.edu</span>
+    <span class='command-prompt'>ctti-aact@ctti-web-01  ~ $ </span><span class='command-entry'> cd /srv/web/aact.ctti-clinicaltrials.org/current/</span>
+    <span class='command-prompt'>ctti-aact@ctti-web-01  ~/bin $ </span><span class='command-entry'> bundle exec rails c</span>
+    <span class='command-response'>Loading production environment (Rails 4.2.9)</span>
+    <span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'> user = User.where('username=?', '</span><span class='command-note'>sample</span><span class='command-entry'>').first</span>
+    <span class='command-response'>=&gt; #&lt;User id: 2, email: "sample.name@gmail.com", first_name: "Demo", last_name: "Sample", username: "sample"></span>
+    <span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'> user.remove</span>
+    <span class='command-response'>   (24.6ms)  SELECT usename FROM pg_catalog.pg_user where usename = 'sample' UNION</span>
+    <span class='command-response'>              SELECT groname  FROM pg_catalog.pg_group where groname = 'sample'</span>
+    <span class='command-response'>   (22.8ms)  SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND usename ='sample'</span>
+    <span class='command-response'>   (22.8ms)  alter user "sample" nologin;</span>
+    <span class='command-response'>   (22.8ms)  reassign owned by "sample" to postgres;</span>
+    <span class='command-response'>   (21.9ms)  drop owned by "sample";</span>
+    <span class='command-response'>   (25.2ms)  drop user "sample";</span>
+    <span class='command-response'>   (0.4ms)  BEGIN</span>
+    <span class='command-response'>      SQL (0.6ms)  DELETE FROM "users" WHERE "users"."id" = $1  [["id", 2]]</span>
+    <span class='command-response'>   (1.0ms)  COMMIT</span>
+    <span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'> exit</span>
+
+  </p>
+</pre>
+
+

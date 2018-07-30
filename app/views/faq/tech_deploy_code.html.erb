@@ -1,0 +1,20 @@
+<h2>How to Deploy Code to GitHub Repositories</h2>
+
+<p>We use standard <a target='_blank' href='https://gist.github.com/Chaser324/ce0505fbed06b947d962'>GitHub forking</a> procedures to manage changes to the <a target='_blank' href='https://github.com/ctti-clinicaltrials/aact'>aact</a> and <a target='_blank' href='https://github.com/ctti-clinicaltrials/aact-admin'>aact-admin</a>  code repositories. If you're unfamiliar with the procedure, please use instructions at this <a target='_blank' href='https://gist.github.com/Chaser324/ce0505fbed06b947d962'>site</a> for guidance.</p>
+
+<p>We use <a target='_blank' href='https://gist.github.com/jrochkind/2161449'>Capistrano</a> to deploy code from GitHub to the servers.</p>
+
+<p>Basically, to deploy to the Dev environment, you can use this command for either aact or aact-admin:</p>
+<pre>
+  <p class='code'>
+    <span class='command-prompt'> &gt; </span><span class='command-entry'>bundle exec cap development deploy</span>
+    <span class='command-response'> 00:00 git:wrapper</span>
+    <span class='command-response'> 01 mkdir -p /tmp</span>
+    <span class='command-response'> ...</span>
+    <span class='command-prompt'> Please enter branch (development): </span><span class='command-entry'> {name of the branch to deploy} </span>
+    <span class='command-response'> ...</span>
+  </p>
+</pre>
+
+<p>(Important note: Right now Capistrano is setup to pull from tibbs001 git repo for development deploys. (This is so I didn't have to submit a pull request for everything I wanted to try out in dev & since I'm the only developer, no harm.) You'll need to either change this to point to your github repo, or always push your dev code to a branch in the ctti-clinicaltrials repo and point Capistrano there.)</p>
+

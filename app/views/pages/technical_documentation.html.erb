@@ -1,0 +1,38 @@
+<div class="wrap">
+  <section class="techDoc">
+    <div class="basicHero">
+      <h3 id='technical_documentation'>Technical Documentation</h3>
+    </div>
+    <p>AACT consists of 2 Ruby on Rails applications and a set of PostgreSQL databases.  The two RoR applications are available in github:
+
+    <ul class='regularDisplay'>
+      <li><b><a target='_blank' href='https://github.com/ctti-clinicaltrials/aact'>AACT Core</a></b> - All code responsible for retrieving data from the ClinicalTrials.gov API, parsing the XML representation of each study and making this info available as a relational database.</li>
+      <li><b><a target='_blank' href='https://github.com/ctti-clinicaltrials/aact-admin'>AACT Admin</a></b> - All code that provides supporting features to the database such as this website, user registration and use case .</li>
+    </ul>
+    </p>
+
+   <p>Both applications use Ruby 2.4.0, Rails 4.2 and PostgreSQL. The live AACT database available to the public is hosted on a DigitalOcean server while all data process is performed on a server hosted at Duke University OIT.</p>
+
+    <%= render 'faq/home' %>
+
+    <h4 id="architecture">High Level Architecture</h4>
+
+    <div>
+      <p>
+        Click <a href=<%= @process_flow_diagram %> target="_blank" onClick="ga('send','event','technical docs','process flow diagram')">
+        here</a> to view a high-level process flow diagram that illustrates the relationship between servers, databases and applications.
+      </p>
+    </div>
+
+    <h4 id="schemaDiagrams">Schema Diagrams</h4>
+    <p>To ensure accuracy, the process that pulls data into the AACT database from ClinicalTrials.gov includes a set of validation and sanity checks.</p>
+    <p>AACT schema diagrams and documentation may be downloaded from the following links:</p>
+    <ul class='regularDisplay'>
+          <li><a href=<%= @schema_diagram %> target="_blank" onClick="ga('send','event','download','download schema')"  >downloadable schema diagram</a> (right click on the resulting page to download)</li>
+          <li><a href=<%= @support_schema_diagram %> target="_blank" onClick="ga('send','event','download','download schema')"  >downloadable diagram of support tables</a> (right click on the resulting page to download)</li>
+          <li><a href=<%= @admin_schema_diagram %> target="_blank" onClick="ga('send','event','download','download schema')"  >downloadable diagram of admin tables</a> (right click on the resulting page to download)</li>
+
+    </ul>
+
+  </section>
+</div>

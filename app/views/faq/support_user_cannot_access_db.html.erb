@@ -1,0 +1,128 @@
+<h2>How to Access AACT Servers & Databases</h2>
+
+<h3>Overview</h3>
+<p>AACT operates on two linux servers:</p>
+<ul class='regularDisplay'>
+  <li><i><u>Data Processing Server</u></i> - Hosts all activities that keep AACT running such as pulling data from ClinicalTrials.gov to populate the AACT database, registering users and presenting the website. This server is maintained by Duke's Office of Information Technology (OIT).  Both of AACT's Ruby on Rails (RoR) applications (<b>aact & aact_admin</b>) run on this server.</li>
+  <li><i><u>Public Database Server</u></i> - Hosts the publicly accessible database. The Data Processing Server pushes the latest version of the AACT database to this server every night. This is a DigitalOcean server.</li>
+</ul>
+
+<p>Since we have two environments: Development & Production, we have 4 servers:</p>
+
+<table class='regularDisplay'>
+  <th>
+    <td>Environment</td>
+    <td>Purpose</td>
+    <td>Login ID</td>
+    <td>IP Address</td>
+    <td>Domain Name</td>
+    <td>Responsible Party</td>
+    <td>Command</td>
+  </th>
+  <tr>
+    <td></td>
+    <td>Prod</td>
+    <td>Data Processing Server</td>
+    <td>ctti-aact</td>
+    <td>152.3.101.93</td>
+    <td>ctti-web-01.oit.duke.edu or aact.ctti-clinicaltrials.org</td>
+    <td>Duke OIT</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Prod</td>
+    <td>Database Server</td>
+    <td>ctti</td>
+    <td>174.138.61.222</td>
+    <td>aact-db.ctti-clinicaltrials.org</td>
+    <td>Digital Ocean</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Dev</td>
+    <td>Data Processing Server</td>
+    <td>ctti-aact</td>
+    <td>152.3.104.15 </td>
+    <td>ctti-web-dev-01.oit.duke.edu</td>
+    <td>Duke OIT</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Dev</td>
+    <td>Database Server</td>
+    <td>ctti</td>
+    <td>159.203.80.25 </td>
+    <td>has no domain name</td>
+    <td>Digital Ocean</td>
+    <td></td>
+  </tr>
+</table>
+
+<h3>Gaining Access</h3>
+
+<p>The Duke Service Account: <i>ctti-aact</i> is the primary source of access to AACT servers. You can get to the Dev & Prod <i>Data Processing Servers</i> by logging in as ctti-aact. To ssh to the AACT servers hosted at Duke, you need to be on the Duke VPN & know the ctti-aact service account password (ask an AACT Administrators: Sara Calvert, Karen Chiswell & Sheri Tibbs). Sample login commands:</p>
+
+<p>ssh ctti-aact@aact.ctti-clinicaltrials.org (for Prod)</p>
+<p>ssh ctti-aact@ctti-web-dev-01.oit.duke.edu (for Dev)</p>
+
+<p>From the OIT servers, you can ssh over to the DigitalOcean <i>Database Servers</i>. There are scripts in ctti-aact's personal bin directory (/home/ctti-aact/bin) on both OIT servers (do-prod & do-dev) that contain the command that will log you onto the DigitalOcean servers. Because OIT servers are behind the Duke firewall, you can't get to them from the DigitalOcean servers.</p>
+
+<p>You can also access the DigitalOcean.org account by logging in as ctti-aact@duke.edu</p>
+
+
+<table class='regularDisplay'>
+  <th>
+    <td>Thing</td>
+    <td>Username</td>
+    <td>Password</td>
+  </th>
+  <tr>
+    <td></td>
+    <td>DigitalOcean account login</td>
+    <td>ctti-aact@duke.edu</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Prod Data Processing Server</td>
+    <td>ctti-aact</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Prod Database Server</td>
+    <td>ctti</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Dev Data Processing Server</td>
+    <td>ctti-aact</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Dev Database Server</td>
+    <td>ctti</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>PostgresSQL SuperUser on Dev Database Server</td>
+    <td>ctti</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>PostgresSQL SuperUser on Prod Database Server</td>
+    <td>ctti</td>
+    <td></td>
+  </tr>
+</table>
+
+
+
+<p>BTW: Both servers include a root-level directory named <i>/aact-files</i> where critical (and often large) files are saved. <i>/aact-files</i> on the Data Processing Server includes directories that house static db copies & pipe-delimited files sets, xml downloaded from ClinicalTrials.gov, log files and AACT documentation that gets displayed on the website. The <i>/aact-files</i> on the Database Server is primarily for database activity log files. </p>

@@ -40,7 +40,6 @@ module Public
     has_one  :eligibility,           :foreign_key => 'nct_id', :dependent => :delete
     has_one  :participant_flow,      :foreign_key => 'nct_id', :dependent => :delete
     has_one  :calculated_value,      :foreign_key => 'nct_id', :dependent => :delete
-    has_one  :study_xml_record,      :foreign_key => 'nct_id'
 
     has_many :baseline_measurements, :foreign_key => 'nct_id', :dependent => :delete_all
     has_many :baseline_counts,       :foreign_key => 'nct_id', :dependent => :delete_all
@@ -94,47 +93,6 @@ module Public
 
     def self.all_nctids
       all.collect{|s|s.nct_id}
-    end
-
-    def create
-      ActiveRecord::Base.logger=nil
-      s=Study.where('nct_id=?',nct_id).first
-      s.try(:destroy)
-      update(attribs)
-      groups=DesignGroup.create_all_from(opts)
-      Intervention.create_all_from(opts.merge(:design_groups=>groups))
-      DetailedDescription.new.create_from(opts).try(:save)
-      Design.new.create_from(opts).try(:save)
-      BriefSummary.new.create_from(opts).try(:save)
-      Eligibility.new.create_from(opts).save
-      ParticipantFlow.new.create_from(opts).try(:save)
-
-      BaselineMeasurement.create_all_from(opts)
-      BrowseCondition.create_all_from(opts)
-      BrowseIntervention.create_all_from(opts)
-      CentralContact.create_all_from(opts)
-      Condition.create_all_from(opts)
-      Country.create_all_from(opts)
-      Document.create_all_from(opts)
-      Facility.create_all_from(opts)
-      IdInformation.create_all_from(opts)
-      Keyword.create_all_from(opts)
-      Link.create_all_from(opts)
-      Milestone.create_all_from(opts)
-      Outcome.create_all_from(opts)
-      OverallOfficial.create_all_from(opts)
-      DesignOutcome.create_all_from(opts)
-      PendingResult.create_all_from(opts)
-      ReportedEvent.create_all_from(opts)
-      ResponsibleParty.create_all_from(opts)
-      ResultAgreement.create_all_from(opts)
-      ResultContact.create_all_from(opts)
-      Reference.create_all_from(opts)
-      Sponsor.create_all_from(opts)
-      # During full load, indexes are dropped. Populating CalculatedValues requires several db queries - so they're scanned and very slow.
-      # Populate the CalculatedValues after the indexes have been recreated after the full load completes.
-      #CalculatedValue.new.create_from(self).save
-      self
     end
 
     def summary
