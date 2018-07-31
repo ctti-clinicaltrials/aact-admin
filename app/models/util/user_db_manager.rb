@@ -34,9 +34,10 @@ module Util
       begin
         return false if !user_account_exists?(username)
         revoke_db_privs(username)
-        Public::Study.connection.execute("reassign owned by \"#{username}\" to postgres;")
-        Public::Study.connection.execute("drop owned by \"#{username}\";")
-        Public::Study.connection.execute("drop user \"#{username}\";")
+        Public::Study.connection.execute("REASSIGN owned by \"#{username}\" to postgres;")
+        Public::Study.connection.execute("DROP owned by \"#{username}\";")
+        Public::Study.connection.execute("REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA ctgov FROM \"#{username}\";")
+        Public::Study.connection.execute("DROP user \"#{username}\";")
         return true
       rescue => e
         raise e
