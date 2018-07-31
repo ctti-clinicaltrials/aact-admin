@@ -111,6 +111,27 @@ module Util
       end
     end
 
+    def remove_todays_user_backup_tables
+      File.delete(self.user_table_backup_file) if File.exist?(self.user_table_backup_file)
+      File.delete(self.user_event_table_backup_file) if File.exist?(self.user_event_table_backup_file)
+      File.delete(self.user_account_backup_file) if File.exist?(self.user_account_backup_file)
+    end
+
+    def user_table_backup_file
+      file_prefix="#{self.backup_directory}/#{Time.zone.now.strftime('%Y%m%d')}"
+      return "#{file_prefix}_aact_users_table.sql"
+    end
+
+    def user_event_table_backup_file
+      file_prefix="#{self.backup_directory}/#{Time.zone.now.strftime('%Y%m%d')}"
+      return "#{file_prefix}_aact_user_events_table.sql"
+    end
+
+    def user_account_backup_file
+      file_prefix="#{self.backup_directory}/#{Time.zone.now.strftime('%Y%m%d')}"
+      return "#{file_prefix}_aact_user_accounts.sql"
+    end
+
     def make_file_from_website(fname, url)
       return_file="#{Rails.public_path}/static/tmp/#{fname}"
       File.delete(return_file) if File.exist?(return_file)

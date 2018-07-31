@@ -7,6 +7,34 @@ describe Util::UserDbManager do
 
   subject { described_class.new }
 
+  context 'when backing up user info' do
+    it 'should create 3 backup files and send an email' do
+      subject.run_command_line('ln -s /aact-files public/static') # now put it back
+      fm=Util::FileManager.new
+      expect(UserMailer).to receive(:send_backup_notification).exactly(1).times
+      # first make sure the files don't already exist
+      fm.remove_todays_user_backup_tables
+      expect(File.exist?(fm.user_table_backup_file)).to eq(false)
+      expect(File.exist?(fm.user_event_table_backup_file)).to eq(false)
+      expect(File.exist?(fm.user_account_backup_file)).to eq(false)
+      # run the backups
+      subject.backup_user_info
+      # make sure the files exist
+      expect(File.exist?(fm.user_table_backup_file)).to eq(true)
+      expect(File.exist?(fm.user_event_table_backup_file)).to eq(true)
+      expect(File.exist?(fm.user_account_backup_file)).to eq(true)
+    end
+
+    it 'should create a user event that reports a problem' do
+      UserEvent.destroy_all
+      subject.run_command_line('rm public/static')  # problem: symbolic link it depends on doesn't exist
+      subject.backup_user_info
+      expect(UserEvent.count).to eq(1)
+      expect(UserEvent.first.event_type).to eq('backup problem')
+      subject.run_command_line('ln -s /aact-files public/static') # now put it back
+    end
+  end
+
   context 'when managing user accounts' do
     it 'should create initial db account that user cannot access' do
       user=User.create({:last_name=>'lastname',:first_name=>'firstname',:email=>'email@mail.com',:username=>username,:password=>original_password,:skip_password_validation=>true})

@@ -14,16 +14,41 @@
           <% end %>
        </ul>
 
-       <p>User info can be restored with the following commands:</p>
-       <p> First verify the schema defined in the file is correct (ctgov).</p>
-       <p> in aact_admin db:</p>
-       <p>   truncate table users;</p>
-       <p>   truncate table user_events;</p>
-       <p> psql -d aact_admin -a -f YYYYMMDD-aact-users_table.sql</p>
-       <p> psql -d aact_admin -a -f YYYYMMDD-aact-user_events.sql</p>
-
-       <p> On the public server that hosts the publicly accessible database:</p>
-       <p> psql -d aact -a -f YYYYMMDD-aact-user_accounts.sql </p>
+       <p>Below are some tips about how to recover user information in the AACT system using these backup files:</p>
+       <ul>
+         <li>Download the files from this email and copy them to the production processing server: <span style="color:green;"><%= ENV['AACT_PROCESS_SERVER'] %></span>. Sample command to do this:
+               <p style="color:blue;">scp <%= Time.now.strftime("%Y%m%d") %>_aact_user_events.sql ctti-aact@<%= ENV['AACT_PROCESS_SERVER'] %>:/aact-files/tmp</p> </li>
+         <li>Log onto the production server and change to the directory where you just copied the files.
+           <p style="color:blue;">ssh ctti-aact@ctti-web-01.oit.duke.edu</p>
+           <p style="color:blue;">cd /aact-files/tmp</p>
+           <p/>
+         </li>
+         <li>Edit each file to comment out the <i>'SET search_path'</i> line that appears near the top of each sql file. (This may actually no longer be necessary.)
+           <p/>
+         </li>
+         <li>While logged in as ctti-aact on the server, open a postgres db command line session for the aact_admin database:
+           <p style="color:blue;">psql aact_admin</p>
+           <p/>
+         </li>
+         <li>Make sure the tables are empty. Truncate the tables from the postgres command line while in the aact_admin db:
+           <p>aact_admin=# <span style="color:blue;">truncate table users;</span></p>
+           <p>aact_admin=# <span style="color:blue;">truncate table user_events;</span></p>
+           <p/>
+         </li>
+         <li>Exit out of the psql command line session:
+           <p>aact_admin=# <span style="color:blue;">\q</span></p>
+             <p/>
+         </li>
+           <li>Now from a terminal session on the server, run psql commands to populate the tables from the backup files:
+             <p style="color:blue;">psql -d aact_admin -U ctti -a -f <%= Time.now.strftime("%Y%m%d") %>-aact-users_table.sql</p>
+             <p style="color:blue;">psql -d aact_admin -U ctti -a -f <%= Time.now.strftime("%Y%m%d") %>-aact-user_events.sql</p>
+             <p/>
+           </li>
+           <li>You may also restore the database user accounts on the public database (over on the DigitalOcean server) from here by specifying the name of the public server after the -h option in this command:
+             <p style="color:blue;">psql -d aact -a -U ctti -h aact-db.ctti-clinicaltrials.org -f <%= Time.now.strftime("%Y%m%d") %>-aact-user_accounts.sql </p>
+             <p/>
+           </li>
+       </ul>
   </body>
 </html>
 

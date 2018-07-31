@@ -53,30 +53,29 @@ module Util
 
     def backup_user_info
       fm=Util::FileManager.new
-      file_prefix="#{fm.backup_directory}/#{Time.zone.now.strftime('%Y%m%d')}"
-
-      table_file_name="#{file_prefix}_aact_users_table.sql"
-      event_file_name="#{file_prefix}_aact_user_events.sql"
-      account_file_name="#{file_prefix}_aact_user_accounts.sql"
-
-      File.delete(table_file_name) if File.exist?(table_file_name)
-      File.delete(event_file_name) if File.exist?(event_file_name)
-      File.delete(account_file_name) if File.exist?(account_file_name)
+      fm.remove_todays_user_backup_tables
 
       log "dumping Users table..."
-      cmd="pg_dump --no-owner --host=localhost -U #{ENV['AACT_DB_SUPER_USERNAME']} --table=Users  --data-only aact_dmin > #{table_file_name}"
+      cmd="pg_dump --no-owner --host=localhost -U #{ENV['AACT_DB_SUPER_USERNAME']} --table=Users  --data-only aact_dmin > #{fm.user_table_backup_file}"
       run_command_line(cmd)
 
       log "dumping User events..."
-      cmd="pg_dump --no-owner --host=localhost -U #{ENV['AACT_DB_SUPER_USERNAME']} --table=User_Events  --data-only aact_admin > #{event_file_name}"
+      cmd="pg_dump --no-owner --host=localhost -U #{ENV['AACT_DB_SUPER_USERNAME']} --table=User_Events  --data-only aact_admin > #{fm.user_event_table_backup_file}"
       run_command_line(cmd)
 
       log "dumping User accounts..."
-      cmd="/opt/rh/rh-postgresql96/root/bin/pg_dumpall -U  #{ENV['AACT_DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{account_file_name}"
+      cmd="/opt/rh/rh-postgresql96/root/bin/pg_dumpall -U  #{ENV['AACT_DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{fm.user_account_backup_file}"
       run_command_line(cmd)
 
-      event=UserEvent.new({:event_type=>'backup', :file_names=>" #{table_file_name}, #{event_file_name}, #{account_file_name}" })
-      UserMailer.send_backup_notification(event)
+      begin
+        event=UserEvent.new({:event_type=>'backup', :file_names=>" #{fm.user_table_backup_file}, #{fm.user_event_table_backup_file}, #{fm.user_account_backup_file}" })
+        UserMailer.send_backup_notification(event)
+        event.save!
+      rescue => error
+        event.add_problem(error)
+        event.save!
+        return false
+      end
     end
 
     def grant_db_privs(username)

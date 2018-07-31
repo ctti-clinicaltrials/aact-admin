@@ -1,13 +1,20 @@
+AACT User information is saved to the attached SQL files.
 
-AACT User information is saved to the attached SQL files.  User info can be restored with the following commands:
+       Below are some tips about how to recover using these backup files:
 
-        First verify the schema defined in the file is correct (ctgov).
-        in aact_admin db:
-          truncate table users;
-          truncate table user_events;
-        psql -d aact_admin -a -f YYYYMMDD-aact-users_table.sql
-        psql -d aact_admin -a -f YYYYMMDD-aact-user_events.sql
-
-        On the public server that hosts the publicly accessible database:
-        psql -d aact -a -f YYYYMMDD-aact-user_accounts.sql
-
+         Download the files from this email and copy them to the production processing server: ctti-web-01.oit.duke.edu. Sample command:
+           scp 20180728_aact_user_events.sql ctti-aact@ctti-web-01.oit.duke.edu:/aact-files/tmp
+         Log onto the production server and cd to the directory where you just copied the files.
+           ssh ctti-aact@ctti-web-01.oit.duke.edu
+           cd /aact-files/tmp
+         Edit each file to comment out the 'SET search_path' line that appears near the top of each sql files. (This might not be necessary.)
+         Open a postgres db command line session:  psql aact_admin
+         Make sure the tables are empty.  From the postgres command line while in the aact_admin db:
+             truncate table users;
+             truncate table user_events;
+         Exit out of the psql command line session:   \q
+         Run the commands to populate the tables fromthe backup files:
+             psql -d aact_admin -U ctti -a -f YYYYMMDD-aact-users_table.sql
+             psql -d aact_admin -U ctti -a -f YYYYMMDD-aact-user_events.sql
+         To restore the database user accounts on the public database (over on the DigitalOcean server), you can also do that from this server:
+            psql -d aact -a -U ctti -h aact-db.ctti-clinicaltrials.org -f YYYYMMDD-aact-user_accounts.sql
