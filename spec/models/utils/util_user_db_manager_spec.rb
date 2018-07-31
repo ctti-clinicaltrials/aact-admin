@@ -11,13 +11,15 @@ describe Util::UserDbManager do
     it 'should create 3 backup files and send an email' do
       subject.run_command_line('ln -s /aact-files public/static') # now put it back
       fm=Util::FileManager.new
-      # first make sure the files don't exist
       expect(UserMailer).to receive(:send_backup_notification).exactly(1).times
+      # first make sure the files don't already exist
       fm.remove_todays_user_backup_tables
       expect(File.exist?(fm.user_table_backup_file)).to eq(false)
       expect(File.exist?(fm.user_event_table_backup_file)).to eq(false)
       expect(File.exist?(fm.user_account_backup_file)).to eq(false)
+      # run the backups
       subject.backup_user_info
+      # make sure the files exist
       expect(File.exist?(fm.user_table_backup_file)).to eq(true)
       expect(File.exist?(fm.user_event_table_backup_file)).to eq(true)
       expect(File.exist?(fm.user_account_backup_file)).to eq(true)
