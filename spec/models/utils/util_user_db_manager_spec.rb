@@ -39,7 +39,7 @@ describe Util::UserDbManager do
     it 'should create initial db account that user cannot access' do
       user=User.create({:last_name=>'lastname',:first_name=>'firstname',:email=>'email@mail.com',:username=>username,:password=>original_password,:skip_password_validation=>true})
       # make sure user account doesn't already exist
-      Util::DbManager.new.grant_db_privs
+      system 'grant_db_privs.sh'
       subject.remove_user(user.username)
       expect(subject.can_create_user_account?(user)).to be(true)
       expect(subject.create_user_account(user)).to be(true)
