@@ -1,128 +1,24 @@
-<h2>How to Access AACT Servers & Databases</h2>
+<h2>User Reports They Cannot Access the Database</h2>
 
-<h3>Overview</h3>
-<p>AACT operates on two linux servers:</p>
-<ul class='regularDisplay'>
-  <li><i><u>Data Processing Server</u></i> - Hosts all activities that keep AACT running such as pulling data from ClinicalTrials.gov to populate the AACT database, registering users and presenting the website. This server is maintained by Duke's Office of Information Technology (OIT).  Both of AACT's Ruby on Rails (RoR) applications (<b>aact & aact_admin</b>) run on this server.</li>
-  <li><i><u>Public Database Server</u></i> - Hosts the publicly accessible database. The Data Processing Server pushes the latest version of the AACT database to this server every night. This is a DigitalOcean server.</li>
-</ul>
+<h3>First Make Sure Database is Unlocked</h3>
+<p>The first thing to do when someone reports they can't access the live, public database is verify the database is accessible.</p>
 
-<p>Since we have two environments: Development & Production, we have 4 servers:</p>
+<p><%= render 'pages/psql_remote_login' %></p>
 
-<table class='regularDisplay'>
-  <th>
-    <td>Environment</td>
-    <td>Purpose</td>
-    <td>Login ID</td>
-    <td>IP Address</td>
-    <td>Domain Name</td>
-    <td>Responsible Party</td>
-    <td>Command</td>
-  </th>
-  <tr>
-    <td></td>
-    <td>Prod</td>
-    <td>Data Processing Server</td>
-    <td>ctti-aact</td>
-    <td>152.3.101.93</td>
-    <td>ctti-web-01.oit.duke.edu or aact.ctti-clinicaltrials.org</td>
-    <td>Duke OIT</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Prod</td>
-    <td>Database Server</td>
-    <td>ctti</td>
-    <td>174.138.61.222</td>
-    <td>aact-db.ctti-clinicaltrials.org</td>
-    <td>Digital Ocean</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Dev</td>
-    <td>Data Processing Server</td>
-    <td>ctti-aact</td>
-    <td>152.3.104.15 </td>
-    <td>ctti-web-dev-01.oit.duke.edu</td>
-    <td>Duke OIT</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Dev</td>
-    <td>Database Server</td>
-    <td>ctti</td>
-    <td>159.203.80.25 </td>
-    <td>has no domain name</td>
-    <td>Digital Ocean</td>
-    <td></td>
-  </tr>
-</table>
+<p>If instead of seeing a number that represents the row count of the Studies table you get something like this:</p>
 
-<h3>Gaining Access</h3>
+<p><%= render 'public_db_appears_locked' %></p>
 
-<p>The Duke Service Account: <i>ctti-aact</i> is the primary source of access to AACT servers. You can get to the Dev & Prod <i>Data Processing Servers</i> by logging in as ctti-aact. To ssh to the AACT servers hosted at Duke, you need to be on the Duke VPN & know the ctti-aact service account password (ask an AACT Administrators: Sara Calvert, Karen Chiswell & Sheri Tibbs). Sample login commands:</p>
+<p>then the database is locked and you'll need to unlock it. To do so, leave the current psql session open (so you can later run this sql again to verify the database has been 'unlocked'), and from another terminal session, log onto the data-processing (OIT-hosted) server where you can run a script that unlocks the public db. Sample steps:</p>
 
-<p>ssh ctti-aact@aact.ctti-clinicaltrials.org (for Prod)</p>
-<p>ssh ctti-aact@ctti-web-dev-01.oit.duke.edu (for Dev)</p>
+<p><%= render 'run_script_to_unlock_db' %></p>
 
-<p>From the OIT servers, you can ssh over to the DigitalOcean <i>Database Servers</i>. There are scripts in ctti-aact's personal bin directory (/home/ctti-aact/bin) on both OIT servers (do-prod & do-dev) that contain the command that will log you onto the DigitalOcean servers. Because OIT servers are behind the Duke firewall, you can't get to them from the DigitalOcean servers.</p>
+<p>Now go back to the psql session you left open (or start up a new one if you closed it), and try running the sql command to count rows in the Studies table.  This time it should provide the expected response:  an integer representing the number of rows in the Studies table. (You can exit that session by entering the 'quit' command:  <i>\q</i>)</p>
 
-<p>You can also access the DigitalOcean.org account by logging in as ctti-aact@duke.edu</p>
+<h3>If Database Not Locked, Provide The Following Suggestions to the User</h3>
 
+<p>We’ve had a number of people contact us because they couldn't access the live AACT database from their computer at work. The first thing the user should try: use the IP address instead of the domain name. (Replace <i>aact-db.ctti-clinicaltrials.org</i> with <i>174.138.61.222</i>). We know of only one situation where this resolved the problem, but since it's an easy thing to try, we recommend it.</p>
 
-<table class='regularDisplay'>
-  <th>
-    <td>Thing</td>
-    <td>Username</td>
-    <td>Password</td>
-  </th>
-  <tr>
-    <td></td>
-    <td>DigitalOcean account login</td>
-    <td>ctti-aact@duke.edu</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Prod Data Processing Server</td>
-    <td>ctti-aact</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Prod Database Server</td>
-    <td>ctti</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Dev Data Processing Server</td>
-    <td>ctti-aact</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Dev Database Server</td>
-    <td>ctti</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>PostgresSQL SuperUser on Dev Database Server</td>
-    <td>ctti</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>PostgresSQL SuperUser on Prod Database Server</td>
-    <td>ctti</td>
-    <td></td>
-  </tr>
-</table>
+<p>In most cases, users who cannot immediately access the live database have resolved the isue by contacting their network support staff and asking them to add the AACT database IP address (174.138.61.222) to their organization's whitelist.</p>
 
-
-
-<p>BTW: Both servers include a root-level directory named <i>/aact-files</i> where critical (and often large) files are saved. <i>/aact-files</i> on the Data Processing Server includes directories that house static db copies & pipe-delimited files sets, xml downloaded from ClinicalTrials.gov, log files and AACT documentation that gets displayed on the website. The <i>/aact-files</i> on the Database Server is primarily for database activity log files. </p>
+<p>A user can confirm that the problem is probably a result of security restrictions (whitelisting) on their organization's network by trying to access the AACT database from their home or anywhere else that has broadly accessible internet connectivity.</p>
