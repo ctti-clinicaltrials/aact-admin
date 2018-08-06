@@ -10,7 +10,18 @@
   <p>When user information is backed up each morning, AACT administrators receive an email message that includes the backup file attachments and instructions about how to recover info from these files.  The instructions in this email have been improved.</p>
   <p>
 
-  <h5>Implements Scripts to Grant/Revoke Access to the Public Database</h5>
+  <h5>Implement Scripts to Grant/Revoke Access to the Public Database</h5>
   <p>To simplify the process to grant/revoke user access to the public database, shell scripts have been created that can be quickly run to perform these tasks. The scripts are also used by rspec tests to confirm user maintenance functionality.</p>
   <p>
+
+  <h5>Fix Error in Instructions About Creating a Local Static Copy of the AACT Database</h5>
+  <p>A user noted a critical error in the <a href="/snapshots" target='_blank'>website documentation</a> that describes how to create a local copy of the AACT database. The command to restore the database from a dump file downloaded from the website identified the default database 'postgres' rather than the aact database. The command has been corrected:</p>
+
+  <p class='CodeRay'>
+    <pre>
+      <p class='code'>
+        <span class='command-prompt'>-&gt; </span><span class='command-entry'> pg_restore -e -v -O -x --dbname=<i><u>aact</u></i> --no-owner --clean --create  <i>~/Downloads/postgres_data.dmp</i></span>
+      </p>
+    </pre>
+  </p>
 
