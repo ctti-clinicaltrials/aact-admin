@@ -7,11 +7,39 @@ describe Util::UserDbManager do
 
   subject { described_class.new }
 
+  context 'when backing up user info' do
+    it 'should create 3 backup files and send an email' do
+      subject.run_command_line('ln -s /aact-files public/static') # now put it back
+      fm=Util::FileManager.new
+      expect(UserMailer).to receive(:send_backup_notification).exactly(1).times
+      # first make sure the files don't already exist
+      fm.remove_todays_user_backup_tables
+      expect(File.exist?(fm.user_table_backup_file)).to eq(false)
+      expect(File.exist?(fm.user_event_table_backup_file)).to eq(false)
+      expect(File.exist?(fm.user_account_backup_file)).to eq(false)
+      # run the backups
+      subject.backup_user_info
+      # make sure the files exist
+      expect(File.exist?(fm.user_table_backup_file)).to eq(true)
+      expect(File.exist?(fm.user_event_table_backup_file)).to eq(true)
+      expect(File.exist?(fm.user_account_backup_file)).to eq(true)
+    end
+
+    it 'should create a user event that reports a problem' do
+      UserEvent.destroy_all
+      subject.run_command_line('rm public/static')  # problem: symbolic link it depends on doesn't exist
+      subject.backup_user_info
+      expect(UserEvent.count).to eq(1)
+      expect(UserEvent.first.event_type).to eq('backup problem')
+      subject.run_command_line('ln -s /aact-files public/static') # now put it back
+    end
+  end
+
   context 'when managing user accounts' do
     it 'should create initial db account that user cannot access' do
       user=User.create({:last_name=>'lastname',:first_name=>'firstname',:email=>'email@mail.com',:username=>username,:password=>original_password,:skip_password_validation=>true})
       # make sure user account doesn't already exist
-      Util::DbManager.new.grant_db_privs
+      system 'grant_db_privs.sh'
       subject.remove_user(user.username)
       expect(subject.can_create_user_account?(user)).to be(true)
       expect(subject.create_user_account(user)).to be(true)
@@ -27,7 +55,7 @@ describe Util::UserDbManager do
         encoding: 'utf8',
         hostname: ENV['AACT_PUBLIC_HOSTNAME'],
         database: ENV['AACT_PUBLIC_DATABASE_NAME'],
-        username: ENV['DB_SUPER_USERNAME'])
+        username: ENV['AACT_DB_SUPER_USERNAME'])
       @dbconfig = YAML.load(File.read('config/database.yml'))
       ActiveRecord::Base.establish_connection @dbconfig[:test]
       user.remove

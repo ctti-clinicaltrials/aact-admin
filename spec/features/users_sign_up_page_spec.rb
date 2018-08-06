@@ -98,24 +98,28 @@ feature "Users Sign Up Page" do
     fill_in 'user_username', with: '1ax'
     submit
     expect(page).not_to have_content "Username is too short (minimum is 3 characters)"
-    expect(page).to have_content "Username must start with an alpha character"
+    expect(page).to have_content "Username must start with a lowercase character"
     fill_in 'user_username', with: 'axaa@'
     submit
-    expect(page).to have_content "Username cannot contain special chars"
+    expect(page).to have_content "Username can contain only lowercase characters and numbers"
     expect(page).not_to have_content "Username is too short (minimum is 3 characters)"
-    expect(page).not_to have_content "Username must start with an alpha character"
+    expect(page).not_to have_content "Username must start with a lowercase character"
+    fill_in 'user_username', with: valid_username.upcase
+    submit
+    expect(page).to have_content "Username can contain only lowercase characters and numbers"
     fill_in 'user_username', with: valid_username
     submit
-    expect(page).not_to have_content "Username cannot contain special chars"
+    expect(page).not_to have_content "Username can contain only lowercase characters and numbers"
     expect(User.where('username=?',valid_username).size).to eq(0)
     expect(Util::UserDbManager.new.user_account_exists?(valid_username)).to eq(false)
 
     # db is inaccessible
-    Util::DbManager.new.revoke_db_privs
+
+    system 'revoke_db_privs.sh'
     expect(Util::DbManager.new.public_db_accessible?).to eq(false)
     submit
     expect(page).to have_content "Sorry AACT database is temporarily unavailable"
-    Util::DbManager.new.grant_db_privs
+    system 'grant_db_privs.sh'
     expect(Util::DbManager.new.public_db_accessible?).to eq(true)
     submit
     expect(page).not_to have_content "Sorry AACT database is temporarily unavailable"

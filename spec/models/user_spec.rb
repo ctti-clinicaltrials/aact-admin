@@ -30,14 +30,21 @@ describe User do
     expect(User.count).to eq(0)
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'1rspec_test',:password=>'aact',:password_confirmation=>'aact')
     expect( user.valid? ).to eq(false)
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username cannot contain special chars, Username must start with an alpha character")
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username can contain only lowercase characters and numbers, Username must start with a lowercase character")
     expect(User.count).to eq(0)
   end
 
   it "isn't accepted if username has a hyphen" do
     allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'r1-ectest',:password=>'aact',:password_confirmation=>'aact')
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username cannot contain special chars")
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username can contain only lowercase characters and numbers")
+    expect(User.count).to eq(0)
+  end
+
+  it "isn't accepted if username is mixed case" do
+    allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
+    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'EcTest',:password=>'aact',:password_confirmation=>'aact')
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username can contain only lowercase characters and numbers, Username must start with a lowercase character")
     expect(User.count).to eq(0)
   end
 
@@ -65,7 +72,7 @@ describe User do
       encoding: 'utf8',
       hostname: ENV['AACT_PUBLIC_HOSTNAME'],
       database: ENV['AACT_PUBLIC_DATABASE_NAME'],
-      username: ENV['DB_SUPER_USERNAME'],
+      username: ENV['AACT_DB_SUPER_USERNAME'],
     ).connection
     allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
     User.all.each{|user| user.remove }  # remove all existing users - both from Users table and db accounts
@@ -104,7 +111,7 @@ describe User do
       encoding: 'utf8',
       hostname: ENV['AACT_PUBLIC_HOSTNAME'],
       database: ENV['AACT_PUBLIC_DATABASE_NAME'],
-      username: ENV['DB_SUPER_USERNAME'],
+      username: ENV['AACT_DB_SUPER_USERNAME'],
     ).connection
     # once db connections are back to normal, confirm the user
     user.confirm  #simulate user email response confirming their account
@@ -132,7 +139,7 @@ describe User do
       encoding: 'utf8',
       hostname: ENV['AACT_PUBLIC_HOSTNAME'],
       database: ENV['AACT_PUBLIC_DATABASE_NAME'],
-      username: ENV['DB_SUPER_USERNAME'],
+      username: ENV['AACT_DB_SUPER_USERNAME'],
     ).connection
 
     # Then remove the user
@@ -145,14 +152,14 @@ describe User do
       hostname: ENV['AACT_PUBLIC_HOSTNAME'],
       database: ENV['AACT_PUBLIC_DATABASE_NAME'],
       username: user.username,
-    ).connection}.to raise_error(PG::ConnectionBad)
+    ).connection}.to raise_error(ActiveRecord::NoDatabaseError)
   end
 
   it "isn't accepted if special char in username" do
     allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
     User.all.each{|user| user.remove}  # remove all existing users - both from Users table and db accounts
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>'rspec!_test',:password=>'aact')
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username cannot contain special chars')
+    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username can contain only lowercase characters and numbers')
     expect(User.count).to eq(0)
     begin
       Public::PublicBase.establish_connection(
@@ -164,8 +171,8 @@ describe User do
         password: user.password
       ).connection
     rescue => e
-      expect(e.class).to eq(PG::ConnectionBad)
-      expect(e.message).to eq("FATAL:  password authentication failed for user \"rspec!_test\"\n")
+      expect(e.class).to eq(ActiveRecord::NoDatabaseError)
+      expect(e.message).to eq("FATAL:  role \"rspec!_test\" does not exist\n")
     end
   end
 

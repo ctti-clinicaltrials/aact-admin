@@ -1,0 +1,17 @@
+<h4>Grant Access to Public Database</h4>
+<p>On occassion, the database refresh process has terminated unexpectedly. When this happens and the exception isn't handled correctly, the database might end up in a locked state where users are unable to access it. (We've reconfigure the refresh process to prevent this; not sure it will continue to be a problem, but just in case.)</p>
+
+<p>When this happens, you need to verify the state of the AACT database - at least make sure it has the correct number of rows in the Studies table.  Then grant the public permission to access the database. Below are steps you can take to grant every access to the public database.</p>
+
+<pre>
+  <p class='code'>
+    <span class='command-prompt'>(local command line prompt) &gt; </span><span class='command-entry'> ssh ctti-aact@ctti-web-01.oit.duke.edu</span>
+    <span class='command-prompt'>ctti-aact@ctti-web-01  ~ $ </span><span class='command-entry'> cd apps/aact/current</span>
+    <span class='command-prompt'>ctti-aact@ctti-web-01  ~/bin $ </span><span class='command-entry'> bundle exec rails c</span>
+    <span class='command-response'>Loading production environment (Rails 4.2.9)</span>
+    <span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'>Util::DbManager.new.grant_db_privs</span>
+    <span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'> exit</span>
+
+  </p>
+</pre>
+

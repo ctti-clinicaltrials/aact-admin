@@ -1,0 +1,25 @@
+<h2>Handle Situation: User Registration Fails</h2>
+
+<p>If a user happens to register right when the public database is being restored, their info will be saved to the Users table in the aact_admin database, but theiir user account will not get created in the public database.  (The process to restore the public database typically takes about 15 minutes around 1:30am EST.) We've had a few occassions where this happened.  Following are the steps we took to resolve this problem. This simulates the process for a user with username: sampleuser</p>
+
+<pre>
+  <p class='code'>
+    <span class='command-note'>(Log onto OIT Prod Server) </span><span class='command-prompt'> &gt; </span><span class='command-entry'> ssh ctti-aact@ctti-web-01.oit.duke.edu</span>
+    <span class='command-note'>(Log into aact_admin database) </span><span class='command-prompt'>ctti-aact@ctti-web-01  ~ $ </span><span class='command-entry'> psql aact_admin</span>
+    <span class='command-note'>(Confirm the user is in the Users table.) </span><span class='command-prompt'>aact_admin=# </span><span class='command-entry'> select id, email, username, first_name, last_name from users where username like 'sampleus%';</span>
+    <span class='command-response'>id | email | username | first_name | last_name</span>
+    <span class='command-response'>-----+----------------------+------------+------------+-----------</span>
+    <span class='command-response'> 345 | sc@gmail.com | sampleuser | Sample | User</span>
+    <span class='command-note'>(Quit psql.) </span><span class='command-prompt'>aact_admin=# </span><span class='command-entry'> \q</span>
+    <span class='command-note'>(Access the console for the aact rails app.) </span><span class='command-prompt'>ctti-aact@ctti-web-01  ~ $ </span><span class='command-entry'> cd /apps/aact/current/</span>
+    <span class='command-prompt'>ctti-aact@ctti-web-01  ~/bin $ </span><span class='command-entry'> bundle exec rails c</span>
+    <span class='command-note'>(Create an instance of the user.) </span><span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'> user = User.where('username=?', 'sampleuser').first</span>
+    <span class='command-response'>=&gt; #&lt;User id: 2, email: "sample.name@gmail.com", first_name: "Sample", last_name: "User", username: "sampleuser"</span>
+    <span class='command-note'>(Create an instance of the database manager.) </span><span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'>d=Util::UserDbManager.new</span>
+    <span class='command-note'>(This shold returned true.) </span><span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'>d.can_create_user_account?(user)</span>
+    <span class='command-note'>(Create the user's db account.) </span><span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'>d.create_user_account(user)</span>
+    <span class='command-note'>(Send the user an email so they can confirm their account.) </span><span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'>user.send_confirmation_instructions</span>
+    <span class='command-note'>(Leave the app.)</span><span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'>exit</span>
+    <span class='command-note'>(Access the public AACT database.) </span><span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'>PGPASSWORD=xxx psql --host aact-db.ctti-clinicaltrials.org --port=5432 --username=ctti --dbname=aact</span>
+    <span class='command-note'>(Confirm the user's db account was created.) </span><span class='command-prompt'>irb(main):001:0 &gt; </span><span class='command-entry'>\du</span>
+

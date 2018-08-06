@@ -18,8 +18,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username
   validates_length_of :username, :minimum=>3
   validates_length_of :username, :maximum=>64
-  validates_format_of :username, :with => /\A[a-zA-Z0-9]+\z/, :message => "cannot contain special chars"
-  validates_format_of :username, :with => /\A[a-zA-Z]/, :message => "must start with an alpha character"
+  validates_format_of :username, :with => /\A[a-z0-9]+\z/, :message => "can contain only lowercase characters and numbers"
+  validates_format_of :username, :with => /\A[a-z]/, :message => "must start with a lowercase character"
   validate :can_create_db_account?, :on => :create
   validate :can_access_db?, :on => :create
 
@@ -107,7 +107,7 @@ class User < ActiveRecord::Base
   def remove
     begin
       return false if !can_access_db?
-      event=UserEvent.create( { :email => self.email, :event_type =>'remove' })
+      event=UserEvent.create( { :email => 'annon', :event_type =>'remove' })
       Public::Study.connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE usename = '#{self.username}'")
       db_mgr=Util::UserDbManager.new({ :event=> event })
       db_mgr.remove_user(self.username)
