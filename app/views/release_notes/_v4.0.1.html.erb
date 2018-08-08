@@ -1,16 +1,27 @@
- <h3>AACT 4.0.1 <i>(August 6, 2018)</i></h3>
+ <h3>AACT 4.0.1 <i>(August 8, 2018)</i></h3>
 
-  <h5>Superfluous Code Removed from AACT & AACT-ADMIN</h5>
-  <p>When we divided the application in 2: AACT & AACT-ADMIN, some unnecessary code remained in both apps.  We've gone through and cleaned up the apps to remove superfluous code.</p>
+  <h5>Unnecessary Code Removed from AACT & AACT-ADMIN</h5>
+  <p>With the release of AACT 4.0.0, we divided AACT into two separate applications: AACT & AACT-ADMIN. Some unnecessary code was left over in both apps. We've gone through and cleaned up the apps to remove superfluous code.</p>
 
   <h5>Reimplement Process to Backup User Info</h5>
-  <p>Previously, user information was backed up as one of the final steps in the nightly data load process. Since we've decoupled administrative tasks from the basic database load process by employing two separate applications:  aact & aact-admin, user info backups should no longer be part of the data load job. The aact-admin application is now responsible for backing up user info and the aact application for running loads. A cron job has been setup to backup user information every morning at 4am.</p>
+  <p>Previously, user information was backed up as one of the final steps in the nightly data load process. Now administrative tasks are performed by the AACT-ADMIN application, so user info backups are no longer a part of the data load process. (The AACT-ADMIN application is now responsible for backing up user info and the AACT application for loading the database.) A cron job has been setup to backup user information every morning at 4am.</p>
 
   <h5>Improve Instructions for Recovering User Information</h5>
-  <p>When user information is backed up each morning, an email message is sent to AACT administrators that include attachments to the backup files and instructions about how to recover the info in these files.  The instructions have been improved.</p>
+  <p>When user information is backed up each morning, AACT administrators receive an email message that includes the backup file attachments and instructions about how to recover info from these files.  The instructions in this email have been improved.</p>
   <p>
 
-  <h5>Implements Scripts to Grant/Revoke Access to the Public Database</h5>
-  <p>To simplify the process to grant/revoke access to the public database, shell scripts have been created that can be quickly run to perform these tasks. The scripts are also used by rspec tests to confirm user maintenance functionality.</p>
+  <h5>Implement Scripts to Grant/Revoke Access to the Public Database</h5>
+  <p>To simplify the process to grant/revoke user access to the public database, shell scripts have been created that can be quickly run to perform these tasks. The scripts are also used by rspec tests to confirm user maintenance functionality.</p>
   <p>
+
+  <h5>Fix Error in Instructions About Creating a Local Static Copy of the AACT Database</h5>
+  <p>A user noted a critical error in the <a href="/snapshots" target='_blank'>website documentation</a> that describes how to create a local copy of the AACT database. The command to restore the database from a dump file downloaded from the website identified the default database 'postgres' rather than the aact database. The command has been corrected:</p>
+
+  <p class='CodeRay'>
+    <pre>
+      <p class='code'>
+        <span class='command-prompt'>-&gt; </span><span class='command-entry'> pg_restore -e -v -O -x --dbname=<i><u>aact</u></i> --no-owner --clean --create  <i>~/Downloads/postgres_data.dmp</i></span>
+      </p>
+    </pre>
+  </p>
 
