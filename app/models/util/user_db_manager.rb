@@ -57,7 +57,7 @@ module Util
       fm.remove_todays_user_backup_tables
 
       log "dumping Users table..."
-      cmd="pg_dump --no-owner --host=localhost -U #{ENV['AACT_DB_SUPER_USERNAME']} --table=Users  --data-only aact_dmin > #{fm.user_table_backup_file}"
+      cmd="pg_dump --no-owner --host=localhost -U #{ENV['AACT_DB_SUPER_USERNAME']} --table=Users  --data-only aact_admin > #{fm.user_table_backup_file}"
       run_command_line(cmd)
 
       log "dumping User events..."
