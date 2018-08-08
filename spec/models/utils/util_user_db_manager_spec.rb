@@ -23,6 +23,15 @@ describe Util::UserDbManager do
       expect(File.exist?(fm.user_table_backup_file)).to eq(true)
       expect(File.exist?(fm.user_event_table_backup_file)).to eq(true)
       expect(File.exist?(fm.user_account_backup_file)).to eq(true)
+
+      # make sure files have content
+      table1_size=File.size?(fm.user_table_backup_file)
+      table2_size=File.size?(fm.user_event_table_backup_file)
+      table3_size=File.size?(fm.user_account_backup_file)
+
+      expect(table1_size).to be > 980
+      expect(table2_size).to be > 980
+      expect(table3_size).to be > 980
     end
 
     it 'should create a user event that reports a problem' do
@@ -31,7 +40,7 @@ describe Util::UserDbManager do
       subject.backup_user_info
       expect(UserEvent.count).to eq(1)
       expect(UserEvent.first.event_type).to eq('backup problem')
-      subject.run_command_line('ln -s /aact-files public/static') # now put it back
+      subject.run_command_line('ln -s /aact-files public/static') # now recreate the symbolic link
     end
   end
 
