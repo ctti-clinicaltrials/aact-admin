@@ -1,0 +1,16 @@
+ <h3>AACT 4.1.0 <i>(August 28, 2018)</i></h3>
+
+  <h5>Monitor Database Activity</h5>
+  <p>A process now records the total number of times each username submits a call to the public database. Currently, the process only collects information about the number of times a user makes a call to the database; it does not track the actual queries. The process uses a shell script to parse the public database logs every Sunday, counts the number of times each user posted a database event and saves this information to the db_user_activities table in the aact_admin database.</p>
+
+  <h5>Automoatically Delete List of Daily Database Copies on the First of Each Month</h5>
+  <p>After the full database refresh that happens on the first of each month, we delete the previous month's set of daily static database copies and pipe-delimited file sets. Until now, this process has been manual. A process has been implemented to automatically remove these files on the first of the month.</p>
+
+  <p class='CodeRay'>
+    <pre>
+      <p class='code'>
+        <span class='command-prompt'>-&gt; </span><span class='command-entry'> pg_restore -e -v -O -x --dbname=<i><u>aact</u></i> --no-owner --clean --create  <i>~/Downloads/postgres_data.dmp</i></span>
+      </p>
+    </pre>
+  </p>
+
