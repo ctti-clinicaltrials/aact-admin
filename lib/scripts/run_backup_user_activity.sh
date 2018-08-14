@@ -1,0 +1,1 @@
+cd ENV['AACT_ADMIN_DIR'] ; bash -l -c 'bundle exec rake backup:user_activity:run' > /aact-files/logs/`date +\%Y\%m\%d-\%H`-backup-user-activity.log 2>/aact-files/logs/`date +\%Y\%m\%d-\%H`-backup-user-activity-error.log
