@@ -17,7 +17,8 @@
             <th>username</th>
             <th>confirmed</th>
             <th>DB activity</th>
-            <th>last signed in</th>
+            <th>last db activity</th>
+            <th>last web sign-in</th>
         </tr>
 
         <tbody class='users'>
@@ -28,6 +29,7 @@
               <td><%= user.username %></td>
               <td><%= user.display_confirmed_at %></td>
               <td align='center'><%= user.db_activity %></td>
+              <td><%= user.display_last_db_activity %></td>
               <td><%= user.display_last_sign_in_at %></td>
             </tr>
           <% end %>

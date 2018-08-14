@@ -32,7 +32,9 @@ class DbUserActivity < ActiveRecord::Base
       if !user.nil?
         user.skip_password_validation = true
         user.skip_username_validation = true
-        user.db_activity = where('username = ?', username).group('username').pluck("sum(event_count)").first
+        activities = where('username = ?', username).group('username')
+        user.db_activity =  activities.pluck("sum(event_count)").first
+        user.last_db_activity = activities.pluck("max(when_recorded)").first
         user.save!
       end
     }
@@ -42,6 +44,11 @@ class DbUserActivity < ActiveRecord::Base
     ! where("   extract(year from(when_recorded)) = ?
             and extract(month from(when_recorded)) = ?
             and extract(day from(when_recorded)) = ?", dt.year, dt.month, dt.day).empty?
+  end
+
+  def display_when_recorded
+    return '' if self.when_recorded.nil?
+    self.when_recorded.strftime('%Y/%m/%d')
   end
 
 end
