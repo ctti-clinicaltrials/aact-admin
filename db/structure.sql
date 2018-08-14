@@ -432,7 +432,8 @@ CREATE TABLE admin.users (
     username character varying,
     confirmation_token character varying,
     confirmed_at timestamp without time zone,
-    confirmation_sent_at timestamp without time zone
+    confirmation_sent_at timestamp without time zone,
+    db_activity integer
 );
 
 

@@ -7,5 +7,7 @@ class CreateDbUserActivities < ActiveRecord::Migration
       t.string    :unit_of_time   # daily, weekly, monthly?
       t.timestamps null: false
     end
+
+    add_column :users, :db_activity, :integer
   end
 end

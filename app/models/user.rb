@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   include ActiveModel::Validations
   after_create { create_db_account }
   after_save :grant_db_privs, :if => proc { |l| l.confirmed_at_changed? && l.confirmed_at_was.nil? }
-  attr_accessor :current_password, :skip_password_validation
+  attr_accessor :current_password, :skip_password_validation, :skip_username_validation
   devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -18,8 +18,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username
   validates_length_of :username, :minimum=>3
   validates_length_of :username, :maximum=>64
-  validates_format_of :username, :with => /\A[a-z0-9]+\z/, :message => "can contain only lowercase characters and numbers"
-  validates_format_of :username, :with => /\A[a-z]/, :message => "must start with a lowercase character"
+  validates_format_of :username, :with => /\A[a-z0-9]+\z/, :message => "can contain only lowercase characters and numbers", unless: :skip_username_validation
+  validates_format_of :username, :with => /\A[a-z]/, :message => "must start with a lowercase character", unless: :skip_username_validation
   validate :can_create_db_account?, :on => :create
   validate :can_access_db?, :on => :create
 
