@@ -1,3 +1,4 @@
+require 'open3'
 require 'action_view'
 require 'open-uri'
 include ActionView::Helpers::NumberHelper
@@ -182,13 +183,21 @@ module Util
       return zip_file_name
     end
 
-    def remove_daily_snapshots
-      FileUtils.rm_rf(Dir['/aact-files/static_db_copies/daily/*.zip'])
+    def remove_daily_files
+      # keep files with current year/month datestamp
+      keep = Time.zone.now.strftime('%Y%m')
+      run_command_line("find /aact-files/static_db_copies/daily -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
+      run_command_line("find /aact-files/exported_files/daily -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
     end
 
-    def remove_daily_flat_files
-      FileUtils.rm_rf(Dir['/aact-files/exported_files/daily/*.zip'])
+    def run_command_line(cmd)
+      stdout, stderr, status = Open3.capture3(cmd)
+      if status.exitstatus != 0
+        puts ">>>>>>>>>>>>> Shell command failed:  #{cmd}. #{status.inspect}"
+        success_code=false
+      end
     end
 
   end
 end
+
