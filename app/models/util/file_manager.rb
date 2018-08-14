@@ -192,8 +192,7 @@ module Util
 
     def run_command_line(cmd)
       stdout, stderr, status = Open3.capture3(cmd)
-      if status.exitstatus != 0
-        puts ">>>>>>>>>>>>> Shell command failed:  #{cmd}. #{status.inspect}"
+      if status.exitstatus != 1
         success_code=false
       end
     end
