@@ -187,7 +187,7 @@ module Util
       # keep files with current year/month datestamp
       keep = Time.zone.now.strftime('%Y%m')
       run_command_line("find /aact-files/static_db_copies/daily -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
-      run_command_line("find /aact-files/exported_files/daily -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
+      run_command_line("find /aact-files/exported_files/daily   -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
     end
 
     def run_command_line(cmd)
