@@ -112,6 +112,11 @@ module Util
       end
     end
 
+    def todays_db_activity_file
+      date_stamp=Time.zone.now.strftime('%Y%m%d')
+      "#{Rails.public_path}/other/#{date_stamp}_user_activity.txt"
+    end
+
     def remove_todays_user_backup_tables
       File.delete(self.user_table_backup_file) if File.exist?(self.user_table_backup_file)
       File.delete(self.user_event_table_backup_file) if File.exist?(self.user_event_table_backup_file)

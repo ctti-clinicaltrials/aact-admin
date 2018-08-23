@@ -2,9 +2,8 @@ require 'active_support/all'
 class DbUserActivity < ActiveRecord::Base
 
   def self.import_from_logs
-    date_stamp=Time.zone.now.strftime('%Y%m%d')
-    file_name = "/aact-files/other/#{date_stamp}_user_activity.txt"
-    system("ssh ctti@174.138.61.222 sudo grep EDT /aact-files/logs/postgresql-*.log | cut -d ' ' -f 5 | sort | uniq -c > #{file_name}")
+    file_name = Util::FileManager.new.todays_db_activity_file
+    system("ssh #{ENV['AACT_DB_SUPER_USERNAME']}@#{ENV['AACT_DB_HOSTNAME']} sudo grep EDT /aact-files/logs/postgresql-*.log | cut -d ' ' -f 5 | sort | uniq -c > #{file_name}")
     populate_from_file(file_name,'weekly')
     update_user_records
   end
@@ -15,7 +14,7 @@ class DbUserActivity < ActiveRecord::Base
       puts "Seems we've already loaded #{file_name}. Not gonna do it again."
       return false
     end
-    File.open("#{file_name}").each do |i|
+    File.open(file_name).each do |i|
       entry=i.strip
       new(:username      => entry.split(' ').last,
           :event_count   => entry.split(' ').first,
