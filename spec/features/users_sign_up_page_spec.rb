@@ -114,11 +114,12 @@ feature "Users Sign Up Page" do
     expect(Util::UserDbManager.new.user_account_exists?(valid_username)).to eq(false)
 
     # db is inaccessible
-    Util::DbManager.new.revoke_db_privs
+
+    system 'revoke_db_privs.sh'
     expect(Util::DbManager.new.public_db_accessible?).to eq(false)
     submit
     expect(page).to have_content "Sorry AACT database is temporarily unavailable"
-    Util::DbManager.new.grant_db_privs
+    system 'grant_db_privs.sh'
     expect(Util::DbManager.new.public_db_accessible?).to eq(true)
     submit
     expect(page).not_to have_content "Sorry AACT database is temporarily unavailable"

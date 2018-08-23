@@ -34,9 +34,10 @@ module Util
       begin
         return false if !user_account_exists?(username)
         revoke_db_privs(username)
-        Public::Study.connection.execute("reassign owned by \"#{username}\" to postgres;")
-        Public::Study.connection.execute("drop owned by \"#{username}\";")
-        Public::Study.connection.execute("drop user \"#{username}\";")
+        Public::Study.connection.execute("REASSIGN owned by \"#{username}\" to postgres;")
+        Public::Study.connection.execute("DROP owned by \"#{username}\";")
+        Public::Study.connection.execute("REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA ctgov FROM \"#{username}\";")
+        Public::Study.connection.execute("DROP user \"#{username}\";")
         return true
       rescue => e
         raise e
@@ -56,7 +57,7 @@ module Util
       fm.remove_todays_user_backup_tables
 
       log "dumping Users table..."
-      cmd="pg_dump --no-owner --host=localhost -U #{ENV['AACT_DB_SUPER_USERNAME']} --table=Users  --data-only aact_dmin > #{fm.user_table_backup_file}"
+      cmd="pg_dump --no-owner --host=localhost -U #{ENV['AACT_DB_SUPER_USERNAME']} --table=Users  --data-only aact_admin > #{fm.user_table_backup_file}"
       run_command_line(cmd)
 
       log "dumping User events..."
@@ -64,7 +65,8 @@ module Util
       run_command_line(cmd)
 
       log "dumping User accounts..."
-      cmd="/opt/rh/rh-postgresql96/root/bin/pg_dumpall -U  #{ENV['AACT_DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{fm.user_account_backup_file}"
+      #cmd="/opt/rh/rh-postgresql96/root/bin/pg_dumpall -U  #{ENV['AACT_DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{fm.user_account_backup_file}"
+      cmd="pg_dumpall -U  #{ENV['AACT_DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{fm.user_account_backup_file}"
       run_command_line(cmd)
 
       begin

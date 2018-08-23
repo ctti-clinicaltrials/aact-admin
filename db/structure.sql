@@ -81,6 +81,41 @@ ALTER SEQUENCE admin.data_definitions_id_seq OWNED BY admin.data_definitions.id;
 
 
 --
+-- Name: db_user_activities; Type: TABLE; Schema: admin; Owner: -
+--
+
+CREATE TABLE admin.db_user_activities (
+    id integer NOT NULL,
+    username character varying,
+    event_count integer,
+    when_recorded timestamp without time zone,
+    unit_of_time character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: db_user_activities_id_seq; Type: SEQUENCE; Schema: admin; Owner: -
+--
+
+CREATE SEQUENCE admin.db_user_activities_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: db_user_activities_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: -
+--
+
+ALTER SEQUENCE admin.db_user_activities_id_seq OWNED BY admin.db_user_activities.id;
+
+
+--
 -- Name: enumerations; Type: TABLE; Schema: admin; Owner: -
 --
 
@@ -397,7 +432,9 @@ CREATE TABLE admin.users (
     username character varying,
     confirmation_token character varying,
     confirmed_at timestamp without time zone,
-    confirmation_sent_at timestamp without time zone
+    confirmation_sent_at timestamp without time zone,
+    db_activity integer,
+    last_db_activity timestamp without time zone
 );
 
 
@@ -426,6 +463,13 @@ ALTER SEQUENCE admin.users_id_seq OWNED BY admin.users.id;
 --
 
 ALTER TABLE ONLY admin.data_definitions ALTER COLUMN id SET DEFAULT nextval('admin.data_definitions_id_seq'::regclass);
+
+
+--
+-- Name: db_user_activities id; Type: DEFAULT; Schema: admin; Owner: -
+--
+
+ALTER TABLE ONLY admin.db_user_activities ALTER COLUMN id SET DEFAULT nextval('admin.db_user_activities_id_seq'::regclass);
 
 
 --
@@ -497,6 +541,14 @@ ALTER TABLE ONLY admin.users ALTER COLUMN id SET DEFAULT nextval('admin.users_id
 
 ALTER TABLE ONLY admin.data_definitions
     ADD CONSTRAINT data_definitions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: db_user_activities db_user_activities_pkey; Type: CONSTRAINT; Schema: admin; Owner: -
+--
+
+ALTER TABLE ONLY admin.db_user_activities
+    ADD CONSTRAINT db_user_activities_pkey PRIMARY KEY (id);
 
 
 --
@@ -647,4 +699,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160912000000');
 INSERT INTO schema_migrations (version) VALUES ('20180226142044');
 
 INSERT INTO schema_migrations (version) VALUES ('20180427144951');
+
+INSERT INTO schema_migrations (version) VALUES ('20180813174540');
 

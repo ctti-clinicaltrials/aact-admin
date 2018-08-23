@@ -23,6 +23,15 @@ describe Util::UserDbManager do
       expect(File.exist?(fm.user_table_backup_file)).to eq(true)
       expect(File.exist?(fm.user_event_table_backup_file)).to eq(true)
       expect(File.exist?(fm.user_account_backup_file)).to eq(true)
+
+      # make sure files have content
+      table1_size=File.size?(fm.user_table_backup_file)
+      table2_size=File.size?(fm.user_event_table_backup_file)
+      table3_size=File.size?(fm.user_account_backup_file)
+
+      expect(table1_size).to be > 800
+      expect(table2_size).to be > 800
+      expect(table3_size).to be > 800
     end
 
     it 'should create a user event that reports a problem' do
@@ -31,7 +40,7 @@ describe Util::UserDbManager do
       subject.backup_user_info
       expect(UserEvent.count).to eq(1)
       expect(UserEvent.first.event_type).to eq('backup problem')
-      subject.run_command_line('ln -s /aact-files public/static') # now put it back
+      subject.run_command_line('ln -s /aact-files public/static') # now recreate the symbolic link
     end
   end
 
@@ -39,7 +48,7 @@ describe Util::UserDbManager do
     it 'should create initial db account that user cannot access' do
       user=User.create({:last_name=>'lastname',:first_name=>'firstname',:email=>'email@mail.com',:username=>username,:password=>original_password,:skip_password_validation=>true})
       # make sure user account doesn't already exist
-      Util::DbManager.new.grant_db_privs
+      system 'grant_db_privs.sh'
       subject.remove_user(user.username)
       expect(subject.can_create_user_account?(user)).to be(true)
       expect(subject.create_user_account(user)).to be(true)

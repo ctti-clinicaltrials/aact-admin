@@ -1,16 +1,14 @@
- <h3>AACT 4.1.0 <i>(August 30, 2018)</i></h3>
+ <h3>AACT 4.1.0 <i>(August 28, 2018)</i></h3>
 
-  <h5></h5>
-  <p></p>
+  <h5>Monitor Database Activity</h5>
+  <p>A process now records the total number of times each username submits a call to the public database. Currently, the process only collects information about the number of times a user makes a call to the database; it does not track the actual queries. The process uses a shell script to parse the public database logs every Sunday, counts the number of times each user posted a database event and saves this information to the db_user_activities table in the aact_admin database.</p>
 
-  <p>
-  <ul class='regularDisplay'>
-    <li><a href='' target='_blank'></a></li>
-    <li><a href='' target='_blank'></a></li>
-  </ul>
-  </p>
+  <h5>Four New Individual Participant Data (IPD) Columns Added to the Studies Table</h5>
+  <p>Until now, the AACT database has provided two of the six data elements related to individual participant data (IPD) sharing: 1) a yes/no value indicating whether the study planned to share this information and 2) a description of the plan. On August 24, 2018, the National Library of Medicine (NLM) added the other four IPD-related attributes to the ClinicalTrials.gov API, so they are now available in the Studies table of the AACT database. </p>
 
-  <p></p>
+  <h5>CalculatedValues.has_us_facility Now Includes US Territories</h5>
+  <p>The 'has_us_facility' value saved to the CalculatedValues table is now set to 'true' for studies that have at least one facility in the United States or a US Territory ('Guam', 'Virgin Islands (U.S.)', 'American Samoa', 'Puerto Rico', 'Northern Mariana Islands', 'Wake Island' & 'Johnston Atoll'). The decision to include US Territories in the criteria used to determine this value was based on NIH's <a target='_blank' href='https://prsinfo.clinicaltrials.gov/ACT_Checklist.pdf'>'Checklist for Evaluating Whether a Clinical Trial or Study is an Applicable Clinical Trial (ACT) Under 42 CFR 11.22(b) for Clinical Trials Initiated on or After January 18, 2017'</a>.</p>
 
-  <h5></h5>
-  <p></p>
+  <h5>Automoatically Delete List of Daily Database Copies on the First of Each Month</h5>
+  <p>After the full database refresh that happens on the first of each month, we delete the previous month's set of daily static database copies and pipe-delimited file sets. Until now, this process has been manual. A process has been implemented to automatically remove these files on the first of the month.</p>
+

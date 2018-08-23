@@ -1,3 +1,4 @@
+require 'open3'
 require 'action_view'
 require 'open-uri'
 include ActionView::Helpers::NumberHelper
@@ -111,6 +112,11 @@ module Util
       end
     end
 
+    def todays_db_activity_file
+      date_stamp=Time.zone.now.strftime('%Y%m%d')
+      "#{Rails.public_path}/other/#{date_stamp}_user_activity.txt"
+    end
+
     def remove_todays_user_backup_tables
       File.delete(self.user_table_backup_file) if File.exist?(self.user_table_backup_file)
       File.delete(self.user_event_table_backup_file) if File.exist?(self.user_event_table_backup_file)
@@ -182,13 +188,20 @@ module Util
       return zip_file_name
     end
 
-    def remove_daily_snapshots
-      FileUtils.rm_rf(Dir['/aact-files/static_db_copies/daily/*.zip'])
+    def remove_daily_files
+      # keep files with current year/month datestamp
+      keep = Time.zone.now.strftime('%Y%m')
+      run_command_line("find /aact-files/static_db_copies/daily -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
+      run_command_line("find /aact-files/exported_files/daily   -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
     end
 
-    def remove_daily_flat_files
-      FileUtils.rm_rf(Dir['/aact-files/exported_files/daily/*.zip'])
+    def run_command_line(cmd)
+      stdout, stderr, status = Open3.capture3(cmd)
+      if status.exitstatus != 1
+        success_code=false
+      end
     end
 
   end
 end
+
