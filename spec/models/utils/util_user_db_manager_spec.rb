@@ -29,9 +29,9 @@ describe Util::UserDbManager do
       table2_size=File.size?(fm.user_event_table_backup_file)
       table3_size=File.size?(fm.user_account_backup_file)
 
-      expect(table1_size).to be > 980
-      expect(table2_size).to be > 980
-      expect(table3_size).to be > 980
+      expect(table1_size).to be > 800
+      expect(table2_size).to be > 800
+      expect(table3_size).to be > 800
     end
 
     it 'should create a user event that reports a problem' do
