@@ -21,9 +21,8 @@ describe DbUserActivity do
     expect(example.unit_of_time).to eq('weekly')
     expect(example.event_count).to eq(42213)
     expect(example.display_when_recorded).to eq(DateTime.parse("2018-08-08").strftime('%Y/%m/%d'))
-  end
 
-  it "adds activity info to the user records" do
+    # it also adds activity info to the user records
     username='tarjan'
     Util::UserDbManager.new.remove_user(username)
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'first.last@duke.edu',:username=>username,:password=>'aact',:password_confirmation=>'aact')
