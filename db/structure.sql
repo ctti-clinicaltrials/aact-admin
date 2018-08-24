@@ -16,10 +16,10 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: admin; Type: SCHEMA; Schema: -; Owner: -
+-- Name: ctgov; Type: SCHEMA; Schema: -; Owner: -
 --
 
-CREATE SCHEMA admin;
+CREATE SCHEMA ctgov;
 
 
 --
@@ -41,10 +41,10 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: data_definitions; Type: TABLE; Schema: admin; Owner: -
+-- Name: data_definitions; Type: TABLE; Schema: ctgov; Owner: -
 --
 
-CREATE TABLE admin.data_definitions (
+CREATE TABLE ctgov.data_definitions (
     id integer NOT NULL,
     db_section character varying,
     table_name character varying,
@@ -61,10 +61,10 @@ CREATE TABLE admin.data_definitions (
 
 
 --
--- Name: data_definitions_id_seq; Type: SEQUENCE; Schema: admin; Owner: -
+-- Name: data_definitions_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
-CREATE SEQUENCE admin.data_definitions_id_seq
+CREATE SEQUENCE ctgov.data_definitions_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -74,17 +74,17 @@ CREATE SEQUENCE admin.data_definitions_id_seq
 
 
 --
--- Name: data_definitions_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: -
+-- Name: data_definitions_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
 --
 
-ALTER SEQUENCE admin.data_definitions_id_seq OWNED BY admin.data_definitions.id;
+ALTER SEQUENCE ctgov.data_definitions_id_seq OWNED BY ctgov.data_definitions.id;
 
 
 --
--- Name: db_user_activities; Type: TABLE; Schema: admin; Owner: -
+-- Name: db_user_activities; Type: TABLE; Schema: ctgov; Owner: -
 --
 
-CREATE TABLE admin.db_user_activities (
+CREATE TABLE ctgov.db_user_activities (
     id integer NOT NULL,
     username character varying,
     event_count integer,
@@ -96,10 +96,10 @@ CREATE TABLE admin.db_user_activities (
 
 
 --
--- Name: db_user_activities_id_seq; Type: SEQUENCE; Schema: admin; Owner: -
+-- Name: db_user_activities_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
-CREATE SEQUENCE admin.db_user_activities_id_seq
+CREATE SEQUENCE ctgov.db_user_activities_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -109,17 +109,17 @@ CREATE SEQUENCE admin.db_user_activities_id_seq
 
 
 --
--- Name: db_user_activities_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: -
+-- Name: db_user_activities_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
 --
 
-ALTER SEQUENCE admin.db_user_activities_id_seq OWNED BY admin.db_user_activities.id;
+ALTER SEQUENCE ctgov.db_user_activities_id_seq OWNED BY ctgov.db_user_activities.id;
 
 
 --
--- Name: enumerations; Type: TABLE; Schema: admin; Owner: -
+-- Name: enumerations; Type: TABLE; Schema: ctgov; Owner: -
 --
 
-CREATE TABLE admin.enumerations (
+CREATE TABLE ctgov.enumerations (
     id integer NOT NULL,
     table_name character varying,
     column_name character varying,
@@ -133,10 +133,10 @@ CREATE TABLE admin.enumerations (
 
 
 --
--- Name: enumerations_id_seq; Type: SEQUENCE; Schema: admin; Owner: -
+-- Name: enumerations_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
-CREATE SEQUENCE admin.enumerations_id_seq
+CREATE SEQUENCE ctgov.enumerations_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -146,17 +146,17 @@ CREATE SEQUENCE admin.enumerations_id_seq
 
 
 --
--- Name: enumerations_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: -
+-- Name: enumerations_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
 --
 
-ALTER SEQUENCE admin.enumerations_id_seq OWNED BY admin.enumerations.id;
+ALTER SEQUENCE ctgov.enumerations_id_seq OWNED BY ctgov.enumerations.id;
 
 
 --
--- Name: health_checks; Type: TABLE; Schema: admin; Owner: -
+-- Name: health_checks; Type: TABLE; Schema: ctgov; Owner: -
 --
 
-CREATE TABLE admin.health_checks (
+CREATE TABLE ctgov.health_checks (
     id integer NOT NULL,
     query text,
     cost character varying,
@@ -169,10 +169,10 @@ CREATE TABLE admin.health_checks (
 
 
 --
--- Name: health_checks_id_seq; Type: SEQUENCE; Schema: admin; Owner: -
+-- Name: health_checks_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
-CREATE SEQUENCE admin.health_checks_id_seq
+CREATE SEQUENCE ctgov.health_checks_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -182,17 +182,17 @@ CREATE SEQUENCE admin.health_checks_id_seq
 
 
 --
--- Name: health_checks_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: -
+-- Name: health_checks_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
 --
 
-ALTER SEQUENCE admin.health_checks_id_seq OWNED BY admin.health_checks.id;
+ALTER SEQUENCE ctgov.health_checks_id_seq OWNED BY ctgov.health_checks.id;
 
 
 --
--- Name: public_announcements; Type: TABLE; Schema: admin; Owner: -
+-- Name: public_announcements; Type: TABLE; Schema: ctgov; Owner: -
 --
 
-CREATE TABLE admin.public_announcements (
+CREATE TABLE ctgov.public_announcements (
     id integer NOT NULL,
     description character varying,
     is_sticky boolean
@@ -200,10 +200,10 @@ CREATE TABLE admin.public_announcements (
 
 
 --
--- Name: public_announcements_id_seq; Type: SEQUENCE; Schema: admin; Owner: -
+-- Name: public_announcements_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
-CREATE SEQUENCE admin.public_announcements_id_seq
+CREATE SEQUENCE ctgov.public_announcements_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -213,26 +213,26 @@ CREATE SEQUENCE admin.public_announcements_id_seq
 
 
 --
--- Name: public_announcements_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: -
+-- Name: public_announcements_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
 --
 
-ALTER SEQUENCE admin.public_announcements_id_seq OWNED BY admin.public_announcements.id;
+ALTER SEQUENCE ctgov.public_announcements_id_seq OWNED BY ctgov.public_announcements.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: admin; Owner: -
+-- Name: schema_migrations; Type: TABLE; Schema: ctgov; Owner: -
 --
 
-CREATE TABLE admin.schema_migrations (
+CREATE TABLE ctgov.schema_migrations (
     version character varying NOT NULL
 );
 
 
 --
--- Name: use_case_attachments; Type: TABLE; Schema: admin; Owner: -
+-- Name: use_case_attachments; Type: TABLE; Schema: ctgov; Owner: -
 --
 
-CREATE TABLE admin.use_case_attachments (
+CREATE TABLE ctgov.use_case_attachments (
     id integer NOT NULL,
     use_case_id integer,
     file_name character varying,
@@ -245,10 +245,10 @@ CREATE TABLE admin.use_case_attachments (
 
 
 --
--- Name: use_case_attachments_id_seq; Type: SEQUENCE; Schema: admin; Owner: -
+-- Name: use_case_attachments_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
-CREATE SEQUENCE admin.use_case_attachments_id_seq
+CREATE SEQUENCE ctgov.use_case_attachments_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -258,17 +258,17 @@ CREATE SEQUENCE admin.use_case_attachments_id_seq
 
 
 --
--- Name: use_case_attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: -
+-- Name: use_case_attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
 --
 
-ALTER SEQUENCE admin.use_case_attachments_id_seq OWNED BY admin.use_case_attachments.id;
+ALTER SEQUENCE ctgov.use_case_attachments_id_seq OWNED BY ctgov.use_case_attachments.id;
 
 
 --
--- Name: use_case_datasets; Type: TABLE; Schema: admin; Owner: -
+-- Name: use_case_datasets; Type: TABLE; Schema: ctgov; Owner: -
 --
 
-CREATE TABLE admin.use_case_datasets (
+CREATE TABLE ctgov.use_case_datasets (
     id integer NOT NULL,
     use_case_id integer,
     dataset_type character varying,
@@ -278,10 +278,10 @@ CREATE TABLE admin.use_case_datasets (
 
 
 --
--- Name: use_case_datasets_id_seq; Type: SEQUENCE; Schema: admin; Owner: -
+-- Name: use_case_datasets_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
-CREATE SEQUENCE admin.use_case_datasets_id_seq
+CREATE SEQUENCE ctgov.use_case_datasets_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -291,17 +291,17 @@ CREATE SEQUENCE admin.use_case_datasets_id_seq
 
 
 --
--- Name: use_case_datasets_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: -
+-- Name: use_case_datasets_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
 --
 
-ALTER SEQUENCE admin.use_case_datasets_id_seq OWNED BY admin.use_case_datasets.id;
+ALTER SEQUENCE ctgov.use_case_datasets_id_seq OWNED BY ctgov.use_case_datasets.id;
 
 
 --
--- Name: use_case_publications; Type: TABLE; Schema: admin; Owner: -
+-- Name: use_case_publications; Type: TABLE; Schema: ctgov; Owner: -
 --
 
-CREATE TABLE admin.use_case_publications (
+CREATE TABLE ctgov.use_case_publications (
     id integer NOT NULL,
     use_case_id integer,
     name character varying,
@@ -310,10 +310,10 @@ CREATE TABLE admin.use_case_publications (
 
 
 --
--- Name: use_case_publications_id_seq; Type: SEQUENCE; Schema: admin; Owner: -
+-- Name: use_case_publications_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
-CREATE SEQUENCE admin.use_case_publications_id_seq
+CREATE SEQUENCE ctgov.use_case_publications_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -323,17 +323,17 @@ CREATE SEQUENCE admin.use_case_publications_id_seq
 
 
 --
--- Name: use_case_publications_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: -
+-- Name: use_case_publications_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
 --
 
-ALTER SEQUENCE admin.use_case_publications_id_seq OWNED BY admin.use_case_publications.id;
+ALTER SEQUENCE ctgov.use_case_publications_id_seq OWNED BY ctgov.use_case_publications.id;
 
 
 --
--- Name: use_cases; Type: TABLE; Schema: admin; Owner: -
+-- Name: use_cases; Type: TABLE; Schema: ctgov; Owner: -
 --
 
-CREATE TABLE admin.use_cases (
+CREATE TABLE ctgov.use_cases (
     id integer NOT NULL,
     status character varying,
     completion_date date,
@@ -357,10 +357,10 @@ CREATE TABLE admin.use_cases (
 
 
 --
--- Name: use_cases_id_seq; Type: SEQUENCE; Schema: admin; Owner: -
+-- Name: use_cases_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
-CREATE SEQUENCE admin.use_cases_id_seq
+CREATE SEQUENCE ctgov.use_cases_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -370,17 +370,17 @@ CREATE SEQUENCE admin.use_cases_id_seq
 
 
 --
--- Name: use_cases_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: -
+-- Name: use_cases_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
 --
 
-ALTER SEQUENCE admin.use_cases_id_seq OWNED BY admin.use_cases.id;
+ALTER SEQUENCE ctgov.use_cases_id_seq OWNED BY ctgov.use_cases.id;
 
 
 --
--- Name: user_events; Type: TABLE; Schema: admin; Owner: -
+-- Name: user_events; Type: TABLE; Schema: ctgov; Owner: -
 --
 
-CREATE TABLE admin.user_events (
+CREATE TABLE ctgov.user_events (
     id integer NOT NULL,
     email character varying,
     event_type character varying,
@@ -392,10 +392,10 @@ CREATE TABLE admin.user_events (
 
 
 --
--- Name: user_events_id_seq; Type: SEQUENCE; Schema: admin; Owner: -
+-- Name: user_events_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
-CREATE SEQUENCE admin.user_events_id_seq
+CREATE SEQUENCE ctgov.user_events_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -405,17 +405,17 @@ CREATE SEQUENCE admin.user_events_id_seq
 
 
 --
--- Name: user_events_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: -
+-- Name: user_events_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
 --
 
-ALTER SEQUENCE admin.user_events_id_seq OWNED BY admin.user_events.id;
+ALTER SEQUENCE ctgov.user_events_id_seq OWNED BY ctgov.user_events.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: admin; Owner: -
+-- Name: users; Type: TABLE; Schema: ctgov; Owner: -
 --
 
-CREATE TABLE admin.users (
+CREATE TABLE ctgov.users (
     id integer NOT NULL,
     email character varying DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
@@ -439,10 +439,10 @@ CREATE TABLE admin.users (
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: admin; Owner: -
+-- Name: users_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
-CREATE SEQUENCE admin.users_id_seq
+CREATE SEQUENCE ctgov.users_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -452,245 +452,245 @@ CREATE SEQUENCE admin.users_id_seq
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: -
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
 --
 
-ALTER SEQUENCE admin.users_id_seq OWNED BY admin.users.id;
-
-
---
--- Name: data_definitions id; Type: DEFAULT; Schema: admin; Owner: -
---
-
-ALTER TABLE ONLY admin.data_definitions ALTER COLUMN id SET DEFAULT nextval('admin.data_definitions_id_seq'::regclass);
+ALTER SEQUENCE ctgov.users_id_seq OWNED BY ctgov.users.id;
 
 
 --
--- Name: db_user_activities id; Type: DEFAULT; Schema: admin; Owner: -
+-- Name: data_definitions id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY admin.db_user_activities ALTER COLUMN id SET DEFAULT nextval('admin.db_user_activities_id_seq'::regclass);
-
-
---
--- Name: enumerations id; Type: DEFAULT; Schema: admin; Owner: -
---
-
-ALTER TABLE ONLY admin.enumerations ALTER COLUMN id SET DEFAULT nextval('admin.enumerations_id_seq'::regclass);
+ALTER TABLE ONLY ctgov.data_definitions ALTER COLUMN id SET DEFAULT nextval('ctgov.data_definitions_id_seq'::regclass);
 
 
 --
--- Name: health_checks id; Type: DEFAULT; Schema: admin; Owner: -
+-- Name: db_user_activities id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY admin.health_checks ALTER COLUMN id SET DEFAULT nextval('admin.health_checks_id_seq'::regclass);
-
-
---
--- Name: public_announcements id; Type: DEFAULT; Schema: admin; Owner: -
---
-
-ALTER TABLE ONLY admin.public_announcements ALTER COLUMN id SET DEFAULT nextval('admin.public_announcements_id_seq'::regclass);
+ALTER TABLE ONLY ctgov.db_user_activities ALTER COLUMN id SET DEFAULT nextval('ctgov.db_user_activities_id_seq'::regclass);
 
 
 --
--- Name: use_case_attachments id; Type: DEFAULT; Schema: admin; Owner: -
+-- Name: enumerations id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY admin.use_case_attachments ALTER COLUMN id SET DEFAULT nextval('admin.use_case_attachments_id_seq'::regclass);
-
-
---
--- Name: use_case_datasets id; Type: DEFAULT; Schema: admin; Owner: -
---
-
-ALTER TABLE ONLY admin.use_case_datasets ALTER COLUMN id SET DEFAULT nextval('admin.use_case_datasets_id_seq'::regclass);
+ALTER TABLE ONLY ctgov.enumerations ALTER COLUMN id SET DEFAULT nextval('ctgov.enumerations_id_seq'::regclass);
 
 
 --
--- Name: use_case_publications id; Type: DEFAULT; Schema: admin; Owner: -
+-- Name: health_checks id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY admin.use_case_publications ALTER COLUMN id SET DEFAULT nextval('admin.use_case_publications_id_seq'::regclass);
-
-
---
--- Name: use_cases id; Type: DEFAULT; Schema: admin; Owner: -
---
-
-ALTER TABLE ONLY admin.use_cases ALTER COLUMN id SET DEFAULT nextval('admin.use_cases_id_seq'::regclass);
+ALTER TABLE ONLY ctgov.health_checks ALTER COLUMN id SET DEFAULT nextval('ctgov.health_checks_id_seq'::regclass);
 
 
 --
--- Name: user_events id; Type: DEFAULT; Schema: admin; Owner: -
+-- Name: public_announcements id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY admin.user_events ALTER COLUMN id SET DEFAULT nextval('admin.user_events_id_seq'::regclass);
-
-
---
--- Name: users id; Type: DEFAULT; Schema: admin; Owner: -
---
-
-ALTER TABLE ONLY admin.users ALTER COLUMN id SET DEFAULT nextval('admin.users_id_seq'::regclass);
+ALTER TABLE ONLY ctgov.public_announcements ALTER COLUMN id SET DEFAULT nextval('ctgov.public_announcements_id_seq'::regclass);
 
 
 --
--- Name: data_definitions data_definitions_pkey; Type: CONSTRAINT; Schema: admin; Owner: -
+-- Name: use_case_attachments id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY admin.data_definitions
+ALTER TABLE ONLY ctgov.use_case_attachments ALTER COLUMN id SET DEFAULT nextval('ctgov.use_case_attachments_id_seq'::regclass);
+
+
+--
+-- Name: use_case_datasets id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_case_datasets ALTER COLUMN id SET DEFAULT nextval('ctgov.use_case_datasets_id_seq'::regclass);
+
+
+--
+-- Name: use_case_publications id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_case_publications ALTER COLUMN id SET DEFAULT nextval('ctgov.use_case_publications_id_seq'::regclass);
+
+
+--
+-- Name: use_cases id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.use_cases ALTER COLUMN id SET DEFAULT nextval('ctgov.use_cases_id_seq'::regclass);
+
+
+--
+-- Name: user_events id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.user_events ALTER COLUMN id SET DEFAULT nextval('ctgov.user_events_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.users ALTER COLUMN id SET DEFAULT nextval('ctgov.users_id_seq'::regclass);
+
+
+--
+-- Name: data_definitions data_definitions_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.data_definitions
     ADD CONSTRAINT data_definitions_pkey PRIMARY KEY (id);
 
 
 --
--- Name: db_user_activities db_user_activities_pkey; Type: CONSTRAINT; Schema: admin; Owner: -
+-- Name: db_user_activities db_user_activities_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY admin.db_user_activities
+ALTER TABLE ONLY ctgov.db_user_activities
     ADD CONSTRAINT db_user_activities_pkey PRIMARY KEY (id);
 
 
 --
--- Name: enumerations enumerations_pkey; Type: CONSTRAINT; Schema: admin; Owner: -
+-- Name: enumerations enumerations_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY admin.enumerations
+ALTER TABLE ONLY ctgov.enumerations
     ADD CONSTRAINT enumerations_pkey PRIMARY KEY (id);
 
 
 --
--- Name: health_checks health_checks_pkey; Type: CONSTRAINT; Schema: admin; Owner: -
+-- Name: health_checks health_checks_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY admin.health_checks
+ALTER TABLE ONLY ctgov.health_checks
     ADD CONSTRAINT health_checks_pkey PRIMARY KEY (id);
 
 
 --
--- Name: public_announcements public_announcements_pkey; Type: CONSTRAINT; Schema: admin; Owner: -
+-- Name: public_announcements public_announcements_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY admin.public_announcements
+ALTER TABLE ONLY ctgov.public_announcements
     ADD CONSTRAINT public_announcements_pkey PRIMARY KEY (id);
 
 
 --
--- Name: use_case_attachments use_case_attachments_pkey; Type: CONSTRAINT; Schema: admin; Owner: -
+-- Name: use_case_attachments use_case_attachments_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY admin.use_case_attachments
+ALTER TABLE ONLY ctgov.use_case_attachments
     ADD CONSTRAINT use_case_attachments_pkey PRIMARY KEY (id);
 
 
 --
--- Name: use_case_datasets use_case_datasets_pkey; Type: CONSTRAINT; Schema: admin; Owner: -
+-- Name: use_case_datasets use_case_datasets_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY admin.use_case_datasets
+ALTER TABLE ONLY ctgov.use_case_datasets
     ADD CONSTRAINT use_case_datasets_pkey PRIMARY KEY (id);
 
 
 --
--- Name: use_case_publications use_case_publications_pkey; Type: CONSTRAINT; Schema: admin; Owner: -
+-- Name: use_case_publications use_case_publications_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY admin.use_case_publications
+ALTER TABLE ONLY ctgov.use_case_publications
     ADD CONSTRAINT use_case_publications_pkey PRIMARY KEY (id);
 
 
 --
--- Name: use_cases use_cases_pkey; Type: CONSTRAINT; Schema: admin; Owner: -
+-- Name: use_cases use_cases_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY admin.use_cases
+ALTER TABLE ONLY ctgov.use_cases
     ADD CONSTRAINT use_cases_pkey PRIMARY KEY (id);
 
 
 --
--- Name: user_events user_events_pkey; Type: CONSTRAINT; Schema: admin; Owner: -
+-- Name: user_events user_events_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY admin.user_events
+ALTER TABLE ONLY ctgov.user_events
     ADD CONSTRAINT user_events_pkey PRIMARY KEY (id);
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: admin; Owner: -
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY admin.users
+ALTER TABLE ONLY ctgov.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
 --
--- Name: index_admin.use_case_datasets_on_dataset_type; Type: INDEX; Schema: admin; Owner: -
+-- Name: index_ctgov.use_case_datasets_on_dataset_type; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX "index_admin.use_case_datasets_on_dataset_type" ON admin.use_case_datasets USING btree (dataset_type);
-
-
---
--- Name: index_admin.use_case_datasets_on_name; Type: INDEX; Schema: admin; Owner: -
---
-
-CREATE INDEX "index_admin.use_case_datasets_on_name" ON admin.use_case_datasets USING btree (name);
+CREATE INDEX "index_ctgov.use_case_datasets_on_dataset_type" ON ctgov.use_case_datasets USING btree (dataset_type);
 
 
 --
--- Name: index_admin.use_cases_on_completion_date; Type: INDEX; Schema: admin; Owner: -
+-- Name: index_ctgov.use_case_datasets_on_name; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX "index_admin.use_cases_on_completion_date" ON admin.use_cases USING btree (completion_date);
-
-
---
--- Name: index_admin.use_cases_on_organizations; Type: INDEX; Schema: admin; Owner: -
---
-
-CREATE INDEX "index_admin.use_cases_on_organizations" ON admin.use_cases USING btree (organizations);
+CREATE INDEX "index_ctgov.use_case_datasets_on_name" ON ctgov.use_case_datasets USING btree (name);
 
 
 --
--- Name: index_admin.use_cases_on_year; Type: INDEX; Schema: admin; Owner: -
+-- Name: index_ctgov.use_cases_on_completion_date; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE INDEX "index_admin.use_cases_on_year" ON admin.use_cases USING btree (year);
-
-
---
--- Name: index_admin.users_on_confirmation_token; Type: INDEX; Schema: admin; Owner: -
---
-
-CREATE UNIQUE INDEX "index_admin.users_on_confirmation_token" ON admin.users USING btree (confirmation_token);
+CREATE INDEX "index_ctgov.use_cases_on_completion_date" ON ctgov.use_cases USING btree (completion_date);
 
 
 --
--- Name: index_admin.users_on_email; Type: INDEX; Schema: admin; Owner: -
+-- Name: index_ctgov.use_cases_on_organizations; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE UNIQUE INDEX "index_admin.users_on_email" ON admin.users USING btree (email);
-
-
---
--- Name: index_admin.users_on_reset_password_token; Type: INDEX; Schema: admin; Owner: -
---
-
-CREATE UNIQUE INDEX "index_admin.users_on_reset_password_token" ON admin.users USING btree (reset_password_token);
+CREATE INDEX "index_ctgov.use_cases_on_organizations" ON ctgov.use_cases USING btree (organizations);
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: admin; Owner: -
+-- Name: index_ctgov.use_cases_on_year; Type: INDEX; Schema: ctgov; Owner: -
 --
 
-CREATE UNIQUE INDEX unique_schema_migrations ON admin.schema_migrations USING btree (version);
+CREATE INDEX "index_ctgov.use_cases_on_year" ON ctgov.use_cases USING btree (year);
+
+
+--
+-- Name: index_ctgov.users_on_confirmation_token; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX "index_ctgov.users_on_confirmation_token" ON ctgov.users USING btree (confirmation_token);
+
+
+--
+-- Name: index_ctgov.users_on_email; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX "index_ctgov.users_on_email" ON ctgov.users USING btree (email);
+
+
+--
+-- Name: index_ctgov.users_on_reset_password_token; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX "index_ctgov.users_on_reset_password_token" ON ctgov.users USING btree (reset_password_token);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING btree (version);
 
 
 --
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO ctgov, support, admin, public;
+SET search_path TO ctgov, support, public;
 
 INSERT INTO schema_migrations (version) VALUES ('20160214191640');
 
