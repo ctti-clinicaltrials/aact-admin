@@ -1,6 +1,6 @@
 class AddDeviseToUsers < ActiveRecord::Migration
   def change
-    create_table "admin.users" do |t|
+    create_table "ctgov.users" do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -37,9 +37,9 @@ class AddDeviseToUsers < ActiveRecord::Migration
       # t.timestamps null: false
     end
 
-    add_index "admin.users", :email,                unique: true
-    add_index "admin.users", :reset_password_token, unique: true
-    add_index "admin.users", :confirmation_token,   unique: true
+    add_index "ctgov.users", :email,                unique: true
+    add_index "ctgov.users", :reset_password_token, unique: true
+    add_index "ctgov.users", :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
   end
 

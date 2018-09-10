@@ -1,7 +1,7 @@
 class AddUserEvents < ActiveRecord::Migration
   def change
 
-    create_table "admin.user_events" do |t|
+    create_table "ctgov.user_events" do |t|
       t.string   "email"
       t.string   "event_type"
       t.text     "description"

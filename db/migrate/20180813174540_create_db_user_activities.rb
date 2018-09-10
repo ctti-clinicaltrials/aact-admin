@@ -1,6 +1,6 @@
 class CreateDbUserActivities < ActiveRecord::Migration
   def change
-    create_table :db_user_activities do |t|
+    create_table "ctgov.db_user_activities" do |t|
       t.string    :username
       t.integer   :event_count
       t.datetime  :when_recorded
