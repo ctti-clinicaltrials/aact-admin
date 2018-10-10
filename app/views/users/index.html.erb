@@ -1,4 +1,4 @@
-<%=  stylesheet_link_tag "users/users" %>
+javascript_include_tag "sortable"
 <div class="wrap">
 
   <p>
@@ -9,9 +9,10 @@
   <div class="users">
     <h4> <%=number_with_delimiter(@user_count, :delimiter => ',') %> AACT Users</h4>
 
-    <table id='users' class='table dataTable'>
+    <table id='users' class='table sortable table-sriped table-responsive table-hover'>
 
-        <tr>
+        <thead>
+          <tr>
             <th>name</th>
             <th>email</th>
             <th>username</th>
@@ -19,7 +20,8 @@
             <th>DB activity</th>
             <th>last db activity</th>
             <th>last web sign-in</th>
-        </tr>
+          </tr>
+        <thead>
 
         <tbody class='users'>
           <% @users.each do |user| %>
