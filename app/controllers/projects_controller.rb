@@ -2,8 +2,9 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user, only: [:index, :show, :edit, :destroy]
 
   def index
-    @project_count = Project.all.size
-    @projects = Project.order(:name)
+    @project_count = Public::Project.all.size
+    @projects = Public::Project.order(:name)
+    @projects_with_data = Public::Project.where('data_available is true').order(:name)
     respond_to do |format|
       format.html
       format.csv { render text: @projects.to_csv }
@@ -12,7 +13,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.first
+    @project = Public::Project.find(params[:id])
   end
 
   private
@@ -20,7 +21,7 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.fetch(:project, {})
-      params.require(:project).permit(:utf8, :authenticity_token, :name, :investigators, :year, :description)
+      params.require(:project).permit(:utf8, :authenticity_token, :name, :investigators, :year, :description, :id)
     end
 
     def authenticate_user

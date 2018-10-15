@@ -1,30 +1,28 @@
+javascript_include_tag "sortable"
+
 <div class="wrap">
 
-  <p>
-  Download:
-  <%= link_to "CSV", projects_path(format: "csv") %> |
-  <%= link_to "Excel", projects_path(format: "xls") %>
-</p>
   <div class="projects">
-    <h4> <%=number_with_delimiter(@project_count, :delimiter => ',') %> AACT Projects</h4>
 
-    <table id='projects' class='table dataTable'>
+    <table data-toggle='table' class="table sortable table-striped table-responsive table-hover" data-sort-order="desc">
 
-        <tr>
-            <th class='projectTableHeader'>name</th>
-            <th class='projectTableHeader'>investigators</th>
-            <th class='projectTableHeader'>year</th>
-            <th class='projectTableHeader'>description</th>
-            <th class='projectTableHeader'></th>
-        </tr>
+        <thead>
+          <tr>
+            <th data-field='name'          data-sortable="true">name</th>
+            <th data-field='investigators' data-sortable="true">investigators</th>
+            <th data-field='year'          class="sorttable">year</th>
+            <th >description</th>
+            <th ></th>
+          </tr>
+        </thead>
 
         <tbody class='projects'>
-          <% @projects.each do |proj| %>
+          <% @projects_with_data.each do |proj| %>
             <tr>
               <td><%= proj.name %></td>
               <td><%= proj.investigators %></td>
               <td><%= proj.year %></td>
-              <td><%= proj.description %></td>
+              <td><%= proj.brief_summary %></td>
               <td><%= link_to 'Detail', project_path(:id => proj.id) %></td>
             </tr>
           <% end %>
