@@ -2,18 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="ROBOTS" content="NOODP" />
-  <meta name="viewport" content="initial-scale=1" />
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300,400italic' rel='stylesheet' type='text/css'>
   <%#
     Configure default and controller-, and view-specific titles in
     config/locales/en.yml. For more see:
     https://github.com/calebthompson/title#usage
   %>
   <title>AACT Database | Clinical Trials Transformation Initiative</title>
-  <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300,400italic' rel='stylesheet' type='text/css'>
-  <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/black-tie/jquery-ui.css" rel="stylesheet">
-  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.1/jsgrid.min.css" />
-  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.1/jsgrid-theme.min.css" />
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= include_gon %>
@@ -41,7 +36,6 @@
     <%= yield %>
 
     <%= render "javascript" %>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.1/jsgrid.min.js"></script>
     <%= render "css_overrides" %>
   </div>
 
