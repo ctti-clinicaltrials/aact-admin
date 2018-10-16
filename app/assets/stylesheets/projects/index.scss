@@ -1,0 +1,29 @@
+// Place all the styles related to the projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table.regularDisplay {
+  border-style: none;
+}
+
+.standardLayout {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.projectName {
+  font-weight: bold;
+}
+
+.projectData {
+   color: $maroon;
+   //font-size: 1rem;
+   border-style: groove;
+   border-color: $secondary;
+   padding-left: 40px;
+   padding-right: 40px;
+   padding-bottom: 10px;
+   padding-top: 10px;
+}
+
+

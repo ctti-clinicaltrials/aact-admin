@@ -1,29 +1,37 @@
-@import "variables";
-@import "library";
+@import "../base/variables";
+@import "../base/library";
 
 #pointsToConsider {
   width: 100%;
-  border: 1px solid black;
-  border-collapse: collapse;
-  font-size: 1.0rem;
-  border-style: solid;
+  font-size: 1.2rem;
   box-shadow: 10px 10px 5px #888888;
   padding: 2;
 }
 
-th.pointsToConsiderHeader {
-  background-color: $primary;
-  color: white;
-  font-weight: normal;
-  font-size: 1.4rem;
+p.ptc {
+  font-size: 1.2rem;
+}
+
+p.ptcFootNote {
+  font-size: 1.0rem;
+  margin-left: 2rem;
+}
+
+a.ptcFootNote {
+  font-size: 1.0rem;
 }
 
 tr.even td {
   background-color: $white;
-  color: black;
+  border:  none;
+  padding: 8px;
+  vertical-align: top;
 }
 
 tr.odd td {
   background-color: rgb(240,240,240);
-  color: black;
+  border:  none;
+  padding: 8px;
+  vertical-align: top;
 }
+

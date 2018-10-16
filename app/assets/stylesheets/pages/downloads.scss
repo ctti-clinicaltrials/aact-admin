@@ -1,5 +1,6 @@
-@import "variables";
-@import "library";
+@import "../base/variables";
+@import "../base/library";
+
 section.downloadAact {
   padding-bottom: 10px;
   background-color: $white;

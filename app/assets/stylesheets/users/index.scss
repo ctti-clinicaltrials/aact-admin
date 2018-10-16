@@ -1,0 +1,23 @@
+@import "../base/variables";
+@import "../base/library";
+
+p.options {
+  float: right;
+  font-size: 1.0rem;
+  padding: 2;
+}
+
+#userTable {
+  font-size: 1rem;
+  width: 100%;
+  align: center;
+}
+
+tr.even td {
+  background-color: $white;
+}
+
+tr.odd td {
+  background-color: rgb(240,240,240);
+  border: none;
+}
