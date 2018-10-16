@@ -1,18 +1,19 @@
-javascript_include_tag "sortable"
+<%= javascript_include_tag :sortable %>
+<%=  stylesheet_link_tag "bootstrap.min.css" %>
+<%=  stylesheet_link_tag "projects/index" %>
 
-<div class="wrap">
-
+<h1>Projects</h1>
   <div class="projects">
 
-    <table data-toggle='table' class="sortable table-striped table-responsive table-hover regularDisplay" data-sort-order="desc">
+    <table class="table sortable table-striped table-responsive table-hover regularDisplay" data-sort-order="desc">
 
         <thead>
           <tr>
-            <th data-field='name'          data-sortable="true">Project</th>
-            <th data-field='investigators' data-sortable="true">Investigators</th>
-            <th data-field='year'          class="sorttable">Year</th>
-            <th >Description</th>
-            <th ></th>
+            <th>Name</th>
+            <th>Investigators</th>
+            <th>Year</th>
+            <th>Description</th>
+            <th></th>
           </tr>
         </thead>
 
@@ -32,4 +33,6 @@ javascript_include_tag "sortable"
 
   </div>
 
-</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
