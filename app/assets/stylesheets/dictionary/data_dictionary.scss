@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
-@import "variables";
-@import "library";
+@import "../base/variables";
+@import "../base/library";
 
 span.enum {
   color: red;
