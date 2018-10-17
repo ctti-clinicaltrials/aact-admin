@@ -8,7 +8,11 @@ table.file-archive {
   font-family: Roboto;
 
 th.file-archive {
+  background-color: $tertiary;
+  font-family: "Roboto";
+  color: white;
   font-size: 20px;
+  font-weight: normal;
 }
 
 td.file-archive {
