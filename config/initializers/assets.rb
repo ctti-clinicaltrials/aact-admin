@@ -6,7 +6,6 @@ Rails.application.config.assets.precompile += %w( styles.css )
 Rails.application.config.assets.precompile += %w( use_cases/use_cases.css )
 Rails.application.config.assets.precompile += %w( sortable.js )
 Rails.application.config.assets.precompile += %w( bootstrap.min.css )
-Rails.application.config.assets.precompile += %w( projects/index.css )
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
