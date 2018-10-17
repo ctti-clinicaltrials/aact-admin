@@ -3,8 +3,9 @@
       <p class='user-logged-in'>logged in as <%= current_user.full_name %></p>
     </div>
     <p class='user-info'>
-      <%= link_to "Edit Profile", edit_user_registration_path, class: 'user-info link-action' %>
-      <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'user-info link-action' %>
+      <%= link_to "Edit Profile", edit_user_registration_path, class: 'user-info' %>
+      &nbsp;&nbsp;
+      <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'user-info' %>
     </p>
 <% else %>
     <p class='user-info'>
