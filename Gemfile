@@ -37,9 +37,6 @@ gem 'gon'
 gem 'execjs'
 gem 'therubyracer', '~> 0.12.3'
 gem 'libv8', '~> 3.16.14.15'
-gem 'rack'
-gem 'rack-cors', :require => 'rack/cors'
-gem 'rack-protection', '~> 1.5.5'
 gem 'loofah', '~> 2.2.1'
 
 # user registration
@@ -51,14 +48,13 @@ gem 'capistrano', '~> 3.8'
 gem 'capistrano-rails', '~> 1.2'
 
 group :development do
-  gem "quiet_assets"
+#  gem "quiet_assets"
 #  gem "spring"
 #  gem "spring-commands-rspec"
   gem 'letter_opener'
 end
 
 group :development, :test do
-  gem "rack-mini-profiler", require: false
   gem "awesome_print"
   gem "bullet"
   gem "bundler-audit", ">= 0.5.0", require: false
