@@ -6,6 +6,8 @@
 <h1>Projects</h1>
   <div class="projects">
 
+    <%= render 'explain_projects' %>
+
     <table class="table sortable table-striped table-responsive table-hover regularDisplay" data-sort-order="desc">
 
         <thead>
@@ -13,6 +15,7 @@
             <th>Name</th>
             <th>Investigators</th>
             <th>Year</th>
+            <th>DB Schema</th>
             <th>Description</th>
             <th></th>
           </tr>
@@ -24,6 +27,7 @@
               <td><%= proj.name %></td>
               <td><%= proj.investigators %></td>
               <td><%= proj.year %></td>
+              <td><%= proj.schema_name %></td>
               <td><%= proj.brief_summary %></td>
               <td><%= link_to 'Detail', project_path(:id => proj.id) %></td>
             </tr>
