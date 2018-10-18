@@ -1,0 +1,45 @@
+<div class="circleButtons">
+
+  <a href="/connect">
+    <div class="iconWrap">
+      <%= fa_icon('plug') %>
+    </div>
+    <span>Connect
+  </span>
+  </a>
+
+  <a href="/download">
+    <div class="iconWrap">
+      <%= fa_icon('download') %>
+    </div>
+    <span>Download
+  </span>
+  </a>
+
+  <a href="/learn_more">
+    <div class="iconWrap">
+      <%= fa_icon('university') %>
+    </div>
+    <span>Learn
+  </span>
+  </a>
+
+  <a href="/projects">
+    <div class="iconWrap">
+      <%= fa_icon('briefcase') %>
+    </div>
+    <span>Projects
+  </span>
+  </a>
+
+  <% if  (!current_user.nil? and ENV['AACT_ADMIN_USERNAMES'].split(',').include? current_user.username) %>
+    <a href="/users">
+      <div class="iconWrap">
+        <%= fa_icon('address-card') %>
+      </div>
+      <span>Users
+    </span>
+    </a>
+  <% end %>
+
+</div>

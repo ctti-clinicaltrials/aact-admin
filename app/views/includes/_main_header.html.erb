@@ -21,42 +21,25 @@
 
   <div class="navContainer">
     <nav>
-      <% unless current_page?(root_url) %>
-        <a href="/" class="navItem">
-          <%= fa_icon("home") %>
-          Home
-        </a>
-      <% end %>
+      <a href="/" class="navItem">
+        <%= fa_icon("home") %>
+        Home
+      </a>
 
-      <% unless current_page?('/connect') %>
-        <a href="/connect" class="navItem">
-          <%= fa_icon("plug") %>
-          Connect
-        </a>
-      <% end %>
+      <a href="/connect" class="navItem">
+        <%= fa_icon("plug") %>
+        Connect
+      </a>
 
-      <% unless current_page?('/download') %>
-        <a href="/download" class="navItem">
-          <%= fa_icon("download") %>
-          Download
-        </a>
-      <% end %>
+      <a href="/download" class="navItem">
+        <%= fa_icon("download") %>
+        Download
+      </a>
 
-      <% unless current_page?('/learn_more') %>
-        <a href="/learn_more" class="navItem">
-          <%= fa_icon("university") %>
-          Learn
-        </a>
-      <% end %>
-
-      <% if  (!current_user.nil? and ENV['AACT_ADMIN_USERNAMES'].split(',').include? current_user.username) %>
-        <% unless current_page?('/users') %>
-          <a href="/users" class="navItem">
-            <%= fa_icon("address-book") %>
-            Users
-          </a>
-        <% end %>
-      <% end %>
+      <a href="/learn_more" class="navItem">
+        <%= fa_icon("university") %>
+        Learn
+      </a>
 
     </nav>
   </div>
