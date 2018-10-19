@@ -143,6 +143,9 @@ img {
   max-width: 100%;
 }
 
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: $bg-grey;
+}
 
 ul {
   padding: 0px;
