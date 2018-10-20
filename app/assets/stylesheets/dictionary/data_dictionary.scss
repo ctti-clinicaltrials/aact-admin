@@ -42,8 +42,10 @@ main {
 
 #toggle:checked ~ #expand {
   height: 620px;
+  font-size: 1.2rem;
 }
-#toggle:checked {
+
+#toggle:checked ~ label::before {
   content: "Hide Hints";
 }
 
@@ -69,6 +71,7 @@ label::before {
   font-weight: bold;
   font-size: 16px;
   color: white;
+  content: "View Hints";
   text-align: left;
   padding-top: 4px;
   padding-left: 10px;
@@ -77,6 +80,8 @@ label::before {
   width: 86px;
   height: 26px;
   margin-right: 3px;
+  @include box-shadow(4px 4px 12px $light-grey);
+#  background: radial-gradient(ellipse at center, #CCC 50%, transparent 50%);
   background: #008aa1;
 }
 
