@@ -2,8 +2,9 @@ class TaggedTermsController < ApplicationController
 
   def index
     @all_tags = Tag.all
-    @selected_tag = @all_tags.first
-    @studies = Public::Study.tagged(@selected_tag.label).order(:brief_title)
+    @selected_tag = Public::TaggedTerm.where('tag=?','oncology').first
+    @terms = Public::TaggedTerm.terms_for_tag(@selected_tag)
+    @studies = Public::Study.tagged(@selected_tag).order(:brief_title)
     respond_to do |format|
       format.html
       format.csv { render text: @studies.to_csv }
