@@ -40,12 +40,12 @@ main {
   visibility: hidden;
 }
 
-#toggle:checked ~ #expand {
+#hintToggle:checked ~ #expand {
   height: 620px;
   font-size: 1.2rem;
 }
 
-#toggle:checked ~ label::before {
+#hintToggle:checked ~ label::before {
   content: "Hide Hints";
 }
 
@@ -66,7 +66,7 @@ label {
 label:hover {
   color: #000;
 }
-label::before {
+#hintToggle:label::before {
   font-family: Roboto, monaco, monospace;
   font-weight: bold;
   font-size: 16px;
