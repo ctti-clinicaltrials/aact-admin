@@ -7,42 +7,37 @@
 <script>
 $(document).ready(function(){
 
-  alert('Document Ready!');
-
   var $table = $('#projectTable');
 
   $table.on('expand-row.bs.table', function(e, index, row, $detail) {
-    var res = $("#desc" + index).html();
+    var res = $("#detail_" + index ).html();
     $detail.html(res);
-    alert(res);
-  });
-
-  $table.click(function(){
-    alert('clicked');
   });
 
   $table.on("click-row.bs.table", function(e, row, $tr) {
-    alert('click-row.bs.table');
-    alert("Clicked on: " + $(e.target).attr('class'), [e, row, $tr]);
+    //alert('click-row.bs.table');
+    //alert("Clicked on: " + $(e.target).attr('class'), [e, row, $tr]);
 
     // prints Clicked on: table table-hover, no matter if you click on row or detail-icon
-    console.log("Clicked on: " + $(e.target).attr('class'), [e, row, $tr]);
+    //console.log("Clicked on: " + $(e.target).attr('class'), [e, row, $tr]);
 
     // In my real scenarion, trigger expands row with text detailFormatter..
     //$tr.find(">td>.detail-icon").trigger("click");
     // $tr.find(">td>.detail-icon").triggerHandler("click");
-    if ($tr.next().is('tr.detail-view')) {
-      $table.bootstrapTable('collapseRow', $tr.data('index'));
-    } else {
-      $table.bootstrapTable('expandRow', $tr.data('index'));
-    }
+    //if ($tr.next().is('tr.detail-view')) {
+    //  $table.bootstrapTable('collapseRow', $tr.data('index'));
+    //} else {
+    //  $table.bootstrapTable('expandRow', $tr.data('index'));
+   // }
   });
-
 });
-
 </script>
 
-<div class='container'>
+<section>
+
+  <div class='basicHero container'>
+    <h1>Projects</h1>
+    <%= render 'explain_projects' %>
     <div id='toolbar'></div>
 
     <table id='projectTable'
@@ -50,39 +45,45 @@ $(document).ready(function(){
        data-detail-view="true"
        data-detail-formatter="detailFormatter"
        data-pagination="true"
-       data-show-refresh="true"
        data-show-toggle="true"
        data-show-columns="true"
        data-sort-order="name"
-       class='regularDisplay'>
+       class='sortable table-striped table-responsive table-hover regularDisplay'>
 
         <thead>
           <tr>
             <th data-field='name'>Name</th>
             <th data-field='investigators'>Investigators</th>
             <th data-field='year'>Year</th>
+            <th data-field='brief_summary'>Brief Summary</th>
             <th data-field='schema_name'>DB Schema</th>
-            <th data-field='brief_summary'>Description</th>
-            <th></th>
           </tr>
         </thead>
 
         <tbody class='projects'>
-          <% @projects_with_data.each do |proj| %>
-            <tr>
+          <% @projects.each_with_index do |proj, index| %>
+            <tr id="row_<%= index %>" class='projectRow'>
               <td><%= proj.name %></td>
               <td><%= proj.investigators %></td>
               <td><%= proj.year %></td>
-              <td><%= proj.schema_name %></td>
               <td><%= proj.brief_summary %></td>
-              <td><%= link_to 'Detail', project_path(:id => proj.id) %></td>
-              <span style="display: none;" id="desc0">
-                    <strong class="bold">Description:</strong>
-                    <br>
-                    <pre>This is row with id=0, containing other content</pre>
-                </span>
+              <td><%= proj.schema_name %></td>
+              <span style="display: none;" id="detail_<%= index %>">
+                <% if !proj.description.blank? %>
+                  <strong class="projectDetails bold">Description:</strong>
+                  <br>
+                  <pre class='projectDetails'><%= proj.description %></pre>
+                  <br>
+                <% end %>
+                <% if !proj.study_selection_criteria.blank? %>
+                  <strong class="projectDetails bold">Study Selection Criteria:</strong>
+                  <br>
+                  <pre class='projectDetails'><%= proj.study_selection_criteria %></pre>
+                <% end %>
+              </span>
             </tr>
           <% end %>
        </tbody>
     </table>
   </div>
+</section>

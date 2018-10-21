@@ -1,6 +1,28 @@
 @import "../base/variables";
 @import "../base/library";
 
+b, strong.projectDetails {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-left: 5rem;
+}
+
+pre.projectDetails {
+  font-size: 1.2rem;
+  font-family: "Roboto";
+  white-space: pre-wrap;       /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+
+tr.projectRow {
+  font-size: 1.6rem;
+}
+
 .projectName {
   font-weight: bold;
 }
