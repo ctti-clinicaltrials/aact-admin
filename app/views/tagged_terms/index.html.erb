@@ -1,37 +1,37 @@
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <%= javascript_include_tag :sortable %>
 <%=  stylesheet_link_tag "bootstrap.min.css" %>
-<%=  stylesheet_link_tag "bootstrap.override.css" %>
+<%=  stylesheet_link_tag "bootstrap.override" %>
 <section>
 
   <script>
-    function loadData(){
-      $(function () {
-        alert('sdfs');
-        $('#taggedStudies').bootstrapTable({});
-      });
-    }
+    $( ".selectTag" ).change(function() {
+        alert( "Handler for .change() called." );
+    })
   </script>
 
   <div id='selectTag'>
     <%= collection_select(:tag, :label, @all_tags, :label, :label) %>
   </div>
 
+  <p>
+  <% select_tag 'selected_tag', options_for_select(@all_tags.collect{ |t| [t.label] })  , :onchange => "alert('did it');"%>
+  </p>
+
   <div class="tagged_terms">
     <div>
-      <p>Studies tagged: <%= @selected_tag.label %></p>
+      <p>Studies tagged: <%= @selected_tag.tag %></p>
     </div>
 
     <table id='taggedStudies' class="table sortable table-striped table-responsive table-hover regularDisplay" data-sort-order="desc">
 
         <thead>
-          <tr>
             <th>ID</th>
             <th>Name</th>
             <th>Type</th>
             <th>Phase</th>
             <th>Start Date</th>
             <th></th>
-          </tr>
         </thead>
 
         <tbody class='tagged_terms'>

@@ -70,6 +70,11 @@ GEM
       execjs
     awesome_print (1.8.0)
     bcrypt (3.1.11)
+    bootstrap (4.0.0.beta)
+      autoprefixer-rails (>= 6.0.3)
+      popper_js (~> 1.11.1)
+      sass (>= 3.4.19)
+    bootstrap-table-rails (1.12.1)
     builder (3.2.3)
     bulk_insert (1.5.0)
       activerecord (>= 4.1.0)
@@ -192,6 +197,7 @@ GEM
     normalize-rails (4.1.1)
     orm_adapter (0.5.0)
     pg (0.21.0)
+    popper_js (1.11.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -341,6 +347,8 @@ DEPENDENCIES
   activerecord-import
   autoprefixer-rails
   awesome_print
+  bootstrap
+  bootstrap-table-rails
   bulk_insert
   bullet
   bundler-audit (>= 0.5.0)
