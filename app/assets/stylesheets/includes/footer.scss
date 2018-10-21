@@ -1,5 +1,13 @@
 @import "variables";
 @import "library";
+
+span.circleButtons {
+  color: #008aa1;
+}
+div.circleButtons {
+  padding-top: 5rem;
+}
+
 footer {
   background-color: $grey;
   color: $light-grey;

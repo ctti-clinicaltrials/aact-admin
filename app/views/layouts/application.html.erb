@@ -34,11 +34,10 @@
   <div class='standardLayout'>
     <%= render "flashes" -%>
     <%= yield %>
-
-    <%= render "javascript" %>
     <%= render "css_overrides" %>
   </div>
 
+  <p><%= render 'includes/circle_buttons' %></p>
   <footer>
     <%= render 'includes/main_footer' %>
 
