@@ -20,8 +20,9 @@ module Public
     self.primary_key = 'nct_id'
 
     def self.ids_tagged(tag)
-      Public::BrowseCondition.ids_for_terms(Public::TaggedTerm.terms_for_tag(tag)) +
-      Public::BrowseIntervention.ids_for_terms(Public::TaggedTerm.terms_for_tag(tag))
+      terms=Public::TaggedTerm.terms_for_tag(tag).pluck(:term).uniq
+      ids=Public::BrowseCondition.ids_for_terms(terms) + Public::BrowseIntervention.ids_for_terms(terms)
+      return ids
     end
 
     def self.tagged(tag)
