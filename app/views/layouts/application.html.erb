@@ -28,7 +28,7 @@
 
 </head>
 <body class="<%= body_class %>">
-  <header>
+  <header id='common-header'>
     <%= render 'includes/main_header' %>
   </header>
   <div class='standardLayout'>
@@ -36,7 +36,7 @@
     <%= yield %>
     <%= render "css_overrides" %>
   </div>
-
+  <p><%= render 'includes/circle_buttons' %></p>
   <footer>
     <%= render 'includes/main_footer' %>
 

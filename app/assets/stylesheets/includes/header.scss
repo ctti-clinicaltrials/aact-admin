@@ -28,6 +28,16 @@ p.user-info {
     font-size: 1rem;
     padding: .4em;
 }
+
+#navbar-top {
+  width: 100%;
+  font-size: 0px;
+  font-family: "Roboto";
+}
+
+#common-header {
+  padding-top: 5rem;
+}
   div.wrap {
     @include display-flex;
     @include justify-content(space-between);

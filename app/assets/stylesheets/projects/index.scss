@@ -1,6 +1,19 @@
 @import "../base/variables";
 @import "../base/library";
 
+#projectContainer {
+  width: 100%;
+}
+
+.projects {
+  margin-left: 15rem;
+  margin-right: 15rem;
+}
+
+p.projectExplanation {
+  font-size: 1.4rem;
+}
+
 b, strong.projectDetails {
   font-weight: 700;
   font-size: 1.2rem;
