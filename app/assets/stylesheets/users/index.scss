@@ -2,9 +2,13 @@
 @import "../base/library";
 
 p.options {
-  float: right;
-  font-size: 1.0rem;
-  padding: 2;
+  float: left;
+  font-size: 1.8rem;
+  padding-top: 3.6rem;
+}
+
+a.options {
+  font-size: 1.8rem;
 }
 
 #userTable {

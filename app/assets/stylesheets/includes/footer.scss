@@ -1,8 +1,13 @@
 @import "variables";
 @import "library";
 
-div.circleButtons {
+span.circleButtons {
+  font-family: Roboto;
   font-size: 1.2rem;
+  color: #008aa1;
+}
+
+div.circleButtons {
   margin-bottom: 4rem;
   @include display-flex;
   @include align-items(center);
@@ -37,12 +42,11 @@ div.circleButtons {
   }
 }
 
-
-
 footer {
   background-color: $grey;
   color: $light-grey;
   z-index: 1000;
+  text-align: center;
   position: relative;
   bottom: 0;
   left: 0;
@@ -78,16 +82,18 @@ footer {
   }
 
   nav.footerBar {
-      padding: 2rem 0px;
+      padding: 2rem 4rem;
       border-bottom: 1px solid $light-grey;
       margin-bottom: 2rem;
   }
 
   div.disclaimer {
     padding-bottom: 2rem;
+    padding-left: 2rem;
   }
 
   div.copyright {
     text-align: center;
+    padding-bottom: 2rem;
   }
 }
