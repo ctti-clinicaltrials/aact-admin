@@ -3,14 +3,14 @@
       <p class='user-logged-in'>logged in as <%= current_user.full_name %></p>
     </div>
     <p class='user-info'>
-      <%= link_to "Edit Profile", edit_user_registration_path, class: 'user-info' %>
+      <%= link_to "Edit Profile", edit_user_registration_path %>
       &nbsp;&nbsp;
-      <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'user-info' %>
+      <%= link_to "Sign out", edit_user_registration_path('sign-out'), :id => current_user %>
     </p>
 <% else %>
     <p class='user-info'>
-      <%= link_to "Sign up", new_user_registration_path, class: 'btn dropdown-toggle user-info' %>
-      <%= link_to "Sign in", new_user_session_path, class: 'user-info' %>
+      <%= link_to "Sign up", new_user_registration_path, class: 'btn dropdown-toggle' %>
+      <%= link_to "Sign in", new_user_session_path %>
     </p>
 <% end %>
 

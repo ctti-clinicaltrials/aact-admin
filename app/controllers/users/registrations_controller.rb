@@ -1,6 +1,15 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
+  def edit
+    user_sign_out if params['format'] == 'sign-out'
+  end
+
+  def user_sign_out
+    sign_out(:user)
+    redirect_to root_path
+  end
+
   def create
     super
     if resource.errors.size == 0

@@ -11,10 +11,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
+  def edit
   end
 
-  def edit
+  def show
+    redirect_to :controller => 'user_password', :action => 'create'
   end
 
   def destroy
