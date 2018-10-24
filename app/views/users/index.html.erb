@@ -1,4 +1,8 @@
-javascript_include_tag "sortable"
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
 
 <div>
   <section class='users'>
@@ -7,20 +11,26 @@ javascript_include_tag "sortable"
 
       <p class='options'>
         Download:
-        <%= link_to "CSV", users_path(format: "csv") %> |
-        <%= link_to "Excel", users_path(format: "xls") %>
+        <%= link_to "CSV", users_path(format: "csv"), :class => 'options' %> |
+        <%= link_to "Excel", users_path(format: "xls"), :class => 'options' %>
       </p>
 
-      <table id='userTable' class='regularDisplay sortable table-sriped table-responsive table-hover'>
+      <table id='userTable'
+         data-toggle="table"
+         data-pagination="true"
+         data-show-toggle="true"
+         data-show-columns="true"
+         data-sort-order="name"
+         class='sortable table-striped table-responsive table-hover regularDisplay'>
 
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>UserName</th>
-              <th>Confirmed</th>
-              <th>DB Activity</th>
-              <th>Last DB Activity</th>
+              <th data-field='last_name'>Name</th>
+              <th data-field='email'>Email</th>
+              <th data-field='username'>UserName</th>
+              <th data-field='display_confirmed_at'>Confirmed</th>
+              <th data-field='db_activity'>DB Activity</th>
+              <th data-field='display_last_dbactivity'>Last DB Activity</th>
             </tr>
           <thead>
 
