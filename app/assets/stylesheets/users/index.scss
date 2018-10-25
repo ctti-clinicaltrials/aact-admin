@@ -1,14 +1,10 @@
 @import "../base/variables";
 @import "../base/library";
 
-p.options {
-  float: left;
+.userOptions {
   font-size: 1.8rem;
-  padding-top: 3.6rem;
-}
-
-a.options {
-  font-size: 1.8rem;
+  font-weight: normal;
+  color: $tertiary;
 }
 
 #userTable {

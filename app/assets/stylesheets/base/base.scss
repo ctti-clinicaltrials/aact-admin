@@ -7,7 +7,17 @@
 * {
   @include border-box;
 }
+.pagination>li.active>a {
+  background-color: $tertiary !important;
+  border-color: $tertiary !important;
+}
 
+.shadowContainer {
+    margin-top: 50px;
+    box-shadow: 0 0 30px black;
+}
+
+.fixed-table-toolbar { display: none; }  // disable bootstrap toolbar for now.
 .command-prompt { color: #aeaeae; font-size: .9rem;}
 .command-entry { color: #f8f8f8; font-size: .9rem;}
 .command-response { color: #adc6ee; font-size: .9rem;}
@@ -92,13 +102,14 @@ div.wrap {
 }
 
 body {
-  font-size: 0px;
-  min-height: 100%;
-  font-family: $font-serif;
-  color: $text-color;
+  background: transparent !important;
+  font-size: 0px !important;
+  min-height: 100%  !important;
+  font-family: $font-sans !important;
+  color: $text-color  !important;
   // background-attachment: fixed;
   @include bg-size(30px 20px);
-  position: relative;
+  position: relative !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -226,6 +237,7 @@ pre {
   max-width: $wrap_width;
   //padding-left:  40px;
   padding-right:  40px;
+  z-index:0;
   position: relative;
 }
 

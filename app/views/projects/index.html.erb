@@ -30,43 +30,44 @@ $(document).ready(function(){
     <div id='toolbar'>
        <select id="projectFilter">
           <option value="all">All Projects</option>
-          <option value="dataInDatabase">Only Projects with Data in AACT Database</option>
+          <option value="dataInDatabase">Projects with Data in AACT Database</option>
       </select>
     </div>
 
-    <table id='projectTable'
-       data-toolbar="#toolbar"
-       data-toggle="table"
-       data-detail-view="true"
-       data-detail-formatter="detailFormatter"
-       data-pagination="true"
-       data-show-toggle="true"
-       data-show-columns="true"
-       data-sort-order="name"
-       class='sortable table-striped table-responsive table-hover regularDisplay'>
+    <div class='shadowContainer'>
+      <table id='projectTable'
+         data-toggle="table"
+         data-detail-view="true"
+         data-detail-formatter="detailFormatter"
+         data-pagination="true"
+         data-show-toggle="true"
+         data-show-columns="true"
+         data-sort-order="name"
+         class='sortable table-striped table-responsive table-hover regularDisplay'>
 
-        <thead>
-          <tr>
-            <th data-field='name'>Name</th>
-            <th data-field='investigators'>Investigators</th>
-            <th data-field='year'>Year</th>
-            <th data-field='brief_summary'>Brief Summary</th>
-            <th data-field='schema_name'>DB Schema</th>
-          </tr>
-        </thead>
-
-        <tbody class='projects'>
-          <% @projects.each_with_index do |proj, index| %>
-            <tr id="row_<%= index %>" class="projectRow <%= 'dataNotAvailable' if proj.data_available == false %>">
-              <td><%= proj.name %></td>
-              <td><%= proj.investigators %></td>
-              <td><%= proj.year %></td>
-              <td><%= proj.brief_summary %></td>
-              <td><%= proj.schema_name  if proj.data_available != false %></td>
-              <%= render :partial => 'project_details', :locals => {:proj => proj, :index => index} %>
+          <thead>
+            <tr>
+              <th data-field='name'>Name</th>
+              <th data-field='investigators'>Investigators</th>
+              <th data-field='year'>Year</th>
+              <th data-field='brief_summary'>Brief Summary</th>
+              <th data-field='schema_name'>DB Schema</th>
             </tr>
-          <% end %>
-       </tbody>
-    </table>
+          </thead>
+
+          <tbody class='projects'>
+            <% @projects.each_with_index do |proj, index| %>
+              <tr id="row_<%= index %>" class="projectRow <%= 'dataNotAvailable' if proj.data_available == false %>">
+                <td><%= proj.name %></td>
+                <td><%= proj.investigators %></td>
+                <td><%= proj.year %></td>
+                <td><%= proj.brief_summary %></td>
+                <td><%= proj.schema_name  if proj.data_available != false %></td>
+                <%= render :partial => 'project_details', :locals => {:proj => proj, :index => index} %>
+              </tr>
+            <% end %>
+         </tbody>
+      </table>
+    </div>
   </div>
 </section>

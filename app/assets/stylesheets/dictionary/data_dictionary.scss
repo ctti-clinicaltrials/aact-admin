@@ -81,7 +81,7 @@ label:hover {
   height: 26px;
   margin-right: 3px;
   @include box-shadow(4px 4px 12px $light-grey);
-#  background: radial-gradient(ellipse at center, #CCC 50%, transparent 50%);
+  background: radial-gradient(ellipse at center, #CCC 50%, transparent 50%);
   background: #008aa1;
 }
 

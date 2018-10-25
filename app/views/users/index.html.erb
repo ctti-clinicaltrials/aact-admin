@@ -4,24 +4,27 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
 
-<div>
-  <section class='users'>
-    <div class="basicHero">
-      <h1> <%=number_with_delimiter(@user_count, :delimiter => ',') %> AACT Users</h1>
+<section>
+  <div class="container">
+    <h1><%=number_with_delimiter(@user_count, :delimiter => ',') %> AACT Users</h1>
 
-      <p class='options'>
+    <div id='toolbar'>
+      <span class='userOptions'>
         Download:
-        <%= link_to "CSV", users_path(format: "csv"), :class => 'options' %> |
-        <%= link_to "Excel", users_path(format: "xls"), :class => 'options' %>
-      </p>
+        <%= link_to "CSV", users_path(format: "csv"), :class => 'userOptions' %> |
+        <%= link_to "Excel", users_path(format: "xls"), :class => 'userOptions' %>
+      </span>
+    </div>
 
+    <div class='shadowContainer'>
       <table id='userTable'
+         data-toolbar="#toolbar"
          data-toggle="table"
          data-pagination="true"
          data-show-toggle="true"
          data-show-columns="true"
          data-sort-order="name"
-         class='sortable table-striped table-responsive table-hover table-bordered table-sm regularDisplay'>
+         class='table-striped table-responsive table-hover table-bordered regularDisplay'>
 
           <thead>
             <tr>
@@ -46,10 +49,9 @@
               </tr>
             <% end %>
          </tbody>
-
       </table>
-
     </div>
-  </section>
 
-</div>
+  </div>
+
+</section>
