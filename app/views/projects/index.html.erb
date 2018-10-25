@@ -14,6 +14,10 @@ $(document).ready(function(){
     $detail.html(res);
   });
 
+  $("#projectFilter").change(function(){
+      $(".dataNotAvailable").toggle($("#projectFilter").val() == "all");
+  });
+
 });
 </script>
 
@@ -22,9 +26,16 @@ $(document).ready(function(){
   <div id='projectContainer' class='basicHero container'>
     <h1>Projects</h1>
     <%= render 'explain_projects' %>
-    <div id='toolbar'></div>
+
+    <div id='toolbar'>
+       <select id="projectFilter">
+          <option value="all">All Projects</option>
+          <option value="dataInDatabase">Only Projects with Data in AACT Database</option>
+      </select>
+    </div>
 
     <table id='projectTable'
+       data-toolbar="#toolbar"
        data-toggle="table"
        data-detail-view="true"
        data-detail-formatter="detailFormatter"
@@ -46,47 +57,13 @@ $(document).ready(function(){
 
         <tbody class='projects'>
           <% @projects.each_with_index do |proj, index| %>
-            <tr id="row_<%= index %>" class='projectRow'>
+            <tr id="row_<%= index %>" class="projectRow <%= 'dataNotAvailable' if proj.data_available == false %>">
               <td><%= proj.name %></td>
               <td><%= proj.investigators %></td>
               <td><%= proj.year %></td>
               <td><%= proj.brief_summary %></td>
-              <td><%= proj.schema_name %></td>
-              <span style="display: none;" id="detail_<%= index %>">
-                <% unless proj.description.blank? %>
-                  <strong class="projectDetails bold">Description:</strong>
-                  <br>
-                  <pre class='projectDetails'><%= proj.description %></pre>
-                  <br>
-                <% end %>
-
-                <% unless proj.study_selection_criteria.blank? %>
-                  <strong class="projectDetails bold">Study Selection Criteria:</strong>
-                  <br>
-                  <pre class='projectDetails'><%= proj.study_selection_criteria %></pre>
-                <% end %>
-
-                <% unless proj.publications.empty? %>
-                  <% proj.publications.each do |pub| %>
-                    <strong class="projectDetails bold">Publications:</strong>
-                    <br>
-                    <pre class='projectDetails'><%= pub.citation %></pre>
-                  <% end %>
-                <% end %>
-
-                <% unless proj.datasets.empty? %>
-                  <% proj.datasets.each do |ds| %>
-                    <strong class="projectDetails bold">Datasets:</strong>
-                    <br>
-                    <% if ds.schema_name.blank? %>
-                      <pre class='projectDetails'><%= ds.name %></pre>
-                    <% else %>
-<pre class='projectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %>.</a> Available in the AACT database: <b><%= ds.schema_name %>.<%= ds.table_name %></b></pre>
-                    <% end %>
-                  <% end %>
-                <% end %>
-
-              </span>
+              <td><%= proj.schema_name  if proj.data_available != false %></td>
+              <%= render :partial => 'project_details', :locals => {:proj => proj, :index => index} %>
             </tr>
           <% end %>
        </tbody>

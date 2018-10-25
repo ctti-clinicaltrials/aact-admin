@@ -1,0 +1,43 @@
+<span style="display: none;" id="detail_<%= index %>">
+    <% unless proj.description.blank? %>
+      <strong class="projectDetails bold">Description:</strong>
+      <br>
+      <pre class='projectDetails'><%= proj.description %></pre>
+      <br>
+    <% end %>
+
+    <% unless proj.study_selection_criteria.blank? %>
+      <strong class="projectDetails bold">Study Selection Criteria:</strong>
+      <br>
+      <pre class='projectDetails'><%= proj.study_selection_criteria %></pre>
+    <% end %>
+
+    <% unless proj.publications.empty? %>
+      <% proj.publications.each do |pub| %>
+        <strong class="projectDetails bold">Publications:</strong>
+        <br>
+        <pre class='projectDetails'><%= pub.citation %></pre>
+      <% end %>
+    <% end %>
+
+    <% unless proj.datasets.empty? %>
+      <strong class="projectDetails bold">Datasets:</strong>
+      <% proj.datasets.each do |ds| %>
+        <br>
+        <% if ds.schema_name.blank? %>
+          <pre class='projectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %>.</a></pre>
+        <% else %>
+          <pre class='projectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %>.</a> Available in the AACT database: <b><%= ds.schema_name %>.<%= ds.table_name %></b></pre>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% unless proj.attachments.empty? %>
+      <strong class="projectDetails bold">Other Attachments:</strong>
+      <% proj.attachments.each do |a| %>
+        <br>
+          <pre class='projectDetails'><a href="/attachments/<%= a.id %>" target='_blank'><%= a.description %></a></pre>
+      <% end %>
+    <% end %>
+
+</span>
