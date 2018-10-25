@@ -1,11 +1,11 @@
-@import "variables";
-@import "library";
+@import "../base/variables";
+@import "../base/library";
 $gutter_width: 18px;
 header {
   background-color: $white;
-  opacity: 1;
-  padding: 10px 0px;
-  width: 100%;
+  opacity: 1 !important;
+  padding: 10px 0px !important;
+  width: 100% !important;
 
 .user-logged-in {
     border-bottom: thick solid black;
@@ -36,7 +36,7 @@ p.user-info {
 }
 
 #common-header {
-  padding-top: 5rem;
+  padding-top: 5rem !important;
 }
   div.wrap {
     @include display-flex;
