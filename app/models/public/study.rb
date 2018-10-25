@@ -7,6 +7,8 @@ end
 
 module Public
   class Study < Public::PublicBase
+    #  Note:  Read-only All public data is managed by other apps (aact & aact-proj).
+    after_initialize :readonly!
 
     scope :started_between,   lambda {|sdate, edate| where("start_date >= ? AND created_at <= ?", sdate, edate )}
     scope :started_since,     lambda {|cdate| where("start_date >= ?", cdate )}
