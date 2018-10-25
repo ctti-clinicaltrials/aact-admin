@@ -17,7 +17,11 @@ p.projectExplanation {
 strong.projectDetails {
   font-weight: 700;
   font-size: 1.2rem;
-  margin-left: 5rem;
+  margin-left: 2rem;
+}
+
+a.projectDetails {
+  color: red;
 }
 
 pre.projectDetails {
@@ -28,8 +32,8 @@ pre.projectDetails {
   white-space: -pre-wrap;      /* Opera 4-6 */
   white-space: -o-pre-wrap;    /* Opera 7 */
   word-wrap: break-word;       /* Internet Explorer 5.5+ */
-  margin-left: 5rem;
-  margin-right: 5rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 tr.projectRow {
