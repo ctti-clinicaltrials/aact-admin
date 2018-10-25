@@ -81,7 +81,7 @@ $(document).ready(function(){
                     <% if ds.schema_name.blank? %>
                       <pre class='projectDetails'><%= ds.name %></pre>
                     <% else %>
-                      <pre class='projectDetails'><%= ds.name %> available in the AACT database:  <b><%= ds.schema_name %>.<%= ds.table_name %> </b></pre>
+<pre class='projectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %>.</a> Available in the AACT database: <b><%= ds.schema_name %>.<%= ds.table_name %></b></pre>
                     <% end %>
                   <% end %>
                 <% end %>

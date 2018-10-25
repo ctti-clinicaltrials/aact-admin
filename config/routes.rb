@@ -48,6 +48,8 @@ Rails.application.routes.draw do
   resources :definitions
   resources :users
   resources :projects
+  resources :datasets
+  resources :attachments
   resources :tagged_terms
   resources :tags
   resources :use_cases
