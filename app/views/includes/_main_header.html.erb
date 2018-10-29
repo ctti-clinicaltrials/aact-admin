@@ -1,15 +1,29 @@
 <div id='navbar-top' class="navbar navbar-top ">
   <% if user_signed_in? %>
+    <% if current_page?('/projects')  or current_page?('/users') %>
+      <p class='fixFont user-logged-in'>logged in as <%= current_user.full_name %></p>
+    <% else %>
       <p class='user-logged-in'>logged in as <%= current_user.full_name %></p>
+    <% end %>
     <p class='user-info'>
-      <%= link_to "Edit Profile", edit_user_registration_path %>
-      &nbsp;&nbsp;
-      <%= link_to "Sign out", edit_user_registration_path('sign-out'), :id => current_user %>
+      <% if current_page?('/projects') or current_page?('/users')  %>
+        <%= link_to "Edit Profile", edit_user_registration_path, class: 'user-info' %>&nbsp;&nbsp;
+        <%= link_to "Sign out", edit_user_registration_path('sign-out'), class: 'user-info', :id => current_user %>
+      <% else %>
+        <%= link_to "Edit Profile", edit_user_registration_path %>&nbsp;&nbsp;
+        <%= link_to "Sign out", edit_user_registration_path('sign-out'), :id => current_user %>
+      <% end %>
     </p>
   <% else %>
     <p class='user-info'>
-      <%= link_to "Sign up", new_user_registration_path, class: 'btn dropdown-toggle' %>
-      <%= link_to "Sign in", new_user_session_path %>
+
+      <% if current_page?('/projects') or current_page?('/users')  %>
+        <%= link_to "Sign up", new_user_registration_path, class: 'user-info btn dropdown-toggle' %>
+        <%= link_to "Sign in", new_user_session_path, class: 'user-info btn dropdown-toggle' %>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path, class: 'btn dropdown-toggle' %>
+        <%= link_to "Sign in", new_user_session_path, class: 'btn dropdown-toggle' %>
+      <% end %>
     </p>
   <% end %>
 </div>
@@ -19,30 +33,48 @@
     <%= image_tag("full_logo.jpg", class:"logo",  height: '120', width: '300') %>
   <% end %>
 
-  <div class="navContainer">
+ <div class="navContainer">
     <nav>
-      <a href="/" class="navItem">
-        <%= fa_icon("home") %>
-        Home
+      <% if current_page?('/projects') or current_page?('/users')  %>
+        <a href="/" class="projectNavItem">
+      <% else %>
+        <a href="/" class="navItem">
+      <% end %>
+          <%= fa_icon("home") %>
+          Home
       </a>
 
-      <a href="/connect" class="navItem">
-        <%= fa_icon("plug") %>
-        Connect
+      <% if current_page?('/projects') or current_page?('/users')  %>
+        <a href="/connect" class="projectNavItem">
+      <% else %>
+        <a href="/connect" class="navItem">
+      <% end %>
+
+          <%= fa_icon("plug") %>
+          Connect
       </a>
 
-      <a href="/download" class="navItem">
-        <%= fa_icon("download") %>
-        Download
+      <% if current_page?('/projects') or current_page?('/users')  %>
+        <a href="/download" class="projectNavItem">
+      <% else %>
+        <a href="/download" class="navItem">
+      <% end %>
+          <%= fa_icon("download") %>
+          Download
       </a>
 
-      <a href="/learn_more" class="navItem">
+      <% if current_page?('/projects') or current_page?('/users')  %>
+        <a href="/learn_more" class="projectNavItem">
+      <% else %>
+        <a href="/learn_more" class="navItem">
+      <% end %>
         <%= fa_icon("university") %>
         Learn
       </a>
 
     </nav>
   </div>
+  <div class="navContainer">
 </div>
 
 <% if PublicAnnouncement.count > 0 %>
