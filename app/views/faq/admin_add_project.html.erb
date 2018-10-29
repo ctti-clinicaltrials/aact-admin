@@ -1,0 +1,15 @@
+<h4>Add a Project to AACT</h4>
+<p>Information about research projects that have used the AACT database may be added to the AACT Project Repository. Once added, these projects appear in the table on the <a href='/projects/' target='_blank'>AACT Projects</a> page. A project may include a collection of files (spreadsheets, images, pdfs, Word docs, etc.) that can be made available for users to download. If a project has produced datasets that would be useful for other AACT users to have direct access to in the database, these datasets can be loaded into a project-specific schema in the AACT database. Having datasets in the live AACT database is particularly useful in the case where users would gain insights by joining rows from such datasets to current ClinicalTrials.gov data.</p>
+<p>Adding a project involves adding & updating files to the aact-proj application itself; therefore the process requires working with someone who is at least minimally familiar with updating a Ruby on Rails application. It's probably best to use the existing ProjAnderson project as a template in conjunction with the following instructions.</p>
+<p>It's important to note that the projects with data stored in the database are assigned a schema. All information saved to the database that is related to the project is encapsulated in the assigned schema. This page provides guidelines for how to add a project to the AACT Projects system.</p>
+<ol class='regularDisplay'>
+  <li><a target='_blank' href='faq_proj_gather_info'>Gather together the files, datasets, and descriptive information you want to share about the project.</a></li>
+  <li><a target='_blank' href='faq_proj_prepare_app_change'>Checkout a new branch of the latest version of aact-proj to be updated with new project info.</a></li>
+  <li><a target='_blank' href='faq_proj_make_app_change'>Copy project-related files to appropriate aact-proj directories and make prescribed changes to the app.</a></li>
+  <li><a target='_blank' href='faq_proj_deploy_app_change'>Deploy the updated version of aact-proj to the dev server.</a></li>
+  <li><a target='_blank' href='faq_proj_run_update'>Run the process that populates AACT with information about this project.</a></li>
+  <li><a target='_blank' href='faq_proj_wrap_up'>Once everything looks good on Dev, repeat the process in the Production env.</a></li>
+</ol>
+
+<p>Note: This is version 1.0.0 of aact-proj. There are a number of relatively easy ways to redesign so that this process can be done by non-technical staff. Hopefully we'll have a chance to get to them.</p>
+

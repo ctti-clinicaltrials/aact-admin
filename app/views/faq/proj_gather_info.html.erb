@@ -1,0 +1,22 @@
+<h4>Add Project: Gather Together All Project-related Information</h4>
+<p>You will need to first define a simple string that will be used to uniquely identify the project within aact-proj. This will be used to tag this project's attachments, datasets, schema, etc.  The string will be prefixed with 'proj_'.  Examples of existing identifiers are: proj_anderson, proj_tag, proj_eeg.</p>
+<p>Collect and organize all the information you want to share about the project. Prefix all file names with the project identifier you just defined.</p>
+<p>If the project includes one or more datasets that will be loaded into AACT database, you'll need to prepare each one. Each will be saved as its own table in the database & needs to be prepared as a single-sheet Excel spreadsheet where the first line defines the table column names.</p>
+<p>You will need to describe the project by providing a brief summary, full description, study selection criteria, etc. Refer to the columns in the proj.projects table of the publicly accessible AACT database to find out what information you can provide about the project. ('Name' is the only required attribute.) You will need to provide this information in json format. Here is a bit of the proj_anderson descriptive info as an example:</p>
+
+<pre class='projectDetails'>{ name:                'Compliance with Results Reporting at ClinicalTrials.gov',
+  schema_name:         'proj_anderson',
+  investigators:       'Monique L. Anderson, M.D., Karen Chiswell, Ph.D. ...',
+  organizations:       'Duke Clinical Research Institute',
+  contact_info:        'Monique Anderson. Duke University, Dept of Medicine...',
+  contact_url:         'https://scholars.duke.edu/person/moniqueanderson.starks',
+  data_available:      true,
+  start_date:          Date.strptime('27/09/2013', '%d/%m/%Y'),
+  year:                2013,
+  url:                 'https://www.nejm.org/doi/full/10.1056/NEJMsa1409364',
+  email:               'monique.starks@duke.edu',
+  brief_summary:       'Analysis of the levels & patterns of c...'
+}</pre>
+
+<li><a target='_blank' href='admin_add_project'>Return to Previous Page</a></li>
+
