@@ -1,8 +1,25 @@
-<h4>Add Project: Gather Together All Project-related Information</h4>
-<p>You will need to first define a simple string that will be used to uniquely identify the project within aact-proj. This will be used to tag this project's attachments, datasets, schema, etc.  The string will be prefixed with 'proj_'.  Examples of existing identifiers are: proj_anderson, proj_tag, proj_eeg.</p>
-<p>Collect and organize all the information you want to share about the project. Prefix all file names with the project identifier you just defined.</p>
-<p>If the project includes one or more datasets that will be loaded into AACT database, you'll need to prepare each one. Each will be saved as its own table in the database & needs to be prepared as a single-sheet Excel spreadsheet where the first line defines the table column names.</p>
-<p>You will need to describe the project by providing a brief summary, full description, study selection criteria, etc. Refer to the columns in the proj.projects table of the publicly accessible AACT database to find out what information you can provide about the project. ('Name' is the only required attribute.) You will need to provide this information in json format. Here is a bit of the proj_anderson descriptive info as an example:</p>
+<h4>Adding a Project: Gather/Organize All Project-related Information</h4>
+
+<h6>Identify a Project Label</h6>
+<p>Initially, you need to define a short string to uniquely identify the project. Examples of existing identifiers:
+<ul>
+  <li><u>Anderson:</u> Monique Anderson's 2015 Project on Complianceh</li>
+  <li><u>SummaryTrends:</u> Karen Chiswell's latest report on the state of clinical trials.</li>
+</ul>
+
+<p>This label should be between 3 and 20 characters long and will be used to tag the project's attachments, datasets, schema, etc.  The string will be prefixed with 'proj_' in various places throughout the application. If the project has datasets stored in the AACT database, this will be the project's schema name.</p>
+
+<h6>Gather Project Files</h6>
+<p>Collect and organize all the information you want to share about the project. This may include any files you would like to let users download (spreadsheets, documents, images, etc.) as well as the datasets to be loaded into the AACT database. (More about preparing AACT database datasets below.)</p>
+
+<h6>Prepare Datasets to be Loaded into the Database</h6>
+<p>If the project includes one or more datasets that will be loaded into AACT database, you'll need to prepare each one considering how best to present & format the information. A table will be created for each dataset you would like to include in the database. The aact-proj system is setup to import one table from one spreadsheet, so you'll need to provide a single-page Excel spreadsheet for each dataset. It will help if you name the file as you envision the table name, prefixed with the unique project identifier. The first row of each spreadsheet file will be used to define column names in the table to which the data is imported, so they should be relatively brief, descriptive one-word column headers; it's also best if column headers are all lowercase.</p>
+
+<h6>Provide a Data Dictionary</h6>
+<p>Provide one Excel spreadsheet with one page labeled <b>'Data Definitions'</b>. On the first row of this page, include the headers: <b>'table, column, label, category, description'</b> Populate this spreadsheet with definitions for each dataset attribute. The file can have multiple pages, so feel free to add additional descriptive info about the project on other pages. The file will be made available for users to download from the Projects page of the AACT website. The aact-proj app is also setup to detect an attachment named 'Data Definitions'. If this attachment is a spreadsheet containing a page labeled 'Data Definitions', it will create a view named 'Data_Definitions' in the project schema that provides these definitions within the database.</p>
+
+<h6>Prepare the Project Description</h6>
+<p>Describe the project by giving it a name and writing up a brief summary and full description. You may also specify other details such as the study selection criteria, protocol, etc. (Refer to the columns in the proj.projects table of the publicly accessible AACT database to find out what information you can define.) This information will be saved in the database app and appear on the Projects page of the AACT website. You can write this up in any document. This information will be copied into a file in the aact-proj app using json format, so you can save a step later by saving it as json. Here's a bit of the proj_anderson descriptive info as an example (spacing is not important):</p>
 
 <pre class='projectDetails'>{ name:                'Compliance with Results Reporting at ClinicalTrials.gov',
   schema_name:         'proj_anderson',
@@ -18,5 +35,5 @@
   brief_summary:       'Analysis of the levels & patterns of c...'
 }</pre>
 
-<li><a target='_blank' href='admin_add_project'>Return to Previous Page</a></li>
+<p><a target='_blank' href='admin_add_project'>Return to Previous Page</a></p>
 

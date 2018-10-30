@@ -38,11 +38,7 @@ Rails.application.routes.draw do
   get "/admin_remove_user"    => "faq#admin_remove_user"
   get "/admin_add_project"    => "faq#admin_add_project"
   get "/faq_proj_gather_info" => "faq#proj_gather_info"
-  get "/faq_proj_prepare_app_change" => "faq#proj_prepare_app_change"
-  get "/faq_proj_make_app_change"    => "faq#proj_make_app_change"
-  get "/faq_proj_deploy_app_change"  => "faq#proj_deploy_app_change"
-  get "/faq_proj_run_update"         => "faq#proj_run_update"
-  get "/faq_proj_wrap_up"            => "faq#proj_wrap_up"
+  get "/faq_proj_change_app"  => "faq#proj_change_app"
 
   get "/support_grant_permission"  => "faq#support_grant_permission"
   get "/support_registration_failed"  => "faq#support_registration_failed"

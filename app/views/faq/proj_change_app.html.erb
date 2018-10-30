@@ -1,0 +1,29 @@
+<h4>Add Project: Update aact-proj Application</h4>
+
+<h6>Fork from GitHub</h6>
+
+<p>To make changes to the aact-proj application, create a fork from the <a target='_blank' href='https://github.com/ctti-clinicaltrials/aact-proj'>github repository</a>, clone a copy to your local machine and make changes to this forked copy. When you're done with the change and have tested it, you can submit a pull request to the official version of aact-proj.</p>
+
+<h6>Add Project Label to app/models/projects.rb</h6>
+<p>The new project identifier needs to be added to the array in the method <b>Project.project_list</b>.</p>
+
+<h6>Create a Directory Under app/models for the New Project</h6>
+<p>Use ProjAnderson as an example.</p>
+
+<h6>Create a model file for each dataset to be saved to the AACT database. </h6>
+<p> ProjAnderson's analyzed_study.rb is a good example.</p>
+
+<h6>Add Project Files to the Application</h6>
+<p>Put all project related files in public/attachments.</p>
+
+<h6>Add project_info.rb to the Projects Model Directory</h6>
+<p>This is the one required file for adding a new project. Save all descriptive info about the project to this file. Use ProjAnderson as an example. In this file, you'll specify attachments in a method </p>
+
+<h6>Create a Model for Each Project Table</h6>
+<p>Create a file under app/models for each dataset to be loaded into the database.  This model will need to:</p>
+<ul class='regularDisplay'>
+  <li>In each model, define the related table name, prefixed with the project's schema. (Example: self.table_name = 'proj_anderson.analyzed_studies')</li>
+  <li>In the project_info.rb file, include a class-side method named <b>load_project_tables</b>.This method will be called by the aact-proj framework and is responsible for seeing that all the project's tables are populated from the files provided. (Use ProjAnderson as an example.)</li>
+</ul>
+
+<p><a target='_blank' href='admin_add_project'>Return to Previous Page</a></p>
