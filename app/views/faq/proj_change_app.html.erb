@@ -1,7 +1,8 @@
 <h4>Add Project: Update aact-proj Application</h4>
 
-<h6>Fork from GitHub</h6>
+<p><a target='_blank' href='admin_add_project'>Return to Previous Page</a></p>
 
+<h6>Fork from GitHub</h6>
 <p>To make changes to the aact-proj application, create a fork from the <a target='_blank' href='https://github.com/ctti-clinicaltrials/aact-proj'>github repository</a>, clone a copy to your local machine and make changes to this forked copy. When you're done with the change and have tested it, you can submit a pull request to the official version of aact-proj.</p>
 
 <h6>Add Project Label to app/models/projects.rb</h6>
@@ -16,8 +17,8 @@
 <h6>Add Project Files to the Application</h6>
 <p>Put all project related files in public/attachments.</p>
 
-<h6>Add project_info.rb to the Projects Model Directory</h6>
-<p>This is the one required file for adding a new project. Save all descriptive info about the project to this file. Use ProjAnderson as an example. In this file, you'll specify attachments in a method </p>
+<h6>Add Migration File that Describes all the Project's Tables</h6>
+<p>Add a file under db/migrate for this project. Use previous project migration files as a template - just be sure to change the class name at the top of the file to match the name of the file. You will also need to use the file name you define here in the next step to set migration_file_name in the meta_info hash in the ProjectInfo class for this project.</p>
 
 <h6>Create a Model for Each Project Table</h6>
 <p>Create a file under app/models for each dataset to be loaded into the database.  This model will need to:</p>
@@ -26,4 +27,7 @@
   <li>In the project_info.rb file, include a class-side method named <b>load_project_tables</b>.This method will be called by the aact-proj framework and is responsible for seeing that all the project's tables are populated from the files provided. (Use ProjAnderson as an example.)</li>
 </ul>
 
-<p><a target='_blank' href='admin_add_project'>Return to Previous Page</a></p>
+<h6>Add project_info.rb to the Projects Model Directory</h6>
+<p>Every project needs a project_info.rb file (defining the class ProjectInfo) in that projects model directory. The file should start by defining the module for the project (for example: module ProjAnderson) followed immediately with the class defined as ProjectInfo. This is the one required file for a project. Save all descriptive info about the project to this file. Use ProjAnderson as an example. In this file, you'll specify attachments in a method named meta_info. If there are publications or attachments, add descriptions/links for them to the hash in the methods of these names in the ProjectInfo class.</p>
+
+
