@@ -1,10 +1,19 @@
 @import "../base/variables";
 @import "../base/library";
 
+.download {
+    margin-top: 0.2rem;
+    margin-right: 0.5rem;
+    color: black;
+    float: left;
+    font-size: 1.8rem;
+}
+
 .userOptions {
   font-size: 1.8rem;
   font-weight: normal;
   color: $tertiary;
+  float: right;
 }
 
 #userTable {
@@ -13,11 +22,3 @@
   align: center;
 }
 
-tr.even td {
-  background-color: $white;
-}
-
-tr.odd td {
-  background-color: rgb(240,240,240);
-  border: none;
-}

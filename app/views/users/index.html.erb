@@ -8,12 +8,10 @@
   <div class="container">
     <h1><%=number_with_delimiter(@user_count, :delimiter => ',') %> AACT Users</h1>
 
-    <div id='toolbar'>
-      <span class='userOptions'>
-        Download:
-        <%= link_to "CSV", users_path(format: "csv"), :class => 'userOptions' %> |
-        <%= link_to "Excel", users_path(format: "xls"), :class => 'userOptions' %>
-      </span>
+    <div class='userOptions'>
+      <p class='download'>Download:</p>
+        <%= link_to "CSV", users_path(format: "csv"), :class => 'userOptions' %>
+        <p class='download'>&nbsp;&nbsp;&nbsp;&nbsp;</p> <%= link_to "Excel", users_path(format: "xls"), :class => 'userOptions' %>
     </div>
 
     <div class='shadowContainer'>
