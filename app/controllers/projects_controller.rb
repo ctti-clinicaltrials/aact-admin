@@ -1,10 +1,9 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_user, only: [:index, :show, :edit, :destroy]
 
   def index
-    @project_count = Public::Project.all.size
-    @projects = Public::Project.order(:name)
-    @projects_with_data = Public::Project.where('data_available is true').order(:name)
+    @project_count = Proj::Project.all.size
+    @projects = Proj::Project.order(:name)
+    @projects_with_data = Proj::Project.where('data_available is true').order(:name)
     respond_to do |format|
       format.html
       format.csv { render text: @projects.to_csv }
@@ -13,7 +12,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Public::Project.find(params[:id])
+    @project = Proj::Project.find(params[:id])
   end
 
   private
@@ -24,15 +23,5 @@ class ProjectsController < ApplicationController
       params.require(:project).permit(:utf8, :authenticity_token, :name, :investigators, :year, :description, :id)
     end
 
-    def authenticate_user
-      #render plain: "Sorry - This page is intentionally inaccessible." if !current_user_is_an_admin?
-      return true
-    end
-
-    def current_user_is_an_admin?
-      #col=ENV['AACT_ADMIN_USERNAMES'].split(',')
-      #col.include? current_user.username
-      return true
-    end
 end
 
