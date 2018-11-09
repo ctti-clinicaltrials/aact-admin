@@ -68,6 +68,15 @@
         Learn
       </a>
 
+      <% if current_page?('/projects') or current_page?('/users')  %>
+        <a href="/projects" class="projectNavItem">
+      <% else %>
+        <a href="/projects" class="navItem">
+      <% end %>
+        <%= fa_icon("briefcase") %>
+        Projects
+      </a>
+
     </nav>
 </div>
 
