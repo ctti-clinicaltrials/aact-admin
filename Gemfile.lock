@@ -372,7 +372,6 @@ DEPENDENCIES
   launchy
   letter_opener
   libv8 (~> 3.16.14.15)
-  loofah (~> 2.2.1)
   nokogiri (~> 1.8.1)
   normalize-rails
   pg
@@ -412,4 +411,4 @@ RUBY VERSION
    ruby 2.4.0p0
 
 BUNDLED WITH
-   1.16.1
+   1.16.4
