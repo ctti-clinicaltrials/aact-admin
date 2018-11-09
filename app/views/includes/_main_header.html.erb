@@ -1,4 +1,5 @@
 <div id='navbar-top' class="navbar navbar-top ">
+
   <% if user_signed_in? %>
     <% if current_page?('/projects')  or current_page?('/users') %>
       <p class='fixFont user-logged-in'>logged in as <%= current_user.full_name %></p>
@@ -27,11 +28,6 @@
     </p>
   <% end %>
 </div>
-
-<div class="wrap">
-  <%= link_to("https://www.ctti-clinicaltrials.org/") do %>
-    <%= image_tag("full_logo.jpg", class:"logo",  height: '120', width: '300') %>
-  <% end %>
 
  <div class="navContainer">
     <nav>
@@ -73,8 +69,12 @@
       </a>
 
     </nav>
-  </div>
-  <div class="navContainer">
+</div>
+
+<div class="wrap">
+  <%= link_to("https://www.ctti-clinicaltrials.org/") do %>
+    <%= image_tag("full_logo.jpg", class:"logo",  height: '120', width: '300') %>
+  <% end %>
 </div>
 
 <% if PublicAnnouncement.count > 0 %>
