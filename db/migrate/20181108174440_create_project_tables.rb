@@ -10,6 +10,7 @@ class CreateProjectTables < ActiveRecord::Migration
       t.string  'migration_file_name'
       t.string  'name'
       t.integer 'year'
+      t.string  'aact_version'
       t.string  'brief_summary'
       t.string  'investigators'
       t.string  'organizations'
@@ -38,6 +39,7 @@ class CreateProjectTables < ActiveRecord::Migration
       t.string  'url'
       t.date    'made_available_on'
       t.text    'description'
+      t.text    'source'
       t.timestamps null: false
     end
 
@@ -48,6 +50,7 @@ class CreateProjectTables < ActiveRecord::Migration
       t.binary  'file_contents'
       t.boolean 'is_image'
       t.text    'description'
+      t.text    'source'
       t.string  'original_file_name'
       t.timestamps null: false
     end
@@ -59,6 +62,9 @@ class CreateProjectTables < ActiveRecord::Migration
       t.string 'title'
       t.string 'url'
       t.string 'citation'
+      t.string 'pmid'
+      t.string 'pmcid'
+      t.string 'doi'
       t.date   'publication_date'
       t.text   'abstract'
       t.timestamps null: false

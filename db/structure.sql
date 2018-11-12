@@ -135,6 +135,7 @@ CREATE TABLE ctgov.datasets (
     url character varying,
     made_available_on date,
     description text,
+    source text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -282,6 +283,7 @@ CREATE TABLE ctgov.projects (
     migration_file_name character varying,
     name character varying,
     year integer,
+    aact_version character varying,
     brief_summary character varying,
     investigators character varying,
     organizations character varying,
@@ -363,6 +365,9 @@ CREATE TABLE ctgov.publications (
     title character varying,
     url character varying,
     citation character varying,
+    pmid character varying,
+    pmcid character varying,
+    doi character varying,
     publication_date date,
     abstract text,
     created_at timestamp without time zone NOT NULL,

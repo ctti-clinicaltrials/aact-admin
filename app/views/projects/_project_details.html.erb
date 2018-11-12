@@ -16,7 +16,7 @@
       <% proj.publications.each do |pub| %>
         <strong class="projectDetails bold">Publications:</strong>
         <br>
-        <pre class='projectDetails'><%= pub.citation %></pre>
+        <pre class='projectDetails'><a href="<%= pub.url %>" target='_blank'><%= pub.citation %></a></pre>
       <% end %>
     <% end %>
 
@@ -25,9 +25,9 @@
       <% proj.datasets.each do |ds| %>
         <br>
         <% if ds.schema_name.blank? %>
-          <pre class='projectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %>.</a></pre>
+ <pre class='projectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %>.</a>  <%= ds.description %> <%= ds.source %></pre>
         <% else %>
-          <pre class='projectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %>.</a> Available in the AACT database: <b><%= ds.schema_name %>.<%= ds.table_name %></b></pre>
+          <pre class='projectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %>.</a> <%= ds.description %> <%= ds.source %> Available in the AACT database: <b><%= ds.schema_name %>.<%= ds.table_name %></b></pre>
         <% end %>
       <% end %>
     <% end %>
