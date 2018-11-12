@@ -19,7 +19,9 @@ gem 'rails_12factor'
 gem "coderay"
 gem "recipient_interceptor"
 gem "sass-rails"
-gem "sprockets-rails",'>= 2.0'
+gem "rubyzip", ">= 1.2.2"
+#gem "sprockets-rails",'>= 2.0'
+gem "sprockets", ">= 3.7.2"
 gem "title"
 gem "uglifier"
 gem "jbuilder"
@@ -32,6 +34,7 @@ gem 'sinatra', :require => nil
 gem 'font-awesome-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
+gem "ffi", ">= 1.9.24"
 
 gem 'roo', '~> 2.4.0'
 gem 'string-similarity'
