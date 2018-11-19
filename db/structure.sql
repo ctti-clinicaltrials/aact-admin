@@ -52,6 +52,7 @@ CREATE TABLE ctgov.attachments (
     file_contents bytea,
     is_image boolean,
     description text,
+    source text,
     original_file_name character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
