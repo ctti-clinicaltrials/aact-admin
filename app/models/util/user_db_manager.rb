@@ -81,16 +81,46 @@ module Util
     end
 
     def grant_db_privs(username)
-      Public::Study.connection.execute("alter role \"#{username}\" IN DATABASE aact set search_path = ctgov;")
-      Public::Study.connection.execute("grant connect on database aact to \"#{username}\";")
-      Public::Study.connection.execute("grant usage on schema ctgov TO \"#{username}\";")
-      Public::Study.connection.execute("grant select on all tables in schema ctgov to \"#{username}\";")
-      Public::Study.connection.execute("alter user \"#{username}\" login;")
+      #  This grants db privs to individuals. A method to grant db privs to all users is in the AACT Application
+      if Proj::Project.count > 0
+        project_schemas = ", #{Proj::Project.schema_name_list}"
+      else
+        project_schemas = ""
+      end
+
+      Public::Study.connection.execute("grant read_only to \"#{username}\";")
+      Public::Study.connection.execute("alter role \"#{username}\" login;")
+      Public::Study.connection.execute("alter role \"#{username}\" IN DATABASE aact set search_path = ctgov, mesh_archive #{project_schemas};")
+      Public::Study.connection.execute("alter role \"#{username}\" IN DATABASE aact_alt set search_path = ctgov, mesh_archive #{project_schemas};")
     end
 
     def revoke_db_privs(username)
+      #  This revokes db privs from individuals. A method to revoke db privs from all users is in the AACT Application
       terminate_sessions_for(username)
+      Public::Study.connection.execute("revoke read_only from \"#{username}\";")
       Public::Study.connection.execute("alter user \"#{username}\" nologin;")
+    end
+
+    def grant_db_privs_to_everyone
+      confirmed_users = User.all.select{ |user| user.confirmed? }
+      confirmed_users.each {|user|
+        begin
+          grant_db_privs(user.username)
+        rescue => error
+          log error
+        end
+      }
+    end
+
+    def revoke_db_privs_from_everyone
+      confirmed_users = User.all.select{ |user| user.confirmed? }
+      confirmed_users.each {|user|
+        begin
+          revoke_db_privs(user.username)
+        rescue => error
+          log error
+        end
+      }
     end
 
     def terminate_sessions_for(username)
