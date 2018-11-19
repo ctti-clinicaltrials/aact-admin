@@ -115,11 +115,20 @@ feature "Users Sign Up Page" do
 
     # db is inaccessible
 
-    system 'revoke_db_privs.sh'
-    expect(Util::DbManager.new.public_db_accessible?).to eq(false)
-    submit
-    expect(page).to have_content "Sorry AACT database is temporarily unavailable"
-    system 'grant_db_privs.sh'
+    # simulate revoke_db_privs.sh
+    Public::PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 0;")
+
+    begin
+      expect(Util::DbManager.new.public_db_accessible?).to eq(false)
+      submit
+      expect(page).to have_content "Sorry AACT database is temporarily unavailable"
+    rescue
+      # Make sure we reset database to be accessible if test fails
+      Public::PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 200;")
+    end
+
+    # simulate grant_db_privs.sh
+    Public::PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 200;")
     expect(Util::DbManager.new.public_db_accessible?).to eq(true)
     submit
     expect(page).not_to have_content "Sorry AACT database is temporarily unavailable"

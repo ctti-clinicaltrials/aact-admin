@@ -13,8 +13,8 @@ module Util
     end
 
     def public_db_accessible?
-      result=Public::Study.connection.execute("select count(*) from information_schema.role_table_grants where grantee='PUBLIC' and table_schema='ctgov';").first["count"]
-      result.to_i > 0
+      result=Public::Study.connection.execute("select datconnlimit from pg_database where datname='aact';").first["datconnlimit"].to_i > 0
+      # The AACT DBManager (in aact app) temporarily restricts access to the db (allowed connections set to zero) during db restore.
     end
 
     def run_command_line(cmd)
