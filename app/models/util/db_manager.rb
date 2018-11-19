@@ -2,7 +2,7 @@ require 'open3'
 module Util
   class DbManager
 
-    attr_accessor :con, :stage_con, :pub_con, :event
+    attr_accessor :con, :pub_con, :event
 
     def initialize(params={})
       if params[:event]
@@ -39,10 +39,6 @@ module Util
 
     def con
       @con ||= ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
-    end
-
-    def stage_con
-      @stage_con ||= ActiveRecord::Base.establish_connection(ENV["AACT_STAGE_DATABASE_URL"]).connection
     end
 
     def pub_con
