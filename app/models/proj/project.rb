@@ -8,6 +8,14 @@ module Proj
       attachments.select{|a| a.is_image }.first
     end
 
+    def self.schema_name_array
+      all.map{|p| p.schema_name }
+    end
+
+    def self.schema_name_list
+      all.map{|p| p.schema_name }.join(', ')
+    end
+
   end
 end
 
