@@ -91,17 +91,17 @@ module Util
       fsize = File.size?(fm.user_event_table_backup_file)
       if fsize.nil? or fsize < 2500
         success_code = false
-        event.add_problem("#{fm.user_event_table_backup_file} is very small: #{fsize} ")
+        event.add_problem("\nSize of #{fm.user_event_table_backup_file} is strangely small #{fsize}")
       end
       fsize = File.size?(fm.user_table_backup_file)
       if fsize.nil? or fsize < 2500
         success_code = false
-        event.add_problem("#{fm.user_table_backup_file} is very small: #{fsize}")
+        event.add_problem("\nSize of #{fm.user_table_backup_file} is strangely small #{fsize}")
       end
       fsize=File.size?(fm.user_account_backup_file)
       if fsize.nil? or fsize < 2500
         success_code = false
-        event.add_problem("#{fm.user_account_backup_file} is very small: #{fsize} ")
+        event.add_problem("\nSize of #{fm.user_account_backup_file} is strangely small #{fsize} ")
       end
       return success_code
     end
