@@ -14,6 +14,13 @@
           <% end %>
        </ul>
 
+       <%= if @event.event_type.downcase.include? 'failed' or  @event.event_type.downcase.include? 'problem'  %>
+         <div id='errorExplanation'>
+           <h3>  ERRORS DETECTED.</h3>
+           <p>@event.description</p>
+         </div>
+       <% end %>
+
        <p>Below are some tips about how to recover user information in the AACT system using these backup files:</p>
        <ul>
          <li>

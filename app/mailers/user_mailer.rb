@@ -22,7 +22,11 @@ class UserMailer < ApplicationMailer
         :file => File.read(f)
       }
     } if @event.file_names
-    mail(to: email, subject: "AACT #{Rails.env.capitalize} User Backups")
+    if @event.event_type.downcase.include? 'problem'
+      mail(to: email, subject: "PROBLEMS IN AACT #{Rails.env.capitalize} User Backups")
+    else
+      mail(to: email, subject: "AACT #{Rails.env.capitalize} User Backups")
+    end
   end
 
   def event_notification(email_addr, user, event_type)

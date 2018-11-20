@@ -53,6 +53,7 @@ module Util
     end
 
     def backup_user_info
+      success=true
       fm=Util::FileManager.new
       fm.remove_todays_user_backup_tables
 
@@ -65,19 +66,50 @@ module Util
       run_command_line(cmd)
 
       log "dumping User accounts..."
-      #cmd="/opt/rh/rh-postgresql96/root/bin/pg_dumpall -U  #{ENV['AACT_DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{fm.user_account_backup_file}"
-      cmd="pg_dumpall -U  #{ENV['AACT_DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{fm.user_account_backup_file}"
+      cmd="#{pg_dumpall_command} -U  #{ENV['AACT_DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{fm.user_account_backup_file}"
       run_command_line(cmd)
 
+      success_code = check_for_backup_errors(fm)
       begin
-        event=UserEvent.new({:event_type=>'backup', :file_names=>" #{fm.user_table_backup_file}, #{fm.user_event_table_backup_file}, #{fm.user_account_backup_file}" })
+        if success_code
+          event=UserEvent.new({:event_type=>'backup', :file_names=>" #{fm.user_table_backup_file}, #{fm.user_event_table_backup_file}, #{fm.user_account_backup_file}" })
+        else
+          event=UserEvent.new({:event_type=>'backup', :file_names=>" #{fm.user_table_backup_file}, #{fm.user_event_table_backup_file}, #{fm.user_account_backup_file}" })
+        end
+
         UserMailer.send_backup_notification(event)
         event.save!
+        return success_code
       rescue => error
         event.add_problem(error)
         event.save!
         return false
       end
+    end
+
+    def pg_dumpall_command
+      # This is changable. What's currently needed on servers.  Doesn't work on local machine - need to just use pg_dumpall in rspec
+      "/opt/rh/rh-postgresql96/root/bin/pg_dumpall"
+    end
+
+    def check_for_backup_errors(fm)
+      success_code=true
+      fsize = File.size?(fm.user_event_table_backup_file)
+      if fsize.nil? or fsize < 2500
+        success_code = false
+        event.add_problem("PROBLEM: #{fm.user_event_table_backup_file} is only size: #{fsize} ")
+      end
+      fsize = File.size?(fm.user_table_backup_file)
+      if fsize.nil? or fsize < 2500
+        success_code = false
+        event.add_problem("PROBLEM: #{fm.user_table_backup_file} is only size: #{fsize}")
+      end
+      fsize=File.size?(fm.user_account_backup_file)
+      if fsize.nil? or fsize < 2500
+        success_code = false
+        event.add_problem("PROBLEM: #{fm.user_account_backup_file} is only size: #{fsize} ")
+      end
+      return success_code
     end
 
     def grant_db_privs(username)
