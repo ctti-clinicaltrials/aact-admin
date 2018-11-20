@@ -68,17 +68,12 @@ module Util
       cmd="#{pg_dumpall_command} -U  #{ENV['AACT_DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{fm.user_account_backup_file}"
       run_command_line(cmd)
 
-      success_code = check_for_backup_errors(fm)
       begin
-        if success_code
-          event=UserEvent.new({:event_type=>'backup', :file_names=>" #{fm.user_table_backup_file}, #{fm.user_event_table_backup_file}, #{fm.user_account_backup_file}" })
-        else
-          event=UserEvent.new({:event_type=>'backup', :file_names=>" #{fm.user_table_backup_file}, #{fm.user_event_table_backup_file}, #{fm.user_account_backup_file}" })
-        end
-
-        UserMailer.send_backup_notification(event)
+        check_for_backup_errors(event, fm)
+        event.file_names = "#{fm.user_table_backup_file}, #{fm.user_event_table_backup_file}, #{fm.user_account_backup_file}"
+        event.event_type = 'backup problem'
         event.save!
-        return success_code
+        UserMailer.send_backup_notification(event)
       rescue => error
         event.add_problem(error)
         event.save!
@@ -91,7 +86,7 @@ module Util
       "/opt/rh/rh-postgresql96/root/bin/pg_dumpall"
     end
 
-    def check_for_backup_errors(fm)
+    def check_for_backup_errors(event, fm)
       success_code=true
       fsize = File.size?(fm.user_event_table_backup_file)
       if fsize.nil? or fsize < 2500
