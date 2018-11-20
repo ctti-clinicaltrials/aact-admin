@@ -50,6 +50,7 @@ $(document).ready(function(){
             <tr>
               <th data-field='name'>Name</th>
               <th data-field='investigators'>Investigators</th>
+              <th data-field='organizations'>Organizations</th>
               <th data-field='year'>Year</th>
               <th data-field='brief_summary'>Brief Summary</th>
               <th data-field='schema_name'>DB Schema</th>
@@ -61,6 +62,7 @@ $(document).ready(function(){
               <tr id="row_<%= index %>" class="projectRow <%= 'dataNotAvailable' if proj.data_available == false %>">
                 <td><%= proj.name %></td>
                 <td><%= proj.investigators %></td>
+                <td><%= proj.organizations %></td>
                 <td><%= proj.year %></td>
                 <td><%= proj.brief_summary %></td>
                 <td><%= proj.schema_name  if proj.data_available != false %></td>
