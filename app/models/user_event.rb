@@ -6,7 +6,7 @@ class UserEvent < ActiveRecord::Base
     else
       self.description = "#{self.description} \n#{problem}"
     end
-    self.event_type = "#{self.event_type} problem"
+    self.event_type = "#{self.event_type} problem"  if self.event_type && !self.event_type.include?('problem')
   end
 
 end
