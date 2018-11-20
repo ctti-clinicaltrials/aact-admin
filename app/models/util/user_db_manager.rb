@@ -53,7 +53,6 @@ module Util
     end
 
     def backup_user_info
-      success=true
       fm=Util::FileManager.new
       fm.remove_todays_user_backup_tables
 
@@ -97,17 +96,17 @@ module Util
       fsize = File.size?(fm.user_event_table_backup_file)
       if fsize.nil? or fsize < 2500
         success_code = false
-        event.add_problem("PROBLEM: #{fm.user_event_table_backup_file} is only size: #{fsize} ")
+        event.add_problem("#{fm.user_event_table_backup_file} is very small: #{fsize} ")
       end
       fsize = File.size?(fm.user_table_backup_file)
       if fsize.nil? or fsize < 2500
         success_code = false
-        event.add_problem("PROBLEM: #{fm.user_table_backup_file} is only size: #{fsize}")
+        event.add_problem("#{fm.user_table_backup_file} is very small: #{fsize}")
       end
       fsize=File.size?(fm.user_account_backup_file)
       if fsize.nil? or fsize < 2500
         success_code = false
-        event.add_problem("PROBLEM: #{fm.user_account_backup_file} is only size: #{fsize} ")
+        event.add_problem("#{fm.user_account_backup_file} is very small: #{fsize} ")
       end
       return success_code
     end
