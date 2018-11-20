@@ -27,7 +27,8 @@ $(document).ready(function(){
     <h1>AACT-based Research Projects</h1>
     <%= render 'explain_projects' %>
 
-    <div id='toolbar'>
+    <!-- temporarily hide this until we have projects that don't provide db content -->
+    <div id='toolbar' style="visibility: hidden">
        <select id="projectFilter">
           <option value="all">All Projects</option>
           <option value="dataInDatabase">Projects with Data in AACT Database</option>
