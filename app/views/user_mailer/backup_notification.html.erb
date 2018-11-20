@@ -14,10 +14,10 @@
           <% end %>
        </ul>
 
-       <%= if @event.event_type.downcase.include? 'failed' or  @event.event_type.downcase.include? 'problem'  %>
+       <% if @event.event_type.downcase.include?('problem') %>
          <div id='errorExplanation'>
-           <h3>  ERRORS DETECTED.</h3>
-           <p>@event.description</p>
+           <h3>  ERRORS DETECTED!</h3>
+           <p><%= @event.description %></p>
          </div>
        <% end %>
 
