@@ -57,6 +57,9 @@
              <p style="color:blue;">psql -d aact -a -U ctti -h aact-db.ctti-clinicaltrials.org -f <%= Time.now.strftime("%Y%m%d") %>_aact_user_accounts.sql </p>
              <p/>
            </li>
+           <li>After reloading the users table, you may need to reset the sequence number.  If the next available ID in the users table is less than the max ID, people will get an error when they try to register.  Here is a sample command to reset the sequence:
+             <p style="color:blue;">SELECT setval('users_id_seq', COALESCE((SELECT MAX(id)+1 FROM users), 1), false);</p>
+          </li>
        </ul>
   </body>
 </html>
