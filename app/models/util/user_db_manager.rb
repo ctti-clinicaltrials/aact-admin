@@ -71,11 +71,12 @@ module Util
       begin
         check_for_backup_errors(event, fm)
         event.file_names = "#{fm.user_table_backup_file}, #{fm.user_event_table_backup_file}, #{fm.user_account_backup_file}"
-        event.event_type = 'backup problem'
+        event.event_type = 'backup users'
         event.save!
         UserMailer.send_backup_notification(event)
       rescue => error
         event.add_problem(error)
+        event.event_type = 'backup users problem'
         event.save!
         return false
       end
@@ -91,16 +92,19 @@ module Util
       fsize = File.size?(fm.user_event_table_backup_file)
       if fsize.nil? or fsize < 2500
         success_code = false
+        event.event_type = 'backup users problem'
         event.add_problem("\nSize of #{fm.user_event_table_backup_file} is strangely small #{fsize}")
       end
       fsize = File.size?(fm.user_table_backup_file)
       if fsize.nil? or fsize < 2500
         success_code = false
+        event.event_type = 'backup users problem'
         event.add_problem("\nSize of #{fm.user_table_backup_file} is strangely small #{fsize}")
       end
       fsize=File.size?(fm.user_account_backup_file)
       if fsize.nil? or fsize < 2500
         success_code = false
+        event.event_type = 'backup users problem'
         event.add_problem("\nSize of #{fm.user_account_backup_file} is strangely small #{fsize} ")
       end
       return success_code
