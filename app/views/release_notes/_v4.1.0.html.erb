@@ -1,8 +1,11 @@
- <h3>AACT 4.1.0 <i>(November 12, 2018)</i></h3>
+ <h3>AACT 4.1.0 <i>(December 24, 2018)</i></h3>
 
   <h5>Implement 'AACT Projects' Feature</h5>
-  <p>A new component has been added to AACT which will allow us to share data artifacts created by investigators who have used AACT data as the source of their research. The new component (named 'AACT Projects') allows us to create supplemental schemas in the AACT database and populate them with tables/views containing data created during AACT-based research efforts. Making such information available in the AACT database gives all users the ability to easily view & query information that's been gathered by other researchers and directly analyze and verify the assertions and conclusions of previous research. </p>
-  <p>If you have an AACT account, you have immediate access to this supplemental information.</p>
+  <p>The AACT database now includes a component that provides data that was developed by other investigators while conducting AACT-based research. By providing this information within the AACT database, users can now directly query datasets that support published conclusions.
+
+
+  component that incorporates datasets and other useful data artifacts developed by investigators who have in the past used AACT as a resource. This new component (named 'AACT Projects') allows us to create project-specific schemas in the AACT database and populate them with tables/views that contain data created during AACT-based research efforts. Making such information available in the AACT database gives all users the ability to view & make secondary use of information that's been gathered by previous researchers. People may also more easily analyze the results of previous studies and verify conclusions. </p>
+  <p>If you've created a database account and have access to the live instance of AACT, you have immediate access to this supplemental project information. All schemas in the AACT database prefixed with 'proj_' contain tables and views about the project.</p>
   <p>To launch this new feature, we have selected an important 2015 research effort that was led by Monique Anderson (Duke University) to study patterns of compliance in reporting results to ClinicalTrials.gov. (Publication found <a ref='results ' target='_blank'>here.</a>) Information about the studies used to conduct this investigation has been saved to the <b>projanderson</b> schema in the AACT database and is currently available to anyone with access to the live AACT database.</p>
   <p>The AACT website includes a 'Projects' page that lists & describes projects that have been added to AACT.</p>
   <p>This component has been designed and deployed as another Ruby on Rails application, therefore AACT is now comprised of 3 applications: 1) AACT Core, 2) AACT Admin & 3) AACT Projects.  All code for these three components is publicly available in github.</p>
