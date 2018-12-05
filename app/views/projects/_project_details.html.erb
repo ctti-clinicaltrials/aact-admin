@@ -33,7 +33,7 @@
         <% if ds.schema_name.blank? %>
  <pre class='projectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %>.</a>  <%= ds.description %> <%= ds.source %></pre>
         <% else %>
- <pre class='projectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %></a> <b>(Available in AACT database: <%= ds.schema_name %>.<%= ds.table_name %>)</b></a> <%= ds.description %> <%= ds.source %></pre>
+ <pre class='projectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %></a> <span>(Available in AACT database: <%= ds.schema_name %>.<%= ds.table_name %>)</span></a> <%= ds.description %> <%= ds.source %></pre>
         <% end %>
       <% end %>
     <% end %>

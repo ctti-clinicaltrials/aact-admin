@@ -1,27 +1,37 @@
  <h3>AACT 4.1.0 <i>(December 24, 2018)</i></h3>
 
-  <h5>Implement 'AACT Projects' Feature</h5>
-  <p>The AACT database now includes a component that provides data that was developed by other investigators while conducting AACT-based research. By providing this information within the AACT database, users can now directly query datasets that support published conclusions.
+ <h5>Implement <i>AACT Projects</i> Feature</h5>
+ <p>The AACT database now provides data collected & developed in the execution of previous AACT-based research. By providing this information within the AACT database, users can directly query datasets (in the context of current ClinicalTrials.gov data) that support published conclusions or provide utility while investigating clinical trials.</p>
 
+ <p>Database schemas are used to differentiate project-related data from ClinicalTrials.gov data. Data from ClinicalTrial.gov remain available in the ctgov schema and each project has a database schema in which the datasets for that project are available. All project schemas are prefixed with 'proj_'.  Users of the live AACT database have immediate access to this information. Refer to the view named :w</p>
 
-  component that incorporates datasets and other useful data artifacts developed by investigators who have in the past used AACT as a resource. This new component (named 'AACT Projects') allows us to create project-specific schemas in the AACT database and populate them with tables/views that contain data created during AACT-based research efforts. Making such information available in the AACT database gives all users the ability to view & make secondary use of information that's been gathered by previous researchers. People may also more easily analyze the results of previous studies and verify conclusions. </p>
-  <p>If you've created a database account and have access to the live instance of AACT, you have immediate access to this supplemental project information. All schemas in the AACT database prefixed with 'proj_' contain tables and views about the project.</p>
-  <p>To launch this new feature, we have selected an important 2015 research effort that was led by Monique Anderson (Duke University) to study patterns of compliance in reporting results to ClinicalTrials.gov. (Publication found <a ref='results ' target='_blank'>here.</a>) Information about the studies used to conduct this investigation has been saved to the <b>projanderson</b> schema in the AACT database and is currently available to anyone with access to the live AACT database.</p>
-  <p>The AACT website includes a 'Projects' page that lists & describes projects that have been added to AACT.</p>
-  <p>This component has been designed and deployed as another Ruby on Rails application, therefore AACT is now comprised of 3 applications: 1) AACT Core, 2) AACT Admin & 3) AACT Projects.  All code for these three components is publicly available in github.</p>
+ <p>Datasets from the following three AACT-based research projects have been made available in this release:<p>
+  <ul class='regularText'>
+    <li>
+      <p>
+      <b>proj_compliance: </b><a href="https://scholars.duke.edu/display/pub1075763" target='_blank'>Anderson ML, Chiswell K, Peterson ED, Tasneem A, Topping J, Califf RM. Compliance with results reporting at ClinicalTrials. gov. New England Journal of Medicine. 2015 Mar 12;372(11):1031-9.</a>
+      </p>
+    </li>
+    <li>
+      <p><b>proj_cdek_standard_orgs: </b><a href="http://dx.doi.org/10.1101/474189" target='_blank'>Griesenauer R, Schillebeeck C, Kinch MS. CDEK: Clinical Drug Experience Knowledgebase. bioRxiv  The Preprint Server for Biology. 2018 November 19</a>
+      </p>
+    </li>
+    <li>
+      <p>
+      <b>proj_tag_nephrology: </b><a href="https://www.ncbi.nlm.nih.gov/pubmed/24315119" target='_blank'>Inrig JK, Califf RM, Tasneem A, Vegunta RK, Molina C, Stanifer JW, Chiswell K, Patel UD. The landscape of clinical trials in nephrology: a systematic review of Clinicaltrials. gov. American Journal of Kidney Diseases. 2014 May 1;63(5):771-80.</a>
+      </p>
+    </li>
+  </ul>
+  <p>Projects are described on the AACT website <a href='/projects' target='_blank'>Projects Page</a>.</p>
 
-  <h5>Nephrology Project</h5>
-  <p></p>
+  <p>This feature will continue to be developed. Please <a href="mailto:#{ENV['AACT_ADMIN_EMAILS']}?subject=AACT: Request info about 4.1.0 changes to load process">email us</a> with questions or suggestions.</p>
 
-  <h5>Monique Anderson Project</h5>
-  <p></p>
-
-  <h5>Improve Page Displaying List of Users</h5>
-  <p>The AACT website page which lists information about all users has been enhanced; the information is now sortable & the table includes pagination. The option to download user information as a CSV or Excel file is selected, the content of the download only contains information that is of potential interest; attributes containing encrypted values no longer appear in the file. (This page is only accessible to AACT administrators.) </p>
+  <p>This feature has been implemented as a separate Ruby on Rails application. AACT is now comprised of 3 applications: 1) AACT Core, 2) AACT Admin & 3) AACT Projects.  All code for these three components is publicly available in <a href='https://github.com/ctti-clinicaltrials/aact-proj' target='_blank'>github</a>. Note: Implementing this feature required some changes to the way ClinicalTrials.gov data is loaded into AACT. Details about these changes are available upon <a href="mailto:#{ENV['AACT_ADMIN_EMAILS']}?subject=AACT: Request info about 4.1.0 changes to load process">request</a>.</p>
 
   <h5>Fix Formatting of Data Dictionary Pagination</h5>
-  <p></p>
+  <p>The pagination numbers at the bottom of the Data Dictionary table were scrunched together. This has been fixed.</p>
 
-  <h5>Fix User Confirmation Instructions</h5>
-  <p></p>
+  <h5>Improve Page Displaying List of Users</h5>
+  <p>For AACT Admins Only: The AACT website page which lists information about all users has been enhanced; the information is now sortable & the table includes pagination. The option to download user information as a CSV or Excel file is selected, the content of the download only contains information that is of potential interest; attributes containing encrypted values no longer appear in the file. (This page is only accessible to AACT administrators.) </p>
+
 
