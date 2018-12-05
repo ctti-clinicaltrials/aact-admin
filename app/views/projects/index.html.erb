@@ -51,7 +51,7 @@ $(document).ready(function(){
               <th data-field='name'>Name</th>
               <th data-field='investigators'>Investigators</th>
               <th data-field='organizations'>Organizations</th>
-              <th data-field='year'>Year</th>
+              <th data-field='year'>Publication Year</th>
               <th data-field='brief_summary'>Brief Summary</th>
               <th data-field='schema_name'>DB Schema</th>
             </tr>
@@ -60,7 +60,11 @@ $(document).ready(function(){
           <tbody class='projects'>
             <% @projects.each_with_index do |proj, index| %>
               <tr id="row_<%= index %>" class="projectRow <%= 'dataNotAvailable' if proj.data_available == false %>">
-                <td><%= proj.name %></td>
+                <% if !proj.publication_url.nil? %>
+                  <td><a href='<%= proj.publication_url %>' target='_blank'><%= proj.name %></a></td>
+                <% else %>
+                  <td><%= proj.name %></td>
+                <% end %>
                 <td><%= proj.investigators %></td>
                 <td><%= proj.organizations %></td>
                 <td><%= proj.year %></td>

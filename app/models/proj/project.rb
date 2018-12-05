@@ -16,6 +16,11 @@ module Proj
       all.map{|p| p.schema_name }.join(', ')
     end
 
+    def publication_url
+      pub = publications.first if !publications.empty?
+      pub.url if pub
+    end
+
   end
 end
 
