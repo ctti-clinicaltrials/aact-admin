@@ -25,7 +25,7 @@ $(document).ready(function(){
 
   <div id='projectContainer' class='basicHero container'>
     <h1>AACT-based Research Projects</h1>
-    <%= render 'explain_projects' %>
+    <%= render 'explanation' %>
 
     <!-- temporarily hide this until we have projects that don't provide db content
     <div id='toolbar' style="visibility: hidden">
@@ -72,5 +72,7 @@ $(document).ready(function(){
          </tbody>
       </table>
     </div>
+
+    <%= render 'limitations' %>
   </div>
 </section>
