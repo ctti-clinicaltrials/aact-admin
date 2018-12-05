@@ -3,7 +3,7 @@
 <h6>Identify a Project Label</h6>
 <p>Initially, you need to define a short string to uniquely identify the project. Examples of existing identifiers:
 <ul>
-  <li><u>Anderson:</u> Monique Anderson's 2015 Project on Complianceh</li>
+  <li><u>ResultsReporting:</u> Monique Anderson's 2015 Project on Results Reporting Compliance</li>
   <li><u>SummaryTrends:</u> Karen Chiswell's latest report on the state of clinical trials.</li>
 </ul>
 
@@ -19,10 +19,10 @@
 <p>Provide one Excel spreadsheet with one page labeled <b>'Data Definitions'</b>. On the first row of this page, include the headers: <b>'table, column, label, category, description'</b> Populate this spreadsheet with definitions for each dataset attribute. The file can have multiple pages, so feel free to add additional descriptive info about the project on other pages. The file will be made available for users to download from the Projects page of the AACT website. The aact-proj app is also setup to detect an attachment named 'Data Definitions'. If this attachment is a spreadsheet containing a page labeled 'Data Definitions', it will create a view named 'Data_Definitions' in the project schema that provides these definitions within the database.</p>
 
 <h6>Prepare the Project Description</h6>
-<p>Describe the project by giving it a name and writing up a brief summary and full description. You may also specify other details such as the study selection criteria, protocol, etc. (Refer to the columns in the proj.projects table of the publicly accessible AACT database to find out what information you can define.) This information will be saved in the database app and appear on the Projects page of the AACT website. You can write this up in any document. This information will be copied into a file in the aact-proj app using json format, so you can save a step later by saving it as json. Here's a bit of the proj_anderson descriptive info as an example (spacing is not important):</p>
+<p>Describe the project by giving it a name and writing up a brief summary and full description. You may also specify other details such as the study selection criteria, protocol, etc. (Refer to the columns in the proj.projects table of the publicly accessible AACT database to find out what information you can define.) This information will be saved in the database app and appear on the Projects page of the AACT website. You can write this up in any document. This information will be copied into a file in the aact-proj app using json format, so you can save a step later by saving it as json. Here's a bit of the proj_results_reporting descriptive info as an example (spacing is not important):</p>
 
 <pre class='projectDetails'>{ name:                'Compliance with Results Reporting at ClinicalTrials.gov',
-  schema_name:         'proj_anderson',
+  schema_name:         'proj_results_reporting',
   investigators:       'Monique L. Anderson, M.D., Karen Chiswell, Ph.D. ...',
   organizations:       'Duke Clinical Research Institute',
   contact_info:        'Monique Anderson. Duke University, Dept of Medicine...',

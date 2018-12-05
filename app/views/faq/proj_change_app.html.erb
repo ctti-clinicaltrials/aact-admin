@@ -12,16 +12,16 @@
 <p>The new project's identifier needs to be added to the array in the method <b>Project.project_list</b>. When we call the Project method to load data for all projects, it uses this array.</p>
 
 <h6>Create Project's Model Directory</h6>
-<p>Add a directory under app/models for the new project. The content of each file in this directory needs to be wrapped in a module with the same name as the directory. (See ProjAnderson as an example.)</p>
+<p>Add a directory under app/models for the new project. The content of each file in this directory needs to be wrapped in a module with the same name as the directory. (See ProjResultsReporting as an example.)</p>
 
 <h6>In Project's Model Directory: Add Standard File Containing Project Meta Data</h6>
-<p>Every project needs a project_info.rb file in the project's model directory. This file needs to define the class ProjectInfo. The file should start by defining the module for the project (example: 'module ProjAnderson') followed on the next line with 'class ProjectInfo'.</p>
+<p>Every project needs a project_info.rb file in the project's model directory. This file needs to define the class ProjectInfo. The file should start by defining the module for the project (example: 'module ProjResultsReporting') followed on the next line with 'class ProjectInfo'.</p>
 <p>Save all descriptive info about the project in the method 'meta_info'. In this file, you'll also define datasets in the method 'datasets'. If there are publications or attachments, add descriptions/links for them to the hash in the methods of these names.</p>
 <p>File project_info.rb also includes the class-side method: <b>load_project_tables</b>. This method will be called by the aact-proj framework and must run code that populates the tables for this project.</p>
-<p>(See ProjAnderson as an example.)</p>
+<p>(See ProjResultsReporting as an example.)</p>
 
 <h6>In Project's Model Directory: Create Model for Each Dataset/Table</h6>
-<p>Create a file in the project's model directory for each dataset to be loaded into the database. Each model needs to (at minimum) define the table name, prefixed with the project's schema. (Example: <b>self.table_name = 'proj_anderson.analyzed_studies'</b>) It should also include the code needed to populate it's table.  The method should be called by load_project_tables in ProjectInfo</p>
+<p>Create a file in the project's model directory for each dataset to be loaded into the database. Each model needs to (at minimum) define the table name, prefixed with the project's schema. (Example: <b>self.table_name = 'proj_results_reporting.analyzed_studies'</b>) It should also include the code needed to populate it's table.  The method should be called by load_project_tables in ProjectInfo</p>
 
 <h6>Add Project Attachments</h6>
 <p>Copy all files referenced in the project's ProjectInfo class in public/attachments.  These files will be linked to the project so it appears on the website and can be downloaded by users.</p>
