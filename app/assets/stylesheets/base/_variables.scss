@@ -20,9 +20,9 @@ $bg-grey:                     #dfdfdf;
 
 $text-color:                  $grey;
 
-$link-color:                  $primary;
+$link-color:                  $tertiary;
 $link-visited-color:          $link-color;
-$link-hover-color:            darken($link-color, 5);
+$link-hover-color:            darken($link-color, 10);
 
 $button-color:                $link-color;
 $button-hover-color:          $link-hover-color;
