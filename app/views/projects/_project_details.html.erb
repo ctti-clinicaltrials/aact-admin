@@ -12,6 +12,12 @@
       <pre class='projectDetails'><%= proj.study_selection_criteria %></pre>
     <% end %>
 
+    <% unless proj.contact_info.blank? %>
+      <strong class="projectDetails bold">Contact Info:</strong>
+      <br>
+      <pre class='projectDetails'><%= proj.contact_info %></pre>
+    <% end %>
+
     <% unless proj.publications.empty? %>
       <% proj.publications.each do |pub| %>
         <strong class="projectDetails bold">Publications:</strong>
