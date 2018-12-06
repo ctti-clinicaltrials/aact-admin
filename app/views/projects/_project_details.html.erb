@@ -6,6 +6,12 @@
       <br>
     <% end %>
 
+    <% unless proj.aact_version.blank? %>
+      <strong class="projectDetails bold">AACT Version:</strong>
+      <br>
+      <pre class='projectDetails'><%= proj.aact_version %></pre>
+    <% end %>
+
     <% unless proj.study_selection_criteria.blank? %>
       <strong class="projectDetails bold">Study Selection Criteria:</strong>
       <br>
