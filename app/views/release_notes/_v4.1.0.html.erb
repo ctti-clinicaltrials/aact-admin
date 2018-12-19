@@ -28,6 +28,9 @@
 
   <p>This feature has been implemented as a separate Ruby on Rails application. AACT is now comprised of 3 applications: 1) AACT Core, 2) AACT Admin & 3) AACT Projects.  All code for these three components is publicly available in <a href='https://github.com/ctti-clinicaltrials/aact-proj' target='_blank'>github</a>. Note: Implementing this feature required some changes to the way ClinicalTrials.gov data is loaded into AACT. Details about these changes are available upon <a href="mailto:ctti-aact@duke.edu?subject=AACT: Request info about 4.1.0 load procedure">request</a>.</p>
 
+  <h5>2010 & 2016 MeSH Terms Saved to Live Database in 'mesh_archive' Schema</h5>
+  <p>To facilitate access to older sets of MeSH terms (which some projects used), a new schema named mesh_archive has been added to the live AACT database. Tables in this schema are named yYYYY_mesh_terms where YYYY represents the anual version of that set of terms. For example, the 2010 version of MeSH terms are available in mesh_archive.y2010_mesh_terms.</p>
+
   <h5>Three New Columns in Calculated_Values Table that Provide Number of Intended Outcome Measures</h5>
   <p>The Calculated_Values table has 3 new columns that provide the number of primary, secondary & other outcome measures:</p>
   <ul class='regularText'>
