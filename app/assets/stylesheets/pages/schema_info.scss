@@ -1,5 +1,6 @@
-@import "variables";
-@import "library";
+@import "../base/variables";
+@import "../base/library";
+
 #resultGroup {
   width: 100%;
   border: 1px solid black;

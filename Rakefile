@@ -8,10 +8,10 @@ namespace :db do
   def set_search_path
     puts "Setting search path to ctgov..."
     con=ActiveRecord::Base.connection
-    con.execute("create schema admin;")
-    con.execute("alter role #{ENV['AACT_DB_SUPER_USERNAME']} set search_path to ctgov, support, admin, public;")
-    con.execute("grant usage on schema admin to #{ENV['AACT_DB_SUPER_USERNAME']};")
-    con.execute("grant create on schema admin to #{ENV['AACT_DB_SUPER_USERNAME']};")
+    con.execute("create schema ctgov;")
+    con.execute("alter role #{ENV['AACT_DB_SUPER_USERNAME']} set search_path to ctgov, support, public;")
+    con.execute("grant usage on schema ctgov to #{ENV['AACT_DB_SUPER_USERNAME']};")
+    con.execute("grant create on schema ctgov to #{ENV['AACT_DB_SUPER_USERNAME']};")
     con.reset!
   end
 

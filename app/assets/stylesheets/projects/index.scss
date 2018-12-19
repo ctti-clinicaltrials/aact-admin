@@ -1,3 +1,70 @@
-// Place all the styles related to the projects controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "../base/variables";
+@import "../base/library";
+
+#projectContainer {
+  width: 100%;
+}
+
+#projectFilter {
+  font-size: 1.8rem;
+  font-weight: normal;
+  margin-top: 2rem;
+}
+
+.projects {
+  margin-left: 8rem;
+  margin-right: 8rem;
+}
+
+.projectExplanation {
+  font-size: 1.8rem;
+}
+
+strong.projectDetails {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-left: 2rem;
+}
+
+a.projectDetails {
+  color: red;
+}
+
+pre.projectDetails {
+  font-size: 1.2rem;
+  font-family: "Roboto";
+  white-space: pre-wrap;       /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+tr.projectRow {
+  font-size: 1.6rem;
+}
+
+.projectName {
+  font-weight: bold;
+}
+
+.projectData {
+   color: $maroon;
+   //font-size: 1rem;
+   border-style: groove;
+   border-color: $secondary;
+   padding-left: 40px;
+   padding-right: 40px;
+   padding-bottom: 10px;
+   padding-top: 10px;
+}
+
+a.projectNavItem {
+  font-size: 1.8rem;
+  padding: .4rem;
+  text-transform: uppercase;
+  margin-left: 18px;
+  color: #008aa1
+}

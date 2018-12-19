@@ -1,12 +1,18 @@
-<main>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/black-tie/jquery-ui.css" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.1/jsgrid.min.css" />
+<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.1/jsgrid-theme.min.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.1/jsgrid.min.js"></script>
+
+
   <section>
     <p id='dataDictionary'>
     The Data Dictionary (table below) provides detailed information about each data element in the AACT database. Every study-related table/column in the AACT relational database is represented as a row in this table. (AACT includes <a href=<%= @admin_schema_diagram %> target="_blank" onClick="ga('send','event','download','download schema')"  >a few administrative tables</a> that contain data not directly related to studies. Information about these tables is not included in the data dictionary. Information about these tables is available.)</p>
     <p>Click on the <i class='fa fa-book'></i> icon that appears at the beginning of the data element row to view the section of the NLM documentation that defines that particular data element. (The icon appears only for data element defined by NLM.)</p>
   </section>
 
-  <input id="toggle" type="checkbox" style="display: none; visibility: hidden;" unchecked>
-    <label for="toggle"></label>
+  <input id="hintToggle" type="checkbox" style="display: none; visibility: hidden;" unchecked>
+    <label for="hintToggle"></label>
   </input>
 
   <div id="expand">
@@ -41,5 +47,3 @@
        </ul>
      </section>
   </div>
-
-</main>

@@ -1,0 +1,34 @@
+<h4>Add Project: Update aact-proj Application</h4>
+
+<p><a target='_blank' href='admin_add_project'>Return to Previous Page</a></p>
+
+<h6>Fork from GitHub</h6>
+<p>To add a new project (or make any changes to the aact-proj application), you need your own forked copy of the application. Create a fork from the <a target='_blank' href='https://github.com/ctti-clinicaltrials/aact-proj'>github repository</a>, and clone a copy to your local machine. (This only needs to be done once, then you can use it forever more.)  Branch from this local copy of the forked app to add a new project. Follow the steps below. When you're done and everything looks good, you can push your changes to your personal github repo and then submit a pull request to the official (CTTI) repo. Once your additions/changes are approved, they can then be merged into the release branch of the app and deployed to the server.</p>
+
+<h6>Add Migration File to Define Project Tables</h6>
+<p>Add a file under db/migrate for this project. Use previous project migration files as a template - just be sure to change the class name at the top of the file to match the name of the file. You will need to use the file name you define here to set 'migration_file_name' in the meta_info hash of the ProjectInfo class for this project. (see below)</p>
+
+<h6>Add Project Label to Existing File:  app/models/projects.rb</h6>
+<p>The new project's identifier needs to be added to the array in the method <b>Project.project_list</b>. When we call the Project method to load data for all projects, it uses this array.</p>
+
+<h6>Create Project's Model Directory</h6>
+<p>Add a directory under app/models for the new project. The content of each file in this directory needs to be wrapped in a module with the same name as the directory. (See ProjResultsReporting as an example.)</p>
+
+<h6>In Project's Model Directory: Add Standard File Containing Project Meta Data</h6>
+<p>Every project needs a project_info.rb file in the project's model directory. This file needs to define the class ProjectInfo. The file should start by defining the module for the project (example: 'module ProjResultsReporting') followed on the next line with 'class ProjectInfo'.</p>
+<p>Save all descriptive info about the project in the method 'meta_info'. In this file, you'll also define datasets in the method 'datasets'. If there are publications or attachments, add descriptions/links for them to the hash in the methods of these names.</p>
+<p>File project_info.rb also includes the class-side method: <b>load_project_tables</b>. This method will be called by the aact-proj framework and must run code that populates the tables for this project.</p>
+<p>(See ProjResultsReporting as an example.)</p>
+
+<h6>In Project's Model Directory: Create Model for Each Dataset/Table</h6>
+<p>Create a file in the project's model directory for each dataset to be loaded into the database. Each model needs to (at minimum) define the table name, prefixed with the project's schema. (Example: <b>self.table_name = 'proj_results_reporting.analyzed_studies'</b>) It should also include the code needed to populate it's table.  The method should be called by load_project_tables in ProjectInfo</p>
+
+<h6>Add Project Attachments</h6>
+<p>Copy all files referenced in the project's ProjectInfo class in public/attachments.  These files will be linked to the project so it appears on the website and can be downloaded by users.</p>
+
+<h6>Update lib/tasks/db.rake 'drop task' </h6>
+<p>When we refresh AACT-Projects, we do so by dropping/removing all project-related schemas from the database (bundle exec rake db:drop). The lib/tasks/db.rake file contains the code that does this. Whenever we add a new project, we need to add a row to the drop task in this file to drop the associated schema. We also need to add a line to create the new schema in the create task.</p>
+
+<h6>Add Project to Rakefile</h6>
+<p>In an effort to consolidate where it is we grant db user access to all schemas (by adding the schemas in the user's search_path), we have a command in the Rake file named: reset_search_path. We need to add the new project shema name to this command.</p>
+

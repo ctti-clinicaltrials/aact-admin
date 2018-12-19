@@ -160,6 +160,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.exportable_column_names
+    ['last_name', 'first_name', 'email', 'username', 'db_activity', 'last_db_activity','confirmed_at','last_sign_in_ip', 'current_sign_in_ip']
+  end
+
   def self.list
     collection=[]
     all.each{ |user| collection << user.summary_info('list') }
@@ -168,9 +172,9 @@ class User < ActiveRecord::Base
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << column_names
+      csv << exportable_column_names
       all.each do |user|
-        csv << user.attributes.values_at(*column_names)
+        csv << user.attributes.values_at(*exportable_column_names)
       end
     end
   end

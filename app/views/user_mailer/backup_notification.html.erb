@@ -14,6 +14,13 @@
           <% end %>
        </ul>
 
+       <% if @event.event_type.downcase.include?('problem') %>
+         <div id='errorExplanation'>
+           <h3>  ERRORS DETECTED!</h3>
+           <p><%= @event.description %></p>
+         </div>
+       <% end %>
+
        <p>Below are some tips about how to recover user information in the AACT system using these backup files:</p>
        <ul>
          <li>
@@ -42,14 +49,17 @@
              <p/>
          </li>
            <li>Now from a terminal session on the server, run psql commands to populate the tables from the backup files:
-             <p style="color:blue;">psql -d aact_admin -U ctti -a -f <%= Time.now.strftime("%Y%m%d") %>-aact-users_table.sql</p>
-             <p style="color:blue;">psql -d aact_admin -U ctti -a -f <%= Time.now.strftime("%Y%m%d") %>-aact-user_events.sql</p>
+             <p style="color:blue;">psql -d aact_admin -h localhost -U ctti -a -f <%= Time.now.strftime("%Y%m%d") %>_aact_users_table.sql</p>
+             <p style="color:blue;">psql -d aact_admin -h localhost -U ctti -a -f <%= Time.now.strftime("%Y%m%d") %>_aact_user_events.sql</p>
              <p/>
            </li>
            <li>You may also restore the database user accounts on the public database (over on the DigitalOcean server) from here by specifying the name of the public server after the -h option in this command:
-             <p style="color:blue;">psql -d aact -a -U ctti -h aact-db.ctti-clinicaltrials.org -f <%= Time.now.strftime("%Y%m%d") %>-aact-user_accounts.sql </p>
+             <p style="color:blue;">psql -d aact -a -U ctti -h aact-db.ctti-clinicaltrials.org -f <%= Time.now.strftime("%Y%m%d") %>_aact_user_accounts.sql </p>
              <p/>
            </li>
+           <li>After reloading the users table, you may need to reset the sequence number.  If the next available ID in the users table is less than the max ID, people will get an error when they try to register.  Here is a sample command to reset the sequence:
+             <p style="color:blue;">SELECT setval('users_id_seq', COALESCE((SELECT MAX(id)+1 FROM users), 1), false);</p>
+          </li>
        </ul>
   </body>
 </html>

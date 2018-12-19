@@ -7,7 +7,17 @@
 * {
   @include border-box;
 }
+.pagination>li.active>a {
+  background-color: $tertiary !important;
+  border-color: $tertiary !important;
+}
 
+.shadowContainer {
+    margin-top: 50px;
+    box-shadow: 0 0 30px black;
+}
+
+.fixed-table-toolbar { display: none; }  // disable bootstrap toolbar for now.
 .command-prompt { color: #aeaeae; font-size: .9rem;}
 .command-entry { color: #f8f8f8; font-size: .9rem;}
 .command-response { color: #adc6ee; font-size: .9rem;}
@@ -17,6 +27,32 @@
    padding-left: 100px;
    padding-right: 100px;
    padding-bottom: 40px;
+}
+
+table.regularDisplay {
+  box-shadow: 6px 6px 5px #888888;
+  margin-bottom: 40px;
+  border-style: solid;
+  border-width: 1px;
+
+  th {
+    font-weight: normal;
+    background-color: $tertiary;
+    color: white;
+  }
+
+  td {
+    padding: 6px 4px 6px 4px;
+    font-size: 1.2rem;
+  }
+
+  td.tableName {
+    font-weight: bold;
+  }
+
+  td.numberType {
+    text-align: right;
+  }
 }
 
 #errorExplanation {
@@ -66,13 +102,14 @@ div.wrap {
 }
 
 body {
-  font-size: 0px;
-  min-height: 100%;
-  font-family: $font-serif;
-  color: $text-color;
+  background: transparent !important;
+  font-size: 0px !important;
+  min-height: 100%  !important;
+  font-family: $font-sans !important;
+  color: $text-color  !important;
   // background-attachment: fixed;
   @include bg-size(30px 20px);
-  position: relative;
+  position: relative !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -105,6 +142,7 @@ a {
   font-size: 1.2rem;
   color: $link-color;
   font-family: $font-sans;
+  padding: 0.4rem;
 
   &:hover {
     color: $link-hover-color;
@@ -116,6 +154,9 @@ img {
   max-width: 100%;
 }
 
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: $bg-grey;
+}
 
 ul {
   padding: 0px;
@@ -129,7 +170,7 @@ ul {
 
 h1 {
   font-size: 3rem;
-  color: $secondary;
+  color: $tertiary;
 
   @include MQ(S) {
     font-size: 2.2rem;
@@ -194,8 +235,9 @@ pre {
 %container {
   margin: 0 auto;
   max-width: $wrap_width;
-  padding-left:  40px;
+  //padding-left:  40px;
   padding-right:  40px;
+  z-index:0;
   position: relative;
 }
 
@@ -229,7 +271,7 @@ h4 {
 td, th {
   padding:10px;
   border:solid 1px #eee;
-  font-size: 14px;
+  font-size: 1.2rem;
 }
 
 input {
@@ -261,6 +303,3 @@ div.step {
   }
 }
 
-section.dictionaryOverview, section.dataDefinitions, section.namingConventions, section.releaseNotes {
-  background-color: $white;
-}

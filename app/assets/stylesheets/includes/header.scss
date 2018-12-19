@@ -1,27 +1,26 @@
-@import "variables";
-@import "library";
-$gutter_width: 20px;
+@import "../base/variables";
+@import "../base/library";
+$gutter_width: 18px;
 header {
   background-color: $white;
-  opacity: 1;
-  padding: 10px 0px;
-  width: 100%;
+  opacity: 1 !important;
+  padding: 10px 0px !important;
+  width: 100% !important;
 
 .user-logged-in {
     border-bottom: thick solid black;
     border-width: 1px;
     margin: 0px 0px;
     padding: 0rem .2rem 0rem 1rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: black;
     text-align: right;
 }
-.user-info {
+p.user-info {
     //display:none;  //  remove this when we are ready to make user registration available
     margin: 0px 0px;
     padding: 0rem .2rem 0rem 1rem;
     font-size: 1rem;
-    position: right;
     text-align: right;
 }
 
@@ -29,14 +28,25 @@ header {
     font-size: 1rem;
     padding: .4em;
 }
+
+#navbar-top {
+  width: 100%;
+  font-size: 0px;
+  font-family: "Roboto";
+}
+
+#common-header {
+  padding-top: 5rem !important;
+}
   div.wrap {
     @include display-flex;
     @include justify-content(space-between);
     @include align-items(center);
+    padding-right: 0;
   }
 
   img.logo {
-    max-width: 400px;
+    max-width: 500px;
   }
 
   nav {
@@ -45,10 +55,12 @@ header {
   }
 
   div.navContainer {
+    padding-right: 0px;
+    padding-top: 2rem;
     @include display-flex;
     @include flex-direction(column);
+    float: right;
     text-align: right;
-    margin: 2rem 0px;
   }
 
   div.newsletter {
@@ -88,13 +100,15 @@ header {
   }
 
   a.navItem {
-    font-weight: bold;
+    font-size: 1.2rem;
+    padding: .4rem;
     text-transform: uppercase;
-    margin-left: $gutter_width*2;
+    margin-left: $gutter_width;
+    color: $primary;
 
     i {
       margin-right: 4px;
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
   }
 

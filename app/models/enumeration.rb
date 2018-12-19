@@ -1,5 +1,5 @@
 require 'active_support/all'
-  class Enumeration <ActiveRecord::Base
+  class Enumeration < ActiveRecord::Base
 
     def self.populate
       new.populate

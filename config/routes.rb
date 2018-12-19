@@ -36,6 +36,9 @@ Rails.application.routes.draw do
   get "/faq"                  => "faq#home"
   get "/admin_run_loads"      => "faq#admin_run_loads"
   get "/admin_remove_user"    => "faq#admin_remove_user"
+  get "/admin_add_project"    => "faq#admin_add_project"
+  get "/faq_proj_gather_info" => "faq#proj_gather_info"
+  get "/faq_proj_change_app"  => "faq#proj_change_app"
 
   get "/support_grant_permission"  => "faq#support_grant_permission"
   get "/support_registration_failed"  => "faq#support_registration_failed"
@@ -47,6 +50,11 @@ Rails.application.routes.draw do
 
   resources :definitions
   resources :users
+  resources :projects
+  resources :datasets
+  resources :attachments
+  resources :tagged_terms
+  resources :tags
   resources :use_cases
   resources :use_case_attachments
 end

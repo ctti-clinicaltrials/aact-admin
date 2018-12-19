@@ -1,0 +1,59 @@
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<%= javascript_include_tag :sortable %>
+<%=  stylesheet_link_tag "bootstrap.min.css" %>
+<%=  stylesheet_link_tag "bootstrap.override" %>
+<section>
+
+  <script>
+    $( ".selectTag" ).change(function() {
+        alert( "Handler for .change() called." );
+    })
+  </script>
+
+  <div id='selectTag'>
+    <%= collection_select(:tag, :label, @all_tags, :label, :label) %>
+  </div>
+
+  <p>
+  <% select_tag 'selected_tag', options_for_select(@all_tags.collect{ |t| [t.label] })  , :onchange => "alert('did it');"%>
+  </p>
+
+  <div class="tagged_terms">
+    <div>
+      <p>Studies tagged: <%= @selected_tag.tag %></p>
+    </div>
+
+    <table id='taggedStudies' class="table sortable table-striped table-responsive table-hover regularDisplay" data-sort-order="desc">
+
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Phase</th>
+            <th>Start Date</th>
+            <th></th>
+        </thead>
+
+        <tbody class='tagged_terms'>
+          <% @studies.each do |s| %>
+            <tr>
+              <td><%= s.nct_id %></td>
+              <td><%= s.brief_title %></td>
+              <td><%= s.study_type %></td>
+              <td><%= s.phase %></td>
+              <td><%= s.start_date %></td>
+              <td><%= link_to 'Detail', tagged_term_path(:id => s.id) %></td>
+            </tr>
+          <% end %>
+       </tbody>
+
+    </table>
+
+  </div>
+  <p><%= render 'includes/circle_buttons' %></p>
+
+</section>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

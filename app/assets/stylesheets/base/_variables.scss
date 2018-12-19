@@ -3,13 +3,12 @@
 
 $primary:               #008aa1;
 $secondary:             #02b7d4;
+$tertiary:              #26657a;
 $accent:                #ec3e37;
 
 $red:                   #b71417;
 $maroon:                #680001;
 $turquoise:             #26657a;
-
-
 
 // UI
 // ••••••••••••••••••••••••••••••••••••••••••••••••••
@@ -21,9 +20,9 @@ $bg-grey:                     #dfdfdf;
 
 $text-color:                  $grey;
 
-$link-color:                  $primary;
+$link-color:                  $tertiary;
 $link-visited-color:          $link-color;
-$link-hover-color:            darken($link-color, 5);
+$link-hover-color:            darken($link-color, 10);
 
 $button-color:                $link-color;
 $button-hover-color:          $link-hover-color;
@@ -51,3 +50,13 @@ $font-sans:             'Roboto';
 $font-sans-secondary:   'Roboto';
 $font-sans-tertiary:    'Roboto';
 $font-serif:            'Georgia';
+
+// Bootstrap Options
+$enable-shadows:        true !default;
+$enable-caret:              true !default;
+$enable-rounded:            true !default;
+$enable-gradients:          true !default;
+$enable-transitions:        true !default;
+$enable-hover-media-query:  true !default;
+$enable-grid-classes:       true !default;
+$enable-print-styles:       true !default;

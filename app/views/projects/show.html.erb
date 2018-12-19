@@ -1,8 +1,49 @@
-  <section class='proj'>
+<section class='proj'>
+
     <p>
       <div class='proj'>
-        <p class='headingText'><%= @project.name %></p>
+        <p class='projectName'><%= @project.name %></p>
+        <p><%= @project.investigators %></p>
+        <p><%= @project.start_date %></p>
+        <p><%= @project.brief_summary %></p>
+        <p><a target='_blank' href="<%= @project.url %>"><%= @project.url %></a></p>
+        <p class='projLabel'>Description:</p>
+        <p><%= @project.description %></p>
+        <p class='projLabel'>Study Selection Criteria:</p>
+        <p><%= @project.study_selection_criteria %></p>
+        <p class='projLabel'>Contact:</p>
+        <% if @project.contact_url %>
+          <p><a target='_blank' href="<%= @project.contact_url %>"><%= @project.contact_info %></a></p>
+        <% else %>
+          <p><%= @project.contact_info %></p>
+        <% end %>
       </div>
     </p>
-  </section>
+
+    <% if @project.data_available %>
+      <div class='projectData'>
+        <p>Analytic data resulting from this investigation are available to query in the AACT database in the <%= @project.schema_name %> schema. Data are also available for download:</p>
+        <% if !@project.attachments.empty? %>
+          <% @project.attachments.each do |a| %>
+            <p>
+              <a href='/attachments/<%= a.id %>'>
+                <%= a.file_name %>
+              </a>
+            </p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class='proj'>
+      <% if @project.image %>
+        <a href='/attachments/<%= @project.image.id %>'>
+          <p class='headingImage' align="middle">
+          <%= image_tag url_for(:controller => "attachments", :action => "show",:id => @project.image.id) %>
+          </p>
+        </a>
+      <% end %>
+    </div>
+
+</section>
 

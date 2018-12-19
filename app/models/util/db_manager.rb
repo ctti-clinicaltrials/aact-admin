@@ -2,7 +2,7 @@ require 'open3'
 module Util
   class DbManager
 
-    attr_accessor :con, :stage_con, :pub_con, :event
+    attr_accessor :con, :pub_con, :event
 
     def initialize(params={})
       if params[:event]
@@ -13,8 +13,8 @@ module Util
     end
 
     def public_db_accessible?
-      result=Public::Study.connection.execute("select count(*) from information_schema.role_table_grants where grantee='PUBLIC' and table_schema='ctgov';").first["count"]
-      result.to_i > 0
+      result=Public::Study.connection.execute("select datconnlimit from pg_database where datname='aact';").first["datconnlimit"].to_i > 0
+      # The AACT DBManager (in aact app) temporarily restricts access to the db (allowed connections set to zero) during db restore.
     end
 
     def run_command_line(cmd)
@@ -39,10 +39,6 @@ module Util
 
     def con
       @con ||= ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
-    end
-
-    def stage_con
-      @stage_con ||= ActiveRecord::Base.establish_connection(ENV["AACT_STAGE_DATABASE_URL"]).connection
     end
 
     def pub_con

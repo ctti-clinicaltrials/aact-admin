@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
-@import "variables";
-@import "library";
+@import "../base/variables";
+@import "../base/library";
 
 span.enum {
   color: red;
@@ -40,10 +40,12 @@ main {
   visibility: hidden;
 }
 
-#toggle:checked ~ #expand {
+#hintToggle:checked ~ #expand {
   height: 620px;
+  font-size: 1.2rem;
 }
-#toggle:checked {
+
+#hintToggle:checked ~ label::before {
   content: "Hide Hints";
 }
 
@@ -64,11 +66,12 @@ label {
 label:hover {
   color: #000;
 }
-label::before {
+#hintToggle:label::before {
   font-family: Roboto, monaco, monospace;
   font-weight: bold;
   font-size: 16px;
   color: white;
+  content: "View Hints";
   text-align: left;
   padding-top: 4px;
   padding-left: 10px;
@@ -77,6 +80,8 @@ label::before {
   width: 86px;
   height: 26px;
   margin-right: 3px;
+  @include box-shadow(4px 4px 12px $light-grey);
+  background: radial-gradient(ellipse at center, #CCC 50%, transparent 50%);
   background: #008aa1;
 }
 

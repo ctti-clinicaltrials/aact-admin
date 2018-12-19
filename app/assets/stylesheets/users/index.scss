@@ -1,0 +1,24 @@
+@import "../base/variables";
+@import "../base/library";
+
+.download {
+    margin-top: 0.2rem;
+    margin-right: 0.5rem;
+    color: black;
+    float: left;
+    font-size: 1.8rem;
+}
+
+.userOptions {
+  font-size: 1.8rem;
+  font-weight: normal;
+  color: $tertiary;
+  float: right;
+}
+
+#userTable {
+  font-size: 1.2rem;
+  width: 100%;
+  align: center;
+}
+

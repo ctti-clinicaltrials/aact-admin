@@ -1,14 +1,53 @@
- <h3>AACT 4.1.0 <i>(August 28, 2018)</i></h3>
+ <h3>AACT 4.1.0 <i>(December 24, 2018)</i></h3>
 
-  <h5>Monitor Database Activity</h5>
-  <p>A process now records the total number of times each username submits a call to the public database. Currently, the process only collects information about the number of times a user makes a call to the database; it does not track the actual queries. The process uses a shell script to parse the public database logs every Sunday, counts the number of times each user posted a database event and saves this information to the db_user_activities table in the aact_admin database.</p>
+ <h5>Implement New Feature: <i>AACT Projects</i></h5>
+ <p>The AACT database now provides data collected & developed in the execution of previous AACT-based research. By providing this information within the AACT database, users can directly query datasets (in the context of current ClinicalTrials.gov data) that support published conclusions or provide utility while investigating clinical trials.</p>
 
-  <h5>Four New Individual Participant Data (IPD) Columns Added to the Studies Table</h5>
-  <p>Until now, the AACT database has provided two of the six data elements related to individual participant data (IPD) sharing: 1) a yes/no value indicating whether the study planned to share this information and 2) a description of the plan. On August 24, 2018, the National Library of Medicine (NLM) added the other four IPD-related attributes to the ClinicalTrials.gov API, so they are now available in the Studies table of the AACT database. </p>
+ <p>Database schemas are used to differentiate project-related data from ClinicalTrials.gov data. Data from ClinicalTrial.gov remain available in the ctgov schema and each project has a database schema in which the datasets for that project are available. All project schemas are prefixed with 'proj_'.  Users of the live AACT database have immediate access to this information.</p>
 
-  <h5>CalculatedValues.has_us_facility Now Includes US Territories</h5>
-  <p>The 'has_us_facility' value saved to the CalculatedValues table is now set to 'true' for studies that have at least one facility in the United States or a US Territory ('Guam', 'Virgin Islands (U.S.)', 'American Samoa', 'Puerto Rico', 'Northern Mariana Islands', 'Wake Island' & 'Johnston Atoll'). The decision to include US Territories in the criteria used to determine this value was based on NIH's <a target='_blank' href='https://prsinfo.clinicaltrials.gov/ACT_Checklist.pdf'>'Checklist for Evaluating Whether a Clinical Trial or Study is an Applicable Clinical Trial (ACT) Under 42 CFR 11.22(b) for Clinical Trials Initiated on or After January 18, 2017'</a>.</p>
+ <p>Datasets from the following three AACT-based research projects have been made available in this release:<p>
+  <ul class='regularText'>
+    <li>
+      <p>
+      <b>proj_results_reporting: </b><a href="https://scholars.duke.edu/display/pub1075763" target='_blank'>Anderson ML, Chiswell K, Peterson ED, Tasneem A, Topping J, Califf RM. Compliance with results reporting at ClinicalTrials. gov. New England Journal of Medicine. 2015 Mar 12;372(11):1031-9.</a>
+      </p>
+    </li>
+    <li>
+      <p><b>proj_cdek_standard_orgs: </b><a href="http://dx.doi.org/10.1101/474189" target='_blank'>Griesenauer R, Schillebeeck C, Kinch MS. CDEK: Clinical Drug Experience Knowledgebase. bioRxiv  The Preprint Server for Biology. 2018 November 19</a>
+      </p>
+    </li>
+    <li>
+      <p>
+      <b>proj_tag_nephrology: </b><a href="https://www.ncbi.nlm.nih.gov/pubmed/24315119" target='_blank'>Inrig JK, Califf RM, Tasneem A, Vegunta RK, Molina C, Stanifer JW, Chiswell K, Patel UD. The landscape of clinical trials in nephrology: a systematic review of Clinicaltrials. gov. American Journal of Kidney Diseases. 2014 May 1;63(5):771-80.</a>
+      </p>
+    </li>
+  </ul>
+  <p>Projects are described on the AACT website <a href='/projects' target='_blank'>Projects Page</a>.</p>
 
-  <h5>Automoatically Delete List of Daily Database Copies on the First of Each Month</h5>
-  <p>After the full database refresh that happens on the first of each month, we delete the previous month's set of daily static database copies and pipe-delimited file sets. Until now, this process has been manual. A process has been implemented to automatically remove these files on the first of the month.</p>
+  <p>This feature will continue to be developed. We welcome your feedback. Please <a href="mailto:ctti-aact@duke.edu?subject=AACT Projects Question/Suggestion">email us</a> with questions and suggestions.</p>
+
+  <p>This feature has been implemented as a separate Ruby on Rails application. AACT is now comprised of 3 applications: 1) AACT Core, 2) AACT Admin & 3) AACT Projects.  All code for these three components is publicly available in <a href='https://github.com/ctti-clinicaltrials/aact-proj' target='_blank'>github</a>. Note: Implementing this feature required some changes to the way ClinicalTrials.gov data is loaded into AACT. Details about these changes are available upon <a href="mailto:ctti-aact@duke.edu?subject=AACT: Request info about 4.1.0 load procedure">request</a>.</p>
+
+  <h5>2010 & 2016 MeSH Terms Saved to Live Database in 'mesh_archive' Schema</h5>
+  <p>To facilitate access to older sets of MeSH terms (which some projects used), a new schema named mesh_archive has been added to the live AACT database. Tables in this schema are named yYYYY_mesh_terms where YYYY represents the anual version of that set of terms. For example, the 2010 version of MeSH terms are available in mesh_archive.y2010_mesh_terms.</p>
+
+  <h5>Three New Columns in Calculated_Values Table that Provide Number of Intended Outcome Measures</h5>
+  <p>The Calculated_Values table has 3 new columns that provide the number of primary, secondary & other outcome measures:</p>
+  <ul class='regularText'>
+    <li>number_of_primary_outcomes_to_measure</li>
+    <li>number_of_secondary_outcomes_to_measure</li>
+    <li>number_of_other_outcomes_to_measure</li>
+  </ul>
+  <p>These are integer columns. Values are calculated by summing the number of rows in the design_outcomes table per study where outcome_type is primary/secondary/other.</p>
+
+  <h5>Fix Formatting of Data Dictionary Pagination</h5>
+  <p>The pagination numbers at the bottom of the Data Dictionary table were scrunched together. This has been fixed.</p>
+
+  <h5>Improve Page Displaying List of Users</h5>
+  <p>For AACT Admins Only: The AACT website page which lists information about all users has been enhanced; the information is now sortable & the table includes pagination. The option to download user information as a CSV or Excel file is selected, the content of the download only contains information that is of potential interest; attributes containing encrypted values no longer appear in the file. (This page is only accessible to AACT administrators.) </p>
+
+  <h5>Assign All Database Users to a Read_Only Role</h5>
+  <p>To simplify the management of user database accounts, we have created a role named <i>'read_only'</i> in the AACT database and assign all AACT users to this role. Now we are able to grant/revoke privileges and define the search_path for this one role rather than having to manage these parameters for each individual database user.</p>
+
+
 

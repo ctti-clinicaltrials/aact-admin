@@ -1,5 +1,6 @@
-@import "variables";
-@import "library";
+@import "../base/variables";
+@import "../base/library";
+
 section.pointsToConsider {
   background-color: $white;
   padding-bottom: 400px;

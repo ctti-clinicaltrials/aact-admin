@@ -1,18 +1,20 @@
 <section id='tableDictionary' class='tableDictionary'>
+<main>
   <h2>AACT Tables</h2>
-  <main>
 
   <p>The list below describes the <%= @tables.size %> study-related tables in the AACT database and provides current row counts for each.</p>
 
   <table class='regularDisplay'>
-    <tr>
-      <th class='tableDictionaryHeader'>name</th>
-      <th class='tableDictionaryHeader'>row count</th>
-      <th class='tableDictionaryHeader'>description</th>
-      <th class='tableDictionaryHeader'>db section</th>
-      <th class='tableDictionaryHeader'>rows per study</th>
-    </tr>
-    <tbody>
+    <thead>
+      <tr>
+        <th class='tableDictionaryHeader'>Name</th>
+        <th class='tableDictionaryHeader'>Row Count</th>
+        <th class='tableDictionaryHeader'>Description</th>
+        <th class='tableDictionaryHeader'>DB Section</th>
+        <th class='tableDictionaryHeader'>Rows per Study</th>
+      </tr>
+      </thead>
+      <tbody>
         <% @tables.each do |hash| %>
             <tr>
               <td class='tableName'><%= hash['table'] %></td>
@@ -22,8 +24,7 @@
               <td><%= hash['rows per study'] %></td>
             </tr>
         <% end %>
-    </tbody>
-
+      </tbody>
   </table>
-  </main>
+</main>
 </section>

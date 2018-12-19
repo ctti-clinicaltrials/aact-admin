@@ -1,5 +1,5 @@
-@import "variables";
-@import "library";
+@import "../base/variables";
+@import "../base/library";
 
 .sanityCheckSection {
   @include display-flex;

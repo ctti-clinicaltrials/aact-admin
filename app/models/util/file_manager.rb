@@ -114,7 +114,7 @@ module Util
 
     def todays_db_activity_file
       date_stamp=Time.zone.now.strftime('%Y%m%d')
-      "#{Rails.public_path}/other/#{date_stamp}_user_activity.txt"
+      "#{Rails.public_path}/static/other/#{date_stamp}_user_activity.txt"
     end
 
     def remove_todays_user_backup_tables

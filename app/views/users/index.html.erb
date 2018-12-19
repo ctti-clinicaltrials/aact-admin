@@ -1,42 +1,55 @@
-<%=  stylesheet_link_tag "users/users" %>
-<div class="wrap">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
 
-  <p>
-  Download:
-  <%= link_to "CSV", users_path(format: "csv") %> |
-  <%= link_to "Excel", users_path(format: "xls") %>
-</p>
-  <div class="users">
-    <h4> <%=number_with_delimiter(@user_count, :delimiter => ',') %> AACT Users</h4>
+<section>
+  <div class="container">
+    <h3><%=number_with_delimiter(@user_count, :delimiter => ',') %> AACT Users</h3>
 
-    <table id='users' class='table dataTable'>
+    <div class='userOptions'>
+      <p class='download'>Download:</p>
+        <%= link_to "CSV", users_path(format: "csv"), :class => 'userOptions' %>
+        <p class='download'>&nbsp;&nbsp;&nbsp;&nbsp;</p> <%= link_to "Excel", users_path(format: "xls"), :class => 'userOptions' %>
+    </div>
 
-        <tr>
-            <th>name</th>
-            <th>email</th>
-            <th>username</th>
-            <th>confirmed</th>
-            <th>DB activity</th>
-            <th>last db activity</th>
-            <th>last web sign-in</th>
-        </tr>
+    <div class='shadowContainer'>
+      <table id='userTable'
+         data-toolbar="#toolbar"
+         data-toggle="table"
+         data-pagination="true"
+         data-show-toggle="true"
+         data-show-columns="true"
+         data-sort-order="name"
+         class='table-striped table-responsive table-hover table-bordered regularDisplay'>
 
-        <tbody class='users'>
-          <% @users.each do |user| %>
+          <thead>
             <tr>
-              <td><%= user.full_name %></td>
-              <td><%= user.email %></td>
-              <td><%= user.username %></td>
-              <td><%= user.display_confirmed_at %></td>
-              <td align='center'><%= user.db_activity %></td>
-              <td><%= user.display_last_db_activity %></td>
-              <td><%= user.display_last_sign_in_at %></td>
+              <th data-sortable='true' data-field='last_name'>Name</th>
+              <th data-sortable='true' data-field='email'>Email</th>
+              <th data-sortable='true' data-field='username'>UserName</th>
+              <th data-sortable='true' data-field='display_confirmed_at'>Confirmed</th>
+              <th data-sortable='true' data-field='db_activity'>DB Activity</th>
+              <th data-sortable='true' data-field='display_last_dbactivity'>Last DB Activity</th>
             </tr>
-          <% end %>
-       </tbody>
+          <thead>
 
-    </table>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.full_name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.username %></td>
+                <td><%= user.display_confirmed_at %></td>
+                <td align='center'><%= user.db_activity %></td>
+                <td><%= user.display_last_db_activity %></td>
+              </tr>
+            <% end %>
+         </tbody>
+      </table>
+    </div>
 
   </div>
 
-</div>
+</section>

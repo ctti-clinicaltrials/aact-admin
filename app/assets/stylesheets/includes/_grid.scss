@@ -1,5 +1,6 @@
-@import "variables";
-@import "library";
+@import "../base/variables";
+@import "../base/library";
+
 $max_width: 1080px;
 $gutter_width: 20px;
 $wrap_width: $max-width + ($gutter_width * 2);

@@ -3,15 +3,16 @@
     <div class="basicHero">
       <h3 id='technical_documentation'>Technical Documentation</h3>
     </div>
-    <p>AACT consists of 2 Ruby on Rails applications and a set of PostgreSQL databases.  The two RoR applications are available in github:
+    <p>AACT consists of 3 Ruby on Rails applications and a set of PostgreSQL databases.  The applications are available in github:
 
     <ul class='regularDisplay'>
       <li><b><a target='_blank' href='https://github.com/ctti-clinicaltrials/aact'>AACT Core</a></b> - All code responsible for retrieving data from the ClinicalTrials.gov API, parsing the XML representation of each study and making this info available as a relational database.</li>
       <li><b><a target='_blank' href='https://github.com/ctti-clinicaltrials/aact-admin'>AACT Admin</a></b> - All code that provides supporting features to the database such as this website, user registration and use case .</li>
+      <li><b><a target='_blank' href='https://github.com/ctti-clinicaltrials/aact-proj'>AACT Projects</a></b> - Datasets and detailed information about AACT-based Projects. This also includes the code used to manage all project information and create/populate schemas in the AACT database with project information.</li>
     </ul>
     </p>
 
-   <p>Both applications use Ruby 2.4.0, Rails 4.2 and PostgreSQL. The live AACT database available to the public is hosted on a DigitalOcean server while all data process is performed on a server hosted at Duke University OIT.</p>
+   <p>All three applications use Ruby 2.4.0 and PostgreSQL. AACT Core & Admin are on Rails 4.2 while Projects is on Rails 5.2. The live AACT database which is available to the public is hosted on a DigitalOcean server while all data process is performed on a server hosted at Duke University OIT.</p>
 
     <%= render 'faq/home' %>
 

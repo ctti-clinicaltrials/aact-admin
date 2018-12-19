@@ -1,0 +1,16 @@
+@import "../base/variables";
+@import "../base/library";
+
+a.user-info {
+	text-decoration: none;
+  font-size: 2rem;
+  color: #008aa1;
+  font-family: "Roboto";
+  padding: 0.4rem;
+  line-height: 1.5;
+  font-weight: 100;
+}
+
+.fixFont {
+   font-size: 1.8rem !important;
+}
