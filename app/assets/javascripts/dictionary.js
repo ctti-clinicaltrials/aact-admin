@@ -26,6 +26,7 @@ $(function() {
             { type: 'control', deleteButton: false, editButton: false },
             { name: 'nlm doc',            width: 38, align: 'center' },
             { name: 'db section',         type: "text", width: 75 },
+            { name: 'db schema',          type: "text", width: 75 },
             { name: 'table',              type: "text", width: 150 },
             { name: 'column',             type: "text", width: 180 },
             { name: 'data type',          type: "text", width: 70 },

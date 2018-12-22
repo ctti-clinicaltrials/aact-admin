@@ -19,6 +19,7 @@ class DataDefinition < ActiveRecord::Base
       row = Hash[[header, data.row(i)].transpose]
       if !row['table'].nil? and !row['column'].nil?
         new(:db_section=>row['db section'].try(:downcase),
+            :db_schema=>row['db schema'].try(:downcase),
             :table_name=>row['table'].try(:downcase),
             :column_name=>row['column'].try(:downcase),
             :data_type=>row['data type'].try(:downcase),
@@ -47,15 +48,6 @@ class DataDefinition < ActiveRecord::Base
         puts ">>>>  could not get row count for #{row.table_name}"
       end
     }
-    # Studies table is an exception - primary key is nct_id
-    #pub_con=Public::PublicBase.connection
-    #row=pub_con.where("table_name='studies' and column_name='nct_id'").first
-    #return if row.nil?
-    #results=pub_con.execute("select count(*) from #{row.table_name}")
-    #row.row_count=results.getvalue(0,0) if results.ntuples == 1
-    #row.save
-    #pub_con.disconnect!
-    #pub_con=nil
   end
 
   def self.single_study_tables

@@ -3,7 +3,7 @@
 --
 
 -- Dumped from database version 10.5
--- Dumped by pg_dump version 10.5
+-- Dumped by pg_dump version 11.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -20,20 +20,6 @@ SET row_security = off;
 --
 
 CREATE SCHEMA ctgov;
-
-
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 SET default_tablespace = '';
@@ -95,7 +81,8 @@ CREATE TABLE ctgov.data_definitions (
     row_count integer,
     enumerations json,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    db_schema character varying
 );
 
 
@@ -982,4 +969,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180427144951');
 INSERT INTO schema_migrations (version) VALUES ('20180813174540');
 
 INSERT INTO schema_migrations (version) VALUES ('20181108174440');
+
+INSERT INTO schema_migrations (version) VALUES ('20181208174440');
 
