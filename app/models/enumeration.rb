@@ -6,7 +6,7 @@ require 'active_support/all'
     end
 
     def populate
-      con=ActiveRecord::Base.connection
+      con=Public::PublicBase.connection
       enums.each{|array|
         begin
           table_name=array.first
