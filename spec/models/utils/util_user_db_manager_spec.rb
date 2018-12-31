@@ -40,7 +40,7 @@ describe Util::UserDbManager do
       subject.run_command_line('rm public/static')  # problem: symbolic link it depends on doesn't exist
       subject.backup_user_info
       expect(UserEvent.count).to eq(1)
-      expect(UserEvent.first.event_type).to eq('backup problem')
+      expect(UserEvent.first.event_type).to eq('backup users problem')
       subject.run_command_line('ln -s /aact-files public/static') # now recreate the symbolic link
     end
   end
