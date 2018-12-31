@@ -8,7 +8,7 @@ class DataDefinition < ActiveRecord::Base
   def self.populate(data=self.default_data_definitions)
     self.destroy_all
     self.populate_from_file(data)
-    self.populate_row_counts
+    #self.populate_row_counts
     Enumeration.populate
   end
 
