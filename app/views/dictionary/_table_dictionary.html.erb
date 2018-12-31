@@ -7,20 +7,22 @@
   <table class='regularDisplay'>
     <thead>
       <tr>
+        <th class='tableDictionaryHeader'>Schema</th>
         <th class='tableDictionaryHeader'>Name</th>
         <th class='tableDictionaryHeader'>Row Count</th>
         <th class='tableDictionaryHeader'>Description</th>
-        <th class='tableDictionaryHeader'>DB Section</th>
+        <th class='tableDictionaryHeader'>Domain</th>
         <th class='tableDictionaryHeader'>Rows per Study</th>
       </tr>
       </thead>
       <tbody>
         <% @tables.each do |hash| %>
             <tr>
+              <td class='tableName'><%= hash['db schema'] %></td>
               <td class='tableName'><%= hash['table'] %></td>
               <td class='numberType'><%= hash['row count'] %></td>
               <td><%= hash['description'] %></td>
-              <td><%= hash['db section'] %></td>
+              <td><%= hash['domain'] %></td>
               <td><%= hash['rows per study'] %></td>
             </tr>
         <% end %>
