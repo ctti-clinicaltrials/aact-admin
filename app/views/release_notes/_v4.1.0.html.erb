@@ -1,9 +1,9 @@
  <h3>AACT 4.1.0 <i>(January 9, 2018)</i></h3>
 
  <h5>Implement New Feature: <i>AACT Projects</i></h5>
- <p>The AACT database now provides data collected & developed in the execution of previous AACT-based research. By providing this information within the AACT database, users can directly query datasets (in the context of current ClinicalTrials.gov data) that support published conclusions or provide utility while investigating clinical trials.</p>
+ <p>The AACT database now includes a set of supplemental schemas that present datasets collected & curated during previous AACT-based research. By including these data within the AACT database, the public can benefit from work that has been performed by other investigators. Since the information is directly accessible, it may be incorporated into queries on current clinical trials. It also serves to make previous research more transparent and help AACT users better understand assertions made by the previous investigators.</p>
 
- <p>Database schemas are used to differentiate project-related data from ClinicalTrials.gov data. Data from ClinicalTrial.gov remain available in the ctgov schema and each project has a database schema in which the datasets for that project are available. All project schemas are prefixed with 'proj_'.  Users of the live AACT database have immediate access to this information.</p>
+ <p>Database schemas are used to differentiate project-related data from ClinicalTrials.gov data. Data from ClinicalTrial.gov remain available in the ctgov schema and each project has a database schema in which the datasets for that project are available. All project schemas are prefixed with 'proj_'.  With the release of AACT 4.1.0, all users of the live AACT database have immediate access to this information.</p>
 
  <p>Datasets from the following three AACT-based research projects have been made available in this release:<p>
   <ul class='regularText'>
@@ -22,16 +22,16 @@
       </p>
     </li>
   </ul>
-  <p>Projects are described on the AACT website <a href='/projects' target='_blank'>Projects Page</a>.</p>
+  <p>Projects are described on the AACT website <a href='/projects' target='_blank'>Projects Page.</a> Definitions for each project's tables & columns are also defined in the <a href='/data_dictionary' target='_blank'>Data Dictionary.</a></p>
 
-  <p>This feature will continue to be developed. We welcome your feedback. Please <a href="mailto:ctti-aact@duke.edu?subject=AACT Projects Question/Suggestion">email us</a> with questions and suggestions.</p>
+  <p>This feature will continue to be developed and your feedback is welcomed. Please <a href="mailto:ctti-aact@duke.edu?subject=AACT Projects Question/Suggestion">email the AACT team</a> with questions and suggestions.</p>
 
-  <p>This feature has been implemented as a separate Ruby on Rails application. AACT is now comprised of 3 applications: 1) AACT Core, 2) AACT Admin & 3) AACT Projects.  All code for these three components is publicly available in <a href='https://github.com/ctti-clinicaltrials/aact-proj' target='_blank'>github</a>. Note: Implementing this feature required some changes to the way ClinicalTrials.gov data is loaded into AACT. Details about these changes are available upon <a href="mailto:ctti-aact@duke.edu?subject=AACT: Request info about 4.1.0 load procedure">request</a>.</p>
+  <p>This feature has been implemented as a separate Ruby on Rails application. AACT is now comprised of 3 applications: 1) AACT Core, 2) AACT Admin & 3) AACT Projects.  All code for these three components is publicly available in <a href='https://github.com/ctti-clinicaltrials/aact-proj' target='_blank'>github.</a> Note: Implementing this feature required some changes to the way ClinicalTrials.gov data is loaded into AACT. Details about these changes are available upon <a href="mailto:ctti-aact@duke.edu?subject=AACT: Request info about 4.1.0 load procedure">request.</a></p>
 
   <h5>2010 & 2016 MeSH Terms Saved to Live Database in 'mesh_archive' Schema</h5>
-  <p>To facilitate access to older sets of MeSH terms (which some projects used), a new schema named mesh_archive has been added to the live AACT database. Tables in this schema are named yYYYY_mesh_terms where YYYY represents the anual version of that set of terms. For example, the 2010 version of MeSH terms are available in mesh_archive.y2010_mesh_terms.</p>
+  <p>The National Library of Medicine (NLM) updates the MeSH thesaurus each year. To facilitate access to the set of terms used by previous research projects, a new schema named mesh_archive has been added to the live AACT database. Tables in this schema are named yYYYY_mesh_terms where YYYY identifies the version of that set of terms. For example, the 2010 set of MeSH terms is available in mesh_archive.y2010_mesh_terms.</p>
 
-  <h5>Three New Columns in Calculated_Values Table that Provide Number of Intended Outcome Measures</h5>
+  <h5>Three New Columns in Calculated_Values Table Provide 'Number of Intended Outcome Measures'</h5>
   <p>The Calculated_Values table has 3 new columns that provide the number of primary, secondary & other outcome measures:</p>
   <ul class='regularText'>
     <li>number_of_primary_outcomes_to_measure</li>
@@ -40,14 +40,24 @@
   </ul>
   <p>These are integer columns. Values are calculated by summing the number of rows in the design_outcomes table per study where outcome_type is primary/secondary/other.</p>
 
-  <h5>Fix Formatting of Data Dictionary Pagination</h5>
-  <p>The pagination numbers at the bottom of the Data Dictionary table were scrunched together. This has been fixed.</p>
+
+  <h5>Changes Were Made to the Data Dictionary</h5>
+  <ul class='regularText'>
+    <li>Data Dictionary Columns Added & Removed</li>
+    <p>The 'Row Count' & 'DB Section' columns have been removed from the <a href='/data_dictionary' target='_blank'>data dictionary</a> because this information is displayed further down on the same page in the section that defines AACT tables. (The information is table-specific, not column specific, so belongs in the section that describes the tables.) A column has been added to the data dictionary to display the database schema name. Although the schema name is also table-specific (not column-specific), it is presented in the data dictionary because, as a searchable column, it can be used to filter on all rows associated with a certain schema/project.</p>
+
+    <li>Project Tables/Columns Information Added</li>
+    <p>The data dictionary now includes rows to describe all project-related tables and columns.</p>
+
+    <li>Pagination Formatting Fixed</li>
+    <p>The pagination numbers at the bottom of the data dictionary table were scrunched together. This has been fixed.</p>
+  </ul>
 
   <h5>Redesign 'Registered Users' Page so Info can be Sorted, Exported, Paginated, & Presents More Concisely</h5>
   <p>For AACT Admins Only: The AACT website page which lists information about all users has been enhanced; the information is now sortable & the table includes pagination. The option to download user information as a CSV or Excel file is selected, the content of the download only contains information that is of potential interest; attributes containing encrypted values no longer appear in the file. (This page is only accessible to AACT administrators.) </p>
 
   <h5>Assign All Database Users to a Read_Only Role</h5>
-  <p>To simplify the management of user database accounts, we have created a role named <i>'read_only'</i> in the AACT database and assign all AACT users to this role. Now we are able to grant/revoke privileges and define the search_path for this one role rather than having to manage these parameters for each individual database user.</p>
+  <p>To simplify the management of user database accounts, we have created a role named <i>'read_only'</i> in the AACT database and now assign all AACT users to this role. With this change, we are able to grant/revoke privileges to/from this one role rather than having to do it for each individual database user. (The search path must be specified for each individual user however, since it is not inheritable via the associated role.)</p>
 
 
 
