@@ -16,6 +16,7 @@ class PagesController < ApplicationController
     fpm=Util::FilePresentationManager.new
     @support_schema_diagram=fpm.support_schema_diagram
     @admin_schema_diagram=fpm.admin_schema_diagram
+    @proj_schema_diagram=fpm.proj_schema_diagram
     @schema_diagram=fpm.schema_diagram
     @data_dictionary=fpm.data_dictionary
     @table_dictionary=fpm.table_dictionary
@@ -27,6 +28,7 @@ class PagesController < ApplicationController
     @process_flow_diagram=fpm.process_flow_diagram
     @support_schema_diagram=fpm.support_schema_diagram
     @admin_schema_diagram=fpm.admin_schema_diagram
+    @proj_schema_diagram=fpm.proj_schema_diagram
     @schema_diagram=fpm.schema_diagram
     @data_dictionary=fpm.data_dictionary
     @table_dictionary=fpm.table_dictionary
@@ -37,6 +39,7 @@ class PagesController < ApplicationController
     @process_flow_diagram=fpm.process_flow_diagram
     @support_schema_diagram=fpm.support_schema_diagram
     @admin_schema_diagram=fpm.admin_schema_diagram
+    @proj_schema_diagram=fpm.proj_schema_diagram
     @schema_diagram=fpm.schema_diagram
     @data_dictionary=fpm.data_dictionary
     @table_dictionary=fpm.table_dictionary
@@ -46,6 +49,7 @@ class PagesController < ApplicationController
     fpm=Util::FilePresentationManager.new
     @support_schema_diagram=fpm.support_schema_diagram
     @admin_schema_diagram=fpm.admin_schema_diagram
+    @proj_schema_diagram=fpm.proj_schema_diagram
     @schema_diagram=fpm.schema_diagram
     @data_dictionary=fpm.data_dictionary
     @table_dictionary=fpm.table_dictionary

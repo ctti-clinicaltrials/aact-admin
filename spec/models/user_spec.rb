@@ -152,7 +152,7 @@ describe User do
       hostname: ENV['AACT_PUBLIC_HOSTNAME'],
       database: ENV['AACT_PUBLIC_DATABASE_NAME'],
       username: user.username,
-    ).connection}.to raise_error(ActiveRecord::NoDatabaseError)
+    ).connection}.to raise_error(PG::ConnectionBad)
   end
 
   it "isn't accepted if special char in username" do
@@ -171,8 +171,8 @@ describe User do
         password: user.password
       ).connection
     rescue => e
-      expect(e.class).to eq(ActiveRecord::NoDatabaseError)
-      expect(e.message).to eq("FATAL:  role \"rspec!_test\" does not exist\n")
+      expect(e.class).to eq(PG::ConnectionBad)
+      expect(e.message).to eq("FATAL:  password authentication failed for user \"rspec!_test\"\n")
     end
   end
 

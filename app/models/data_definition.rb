@@ -18,13 +18,14 @@ class DataDefinition < ActiveRecord::Base
     (2..data.last_row).each do |i|
       row = Hash[[header, data.row(i)].transpose]
       if !row['table'].nil? and !row['column'].nil?
-        new(:db_section=>row['db section'].try(:downcase),
-            :table_name=>row['table'].try(:downcase),
-            :column_name=>row['column'].try(:downcase),
-            :data_type=>row['data type'].try(:downcase),
-            :source=>row['source'].try(:downcase),
-            :ctti_note=>row['CTTI note'],
-            :nlm_link=>row['nlm doc'],
+        new(:db_section   => row['db section'].try(:downcase),
+            :db_schema    => row['db schema'].try(:downcase),
+            :table_name   => row['table'].try(:downcase),
+            :column_name  => row['column'].try(:downcase),
+            :data_type    => row['data type'].try(:downcase),
+            :source       => row['source'].try(:downcase),
+            :ctti_note    => row['CTTI note'],
+            :nlm_link     => row['nlm doc'],
            ).save!
       end
     end
@@ -36,26 +37,17 @@ class DataDefinition < ActiveRecord::Base
     populate_from_file if rows.size==0
     rows.each{|row|
       begin
-        if row.table_name=='studies'
-          row.row_count=Public::Study.count
-        else
-          results=Public::PublicBase.connection.execute("select count(*) from #{row.table_name}")
-          row.row_count=results.getvalue(0,0) if results.ntuples == 1
-        end
+        results=Public::PublicBase.connection.execute("select count(*) from #{row.table_name}")
+        row.row_count=results.getvalue(0,0) if results.ntuples == 1
         row.save
       rescue
         puts ">>>>  could not get row count for #{row.table_name}"
       end
     }
-    # Studies table is an exception - primary key is nct_id
-    #pub_con=Public::PublicBase.connection
-    #row=pub_con.where("table_name='studies' and column_name='nct_id'").first
-    #return if row.nil?
-    #results=pub_con.execute("select count(*) from #{row.table_name}")
-    #row.row_count=results.getvalue(0,0) if results.ntuples == 1
-    #row.save
-    #pub_con.disconnect!
-    #pub_con=nil
+    # Study table is only one where primary key is NCT_ID, not ID. Determine/save row count separately
+    study_row=where("lower(table_name) = 'studies' and lower(column_name)='nct_id'").first
+    study_row.row_count=Public::Study.count
+    study_row.save!
   end
 
   def self.single_study_tables

@@ -25,12 +25,11 @@ $(function() {
         fields: [
             { type: 'control', deleteButton: false, editButton: false },
             { name: 'nlm doc',            width: 38, align: 'center' },
-            { name: 'db section',         type: "text", width: 75 },
+            { name: 'db schema',          type: "text", width: 70 },
             { name: 'table',              type: "text", width: 150 },
             { name: 'column',             type: "text", width: 180 },
             { name: 'data type',          type: "text", width: 70 },
             { name: 'CTTI note',          type: "text", width: 350 },
-            { name: 'row count',          type: 'text', width: 100, align: 'center' },
             { name: 'enumerations',       type: "text", width: 250 },
             { name: 'source',             type: "text", width: 250 },
         ]

@@ -95,7 +95,7 @@ class DefinitionsController < ApplicationController
   end
 
   def searchable_attribs
-    ['db section', 'table', 'column', 'data type', 'xml source', 'source', 'CTTI note']
+    ['db schema', 'table', 'column', 'data type', 'xml source', 'source', 'CTTI note']
   end
 
 end
