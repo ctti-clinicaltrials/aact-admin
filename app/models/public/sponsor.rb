@@ -1,5 +1,5 @@
 module Public
-  class Sponsor < Public::ProjBase
+  class Sponsor < Public::PublicBase
     #  Note:  Read-only All public data is managed by other apps (aact & aact-proj).
     after_initialize :readonly!
 
