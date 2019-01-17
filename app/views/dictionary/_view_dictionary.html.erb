@@ -2,8 +2,14 @@
 <main>
   <h2>AACT Views & Functions</h2>
 
-  <p>Database views & functions have been provided to facilitate data retrieval. These features are described below. The first table identifies a set of views that provide concatenate sets of values for each study. These views are particularly useful for people who need to generate a spreadsheet that contains one row per study and need to include info that studies often have multiple values, such as conditions. For example, if you need a comma-separated list of the conditions associated with a study, you may get that from the all_conditions view. These views are in the ctgov schema; all include 2 columns: NCT_ID & Names (which contains the concatenated string).</p>
-  <p>A sample query is: select * from ctgov.all_conditions where nct_id='NCT00000146';</p>
+  <p>Database views & functions have been provided to facilitate data retrieval. These features are described below. The first table identifies a set of views that provide concatenate sets of values per study. These views are useful for people who need to generate a spreadsheet that contains one row per study and would like to include info for which studies often have multiple values, such as conditions. For example, if you need a comma-separated list of the conditions associated with a study, you may get that from the all_conditions view. These views are in the ctgov schema; all include 2 columns: NCT_ID & Names. </p>
+  <p>Here is a sample query:</p>
+
+  <pre>
+    <p class='code'>
+      <span class='command-prompt'>aact=# </span><span class='command-entry'>select * from ctgov.all_conditions where nct_id='NCT00000146';</span>
+    </p>
+  </pre>
 
   <table class='regularDisplay'>
     <thead>
@@ -14,47 +20,45 @@
       </tr>
       </thead>
       <tbody>
-        <% @tables.each do |hash| %>
-            <tr>
-              <td class='tableName'>all_conditions</td><td>browse_conditions.mesh_term</td><td>NCT00000146 | Multiple Sclerosis|Neuritis|Optic Neuritis</td>
-            </tr>
-            <tr>
-              <td class='tableName'>all_countries</td><td>countries.name</td><td>NCT00000919 | Italy|Puerto Rico|United States</td>
-            </tr>
-            <tr>
-              <td class='tableName'>all_design_outcomes</td><td>design_outcomes.measure</td><td>NCT00000208 | Drug use|Opiate craving|Withdrawal symptoms</td>
-            </tr>
-            <tr>
-              <td class='tableName'>all_facilities</td><td>facilities.name</td><td>NCT00000403 | University of Arizona Arthritis Center|University of Pittsburgh Medical Center|Arthritis Research Center Foundation|Indiana University Medical Center|Northwestern University Medical Center|University of Alabama at Birmingham</td>
-            </tr>
-            <tr>
-              <td class='tableName'>all_group_types</td><td>design_groups.group_type</td><td>NCT00002569 | Active Comparator|Experimental</td>
-            </tr>
-            <tr>
-              <td class='tableName'>all_id_information</td><td>id_information.id_value</td><td>NCT03803644 | CC-92480-CP-001|U1111-1224-6768</td>
-            </tr>
-            <tr>
-              <td class='tableName'>all_interventions</td><td>browse_interventions.mesh_term</td><td>NCT03802422 | Vitamin B Complex|Hydroxocobalamin|Vitamin B 12|Vitamins</td>
-            </tr>
-            <tr>
-              <td class='tableName'>all_intervention_types</td><td>interventions.intervention_type</td><td>NCT03802994 | Drug|Biological|Other</td>
-            </tr>
-            <tr>
-              <td class='tableName'>all_keywords</td><td>keywords.name</td><td>NCT03801915 | Pancreas and Liver Resections|Recurrence Free Survival|Well Tolerated Agent</td>
-            </tr>
-            <tr>
-              <td class='tableName'>all_primary_outcome_measures</td>design_outcomes.measure (where type='primary')<td></td><td>NCT03802162 | AUCt of D324|AUCt of D797|Cmax of D324|Cmax of D797</td>
-            </tr>
-            <tr>
-              <td class='tableName'>all_secondary_outcome_measures</td><td>design_outcomes.measure (where type='secondary')</td><td>NCT03803397 | Overall Survival|Progression-Free Survival|Tumor Response</td>
-            </tr>
-            <tr>
-              <td class='tableName'>all_sponsors</td><td>sponsors.name</td><td>NCT03803254 | Guangzhou No.12 People's Hospital|Kaiping Central Hospital|Sun Yat-sen University</td>
-            </tr>
-            <tr>
-              <td class='tableName'>all_states</td><td>facilities.state</td><td>NCT03802877 | Alberta|Manitoba|Ontario|Quebec</td>
-            </tr>
-        <% end %>
+        <tr>
+          <td>all_conditions</td><td>browse_conditions.mesh_term</td><td>NCT00000146 | Multiple Sclerosis|Neuritis|Optic Neuritis</td>
+        </tr>
+        <tr>
+          <td>all_countries</td><td>countries.name</td><td>NCT00000919 | Italy|Puerto Rico|United States</td>
+        </tr>
+        <tr>
+          <td>all_design_outcomes</td><td>design_outcomes.measure</td><td>NCT00000208 | Drug use|Opiate craving|Withdrawal symptoms</td>
+        </tr>
+        <tr>
+          <td>all_facilities</td><td>facilities.name</td><td>NCT00000403 | University of Arizona Arthritis Center|University of Pittsburgh Medical Center|Arthritis Research Center Foundation|Indiana University Medical Center|Northwestern University Medical Center|University of Alabama at Birmingham</td>
+        </tr>
+        <tr>
+          <td>all_group_types</td><td>design_groups.group_type</td><td>NCT00002569 | Active Comparator|Experimental</td>
+        </tr>
+        <tr>
+          <td>all_id_information</td><td>id_information.id_value</td><td>NCT03803644 | CC-92480-CP-001|U1111-1224-6768</td>
+        </tr>
+        <tr>
+          <td>all_interventions</td><td>browse_interventions.mesh_term</td><td>NCT03802422 | Vitamin B Complex|Hydroxocobalamin|Vitamin B 12|Vitamins</td>
+        </tr>
+        <tr>
+          <td>all_intervention_types</td><td>interventions.intervention_type</td><td>NCT03802994 | Drug|Biological|Other</td>
+        </tr>
+        <tr>
+          <td>all_keywords</td><td>keywords.name</td><td>NCT03801915 | Pancreas and Liver Resections|Recurrence Free Survival|Well Tolerated Agent</td>
+        </tr>
+        <tr>
+          <td>all_primary_outcome_measures</td>design_outcomes.measure (where type='primary')<td></td><td>NCT03802162 | AUCt of D324|AUCt of D797|Cmax of D324|Cmax of D797</td>
+        </tr>
+        <tr>
+          <td>all_secondary_outcome_measures</td><td>design_outcomes.measure (where type='secondary')</td><td>NCT03803397 | Overall Survival|Progression-Free Survival|Tumor Response</td>
+        </tr>
+        <tr>
+          <td>all_sponsors</td><td>sponsors.name</td><td>NCT03803254 | Guangzhou No.12 People's Hospital|Kaiping Central Hospital|Sun Yat-sen University</td>
+        </tr>
+        <tr>
+          <td>all_states</td><td>facilities.state</td><td>NCT03802877 | Alberta|Manitoba|Ontario|Quebec</td>
+        </tr>
       </tbody>
   </table>
 </main>
