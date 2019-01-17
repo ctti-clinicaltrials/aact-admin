@@ -18,8 +18,8 @@
       <tbody>
         <% @tables.each do |hash| %>
             <tr>
-              <td class='tableName'><%= hash['db schema'] %></td>
-              <td class='tableName'><%= hash['table'] %></td>
+              <td><%= hash['db schema'] %></td>
+              <td><%= hash['table'].downcase %></td>
               <td class='numberType'><%= hash['row count'] %></td>
               <td><%= hash['description'] %></td>
               <td><%= hash['domain'] %></td>
