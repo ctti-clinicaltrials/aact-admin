@@ -1,0 +1,12 @@
+ <h3>AACT 4.1.1 <i>(February 16, 2019)</i></h3>
+
+ <h5>Provide More Detailed Description about CDEK Standard Orgs Project</i></h5>
+ <p>The CDEK Standard Orgs project description that appears on the <a href='/projects' target='_blank'>Projects page</a> of the AACT website had not included information about which organizations were reviewed & curated, and did not provide examples.  This documentation has been modified to better describe this project.</p>
+
+ <h5>Resolve Security Issues Identified by GitHub</h5>
+  <p>Several gems needed to be upgraded to address security vulnerabilities.  These gems include: loofah & rubyzip.</p>
+
+ <h5>Document Set of 'all_' Views Which Provide Concatenated Strings of One-to-Many Values per Study</h5>
+ <p>A set of undocumented views have been in AACT which have the prefix 'all_'. These views provide a string that concatenates all the values of a certain one-to-many relationship per study. The values are delimited with a bar character (|). For example, the study NCT00000146 has 3 rows in the browse_conditions table, so the row for this study in the all_browse_conditions view provides this value: 'Multiple Sclerosis|Neuritis|Optic Neuritis' in the name coumn. These views are useful for people who need to extract a spreadsheet of studies where each row represents one study, and the row includes one-to-many data values. More information about these views can be found near the bottom of the <a href='/data_dictionary#allViewDictionary' target='_blank'>Data Defintions page</a> of the AACT website.</p>
+
+
