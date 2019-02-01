@@ -48,12 +48,14 @@
            <p>aact_admin=# <span style="color:blue;">\q</span></p>
              <p/>
          </li>
-           <li>Now from a terminal session on the server, run psql commands to populate the tables from the backup files:
+         <li>Any user who has a single quote in their name needs it to be 'escaped'.  Edit the file & change every name containing a single quote to a double quote.  For example, <i>Roberto	D'Ambrosio</i> needs to be <i>Roberto	D''Ambrosio</i>
+         </li>
+         <li>Now from a terminal session on the server, run psql commands to populate the tables from the backup files:
              <p style="color:blue;">psql -d aact_admin -h localhost -U ctti -a -f <%= Time.now.strftime("%Y%m%d") %>_aact_users_table.sql</p>
              <p style="color:blue;">psql -d aact_admin -h localhost -U ctti -a -f <%= Time.now.strftime("%Y%m%d") %>_aact_user_events.sql</p>
              <p/>
-           </li>
-           <li>You may also restore the database user accounts on the public database (over on the DigitalOcean server) from here by specifying the name of the public server after the -h option in this command:
+         </li>
+         <li>You may also restore the database user accounts on the public database (over on the DigitalOcean server) from here by specifying the name of the public server after the -h option in this command:
              <p style="color:blue;">psql -d aact -a -U ctti -h aact-db.ctti-clinicaltrials.org -f <%= Time.now.strftime("%Y%m%d") %>_aact_user_accounts.sql </p>
              <p/>
            </li>
