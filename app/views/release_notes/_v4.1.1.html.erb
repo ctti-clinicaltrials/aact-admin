@@ -1,4 +1,4 @@
- <h3>AACT 4.1.1 <i>(March 18, 2019)</i></h3>
+ <h3>AACT 4.1.1 <i>(March 16, 2019)</i></h3>
 
  <h5>Resolve Security Issues Identified by GitHub</h5>
   <p>To address security vulnerabilities detected by github, we upgraded the sprockets, loofah & rubyzip gems. Several other unused gems were removed.</p>
@@ -16,6 +16,8 @@
 
  <h6>Document Set of 'all_' Views</h6>
  <p>We added a table that defines a set of views in the AACT database that had previously been undocumented, all of which have the prefix 'all_'. Information about these views is now available on the <a href='/data_dictionary#allViewDictionary' target='_blank'>Data Defintions</a> page. These 'all_ views' provide concatenated value strings for various one-to-many study relationships. The values are delimited with a bar character (|). For example, the study NCT00000146 has 3 rows in the browse_conditions table, so one row for this study is in the all_browse_conditions view that provides this value: 'Multiple Sclerosis|Neuritis|Optic Neuritis'. These views are useful for those who need to export a spreadsheet of studies where each row represents one study, and the row includes one-to-many data values. More information about these views can be found near the bottom of the <a href='/data_dictionary#allViewDictionary' target='_blank'>Data Defintions</a> page.</p>
+
+ <p>To be consistent, each of these 'all_' views now has a column called 'names' which presents the concatentated list of the values from the table represented by that view. In short - the name of the column containing this concatenated list of values in now 'names' in every one of these views. Previously, some of these views used other names for these columns - for example, the <i>all_conditions</i> view previously used the column name 'conditions' instead of 'names'. If people referenced these undocumented views in the past, they need to be aware that some of these column names have changed.</p>
 
  <h5>Add Enumeration for studies.plan_to_share_ipd</h5>
  <p>We'd like to see what percent of studies plan to share individual patient data (IPD), and how it might change over time, so we added the studies.plan_to_share_ipd attribute to our 'enumerations list'. After each nightly update, we recalculate the ratio/distribution of values found in each attribute in the 'enumerations list' and display this info in the Enumerations column of the <a href='/data_dictionary' target='_blank'>Data Dictionary</a> table. (You need to scroll to the right to see this column.) Twice a month we save the enumerations data so we can monitor how the values in these attributes might change over time. For more information about the Enumerations feature, see <a href='#302enumerations'>v3.0.2 release notes.</a></p>
