@@ -1,55 +1,70 @@
 <span style="display: none;" id="detail_<%= index %>">
     <% unless proj.description.blank? %>
-      <strong class="projectDetails bold">Description:</strong>
+      <strong class="projectDetails bold">Description</strong>
       <br>
-      <pre class='projectDetails'><%= proj.description %></pre>
+      <p class='projectDetails'><%= proj.description %></p>
       <br>
-    <% end %>
-
-    <% unless proj.aact_version.blank? %>
-      <strong class="projectDetails bold">AACT Version:</strong>
-      <br>
-      <pre class='projectDetails'><%= proj.aact_version %></pre>
     <% end %>
 
     <% unless proj.study_selection_criteria.blank? %>
-      <strong class="projectDetails bold">Study Selection Criteria:</strong>
+      <strong class="projectDetails bold">Study Selection Criteria</strong>
       <br>
-      <pre class='projectDetails'><%= proj.study_selection_criteria %></pre>
+      <p class='projectDetails'><%= proj.study_selection_criteria %></p>
     <% end %>
 
     <% unless proj.contact_info.blank? %>
-      <strong class="projectDetails bold">Contact Info:</strong>
       <br>
-      <pre class='projectDetails'><%= proj.contact_info %></pre>
+      <strong class="projectDetails bold">Contact Info</strong>
+      <p class='projectDetails'><%= proj.contact_info %></p>
     <% end %>
 
     <% unless proj.publications.empty? %>
+      <br>
+      <% if proj.publications.size == 1 %>
+        <strong class="projectDetails bold">Publication</strong>
+      <% else %>
+        <strong class="projectDetails bold">Publications</strong>
+      <% end %>
       <% proj.publications.each do |pub| %>
-        <strong class="projectDetails bold">Publications:</strong>
         <br>
-        <pre class='projectDetails'><a href="<%= pub.url %>" target='_blank'><%= pub.citation %></a></pre>
+        <p class='projectDetails'><a href="<%= pub.url %>" target='_blank'><%= pub.citation %></a></p>
       <% end %>
     <% end %>
 
     <% unless proj.datasets.empty? %>
-      <strong class="projectDetails bold">Datasets:</strong>
+      <br>
+      <% if proj.datasets.size == 1 %>
+        <strong class="projectDetails bold">Downloadable Dataset</strong>
+      <% else %>
+        <strong class="projectDetails bold">Downloadable Datasets</strong>
+      <% end %>
+
       <% proj.datasets.each do |ds| %>
-        <br>
         <% if ds.schema_name.blank? %>
- <pre class='projectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %>.</a>  <%= ds.description %> <%= ds.source %></pre>
+<p class='projectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %>.</a>  <%= ds.description %> <%= ds.source %></p>
         <% else %>
- <pre class='projectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %></a> <span>(Available in AACT database: <%= ds.schema_name %>.<%= ds.table_name %>)</span></a> <%= ds.description %> <%= ds.source %></pre>
+<p class='projectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %></a> <span>(Available in AACT database: <%= ds.schema_name %>.<%= ds.table_name %>)</span></a> <%= ds.description %> <%= ds.source %></p>
         <% end %>
       <% end %>
     <% end %>
 
     <% unless proj.attachments.empty? %>
-      <strong class="projectDetails bold">Other Attachments:</strong>
-      <% proj.attachments.each do |a| %>
-        <br>
-          <pre class='projectDetails'><a href="/attachments/<%= a.id %>" target='_blank'><%= a.description %></a></pre>
+      <br>
+      <% if proj.attachments.size == 1 %>
+       <strong class="projectDetails bold">Other Attachment</strong>
+      <% else %>
+        <strong class="projectDetails bold">Other Attachments</strong>
       <% end %>
+      <% proj.attachments.each do |a| %>
+         <p class='projectDetails'><a href="/attachments/<%= a.id %>" target='_blank'><%= a.description %></a></p>
+      <% end %>
+    <% end %>
+
+    <% unless proj.aact_version.blank? %>
+      <br>
+      <strong class="projectDetails bold">AACT Version</strong>
+      <br>
+      <p class='projectDetails'><%= proj.aact_version %></p>
     <% end %>
 
 </span>

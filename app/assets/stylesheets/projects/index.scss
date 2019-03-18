@@ -21,29 +21,27 @@
 }
 
 strong.projectDetails {
+  padding-left: 4rem;
+  padding-right: 4rem;
   font-weight: 700;
   font-size: 1.2rem;
   margin-left: 2rem;
 }
 
-a.projectDetails {
-  color: red;
-}
-
-pre.projectDetails {
-  font-size: 1.2rem;
-  font-family: "Roboto";
-  white-space: pre-wrap;       /* Since CSS 2.1 */
-  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-  white-space: -pre-wrap;      /* Opera 4-6 */
-  white-space: -o-pre-wrap;    /* Opera 7 */
-  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+p.projectDetails {
+  padding-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
   margin-left: 2rem;
   margin-right: 2rem;
+  font-size: 1.2rem;
+  font-family: "Roboto";
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
 
 tr.projectRow {
-  font-size: 1.6rem;
+  font-weight: 400;
 }
 
 .projectName {
