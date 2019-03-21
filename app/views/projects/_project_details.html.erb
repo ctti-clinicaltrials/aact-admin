@@ -12,6 +12,27 @@
       <p class='projectDetails'><%= proj.study_selection_criteria %></p>
     <% end %>
 
+    <% unless proj.faqs.empty? %>
+      <br>
+      <% if proj.faqs.size == 1 %>
+        <strong class="projectDetails bold">FAQ</strong>
+      <% else %>
+        <strong class="projectDetails bold">FAQs</strong>
+      <% end %>
+      <% proj.faqs.each do |faq| %>
+        <br>
+        <% if faq.url %>
+          <p class='projectDetails'><a href="<%= faq.url %>" target='_blank'><%= faq.name %></a></p>
+        <% else %>
+          <p class='projectDetails'><%= faq.name %></p>
+        <% end %>
+        <p class='projectDetails'><%= faq.description %></p>
+        <% if faq.citation %>
+          <p class='projectDetails'><%= faq.citation %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+
     <% unless proj.contact_info.blank? %>
       <br>
       <strong class="projectDetails bold">Contact Info</strong>

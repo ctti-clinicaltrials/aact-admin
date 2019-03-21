@@ -2,6 +2,7 @@ module Proj
   class Project < ActiveRecord::Base
     has_many :attachments,  :dependent => :destroy
     has_many :datasets,     :dependent => :destroy
+    has_many :faqs,         :dependent => :destroy
     has_many :publications, :dependent => :destroy
 
     def image
