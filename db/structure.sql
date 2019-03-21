@@ -228,10 +228,10 @@ ALTER SEQUENCE ctgov.enumerations_id_seq OWNED BY ctgov.enumerations.id;
 CREATE TABLE ctgov.faqs (
     id integer NOT NULL,
     project_id integer,
-    name character varying,
-    url character varying,
+    question character varying,
+    answer text,
     citation character varying,
-    description text,
+    url character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

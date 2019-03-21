@@ -4,10 +4,10 @@ class AddFaqsTable < ActiveRecord::Migration
 
     create_table "ctgov.faqs" do |t|
       t.integer  "project_id"
-      t.string   "name"
-      t.string   "url"
+      t.string   "question"
+      t.text     "answer"
       t.string   "citation"
-      t.text     "description"
+      t.string   "url"
       t.timestamps null: false
     end
 
