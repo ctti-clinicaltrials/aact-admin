@@ -11,6 +11,23 @@
   margin-top: 2rem;
 }
 
+ul.projectDetails {
+  list-style: none;
+  padding-left: 1rem;
+  margin-left: 1rem;
+}
+
+li.faqLine {
+  font-weight:  500;
+  font-size:    1.4rem;
+  padding-left: 4rem;
+}
+
+p.indentProjectDetails {
+  margin-left: 8rem;
+  margin-right: 8rem;
+}
+
 .projects {
   margin-left: 8rem;
   margin-right: 8rem;
@@ -24,7 +41,7 @@ strong.projectDetails {
   padding-left: 4rem;
   padding-right: 4rem;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin-left: 2rem;
 }
 

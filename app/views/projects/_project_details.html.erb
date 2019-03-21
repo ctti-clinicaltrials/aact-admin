@@ -21,14 +21,23 @@
       <% end %>
       <% proj.faqs.each do |faq| %>
         <br>
-        <% if faq.url %>
-          <p class='projectDetails'><a href="<%= faq.url %>" target='_blank'><%= faq.name %></a></p>
-        <% else %>
-          <p class='projectDetails'><%= faq.name %></p>
+        <% if faq.name %>
+          <ul class='projectDetails'>
+            <li class="faqLine">&#9679;&nbsp;&nbsp;<%= faq.name %></strong></li>
+          </ul>
         <% end %>
-        <p class='projectDetails'><%= faq.description %></p>
-        <% if faq.citation %>
-          <p class='projectDetails'><%= faq.citation %></p>
+        <% if faq.description %>
+          <p class='indentProjectDetails'><%= faq.description %></p>
+        <% end %>
+        <% if faq.url && faq.citation %>
+          <p class='indentProjectDetails'><a href="<%= faq.url %>" target='_blank'><%= faq.citation %></a></p>
+        <% else %>
+          <% if faq.url %>
+            <p class='indentProjectDetails'><a href="<%= faq.url %>" target='_blank'><%= faq.url %></a></p>
+          <% end %>
+          <% if faq.citation %>
+            <p class='indentProjectDetails'><%= faq.citation %></p>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
