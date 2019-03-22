@@ -1,49 +1,71 @@
-<section class='proj'>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
 
-    <p>
-      <div class='proj'>
-        <p class='projectName'><%= @project.name %></p>
-        <p><%= @project.investigators %></p>
-        <p><%= @project.start_date %></p>
-        <p><%= @project.brief_summary %></p>
-        <p><a target='_blank' href="<%= @project.url %>"><%= @project.url %></a></p>
-        <p class='projLabel'>Description:</p>
-        <p><%= @project.description %></p>
-        <p class='projLabel'>Study Selection Criteria:</p>
-        <p><%= @project.study_selection_criteria %></p>
-        <p class='projLabel'>Contact:</p>
-        <% if @project.contact_url %>
-          <p><a target='_blank' href="<%= @project.contact_url %>"><%= @project.contact_info %></a></p>
-        <% else %>
-          <p><%= @project.contact_info %></p>
-        <% end %>
-      </div>
-    </p>
+<section>
+  <div id='projectContainer' class='basicHero container'>
 
-    <% if @project.data_available %>
-      <div class='projectData'>
-        <p>Analytic data resulting from this investigation are available to query in the AACT database in the <%= @project.schema_name %> schema. Data are also available for download:</p>
-        <% if !@project.attachments.empty? %>
-          <% @project.attachments.each do |a| %>
-            <p>
-              <a href='/attachments/<%= a.id %>'>
-                <%= a.file_name %>
-              </a>
-            </p>
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
+    <div class='projectHeading'>
+      <h4 class='projName'>Project: <%= @project.name %></h4>
+      <h5><%= @project.investigators %></h5>
 
-    <div class='proj'>
-      <% if @project.image %>
-        <a href='/attachments/<%= @project.image.id %>'>
-          <p class='headingImage' align="middle">
-          <%= image_tag url_for(:controller => "attachments", :action => "show",:id => @project.image.id) %>
-          </p>
-        </a>
-      <% end %>
+      <p>Start Date: <%= @project.start_date %></p>
+      <br>
+      <p>Brief Summary:<%= @project.brief_summary %></p>
+      <br>
+      <p>URL: <a target='_blank' href="<%= @project.url %>"><%= @project.url %></a></p>
     </div>
 
+    <!--  Study Selection Criteria ---------------------------------- -->
+    <% unless @project.study_selection_criteria.blank? %>
+      <strong class="@project bold">Study Selection Criteria</strong>
+      <br>
+      <p class='projectDetails'><%= @project.study_selection_criteria %></p>
+    <% end %>
+
+    <!--  FAQs  ---------------------------------- -->
+    <% unless @project.faqs.empty? %>
+      <br>
+      <% if @project.faqs.size == 1 %>
+        <strong class="projectDetails bold">FAQ</strong>
+      <% else %>
+        <strong class="projectDetails bold">FAQs</strong>
+      <% end %>
+      <% @project.faqs.each do |faq| %>
+        <br>
+        <% if faq.question %>
+          <ul class='projectDetails'>
+            <li class="faqLine">&#9679;&nbsp;&nbsp;<%= faq.question %></strong></li>
+          </ul>
+        <% end %>
+        <% if faq.answer %>
+          <p class='indentProjectDetails'><%= faq.answer %></p>
+        <% end %>
+        <% if faq.url && faq.citation %>
+          <p class='indentProjectDetails'><a href="<%= faq.url %>" target='_blank'><%= faq.citation %></a></p>
+        <% else %>
+          <% if faq.url %>
+            <p class='indentProjectDetails'><a href="<%= faq.url %>" target='_blank'><%= faq.url %></a></p>
+          <% end %>
+          <% if faq.citation %>
+            <p class='indentProjectDetails'><%= faq.citation %></p>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <!--  Contact Info  ---------------------------------- -->
+    <% unless @project.contact_info.blank? %>
+      <br>
+      <strong class="projectDetails bold">Contact Info</strong>
+      <p class='projectDetails'><%= @project.contact_info %></p>
+    <% end %>
+
+    <!--  Overview from Project Details ---------------------------------- -->
+    <%= render :partial => 'project_details', :locals => {:proj => @project} %>
+
+  </div>
 </section>
 

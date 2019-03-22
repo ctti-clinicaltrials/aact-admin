@@ -2,15 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.projLabel {
+h4.projName {
   font-weight: bold;
-  color: red;
-  //font-size: 1.2rem;
 }
 
-.projectName {
-  font-weight: bold;
-  //font-size: 1.2rem;
+div.projectHeading {
+  margin-left: 6rem;
 }
 
 .projectData {
