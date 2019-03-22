@@ -33,7 +33,6 @@ Rails.application.routes.draw do
   get "/install_postgres"     => "postgres_documentation#install_postgres"
   get "/credentials"          => "credentials#show"
 
-  get "/faq"                  => "faq#home"
   get "/admin_run_loads"      => "faq#admin_run_loads"
   get "/admin_remove_user"    => "faq#admin_remove_user"
   get "/admin_add_project"    => "faq#admin_add_project"
