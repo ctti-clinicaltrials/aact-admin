@@ -1,6 +1,6 @@
 <div>
   <% unless proj.description.blank? %>
-    <strong class="projectDetails bold">Description</strong>
+    <p class="projectLabel">Description</p>
     <br>
     <p class='projectDetails'><%= proj.description %></p>
     <br>
@@ -9,9 +9,9 @@
   <% unless proj.publications.empty? %>
     <br>
     <% if proj.publications.size == 1 %>
-      <strong class="projectDetails bold">Publication</strong>
+      <p class="projectLabel">Publication</p>
     <% else %>
-      <strong class="projectDetails bold">Publications</strong>
+      <p class="projectLabel">Publications</p>
     <% end %>
     <% proj.publications.each do |pub| %>
       <br>
@@ -22,9 +22,9 @@
   <% unless proj.datasets.empty? %>
     <br>
     <% if proj.datasets.size == 1 %>
-      <strong class="projectDetails bold">Downloadable Dataset</strong>
+      <p class="projectLabel">Downloadable Dataset</span>
     <% else %>
-      <strong class="projectDetails bold">Downloadable Datasets</strong>
+      <p class="projectLabel">Downloadable Datasets</p>
     <% end %>
 
     <% proj.datasets.each do |ds| %>
@@ -39,19 +39,28 @@
   <% unless proj.attachments.empty? %>
     <br>
     <% if proj.attachments.size == 1 %>
-     <strong class="projectDetails bold">Other Attachment</strong>
+     <p class="projectLabel">Other Attachment</p>
     <% else %>
-      <strong class="projectDetails bold">Other Attachments</strong>
+      <p class="projectLabel">Other Attachments</p>
     <% end %>
     <% proj.attachments.each do |a| %>
        <p class='projectDetails'><a href="/attachments/<%= a.id %>" target='_blank'><%= a.description %></a></p>
     <% end %>
   <% end %>
 
+
   <% unless proj.aact_version.blank? %>
     <br>
-    <strong class="projectDetails bold">AACT Version</strong>
-    <br>
-    <p class='projectDetails'><%= proj.aact_version %></p>
+    <p class='projectDetails'>
+      <span class='projectAactVersion'>
+          <span class="projectAactVersionLabel">AACT Version</span>
+          <span class='projectDetails'><%= proj.aact_version %></span>
+      </span>
+      <% !if @project.blank? %>
+        <span class='seeMoreButton'>
+          <a href="/projects/<%= proj.id %>" class='btn btn-primary'>More info about this project...</a>
+        </span>
+      <% end %>
+    </p>
   <% end %>
 </div>

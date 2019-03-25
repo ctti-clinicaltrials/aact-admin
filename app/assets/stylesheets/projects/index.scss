@@ -5,10 +5,28 @@
   width: 100%;
 }
 
+.seeMoreButton {
+  float: right;
+  margin-right: 4rem;
+  margin-bottom: 3rem;
+}
+
+.projectAactVersion {
+  float: left;
+  padding-left: 0rem;
+}
+
+.projectAactVersionLabel {
+  padding-top: 1rem;
+  font-weight: 700;
+  font-size: 1.4rem;
+  padding-right: 1rem;
+}
+
 #projectFilter {
   font-size: 1.8rem;
   font-weight: normal;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 ul.projectDetails {
@@ -24,12 +42,13 @@ li.faqLine {
 }
 
 p.indentProjectDetails {
-  margin-left: 8rem;
+  font-size:    1.4rem;
+  margin-left:  8rem;
   margin-right: 8rem;
 }
 
 .projects {
-  margin-left: 8rem;
+  margin-left:  8rem;
   margin-right: 8rem;
 }
 
@@ -37,7 +56,8 @@ p.indentProjectDetails {
   font-size: 1.8rem;
 }
 
-strong.projectDetails {
+.projectLabel {
+  padding-top: 1rem;
   padding-left: 4rem;
   padding-right: 4rem;
   font-weight: 700;

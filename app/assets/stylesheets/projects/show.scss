@@ -10,15 +10,11 @@ div.projectHeading {
   margin-left: 6rem;
 }
 
-.projectData {
-   color: $maroon;
-   //font-size: 1rem;
-   border-style: groove;
-   border-color: $secondary;
-   padding-left: 40px;
-   padding-right: 40px;
-   padding-bottom: 10px;
-   padding-top: 10px;
+.projectLabel {
+  margin-top: 1rem;
+  margin-left: 2rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  font-weight: 700;
+  font-size: 1.4rem;
 }
-
-

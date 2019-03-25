@@ -11,16 +11,16 @@
       <h4 class='projName'>Project: <%= @project.name %></h4>
       <h5><%= @project.investigators %></h5>
 
-      <p>Start Date: <%= @project.start_date %></p>
+      <p class='projectAactVersionLabel'>Start Date</p><p> <%= @project.start_date %></p>
       <br>
-      <p>Brief Summary:<%= @project.brief_summary %></p>
+      <p class='projectAactVersionLabel'>Brief Summary</p><p> <%= @project.brief_summary %></p>
       <br>
-      <p>URL: <a target='_blank' href="<%= @project.url %>"><%= @project.url %></a></p>
+      <p class='projectAactVersionLabel'>URL</p><p> <a target='_blank' href="<%= @project.url %>"><%= @project.url %></a></p>
     </div>
 
     <!--  Study Selection Criteria ---------------------------------- -->
     <% unless @project.study_selection_criteria.blank? %>
-      <strong class="@project bold">Study Selection Criteria</strong>
+      <p class="projectLabel">Study Selection Criteria</p>
       <br>
       <p class='projectDetails'><%= @project.study_selection_criteria %></p>
     <% end %>
@@ -29,15 +29,15 @@
     <% unless @project.faqs.empty? %>
       <br>
       <% if @project.faqs.size == 1 %>
-        <strong class="projectDetails bold">FAQ</strong>
+        <p class="projectLabel">FAQ</p>
       <% else %>
-        <strong class="projectDetails bold">FAQs</strong>
+        <p class="projectLabel">FAQs</p>
       <% end %>
       <% @project.faqs.each do |faq| %>
         <br>
         <% if faq.question %>
           <ul class='projectDetails'>
-            <li class="faqLine">&#9679;&nbsp;&nbsp;<%= faq.question %></strong></li>
+            <li class="faqLine">&#9679;&nbsp;&nbsp;<%= faq.question %></li>
           </ul>
         <% end %>
         <% if faq.answer %>
@@ -59,7 +59,7 @@
     <!--  Contact Info  ---------------------------------- -->
     <% unless @project.contact_info.blank? %>
       <br>
-      <strong class="projectDetails bold">Contact Info</strong>
+      <p class="projectLabel">Contact Info</p>
       <p class='projectDetails'><%= @project.contact_info %></p>
     <% end %>
 

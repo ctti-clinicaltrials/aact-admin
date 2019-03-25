@@ -72,9 +72,6 @@ $(document).ready(function(){
                 <td><%= proj.schema_name  if proj.data_available != false %></td>
                 <span style="display: none;" id="detail_<%= index %>">
                   <%= render :partial => 'project_details', :locals => {:proj => proj} %>
-                  <span class='floatRight'>
-                    <a href="/projects/<%= proj.id %>" class='btn btn-primary'>See more...</a>
-                  </span>
                 </span>
               </tr>
             <% end %>
