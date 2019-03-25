@@ -22,6 +22,10 @@ module Proj
       pub.url if pub
     end
 
+    def display_start_date
+      start_date.strftime("%B %d, %Y")
+    end
+
   end
 end
 

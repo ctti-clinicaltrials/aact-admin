@@ -3,7 +3,6 @@
     <h3 class='projName'>Project: <%= @project.name %></h3>
     <p><%= @project.investigators %></p>
 
-    <p><span class='projectLabel'>Start Date</span> <%= @project.start_date %></p>
     <p class='projectLabel'>Brief Summary</p><p> <%= @project.brief_summary %></p>
     <% unless @project.url.blank? %>
       <p class='projectLabel'>URL</p><p> <a target='_blank' href="<%= @project.url %>"><%= @project.url %></a></p>
@@ -18,6 +17,10 @@
     <% unless @project.study_selection_criteria.blank? %>
       <p class="projectLabel">Study Selection Criteria</p>
       <p><%= @project.study_selection_criteria %></p>
+    <% end %>
+
+    <% unless @project.start_date.blank? %>
+      <p><span class='projectLabel'>Project Began:</span> <%= @project.display_start_date %></p>
     <% end %>
 
     <!--  FAQs  ---------------------------------- -->
@@ -86,6 +89,12 @@
     <% end %>
   <% end %>
 
+    <!--  Contact Info  ---------------------------------- -->
+  <% unless @project.contact_info.blank? %>
+    <p class="projectLabel">Contact Info</p>
+    <p><%= @project.contact_info %></p>
+  <% end %>
+
   <% unless @project.aact_version.blank? %>
     <p>
       <span class="projectLabel">AACT Version:</span><%= @project.aact_version %>
@@ -94,16 +103,12 @@
       </span>
     </p>
   <% else %>
+    <b>
     <span class='seeMoreButton'>
       <a href="javascript:history.back()" class='btn btn-projects btn-primary'>Return to list of projects...</a>
     </span>
   <% end %>
 
-    <!--  Contact Info  ---------------------------------- -->
-    <% unless @project.contact_info.blank? %>
-      <p class="projectLabel">Contact Info</p>
-      <p><%= @project.contact_info %></p>
-    <% end %>
 
 </section>
 
