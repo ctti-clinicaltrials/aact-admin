@@ -5,11 +5,7 @@
   width: 100%;
 }
 
-.seeMoreButton {
-  float: right;
-  margin-right: 4rem;
-  margin-bottom: 3rem;
-}
+
 
 .projectAactVersion {
   float: left;
@@ -61,11 +57,23 @@ p.projectDetails {
   margin-left:  8rem;
   margin-right: 8rem;
 }
-
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-  background-color: #26657a !important;
+.seeMoreButton {
+  float: right;
+  margin-right: 4rem;
+  margin-bottom: 3rem;
 }
 
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  color: white;
+  background-color: #26657a !important;
+  padding-left: 12px !important;
+}
+
+.btn-primary:hover, .btn-primary:active {
+  color: white;
+  background-color: #008aa1 !important;
+  padding-left: 12px !important;
+}
 h1.projects {
   color: #26657a;
   margin-left: 1px;

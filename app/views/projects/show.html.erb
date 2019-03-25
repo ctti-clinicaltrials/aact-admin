@@ -88,13 +88,15 @@
 
   <% unless @project.aact_version.blank? %>
     <p>
-    <span class="projectLabel">AACT Version:</span><%= @project.aact_version %>
-     <% !if @project.blank? %>
-        <span class='seeMoreButton'>
-          <a href="/projects" class='btn btn-projects btn-primary'>Return to projects list...</a>
-        </span>
-     <% end %>
+      <span class="projectLabel">AACT Version:</span><%= @project.aact_version %>
+      <span class='seeMoreButton'>
+        <a href="javascript:history.back()" class='btn btn-projects btn-primary'>Return to list of projects...</a>
+      </span>
     </p>
+  <% else %>
+    <span class='seeMoreButton'>
+      <a href="javascript:history.back()" class='btn btn-projects btn-primary'>Return to list of projects...</a>
+    </span>
   <% end %>
 
     <!--  Contact Info  ---------------------------------- -->

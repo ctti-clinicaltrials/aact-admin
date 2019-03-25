@@ -45,11 +45,11 @@
   <% unless proj.aact_version.blank? %>
     <p class='indentProjectLabel'>
       <span class='projectAactVersion'>
-          <span class="projectLabel">AACT Version</span>
-          <span><%= proj.aact_version %></span>
-        <span class='seeMoreButton'>
-          <a href="/projects/<%= proj.id %>" class='btn btn-projects btn-primary'>See more info about this project...</a>
-        </span>
+        <span class="projectLabel">AACT Version:</span>
+        <span><%= proj.aact_version %></span>
+      </span>
+      <span class='seeMoreButton'>
+        <a href="/projects/<%= proj.id %>" class='btn btn-projects btn-primary'>See more info about this project...</a>
       </span>
     </p>
   <% else %>
