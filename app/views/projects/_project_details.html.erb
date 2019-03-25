@@ -1,66 +1,60 @@
 <div>
   <% unless proj.description.blank? %>
-    <p class="projectLabel">Description</p>
-    <br>
-    <p class='projectDetails'><%= proj.description %></p>
-    <br>
+    <p class="indentProjectLabel">Description</p>
+    <p class='indentProjectDetails'><%= proj.description %></p>
   <% end %>
 
   <% unless proj.publications.empty? %>
-    <br>
     <% if proj.publications.size == 1 %>
-      <p class="projectLabel">Publication</p>
+      <p class="indentProjectLabel">Publication</p>
     <% else %>
-      <p class="projectLabel">Publications</p>
+      <p class="indentProjectLabel">Publications</p>
     <% end %>
     <% proj.publications.each do |pub| %>
-      <br>
-      <p class='projectDetails'><a href="<%= pub.url %>" target='_blank'><%= pub.citation %></a></p>
+      <p class='indentProjectDetails'><a href="<%= pub.url %>" target='_blank'><%= pub.citation %></a></p>
     <% end %>
   <% end %>
 
   <% unless proj.datasets.empty? %>
-    <br>
     <% if proj.datasets.size == 1 %>
-      <p class="projectLabel">Downloadable Dataset</span>
+      <p class="indentProjectLabel">Downloadable Dataset</span>
     <% else %>
-      <p class="projectLabel">Downloadable Datasets</p>
+      <p class="indentProjectLabel">Downloadable Datasets</p>
     <% end %>
 
     <% proj.datasets.each do |ds| %>
       <% if ds.schema_name.blank? %>
-<p class='projectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %>.</a>  <%= ds.description %> <%= ds.source %></p>
+<p class='indentProjectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %>.</a>  <%= ds.description %> <%= ds.source %></p>
       <% else %>
-<p class='projectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %></a> <span>(Available in AACT database: <%= ds.schema_name %>.<%= ds.table_name %>)</span></a> <%= ds.description %> <%= ds.source %></p>
+<p class='indentProjectDetails'><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %></a> <span>(Available in AACT database: <%= ds.schema_name %>.<%= ds.table_name %>)</span></a> <%= ds.description %> <%= ds.source %></p>
       <% end %>
     <% end %>
   <% end %>
 
   <% unless proj.attachments.empty? %>
-    <br>
     <% if proj.attachments.size == 1 %>
-     <p class="projectLabel">Other Attachment</p>
+     <p class="indentProjectLabel">Other Attachment</p>
     <% else %>
-      <p class="projectLabel">Other Attachments</p>
+      <p class="indentProjectLabel">Other Attachments</p>
     <% end %>
     <% proj.attachments.each do |a| %>
-       <p class='projectDetails'><a href="/attachments/<%= a.id %>" target='_blank'><%= a.description %></a></p>
+       <p class='indentProjectDetails'><a href="/attachments/<%= a.id %>" target='_blank'><%= a.description %></a></p>
     <% end %>
   <% end %>
 
-
   <% unless proj.aact_version.blank? %>
-    <br>
-    <p class='projectDetails'>
+    <p class='indentProjectLabel'>
       <span class='projectAactVersion'>
-          <span class="projectAactVersionLabel">AACT Version</span>
-          <span class='projectDetails'><%= proj.aact_version %></span>
-      </span>
-      <% !if @project.blank? %>
+          <span class="projectLabel">AACT Version</span>
+          <span><%= proj.aact_version %></span>
         <span class='seeMoreButton'>
-          <a href="/projects/<%= proj.id %>" class='btn btn-primary'>More info about this project...</a>
+          <a href="/projects/<%= proj.id %>" class='btn btn-projects btn-primary'>See more info about this project...</a>
         </span>
-      <% end %>
+      </span>
     </p>
+  <% else %>
+    <span class='seeMoreButton'>
+      <a href="/projects/<%= proj.id %>" class='btn btn-projects btn-primary'>See more info about this project...</a>
+    </span>
   <% end %>
 </div>

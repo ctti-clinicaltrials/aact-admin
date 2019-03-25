@@ -1,33 +1,27 @@
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
+<section class='standardLayout'>
 
-<section>
-  <div id='projectContainer' class='basicHero container'>
+    <h3 class='projName'>Project: <%= @project.name %></h3>
+    <p><%= @project.investigators %></p>
 
-    <div class='projectHeading'>
-      <h4 class='projName'>Project: <%= @project.name %></h4>
-      <h5><%= @project.investigators %></h5>
+    <p><span class='projectLabel'>Start Date</span> <%= @project.start_date %></p>
+    <p class='projectLabel'>Brief Summary</p><p> <%= @project.brief_summary %></p>
+    <% unless @project.url.blank? %>
+      <p class='projectLabel'>URL</p><p> <a target='_blank' href="<%= @project.url %>"><%= @project.url %></a></p>
+    <% end %>
 
-      <p class='projectAactVersionLabel'>Start Date</p><p> <%= @project.start_date %></p>
-      <br>
-      <p class='projectAactVersionLabel'>Brief Summary</p><p> <%= @project.brief_summary %></p>
-      <br>
-      <p class='projectAactVersionLabel'>URL</p><p> <a target='_blank' href="<%= @project.url %>"><%= @project.url %></a></p>
-    </div>
+    <% unless @project.description.blank? %>
+      <p class="projectLabel">Description</p>
+      <p><%= @project.description %></p>
+    <% end %>
 
     <!--  Study Selection Criteria ---------------------------------- -->
     <% unless @project.study_selection_criteria.blank? %>
       <p class="projectLabel">Study Selection Criteria</p>
-      <br>
-      <p class='projectDetails'><%= @project.study_selection_criteria %></p>
+      <p><%= @project.study_selection_criteria %></p>
     <% end %>
 
     <!--  FAQs  ---------------------------------- -->
     <% unless @project.faqs.empty? %>
-      <br>
       <% if @project.faqs.size == 1 %>
         <p class="projectLabel">FAQ</p>
       <% else %>
@@ -36,36 +30,78 @@
       <% @project.faqs.each do |faq| %>
         <br>
         <% if faq.question %>
-          <ul class='projectDetails'>
-            <li class="faqLine">&#9679;&nbsp;&nbsp;<%= faq.question %></li>
-          </ul>
+          <p class='faqLine'>&#9679;&nbsp;&nbsp;<%= faq.question %>
         <% end %>
         <% if faq.answer %>
-          <p class='indentProjectDetails'><%= faq.answer %></p>
+          <p><%= faq.answer %></p>
         <% end %>
         <% if faq.url && faq.citation %>
-          <p class='indentProjectDetails'><a href="<%= faq.url %>" target='_blank'><%= faq.citation %></a></p>
+          <p><a href="<%= faq.url %>" target='_blank'><%= faq.citation %></a></p>
         <% else %>
           <% if faq.url %>
-            <p class='indentProjectDetails'><a href="<%= faq.url %>" target='_blank'><%= faq.url %></a></p>
+            <p><a href="<%= faq.url %>" target='_blank'><%= faq.url %></a></p>
           <% end %>
           <% if faq.citation %>
-            <p class='indentProjectDetails'><%= faq.citation %></p>
+            <p><%= faq.citation %></p>
           <% end %>
         <% end %>
       <% end %>
     <% end %>
 
-    <!--  Contact Info  ---------------------------------- -->
-    <% unless @project.contact_info.blank? %>
-      <br>
-      <p class="projectLabel">Contact Info</p>
-      <p class='projectDetails'><%= @project.contact_info %></p>
+  <% unless @project.publications.empty? %>
+    <% if @project.publications.size == 1 %>
+      <p class="projectLabel">Publication</p>
+    <% else %>
+      <p class="projectLabel">Publications</p>
+    <% end %>
+    <% @project.publications.each do |pub| %>
+      <p><a href="<%= pub.url %>" target='_blank'><%= pub.citation %></a></p>
+    <% end %>
+  <% end %>
+
+  <% unless @project.datasets.empty? %>
+    <% if @project.datasets.size == 1 %>
+      <p class="projectLabel">Downloadable Dataset</span>
+    <% else %>
+      <p class="projectLabel">Downloadable Datasets</p>
     <% end %>
 
-    <!--  Overview from Project Details ---------------------------------- -->
-    <%= render :partial => 'project_details', :locals => {:proj => @project} %>
+    <% @project.datasets.each do |ds| %>
+      <% if ds.schema_name.blank? %>
+        <p><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %>.</a>  <%= ds.description %> <%= ds.source %></p>
+      <% else %>
+        <p><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %></a> <span>(Available in AACT database: <%= ds.schema_name %>.<%= ds.table_name %>)</span></a> <%= ds.description %> <%= ds.source %></p>
+      <% end %>
+    <% end %>
+  <% end %>
 
-  </div>
+  <% unless @project.attachments.empty? %>
+    <% if @project.attachments.size == 1 %>
+     <p class="projectLabel">Other Attachment</p>
+    <% else %>
+      <p class="projectLabel">Other Attachments</p>
+    <% end %>
+    <% @project.attachments.each do |a| %>
+       <p><a href="/attachments/<%= a.id %>" target='_blank'><%= a.description %></a></p>
+    <% end %>
+  <% end %>
+
+  <% unless @project.aact_version.blank? %>
+    <p>
+    <span class="projectLabel">AACT Version:</span><%= @project.aact_version %>
+     <% !if @project.blank? %>
+        <span class='seeMoreButton'>
+          <a href="/projects" class='btn btn-projects btn-primary'>Return to projects list...</a>
+        </span>
+     <% end %>
+    </p>
+  <% end %>
+
+    <!--  Contact Info  ---------------------------------- -->
+    <% unless @project.contact_info.blank? %>
+      <p class="projectLabel">Contact Info</p>
+      <p><%= @project.contact_info %></p>
+    <% end %>
+
 </section>
 

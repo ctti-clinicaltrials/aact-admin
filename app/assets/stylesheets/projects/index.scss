@@ -13,12 +13,19 @@
 
 .projectAactVersion {
   float: left;
-  padding-left: 0rem;
 }
 
-.projectAactVersionLabel {
+.indentProjectLabel {
+  margin-top: 1rem;
+  margin-left: 2rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+.projectLabel {
   padding-top: 1rem;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 1.4rem;
   padding-right: 1rem;
 }
@@ -31,14 +38,12 @@
 
 ul.projectDetails {
   list-style: none;
-  padding-left: 1rem;
-  margin-left: 1rem;
 }
 
-li.faqLine {
-  font-weight:  500;
+p.faqLine {
+  font-weight:  400;
   font-size:    1.4rem;
-  padding-left: 4rem;
+  font-style:   italic;
 }
 
 p.indentProjectDetails {
@@ -47,9 +52,23 @@ p.indentProjectDetails {
   margin-right: 8rem;
 }
 
+p.projectDetails {
+  font-size:    1.4rem;
+  margin-left:  0rem;
+  margin-right: 2rem;
+}
 .projects {
   margin-left:  8rem;
   margin-right: 8rem;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #26657a !important;
+}
+
+h1.projects {
+  color: #26657a;
+  margin-left: 1px;
 }
 
 .projectExplanation {
@@ -58,11 +77,6 @@ p.indentProjectDetails {
 
 .projectLabel {
   padding-top: 1rem;
-  padding-left: 4rem;
-  padding-right: 4rem;
-  font-weight: 700;
-  font-size: 1.4rem;
-  margin-left: 2rem;
 }
 
 p.projectDetails {
