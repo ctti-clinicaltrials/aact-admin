@@ -1,10 +1,17 @@
  <h3>AACT 4.2.0 <i>(April 16, 2019)</i></h3>
 
- <h5>Data from 'Study Characteristics' Project Added</h5>
+ <h5>Upgraded to PostgreSQL v11.1</h5>
+ <p>The PostgreSQL database was upgraded from version 9.6.6 to 11.1.</p>
+
+ <h5>Added Study Characteristics Project </h5>
  <p>Datasets for the AACT-based research project <a href='https://jamanetwork.com/journals/jama/fullarticle/1150093' target='_blank'>Characteristics of Clinical Trials Registered in ClinicalTrials.gov, 2007-2010</a> are available in the schema proj_tag_study_characteristics. A table listing the MeSH (2010) & free text terms that were identified as being related to 3 clinical specialties: Mental Health, Oncology & Cardiovascular is available in this schema as well as a table of the studies that were analyzed. Details about this project can be found on the <a href='/projects' target='_blank'>Projects page</a>.</p>
 
- <h5>Resolve Security Issues Identified by GitHub</h5>
+ <h5>Resolved Security Issues Identified by GitHub</h5>
  <p>To address security vulnerabilities detected by github, we upgraded the railties gem.</p>
 
  <h5>Loaded 2019 MeSH Thesaurus</h5>
  <p>The mesh_terms table now provides the 2019 MeSH terms. The file used to popoulate the table was the 11/1/18 version of mtrees2019.bin, retrieved from NLM's FTP server: <a href='ftp://nlmpubs.nlm.nih.gov/online/mesh/MESH_FILES/meshtrees/' target='_blank'>ftp://nlmpubs.nlm.nih.gov/online/mesh/MESH_FILES/meshtrees/</a> The 2018 MeSH terms are now available in the mesh_archive schema (table name: Y2018_mesh_terms).</p>
+
+ <h5>Upgraded Tool Used to Generate Schema Diagrams: pgModeler</h5>
+ <p>We use <a href='https://pgmodeler.io/' target='_blank'>pgModeler</a> to produce the schema diagrams that appear on the AACT website. Because the previous version didn't work with PostgreSQL 11.1, we upgraded the tool and refreshed the schema diagrams. As a result, the diagrams now provide additional information about indexes and constrants.</p>
+
