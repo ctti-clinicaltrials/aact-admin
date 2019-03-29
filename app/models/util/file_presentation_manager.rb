@@ -28,6 +28,10 @@ module Util
       Util::FileManager.new.files_in('exported_files','daily')
     end
 
+    def root_dir
+      '/static/documentation/'
+    end
+
     def process_flow_diagram
       '/static/documentation/process_flow_diagram.png'
     end
