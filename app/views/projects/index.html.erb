@@ -60,7 +60,7 @@ $(document).ready(function(){
             <% @projects.each_with_index do |proj, index| %>
               <tr id="row_<%= index %>" class="projectRow <%= 'dataNotAvailable' if proj.data_available == false %>">
                 <% if !proj.publication_url.nil? %>
-                  <td><a href='<%= proj.publication_url %>' target='_blank'><%= proj.name %></a></td>
+                  <td><a href='<%= proj.publication_url %>' target='_blank' onClick="ga('send','event','download',""link to #{proj.publication_url}"")"><%= proj.name %></a></td>
                 <% else %>
                   <td><%= proj.name %></td>
                 <% end %>

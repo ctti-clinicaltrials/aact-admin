@@ -6,7 +6,7 @@
 
     <p class='projectLabel'>Brief Summary</p><p> <%= @project.brief_summary %></p>
     <% unless @project.url.blank? %>
-      <p class='projectLabel'>URL</p><p> <a target='_blank' href="<%= @project.url %>"><%= @project.url %></a></p>
+      <p class='projectLabel'>URL</p><p> <a target='_blank' href="<%= @project.url %>" onClick="ga('send','event','link',""link to #{@project.url}"")"><%= @project.url %></a></p>
     <% end %>
 
     <% unless @project.description.blank? %>
@@ -40,10 +40,10 @@
           <p><%= faq.answer %></p>
         <% end %>
         <% if faq.url && faq.citation %>
-          <p><a href="<%= faq.url %>" target='_blank'><%= faq.citation %></a></p>
+          <p><a href="<%= faq.url %>" target='_blank' onClick="ga('send','event','link',""link to #{faq.url}"")"><%= faq.citation %></a></p>
         <% else %>
           <% if faq.url %>
-            <p><a href="<%= faq.url %>" target='_blank'><%= faq.url %></a></p>
+            <p><a href="<%= faq.url %>" target='_blank' onClick="ga('send','event','link',""link to #{faq.url}"")"><%= faq.url %></a></p>
           <% end %>
           <% if faq.citation %>
             <p><%= faq.citation %></p>
@@ -59,7 +59,7 @@
         <p class="projectLabel">Publications</p>
       <% end %>
       <% @project.publications.each do |pub| %>
-        <p><a href="<%= pub.url %>" target='_blank'><%= pub.citation %></a></p>
+        <p><a href="<%= pub.url %>" target='_blank' onClick="ga('send','event','link',""link to #{pub.url}"")"><%= pub.citation %></a></p>
       <% end %>
     <% end %>
 
@@ -72,9 +72,9 @@
 
       <% @project.datasets.each do |ds| %>
         <% if ds.schema_name.blank? %>
-          <p><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %>.</a>  <%= ds.description %> <%= ds.source %></p>
+          <p><a href="/datasets/<%= ds.id %>" target='_blank' onClick="ga('send','event','link',""link to dataset for #{@project.schema_name}"")"><%= ds.name %>.</a>  <%= ds.description %> <%= ds.source %></p>
         <% else %>
-          <p><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %></a> <span>(Available in AACT database: <%= ds.schema_name %>.<%= ds.table_name %>)</span></a> <%= ds.description %> <%= ds.source %></p>
+          <p><a href="/datasets/<%= ds.id %>" target='_blank' onClick="ga('send','event','link',""link to dataset for #{@project.schema_name}"")"><%= ds.name %></a> <span>(Available in AACT database: <%= ds.schema_name %>.<%= ds.table_name %>)</span></a> <%= ds.description %> <%= ds.source %></p>
         <% end %>
       <% end %>
     <% end %>
@@ -87,7 +87,7 @@
 
     <% unless @schema_diagram.empty? %>
       <p class="projectLabel">
-          <a href=<%= @schema_diagram %> target='_blank' onClick="ga('send','event','download','download project schema')">Database Schema Diagram</a></p>
+      <a href=<%= @schema_diagram %> target='_blank' onClick="ga('send','event','download',""download #{@schema_diagram}"")">Database Schema Diagram</a></p>
       <section class="schema">
          <%= image_tag(@schema_diagram) %>
       </section>
@@ -101,7 +101,7 @@
         <p class="projectLabel">Other Attachments</p>
       <% end %>
       <% @project.attachments.each do |a| %>
-         <p><a href="/attachments/<%= a.id %>" target='_blank'><%= a.description %></a></p>
+         <p><a href="/attachments/<%= a.id %>" target='_blank' onClick="ga('send','event','link',""link to attachment for #{@project.schema_name}"")"><%= a.description %></a></p>
       <% end %>
     <% end %>
 
