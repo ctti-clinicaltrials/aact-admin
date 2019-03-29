@@ -1,6 +1,7 @@
-<section class='standardLayout'>
+<section class='basicHero'>
 
-    <h3 class='projName'>Project: <%= @project.name %></h3>
+  <div class="copy">
+    <h1 class='projName'>Project: <%= @project.name %></h1>
     <p><%= @project.investigators %></p>
 
     <p class='projectLabel'>Brief Summary</p><p> <%= @project.brief_summary %></p>
@@ -51,68 +52,69 @@
       <% end %>
     <% end %>
 
-  <% unless @project.publications.empty? %>
-    <% if @project.publications.size == 1 %>
-      <p class="projectLabel">Publication</p>
-    <% else %>
-      <p class="projectLabel">Publications</p>
-    <% end %>
-    <% @project.publications.each do |pub| %>
-      <p><a href="<%= pub.url %>" target='_blank'><%= pub.citation %></a></p>
-    <% end %>
-  <% end %>
-
-  <% unless @project.datasets.empty? %>
-    <% if @project.datasets.size == 1 %>
-      <p class="projectLabel">Downloadable Dataset</span>
-    <% else %>
-      <p class="projectLabel">Downloadable Datasets</p>
-    <% end %>
-
-    <% @project.datasets.each do |ds| %>
-      <% if ds.schema_name.blank? %>
-        <p><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %>.</a>  <%= ds.description %> <%= ds.source %></p>
+    <% unless @project.publications.empty? %>
+      <% if @project.publications.size == 1 %>
+        <p class="projectLabel">Publication</p>
       <% else %>
-        <p><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %></a> <span>(Available in AACT database: <%= ds.schema_name %>.<%= ds.table_name %>)</span></a> <%= ds.description %> <%= ds.source %></p>
+        <p class="projectLabel">Publications</p>
+      <% end %>
+      <% @project.publications.each do |pub| %>
+        <p><a href="<%= pub.url %>" target='_blank'><%= pub.citation %></a></p>
       <% end %>
     <% end %>
-  <% end %>
 
-  <% unless @project.attachments.empty? %>
-    <% if @project.attachments.size == 1 %>
-     <p class="projectLabel">Other Attachment</p>
-    <% else %>
-      <p class="projectLabel">Other Attachments</p>
+    <% unless @project.datasets.empty? %>
+      <% if @project.datasets.size == 1 %>
+        <p class="projectLabel">Downloadable Dataset</span>
+      <% else %>
+        <p class="projectLabel">Downloadable Datasets</p>
+      <% end %>
+
+      <% @project.datasets.each do |ds| %>
+        <% if ds.schema_name.blank? %>
+          <p><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %>.</a>  <%= ds.description %> <%= ds.source %></p>
+        <% else %>
+          <p><a href="/datasets/<%= ds.id %>" target='_blank'><%= ds.name %></a> <span>(Available in AACT database: <%= ds.schema_name %>.<%= ds.table_name %>)</span></a> <%= ds.description %> <%= ds.source %></p>
+        <% end %>
+      <% end %>
     <% end %>
-    <% @project.attachments.each do |a| %>
-       <p><a href="/attachments/<%= a.id %>" target='_blank'><%= a.description %></a></p>
+
+    <% unless @project.aact_version.blank? %>
+      <p>
+        <span class="projectLabel">AACT Version:</span><%= @project.aact_version %>
+      </p>
     <% end %>
-  <% end %>
 
-  <section class="schema">
-     <%= image_tag(@schema_diagram) %>
-  </section>
+    <% unless @schema_diagram.empty? %>
+      <p class="projectLabel">
+          <a href=<%= @schema_diagram %> target='_blank' onClick="ga('send','event','download','download project schema')">Database Schema Diagram</a></p>
+      <section class="schema">
+         <%= image_tag(@schema_diagram) %>
+      </section>
+      <br>
+    <% end %>
 
-    <!--  Contact Info  ---------------------------------- -->
-  <% unless @project.contact_info.blank? %>
-    <p class="projectLabel">Contact Info</p>
-    <p><%= @project.contact_info %></p>
-  <% end %>
+    <% unless @project.attachments.empty? %>
+      <% if @project.attachments.size == 1 %>
+       <p class="projectLabel">Other Attachment</p>
+      <% else %>
+        <p class="projectLabel">Other Attachments</p>
+      <% end %>
+      <% @project.attachments.each do |a| %>
+         <p><a href="/attachments/<%= a.id %>" target='_blank'><%= a.description %></a></p>
+      <% end %>
+    <% end %>
 
-  <% unless @project.aact_version.blank? %>
+    <% unless @project.contact_info.blank? %>
+      <p class="projectLabel">Contact Info</p>
+      <p><%= @project.contact_info %></p>
+    <% end %>
+
     <p>
-      <span class="projectLabel">AACT Version:</span><%= @project.aact_version %>
-      <span class='seeMoreButton'>
-        <a href="javascript:history.back()" class='btn btn-projects btn-primary'>Return to list of projects...</a>
-      </span>
+      </br>
+      <a href="/projects#projectTable" class='btn btn-projects btn-primary'>Return to list of projects...</a>
     </p>
-  <% else %>
-    <b>
-    <span class='seeMoreButton'>
-      <a href="javascript:history.back()" class='btn btn-projects btn-primary'>Return to list of projects...</a>
-    </span>
-  <% end %>
 
-
+  </div>
 </section>
 
