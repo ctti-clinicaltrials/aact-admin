@@ -26,6 +26,10 @@ module Proj
       start_date.strftime("%B %d, %Y")
     end
 
+    def schema_diagram_file_name
+      "/static/documentation/#{schema_name}_schema.png"
+    end
+
   end
 end
 
