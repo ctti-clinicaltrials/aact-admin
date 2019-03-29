@@ -13,7 +13,6 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Proj::Project.find(params[:id])
-    @schema_diagram = @project.schema_diagram_file_name
     @should_render_footer = false
   end
 
