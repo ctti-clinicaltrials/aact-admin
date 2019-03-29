@@ -3,8 +3,34 @@
  <h5>Upgraded to PostgreSQL v11.1</h5>
  <p>The PostgreSQL database was upgraded from version 9.6.6 to 11.1.</p>
 
- <h5>Added Study Characteristics Project </h5>
+ <h5>Added Study Characteristics Project</h5>
  <p>Datasets for the AACT-based research project <a href='https://jamanetwork.com/journals/jama/fullarticle/1150093' target='_blank'>Characteristics of Clinical Trials Registered in ClinicalTrials.gov, 2007-2010</a> are available in the schema proj_tag_study_characteristics. A table listing the MeSH (2010) & free text terms that were identified as being related to 3 clinical specialties: Mental Health, Oncology & Cardiovascular is available in this schema as well as a table of the studies that were analyzed. Details about this project can be found on the <a href='/projects' target='_blank'>Projects page</a>.</p>
+
+ <h5>Added Individual Project Pages to Display More Information</h5>
+ <p>To help us present more detailed information about each project, we've added a per-project page that may include the following information:</p>
+ <div>
+   <ul class='regularDisplay'>
+     <li>Project Name</li>
+     <li>Investigators</li>
+     <li>Brief Summary</li>
+     <li>URL (external link to more info about the project)</li>
+     <li>Detailed Description</li>
+     <li>Study Selection Criteria</li>
+     <li>Start Date</li>
+     <li>FAQs</li>
+     <li>Publications</li>
+     <li>Datasets</li>
+     <li>Additional Attachments</li>
+     <li>AACT Version</li>
+     <li>Schema Diagram</li>
+     <li>Contact Info</li>
+    </ul>
+  </div>
+
+  <p>Click <a href='' _target='_blank'>here</a> to see an example of the project page for the new project added in this release (<a href='https://jamanetwork.com/journals/jama/fullarticle/1150093' target='_blank'>Characteristics of Clinical Trials Registered in ClinicalTrials.gov, 2007-2010</a>)</p>
+
+ <h5>Added Foreign Key Constraints</h5>
+ <p>To make the database more robust and easier to understand, foreign key constraints have been added.</p>
 
  <h5>Resolved Security Issues Identified by GitHub</h5>
  <p>To address security vulnerabilities detected by github, we upgraded the railties gem.</p>
@@ -13,5 +39,5 @@
  <p>The mesh_terms table now provides the 2019 MeSH terms. The file used to popoulate the table was the 11/1/18 version of mtrees2019.bin, retrieved from NLM's FTP server: <a href='ftp://nlmpubs.nlm.nih.gov/online/mesh/MESH_FILES/meshtrees/' target='_blank'>ftp://nlmpubs.nlm.nih.gov/online/mesh/MESH_FILES/meshtrees/</a> The 2018 MeSH terms are now available in the mesh_archive schema (table name: Y2018_mesh_terms).</p>
 
  <h5>Upgraded Tool Used to Generate Schema Diagrams: pgModeler</h5>
- <p>We use <a href='https://pgmodeler.io/' target='_blank'>pgModeler</a> to produce the schema diagrams that appear on the AACT website. Because the previous version didn't work with PostgreSQL 11.1, we upgraded the tool and refreshed the schema diagrams. As a result, the diagrams now provide additional information about indexes and constrants.</p>
+ <p>We use <a href='https://pgmodeler.io/' target='_blank'>pgModeler</a> to produce the schema diagrams that appear on the AACT website. Because the previous version didn't work with PostgreSQL 11.1, we upgraded this tool to version 0.9.2-apha1 & refreshed the schema diagrams. As a result, schema diagrams (such as the one for the <a href=<%= @schema_diagram %> target='_blank'>main <i>ctgov</i> schema</a>) now display additional information about primary keys, indexes, constrants, etc.</p>
 

@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   get "/points_to_consider"   => "pages#points_to_consider"
   get "/psql"                 => "pages#psql"
   get "/r"                    => "pages#r"
-  get "/release_notes"        => "pages#release_notes"
   get "/sanity_check_report"  => "pages#sanity_check", as: :sanity_check
   get "/sas"                  => "pages#sas"
   get "/schema"               => "pages#schema"
@@ -50,6 +49,7 @@ Rails.application.routes.draw do
   resources :definitions
   resources :users
   resources :projects
+  resources :release_notes
   resources :datasets
   resources :attachments
   resources :tagged_terms
