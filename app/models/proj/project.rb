@@ -37,7 +37,6 @@ module Proj
     def schema_diagram_file_name
       root_dir=Util::FilePresentationManager.new.root_dir
       fn = "#{root_dir}#{schema_name}_schema.png"
-      fn if File.exist?(fn)
     end
 
   end

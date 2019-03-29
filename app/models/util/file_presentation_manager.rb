@@ -44,10 +44,6 @@ module Util
       "/static/documentation/aact_admin_schema.png"
     end
 
-    def proj_schema_diagram
-      "/static/documentation/aact_proj_schema.png"
-    end
-
     def schema_diagram
       "/static/documentation/aact_schema.png"
     end
