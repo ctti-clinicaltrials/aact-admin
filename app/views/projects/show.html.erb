@@ -87,10 +87,10 @@
 
     <% if @project.schema_diagram_file_name %>
       <p class="projectLabel">
-      <a href=<%= @project.schema_diagram_file_name %> target='_blank' onClick="ga('send','event','download',""download #{@schema_diagram}"")">Database Schema Diagram</a></p>
+      <a href=<%= @project.schema_diagram_file_name %> target='_blank' onClick="ga('send','event','download',""download #{@schema_diagram}"")">Database Schema Diagram
       <section class="schema">
          <%= image_tag(@project.schema_diagram_file_name) %>
-      </section>
+      </section></a></p>
       <br>
     <% end %>
 
