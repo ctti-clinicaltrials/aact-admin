@@ -27,7 +27,7 @@
   <p>Click <a href='' _target='_blank'>here</a> to see an example of the project page for the new project added in this release (<a href='https://jamanetwork.com/journals/jama/fullarticle/1150093' target='_blank'>Characteristics of Clinical Trials Registered in ClinicalTrials.gov, 2007-2010</a>)</p>
 
  <h5>Loaded 2019 MeSH Thesaurus</h5>
- <p>The mesh_terms table now provides the 2019 MeSH terms. The file used to popoulate the table was the 11/1/18 version of mtrees2019.bin, retrieved from NLM's FTP server: <a href='ftp://nlmpubs.nlm.nih.gov/online/mesh/MESH_FILES/meshtrees/' target='_blank'>ftp://nlmpubs.nlm.nih.gov/online/mesh/MESH_FILES/meshtrees/</a> The 2018 MeSH terms are now available in the mesh_archive schema (table name: Y2018_mesh_terms).</p>
+ <p>The mesh_terms table now provides the 2019 MeSH terms. The file used to populate the table was the 11/1/18 version of mtrees2019.bin, retrieved from NLM's FTP server: <a href='ftp://nlmpubs.nlm.nih.gov/online/mesh/MESH_FILES/meshtrees/' target='_blank'>ftp://nlmpubs.nlm.nih.gov/online/mesh/MESH_FILES/meshtrees/</a> The 2018 MeSH terms are now available in the mesh_archive schema (table name: Y2018_mesh_terms).</p>
 
  <h5>Upgraded to PostgreSQL v11.1</h5>
  <p>The PostgreSQL public database was upgraded from version 9.6.6 to 11.1.</p>
@@ -39,5 +39,5 @@
  <p>To address security vulnerabilities detected by github, we upgraded the railties gem.</p>
 
  <h5>Upgraded Tool Used to Generate Schema Diagrams: pgModeler</h5>
- <p>We use <a href='https://pgmodeler.io/' target='_blank'>pgModeler</a> to produce the schema diagrams that appear on the AACT website. Because the previous version didn't work with PostgreSQL 11.1, we upgraded this tool to version 0.9.2-apha1 & refreshed the schema diagrams. As a result, schema diagrams (such as the one for the <a href=<%= @schema_diagram %> target='_blank'>main <i>ctgov</i> schema</a>) now display additional information about primary keys, indexes, constrants, etc.</p>
+ <p>We use <a href='https://pgmodeler.io/' target='_blank'>pgModeler</a> to produce the schema diagrams that appear on the AACT website. Because the previous version didn't work with PostgreSQL 11.1, we upgraded this tool to version 0.9.2-alpha1 & refreshed the schema diagrams. As a result, schema diagrams (such as the one for the <a href=<%= @schema_diagram %> target='_blank'>main <i>ctgov</i> schema</a>) now display additional information about primary keys, indexes, constrants, etc.</p>
 
