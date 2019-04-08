@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.4.0"
 
-gem 'bootstrap'
+gem "bootstrap", ">= 4.3.1"
 gem "bootstrap-table-rails"
 gem 'nokogiri', '~> 1.8.1'
 gem 'rails', github: 'rails/rails', branch: '4-2-stable'
