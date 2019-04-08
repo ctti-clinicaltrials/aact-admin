@@ -45,7 +45,7 @@ gem 'libv8', '~> 3.16.14.15'
 gem "loofah", ">= 2.2.3"
 
 # user registration
-gem 'devise'
+gem "devise", ">= 4.6.0"
 gem 'devise-encryptable'
 
 # deployment to server
