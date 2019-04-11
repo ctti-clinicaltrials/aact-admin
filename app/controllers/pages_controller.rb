@@ -50,6 +50,7 @@ class PagesController < ApplicationController
     @data_dictionary=fpm.data_dictionary
     @table_dictionary=fpm.table_dictionary
     @show_dictionary_link = true
+    @project_schema_files=Proj::Project.schema_diagram_file_names
   end
 
   private
