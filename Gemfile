@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.4.0"
 
-gem "bootstrap", ">= 4.3.1"
+gem 'bootstrap'
 gem "bootstrap-table-rails"
 gem 'nokogiri', '~> 1.8.1'
 gem 'rails', github: 'rails/rails', branch: '4-2-stable'
@@ -43,9 +43,12 @@ gem 'execjs'
 gem 'therubyracer', '~> 0.12.3'
 gem 'libv8', '~> 3.16.14.15'
 gem "loofah", ">= 2.2.3"
+gem 'rack'
+gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-protection', '~> 1.5.5'
 
 # user registration
-gem "devise", ">= 4.6.0"
+gem 'devise'
 gem 'devise-encryptable'
 
 # deployment to server
