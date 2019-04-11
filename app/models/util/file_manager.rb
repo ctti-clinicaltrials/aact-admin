@@ -45,10 +45,6 @@ module Util
       "#{Rails.public_path}/static/documentation/aact_admin_schema.png"
     end
 
-    def proj_schema_diagram
-      "#{Rails.public_path}/static/documentation/aact_proj_schema.png"
-    end
-
     def schema_diagram
       "#{Rails.public_path}/static/documentation/aact_schema.png"
     end

@@ -3,7 +3,7 @@
  <h5>Implement New Feature: <i>AACT Projects</i></h5>
  <p>The AACT database now includes a set of supplemental schemas that present datasets collected & curated during previous AACT-based research. By including these data within the AACT database, the public can benefit from work that has been performed by other investigators. Since the information is directly accessible, it may be incorporated into queries on current clinical trials. It also serves to make previous research more transparent and help AACT users better understand assertions made by the previous investigators.</p>
 
- <p>Database schemas are used to differentiate project-related data from ClinicalTrials.gov data. Data from ClinicalTrial.gov remain available in the ctgov schema and each project has a database schema in which the datasets for that project are available. All project schemas are prefixed with 'proj_'.  With the release of AACT 4.1.0, all users of the live AACT database have immediate access to this information.</p>
+ <p>Database schemas are used to differentiate project-related data from ClinicalTrials.gov data. Data from ClinicalTrial.gov remain available in the ctgov schema and each project has a database schema in which the datasets for that project are available. All project schemas are prefixed with 'proj_'. With the release of AACT 4.1.0, all users of the live AACT database have immediate access to this information.</p>
 
  <p>Datasets from the following three AACT-based research projects have been made available in this release:<p>
   <ul class='regularText'>
@@ -13,7 +13,7 @@
       </p>
     </li>
     <li>
-      <p><b>proj_cdek_standard_orgs: </b><a href="http://dx.doi.org/10.1101/474189" target='_blank'>Griesenauer R, Schillebeeck C, Kinch MS. CDEK: Clinical Drug Experience Knowledgebase. bioRxiv  The Preprint Server for Biology. 2018 November 19</a>
+      <p><b>proj_cdek_standard_orgs: </b><a href="http://dx.doi.org/10.1101/474189" target='_blank'>Griesenauer R, Schillebeeck C, Kinch MS. CDEK: Clinical Drug Experience Knowledgebase. bioRxiv The Preprint Server for Biology. 2018 November 19</a>
       </p>
     </li>
     <li>
@@ -26,7 +26,7 @@
 
   <p>This feature will continue to be developed and your feedback is appreciated. Please <a href="mailto:ctti-aact@duke.edu?subject=AACT Projects Question/Suggestion">email the AACT team</a> with questions and suggestions.</p>
 
-  <p>This feature has been implemented as a separate Ruby on Rails application. AACT is now comprised of 3 applications: 1) AACT Core, 2) AACT Admin & 3) AACT Projects.  All code for these three components is publicly available in <a href='https://github.com/ctti-clinicaltrials/aact-proj' target='_blank'>github.</a> Note: Implementing this feature required some changes to the way ClinicalTrials.gov data is loaded into AACT. Details about these changes are available upon <a href="mailto:ctti-aact@duke.edu?subject=AACT: Request info about 4.1.0 load procedure">request.</a></p>
+  <p>This feature has been implemented as a separate Ruby on Rails application. AACT is now comprised of 3 applications: 1) AACT Core, 2) AACT Admin & 3) AACT Projects. All code for these three components is publicly available in <a href='https://github.com/ctti-clinicaltrials/aact-proj' target='_blank'>github.</a> Note: Implementing this feature required some changes to the way ClinicalTrials.gov data is loaded into AACT. Details about these changes are available upon <a href="mailto:ctti-aact@duke.edu?subject=AACT: Request info about 4.1.0 load procedure">request.</a></p>
 
   <h5>2010 & 2016 MeSH Terms Saved to Live Database in 'mesh_archive' Schema</h5>
   <p>The National Library of Medicine (NLM) updates the MeSH thesaurus each year. To facilitate access to the set of terms used by previous research projects, a new schema named mesh_archive has been added to the live AACT database. Tables in this schema are named yYYYY_mesh_terms where YYYY identifies the version of that set of terms. For example, the 2010 set of MeSH terms is available in mesh_archive.y2010_mesh_terms.</p>

@@ -12,7 +12,8 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Proj::Project.find(params[:id])
+    @project = Proj::Project.where('schema_name = ?', params[:schema_name]).first
+    @should_render_footer = false
   end
 
   private
@@ -20,7 +21,7 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.fetch(:project, {})
-      params.require(:project).permit(:utf8, :authenticity_token, :name, :investigators, :year, :description, :id)
+      params.require(:project).permit(:utf8, :authenticity_token, :schema_name, :id)
     end
 
 end
