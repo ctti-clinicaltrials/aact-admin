@@ -1,4 +1,4 @@
- <h3>AACT 4.2.0 <i>(April 16, 2019)</i></h3>
+ <h3>AACT 4.2.0 <i>(April 14, 2019)</i></h3>
 
  <h5>Added 'Study Characteristics' Project</h5>
  <p>AACT now includes the AACT-based research project: <a href='https://jamanetwork.com/journals/jama/fullarticle/1150093' target='_blank'>Characteristics of Clinical Trials Registered in ClinicalTrials.gov, 2007-2010.</a> Datasets for this project are presented as tables in the <i>proj_tag_study_characteristics</i> schema. The <i>tagged_terms</i> table lists 2010 MeSH & free text terms that were determined to be associated with one (or more) of three clinical specialties: Mental Health, Oncology & Cardiovascular. (Each term is tagged with each related clinical specialty.) The new schema also includes a table of analyzed studies for each of the clinical specialties: <i>mental_health_studies, oncology_studies & cardiovascular_studies.</i> More information & downloadable datasets can be found on the <a href='/projects' target='_blank'>Projects</a> page.</p>
@@ -50,9 +50,5 @@
  <p>The <i>mesh_terms</i> table now contains the 2019 set of MeSH terms. (We used the 11/1/18 version of mtrees2019.bin retrieved from NLM's FTP server: <a href='ftp://nlmpubs.nlm.nih.gov/online/mesh/MESH_FILES/meshtrees/' target='_blank'>ftp://nlmpubs.nlm.nih.gov/online/mesh/MESH_FILES/meshtrees/</a>) The 2018 MeSH terms are now available in the mesh_archive schema (table name: <i>Y2018_mesh_terms</i>).</p>
 
  <h5>Removed Leading Space in Calculated_Values.minimum_age_unit & maximum_age_unit Columns</h5>
- <p>The values in <i>calculated_values.minimum_age_unit</i> & <i>maximum_age_unit</i> all had a leading space, so 'Years' was presented as '_Years' & 'Months' as '_Months'. This has been fixed so that these values will no longer include leading spaces. (This change will correct the existing data once a full database refresh is run on May 1st.)</p>
-
- <h5>Resolved Security Issues Identified by GitHub</h5>
- <p>To address security vulnerabilities detected by github, we upgraded the railties gem.</p>
-
+ <p>The values in <i>calculated_values.minimum_age_unit</i> & <i>maximum_age_unit</i> all had a leading space, so 'Years' was presented as '_Years' & 'Months' as '_Months'. This has been fixed so that these values will no longer include leading spaces.</p>
 
