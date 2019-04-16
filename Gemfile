@@ -1,11 +1,11 @@
 source "https://rubygems.org"
 
-ruby "2.4.0"
+ruby "2.4.5"
 
 gem 'bootstrap'
 gem "bootstrap-table-rails"
 gem 'nokogiri', '~> 1.8.1'
-gem 'rails', github: 'rails/rails', branch: '4-2-stable'
+gem 'rails'
 gem 'rails-html-sanitizer', '~> 1.0.4'
 gem "rack-timeout"
 gem "faraday"
@@ -75,8 +75,8 @@ end
 
 group :test do
   gem "database_cleaner"
-  gem 'capybara'
-  gem "capybara-webkit"
+#  gem 'capybara'
+#  gem "capybara-webkit"
   gem 'selenium-webdriver' # For Firefox
   gem 'chromedriver-helper'
   gem "formulaic"
