@@ -1,49 +1,120 @@
-<section class='proj'>
+<section class='basicHero'>
 
-    <p>
-      <div class='proj'>
-        <p class='projectName'><%= @project.name %></p>
-        <p><%= @project.investigators %></p>
-        <p><%= @project.start_date %></p>
-        <p><%= @project.brief_summary %></p>
-        <p><a target='_blank' href="<%= @project.url %>"><%= @project.url %></a></p>
-        <p class='projLabel'>Description:</p>
-        <p><%= @project.description %></p>
-        <p class='projLabel'>Study Selection Criteria:</p>
-        <p><%= @project.study_selection_criteria %></p>
-        <p class='projLabel'>Contact:</p>
-        <% if @project.contact_url %>
-          <p><a target='_blank' href="<%= @project.contact_url %>"><%= @project.contact_info %></a></p>
-        <% else %>
-          <p><%= @project.contact_info %></p>
-        <% end %>
-      </div>
-    </p>
+  <div class="copy">
+    <h1 class='projName'>Project: <%= @project.name %></h1>
+    <p><%= @project.investigators %></p>
 
-    <% if @project.data_available %>
-      <div class='projectData'>
-        <p>Analytic data resulting from this investigation are available to query in the AACT database in the <%= @project.schema_name %> schema. Data are also available for download:</p>
-        <% if !@project.attachments.empty? %>
-          <% @project.attachments.each do |a| %>
-            <p>
-              <a href='/attachments/<%= a.id %>'>
-                <%= a.file_name %>
-              </a>
-            </p>
-          <% end %>
-        <% end %>
-      </div>
+    <p class='projectLabel'>Brief Summary</p><p> <%= @project.brief_summary %></p>
+    <% unless @project.url.blank? %>
+      <p class='projectLabel'>URL</p><p> <a target='_blank' href="<%= @project.url %>" onClick="ga('send','event','link',""link to #{@project.url}"")"><%= @project.url %></a></p>
     <% end %>
 
-    <div class='proj'>
-      <% if @project.image %>
-        <a href='/attachments/<%= @project.image.id %>'>
-          <p class='headingImage' align="middle">
-          <%= image_tag url_for(:controller => "attachments", :action => "show",:id => @project.image.id) %>
-          </p>
-        </a>
-      <% end %>
-    </div>
+    <% unless @project.description.blank? %>
+      <p class="projectLabel">Description</p>
+      <p><%= @project.description %></p>
+    <% end %>
 
+    <!--  Study Selection Criteria ---------------------------------- -->
+    <% unless @project.study_selection_criteria.blank? %>
+      <p class="projectLabel">Study Selection Criteria</p>
+      <p><%= @project.study_selection_criteria %></p>
+    <% end %>
+
+    <% unless @project.start_date.blank? %>
+      <p><span class='projectLabel'>Project Began:</span> <%= @project.display_start_date %></p>
+    <% end %>
+
+    <!--  FAQs  ---------------------------------- -->
+    <% unless @project.faqs.empty? %>
+      <% if @project.faqs.size == 1 %>
+        <p class="projectLabel">FAQ</p>
+      <% else %>
+        <p class="projectLabel">FAQs</p>
+      <% end %>
+      <% @project.faqs.each do |faq| %>
+        <br>
+        <% if faq.question %>
+          <p class='faqLine'>&#9679;&nbsp;&nbsp;<%= faq.question %>
+        <% end %>
+        <% if faq.answer %>
+          <p><%= faq.answer %></p>
+        <% end %>
+        <% if faq.url && faq.citation %>
+          <p><a href="<%= faq.url %>" target='_blank' onClick="ga('send','event','link',""link to #{faq.url}"")"><%= faq.citation %></a></p>
+        <% else %>
+          <% if faq.url %>
+            <p><a href="<%= faq.url %>" target='_blank' onClick="ga('send','event','link',""link to #{faq.url}"")"><%= faq.url %></a></p>
+          <% end %>
+          <% if faq.citation %>
+            <p><%= faq.citation %></p>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% unless @project.publications.empty? %>
+      <% if @project.publications.size == 1 %>
+        <p class="projectLabel">Publication</p>
+      <% else %>
+        <p class="projectLabel">Publications</p>
+      <% end %>
+      <% @project.publications.each do |pub| %>
+        <p><a href="<%= pub.url %>" target='_blank' onClick="ga('send','event','link',""link to #{pub.url}"")"><%= pub.citation %></a></p>
+      <% end %>
+    <% end %>
+
+    <% unless @project.datasets.empty? %>
+      <% if @project.datasets.size == 1 %>
+        <p class="projectLabel">Downloadable Dataset</span>
+      <% else %>
+        <p class="projectLabel">Downloadable Datasets</p>
+      <% end %>
+
+      <% @project.datasets.each do |ds| %>
+        <% if ds.schema_name.blank? %>
+          <p><a href="/datasets/<%= ds.id %>" target='_blank' onClick="ga('send','event','link',""link to dataset for #{@project.schema_name}"")"><%= ds.name %>.</a>  <%= ds.description %> <%= ds.source %></p>
+        <% else %>
+          <p><a href="/datasets/<%= ds.id %>" target='_blank' onClick="ga('send','event','link',""link to dataset for #{@project.schema_name}"")"><%= ds.name %></a> <span>(Available in AACT database: <%= ds.schema_name %>.<%= ds.table_name %>)</span></a> <%= ds.description %> <%= ds.source %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% unless @project.aact_version.blank? %>
+      <p>
+        <span class="projectLabel">AACT Version:</span><%= @project.aact_version %>
+      </p>
+    <% end %>
+
+    <% if @project.schema_diagram_file_name %>
+      <p class="projectLabel">
+      <a href=<%= @project.schema_diagram_file_name %> target='_blank' onClick="ga('send','event','download',""download #{@schema_diagram}"")">Database Schema Diagram
+      <section class="schema">
+         <%= image_tag(@project.schema_diagram_file_name) %>
+      </section></a></p>
+      <br>
+    <% end %>
+
+    <% unless @project.attachments.empty? %>
+      <% if @project.attachments.size == 1 %>
+       <p class="projectLabel">Other Attachment</p>
+      <% else %>
+        <p class="projectLabel">Other Attachments</p>
+      <% end %>
+      <% @project.attachments.each do |a| %>
+         <p><a href="/attachments/<%= a.id %>" target='_blank' onClick="ga('send','event','link',""link to attachment for #{@project.schema_name}"")"><%= a.description %></a></p>
+      <% end %>
+    <% end %>
+
+    <% unless @project.contact_info.blank? %>
+      <p class="projectLabel">Contact Info</p>
+      <p><%= @project.contact_info %></p>
+    <% end %>
+
+    <p>
+      </br>
+      <a href="/projects#projectTable" class='btn btn-projects btn-primary'>Return to list of projects...</a>
+    </p>
+
+  </div>
 </section>
 

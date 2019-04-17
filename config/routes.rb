@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   get "/points_to_consider"   => "pages#points_to_consider"
   get "/psql"                 => "pages#psql"
   get "/r"                    => "pages#r"
-  get "/release_notes"        => "pages#release_notes"
   get "/sanity_check_report"  => "pages#sanity_check", as: :sanity_check
   get "/sas"                  => "pages#sas"
   get "/schema"               => "pages#schema"
@@ -33,7 +32,6 @@ Rails.application.routes.draw do
   get "/install_postgres"     => "postgres_documentation#install_postgres"
   get "/credentials"          => "credentials#show"
 
-  get "/faq"                  => "faq#home"
   get "/admin_run_loads"      => "faq#admin_run_loads"
   get "/admin_remove_user"    => "faq#admin_remove_user"
   get "/admin_add_project"    => "faq#admin_add_project"
@@ -50,7 +48,8 @@ Rails.application.routes.draw do
 
   resources :definitions
   resources :users
-  resources :projects
+  resources :projects, param: :schema_name
+  resources :release_notes
   resources :datasets
   resources :attachments
   resources :tagged_terms

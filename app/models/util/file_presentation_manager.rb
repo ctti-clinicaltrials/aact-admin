@@ -28,6 +28,10 @@ module Util
       Util::FileManager.new.files_in('exported_files','daily')
     end
 
+    def root_dir
+      '/static/documentation/'
+    end
+
     def process_flow_diagram
       '/static/documentation/process_flow_diagram.png'
     end
@@ -38,10 +42,6 @@ module Util
 
     def admin_schema_diagram
       "/static/documentation/aact_admin_schema.png"
-    end
-
-    def proj_schema_diagram
-      "/static/documentation/aact_proj_schema.png"
     end
 
     def schema_diagram
