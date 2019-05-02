@@ -28,5 +28,23 @@ module AACT
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.active_record.raise_in_transactional_callbacks = true
 
+    AACT_DB_SUPER_USERNAME = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
+    AACT_PUBLIC_HOSTNAME = ENV['AACT_PUBLIC_HOSTNAME'] || 'localhost'
+    if Rails.env == 'test'
+      APPLICATION_HOST = 'localhost'
+      AACT_PUBLIC_HOSTNAME = 'localhost'
+      AACT_BACK_DATABASE_NAME = ENV['AACT_BACK_DATABASE_NAME'] || 'aact_back_test'
+      AACT_ADMIN_DATABASE_NAME = ENV['AACT_ADMIN_DATABASE_NAME'] || 'aact_admin_test'
+      AACT_PUBLIC_DATABASE_NAME = ENV['AACT_PUBLIC_HOSTNAME'] || 'aact_test'
+    else
+      APPLICATION_HOST = ENV['APPLICATION_HOST'] || 'localhost'
+      AACT_BACK_DATABASE_NAME = ENV['AACT_BACK_DATABASE_NAME'] || 'aact_back'
+      AACT_ADMIN_DATABASE_NAME = ENV['AACT_ADMIN_DATABASE_NAME'] || 'aact_admin'
+      AACT_PUBLIC_DATABASE_NAME = ENV['AACT_PUBLIC_HOSTNAME'] || 'aact'
+    end
+    AACT_BACK_DATABASE_URL   = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_BACK_DATABASE_NAME}"
+    AACT_ADMIN_DATABASE_URL  = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_ADMIN_DATABASE_NAME}"
+    AACT_PUBLIC_DATABASE_URL = "postgres://#{AACT_DB_SUPER_USERNAME}@#{AACT_PUBLIC_HOSTNAME}:5432/#{AACT_PUBLIC_DATABASE_NAME}"
+
   end
 end
