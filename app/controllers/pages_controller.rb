@@ -1,23 +1,11 @@
 class PagesController < ApplicationController
 
-  def sas
-    set_global_vars
-  end
-
-  def r
-    set_global_vars
-  end
-
   def snapshots
-    fpm=Util::FilePresentationManager.new
-    @daily_files=fpm.daily_snapshot_files
-    @archive_files=fpm.monthly_snapshot_files
+    set_daily_monthly_files
   end
 
   def pipe_files
-    fpm=Util::FilePresentationManager.new
-    @daily_files=fpm.daily_flat_files
-    @archive_files=fpm.monthly_flat_files
+    set_daily_monthly_files
   end
 
   def points_to_consider
@@ -41,9 +29,10 @@ class PagesController < ApplicationController
 
   private
 
-  def set_global_vars
-    @aact_public_database_name = AACT::Application::AACT_PUBLIC_DATABASE_NAME
-    @aact_public_hostname = AACT::Application::AACT_PUBLIC_HOSTNAME
+  def set_daily_monthly_files
+    fpm=Util::FilePresentationManager.new
+    @daily_files=fpm.daily_flat_files
+    @archive_files=fpm.monthly_flat_files
   end
 
   def set_diagrams_and_dictionaries
