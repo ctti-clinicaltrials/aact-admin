@@ -48,7 +48,8 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'rack-protection', '~> 1.5.5'
 
 # user registration
-gem 'devise'
+#gem 'devise'
+gem "devise", ">= 4.6.0"
 gem 'devise-encryptable'
 
 # deployment to server
