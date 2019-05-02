@@ -29,7 +29,8 @@ module AACT
     config.active_record.raise_in_transactional_callbacks = true
 
     AACT_DB_SUPER_USERNAME = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
-    AACT_PUBLIC_HOSTNAME = ENV['AACT_PUBLIC_HOSTNAME'] || 'localhost'
+    AACT_PUBLIC_HOSTNAME   = ENV['AACT_PUBLIC_HOSTNAME'] || 'localhost'
+    AACT_DB_VERSION        = ENV['AACT_DB_VERSION'] || 'uncertain'
     if Rails.env == 'test'
       APPLICATION_HOST          = 'localhost'
       AACT_PUBLIC_HOSTNAME      = 'localhost'
