@@ -4,7 +4,7 @@ development: &default
   min_messages: warning
   pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
   timeout: 5000
-  url: <%= ENV.fetch("AACT_ADMIN_DATABASE_URL", "")
+  url:  <%= ENV.fetch("AACT_ADMIN_DATABASE_URL", "") %>
 
 test:
   encoding: utf8
@@ -17,5 +17,5 @@ production: &deploy
   min_messages: warning
   pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
   timeout: 5000
-  url: <%= ENV.fetch("AACT_ADMIN_DATABASE_URL", "")
+  url:  <%= ENV.fetch("AACT_ADMIN_DATABASE_URL", "") %>
 
