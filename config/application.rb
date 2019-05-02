@@ -28,9 +28,13 @@ module AACT
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.active_record.raise_in_transactional_callbacks = true
 
+    SEGMENT_KEY            = ENV['SEGMENT_KEY']
     AACT_DB_SUPER_USERNAME = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
     AACT_PUBLIC_HOSTNAME   = ENV['AACT_PUBLIC_HOSTNAME'] || 'localhost'
-    AACT_DB_VERSION        = ENV['AACT_DB_VERSION'] || 'uncertain'
+    AACT_PROCESS_SERVER    = ENV['AACT_PROCESS_SERVER'] || 'localhost'
+    AACT_DB_VERSION        = ENV['AACT_DB_VERSION'] || 'uncertain'   # get this from the public database
+    AACT_ADMIN_USERNAMES   = ENV['AACT_ADMIN_USERNAMES'] || 'aact','admin'
+    AACT_VIEW_PASSWORD     = ENV['AACT_VIEW_PASSWORD'] || 'aViewPassword'  # needed to get to use case edit view
     if Rails.env == 'test'
       APPLICATION_HOST          = 'localhost'
       AACT_PUBLIC_HOSTNAME      = 'localhost'

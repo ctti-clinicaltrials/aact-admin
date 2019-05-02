@@ -24,8 +24,8 @@
        <p>Below are some tips about how to recover user information in the AACT system using these backup files:</p>
        <ul>
          <li>
-           <p>The date-stamped files attached to this email should already be in the /aact-files/db_backups directory on the server (<%= ENV['AACT_PROCESS_SERVER'] %>). If for some reason they're missing from the server or you prefer to use the files attached here, you can download them from this email and copy them to the production processing server: <span style="color:green;"><%= ENV['AACT_PROCESS_SERVER'] %></span>. Sample command to do this:</p>
-           <p style="color:blue;">scp <%= Time.now.strftime("%Y%m%d") %>_aact_user_events.sql ctti-aact@<%= ENV['AACT_PROCESS_SERVER'] %>:/aact-files/tmp</p>
+           <p>The date-stamped files attached to this email should already be in the /aact-files/db_backups directory on the server (<%= @aact_process_server %>). If for some reason they're missing from the server or you prefer to use the files attached here, you can download them from this email and copy them to the production processing server: <span style="color:green;"><%=@aact_process_server %></span>. Sample command to do this:</p>
+           <p style="color:blue;">scp <%= Time.now.strftime("%Y%m%d") %>_aact_user_events.sql ctti-aact@<%= @aact_process_server %>:/aact-files/tmp</p>
          </li>
          <li>Log onto the production server and change to the directory where you just copied the files.
            <p style="color:blue;">ssh ctti-aact@ctti-web-01.oit.duke.edu</p>

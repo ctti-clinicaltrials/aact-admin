@@ -32,7 +32,7 @@
   </span>
   </a>
 
-  <% if  (!current_user.nil? and ENV['AACT_ADMIN_USERNAMES'].split(',').include? current_user.username) %>
+  <% if  (!current_user.nil? and @aact_admin_usernames.split(',').include? current_user.username) %>
     <a href="/users">
       <div class="iconWrap">
         <%= fa_icon('address-card') %>
