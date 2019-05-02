@@ -33,9 +33,9 @@ module AACT
     if Rails.env == 'test'
       APPLICATION_HOST = 'localhost'
       AACT_PUBLIC_HOSTNAME = 'localhost'
-      AACT_BACK_DATABASE_NAME = ENV['AACT_BACK_DATABASE_NAME'] || 'aact_back_test'
-      AACT_ADMIN_DATABASE_NAME = ENV['AACT_ADMIN_DATABASE_NAME'] || 'aact_admin_test'
-      AACT_PUBLIC_DATABASE_NAME = ENV['AACT_PUBLIC_HOSTNAME'] || 'aact_test'
+      AACT_BACK_DATABASE_NAME = 'aact_back_test'
+      AACT_ADMIN_DATABASE_NAME = 'aact_admin_test'
+      AACT_PUBLIC_DATABASE_NAME = 'aact_test'
     else
       APPLICATION_HOST = ENV['APPLICATION_HOST'] || 'localhost'
       AACT_BACK_DATABASE_NAME = ENV['AACT_BACK_DATABASE_NAME'] || 'aact_back'
