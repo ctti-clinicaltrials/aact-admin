@@ -2,9 +2,8 @@ development: &default
   encoding: utf8
   adapter: postgresql
   min_messages: warning
-  pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
   timeout: 5000
-  url:  <%= ENV.fetch("AACT_ADMIN_DATABASE_URL", "") %>
+  url:  <%= "postgres://#{ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'}@#{ENV['APPLICATION_HOST'] || 'localhost'}:5432/#{ENV['AACT_ADMIN_DATABASE_NAME'] || 'aact_admin'}" %>
 
 test:
   encoding: utf8
@@ -15,7 +14,5 @@ production: &deploy
   encoding: utf8
   adapter: postgresql
   min_messages: warning
-  pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
   timeout: 5000
-  url:  <%= ENV.fetch("AACT_ADMIN_DATABASE_URL", "") %>
-
+  url:  <%= "postgres://#{ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'}@#{ENV['APPLICATION_HOST'] || 'localhost'}:5432/#{ENV['AACT_ADMIN_DATABASE_NAME'] || 'aact_admin'}" %>
