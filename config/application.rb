@@ -35,6 +35,7 @@ module AACT
     AACT_DB_VERSION        = ENV['AACT_DB_VERSION'] || 'uncertain'   # get this from the public database
     AACT_ADMIN_USERNAMES   = ENV['AACT_ADMIN_USERNAMES'] || 'aact','admin'
     AACT_VIEW_PASSWORD     = ENV['AACT_VIEW_PASSWORD'] || 'aViewPassword'  # needed to get to use case edit view
+    RACK_TIMEOUT           = ENV['RACK_TIMEOUT'] || 10
     if Rails.env == 'test'
       APPLICATION_HOST          = 'localhost'
       AACT_PUBLIC_HOSTNAME      = 'localhost'
