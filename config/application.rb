@@ -33,7 +33,7 @@ module AACT
     AACT_PUBLIC_HOSTNAME   = ENV['AACT_PUBLIC_HOSTNAME'] || 'localhost'
     AACT_PROCESS_SERVER    = ENV['AACT_PROCESS_SERVER'] || 'localhost'
     AACT_DB_VERSION        = ENV['AACT_DB_VERSION'] || 'uncertain'   # get this from the public database
-    AACT_ADMIN_USERNAMES   = ENV['AACT_ADMIN_USERNAMES'] || 'aact,admin'
+    AACT_ADMIN_USERNAMES   = ENV['AACT_ADMIN_USERNAMES'] || ''       # User who can see restricted pages like technical documentation, users, etc.
     AACT_VIEW_PASSWORD     = ENV['AACT_VIEW_PASSWORD'] || 'aViewPassword'  # needed to get to use case edit view
     RACK_TIMEOUT           = ENV['RACK_TIMEOUT'] || 10
     if Rails.env == 'test'
