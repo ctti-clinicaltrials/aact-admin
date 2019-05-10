@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
   def set_global_vars
     @aact_process_server       = AACT::Application::AACT_PROCESS_SERVER
+    @aact_static_file_dir      = AACT::Application::AACT_STATIC_FILE_DIR
     @aact_public_database_name = AACT::Application::AACT_PUBLIC_DATABASE_NAME
     @aact_public_hostname      = AACT::Application::AACT_PUBLIC_HOSTNAME
     @aact_public_ip_address    = AACT::Application::AACT_PUBLIC_IP_ADDRESS

@@ -31,9 +31,11 @@ module AACT
     SEGMENT_KEY            = ENV['SEGMENT_KEY']
     AACT_DB_SUPER_USERNAME = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
     AACT_PUBLIC_HOSTNAME   = ENV['AACT_PUBLIC_HOSTNAME'] || 'localhost'
+    AACT_STATIC_FILE_DIR   = ENV['AACT_STATIC_FILE_DIR'] || '/aact-files'  # directory containing AACT static files such as the downloadable db snapshots
     AACT_PROCESS_SERVER    = ENV['AACT_PROCESS_SERVER']
     AACT_DB_VERSION        = ENV['AACT_DB_VERSION'] || 'uncertain'   # get this from the public database
     AACT_ADMIN_USERNAMES   = ENV['AACT_ADMIN_USERNAMES'] || ''       # User who can see restricted pages like technical documentation, users, etc.
+    AACT_ADMIN_DIR         = ENV['AACT_ADMIN_DIR']                   # Directory where admin app resides
     AACT_VIEW_PASSWORD     = ENV['AACT_VIEW_PASSWORD']               # needed to get to use case edit view
     RACK_TIMEOUT           = ENV['RACK_TIMEOUT'] || 10
     if Rails.env == 'test'

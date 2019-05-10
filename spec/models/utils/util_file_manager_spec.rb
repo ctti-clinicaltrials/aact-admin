@@ -9,8 +9,8 @@ describe Util::FileManager do
       dt = Time.zone.now
       year = dt.year
       month = dt.month.to_s.rjust(2, '0')
-      this_month_file="/aact-files/static_db_copies/daily/#{year}#{month}02_clinical_trials.zip"
-      system('rm /aact-files/static_db_copies/daily/*') # remove everything from daily file directory
+      this_month_file="#{AACT::Application::AACT_STATIC_FILE_DIR}/static_db_copies/daily/#{year}#{month}02_clinical_trials.zip"
+      system("rm #{AACT::Application::AACT_STATIC_FILE_DIR}/static_db_copies/daily/*") # remove everything from daily file directory
       expect(File.exist?(this_month_file)).to eq(false)
       system("touch #{this_month_file}")    # create file for this month
       expect(File.exist?(this_month_file)).to eq(true)
@@ -26,8 +26,12 @@ describe Util::FileManager do
         month = '12'
         year  = year - 1
       end
-      last_month_file="/aact-files/static_db_copies/daily/#{year}#{month}02_clinical_trials.zip"
-      system('rm /aact-files/static_db_copies/daily/*') # remove everything from daily file directory
+      last_month_file="#{AACT::Application::AACT_STATIC_FILE_DIR}/static_db_copies/daily/#{year}#{month}02_clinical_trials.zip"
+      puts "============================="
+      puts last_month_file
+      puts "============================="
+
+      system("rm #{AACT::Application::AACT_STATIC_FILE_DIR}/static_db_copies/daily/*") # remove everything from daily file directory
       system("touch #{last_month_file}")    # create file for last month
       expect(File.exist?(last_month_file)).to eq(true)
       subject.remove_daily_files

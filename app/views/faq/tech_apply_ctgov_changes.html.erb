@@ -7,12 +7,12 @@
 
 <h4>Set Environment Variables</h4>
 
-  <p>AACT depends on the following set of environment variables which need to be defined for AACT to run correctly.</p>
+  <p>AACT depends on the following set of environment variables which need to be defined for AACT to run correctly. Some of these environment variables are defined in just one of the 3 AACT apps.  (For example, AACT_PROJ_DATABASE_NAME is only needed in the aact-proj app.)</p>
   <h5>Critical Env Vars</h5>
   <table class='regularDisplay'>
     <tr>
       <th>env var</th>
-      <th>default value</th>
+      <th>value in prod</th>
       <th>description</th>
     </tr>
     <tr>
@@ -26,6 +26,8 @@
       <tr><td>AACT_OWNER_EMAIL</td><td>AACT <aact@ctti-clinicaltrials.org></td><td>Name of email acct from which notifications are sent. (Don't define this if your email service is not setup.)</td></tr>
       <tr><td>AACT_ADMIN_EMAILS</td><td>sheri.tibbs@duke.edu,ctti-aact@duke.edu</td><td>Email addresses that will receive load notifications.</td></tr>
       <tr><td>AACT_ADMIN_USERNAMES</td><td>tibbs001,tibbs002,chisw001,calve002,cttiaact,karenchiswell</td><td>AACT website usernames that have access to restricted pages such as the list of users, tech documentation, etc.</tr>
+      <tr><td>AACT_ADMIN_DIR</td><td>/srv/web/aact.ctti-clinicaltrials.org/current/</td><td>Directory where AACT admin app resides on server.  Used by scripts that track user activity.</tr>
+      <tr><td>AACT_STATIC_FILE_DIR</td><td>/aact-files</td><td>Directory containing AACT static files such as the downloadable db snapshots, documentation, xml download from ClinicalTrials.gov, logs, etc. </tr>
       <tr><td>SEGMENT_KEY</td><td>nil</td><td>Used by Google Analytics</tr>
     </table>
 
