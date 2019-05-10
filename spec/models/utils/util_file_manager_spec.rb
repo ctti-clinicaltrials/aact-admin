@@ -27,9 +27,6 @@ describe Util::FileManager do
         year  = year - 1
       end
       last_month_file="#{AACT::Application::AACT_STATIC_FILE_DIR}/static_db_copies/daily/#{year}#{month}02_clinical_trials.zip"
-      puts "============================="
-      puts last_month_file
-      puts "============================="
 
       system("rm #{AACT::Application::AACT_STATIC_FILE_DIR}/static_db_copies/daily/*") # remove everything from daily file directory
       system("touch #{last_month_file}")    # create file for last month
