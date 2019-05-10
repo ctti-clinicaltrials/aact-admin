@@ -39,20 +39,20 @@
 #
 # Global options
   set :repo_url, "git@github.com:ctti-clinicaltrials/aact-admin.git"
-  set :deploy_to, '/srv/web/aact.ctti-clinicaltrials.org'
+  set :deploy_to, ENV['AACT_ADMIN_PROD_DEPLOY_TO']
   set :ssh_options, {
-    keys: %w(/home/ctti-aact/.ssh/id_rsa),
+    keys: %w("#{ENV['AACT_SSH_KEY_DIR']}"),
     forward_agent: false,
     auth_methods: %w(publickey)
   }
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
- server "ctti-web-01.oit.duke.edu",
+ server "#{ENV['AACT_PROD_SERVER']}",
    roles: %w{web app},
    ssh_options: {
-     user: "ctti-aact", # overrides user setting above
-     keys: %w(/home/ctti-aact/.ssh/id_rsa),
+     user: "#{ENV['AACT_SERVER_USERNAME']}",
+     keys: %w("#{ENV['AACT_SSH_KEY_DIR']}"),
      forward_agent: false,
      auth_methods: %w(publickey)
    }
