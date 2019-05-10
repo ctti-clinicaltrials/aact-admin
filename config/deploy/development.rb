@@ -35,7 +35,7 @@
 #
 # Global options
 # --------------
-  set :repo_url, "git@github.com:tibbs001/aact-admin-1.git"
+  set :repo_url, ENV['AACT_ADMIN_DEV_REPO_URL']
   set :deploy_to, ENV['AACT_ADMIN_DEV_DEPLOY_TO']
 #
 # The server-based syntax can be used to override options:
