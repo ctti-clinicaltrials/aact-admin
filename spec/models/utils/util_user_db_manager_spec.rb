@@ -3,7 +3,6 @@ require 'rails_helper'
 describe Util::UserDbManager do
   let(:username) { 'testuser' }
   let(:original_password) { 'original_password' }
-  let(:dummy_password) { ENV['UNCONFIRMED_USER_PASSWORD'] }
 
   subject { described_class.new }
 
@@ -63,9 +62,9 @@ describe Util::UserDbManager do
       Public::PublicBase.establish_connection(
         adapter: 'postgresql',
         encoding: 'utf8',
-        hostname: ENV['AACT_PUBLIC_HOSTNAME'],
-        database: ENV['AACT_PUBLIC_DATABASE_NAME'],
-        username: ENV['AACT_DB_SUPER_USERNAME'])
+        hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
+        database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
+        username: AACT::Application::AACT_DB_SUPER_USERNAME)
       @dbconfig = YAML.load(File.read('config/database.yml'))
       ActiveRecord::Base.establish_connection @dbconfig[:test]
       user.remove
