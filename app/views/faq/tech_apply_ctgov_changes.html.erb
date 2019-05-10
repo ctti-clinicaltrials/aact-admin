@@ -18,9 +18,10 @@
     <tr>
       <tr><td>AACT_DB_SUPER_USERNAME</td><td>ctti</td><td>Database user account that has permission to create, drop, update AACT databases.</tr>
       <tr><td>APPLICATION_HOST</td><td>localhost</td><td>Server on which database loads run</td></tr>
-      <tr><td>AACT_PUBLIC_HOSTNAME</td><td>localhost</td><td>Server on which the publicly accessible database resides</td></tr>
+      <tr><td>AACT_PUBLIC_HOSTNAME</td><td>aact-db.ctti-clinicaltrials.org</td><td>Server upon which the publicly accessible database resides.</td></tr>
       <tr><td>AACT_BACK_DATABASE_NAME</td><td>aact_back</td><td>Name of background database used to process loads</td></tr>
       <tr><td>AACT_ADMIN_DATABASE_NAME</td><td>aact_admin</td><td>Name of database used to support the AACT website</td></tr>
+      <tr><td>AACT_PROJ_DATABASE_NAME</td><td>aact_proj</td><td>Name of database used to prepare AACT project data before it is pushed to the public db.</td></tr>
       <tr><td>AACT_PUBLIC_DATABASE_NAME</td><td>aact</td><td>Name of database available to the public</td></tr>
       <tr><td>AACT_OWNER_EMAIL</td><td>AACT <aact@ctti-clinicaltrials.org></td><td>Name of email acct from which notifications are sent. (Don't define this if your email service is not setup.)</td></tr>
       <tr><td>AACT_ADMIN_EMAILS</td><td>sheri.tibbs@duke.edu,ctti-aact@duke.edu</td><td>Email addresses that will receive load notifications.</td></tr>
@@ -42,6 +43,7 @@
 
     <tr><td>AACT_SERVER_USERNAME</td><td>ctti-aact</td><td>Name of the user login on the servers.</td></tr>
     <tr><td>AACT_DEPLOY_TO</td><td>/home/ctti-aact/apps/aact/</td><td>Directory location on server (both dev & prod) where AACT code is deployed.</td></tr>
+    <tr><td>AACT_PROJ_DEPLOY_TO</td><td>/home/ctti-aact/apps/aact-proj/</td><td>Directory location on server (both dev & prod) where AACT Project code is deployed.</td></tr>
     <tr><td>AACT_ADMIN_DEV_DEPLOY_TO</td><td>/srv/web/aact-dev.oit.duke.edu</td><td>Directory location on dev server where AACT-Admin code is deployed.</td></tr>
     <tr><td>AACT_ADMIN_PROD_DEPLOY_TO</td><td>/srv/web/aact.ctti-clinicaltrials.org</td><td>Directory location on prod server where AACT-Admin code is deployed.</td></tr>
     <tr><td>AACT_SSH_KEY_DIR</td><td>(Leaving blank for security reasons.)</td><td>Directory on the server where the ssh keys are located.</tr>
@@ -50,6 +52,7 @@
     <tr><td>AACT_DEV_REPO_URL</td><td>git@github.com:tibbs001/aact-1.git</td></tr>
     <tr><td>AACT_ADMIN_DEV_REPO_URL</td><td>git@github.com:tibbs001/aact-admin-1.git</td></tr>
     <tr><td>AACT_ADMIN_PROD_REPO_URL</td><td>git@github.com:ctti-clinicaltrials/aact-admin.git</td></tr>
+    <tr><td>AACT_PROJ_PROD_REPO_URL</td><td>git@github.com:ctti-clinicaltrials/aact-proj.git</td></tr>
     <tr>
   </table>
 
