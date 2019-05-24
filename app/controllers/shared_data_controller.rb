@@ -1,4 +1,4 @@
-class ProjectsController < ApplicationController
+class SharedDataController < ApplicationController
 
   def index
     @project_count = Proj::Project.all.size
