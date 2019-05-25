@@ -1,20 +1,30 @@
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
 <script>
+
 $(document).ready(function(){
 
   var $table = $('#projectTable');
 
   $table.on('expand-row.bs.table', function(e, index, row, $detail) {
-    var res = $("#detail_" + index ).html();
+    var res = $("#detail_" + index).html();
     $detail.html(res);
   });
 
-  $("#projectFilter").change(function(){
-      $(".dataNotAvailable").toggle($("#projectFilter").val() == "all");
+  $table.on("click-row.bs.table", function(e, row, $tr) {
+    console.log("  Clicked on: " + $(e.target).attr('class'), [e, row, $tr]);
+    if ($tr.next().is('tr.detail-view')) {
+       $table.bootstrapTable('collapseRow', $tr.data('index'));
+    } else {
+       $table.bootstrapTable('expandRow', $tr.data('index'));
+    }
+
+    $("#projectFilter").change(function(){
+        $(".dataNotAvailable").toggle($("#projectFilter").val() == "all");
+    });
   });
 
 });
@@ -22,17 +32,9 @@ $(document).ready(function(){
 
 <section class='standardLayout'>
   <div>
-    <h1 class='projects'>AACT-based Research: Shared Data</h1>
+    <h1 class='projects'>Shared Data</h1>
 
     <%= render 'explanation' %>
-
-    <!-- temporarily hide this until we have projects that don't provide db content
-    <div id='toolbar' style="visibility: hidden">
-       <select id="projectFilter">
-          <option value="all">All Projects</option>
-          <option value="dataInDatabase">Projects with Data in AACT Database</option>
-      </select>
-    </div> -->
 
     <div class='shadowContainer'>
       <table id='projectTable'
@@ -40,7 +42,6 @@ $(document).ready(function(){
          data-detail-view="true"
          data-detail-formatter="detailFormatter"
          data-pagination="true"
-         data-show-toggle="true"
          data-show-columns="true"
          data-sort-order="name"
          class='sortable table-striped table-responsive table-hover regularDisplay'>
@@ -58,17 +59,13 @@ $(document).ready(function(){
 
           <tbody class='projects'>
             <% @projects.each_with_index do |proj, index| %>
-              <tr id="row_<%= index %>" class="projectRow <%= 'dataNotAvailable' if proj.data_available == false %>">
-                <% if !proj.publication_url.nil? %>
-                  <td><%= proj.name %></td>
-                <% else %>
-                  <td><%= proj.name %></td>
-                <% end %>
+              <tr id="row_<%= index %>" class="projectRow">
+                <td><%= proj.name %></td>
                 <td><%= proj.investigators %></td>
                 <td><%= proj.organizations %></td>
                 <td><%= proj.year %></td>
                 <td><%= proj.brief_summary %></td>
-                <td><%= proj.schema_name  if proj.data_available != false %></td>
+                <td><%= proj.schema_name %></td>
                 <span style="display: none;" id="detail_<%= index %>">
                   <%= render :partial => 'project_details', :locals => {:proj => proj} %>
                 </span>
