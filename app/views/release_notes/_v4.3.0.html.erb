@@ -2,33 +2,14 @@
 
  <h5>Upgrade to CentOS Linux release 7.6.1810 (Core)</h5>
 
- <h5>Refactor & Document to Make it Easier for Others to Implement the AACT Application</h5>
- <p>AACT is comprised of three components: AACT Core, AACT Admin & AACT Projects. We believe others may want to download and create their own version of the primary component, AACT Core </p>
+ <h5>Changes to Facilitate Replication of the AACT Application</h5>
+ <p>To make it easier for others to replicate the AACT component that creates a relational database of ClinicalTrials.gov data, we've refactored code, simplified environment variables & modified the README file in the <a href='https://github.com/ctti-clinicaltrials/aact' target='_blank'>AACT git repository</a>.
 
- <h5>Add Criteria Table to Provide This Info at More Granular Level</h5>
- <p> A number of AACT users have asked if the eligibility criteria is available in a format that allows for analysis of sets of individual criterium rather than having all criteria (both inclusion and exclusion) presented in one text block as provided via the ClinicalTrials.gov API. (This text block that defines each study's inclusion & exclusion criteria is provided in <i>eligibilities.criteria</i>). We now parse this text block and save each individual criterium as a row in the <i>Criteria</i> table.</p>
+ <h5>User Activity Statisitcs Were Not Being Collected - Fixed</h5>
+ <p>When we upgraded to PostgreSQL 11.1, the format of the database log files changed slightly. As a result, the process that parses the log files failed to gather/summarize information. This has been fixed.</p>
 
- <p>Since criteria information can be nested, the <i>Criteria</i> table includes a <i>parent_id</i> column to identify the other line in the text under which the criterium falls. For example, the individual criterium 'Germ cell tumors' represented in the image below will have a parent_id that references the 'The following are ineligible:' row.</p>
+ <h5>IP Address Blocking</h5>
+ <p>It seems someone setup unproductive bots that were consuming AACT database resources and dramatically slowing response time for others. We've implemented a feature that allows us to block IP addresses when we detect this type of activity.</p>
 
-  <p> <%= image_tag(@nested_criteria_example, :size => '600x340', :class => 'centerImage') %> </p>
-
- <p>Here is a SQL example that shows how you can display nested criteria for a study:</p>
-<p class="CodeRay">
-  <pre>
-    <p class='code'>
-      <span class='command-entry'>SELECT nct_id, lpad(order_number::varchar(255),
-      (4 * level) + length(order_number::varchar(255)), ' ') as order,
-      lpad(name, (4 * level) + length(name), ' ') as criterium
-      FROM criteria
-      WHERE criterium_type='inclusion'
-      AND nct_id='NCT00011986'
-      ORDER BY nct_id, id;</span>
-    </p>
-  </pre>
-</p>
-
-<p>The content of the criteria text block received from ClinicalTrials.gov does not consistently conform to the expected format. We've tried to replicate this information in a more granular way, but we cannot guarantee that every case is accurately reflected in the <i>Criteria</i> table.</p>
-
- <h5>Improve AACT Installation Documentation</h5>
- <p>We have rewritten the README file in the <a href='https://github.com/ctti-clinicaltrials/aact' target='_blank'>AACT git repository</a> to make it easier for others to clone the code and setup their own instance of the tool that pulls data from ClinicalTrials.gov and populates a relational database. ave updated documentation in the ReadMe file that appears on the AACT main page in github. This documentation describes how to clone <a href='https://github.com/ctti-clinicaltrials/aact' target='_blank'>AACT from github</a> and create a local, working copy.</p>
-
+ <h5>Increased Maxiumm Connection Count</h5>
+ <p>A significant increase in the number of people accessing the live AACT database compelled us to increase the maximum number of connections allowed. We continue to investigate ways to support this open database model.</p>
