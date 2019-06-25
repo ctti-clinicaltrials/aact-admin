@@ -112,8 +112,8 @@ module Util
 
     def grant_db_privs(username)
       #  This grants db privs to individuals. A method to grant db privs to all users is in the AACT Application
-      if Proj::Project.count > 0
-        project_schemas = ", #{Proj::Project.schema_name_list}"
+      if Share::Project.count > 0
+        project_schemas = ", #{Share::Project.schema_name_list}"
       else
         project_schemas = ""
       end

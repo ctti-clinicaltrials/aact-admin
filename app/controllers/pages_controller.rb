@@ -24,7 +24,7 @@ class PagesController < ApplicationController
   def schema
     set_diagrams_and_dictionaries
     @show_dictionary_link = true
-    @project_schema_files=Proj::Project.schema_diagram_file_names
+    @project_schema_files=Share::Project.schema_diagram_file_names
   end
 
   private
