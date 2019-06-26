@@ -1,15 +1,16 @@
- <h3>AACT 4.3.0 <i>(May 17, 2019)</i></h3>
+ <h3>AACT 4.3.0 <i>(June 28, 2019)</i></h3>
 
  <h5>Upgrade to CentOS Linux release 7.6.1810 (Core)</h5>
 
- <h5>Changes to Facilitate Replication of the AACT Application</h5>
+ <h5>Facilitate Replication of the AACT Application</h5>
  <p>To make it easier for others to replicate the AACT component that creates a relational database of ClinicalTrials.gov data, we've refactored code, simplified environment variables & modified the README file in the <a href='https://github.com/ctti-clinicaltrials/aact' target='_blank'>AACT git repository</a>.
 
- <h5>User Activity Statisitcs Were Not Being Collected - Fixed</h5>
+ <h5>Fix Problem in Processs that Collects User Activity Statisitcs</h5>
  <p>When we upgraded to PostgreSQL 11.1, the format of the database log files changed slightly. As a result, the process that parses the log files failed to gather/summarize information. This has been fixed.</p>
 
- <h5>IP Address Blocking</h5>
+ <h5>Some IP Address Now Being Blocked</h5>
  <p>It seems someone setup unproductive bots that were consuming AACT database resources and dramatically slowing response time for others. We've implemented a feature that allows us to block IP addresses when we detect this type of activity.</p>
 
  <h5>Increased Maxiumm Connection Count</h5>
- <p>A significant increase in the number of people accessing the live AACT database compelled us to increase the maximum number of connections allowed. We continue to investigate ways to support this open database model.</p>
+ <p>We increased the maximum number of connections allowed to the live database due to recent, significant increase in the number of people accessing it. We continue to investigate other ways to support this open database model as activity increases.</p>
+
