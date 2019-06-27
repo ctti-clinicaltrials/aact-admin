@@ -8,7 +8,6 @@ describe Util::UserDbManager do
 
   context 'when backing up user info' do
     it 'should create 3 backup files and send an email' do
-      allow_any_instance_of(Util::UserDbManager).to receive(:pg_dumpall_command).and_return('pg_dumpall')  # different version on server
       subject.run_command_line("ln -s #{AACT::Application::AACT_STATIC_FILE_DIR} public/static") # now put it back
       fm=Util::FileManager.new
       expect(UserMailer).to receive(:send_backup_notification).exactly(1).times

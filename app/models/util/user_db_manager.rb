@@ -65,7 +65,7 @@ module Util
       run_command_line(cmd)
 
       log "dumping User accounts..."
-      cmd="#{pg_dumpall_command} -U  #{AACT::Application::AACT_DB_SUPER_USERNAME} -h #{public_host_name} --globals-only > #{fm.user_account_backup_file}"
+      cmd="pg_dumpall -U  #{AACT::Application::AACT_DB_SUPER_USERNAME} -h #{public_host_name} --globals-only > #{fm.user_account_backup_file}"
       run_command_line(cmd)
 
       begin
@@ -80,11 +80,6 @@ module Util
         event.save!
         return false
       end
-    end
-
-    def pg_dumpall_command
-      # This is changable. What's currently needed on servers.  Doesn't work on local machine - need to just use pg_dumpall in rspec
-      "/opt/rh/rh-postgresql96/root/bin/pg_dumpall"
     end
 
     def check_for_backup_errors(event, fm)
