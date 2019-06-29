@@ -48,7 +48,7 @@
 
   <div class='learnMoreCards'>
 
-    <% if (!current_user.nil? and ENV['AACT_ADMIN_USERNAMES'].split(',').include? current_user.username) %>
+    <% if (!current_user.nil? and @aact_admin_usernames.split(',').include? current_user.username) %>
       <a href='/technical_documentation' class='learnMoreCard'>
         <h3>Technical Documentation</h3>
         <p>Provides details about the code and technical architecture used to create and populate the AACT database, as well as other support services such as this website, user registration, and additional background functionality.</p>

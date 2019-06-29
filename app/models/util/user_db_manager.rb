@@ -57,15 +57,15 @@ module Util
       fm.remove_todays_user_backup_tables
 
       log "dumping Users table..."
-      cmd="pg_dump --no-owner --host=localhost -U #{ENV['AACT_DB_SUPER_USERNAME']} --table=Users  --data-only aact_admin > #{fm.user_table_backup_file}"
+      cmd="pg_dump --no-owner --host=localhost -U #{AACT::Application::AACT_DB_SUPER_USERNAME} --table=Users  --data-only aact_admin > #{fm.user_table_backup_file}"
       run_command_line(cmd)
 
       log "dumping User events..."
-      cmd="pg_dump --no-owner --host=localhost -U #{ENV['AACT_DB_SUPER_USERNAME']} --table=User_Events  --data-only aact_admin > #{fm.user_event_table_backup_file}"
+      cmd="pg_dump --no-owner --host=localhost -U #{AACT::Application::AACT_DB_SUPER_USERNAME} --table=User_Events  --data-only aact_admin > #{fm.user_event_table_backup_file}"
       run_command_line(cmd)
 
       log "dumping User accounts..."
-      cmd="#{pg_dumpall_command} -U  #{ENV['AACT_DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{fm.user_account_backup_file}"
+      cmd="pg_dumpall -U  #{AACT::Application::AACT_DB_SUPER_USERNAME} -h #{public_host_name} --globals-only > #{fm.user_account_backup_file}"
       run_command_line(cmd)
 
       begin
@@ -80,11 +80,6 @@ module Util
         event.save!
         return false
       end
-    end
-
-    def pg_dumpall_command
-      # This is changable. What's currently needed on servers.  Doesn't work on local machine - need to just use pg_dumpall in rspec
-      "/opt/rh/rh-postgresql96/root/bin/pg_dumpall"
     end
 
     def check_for_backup_errors(event, fm)
@@ -112,8 +107,8 @@ module Util
 
     def grant_db_privs(username)
       #  This grants db privs to individuals. A method to grant db privs to all users is in the AACT Application
-      if Proj::Project.count > 0
-        project_schemas = ", #{Proj::Project.schema_name_list}"
+      if Share::Project.count > 0
+        project_schemas = ", #{Share::Project.schema_name_list}"
       else
         project_schemas = ""
       end

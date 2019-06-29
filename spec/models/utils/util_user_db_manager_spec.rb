@@ -3,14 +3,12 @@ require 'rails_helper'
 describe Util::UserDbManager do
   let(:username) { 'testuser' }
   let(:original_password) { 'original_password' }
-  let(:dummy_password) { ENV['UNCONFIRMED_USER_PASSWORD'] }
 
   subject { described_class.new }
 
   context 'when backing up user info' do
     it 'should create 3 backup files and send an email' do
-      allow_any_instance_of(Util::UserDbManager).to receive(:pg_dumpall_command).and_return('pg_dumpall')  # different version on server
-      subject.run_command_line('ln -s /aact-files public/static') # now put it back
+      subject.run_command_line("ln -s #{AACT::Application::AACT_STATIC_FILE_DIR} public/static") # now put it back
       fm=Util::FileManager.new
       expect(UserMailer).to receive(:send_backup_notification).exactly(1).times
       # first make sure the files don't already exist
@@ -41,7 +39,7 @@ describe Util::UserDbManager do
       subject.backup_user_info
       expect(UserEvent.count).to eq(1)
       expect(UserEvent.first.event_type).to eq('backup users problem')
-      subject.run_command_line('ln -s /aact-files public/static') # now recreate the symbolic link
+      subject.run_command_line("ln -s  #{AACT::Application::AACT_STATIC_FILE_DIR} public/static") # now recreate the symbolic link
     end
   end
 
@@ -63,9 +61,9 @@ describe Util::UserDbManager do
       Public::PublicBase.establish_connection(
         adapter: 'postgresql',
         encoding: 'utf8',
-        hostname: ENV['AACT_PUBLIC_HOSTNAME'],
-        database: ENV['AACT_PUBLIC_DATABASE_NAME'],
-        username: ENV['AACT_DB_SUPER_USERNAME'])
+        hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
+        database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
+        username: AACT::Application::AACT_DB_SUPER_USERNAME)
       @dbconfig = YAML.load(File.read('config/database.yml'))
       ActiveRecord::Base.establish_connection @dbconfig[:test]
       user.remove

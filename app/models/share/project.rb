@@ -1,4 +1,4 @@
-module Proj
+module Share
   class Project < ActiveRecord::Base
     has_many :attachments,  :dependent => :destroy
     has_many :datasets,     :dependent => :destroy
@@ -19,7 +19,7 @@ module Proj
 
     def self.schema_diagram_file_names
       root_dir=Util::FilePresentationManager.new.root_dir
-      Proj::Project.schema_name_array.map{ |schema_name|
+      schema_name_array.map{ |schema_name|
         fn = "#{root_dir}#{schema_name}_schema.png"
         fn if File.exist?(fn)
       }
