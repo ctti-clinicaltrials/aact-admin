@@ -1,9 +1,9 @@
-class ProjectsController < ApplicationController
+class SharedDataController < ApplicationController
 
   def index
-    @project_count = Proj::Project.all.size
-    @projects = Proj::Project.order(:name)
-    @projects_with_data = Proj::Project.where('data_available is true').order(:name)
+    @project_count = Share::Project.all.size
+    @projects = Share::Project.order(:name)
+    @projects_with_data = Share::Project.where('data_available is true').order(:name)
     respond_to do |format|
       format.html
       format.csv { render text: @projects.to_csv }
@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Proj::Project.where('schema_name = ?', params[:schema_name]).first
+    @project = Share::Project.where('schema_name = ?', params[:schema_name]).first
     @should_render_footer = false
   end
 

@@ -5,6 +5,16 @@
   width: 100%;
 }
 
+#projectTable thead > tr > th.detail,
+#projectTable tbody > tr:not(.detail-view) > td:first-of-type {
+  display: none;
+}
+
+#projectTable thead > tr > th:nth-child(2),
+#projectTable tbody > tr:not(.detail-view) > td:nth-child(2) {
+  border-left: none!important;
+}
+
 .pleaseNote {
   margin-top: 5rem;
 }
@@ -28,6 +38,7 @@
   padding-right: 1rem;
 }
 
+//  remove this?
 #projectFilter {
   font-size: 1.8rem;
   font-weight: normal;

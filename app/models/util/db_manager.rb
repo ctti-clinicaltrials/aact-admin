@@ -38,19 +38,19 @@ module Util
     end
 
     def con
-      @con ||= ActiveRecord::Base.establish_connection(ENV["AACT_BACK_DATABASE_URL"]).connection
+      @con ||= ActiveRecord::Base.establish_connection(AACT::Application::AACT_BACK_DATABASE_URL).connection
     end
 
     def pub_con
-      @pub_con ||= ActiveRecord::Base.establish_connection(ENV["AACT_PUBLIC_DATABASE_URL"]).connection
+      @pub_con ||= ActiveRecord::Base.establish_connection(AACT::Application::AACT_PUBLIC_DATABASE_URL).connection
     end
 
     def public_host_name
-      ENV['AACT_PUBLIC_HOSTNAME']
+      AACT::Application::AACT_PUBLIC_HOSTNAME
     end
 
     def public_db_name
-      ENV['AACT_PUBLIC_DATABASE_NAME']
+      AACT::Application::AACT_PUBLIC_DATABASE_NAME
     end
 
   end

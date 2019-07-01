@@ -24,15 +24,15 @@
   </span>
   </a>
 
-  <a href="/projects">
+  <a href="/shared_data">
     <div class="iconWrap">
       <%= fa_icon('briefcase') %>
     </div>
-    <span class='circleButtons'>Projects
+    <span class='circleButtons'>Shared Data
   </span>
   </a>
 
-  <% if  (!current_user.nil? and ENV['AACT_ADMIN_USERNAMES'].split(',').include? current_user.username) %>
+  <% if  (!current_user.nil? and @aact_admin_usernames.split(',').include? current_user.username) %>
     <a href="/users">
       <div class="iconWrap">
         <%= fa_icon('address-card') %>

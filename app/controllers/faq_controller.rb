@@ -9,7 +9,7 @@ class FaqController < ApplicationController
 
   def current_user_is_an_admin?
     return false if !current_user
-    col=ENV['AACT_ADMIN_USERNAMES'].split(',')
+    col=AACT::Application::AACT_ADMIN_USERNAMES.split(',')
     col.include? current_user.username
   end
 

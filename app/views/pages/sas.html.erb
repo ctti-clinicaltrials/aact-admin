@@ -57,8 +57,8 @@ Using the LIBNAME statement in SAS, assign a <i>libref</i> (a shortcut name) to 
         <span class='command-prompt'>   user=</span><span class='command-note'> (sign up/in to get a username) </span><span class='command-response'> /* supply your login credentials  */</span>
         <% end %>
         <span class='command-prompt'>   password=</span><span class='command-note'><i>"your AACT password" </i></span>
-        <span class='command-prompt'>   database=</span><span class='command-entry'>"<%= ENV["AACT_PUBLIC_DATABASE_NAME"] %>"</span>
-        <span class='command-prompt'>   server=</span><span class='command-entry'>"<%= ENV["AACT_PUBLIC_HOSTNAME"] %>"</span>
+        <span class='command-prompt'>   database=</span><span class='command-entry'>"<%= @aact_public_database_name %>"</span>
+        <span class='command-prompt'>   server=</span><span class='command-entry'>"<%= @aact_public_hostname %>"</span>
         <span class='command-prompt'>   port=</span><span class='command-entry'>5432</span>
         <span class='command-prompt'>   dbmax_text=</span><span class='command-entry'>32767 </span><span class='command-response'> /* sets the length of long text variables */</span>
         <span class='command-prompt'>   preserve_tab_names=</span><span  class='command-entry'>yes</span>
@@ -204,8 +204,8 @@ Using the LIBNAME statement in SAS, assign a <i>libref</i> (a shortcut name) to 
           <% else %>
           <span class='command-prompt'>      user=</span><span class='command-note'>(sign up/in to get a username)</span>
           <% end %>
-          <span class='command-prompt'>      database=</span><span class='command-entry'>"<%= ENV["AACT_PUBLIC_DATABASE_NAME"] %>"</span>
-          <span class='command-prompt'>      server=</span><span class='command-entry'>"<%= ENV["AACT_DB_HOSTNAME"] %>"</span>
+          <span class='command-prompt'>      database=</span><span class='command-entry'>"<%=  @aact_public_database_name %>"</span>
+          <span class='command-prompt'>      server=</span><span class='command-entry'>"<%=  @aact_public_hostname %>"</span>
           <span class='command-prompt'>      port=</span><span class='command-entry'>5432</span>
           <span class='command-prompt'>      );</span>
           <span class='command-prompt'>   title 'Number of studies'; </span>

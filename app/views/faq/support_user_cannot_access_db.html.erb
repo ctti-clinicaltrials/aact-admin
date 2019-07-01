@@ -17,8 +17,8 @@
 
 <h3>If Database Not Locked, Provide The Following Suggestions to the User</h3>
 
-<p>We’ve had a number of people contact us because they couldn't access the live AACT database from their computer at work, although the database seems fine and other users are actively querying it. When we receive such reports, we initially ask the user to try replacing the domain name (<i><%= ENV["AACT_PUBLIC_HOSTNAME"] %></i>) with the IP address (<i><%= ENV["AACT_PUBLIC_IP_ADDRESS"] %></i>) in their connection command. While we know of only one situation where this resolved the problem, it's quick & easy to try, so we recommend this first.</p>
+<p>We’ve had a number of people contact us because they couldn't access the live AACT database from their computer at work, although the database seems fine and other users are actively querying it. When we receive such reports, we initially ask the user to try replacing the domain name (<i><%= @aact_public_hostname %></i>) with the IP address (<i><%= @aact_public_ip_address %></i>) in their connection command. While we know of only one situation where this resolved the problem, it's quick & easy to try, so we recommend this first.</p>
 
-<p>In most cases, users who cannot access the live database have resolved the isue by contacting their network support staff and asking them to add the AACT database IP address (<i><%= ENV["AACT_PUBLIC_IP_ADDRESS"] %></i>) to their organization's whitelist.</p>
+<p>In most cases, users who cannot access the live database have resolved the isue by contacting their network support staff and asking them to add the AACT database IP address (<i><%= @aact_public_ip_address %></i>) to their organization's whitelist.</p>
 
 <p>A user can confirm that the problem is probably a result of security restrictions (whitelisting) on their organization's network by trying to access the AACT database from their home or anywhere else that has broadly accessible internet connectivity.</p>

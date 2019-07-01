@@ -1,7 +1,7 @@
 class AttachmentsController < ApplicationController
 
   def show
-    @attachment=Proj::Attachment.find(params['id'])
+    @attachment=Share::Attachment.find(params['id'])
     send_data(@attachment.file_contents,
              type: @attachment.content_type,
              filename: @attachment.file_name,
