@@ -1,4 +1,4 @@
-module Proj
+module Share
   class Attachment  < ActiveRecord::Base
     belongs_to :project
 

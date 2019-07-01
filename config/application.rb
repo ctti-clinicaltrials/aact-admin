@@ -28,5 +28,39 @@ module AACT
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.active_record.raise_in_transactional_callbacks = true
 
+    SEGMENT_KEY            = ENV['SEGMENT_KEY']
+    AACT_DB_SUPER_USERNAME = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
+    AACT_STATIC_FILE_DIR   = ENV['AACT_STATIC_FILE_DIR'] || '/aact-files'  # directory containing AACT static files such as the downloadable db snapshots
+    AACT_PROCESS_SERVER    = ENV['AACT_PROCESS_SERVER']
+    AACT_DB_VERSION        = ENV['AACT_DB_VERSION'] || 'uncertain'   # get this from the public database
+    AACT_ADMIN_USERNAMES   = ENV['AACT_ADMIN_USERNAMES'] || ''       # User who can see restricted pages like technical documentation, users, etc.
+    AACT_ADMIN_DIR         = ENV['AACT_ADMIN_DIR']                   # Directory where admin app resides
+    AACT_VIEW_PASSWORD     = ENV['AACT_VIEW_PASSWORD']               # needed to get to use case edit view
+    RACK_TIMEOUT           = ENV['RACK_TIMEOUT'] || 10
+    if Rails.env == 'test'
+      APPLICATION_HOST          = 'localhost'
+      AACT_PUBLIC_HOSTNAME      = 'localhost'
+      AACT_BACK_DATABASE_NAME   = 'aact_back_test'
+      AACT_ADMIN_DATABASE_NAME  = 'aact_admin_test'
+      AACT_PUBLIC_DATABASE_NAME = 'aact_test'
+      AACT_PUBLIC_IP_ADDRESS    = '127.0.0.1'
+    else
+      APPLICATION_HOST          = ENV['APPLICATION_HOST'] || 'localhost'
+      AACT_PUBLIC_HOSTNAME      = ENV['AACT_PUBLIC_HOSTNAME'] || 'localhost'
+      AACT_BACK_DATABASE_NAME   = ENV['AACT_BACK_DATABASE_NAME'] || 'aact_back'
+      AACT_ADMIN_DATABASE_NAME  = ENV['AACT_ADMIN_DATABASE_NAME'] || 'aact_admin'
+      AACT_PUBLIC_DATABASE_NAME = ENV['AACT_PUBLIC_DATABASE_NAME'] || 'aact'
+      AACT_PUBLIC_IP_ADDRESS    = ENV['AACT_PUBLIC_IP_ADDRESS'] || '127.0.0.1'
+    end
+    AACT_BACK_DATABASE_URL   = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_BACK_DATABASE_NAME}"
+    AACT_ADMIN_DATABASE_URL  = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_ADMIN_DATABASE_NAME}"
+    AACT_PUBLIC_DATABASE_URL = "postgres://#{AACT_DB_SUPER_USERNAME}@#{AACT_PUBLIC_HOSTNAME}:5432/#{AACT_PUBLIC_DATABASE_NAME}"
+    #  env vars required for capistrano:
+    #  GEM_HOME
+    #  GEM_PATH
+    #  RUBY_VERSION
+    #  LD_LIBRARY_PATH
+    #  PATH
+
   end
 end

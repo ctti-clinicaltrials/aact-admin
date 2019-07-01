@@ -48,6 +48,10 @@ module Util
       "/static/documentation/aact_schema.png"
     end
 
+    def nested_criteria_example
+      "/static/documentation/nested_criteria_example.png"
+    end
+
     def data_dictionary
       "/static/documentation/aact_data_definitions.xlsx"
     end

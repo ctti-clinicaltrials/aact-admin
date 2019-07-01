@@ -48,7 +48,7 @@ Rails.application.routes.draw do
 
   resources :definitions
   resources :users
-  resources :projects, param: :schema_name
+  resources :shared_data, param: :schema_name
   resources :release_notes
   resources :datasets
   resources :attachments

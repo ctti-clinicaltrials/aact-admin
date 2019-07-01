@@ -7,34 +7,70 @@
 
 <h4>Set Environment Variables</h4>
 
-  <p>AACT depends on the following set of environment variables which need to be defined for AACT to run correctly.</p>
-
+  <p>AACT depends on the following set of environment variables which need to be defined for AACT to run correctly. Some of these environment variables are defined in just one of the 3 AACT apps.  (For example, AACT_PROJ_DATABASE_NAME is only needed in the aact-proj app.)</p>
+  <h5>Critical Env Vars</h5>
   <table class='regularDisplay'>
     <tr>
-      <td></td>
-      <tr><td>AACT_ADMIN_DATABASE_URL</td></tr>
-      <tr><td>AACT_ADMIN_EMAILS</td></tr>
-      <tr><td>AACT_ADMIN_USERNAMES</td></tr>
-      <tr><td>AACT_BACK_DATABASE_URL</td></tr>
-      <tr><td>AACT_DB_SUPER_USERNAME</td></tr>
-      <tr><td>AACT_DB_VERSION</td></tr>
-      <tr><td>AACT_DEV_DEPLOY_TO</td></tr>
-      <tr><td>AACT_DEV_PUBLIC_HOSTNAME</td></tr>
-      <tr><td>AACT_DEV_REPO_URL</td></tr>
-      <tr><td>AACT_DEV_SERVER</td></tr>
-      <tr><td>AACT_DEV_SSH_KEY_DIR</td></tr>
-      <tr><td>AACT_OWNER_EMAIL</td></tr>
-      <tr><td>AACT_PROD_DEPLOY_TO</td></tr>
-      <tr><td>AACT_PROD_REPO_URL</td></tr>
-      <tr><td>AACT_PROD_SERVER</td></tr>
-      <tr><td>AACT_PROD_SSH_KEY_DIR</td></tr>
-      <tr><td>AACT_PUBLIC_DATABASE_URL</td></tr>
-      <tr><td>AACT_SERVER_USERNAME</td></tr>
-      <tr><td>AACT_STAGE_DATABASE_URL</td></tr>
-      <tr><td>AACT_SUPER_PWD</td></tr>
-      <tr><td>AACT_VIEW_PASSWORD</td></tr>
-      <tr><td>DB_SUPER_USERNAME</td></tr>
+      <th>env var</th>
+      <th>value in prod</th>
+      <th>description</th>
+    </tr>
+    <tr>
+      <tr><td>AACT_DB_SUPER_USERNAME</td><td>ctti</td><td>Database user account that has permission to create, drop, update AACT databases.</tr>
+      <tr><td>APPLICATION_HOST</td><td>localhost</td><td>Server on which database loads run</td></tr>
+      <tr><td>AACT_PUBLIC_HOSTNAME</td><td>aact-db.ctti-clinicaltrials.org</td><td>Server upon which the publicly accessible database resides.</td></tr>
+      <tr><td>AACT_BACK_DATABASE_NAME</td><td>aact_back</td><td>Name of background database used to process loads</td></tr>
+      <tr><td>AACT_ADMIN_DATABASE_NAME</td><td>aact_admin</td><td>Name of database used to support the AACT website</td></tr>
+      <tr><td>AACT_PROJ_DATABASE_NAME</td><td>aact_proj</td><td>Name of database used to prepare AACT project data before it is pushed to the public db.</td></tr>
+      <tr><td>AACT_PUBLIC_DATABASE_NAME</td><td>aact</td><td>Name of database available to the public</td></tr>
+      <tr><td>AACT_OWNER_EMAIL</td><td>AACT <aact@ctti-clinicaltrials.org></td><td>Name of email acct from which notifications are sent. (Don't define this if your email service is not setup.)</td></tr>
+      <tr><td>AACT_ADMIN_EMAILS</td><td>sheri.tibbs@duke.edu,ctti-aact@duke.edu</td><td>Email addresses that will receive load notifications.</td></tr>
+      <tr><td>AACT_ADMIN_USERNAMES</td><td>tibbs001,tibbs002,chisw001,calve002,cttiaact,karenchiswell</td><td>AACT website usernames that have access to restricted pages such as the list of users, tech documentation, etc.</tr>
+      <tr><td>AACT_ADMIN_DIR</td><td>/srv/web/aact.ctti-clinicaltrials.org/current/</td><td>Directory where AACT admin app resides on server.  Used by scripts that track user activity.</tr>
+      <tr><td>AACT_STATIC_FILE_DIR</td><td>/aact-files</td><td>Directory containing AACT static files such as the downloadable db snapshots, documentation, xml download from ClinicalTrials.gov, logs, etc. </tr>
+      <tr><td>SEGMENT_KEY</td><td>nil</td><td>Used by Google Analytics</tr>
     </table>
+
+  <h5>Env Vars Needed by Capistrano to Deploy AACT to Server</h5>
+  <table class='regularDisplay'>
+    <tr>
+      <th>env var</th>
+      <th>default value</th>
+      <th>description</th>
+    </tr>
+    <tr><td>AACT_PATH</td><td>/home/ctti-aact/bin/:/srv/web/aact.ctti-clinicaltrials.org/shared/bundle/ruby/2.4.5/bin:/opt/rh/rh-ruby24/root/usr/lib64:$PATH</td><td>Path used by the AACT application.</td></tr>
+    <tr><td>RUBY_VERSION</td><td>ruby 2.4.5</td><td>Current version of ruby.</td></tr>
+    <tr><td>GEM_HOME</td><td>~/.gem/ruby</td><td>Root directory for gems.</td></tr>
+    <tr><td>GEM_PATH</td><td>~/.gem/ruby/gems:/opt/rh/rh-ruby24/root/usr/share/gems:/opt/rh/rh-ruby24/root/usr/local/share/gems:/opt/rh/rh-ruby24/root/usr/lib64</td><td>Where to find gems.</td></tr>
+
+    <tr><td>AACT_SERVER_USERNAME</td><td>ctti-aact</td><td>Name of the user login on the servers.</td></tr>
+    <tr><td>AACT_DEPLOY_TO</td><td>/home/ctti-aact/apps/aact/</td><td>Directory location on server (both dev & prod) where AACT code is deployed.</td></tr>
+    <tr><td>AACT_PROJ_DEPLOY_TO</td><td>/home/ctti-aact/apps/aact-proj/</td><td>Directory location on server (both dev & prod) where AACT Project code is deployed.</td></tr>
+    <tr><td>AACT_ADMIN_DEV_DEPLOY_TO</td><td>/srv/web/aact-dev.oit.duke.edu</td><td>Directory location on dev server where AACT-Admin code is deployed.</td></tr>
+    <tr><td>AACT_ADMIN_PROD_DEPLOY_TO</td><td>/srv/web/aact.ctti-clinicaltrials.org</td><td>Directory location on prod server where AACT-Admin code is deployed.</td></tr>
+    <tr><td>AACT_SSH_KEY_DIR</td><td>(Leaving blank for security reasons.)</td><td>Directory on the server where the ssh keys are located.</tr>
+    <tr><td>AACT_DEV_SERVER</td><td>ctti-web-dev-01.oit.duke.edu</td><td>Name of development server to which we deploy code.</td></tr>
+    <tr><td>AACT_PROD_SERVER</td><td>ctti-web-01.oit.duke.edu</td><td>Name of production server to which we deploy code.</tr>
+    <tr><td>AACT_DEV_REPO_URL</td><td>git@github.com:tibbs001/aact-1.git</td></tr>
+    <tr><td>AACT_ADMIN_DEV_REPO_URL</td><td>git@github.com:tibbs001/aact-admin-1.git</td></tr>
+    <tr><td>AACT_ADMIN_PROD_REPO_URL</td><td>git@github.com:ctti-clinicaltrials/aact-admin.git</td></tr>
+    <tr><td>AACT_PROJ_PROD_REPO_URL</td><td>git@github.com:ctti-clinicaltrials/aact-proj.git</td></tr>
+    <tr>
+  </table>
+
+  <h5>Less Critical Env Vars</h5>
+  <table class='regularDisplay'>
+    <tr>
+      <th>env var</th>
+      <th>default value</th>
+      <th>description</th>
+    </tr>
+    <tr><td>AACT_VIEW_PASSWORD</td><td></td><td>Password needed to edit use cases</td></tr>
+    <tr><td>AACT_DB_VERSION</td><td></td><td>Current version of postgres database. To display on website.</td></tr>
+    <tr><td>AACT_PUBLIC_IP_ADDRESS</td><td></td><td>IP Address of the public server. To display on website.</td></tr>
+    <tr><td>AACT_PROCESS_SERVER</td><td></td><td>Name of server upon which AACT data processing occurs. To display on website.</td></tr>
+    <tr><td>RACK_TIMEOUT</td><td>10</td><td>Used to abort requests that are taking too long; an exception is raised.</td></tr>
+  </table>
 
 <h4>Fork from GitHub</h4>
 

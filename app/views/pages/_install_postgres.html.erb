@@ -7,7 +7,7 @@
 
 <p>The <i>PostgreSQL</i> package (open source and freely available) includes a number of nice tools. If you intend to access the public AACT database hosted in the cloud, the only PostgreSQL tool you need is <%= link_to 'psql', 'http://postgresguide.com/utilities/psql.html' %>. If you would like to download a static copy of AACT to use on your local machine, you'll need the full postgreSQL package including the tools to create and populate the database (createdb & pg_restore). These tools are part of the standard PostgreSQL package, so once installed, you will be able to create your own AACT database.</p>
 <p> </p>
-<p>AACT is currently running on version <%= ENV['AACT_DB_VERSION'] %> of PostgreSQL; it's recommended you install this version or higher. You many download PostgreSQL from the <a href='https://www.postgresql.org/download/' target='_blank'>PostgreSQL Download Site</a> or this <a href='https://www.enterprisedb.com/downloads/postgres-postgresql-downloads' target='_blank'>Enterprise DB site</a>.</p>
+<p>AACT is currently running on version <%= @aact_db_version %> of PostgreSQL; it's recommended you install this version or higher. You many download PostgreSQL from the <a href='https://www.postgresql.org/download/' target='_blank'>PostgreSQL Download Site</a> or this <a href='https://www.enterprisedb.com/downloads/postgres-postgresql-downloads' target='_blank'>Enterprise DB site</a>.</p>
 
 <p>We've provided a few screenshots and basic instructions <a href='/install_postgres' target='_blank'>here</a> to help guide you through the installation process.</p>
 
