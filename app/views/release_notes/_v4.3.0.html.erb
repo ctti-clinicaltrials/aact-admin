@@ -16,3 +16,5 @@
  <h5>Rename AACT Projects to AACT Shared Data</h5>
  <p>We have renamed the AACT Projects feature to better describe the type of information it provides. We modified some navigation flows on the Data Share page to hopefully make it less confusing.</p>
 
+ <h5>Use pg_dump v11.1 to Create Static Copies of Database</h5>
+ <p>Since April, 2019 when we upgraded to PostgreSQL 11.1, the process that creates a static copy of the database has been unreliable. The static database copy serves two purposes: 1) it's used to refresh the live version of the AACT database that is available to the public and 2) it is made available for download so that others may use it to create their own personal copy of the database. The pg_restore comand used to refresh the public database has frequently failed since the 11.1 upgrade. Until now, we've been using the 9.6 version of the pg_dump command to create a copy of the database each night. To solve the problem with the nightly restore to the public database, we started using the 11.1 version of pg_dump to create the static database copy.</p>
