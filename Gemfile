@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.4.5"
+ruby "2.5.0"
 
 gem 'bootstrap'
 gem "bootstrap-table-rails"
@@ -65,7 +65,7 @@ end
 group :development, :test do
   gem "awesome_print"
   gem "bullet"
-  gem "bundler-audit", ">= 0.5.0", require: false
+  gem "bundler-audit"
   gem "factory_girl_rails"
   gem "pry-byebug"
   gem "pry-rails"

@@ -1,8 +1,5 @@
- <h3>AACT 4.4.0 <i>(August 8, 2019)</i></h3>
+ <h3>AACT 4.4.0 <i>(December 8, 2019)</i></h3>
 
  <h5>Refactor to Make it Easier for Others to Implement the AACT Application</h5>
- <p>We have continued to refactor code to make it easier for others to replicate the Ruby on Rails application that retrieves data from ClinicalTrials.gov to populate the AACT database.  We replaced hard-coded references for database names & file locations with environment variables. We also removed some obsolete & unused code.</p>
-
- <h5>Fix Bug That Prevented People From Being Able to Register</h5>
- <p>When cleaning-up/simplifying environment variables for AACT v4.3.0, we removed <i>APPLICATION_HOST</i>, thinking it wasn't being used. Unfortunately this broke the user registration feature, preventing new users from being able to register. We've added it back and added tests to verify that required environment variables are present. This test will also help others who are standing up their own instance of AACT.</p>
+ <p>We have continued to refactor code to make it easier for others to replicate the Ruby on Rails application that retrieves data from ClinicalTrials.gov to populate the AACT database. We replaced hard-coded references for database names & file locations with environment variables. We also removed some obsolete & unused code.</p>
 
