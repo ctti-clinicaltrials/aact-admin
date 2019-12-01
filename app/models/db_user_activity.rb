@@ -3,7 +3,11 @@ class DbUserActivity < ActiveRecord::Base
 
   def self.import_from_logs
     file_name = Util::FileManager.new.todays_db_activity_file
-    system("ssh #{AACT::Application::AACT_DB_SUPER_USERNAME}@#{AACT::Application::AACT_PUBLIC_HOSTNAME} sudo grep EDT #{AACT::Application::AACT_STATIC_FILE_DIR}/logs/postgresql-*.log | grep -i select | cut -d ' ' -f 5 | sort | uniq -c > #{file_name}")
+    cmd="ssh #{AACT::Application::AACT_DB_SUPER_USERNAME}@#{AACT::Application::AACT_PUBLIC_HOSTNAME} sudo grep EDT #{AACT::Application::AACT_STATIC_FILE_DIR}/logs/postgresql-*.log | grep -i select | cut -d ' ' -f 5 | sort | uniq -c > #{file_name}"
+    puts cmd
+    system(cmd)
+    cmd="ssh #{AACT::Application::AACT_DB_SUPER_USERNAME}@#{AACT::Application::AACT_PUBLIC_HOSTNAME} sudo grep EST #{AACT::Application::AACT_STATIC_FILE_DIR}/logs/postgresql-*.log | grep -i select | cut -d ' ' -f 5 | sort | uniq -c >> #{file_name}"
+    system(cmd)
     populate_from_file(file_name,'weekly')
     update_user_records
   end
