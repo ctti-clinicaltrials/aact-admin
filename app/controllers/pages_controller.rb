@@ -1,11 +1,11 @@
 class PagesController < ApplicationController
 
   def snapshots
-    set_daily_monthly_files
+    set_daily_monthly_snapshot_files
   end
 
   def pipe_files
-    set_daily_monthly_files
+    set_daily_monthly_pipe_files
   end
 
   def points_to_consider
@@ -29,7 +29,13 @@ class PagesController < ApplicationController
 
   private
 
-  def set_daily_monthly_files
+  def set_daily_monthly_snapshot_files
+    fpm=Util::FilePresentationManager.new
+    @daily_files=fpm.daily_snapshot_files
+    @archive_files=fpm.monthly_snapshot_files
+  end
+
+  def set_daily_monthly_pipe_files
     fpm=Util::FilePresentationManager.new
     @daily_files=fpm.daily_flat_files
     @archive_files=fpm.monthly_flat_files

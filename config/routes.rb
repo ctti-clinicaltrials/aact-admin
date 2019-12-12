@@ -52,8 +52,6 @@ Rails.application.routes.draw do
   resources :release_notes
   resources :datasets
   resources :attachments
-  resources :tagged_terms
-  resources :tags
   resources :use_cases
   resources :use_case_attachments
 end

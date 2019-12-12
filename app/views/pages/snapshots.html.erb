@@ -40,18 +40,6 @@
     </ul>
     <p>This should open a terminal session where you can enter the following commands.</p>
 
-    <h5>Initialize empty postgres database: aact</h5>
-
-    <p>After postgres is installed on your local machine, enter the following command to initialize the AACT database. (You might get the error message 'already exists' if the database was already created; no harm done.)
-    <p class='CodeRay'>
-      <pre>
-        <p class='code'>
-          <span class='command-prompt'>-&gt; </span><span class='command-entry'> createdb aact </i></span> <span class='command-prompt'></span>
-          <span class='command-response'> createdb: database creation failed: ERROR:  database "aact" already exists </span>
-        </p>
-      </pre>
-    </p>
-
     <h5>Locate and unzip the database package/zipfile</h5>
     <p>Verify the location of the database package you downloaded in step 2 - both the path and the file name. You'll need to unzip this package and use the data dump file it contains to create and populate your own, local instance of the database.</p>
     <ul class='regularDisplay'>
@@ -76,16 +64,30 @@
     </ul>
 
     <h5>Create and populate your local database instance</h5>
-    <p>Enter the following command to create all database tables in <i>aact</i> and populate them with clinical trials data.</p>
-    <p class="note">This typically takes 10-20 minutes, depending on the speed of your machine.</p>
+    <p>Enter the following command(s) to create the <i>AACT</i> database on your local machine & populate it with clinical trials data.</p>
+
+    <p>If this is the first time you're creating a local copy of the <i>AACT</i> database, enter these commands from a terminal session:</p>
 
     <p class='CodeRay'>
       <pre>
         <p class='code'>
-          <span class='command-prompt'>-&gt; </span><span class='command-entry'> pg_restore -e -v -O -x --dbname=<i>aact</i> --no-owner --clean --create  <i>~/Downloads/postgres_data.dmp</i></span>
+          <span class='command-prompt'>-&gt; </span><span class='command-entry'> createdb aact </i></span> <span class='command-prompt'></span>
+          <span class='command-prompt'>-&gt; </span><span class='command-entry'> pg_restore -e -v -O -x -d aact --no-owner <i>~/Downloads/postgres_data.dmp</i></span>
         </p>
       </pre>
     </p>
+
+    <p>If the <i>AACT</i> database already exists on your local machine and you want to refresh it with another version, use this command:</p>
+
+    <p class='CodeRay'>
+      <pre>
+        <p class='code'>
+          <span class='command-prompt'>-&gt; </span><span class='command-entry'> pg_restore -e -v -O -x -d aact --clean --no-owner <i>~/Downloads/postgres_data.dmp</i></span>
+        </p>
+      </pre>
+    </p>
+
+    <p class="note">This typically takes 5-15 minutes, depending on the speed of your machine.</p>
 
     <h5>Verify the database</h5>
 

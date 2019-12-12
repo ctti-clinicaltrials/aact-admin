@@ -4,12 +4,14 @@
 *.swp
 server.env
 /.bundle
+/.vscode
 /.env.local
 /coverage/*
 /db/*.sqlite3
 /log/*
 /public/system
 /public/assets
+/public/static
 /tags
 /vendor
 /tmp/*
