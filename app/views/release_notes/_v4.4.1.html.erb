@@ -1,0 +1,7 @@
+ <h3>AACT 4.4.1 <i>(December 18, 2019)</i></h3>
+
+ <h5>Adapt RSS Reader to Correctly Handle a Change Introduced in the ClinicalTrials.gov RSS Feed</h5>
+
+ <p>Typically, two to four thousand studies are updated each day in ClinicalTrials.gov. On Nov 20, 2019, the ClinicalTrials.gov RSS Feed implemented a feature to restrict the number of studies returned per RSS request; the maximum number of studies returned is now 1,000. Therefore, since the full load was run on Dec 1, 2019, AACT has been importing info for only 1,000 modified studies per night. (All <b>new</b> studies have been correctly imported into AACT; this problem only applies to studies that have changed.) </p>
+
+ <p>The AACT process that imports studies via the RSS Feed has been modified to send repeated requests to the RSS Feed until we have collected all studies that have been modified during the past specified number of days.</p>
