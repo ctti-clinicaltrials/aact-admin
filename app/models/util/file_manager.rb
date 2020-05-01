@@ -21,6 +21,10 @@ module Util
       end
     end
 
+    def covid_19_files_directory
+      "#{Rails.public_path}/static/exported_files/covid_19"
+    end
+
     def pg_dump_file
       "#{Rails.public_path}/static/tmp/postgres.dmp"
     end
