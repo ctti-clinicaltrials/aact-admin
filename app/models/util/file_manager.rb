@@ -21,6 +21,10 @@ module Util
       end
     end
 
+    def covid_19_files_directory
+      "#{Rails.public_path}/static/exported_files/covid_19"
+    end
+
     def pg_dump_file
       "#{Rails.public_path}/static/tmp/postgres.dmp"
     end
@@ -98,7 +102,7 @@ module Util
     end
 
     def downloadable? file_name
-      (file_name.size == 34 and file_name[30..34] == '.zip') or (file_name.size == 28 and file_name[24..28] == '.zip')
+      (file_name.size == 34 and file_name[30..34] == '.zip') or (file_name.size == 28 and file_name[24..28] == '.zip') or file_name =~ /covid_19/i
     end
 
     def self.db_log_file_content(params)

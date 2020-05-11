@@ -28,6 +28,10 @@ module Util
       Util::FileManager.new.files_in('exported_files','daily')
     end
 
+    def covid_19_flat_files
+      Util::FileManager.new.files_in('exported_files','covid_19')
+    end
+
     def root_dir
       '/static/documentation/'
     end

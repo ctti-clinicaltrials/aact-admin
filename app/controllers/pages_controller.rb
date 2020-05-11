@@ -8,6 +8,10 @@ class PagesController < ApplicationController
     set_daily_monthly_pipe_files
   end
 
+  def covid_19
+    set_covid_pipe_files
+  end
+
   def points_to_consider
     set_diagrams_and_dictionaries
   end
@@ -39,6 +43,11 @@ class PagesController < ApplicationController
     fpm=Util::FilePresentationManager.new
     @daily_files=fpm.daily_flat_files
     @archive_files=fpm.monthly_flat_files
+  end
+
+  def set_covid_pipe_files
+    fpm=Util::FilePresentationManager.new
+    @covid_19_files = fpm.covid_19_flat_files
   end
 
   def set_diagrams_and_dictionaries
