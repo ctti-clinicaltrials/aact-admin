@@ -85,11 +85,13 @@ module Util
       file_names.each {|file_name|
         begin
           file_url="/static/#{sub_dir}/#{type}/#{file_name}"
-          size=File.open("#{dir}/#{file_name}").size
+          file=File.open("#{dir}/#{file_name}")
+          size=file.size
           date_string=file_name.split('_').first
           date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : nil)
+          time_created=file.ctime.strftime('%I:%M:%S %p')
           if downloadable?(file_name)
-            entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url}
+            entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url, :time_created => time_created}
           else
             puts "Not a downloadable file: #{file_name}"
           end
