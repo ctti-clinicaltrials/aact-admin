@@ -89,7 +89,7 @@ module Util
           size=file.size
           date_string=file_name.split('_').first
           date_created=(date_string.size==8 ? Date.parse(date_string).strftime("%m/%d/%Y") : nil)
-          time_created=file.ctime.strftime('%I:%M:%S %p')
+          time_created=(date_string.size==14 ? DateTime.parse(date_string).strftime('%I:%M:%S %p') : nil)
           if downloadable?(file_name)
             entries << {:name=>file_name,:date_created=>date_created,:size=>number_to_human_size(size), :url=>file_url, :time_created => time_created}
           else
