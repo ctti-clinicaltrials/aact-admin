@@ -29,7 +29,7 @@ module Util
     end
 
     def covid_19_flat_files
-      Util::FileManager.new.files_in('exported_files','covid-19')
+      Util::FileManager.new.files_in('exported_files','covid_19')
     end
 
     def root_dir
