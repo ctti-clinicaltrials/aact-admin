@@ -4,12 +4,16 @@
       <h1>COVID-19 Related Clinical Studies Spreadsheet</h1>
   </div>
 
-  <p>The following files include current clinical studies related to Coronavirus Disease 2019 (COVID-19) that were posted on ClinicalTrials.gov on the day prior to the date of file creation (Date File Was Created, below). The file allows users without advanced database skills to explore the trials in a spreadsheet format. 
-
-The spreadsheet is created daily by using ClinicalTrials.gov’s <a href='https://clinicaltrials.gov/ct2/results?cond=COVID-19' target='_blank'>search strategy for clinical studies related to COVID-19</a> and the database for Aggregate Analysis of ClinicalTrials.gov (AACT). Details on the search terms used to generate the list of studies are available <a href='https://clinicaltrials.gov/ct2/results/details?cond=COVID-19' target='_blank'>here</a>. The expanded spreadsheet includes each study as a single row and 68 columns of information about each study. The column content includes the 26 fields available if the trials are downloaded from ClinicalTrials.gov plus an additional 44 fields pulled from the AACT database.
+  <p>The following files include current clinical studies related to Coronavirus Disease 2019 (COVID-19) that were posted on ClinicalTrials.gov on the day prior to the date of file creation (Date File Was Created, below). 
+  The file allows users without advanced database skills to explore the trials in a spreadsheet format. 
+The spreadsheet is created daily by using ClinicalTrials.gov’s <a href='https://clinicaltrials.gov/ct2/results?cond=COVID-19' target='_blank'>search strategy for clinical studies related to COVID-19</a> and the database for Aggregate Analysis of ClinicalTrials.gov (AACT). 
+Details on the search terms used to generate the list of studies are available <a href='https://clinicaltrials.gov/ct2/results/details?cond=COVID-19' target='_blank'>here</a>. 
+The expanded spreadsheet includes each study as a single row and 68 columns of information about each study. 
+The column content includes the 26 fields available if the trials are downloaded from ClinicalTrials.gov plus an additional 44 fields pulled from the AACT database. 
+For example, the expanded spreadsheet shows eligibility criteria and if the study has a Data Monitoring Committee. 
 
 <%# For AACT database users a table containing the information included in the file is now included as a table within AACT. %>
 </p>
-  <p><%= render 'file_archive', :files => @covid_19_files %></p>
+  <p><%= render 'file_archive', :files => @covid_19_files, time: true %></p>
 </div>
 </section>

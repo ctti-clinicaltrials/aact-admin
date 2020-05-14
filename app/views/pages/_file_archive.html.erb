@@ -1,14 +1,19 @@
+ <% time ||= nil%>
   <div class="wrap">
     <table class='file-archive'>
       <th class='file-archive'>Downloadable File</>
       <th class='file-archive'>Date File Was Created</>
+      <%if time%>
       <th class='file-archive'>Time Created</>
+      <% end %>
       <th class='file-archive'>Size</>
       <%= files.each do |file| %>
         <tr>
           <td class='file-archive'><a href="<%= file[:url] %>" onClick="ga('send','event','download','download database')"><%= file[:name] %></a></td>
           <td class='file-archive'><%= file[:date_created] %></td>
+          <%if time%>
           <td class='file-archive'><%= file[:time_created] %></td>
+          <% end %>
           <td class='file-archive'><%= file[:size] %></td>
         </tr>
       <% end %>
