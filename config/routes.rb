@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "/download"             => "pages#download"
   get "/learn_more"           => "pages#learn_more"
   get "/covid_19"             => "pages#covid_19"
+  get "/covid_19_fields"      => "pages#covid_19_fields"
   get "/pipe_files"           => "pages#pipe_files"
   get "/pipe_files_with_r"    => "pages#pipe_files_with_r"
   get "/pipe_files_with_sas"  => "pages#pipe_files_with_sas"

@@ -31,6 +31,14 @@ class PagesController < ApplicationController
     @project_schema_files=Share::Project.schema_diagram_file_names
   end
 
+  def covid_19_fields
+    send_file(
+      "#{Rails.root}/public/documentation/covid-19_field_explanation.xlsx",
+      filename: "covid-19_field_explanation.xlsx",
+      type: "application/xlsx"
+    )
+  end
+
   private
 
   def set_daily_monthly_snapshot_files
@@ -49,6 +57,7 @@ class PagesController < ApplicationController
     fpm=Util::FilePresentationManager.new
     @covid_19_files = fpm.covid_19_flat_files
   end
+
 
   def set_diagrams_and_dictionaries
     fpm=Util::FilePresentationManager.new
