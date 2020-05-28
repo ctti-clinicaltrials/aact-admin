@@ -12,8 +12,7 @@ Details on the search terms used to generate the list of studies are available <
 <p>The expanded spreadsheet includes each study as a single row and <a href='/covid_19_fields'>68 columns of information about each study</a>. 
 The column content includes the 26 fields available if the trials are downloaded from ClinicalTrials.gov plus an additional 44 fields pulled from the AACT database. 
 For example, the expanded spreadsheet shows eligibility criteria and if the study has a Data Monitoring Committee. 
-<%# http://localhost:3000/static/exported_files/covid-19/20200512162413_covid-19.xlsx %>
-<%# http://localhost:3000/static/documentation//covid-19_field_explanation.xlsx %>
+
 <%# For AACT database users a table containing the information included in the file is now included as a table within AACT. %>
 </p>
   <p><%= render 'file_archive', :files => @covid_19_files, time: true %></p>
