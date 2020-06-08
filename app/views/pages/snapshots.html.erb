@@ -19,10 +19,10 @@
     <p>Download a zip file that contains the AACT database file. With a single command (see below), this file can be used to automatically configure the database & populate it with the clinical trials dataset. The zip file also contains documentation that describes the database at the time the static copy was created. (The download typically takes 3-7 minutes, depending on your network speed.)</p>
 
     <h4>Current Month's Daily Static Copies</h4>
-    <p><%= render 'file_archive', :files => @daily_files %></p>
+    <p><%= render 'file_archive', files: @daily_files, type: 'download database' %></p>
 
     <h4>Monthly Archive of Static Copies</h4>
-    <p><%= render 'file_archive', :files => @archive_files %></p>
+    <p><%= render 'file_archive', files: @archive_files, type: 'download database' %></p>
 
     <div class="step">
       <span class="stepNumber">3</span>
