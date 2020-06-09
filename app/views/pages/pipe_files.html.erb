@@ -16,10 +16,10 @@
   </div>
 
   <h4>Current Month's Daily Copies</h4>
-  <p><%= render 'file_archive', :files => @daily_files %></p>
+  <p><%= render 'file_archive', :files => @daily_files, type: 'download database' %></p>
 
   <h4>Monthly Archives</h4>
-  <p><%= render 'file_archive', :files => @archive_files %></p>
+  <p><%= render 'file_archive', :files => @archive_files, type: 'download database' %></p>
 
   <div class="step">
     <span class="stepNumber">2</span>
