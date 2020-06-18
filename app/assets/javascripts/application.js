@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require popper
 //= require bootstrap
 //= require bootstrap-table
 //= require_tree .
