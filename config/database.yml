@@ -10,6 +10,7 @@ test:
   adapter: postgresql
   database: aact_admin_test
 
+
 production: &deploy
   encoding: utf8
   adapter: postgresql

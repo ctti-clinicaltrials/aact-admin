@@ -65,8 +65,9 @@ describe User do
   end
 
   it "creates unconfirmed user db account in public db" do
+    byebug
     @dbconfig = YAML.load(File.read('config/database.yml'))
-    ActiveRecord::Base.establish_connection @dbconfig[:test]
+    ActiveRecord::Base.establish_connection @dbconfig["test"]
     con=Public::PublicBase.establish_connection(
       adapter: 'postgresql',
       encoding: 'utf8',
@@ -105,7 +106,7 @@ describe User do
     end
     #  To confirm the user, make sure app owner (superuser) logged into db connections
     @dbconfig = YAML.load(File.read('config/database.yml'))
-    ActiveRecord::Base.establish_connection @dbconfig[:test]
+    ActiveRecord::Base.establish_connection @dbconfig["test"]
     con=Public::PublicBase.establish_connection(
       adapter: 'postgresql',
       encoding: 'utf8',
@@ -117,6 +118,7 @@ describe User do
     user.confirm  #simulate user email response confirming their account
 
     # once confirmed via email, user should be able to login to their account
+    byebug
     con=Public::PublicBase.establish_connection(
       adapter: 'postgresql',
       encoding: 'utf8',
@@ -126,14 +128,14 @@ describe User do
       password: pwd,
     ).connection
     expect(con.active?).to eq(true)
-    con.execute('show search_path;')
-    expect(con.execute('select count(*) from ctgov.studies').count).to eq(1)
+    puts con.execute('show search_path;')
+    expect(con.execute('select count(*) from ctgov.studies;').count).to eq(1)
     con.disconnect!
     expect(con.active?).to eq(false)
     con=nil
 
     # Again... reset db connections to normal...
-    ActiveRecord::Base.establish_connection @dbconfig[:test]
+    ActiveRecord::Base.establish_connection @dbconfig["test"]
     con=Public::PublicBase.establish_connection(
       adapter: 'postgresql',
       encoding: 'utf8',
@@ -157,6 +159,7 @@ describe User do
   end
 
   it "isn't accepted if special char in username" do
+#    byebug
     allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
     User.all.each{|user| user.remove}  # remove all existing users - both from Users table and db accounts
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>'rspec!_test',:password=>'aact')

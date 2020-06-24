@@ -57,15 +57,15 @@ module Util
       fm.remove_todays_user_backup_tables
 
       log "dumping Users table..."
-      cmd="pg_dump --no-owner --host=localhost -U #{AACT::Application::AACT_DB_SUPER_USERNAME} --table=Users  --data-only aact_admin > #{fm.user_table_backup_file}"
+      cmd="pg_dump --no-owner --host=localhost -U #{ENV['AACT_DB_SUPER_USERNAME']} --table=Users  --data-only aact_admin > #{fm.user_table_backup_file}"
       run_command_line(cmd)
 
       log "dumping User events..."
-      cmd="pg_dump --no-owner --host=localhost -U #{AACT::Application::AACT_DB_SUPER_USERNAME} --table=User_Events  --data-only aact_admin > #{fm.user_event_table_backup_file}"
+      cmd="pg_dump --no-owner --host=localhost -U #{ENV['AACT_DB_SUPER_USERNAME']} --table=User_Events  --data-only aact_admin > #{fm.user_event_table_backup_file}"
       run_command_line(cmd)
 
       log "dumping User accounts..."
-      cmd="pg_dumpall -U  #{AACT::Application::AACT_DB_SUPER_USERNAME} -h #{public_host_name} --globals-only > #{fm.user_account_backup_file}"
+      cmd="pg_dumpall -U  #{ENV['AACT_DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{fm.user_account_backup_file}"
       run_command_line(cmd)
 
       begin
@@ -106,6 +106,7 @@ module Util
     end
 
     def grant_db_privs(username)
+      byebug
       #  This grants db privs to individuals. A method to grant db privs to all users is in the AACT Application
       if Share::Project.count > 0
         project_schemas = ", #{Share::Project.schema_name_list}"
@@ -120,6 +121,7 @@ module Util
     end
 
     def revoke_db_privs(username)
+      byebug
       #  This revokes db privs from individuals. A method to revoke db privs from all users is in the AACT Application
       terminate_sessions_for(username)
       Public::Study.connection.execute("revoke read_only from \"#{username}\";")
