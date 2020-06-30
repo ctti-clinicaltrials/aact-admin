@@ -106,7 +106,6 @@ module Util
     end
 
     def grant_db_privs(username)
-      byebug
       #  This grants db privs to individuals. A method to grant db privs to all users is in the AACT Application
       if Share::Project.count > 0
         project_schemas = ", #{Share::Project.schema_name_list}"
@@ -121,7 +120,6 @@ module Util
     end
 
     def revoke_db_privs(username)
-      byebug
       #  This revokes db privs from individuals. A method to revoke db privs from all users is in the AACT Application
       terminate_sessions_for(username)
       Public::Study.connection.execute("revoke read_only from \"#{username}\";")

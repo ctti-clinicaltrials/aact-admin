@@ -45,7 +45,6 @@ describe Util::UserDbManager do
 
   context 'when managing user accounts' do
     it 'should create initial db account that user cannot access' do
-#      byebug
       user=User.create({:last_name=>'lastname',:first_name=>'firstname',:email=>'email@mail.com',:username=>username,:password=>original_password,:skip_password_validation=>true})
       # make sure user account doesn't already exist
       system 'grant_db_privs.sh'

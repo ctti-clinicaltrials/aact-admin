@@ -13,9 +13,7 @@ module Util
     end
 
     def public_db_accessible?
-#      byebug
       result=Public::Study.connection.execute("select datconnlimit from pg_database where datname='aact';").first["datconnlimit"].to_i > 0
-#      byebug
       # The AACT DBManager (in aact app) temporarily restricts access to the db (allowed connections set to zero) during db restore.
     end
 
