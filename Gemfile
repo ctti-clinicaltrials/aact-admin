@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
-ruby "2.4.5"
+ruby "2.6.2"
 
-gem 'bootstrap'
-gem "bootstrap-table-rails"
+gem 'bootstrap', '~> 4.0.0.beta'
+gem "bootstrap-table-rails", '~> 1.12.1'
 gem 'nokogiri', '~> 1.8.1'
 gem 'rails'
 gem 'rails-html-sanitizer', '~> 1.0.4'
@@ -18,7 +18,8 @@ gem "pg"
 gem 'rails_12factor'
 gem "coderay"
 gem "recipient_interceptor"
-gem "sass-rails"
+#gem "sass-rails"
+gem 'sass-rails', '>= 3.2'
 gem "rubyzip", ">= 1.2.2"
 #gem "sprockets-rails",'>= 2.0'
 gem "sprockets", ">= 3.7.2"
@@ -40,8 +41,9 @@ gem 'roo', '~> 2.4.0'
 gem 'string-similarity'
 gem 'gon'
 gem 'execjs'
-gem 'therubyracer', '~> 0.12.3'
-gem 'libv8', '~> 3.16.14.15'
+#gem 'therubyracer', '~> 0.12.3'
+gem 'mini_racer'
+gem 'libv8', '~> 5.0.71.48.1beta2'
 gem "loofah", ">= 2.2.3"
 gem 'rack'
 gem 'rack-cors', :require => 'rack/cors'
