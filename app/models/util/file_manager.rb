@@ -21,6 +21,22 @@ module Util
       end
     end
 
+    def beta_static_copies_directory
+      if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
+        "#{Rails.public_path}/static/static_db_copies/beta/monthly"
+      else
+        "#{Rails.public_path}/static/static_db_copies/beta/daily"
+      end
+    end
+
+    def beta_flat_files_directory
+      if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
+        "#{Rails.public_path}/static/exported_files/beta/monthly"
+      else
+        "#{Rails.public_path}/static/exported_files/beta/daily"
+      end
+    end
+
     def covid_19_files_directory
       "#{Rails.public_path}/static/exported_files/covid-19"
     end
@@ -104,7 +120,7 @@ module Util
     end
 
     def downloadable? file_name
-      (file_name.size == 34 and file_name[30..34] == '.zip') or (file_name.size == 28 and file_name[24..28] == '.zip') or file_name =~ /covid-19|covid_19/i
+      (file_name.size == 34 and file_name[30..34] == '.zip') or (file_name.size == 28 and file_name[24..28] == '.zip') or file_name =~ /covid-19|covid_19|_beta/i
     end
 
     def self.db_log_file_content(params)

@@ -45,12 +45,16 @@ class PagesController < ApplicationController
     fpm=Util::FilePresentationManager.new
     @daily_files=fpm.daily_snapshot_files
     @archive_files=fpm.monthly_snapshot_files
+    @beta_daily_files=fpm.beta_daily_snapshot_files
+    @beta_archive_files=fpm.beta_monthly_snapshot_files
   end
 
   def set_daily_monthly_pipe_files
     fpm=Util::FilePresentationManager.new
     @daily_files=fpm.daily_flat_files
     @archive_files=fpm.monthly_flat_files
+    @beta_daily_files=fpm.beta_daily_flat_files
+    @beta_archive_files=fpm.beta_monthly_flat_files
   end
 
   def set_covid_pipe_files

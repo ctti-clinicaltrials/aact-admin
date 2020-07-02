@@ -12,6 +12,22 @@ module Util
       "https://prsinfo.clinicaltrials.gov/results_definitions.html"
     end
 
+    def beta_monthly_snapshot_files
+      Util::FileManager.new.files_in('static_db_copies/beta','monthly')
+    end
+
+    def beta_daily_snapshot_files
+      Util::FileManager.new.files_in('static_db_copies/beta','daily')
+    end
+
+    def beta_monthly_flat_files
+      Util::FileManager.new.files_in('exported_files/beta','monthly')
+    end
+
+    def beta_daily_flat_files
+      Util::FileManager.new.files_in('exported_files/beta','daily')
+    end
+
     def monthly_snapshot_files
       Util::FileManager.new.files_in('static_db_copies','monthly')
     end
@@ -27,6 +43,7 @@ module Util
     def daily_flat_files
       Util::FileManager.new.files_in('exported_files','daily')
     end
+   
 
     def covid_19_flat_files
       Util::FileManager.new.files_in('exported_files','covid-19')

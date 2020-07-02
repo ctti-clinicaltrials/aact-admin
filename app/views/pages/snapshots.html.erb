@@ -23,6 +23,14 @@
 
     <h4>Monthly Archive of Static Copies</h4>
     <p><%= render 'file_archive', :files => @archive_files, type: 'download database' %></p>
+    
+    <p>ClinicalTrials.gov has a beta api they will eventually be switching over to. We have set up a version of the AACT database that is populated using that beta api. Below are snapshots of that database.</p>
+
+    <h4>Current Month's Beta Daily Static Copies</h4>
+    <p><%= render 'file_archive', :files => @beta_daily_files, type: 'download database' %></p>
+
+    <h4>Monthly Archive of Beta Static Copies</h4>
+    <p><%= render 'file_archive', :files => @beta_archive_files, type: 'download database' %></p>
 
     <div class="step">
       <span class="stepNumber">3</span>
