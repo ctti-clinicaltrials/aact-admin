@@ -21,8 +21,11 @@ feature "Users Sign Up Page" do
     db_mgr.remove_user(valid_username)
 
     # Start fresh - make sure user is gone
+#    byebug
     user=User.where('username=?',valid_username).first
+#    byebug
     user.remove if user
+#    byebug
     expect(db_mgr.user_account_exists?(valid_username)).to eq(false)
 
     # first and last name missing
@@ -117,7 +120,7 @@ feature "Users Sign Up Page" do
     # db is inaccessible
 
     # simulate revoke_db_privs.sh
-    Public::PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 0;")
+    Public::PublicBase.connection.execute("ALTER DATABASE aact_test CONNECTION LIMIT 0;")
 
     begin
       expect(Util::DbManager.new.public_db_accessible?).to eq(false)
@@ -125,11 +128,11 @@ feature "Users Sign Up Page" do
       expect(page).to have_content "Sorry AACT database is temporarily unavailable"
     rescue
       # Make sure we reset database to be accessible if test fails
-      Public::PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 200;")
+      Public::PublicBase.connection.execute("ALTER DATABASE aact_test CONNECTION LIMIT 200;")
     end
 
     # simulate grant_db_privs.sh
-    Public::PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 200;")
+    Public::PublicBase.connection.execute("ALTER DATABASE aact_test CONNECTION LIMIT 200;")
     expect(Util::DbManager.new.public_db_accessible?).to eq(true)
     submit
     expect(page).not_to have_content "Sorry AACT database is temporarily unavailable"
@@ -145,15 +148,15 @@ feature "Users Sign Up Page" do
     expect(page).to have_content "A message with a confirmation link has been sent to your email address"
 #    byebug
     expect(Util::UserDbManager.new.user_account_exists?(valid_username)).to eq(true)
-    user=User.where('username=?',valid_username).first
-    expect(user.email).to eq(valid_email)
+
+    user = User.where('username=?',valid_username).first
     expect(user.first_name).to eq(valid_first_name)
     expect(user.last_name).to eq(valid_last_name)
 #    byebug
 
     visit "/users/confirmation?confirmation_token=#{user.confirmation_token}"
 #    byebug
-#    expect(page).to have_content "logged in as #{valid_first_name} #{valid_last_name}"
+    expect(page).to have_content "logged in as #{valid_first_name} #{valid_last_name}"
 #    byebug
     expect(page).to have_content "Edit Profile"
     expect(page).to have_content "Sign out"
