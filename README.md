@@ -8,7 +8,8 @@ Install and set up aact before setting up aact-admin
 Clone this repository
 
 It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
-your machine with [this script].
+your machine with: 
+[this script]: https://github.com/thoughtbot/laptop
 
 ## Environment variables
 
