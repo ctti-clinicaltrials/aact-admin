@@ -7,12 +7,16 @@ Install and set up aact before setting up aact-admin
 
 Clone this repository
 
+It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
+your machine with [this script].
+
 ## Environment variables
 
 Environmental variables are located in your .bash_profile - A template can be found in the aact README:
 [aact]: https://github.com/ctti-clinicaltrials/aact
 
 Go into your .bash_profile and uncomment only the section for aact-admin Rails.env != test
+
 Return to the command line
 
 ```bash  
@@ -20,15 +24,13 @@ bundle exec rake db:create
 bundle exec rake db:migrate
 ```
 Go into your .bash_profile and uncomment only the section for aact-admin Rails.env = test
+
 Return to the command line
 
 ```bash
 bundle exec rake db:create RAILS_ENV=test
 bundle exec rake db:migrate RAILS_ENV=test
 ```
-
-It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
-your machine with [this script].
 
 ## Importing studies from clinicaltrials.gov
 
