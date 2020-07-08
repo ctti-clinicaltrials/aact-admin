@@ -7,7 +7,6 @@ Install and set up aact before setting up aact-admin
 
 After you have cloned this repo, run this setup script to set up your machine
 with the necessary dependencies to run and test this app:
-
 [this script]: https://github.com/thoughtbot/laptop
 
 ## Environment variables
