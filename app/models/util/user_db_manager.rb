@@ -107,22 +107,16 @@ module Util
 
     def grant_db_privs(username)
       #  This grants db privs to individuals. A method to grant db privs to all users is in the AACT Application
-#      byebug
       if Share::Project.count > 0
         project_schemas = ", #{Share::Project.schema_name_list}"
       else
         project_schemas = ""
       end
 
-#      byebug
       Public::Study.connection.execute("grant read_only to \"#{username}\";")
-#      byebug
       Public::Study.connection.execute("alter role \"#{username}\" login;")
-#      byebug
       Public::Study.connection.execute("alter role \"#{username}\" IN DATABASE aact set search_path = ctgov, mesh_archive #{project_schemas};")
-#      byebug
       Public::Study.connection.execute("alter role \"#{username}\" IN DATABASE aact_alt set search_path = ctgov, mesh_archive #{project_schemas};")
-#      byebug
     end
 
     def revoke_db_privs(username)

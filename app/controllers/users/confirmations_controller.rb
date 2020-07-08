@@ -1,10 +1,8 @@
 class Users::ConfirmationsController < Devise::ConfirmationsController
 
   def show
-#    byebug
     user=User.where('confirmation_token=?',params['confirmation_token']).first
     if user
-#      byebug
       user.confirm
       UserMailer.send_event_notification('confirmed', user)
       flash[:notice] = "Your account has been confirmed. You now have access to the AACT database with the username #{user.username} and password you provided."

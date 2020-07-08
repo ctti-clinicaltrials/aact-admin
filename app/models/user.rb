@@ -44,7 +44,6 @@ class User < ActiveRecord::Base
   def create_db_account
     event=UserEvent.create( { :event_type  => 'create', :email => self.email })
     mgr=Util::UserDbManager.new({ :event => event })
-#    byebug
     if mgr.can_create_user_account?(self)
       mgr.create_user_account(self)
     else
@@ -55,7 +54,6 @@ class User < ActiveRecord::Base
   end
 
   def grant_db_privs
-#    byebug
     confirm_change = confirmed_at_changed? && confirmed_at_was.nil?
     yield
     if confirm_change

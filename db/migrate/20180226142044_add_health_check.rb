@@ -1,4 +1,4 @@
-class AddHealthCheck < ActiveRecord::Migration
+class AddHealthCheck < ActiveRecord::Migration[6.0]
   def change
 
     create_table "ctgov.enumerations" do |t|

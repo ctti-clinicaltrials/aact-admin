@@ -3,7 +3,6 @@ require 'rails_helper'
 feature "Users Sign Up Page" do
 
   scenario "sign up - verify new user validations" do
-#    byebug
     visit '/users/sign_up'
     expect(page).to have_title "AACT Database | Clinical Trials Transformation Initiative"
     expect(page).to have_field 'user_first_name'
@@ -21,11 +20,8 @@ feature "Users Sign Up Page" do
     db_mgr.remove_user(valid_username)
 
     # Start fresh - make sure user is gone
-#    byebug
     user=User.where('username=?',valid_username).first
-#    byebug
     user.remove if user
-#    byebug
     expect(db_mgr.user_account_exists?(valid_username)).to eq(false)
 
     # first and last name missing
@@ -146,18 +142,14 @@ feature "Users Sign Up Page" do
     submit
 
     expect(page).to have_content "A message with a confirmation link has been sent to your email address"
-#    byebug
     expect(Util::UserDbManager.new.user_account_exists?(valid_username)).to eq(true)
 
     user = User.where('username=?',valid_username).first
     expect(user.first_name).to eq(valid_first_name)
     expect(user.last_name).to eq(valid_last_name)
-#    byebug
 
     visit "/users/confirmation?confirmation_token=#{user.confirmation_token}"
-#    byebug
     expect(page).to have_content "logged in as #{valid_first_name} #{valid_last_name}"
-#    byebug
     expect(page).to have_content "Edit Profile"
     expect(page).to have_content "Sign out"
     click_on 'Edit Profile'

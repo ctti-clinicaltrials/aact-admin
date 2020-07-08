@@ -65,7 +65,6 @@ describe User do
   end
 
   it "creates unconfirmed user db account in public db" do
-#    byebug
     @dbconfig = YAML.load(File.read('config/database.yml'))
     ActiveRecord::Base.establish_connection @dbconfig["test"]
     con=Public::PublicBase.establish_connection(
@@ -75,7 +74,6 @@ describe User do
       database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
       username: AACT::Application::AACT_DB_SUPER_USERNAME,
     ).connection
-#    byebug
     allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
     User.all.each{|user| user.remove }  # remove all existing users - both from Users table and db accounts
 
@@ -85,7 +83,6 @@ describe User do
 
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>username,:password=>pwd)
     user.skip_password_validation=true
-#    byebug
     user.save!
 
     expect(User.count).to eq(1)
@@ -117,11 +114,9 @@ describe User do
       username: AACT::Application::AACT_DB_SUPER_USERNAME,
     ).connection
     # once db connections are back to normal, confirm the user
-#    byebug
     user.confirm  #simulate user email response confirming their account
 
     # once confirmed via email, user should be able to login to their account
-#    byebug
     con=Public::PublicBase.establish_connection(
       adapter: 'postgresql',
       encoding: 'utf8',
@@ -157,7 +152,7 @@ describe User do
       hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
       database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
       username: user.username,
-    ).connection}.to raise_error(ActiveRecord::NoDatabaseError)
+    ).connection}.to raise_error(PG::ConnectionBad)
 #    FATAL:  role "rspec" does not exist
   end
 
@@ -177,7 +172,7 @@ describe User do
         password: user.password
       ).connection
     rescue => e
-      expect(e.class).to eq(ActiveRecord::NoDatabaseError)
+      expect(e.class).to eq(PG::ConnectionBad)
       expect(e.message).to eq("FATAL:  role \"rspec!_test\" does not exist\n")
     end
   end

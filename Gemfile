@@ -5,8 +5,11 @@ ruby "2.6.2"
 gem 'bootstrap', '~> 4.0.0.beta'
 gem "bootstrap-table-rails", '~> 1.12.1'
 gem 'nokogiri', '~> 1.8.1'
-gem 'rails'
-gem 'rails-html-sanitizer', '~> 1.0.4'
+gem 'rails', '~> 6.0'
+gem 'activerecord', '~> 6.0'
+gem 'activesupport', '~> 6.0'
+gem 'railties', '~> 6.0'
+gem 'rails-html-sanitizer', '~> 1.1'
 gem "rack-timeout"
 gem "faraday"
 gem "autoprefixer-rails"
@@ -47,7 +50,7 @@ gem 'libv8', '~> 5.0.71.48.1beta2'
 gem "loofah", ">= 2.2.3"
 gem 'rack'
 gem 'rack-cors', :require => 'rack/cors'
-gem 'rack-protection', '~> 1.5.5'
+gem 'rack-protection', '~> 2.0'
 
 # user registration
  gem "devise", ">= 4.6.0"
