@@ -9,12 +9,12 @@ Clone this repository
 
 It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
 your machine with: 
-[]: https://github.com/thoughtbot/laptop
+https://github.com/thoughtbot/laptop
 
 ## Environment variables
 
 Environmental variables are located in your .bash_profile - A template can be found in the aact README:
-[]: https://github.com/ctti-clinicaltrials/aact
+https://github.com/ctti-clinicaltrials/aact
 
 Go into your .bash_profile and uncomment only the section for aact-admin Rails.env != test
 
