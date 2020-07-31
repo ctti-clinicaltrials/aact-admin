@@ -3,19 +3,35 @@ Administer AACT: Aggregated Analysis of ClinicalTrials.gov
 
 ## Getting Started
 
-After you have cloned this repo, run this setup script to set up your machine
-with the necessary dependencies to run and test this app:
+Install and set up aact before setting up aact-admin
 
-    % ./bin/setup
+Clone this repository
 
 It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
-your machine with [this script].
-
-[this script]: https://github.com/thoughtbot/laptop
+your machine with: 
+https://github.com/thoughtbot/laptop
 
 ## Environment variables
 
-After running `bin/setup`, you'll have a `.env` file that contains an empty template for the environment variables you'll need. These variables are copied from `.env.example`
+Environmental variables are located in your .bash_profile - A template can be found in the aact README:
+https://github.com/ctti-clinicaltrials/aact
+
+Go into your .bash_profile and uncomment only the section for aact-admin Rails.env != test
+
+Return to the command line
+
+```bash  
+bundle exec rake db:create
+bundle exec rake db:migrate
+```
+Go into your .bash_profile and uncomment only the section for aact-admin Rails.env = test
+
+Return to the command line
+
+```bash
+bundle exec rake db:create RAILS_ENV=test
+bundle exec rake db:migrate RAILS_ENV=test
+```
 
 ## Importing studies from clinicaltrials.gov
 

@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   include ActiveModel::Validations
   after_create { create_db_account }
-  after_save :grant_db_privs, :if => proc { |l| l.confirmed_at_changed? && l.confirmed_at_was.nil? }
+  around_save :grant_db_privs
   attr_accessor :current_password, :skip_password_validation, :skip_username_validation
   devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -54,8 +54,12 @@ class User < ActiveRecord::Base
   end
 
   def grant_db_privs
-    event=UserEvent.create( { :email => self.email, :event_type => 'confirm' })
-    Util::UserDbManager.new({ :event => event }).grant_db_privs(self.username)
+    confirm_change = confirmed_at_changed? && confirmed_at_was.nil?
+    yield
+    if confirm_change
+      event=UserEvent.create( { :email => self.email, :event_type => 'confirm' })
+      Util::UserDbManager.new({ :event => event }).grant_db_privs(self.username)
+    end
   end
 
   def change_password(pwd)

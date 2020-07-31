@@ -8,7 +8,11 @@ namespace :db do
   def set_search_path
     puts "Setting search path to ctgov..."
     con=ActiveRecord::Base.connection
-    con.execute("create schema ctgov;")
+    begin
+      con.execute("create schema ctgov;")
+    rescue #DuplicateSchema
+      #schema ctgov could already exist from aact which means we don't need to do anything
+    end
     con.execute("alter role #{ENV['AACT_DB_SUPER_USERNAME']} set search_path to ctgov, support, public;")
     con.execute("grant usage on schema ctgov to #{ENV['AACT_DB_SUPER_USERNAME']};")
     con.execute("grant create on schema ctgov to #{ENV['AACT_DB_SUPER_USERNAME']};")

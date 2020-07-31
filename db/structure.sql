@@ -1,10 +1,3 @@
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 11.1
--- Dumped by pg_dump version 11.1
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -12,6 +5,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -27,11 +21,23 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: ar_internal_metadata; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
 -- Name: attachments; Type: TABLE; Schema: ctgov; Owner: -
 --
 
 CREATE TABLE ctgov.attachments (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     project_id integer,
     file_name character varying,
     content_type character varying,
@@ -40,8 +46,8 @@ CREATE TABLE ctgov.attachments (
     description text,
     source text,
     original_file_name character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -50,7 +56,6 @@ CREATE TABLE ctgov.attachments (
 --
 
 CREATE SEQUENCE ctgov.attachments_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -70,7 +75,7 @@ ALTER SEQUENCE ctgov.attachments_id_seq OWNED BY ctgov.attachments.id;
 --
 
 CREATE TABLE ctgov.data_definitions (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     db_section character varying,
     table_name character varying,
     column_name character varying,
@@ -80,8 +85,8 @@ CREATE TABLE ctgov.data_definitions (
     nlm_link character varying,
     row_count integer,
     enumerations json,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
     db_schema character varying
 );
 
@@ -91,7 +96,6 @@ CREATE TABLE ctgov.data_definitions (
 --
 
 CREATE SEQUENCE ctgov.data_definitions_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -111,7 +115,7 @@ ALTER SEQUENCE ctgov.data_definitions_id_seq OWNED BY ctgov.data_definitions.id;
 --
 
 CREATE TABLE ctgov.datasets (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     project_id integer,
     schema_name character varying,
     table_name character varying,
@@ -124,8 +128,8 @@ CREATE TABLE ctgov.datasets (
     made_available_on date,
     description text,
     source text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -134,7 +138,6 @@ CREATE TABLE ctgov.datasets (
 --
 
 CREATE SEQUENCE ctgov.datasets_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -154,13 +157,13 @@ ALTER SEQUENCE ctgov.datasets_id_seq OWNED BY ctgov.datasets.id;
 --
 
 CREATE TABLE ctgov.db_user_activities (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     username character varying,
     event_count integer,
     when_recorded timestamp without time zone,
     unit_of_time character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -169,7 +172,6 @@ CREATE TABLE ctgov.db_user_activities (
 --
 
 CREATE SEQUENCE ctgov.db_user_activities_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -189,15 +191,15 @@ ALTER SEQUENCE ctgov.db_user_activities_id_seq OWNED BY ctgov.db_user_activities
 --
 
 CREATE TABLE ctgov.enumerations (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     table_name character varying,
     column_name character varying,
     column_value character varying,
     value_count integer,
     value_percent numeric,
     description character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -206,7 +208,6 @@ CREATE TABLE ctgov.enumerations (
 --
 
 CREATE SEQUENCE ctgov.enumerations_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -226,14 +227,14 @@ ALTER SEQUENCE ctgov.enumerations_id_seq OWNED BY ctgov.enumerations.id;
 --
 
 CREATE TABLE ctgov.faqs (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     project_id integer,
     question character varying,
     answer text,
     citation character varying,
     url character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -242,7 +243,6 @@ CREATE TABLE ctgov.faqs (
 --
 
 CREATE SEQUENCE ctgov.faqs_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -262,14 +262,14 @@ ALTER SEQUENCE ctgov.faqs_id_seq OWNED BY ctgov.faqs.id;
 --
 
 CREATE TABLE ctgov.health_checks (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     query text,
     cost character varying,
     actual_time double precision,
     row_count integer,
     description character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -278,7 +278,6 @@ CREATE TABLE ctgov.health_checks (
 --
 
 CREATE SEQUENCE ctgov.health_checks_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -298,7 +297,7 @@ ALTER SEQUENCE ctgov.health_checks_id_seq OWNED BY ctgov.health_checks.id;
 --
 
 CREATE TABLE ctgov.projects (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     status character varying,
     start_date date,
     completion_date date,
@@ -321,8 +320,8 @@ CREATE TABLE ctgov.projects (
     contact_url character varying,
     email character varying,
     image bytea,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -331,7 +330,6 @@ CREATE TABLE ctgov.projects (
 --
 
 CREATE SEQUENCE ctgov.projects_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -351,7 +349,7 @@ ALTER SEQUENCE ctgov.projects_id_seq OWNED BY ctgov.projects.id;
 --
 
 CREATE TABLE ctgov.public_announcements (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     description character varying,
     is_sticky boolean
 );
@@ -362,7 +360,6 @@ CREATE TABLE ctgov.public_announcements (
 --
 
 CREATE SEQUENCE ctgov.public_announcements_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -382,7 +379,7 @@ ALTER SEQUENCE ctgov.public_announcements_id_seq OWNED BY ctgov.public_announcem
 --
 
 CREATE TABLE ctgov.publications (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     project_id integer,
     pub_type character varying,
     journal_name character varying,
@@ -394,8 +391,8 @@ CREATE TABLE ctgov.publications (
     doi character varying,
     publication_date date,
     abstract text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -404,7 +401,6 @@ CREATE TABLE ctgov.publications (
 --
 
 CREATE SEQUENCE ctgov.publications_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -429,79 +425,18 @@ CREATE TABLE ctgov.schema_migrations (
 
 
 --
--- Name: sharable_datasets; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.sharable_datasets (
-    id integer NOT NULL,
-    dataset character varying,
-    title character varying,
-    study_type character varying,
-    start_date character varying,
-    end_date character varying,
-    therapeutic_area character varying,
-    enrollment character varying,
-    population character varying,
-    phase character varying,
-    study_description character varying,
-    data_availability character varying,
-    faculty_name character varying,
-    affiliation character varying,
-    governance character varying,
-    data_source character varying,
-    primary_dcri_contact character varying,
-    secondary_dcri_contact character varying,
-    operational_dcri_contact character varying,
-    observation_type character varying,
-    intervention_type character varying,
-    drug character varying,
-    sponsor_name character varying,
-    sponsor_type character varying,
-    randomized character varying,
-    biospecimen character varying,
-    data_location character varying,
-    control character varying,
-    blinding character varying,
-    international character varying,
-    study_population character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: sharable_datasets_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
---
-
-CREATE SEQUENCE ctgov.sharable_datasets_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sharable_datasets_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
---
-
-ALTER SEQUENCE ctgov.sharable_datasets_id_seq OWNED BY ctgov.sharable_datasets.id;
-
-
---
 -- Name: use_case_attachments; Type: TABLE; Schema: ctgov; Owner: -
 --
 
 CREATE TABLE ctgov.use_case_attachments (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     use_case_id integer,
     file_name character varying,
     content_type character varying,
     file_contents bytea,
     is_image boolean,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -510,7 +445,6 @@ CREATE TABLE ctgov.use_case_attachments (
 --
 
 CREATE SEQUENCE ctgov.use_case_attachments_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -530,7 +464,7 @@ ALTER SEQUENCE ctgov.use_case_attachments_id_seq OWNED BY ctgov.use_case_attachm
 --
 
 CREATE TABLE ctgov.use_case_datasets (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     use_case_id integer,
     dataset_type character varying,
     name character varying,
@@ -543,7 +477,6 @@ CREATE TABLE ctgov.use_case_datasets (
 --
 
 CREATE SEQUENCE ctgov.use_case_datasets_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -563,7 +496,7 @@ ALTER SEQUENCE ctgov.use_case_datasets_id_seq OWNED BY ctgov.use_case_datasets.i
 --
 
 CREATE TABLE ctgov.use_case_publications (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     use_case_id integer,
     name character varying,
     url character varying
@@ -575,7 +508,6 @@ CREATE TABLE ctgov.use_case_publications (
 --
 
 CREATE SEQUENCE ctgov.use_case_publications_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -595,7 +527,7 @@ ALTER SEQUENCE ctgov.use_case_publications_id_seq OWNED BY ctgov.use_case_public
 --
 
 CREATE TABLE ctgov.use_cases (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     status character varying,
     completion_date date,
     title character varying,
@@ -612,8 +544,8 @@ CREATE TABLE ctgov.use_cases (
     contact_info character varying,
     email character varying,
     image bytea,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -622,7 +554,6 @@ CREATE TABLE ctgov.use_cases (
 --
 
 CREATE SEQUENCE ctgov.use_cases_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -642,13 +573,13 @@ ALTER SEQUENCE ctgov.use_cases_id_seq OWNED BY ctgov.use_cases.id;
 --
 
 CREATE TABLE ctgov.user_events (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     email character varying,
     event_type character varying,
     description text,
     file_names character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -657,7 +588,6 @@ CREATE TABLE ctgov.user_events (
 --
 
 CREATE SEQUENCE ctgov.user_events_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -677,7 +607,7 @@ ALTER SEQUENCE ctgov.user_events_id_seq OWNED BY ctgov.user_events.id;
 --
 
 CREATE TABLE ctgov.users (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     email character varying DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
     reset_password_token character varying,
@@ -704,7 +634,6 @@ CREATE TABLE ctgov.users (
 --
 
 CREATE SEQUENCE ctgov.users_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -790,13 +719,6 @@ ALTER TABLE ONLY ctgov.publications ALTER COLUMN id SET DEFAULT nextval('ctgov.p
 
 
 --
--- Name: sharable_datasets id; Type: DEFAULT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.sharable_datasets ALTER COLUMN id SET DEFAULT nextval('ctgov.sharable_datasets_id_seq'::regclass);
-
-
---
 -- Name: use_case_attachments id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -836,6 +758,14 @@ ALTER TABLE ONLY ctgov.user_events ALTER COLUMN id SET DEFAULT nextval('ctgov.us
 --
 
 ALTER TABLE ONLY ctgov.users ALTER COLUMN id SET DEFAULT nextval('ctgov.users_id_seq'::regclass);
+
+
+--
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
 
 
 --
@@ -919,11 +849,11 @@ ALTER TABLE ONLY ctgov.publications
 
 
 --
--- Name: sharable_datasets sharable_datasets_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY ctgov.sharable_datasets
-    ADD CONSTRAINT sharable_datasets_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY ctgov.schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
 
 
 --
@@ -1073,33 +1003,19 @@ CREATE INDEX index_projects_on_year ON ctgov.projects USING btree (year);
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING btree (version);
-
-
---
 -- PostgreSQL database dump complete
 --
 
 SET search_path TO ctgov, support, public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160214191640');
+INSERT INTO "schema_migrations" (version) VALUES
+('20160214191640'),
+('20160912000000'),
+('20180226142044'),
+('20180427144951'),
+('20180813174540'),
+('20181108174440'),
+('20181208174440'),
+('20190321174440');
 
-INSERT INTO schema_migrations (version) VALUES ('20160912000000');
-
-INSERT INTO schema_migrations (version) VALUES ('20180226142044');
-
-INSERT INTO schema_migrations (version) VALUES ('20180427144951');
-
-INSERT INTO schema_migrations (version) VALUES ('20180813174540');
-
-INSERT INTO schema_migrations (version) VALUES ('20181108174440');
-
-INSERT INTO schema_migrations (version) VALUES ('20181208174440');
-
-INSERT INTO schema_migrations (version) VALUES ('20190109162240');
-
-INSERT INTO schema_migrations (version) VALUES ('20190321174440');
 

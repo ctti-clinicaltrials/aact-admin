@@ -1,4 +1,4 @@
-class CreateAdminTables < ActiveRecord::Migration
+class CreateAdminTables < ActiveRecord::Migration[6.0]
 
   def change
 

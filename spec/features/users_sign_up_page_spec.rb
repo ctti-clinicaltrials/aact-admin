@@ -116,7 +116,7 @@ feature "Users Sign Up Page" do
     # db is inaccessible
 
     # simulate revoke_db_privs.sh
-    Public::PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 0;")
+    Public::PublicBase.connection.execute("ALTER DATABASE aact_test CONNECTION LIMIT 0;")
 
     begin
       expect(Util::DbManager.new.public_db_accessible?).to eq(false)
@@ -124,11 +124,11 @@ feature "Users Sign Up Page" do
       expect(page).to have_content "Sorry AACT database is temporarily unavailable"
     rescue
       # Make sure we reset database to be accessible if test fails
-      Public::PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 200;")
+      Public::PublicBase.connection.execute("ALTER DATABASE aact_test CONNECTION LIMIT 200;")
     end
 
     # simulate grant_db_privs.sh
-    Public::PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 200;")
+    Public::PublicBase.connection.execute("ALTER DATABASE aact_test CONNECTION LIMIT 200;")
     expect(Util::DbManager.new.public_db_accessible?).to eq(true)
     submit
     expect(page).not_to have_content "Sorry AACT database is temporarily unavailable"
@@ -143,8 +143,8 @@ feature "Users Sign Up Page" do
 
     expect(page).to have_content "A message with a confirmation link has been sent to your email address"
     expect(Util::UserDbManager.new.user_account_exists?(valid_username)).to eq(true)
-    user=User.where('username=?',valid_username).first
-    expect(user.email).to eq(valid_email)
+
+    user = User.where('username=?',valid_username).first
     expect(user.first_name).to eq(valid_first_name)
     expect(user.last_name).to eq(valid_last_name)
 

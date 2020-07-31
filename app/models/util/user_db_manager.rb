@@ -57,15 +57,15 @@ module Util
       fm.remove_todays_user_backup_tables
 
       log "dumping Users table..."
-      cmd="pg_dump --no-owner --host=localhost -U #{AACT::Application::AACT_DB_SUPER_USERNAME} --table=Users  --data-only aact_admin > #{fm.user_table_backup_file}"
+      cmd="pg_dump --no-owner --host=localhost -U #{ENV['AACT_DB_SUPER_USERNAME']} --table=Users  --data-only aact_admin > #{fm.user_table_backup_file}"
       run_command_line(cmd)
 
       log "dumping User events..."
-      cmd="pg_dump --no-owner --host=localhost -U #{AACT::Application::AACT_DB_SUPER_USERNAME} --table=User_Events  --data-only aact_admin > #{fm.user_event_table_backup_file}"
+      cmd="pg_dump --no-owner --host=localhost -U #{ENV['AACT_DB_SUPER_USERNAME']} --table=User_Events  --data-only aact_admin > #{fm.user_event_table_backup_file}"
       run_command_line(cmd)
 
       log "dumping User accounts..."
-      cmd="pg_dumpall -U  #{AACT::Application::AACT_DB_SUPER_USERNAME} -h #{public_host_name} --globals-only > #{fm.user_account_backup_file}"
+      cmd="pg_dumpall -U  #{ENV['AACT_DB_SUPER_USERNAME']} -h #{public_host_name} --globals-only > #{fm.user_account_backup_file}"
       run_command_line(cmd)
 
       begin

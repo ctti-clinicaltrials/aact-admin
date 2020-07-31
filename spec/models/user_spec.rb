@@ -66,7 +66,7 @@ describe User do
 
   it "creates unconfirmed user db account in public db" do
     @dbconfig = YAML.load(File.read('config/database.yml'))
-    ActiveRecord::Base.establish_connection @dbconfig[:test]
+    ActiveRecord::Base.establish_connection @dbconfig["test"]
     con=Public::PublicBase.establish_connection(
       adapter: 'postgresql',
       encoding: 'utf8',
@@ -105,7 +105,7 @@ describe User do
     end
     #  To confirm the user, make sure app owner (superuser) logged into db connections
     @dbconfig = YAML.load(File.read('config/database.yml'))
-    ActiveRecord::Base.establish_connection @dbconfig[:test]
+    ActiveRecord::Base.establish_connection @dbconfig["test"]
     con=Public::PublicBase.establish_connection(
       adapter: 'postgresql',
       encoding: 'utf8',
@@ -126,14 +126,14 @@ describe User do
       password: pwd,
     ).connection
     expect(con.active?).to eq(true)
-    con.execute('show search_path;')
-    expect(con.execute('select count(*) from ctgov.studies').count).to eq(1)
+    puts con.execute('show search_path;')
+    expect(con.execute('select count(*) from ctgov.studies;').count).to eq(1)
     con.disconnect!
     expect(con.active?).to eq(false)
     con=nil
 
     # Again... reset db connections to normal...
-    ActiveRecord::Base.establish_connection @dbconfig[:test]
+    ActiveRecord::Base.establish_connection @dbconfig["test"]
     con=Public::PublicBase.establish_connection(
       adapter: 'postgresql',
       encoding: 'utf8',
@@ -152,7 +152,7 @@ describe User do
       hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
       database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
       username: user.username,
-    ).connection}.to raise_error(ActiveRecord::NoDatabaseError)
+    ).connection}.to raise_error(PG::ConnectionBad)
 #    FATAL:  role "rspec" does not exist
   end
 
@@ -172,7 +172,7 @@ describe User do
         password: user.password
       ).connection
     rescue => e
-      expect(e.class).to eq(ActiveRecord::NoDatabaseError)
+      expect(e.class).to eq(PG::ConnectionBad)
       expect(e.message).to eq("FATAL:  role \"rspec!_test\" does not exist\n")
     end
   end

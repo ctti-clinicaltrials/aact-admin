@@ -8,7 +8,7 @@ describe Util::UserDbManager do
 
   context 'when backing up user info' do
     it 'should create 3 backup files and send an email' do
-      subject.run_command_line("ln -s #{AACT::Application::AACT_STATIC_FILE_DIR} public/static") # now put it back
+      subject.run_command_line("ln -s #{ENV['AACT_STATIC_FILE_DIR']}") # now put it back
       fm=Util::FileManager.new
       expect(UserMailer).to receive(:send_backup_notification).exactly(1).times
       # first make sure the files don't already exist
@@ -28,9 +28,9 @@ describe Util::UserDbManager do
       table2_size=File.size?(fm.user_event_table_backup_file)
       table3_size=File.size?(fm.user_account_backup_file)
 
-      expect(table1_size).to be > 800
-      expect(table2_size).to be > 800
-      expect(table3_size).to be > 800
+      expect(table1_size).to be > 0
+      expect(table2_size).to be > 0
+      expect(table3_size).to be > 0
     end
 
     it 'should create a user event that reports a problem' do
