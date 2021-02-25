@@ -15,6 +15,8 @@ Then run the generic setup script:
 
 Make sure you set values for the environmental variables inside the .env the setup file created.
 
+Setup the folders you need with `Util::FileManager.setup_folders` in the console
+
 It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
 your machine with [this script].
 
