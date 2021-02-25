@@ -2,9 +2,19 @@
 Administer AACT: Aggregated Analysis of ClinicalTrials.gov
 
 ## Getting Started
+Clone the repo.
 
-After you have cloned this repo, run this setup script to set up your machine
-with the necessary dependencies to run and test this app:
+Install libv8 and therubyracer. This will differ depending on your system.
+
+For mac you can do the following
+
+    `$ brew install v8-315`
+    `$ gem install libv8 -v '3.16.14.19' -- --with-system-v8`
+    `$ gem install therubyracer -- --with-v8-dir=/usr/local/opt/v8@3.15`
+
+Install bundler and bundle install.
+
+Then run this setup script to set up your machine with the necessary dependencies to run and test this app:
 
     % ./bin/setup
 
