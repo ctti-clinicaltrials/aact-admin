@@ -2,7 +2,20 @@
 Administer AACT: Aggregated Analysis of ClinicalTrials.gov
 
 ## Getting Started
-Clone the repo.
+
+At the moment you have to setup aact before setting up aact-admin. So make sure you do that first.
+
+You may still need to create aact_alt. So enter the psql shell to do so.
+
+`psql template1`
+
+`template1=# create database aact_alt;`
+
+`template1=# \q` (quit out of postgres)
+
+Clone the aact-admin repo.
+
+cd into the aact-admin directory and run the setup files
 
 For mac you can run the setup file in the terminal
 
@@ -13,9 +26,25 @@ Then run the generic setup script:
 
 `./bin/setup`
 
-Make sure you set values for the environmental variables inside the .env the setup file created.
+The both setup scripts create a .env where you will need to put your superuser name and password. Make sure you set values in that file.
 
-Setup the folders you need with `Util::FileManager.setup_folders` in the console
+Setup the folders you need with `Util::FileManager.new` in the console
+
+setup the databases with
+`RAILS_ENV=test bin/rake db:create`
+`bin/rake db:create`
+`RAILS_ENV=test bin/rake db:migrate`
+`bin/rake db:migrate`
+
+re-enter the shell to grant permissions on the ctgov schema
+
+`psql aact -U <your_superuser>`
+`template1=# grant connect on database aact to read_only;`
+
+`template1=# grant connect on database aact_alt to read_only;`
+
+`aact=# grant usage on schema ctgov to read_only;`
+`aact=# \q`
 
 It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
 your machine with [this script].
