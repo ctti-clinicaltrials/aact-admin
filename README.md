@@ -4,6 +4,7 @@ Administer AACT: Aggregated Analysis of ClinicalTrials.gov
 ## Getting Started
 
 At the moment you have to setup aact before setting up aact-admin. So make sure you do that first.
+Make sure you've set values for the environmental variables AACT_DB_SUPER_USERNAME and AACT_PASSWORD
 
 You may still need to create aact_alt. So enter the psql shell to do so.
 
@@ -26,7 +27,9 @@ Then run the generic setup script:
 
 `./bin/setup`
 
-The both setup scripts create a .env where you will need to put your superuser name and password. Make sure you set values in that file.
+## Environment variables
+
+After running either setup scrupt, you'll have a `.env` file that contains an empty template for the environment variables you'll need. These variables are copied from `.env.example`
 
 Setup the folders you need with `Util::FileManager.new` in the console
 
@@ -50,10 +53,6 @@ It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
 your machine with [this script].
 
 [this script]: https://github.com/thoughtbot/laptop
-
-## Environment variables
-
-After running `bin/setup`, you'll have a `.env` file that contains an empty template for the environment variables you'll need. These variables are copied from `.env.example`
 
 ## Importing studies from clinicaltrials.gov
 
