@@ -77,12 +77,14 @@ module Util
           UserMailer.send_backup_notification(event)
         else
           event.save!
+          UserMailer.send_backup_notification(event)
           return false
         end
       rescue => error
         event.add_problem(error)
         event.event_type = 'backup users problem'
         event.save!
+        UserMailer.send_backup_notification(event)
         return false
       end
     end
