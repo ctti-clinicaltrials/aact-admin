@@ -36,6 +36,7 @@ describe User do
 
   it "isn't accepted if username has a hyphen" do
     allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
+    User.destroy_all
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'r1-ectest',:password=>'aact',:password_confirmation=>'aact')
     expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username can contain only lowercase characters and numbers")
     expect(User.count).to eq(0)
@@ -43,6 +44,7 @@ describe User do
 
   it "isn't accepted if username is mixed case" do
     allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
+    User.destroy_all
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'EcTest',:password=>'aact',:password_confirmation=>'aact')
     expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username can contain only lowercase characters and numbers, Username must start with a lowercase character")
     expect(User.count).to eq(0)

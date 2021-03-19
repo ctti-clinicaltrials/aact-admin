@@ -39,14 +39,44 @@ setup the databases with
 `RAILS_ENV=test bin/rake db:migrate`
 `bin/rake db:migrate`
 
-re-enter the shell to grant permissions on the ctgov schema
+re-enter the shell to grant permissions on the ctgov schema. Substitute any changes you've made to database names.
 
 `psql aact -U <your_superuser>`
-`template1=# grant connect on database aact to read_only;`
 
-`template1=# grant connect on database aact_alt to read_only;`
+`aact=# grant connect on database aact to read_only;`
+
+`aact=# grant connect on database aact_test to read_only;`
 
 `aact=# grant usage on schema ctgov to read_only;`
+
+`aact=# grant select on all tables in schema ctgov to read_only;`
+
+`aact=# grant select on all sequences in schema ctgov to read_only;`
+
+`aact=# grant execute on all functions in schema ctgov to read_only;`
+
+`aact=# alter default privileges in schema ctgov grant select on tables to read_only;`
+
+`aact=# alter default privileges in schema ctgov grant select on sequences to read_only;`
+
+`aact=# alter default privileges in schema ctgov grant execute on functions to read_only;`
+
+`aact=#\q`
+
+`psql aact_test -U <your_superuser>`
+
+`aact=# grant select on all tables in schema ctgov to read_only;`
+
+`aact=# grant select on all sequences in schema ctgov to read_only;`
+
+`aact=# grant execute on all functions in schema ctgov to read_only;`
+
+`aact=# alter default privileges in schema ctgov grant select on tables to read_only;`
+
+`aact=# alter default privileges in schema ctgov grant select on sequences to read_only;`
+
+`aact=# alter default privileges in schema ctgov grant execute on functions to read_only;`
+
 `aact=# \q`
 
 It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
