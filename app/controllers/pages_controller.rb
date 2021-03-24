@@ -42,9 +42,9 @@ class PagesController < ApplicationController
   private
 
   def set_daily_monthly_snapshot_files
-    fpm=Util::FilePresentationManager.new
-    @daily_files=fpm.daily_snapshot_files
-    @archive_files=fpm.monthly_snapshot_files
+    fpm = Util::FilePresentationManager.new
+    @daily_files = fpm.daily_snapshot_files
+    @archive_files = fpm.monthly_snapshot_files
   end
 
   def set_daily_monthly_pipe_files

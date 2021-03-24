@@ -1,0 +1,19 @@
+version: "3"
+services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./deployment/nginx:/etc/nginx/conf.d
+      - ./deployment/certbot/conf:/etc/letsencrypt
+      - ./deployment/certbot/www:/var/www/certbot
+    depends_on:
+      - clinwiki
+  certbot:
+    image: certbot/certbot
+    volumes:
+    - ./deployment/certbot/conf:/etc/letsencrypt
+    - ./deployment/certbot/www:/var/www/certbot

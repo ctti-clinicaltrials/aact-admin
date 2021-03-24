@@ -35,6 +35,7 @@ gem 'font-awesome-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 gem "ffi", ">= 1.9.24"
+gem "puma"
 
 gem 'roo', '~> 2.4.0'
 gem 'string-similarity'
@@ -76,7 +77,7 @@ end
 group :test do
   gem "database_cleaner"
   gem 'capybara'
-  gem "capybara-webkit"
+  # gem "capybara-webkit"
   gem 'selenium-webdriver' # For Firefox
   gem 'chromedriver-helper'
   gem "formulaic"
