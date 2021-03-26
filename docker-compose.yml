@@ -3,17 +3,35 @@ services:
   nginx:
     image: nginx:stable-alpine
     container_name: nginx
+    depends_on:
+    - aact
     ports:
-      - 80:80
-      - 443:443
+      - 8080:80
+      # - 443:443
     volumes:
       - ./deployment/nginx:/etc/nginx/conf.d
       - ./deployment/certbot/conf:/etc/letsencrypt
       - ./deployment/certbot/www:/var/www/certbot
-    depends_on:
-      - clinwiki
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
   certbot:
     image: certbot/certbot
     volumes:
     - ./deployment/certbot/conf:/etc/letsencrypt
     - ./deployment/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+  aact:
+    image: aact/admin:4.6.0
+    container_name: aact
+    ports:
+      - 3000:3000
+    network:
+      host
+    volumes:
+      - /rrodriguez/ctd/aact-admin/aact-files:/aact-files
+    environment:
+      - RAILS_ENV=production
+      - DB_HOST=127.0.0.1
+      - DB_PORT=5432
+      - DB_USER=developer
+      - DB_PASS=CCi3411
+      - DB_NAME=aact_admin
