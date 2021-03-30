@@ -1,45 +1,36 @@
-<div class="circleButtons">
-
-  <a href="/connect">
-    <div class="iconWrap">
-      <%= fa_icon('plug') %>
+<div class="circleButtons container">
+  <div class="row">
+    <div class="col-sm">
+      <a href="/connect">
+        <div class="iconWrap">
+          <%= fa_icon('plug') %>
+        </div>
+        <span class='circleButtons'>Connect</span>
+      </a>
     </div>
-    <span class='circleButtons'>Connect
-  </span>
-  </a>
-
-  <a href="/download">
-    <div class="iconWrap">
-      <%= fa_icon('download') %>
+    <div class="col-sm">
+      <a href="/download">
+        <div class="iconWrap">
+          <%= fa_icon('download') %>
+        </div>
+        <span class='circleButtons'>Download</span>
+      </a>
     </div>
-    <span class='circleButtons'>Download
-  </span>
-  </a>
-
-  <a href="/learn_more">
-    <div class="iconWrap">
-      <%= fa_icon('university') %>
+    <div class="col-sm">
+      <a href="/learn_more">
+        <div class="iconWrap">
+          <%= fa_icon('university') %>
+        </div>
+        <span class='circleButtons'>Learn</span>
+      </a>
     </div>
-    <span class='circleButtons'>Learn
-  </span>
-  </a>
-
-  <a href="/shared_data">
-    <div class="iconWrap">
-      <%= fa_icon('briefcase') %>
+    <div class="col-sm">
+      <a href="/shared_data">
+        <div class="iconWrap">
+          <%= fa_icon('briefcase') %>
+        </div>
+        <span class='circleButtons'>Shared Data</span>
+      </a>
     </div>
-    <span class='circleButtons'>Shared Data
-  </span>
-  </a>
-
-  <% if  (!current_user.nil? and @aact_admin_usernames.split(',').include? current_user.username) %>
-    <a href="/users">
-      <div class="iconWrap">
-        <%= fa_icon('address-card') %>
-      </div>
-      <span class='circleButtons'>Users
-    </span>
-    </a>
-  <% end %>
-
+  </div>
 </div>

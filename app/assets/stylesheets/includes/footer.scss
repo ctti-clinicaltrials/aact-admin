@@ -14,7 +14,6 @@ div.circleButtons {
   @include justify-content(center);
 
   a {
-    width: 100px;
     margin: 0px 40px;
     @include display-flex;
     @include align-items(center);
