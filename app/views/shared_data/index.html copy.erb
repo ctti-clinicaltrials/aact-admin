@@ -1,3 +1,8 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script>
 
 $(document).ready(function(){
@@ -31,7 +36,7 @@ $(document).ready(function(){
 
     <%= render 'explanation' %>
 
-    <div class='shadowContainer table-responsive'>
+    <div class='shadowContainer'>
       <table id='projectTable'
          data-toggle="table"
          data-detail-view="true"
@@ -39,7 +44,7 @@ $(document).ready(function(){
          data-pagination="true"
          data-show-columns="true"
          data-sort-order="name"
-         class='sortable table table-striped table-hover regularDisplay'>
+         class='sortable table-striped table-responsive table-hover regularDisplay'>
 
           <thead>
             <tr>
