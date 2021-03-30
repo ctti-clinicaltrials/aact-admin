@@ -4,6 +4,7 @@ Administer AACT: Aggregated Analysis of ClinicalTrials.gov
 ## Getting Started
 
 At the moment you have to setup aact before setting up aact-admin. So make sure you do that first.
+* [aact core](https://github.com/ctti-clinicaltrials/aact)
 Make sure you've set values for the environmental variables AACT_DB_SUPER_USERNAME and AACT_PASSWORD
 
 You may still need to create aact_alt. So enter the psql shell to do so.
@@ -78,26 +79,6 @@ re-enter the shell to grant permissions on the ctgov schema. Substitute any chan
 `aact=# alter default privileges in schema ctgov grant execute on functions to read_only;`
 
 `aact=# \q`
-
-It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
-your machine with [this script].
-
-[this script]: https://github.com/thoughtbot/laptop
-
-## Importing studies from clinicaltrials.gov
-
-### Full import
-
-`bundle exec rake import:full:run`
-
-The full import will download the entire dataset from clinicaltrials.gov. This rake task is designed to only work on the first of the month. To run the task and ignore the date, run `bundle exec rake import:full:run[force]`
-
-### Daily import
-
-`bundle exec rake import:daily:run[{days_back}]`
-
-The daily import will check the RSS feed at clinicaltrials.gov for studies that have been added or changed. You can specify how many days back to look in the dataset with the `days_back` argument above. To import changed/new studies from two days back: `bundle exec rake import:daily:run[2]`
-
 
 ## Sanity checks
 
