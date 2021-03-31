@@ -3,34 +3,82 @@ Administer AACT: Aggregated Analysis of ClinicalTrials.gov
 
 ## Getting Started
 
-After you have cloned this repo, run this setup script to set up your machine
-with the necessary dependencies to run and test this app:
+At the moment you have to setup aact before setting up aact-admin. So make sure you do that first.
+* [aact core](https://github.com/ctti-clinicaltrials/aact)
+Make sure you've set values for the environmental variables AACT_DB_SUPER_USERNAME and AACT_PASSWORD
 
-    % ./bin/setup
+You may still need to create aact_alt. So enter the psql shell to do so.
 
-It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
-your machine with [this script].
+`psql template1`
 
-[this script]: https://github.com/thoughtbot/laptop
+`template1=# create database aact_alt;`
+
+`template1=# \q` (quit out of postgres)
+
+Clone the aact-admin repo.
+
+cd into the aact-admin directory and run the setup files
+
+For mac you can run the setup file in the terminal
+
+`./bin/mac_setup`
+
+If you aren't on a mac, then install libv8 and therubyracer according to the method for your system.
+Then run the generic setup script:
+
+`./bin/setup`
 
 ## Environment variables
 
-After running `bin/setup`, you'll have a `.env` file that contains an empty template for the environment variables you'll need. These variables are copied from `.env.example`
+After running either setup scrupt, you'll have a `.env` file that contains an empty template for the environment variables you'll need. These variables are copied from `.env.example`
 
-## Importing studies from clinicaltrials.gov
+Setup the folders you need with `Util::FileManager.new` in the console
 
-### Full import
+setup the databases with
+`RAILS_ENV=test bin/rake db:create`
+`bin/rake db:create`
+`RAILS_ENV=test bin/rake db:migrate`
+`bin/rake db:migrate`
 
-`bundle exec rake import:full:run`
+re-enter the shell to grant permissions on the ctgov schema. Substitute any changes you've made to database names.
 
-The full import will download the entire dataset from clinicaltrials.gov. This rake task is designed to only work on the first of the month. To run the task and ignore the date, run `bundle exec rake import:full:run[force]`
+`psql aact -U <your_superuser>`
 
-### Daily import
+`aact=# grant connect on database aact to read_only;`
 
-`bundle exec rake import:daily:run[{days_back}]`
+`aact=# grant connect on database aact_test to read_only;`
 
-The daily import will check the RSS feed at clinicaltrials.gov for studies that have been added or changed. You can specify how many days back to look in the dataset with the `days_back` argument above. To import changed/new studies from two days back: `bundle exec rake import:daily:run[2]`
+`aact=# grant usage on schema ctgov to read_only;`
 
+`aact=# grant select on all tables in schema ctgov to read_only;`
+
+`aact=# grant select on all sequences in schema ctgov to read_only;`
+
+`aact=# grant execute on all functions in schema ctgov to read_only;`
+
+`aact=# alter default privileges in schema ctgov grant select on tables to read_only;`
+
+`aact=# alter default privileges in schema ctgov grant select on sequences to read_only;`
+
+`aact=# alter default privileges in schema ctgov grant execute on functions to read_only;`
+
+`aact=#\q`
+
+`psql aact_test -U <your_superuser>`
+
+`aact=# grant select on all tables in schema ctgov to read_only;`
+
+`aact=# grant select on all sequences in schema ctgov to read_only;`
+
+`aact=# grant execute on all functions in schema ctgov to read_only;`
+
+`aact=# alter default privileges in schema ctgov grant select on tables to read_only;`
+
+`aact=# alter default privileges in schema ctgov grant select on sequences to read_only;`
+
+`aact=# alter default privileges in schema ctgov grant execute on functions to read_only;`
+
+`aact=# \q`
 
 ## Sanity checks
 
