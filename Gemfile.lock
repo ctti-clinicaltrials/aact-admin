@@ -81,9 +81,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (1.15.1)
-      capybara (>= 2.3, < 4.0)
-      json
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     choice (0.2.0)
@@ -329,6 +326,10 @@ GEM
     vcr (3.0.3)
     warden (1.2.7)
       rack (>= 1.0)
+    webdrivers (4.1.2)
+      nokogiri (~> 1.6)
+      rubyzip (~> 1.0)
+      selenium-webdriver (>= 3.0, < 4.0)
     webmock (3.0.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -351,7 +352,6 @@ DEPENDENCIES
   capistrano (~> 3.8)
   capistrano-rails (~> 1.2)
   capybara
-  capybara-webkit
   chromedriver-helper
   coderay
   database_cleaner
@@ -405,10 +405,5 @@ DEPENDENCIES
   turbolinks (~> 5)
   uglifier
   vcr
+  webdrivers (~> 4.0)
   webmock
-
-RUBY VERSION
-   ruby 2.4.5p335
-
-BUNDLED WITH
-   1.16.1
