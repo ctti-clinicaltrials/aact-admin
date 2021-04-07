@@ -36,6 +36,7 @@ describe User do
 
   it "isn't accepted if username has a hyphen" do
     allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
+    User.destroy_all
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'r1-ectest',:password=>'aact',:password_confirmation=>'aact')
     expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username can contain only lowercase characters and numbers")
     expect(User.count).to eq(0)
@@ -43,6 +44,7 @@ describe User do
 
   it "isn't accepted if username is mixed case" do
     allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
+    User.destroy_all
     user=User.new(:first_name=>'first', :last_name=>'last',:email=>'1test@duke.edu',:username=>'EcTest',:password=>'aact',:password_confirmation=>'aact')
     expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username can contain only lowercase characters and numbers, Username must start with a lowercase character")
     expect(User.count).to eq(0)
@@ -115,7 +117,7 @@ describe User do
     ).connection
     # once db connections are back to normal, confirm the user
     user.confirm  #simulate user email response confirming their account
-
+    
     # once confirmed via email, user should be able to login to their account
     con=Public::PublicBase.establish_connection(
       adapter: 'postgresql',
@@ -152,8 +154,10 @@ describe User do
       hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
       database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
       username: user.username,
-    ).connection}.to raise_error(ActiveRecord::NoDatabaseError)
-#    FATAL:  role "rspec" does not exist
+      password: pwd
+    ).connection}.to raise_error(PG::ConnectionBad) # for postgres 13
+    # postgres 9.6
+    # raise_error(ActiveRecord::NoDatabaseError)
   end
 
   it "isn't accepted if special char in username" do
@@ -172,8 +176,11 @@ describe User do
         password: user.password
       ).connection
     rescue => e
-      expect(e.class).to eq(ActiveRecord::NoDatabaseError)
-      expect(e.message).to eq("FATAL:  role \"rspec!_test\" does not exist\n")
+      expect(e.class).to eq(PG::ConnectionBad) # for postgres 13
+      expect(e.message).to eq("FATAL:  password authentication failed for user \"rspec!_test\"\n")
+      # postgres 9.6
+      # expect(e.class).to eq(ActiveRecord::NoDatabaseError) 
+      # expect(e.message).to eq("FATAL:  role \"rspec!_test\" does not exist\n")
     end
   end
 
