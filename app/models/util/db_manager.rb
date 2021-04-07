@@ -56,8 +56,11 @@ module Util
       AACT::Application::AACT_PUBLIC_DATABASE_NAME
     end
 
-    def grant_read_only
-      
+    def grant_privs_read_only
+      con.execute("grant connect on database #{public_db_name} to read_only;")
+      con.execute('grant usage on schema ctgov to read_only;')
+      con.execute('grant select on all tables in schema ctgov to read_only;')
+      con.execute('alter default privileges in schema ctgov grant select on tables to read_only;')
     end
 
   end

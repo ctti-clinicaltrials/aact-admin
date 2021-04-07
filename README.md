@@ -52,15 +52,7 @@ re-enter the shell to grant permissions on the ctgov schema. Substitute any chan
 
 `aact=# grant select on all tables in schema ctgov to read_only;`
 
-`aact=# grant select on all sequences in schema ctgov to read_only;`
-
-`aact=# grant execute on all functions in schema ctgov to read_only;`
-
 `aact=# alter default privileges in schema ctgov grant select on tables to read_only;`
-
-`aact=# alter default privileges in schema ctgov grant select on sequences to read_only;`
-
-`aact=# alter default privileges in schema ctgov grant execute on functions to read_only;`
 
 `aact=#\q`
 
@@ -68,15 +60,7 @@ re-enter the shell to grant permissions on the ctgov schema. Substitute any chan
 
 `aact=# grant select on all tables in schema ctgov to read_only;`
 
-`aact=# grant select on all sequences in schema ctgov to read_only;`
-
-`aact=# grant execute on all functions in schema ctgov to read_only;`
-
 `aact=# alter default privileges in schema ctgov grant select on tables to read_only;`
-
-`aact=# alter default privileges in schema ctgov grant select on sequences to read_only;`
-
-`aact=# alter default privileges in schema ctgov grant execute on functions to read_only;`
 
 `aact=# \q`
 
