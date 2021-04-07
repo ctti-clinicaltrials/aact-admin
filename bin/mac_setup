@@ -5,12 +5,17 @@
 
 # Exit if any subcommand fails
 set -e
+# install libv8 and therubyracer
+# tips here https://gist.github.com/fernandoaleman/868b64cd60ab2d51ab24e7bf384da1ca
+brew install v8-315
+gem install libv8 -v '3.16.14.19' -- --with-system-v8
+gem install therubyracer -- --with-v8-dir=/usr/local/opt/v8@3.15
 
 # Set up Ruby dependencies via Bundler
 # The conservative flag allows `bundle update --conservative GEM` 
 # to update the version of GEM, but prevents Bundler from updating 
 # the versions of any of the gems that GEM depends on, similar 
-# to changing a gem's version number in the Gemfile and then running `bundle install`.
+# to changing a gem's version number in the Gemfile and then running `bundle install`. 
 gem install bundler --conservative
 #  bundle-check - Verifies if dependencies are satisfied by installed gems 
 # check searches the local machine for each of the gems requested in the Gemfile. 
@@ -18,7 +23,3 @@ gem install bundler --conservative
 bundle check || bundle install
 
 cp ./.env.example ./.env
-
-# Only if this isn't CI
-# if [ -z "$CI" ]; then
-# fi

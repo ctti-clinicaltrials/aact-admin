@@ -1,5 +1,6 @@
 require "webmock/rspec"
 require 'capybara/rspec'
+require 'webdrivers'
 
 # http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
