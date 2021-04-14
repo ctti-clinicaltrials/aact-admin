@@ -69,15 +69,22 @@ module Util
       run_command_line(cmd)
 
       begin
-        check_for_backup_errors(event, fm)
-        event.file_names = "#{fm.user_table_backup_file}, #{fm.user_event_table_backup_file}, #{fm.user_account_backup_file}"
-        event.event_type = 'backup users'
-        event.save!
-        UserMailer.send_backup_notification(event)
+        backup_successful = check_for_backup_errors(event, fm)
+        if backup_successful
+          event.file_names = "#{fm.user_table_backup_file}, #{fm.user_event_table_backup_file}, #{fm.user_account_backup_file}"
+          event.event_type = 'backup users'
+          event.save!
+          UserMailer.send_backup_notification(event)
+        else
+          event.save!
+          UserMailer.send_backup_notification(event)
+          return false
+        end
       rescue => error
         event.add_problem(error)
         event.event_type = 'backup users problem'
         event.save!
+        UserMailer.send_backup_notification(event)
         return false
       end
     end
@@ -112,7 +119,7 @@ module Util
       else
         project_schemas = ""
       end
-
+      
       Public::Study.connection.execute("grant read_only to \"#{username}\";")
       Public::Study.connection.execute("alter role \"#{username}\" login;")
       Public::Study.connection.execute("alter role \"#{username}\" IN DATABASE aact set search_path = ctgov, mesh_archive #{project_schemas};")

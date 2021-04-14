@@ -2,63 +2,78 @@ require 'open3'
 require 'action_view'
 require 'open-uri'
 include ActionView::Helpers::NumberHelper
+RootDir = AACT::Application::AACT_STATIC_FILE_DIR
 module Util
   class FileManager
+    def initialize
+      FileUtils.mkdir_p RootDir
+      FileUtils.mkdir_p "#{RootDir}/static_db_copies/daily"
+      FileUtils.mkdir_p "#{RootDir}/static_db_copies/monthly"
+      FileUtils.mkdir_p "#{RootDir}/exported_files/daily"
+      FileUtils.mkdir_p "#{RootDir}/exported_files/monthly"
+      FileUtils.mkdir_p "#{RootDir}/db_backups"
+      FileUtils.mkdir_p "#{RootDir}/documentation"
+      FileUtils.mkdir_p "#{RootDir}/logs"
+      FileUtils.mkdir_p "#{RootDir}/tmp"
+      FileUtils.mkdir_p "#{RootDir}/other"
+      FileUtils.mkdir_p "#{RootDir}/xml_downloads"
+      FileUtils.mkdir_p "#{RootDir}/exported_files/covid-19"
+    end
 
     def static_copies_directory
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
-        "#{Rails.public_path}/static/static_db_copies/monthly"
+        "#{RootDir}/static_db_copies/monthly"
       else
-        "#{Rails.public_path}/static/static_db_copies/daily"
+        "#{RootDir}/static_db_copies/daily"
       end
     end
 
     def flat_files_directory
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
-        "#{Rails.public_path}/static/exported_files/monthly"
+        "#{RootDir}/exported_files/monthly"
       else
-        "#{Rails.public_path}/static/exported_files/daily"
+        "#{RootDir}/exported_files/daily"
       end
     end
 
     def covid_19_files_directory
-      "#{Rails.public_path}/static/exported_files/covid-19"
+      "#{RootDir}/exported_files/covid-19"
     end
 
     def pg_dump_file
-      "#{Rails.public_path}/static/tmp/postgres.dmp"
+      "#{RootDir}/tmp/postgres.dmp"
     end
 
     def dump_directory
-      "#{Rails.public_path}/static/tmp"
+      "#{RootDir}/tmp"
     end
 
     def backup_directory
-      "#{Rails.public_path}/static/db_backups"
+      "#{RootDir}/db_backups"
     end
 
     def xml_file_directory
-      "#{Rails.public_path}/static/xml_downloads"
+      "#{RootDir}/xml_downloads"
     end
 
     def support_schema_diagram
-      "#{Rails.public_path}/static/documentation/aact_support_schema.png"
+      "#{RootDir}/documentation/aact_support_schema.png"
     end
 
     def admin_schema_diagram
-      "#{Rails.public_path}/static/documentation/aact_admin_schema.png"
+      "#{RootDir}/documentation/aact_admin_schema.png"
     end
 
     def schema_diagram
-      "#{Rails.public_path}/static/documentation/aact_schema.png"
+      "#{RootDir}/documentation/aact_schema.png"
     end
 
     def data_dictionary
-      "#{Rails.public_path}/static/documentation/aact_data_definitions.xlsx"
+      "#{RootDir}/documentation/aact_data_definitions.xlsx"
     end
 
     def table_dictionary
-      "#{Rails.public_path}/static/documentation/aact_tables.xlsx"
+      "#{RootDir}/documentation/aact_tables.xlsx"
     end
 
     def default_mesh_terms
@@ -77,9 +92,9 @@ module Util
       # type ('monthly' or 'daily') identify the subdirectory to use to get the files.
       entries=[]
       if type.blank?
-        dir="#{Rails.public_path}/static/#{sub_dir}"
+        dir="#{RootDir}/#{sub_dir}"
       else
-        dir="#{Rails.public_path}/static/#{sub_dir}/#{type}"
+        dir="#{RootDir}/#{sub_dir}/#{type}"
       end
       file_names=Dir.entries(dir) - ['.','..']
       file_names.each {|file_name|
@@ -120,7 +135,7 @@ module Util
 
     def todays_db_activity_file
       date_stamp=Time.zone.now.strftime('%Y%m%d')
-      "#{Rails.public_path}/static/other/#{date_stamp}_user_activity.txt"
+      "#{RootDir}/other/#{date_stamp}_user_activity.txt"
     end
 
     def remove_todays_user_backup_tables
@@ -145,7 +160,7 @@ module Util
     end
 
     def make_file_from_website(fname, url)
-      return_file="#{Rails.public_path}/static/tmp/#{fname}"
+      return_file="#{RootDir}/tmp/#{fname}"
       File.delete(return_file) if File.exist?(return_file)
       open(url) {|site|
         open(return_file, "wb"){|out_file|

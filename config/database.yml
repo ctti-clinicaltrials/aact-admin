@@ -12,7 +12,8 @@ development: &default
 test:
   encoding: utf8
   adapter: postgresql
-  database: aact_admin_test
+  # database: aact_admin_test
+  url:  <%= "postgres://#{ENV.fetch('AACT_DB_SUPER_USERNAME','ctti')}@localhost:5432/aact_admin_test" %>
 
 production: &deploy
   encoding: utf8

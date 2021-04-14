@@ -77,7 +77,7 @@ end
 group :test do
   gem "database_cleaner"
   gem 'capybara'
-  # gem "capybara-webkit"
+  gem 'webdrivers', '~> 4.0', require: false
   gem 'selenium-webdriver' # For Firefox
   gem 'chromedriver-helper'
   gem "formulaic"
