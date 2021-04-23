@@ -7,3 +7,14 @@
  That API also provides additional information that we are capturing as well.</p>
  <p>The code that uses the regular API is still in use. 
  The regular and the beta code run in parellel in AACT but store data in different databases.</p>
+ <h5>How the ctgov_beta schema diverges from the ctgov schema in this release:</h5>
+ <ul>
+  <li><p>The column ctgov_group_code is named ctgov_beta_group_code. Please note the codes themselves are different between the Beta and regular API on ClinicalTrials.gov.</p></li>
+  <li><p>Empty Design and Enrollment objects are not created if there is no data for them.</p></li>
+  <li><p>There are more agency_types. However, the number of agencies is the same between ctgov and ctgov_beta.</p></li>
+  <li><p>Reported event totals are handled differently in Beta on ClinicalTrials.gov. There is no total all cause mortality.</p></li>
+  <li><p>There is no download date for StudyJsonRecords, because none is provided by the ClinicalTrials.gov Beta API.</p></li>
+  <li><p>The Beta API provides Reported_event_totals with addtional data for the following columns: restriction_type, other_details and restrictive_agreement.</p></li>
+  <li><p>When no data is provided for a column the value is saved as null/nil (rather than an empty string).</p></li>
+  <li><p>There are some capitalization differences and minor verbiage differences.</p></li>
+</ul>
