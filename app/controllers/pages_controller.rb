@@ -1,5 +1,9 @@
 class PagesController < ApplicationController
 
+  def airbrake
+    this_method_is_missing
+  end
+
   def snapshots
     set_daily_monthly_snapshot_files
   end
