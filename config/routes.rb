@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   root "pages#home"
 
+  get "/airbrake" => "pages#airbrake"
+
   get "/data_dictionary"      => "dictionary#show"
   get "/activities"           => "database_activity#show"
   get 'dictionary/show'
