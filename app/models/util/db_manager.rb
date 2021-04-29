@@ -56,6 +56,26 @@ module Util
       AACT::Application::AACT_PUBLIC_DATABASE_NAME
     end
 
+    def setup_db
+      print 'dropping databases...'
+      run_command_line("bin/rake db:drop")
+      puts 'done'
+
+      print 'recreating databases...'
+      run_command_line("bin/rake db:create")
+      run_command_line("bin/rake db:create RAILS_ENV=test")
+      puts 'done'
+
+      print 'running migrations...'
+      run_command_line("bin/rake db:migrate")
+      run_command_line("bin/rake db:migrate RAILS_ENV=test")
+      puts 'done'
+
+      # print 'granting permissions to the read_only role...'
+      # `bin/rake db:setup_read_only`
+      # `bin/rake db:setup_read_only RAILS_ENV=test`
+    end
+
   end
 
 end
