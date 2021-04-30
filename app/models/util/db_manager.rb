@@ -71,9 +71,9 @@ module Util
       run_command_line("bin/rake db:migrate RAILS_ENV=test")
       puts 'done'
 
-      # print 'granting permissions to the read_only role...'
-      # `bin/rake db:setup_read_only`
-      # `bin/rake db:setup_read_only RAILS_ENV=test`
+      print 'granting permissions to the read_only role...'
+      `bin/rake db:setup_read_only`
+      `bin/rake db:setup_read_only RAILS_ENV=test`
     end
 
   end
