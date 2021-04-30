@@ -7,9 +7,12 @@ At the moment you have to setup aact before setting up aact-admin. So make sure 
 * [aact core](https://github.com/ctti-clinicaltrials/aact)
 Make sure you've set values for the environmental variables AACT_DB_SUPER_USERNAME and AACT_PASSWORD
 
-You may still need to create aact_alt. So enter the psql shell to do so.
+You may still need to create aact_alt. So enter the psql shell to check if it's there and add it if it's not.
 
 `psql template1`
+
+`\l`
+if it's listed, you can exit the shell now. If it is missing, then create it.
 
 `template1=# create database aact_alt;`
 
@@ -40,45 +43,10 @@ setup the databases with
 `RAILS_ENV=test bin/rake db:migrate`
 `bin/rake db:migrate`
 
-re-enter the shell to grant permissions on the ctgov schema. Substitute any changes you've made to database names.
+Grant permissions to the read_only role.
+`bin/rake db:setup_read_only`
+`bin/rake db:setup_read_only RAILS_ENV=test`
 
-`psql aact -U <your_superuser>`
-
-`aact=# grant connect on database aact to read_only;`
-
-`aact=# grant connect on database aact_test to read_only;`
-
-`aact=# grant usage on schema ctgov to read_only;`
-
-`aact=# grant select on all tables in schema ctgov to read_only;`
-
-`aact=# grant select on all sequences in schema ctgov to read_only;`
-
-`aact=# grant execute on all functions in schema ctgov to read_only;`
-
-`aact=# alter default privileges in schema ctgov grant select on tables to read_only;`
-
-`aact=# alter default privileges in schema ctgov grant select on sequences to read_only;`
-
-`aact=# alter default privileges in schema ctgov grant execute on functions to read_only;`
-
-`aact=#\q`
-
-`psql aact_test -U <your_superuser>`
-
-`aact=# grant select on all tables in schema ctgov to read_only;`
-
-`aact=# grant select on all sequences in schema ctgov to read_only;`
-
-`aact=# grant execute on all functions in schema ctgov to read_only;`
-
-`aact=# alter default privileges in schema ctgov grant select on tables to read_only;`
-
-`aact=# alter default privileges in schema ctgov grant select on sequences to read_only;`
-
-`aact=# alter default privileges in schema ctgov grant execute on functions to read_only;`
-
-`aact=# \q`
 
 ## Sanity checks
 
