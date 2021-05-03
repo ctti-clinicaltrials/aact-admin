@@ -1,6 +1,10 @@
 @import "../base/variables";
 @import "../base/library";
 
+.bg-aact{
+  background-color: #008aa1;
+}
+
 .error {
   color: #800000;
   font-weight: bold;
@@ -109,7 +113,7 @@ div.heroPanelRow {
         border-color: darken($secondary, 5);
       }
     }
-    
+
     &.info_shade_light{
       span.type {
         border-bottom: 2px solid $secondary;
