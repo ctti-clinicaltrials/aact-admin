@@ -1,4 +1,4 @@
-<div id='navbar-top' class="navbar navbar-top ">
+<div id='navbar-top' class="navbar navbar-top">
 
   <% if user_signed_in? %>
    
@@ -16,27 +16,33 @@
 </div>
 
 <nav class="navbar navbar-expand-lg">
-    <div class="navbar-header">
+  <div class="navbar-header">
     <%= link_to("https://www.ctti-clinicaltrials.org/", class: "navbar-brand") do %>
       <%= image_tag("full_logo.jpg", class:"logo",  height: '120', width: '300') %>
       <% end %>
     </div>
-    <ul class="navbar-nav mr-auto">
+  <button class="navbar-toggler navbar-dark bg-aact" type="button" data-toggle="collapse" data-target="#topNavToggler" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="topNavToggler">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
         <a href="/" class="navItem nav-link"><%= fa_icon("home") %>Home</a>
       </li>
-      <li class="nav-item active">
-          <a href="/connect" class="navItem nav-link"><%= fa_icon("plug") %>Connect</a>
+      <li class="nav-item">
+        <a href="/connect" class="navItem nav-link"><%= fa_icon("plug") %>Connect</a>
       </li>
-      <li class="nav-item active">
-          <a href="/download" class="navItem nav-link"><%= fa_icon("download") %>Download</a>
+      <li class="nav-item">
+        <a href="/download" class="navItem nav-link"><%= fa_icon("download") %>Download</a>
       </li>
-      <li class="nav-item active">
-          <a href="/learn_more" class="navItem nav-link"><%= fa_icon("university") %>Learn</a>
+      <li class="nav-item">
+        <a href="/learn_more" class="navItem nav-link"><%= fa_icon("university") %>Learn</a>
       </li>
-      <li class="nav-item active"><a href="/shared_data" class="navItem nav-link"><%= fa_icon("briefcase") %>Shared Data</a>
+      <li class="nav-item">
+        <a href="/shared_data" class="navItem nav-link"><%= fa_icon("briefcase") %>Shared Data</a>
       </li>
     </ul>
+  </div>
 </nav>
 
 
