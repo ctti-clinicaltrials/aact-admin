@@ -4,21 +4,20 @@ class DefinitionsController < ApplicationController
   # This code uses data dictionary spreadsheet stored on the DO file server
   # *******///********
 
-  @@results_url=Util::FilePresentationManager.new.nlm_results_data_url
-  @@protocol_url=Util::FilePresentationManager.new.nlm_protocol_data_url
-
   def index
-    data = Roo::Spreadsheet.open("#{AACT::Application::AACT_STATIC_FILE_DIR}/documentation/aact_data_definitions.xlsx")
-    header = data.first
+    unless File.exists?('public/aact_data_definitions.json')
+      DataDefinition.make_json_file
+    end
+    json_file = JSON.parse(File.read('public/aact_data_definitions.json'))
     dataOut = []
-    (2..data.last_row).each do |i|
-      row = Hash[[header, data.row(i)].transpose]
+    json_file.each do |row|
       if !row['table'].nil? and !row['column'].nil?
         if !filtered?(params) or passes_filter?(row,params)
-          dataOut << fix_attribs(row)
+          dataOut << row
         end
       end
     end
+  
     render json: dataOut, root: false
   end
 
