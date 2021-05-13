@@ -76,7 +76,8 @@ class DefinitionsController < ApplicationController
 
     if hash['nlm doc'].present?
       url=hash["db section"].downcase == "results" ? @@results_url : @@protocol_url
-      hash['nlm doc'] = "<a href=#{url}##{hash['nlm doc']} class='navItem' target='_blank'><i class='fa fa-book'></i></a>".html_safe
+      location = hash['nlm doc'].gsub("<html><u>", '').gsub("</u></html>",'')
+      hash['nlm doc'] = "<a href=#{url}##{location} class='navItem' target='_blank'><i class='fa fa-book'></i></a>".html_safe
     end
 
     if (col == 'id') or (tab.downcase == 'studies' and col == 'nct_id')
