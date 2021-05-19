@@ -19,7 +19,7 @@ gem install therubyracer -v0.12.2
 # to changing a gem's version number in the Gemfile and then running `bundle install`. 
 bundle update --bundler
 gem install bundler -v 1.17.3
-#gem install bundler --conservative
+
 #  bundle-check - Verifies if dependencies are satisfied by installed gems 
 # check searches the local machine for each of the gems requested in the Gemfile. 
 # If all gems are found, Bundler prints a success message and exits with a status of 0.
