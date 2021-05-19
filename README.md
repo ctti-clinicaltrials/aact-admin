@@ -3,6 +3,8 @@ Administer AACT: Aggregated Analysis of ClinicalTrials.gov
 
 ## Getting Started
 
+Currently aact-admin uses ruby version 2.4.5.  Make sure you have that version installed and running before attempting local setup
+
 At the moment you have to setup aact before setting up aact-admin. So make sure you do that first.
 * [aact core](https://github.com/ctti-clinicaltrials/aact)
 Make sure you've set values for the environmental variables AACT_DB_SUPER_USERNAME and AACT_PASSWORD
