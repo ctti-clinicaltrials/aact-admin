@@ -43,6 +43,9 @@ class PagesController < ApplicationController
     )
   end
 
+  def psql
+  end
+
   private
 
   def set_daily_monthly_snapshot_files
