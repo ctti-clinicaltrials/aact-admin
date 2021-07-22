@@ -36,6 +36,7 @@ gem 'font-awesome-rails'
 gem 'turbolinks', '~> 5'
 gem "ffi", ">= 1.9.24"
 gem "puma"
+gem 'airbrake'
 
 gem 'roo', '~> 2.4.0'
 gem 'string-similarity'

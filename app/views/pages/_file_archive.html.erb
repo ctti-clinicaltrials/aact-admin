@@ -3,19 +3,29 @@
     <table class='file-archive'>
       <th class='file-archive'>Downloadable File</>
       <th class='file-archive'>Date File Was Created</>
-      <%if time%>
+      <% if time %>
       <th class='file-archive'>Time Created</>
       <% end %>
       <th class='file-archive'>Size</>
+      <% date = nil %>
       <%= files.each do |file| %>
-        <tr>
-          <td class='file-archive'><a href="<%= file[:url] %>" onClick="ga('send','event','download','<%= type %>')"><%= file[:name] %></a></td>
-          <td class='file-archive'><%= file[:date_created] %></td>
-          <%if time%>
-          <td class='file-archive'><%= file[:time_created] %></td>
+        <% if time %>
+          <% if date != file[:date_created] %>
+            <tr>
+              <td class='file-archive'><a href="<%= file[:url] %>" onClick="ga('send','event','download','<%= type %>')"><%= file[:name] %></a></td>
+              <td class='file-archive'><%= file[:date_created] %></td>
+              <td class='file-archive'><%= file[:time_created] %></td>
+              <td class='file-archive'><%= file[:size] %></td>
+            </tr>
           <% end %>
-          <td class='file-archive'><%= file[:size] %></td>
-        </tr>
+        <% else %>
+          <tr>
+            <td class='file-archive'><a href="<%= file[:url] %>" onClick="ga('send','event','download','<%= type %>')"><%= file[:name] %></a></td>
+            <td class='file-archive'><%= file[:date_created] %></td>
+            <td class='file-archive'><%= file[:size] %></td>
+          </tr>
+        <% end %>
+        <% date = file[:date_created] %>
       <% end %>
     </table>
   </div>
