@@ -1,5 +1,9 @@
 class PagesController < ApplicationController
 
+  def airbrake
+    this_method_is_missing
+  end
+
   def snapshots
     set_daily_monthly_snapshot_files
   end
@@ -37,6 +41,9 @@ class PagesController < ApplicationController
       filename: "covid-19_field_explanation.xlsx",
       type: "application/xlsx"
     )
+  end
+
+  def psql
   end
 
   private
