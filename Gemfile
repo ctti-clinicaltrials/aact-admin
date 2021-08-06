@@ -2,8 +2,8 @@ source "https://rubygems.org"
 
 ruby "2.4.5"
 
-gem 'bootstrap'
-gem "bootstrap-table-rails"
+# gem 'bootstrap'
+# gem "bootstrap-table-rails"
 gem 'nokogiri', '~> 1.8.1'
 gem 'rails'
 gem 'rails-html-sanitizer', '~> 1.0.4'
@@ -35,6 +35,7 @@ gem 'font-awesome-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 gem "ffi", ">= 1.9.24"
+gem "puma"
 gem 'airbrake'
 
 gem 'roo', '~> 2.4.0'

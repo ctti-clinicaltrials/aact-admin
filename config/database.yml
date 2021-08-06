@@ -3,7 +3,11 @@ development: &default
   adapter: postgresql
   min_messages: warning
   timeout: 5000
-  url:  <%= "postgres://#{ENV.fetch('AACT_DB_SUPER_USERNAME','ctti')}@localhost:5432/#{ENV.fetch('AACT_ADMIN_DATABASE_NAME','aact_admin')}" %>
+  host: localhost
+  port: 5432
+  username: <%= ENV.fetch('AACT_DB_SUPER_USERNAME', 'ctti') %>
+  password: <%= ENV.fetch('AACT_PASSWORD', '') %>
+  database: <%= ENV.fetch('AACT_ADMIN_DATABASE_NAME', 'aact_admin') %>
 
 test:
   encoding: utf8
@@ -16,4 +20,8 @@ production: &deploy
   adapter: postgresql
   min_messages: warning
   timeout: 5000
-  url:  <%= "postgres://#{ENV.fetch('AACT_DB_SUPER_USERNAME','ctti')}@localhost:5432/#{ENV.fetch('AACT_ADMIN_DATABASE_NAME','aact_admin')}" %>
+  host: <%= ENV['DB_HOST'] %>
+  port: <%= ENV['DB_PORT'] %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASS'] %>
+  database: <%= ENV['DB_NAME'] %>
