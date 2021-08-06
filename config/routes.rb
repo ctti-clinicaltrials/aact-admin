@@ -49,7 +49,10 @@ Rails.application.routes.draw do
   get "/tech_access_servers"  => "faq#tech_access_servers"
   get "/tech_apply_ctgov_changes"  => "faq#tech_apply_ctgov_changes"
   get "/tech_deploy_code"     => "faq#tech_deploy_code"
-
+  
+  #beta
+  get "/beta/migration" => "beta#migration"
+  
   resources :definitions
   resources :users
   resources :shared_data, param: :schema_name
