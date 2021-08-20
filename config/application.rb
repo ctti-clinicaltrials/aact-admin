@@ -26,11 +26,10 @@ module AACT
     end
     config.active_record.schema_format = :sql
     config.action_controller.action_on_unpermitted_parameters = :raise
-    config.active_record.raise_in_transactional_callbacks = true
 
     SEGMENT_KEY            = ENV['SEGMENT_KEY']
     AACT_DB_SUPER_USERNAME = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
-    
+
     AACT_PROCESS_SERVER    = ENV['AACT_PROCESS_SERVER']
     AACT_DB_VERSION        = ENV['AACT_DB_VERSION'] || 'uncertain'   # get this from the public database
     AACT_ADMIN_USERNAMES   = ENV['AACT_ADMIN_USERNAMES'] || ''       # User who can see restricted pages like technical documentation, users, etc.
