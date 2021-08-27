@@ -63,7 +63,7 @@ class DataDefinition < ActiveRecord::Base
   end
 
   def self.make_json_file
-    data = Roo::Spreadsheet.open("#{AACT::Application::AACT_STATIC_FILE_DIR}/documentation/aact_data_definitions.xlsx")
+    data = Roo::Spreadsheet.open("#{Rails.configuration.aact[:static_files_directory]}/documentation/aact_data_definitions.xlsx")
     header = data.first
     dataOut = []
     (2..data.last_row).each do |i|
