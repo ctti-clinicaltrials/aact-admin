@@ -45,7 +45,6 @@ module AACT
       AACT_PUBLIC_DATABASE_NAME = 'aact_test'
       AACT_BETA_DATABASE_NAME = 'aact_test'
       AACT_PUBLIC_IP_ADDRESS    = '127.0.0.1'
-      AACT_STATIC_FILE_DIR      = 'tmp/aact-files'  # directory containing AACT static files such as the downloadable db snapshots
     else
       APPLICATION_HOST          = ENV['APPLICATION_HOST'] || 'localhost'
       AACT_PUBLIC_HOSTNAME      = ENV['AACT_PUBLIC_HOSTNAME'] || 'localhost'
@@ -54,7 +53,6 @@ module AACT
       AACT_PUBLIC_DATABASE_NAME = ENV['AACT_PUBLIC_DATABASE_NAME'] || 'aact'
       AACT_BETA_DATABASE_NAME = ENV['AACT_BETA_DATABASE_NAME'] || 'aact_beta'
       AACT_PUBLIC_IP_ADDRESS    = ENV['AACT_PUBLIC_IP_ADDRESS'] || '127.0.0.1'
-      AACT_STATIC_FILE_DIR      = ENV['AACT_STATIC_FILE_DIR'] || '/aact-files'  # directory containing AACT static files such as the downloadable db snapshots
     end
     AACT_BACK_DATABASE_URL   = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_BACK_DATABASE_NAME}"
     AACT_ADMIN_DATABASE_URL  = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_ADMIN_DATABASE_NAME}"
