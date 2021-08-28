@@ -13,6 +13,10 @@ require 'csv'
 Bundler.require(*Rails.groups)
 module AACT
   class Application < Rails::Application
+    # This tells Rails to serve error pages from the Rails app itself (i.e. config/routes.rb),
+    # rather than using static error pages in public/
+    config.exceptions_app = self.routes
+
     config.time_zone = 'Eastern Time (US & Canada)'
     config.quiet_assets = true
     config.generators do |generate|
@@ -30,7 +34,7 @@ module AACT
 
     SEGMENT_KEY            = ENV['SEGMENT_KEY']
     AACT_DB_SUPER_USERNAME = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
-    
+
     AACT_PROCESS_SERVER    = ENV['AACT_PROCESS_SERVER']
     AACT_DB_VERSION        = ENV['AACT_DB_VERSION'] || 'uncertain'   # get this from the public database
     AACT_ADMIN_USERNAMES   = ENV['AACT_ADMIN_USERNAMES'] || ''       # User who can see restricted pages like technical documentation, users, etc.
