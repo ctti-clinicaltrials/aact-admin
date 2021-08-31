@@ -1,1 +1,1 @@
-cd ENV['AACT_ADMIN_DIR'] ; bash -l -c 'bundle exec rake backup:user_info:run' > Rails.configuration.aact[:static_files_directory]/logs/`date +\%Y\%m\%d-\%H`-backup-user-info.log 2>Rails.configuration.aact[:static_files_directory]/logs/`date +\%Y\%m\%d-\%H`-backup-user-info-error.log
+cd ENV['AACT_ADMIN_DIR'] ; bash -l -c 'bundle exec rake backup:user_info:run' > ENV['AACT_STATIC_FILE_DIR']/logs/`date +\%Y\%m\%d-\%H`-backup-user-info.log 2>ENV['AACT_STATIC_FILE_DIR']/logs/`date +\%Y\%m\%d-\%H`-backup-user-info-error.log
