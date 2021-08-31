@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'errors/not_found'
-
-  get 'errors/internal_server_error'
-
   # Adding these routes connects those requests to the appropriate actions of the errors controller.
   # Using match ... :via => :all allows the error pages to be displayed for any type of request (GET, POST, PUT, etc.)
   match "/404", :to => "errors#not_found", :via => :all
