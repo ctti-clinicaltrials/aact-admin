@@ -28,7 +28,6 @@ module AACT
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.active_record.raise_in_transactional_callbacks = true
 
-    SEGMENT_KEY            = ENV['SEGMENT_KEY']
     AACT_DB_SUPER_USERNAME = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
     
     AACT_PROCESS_SERVER    = ENV['AACT_PROCESS_SERVER']
