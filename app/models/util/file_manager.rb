@@ -2,7 +2,7 @@ require 'open3'
 require 'action_view'
 require 'open-uri'
 include ActionView::Helpers::NumberHelper
-RootDir = AACT::Application::AACT_STATIC_FILE_DIR
+RootDir = Rails.configuration.aact[:static_files_directory]
 module Util
   class FileManager
     def initialize
@@ -216,8 +216,8 @@ module Util
     def remove_daily_files
       # keep files with current year/month datestamp
       keep = Time.zone.now.strftime('%Y%m')
-      run_command_line("find #{AACT::Application::AACT_STATIC_FILE_DIR}/static_db_copies/daily -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
-      run_command_line("find #{AACT::Application::AACT_STATIC_FILE_DIR}/exported_files/daily   -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
+      run_command_line("find #{Rails.configuration.aact[:static_files_directory]}/static_db_copies/daily -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
+      run_command_line("find #{Rails.configuration.aact[:static_files_directory]}/exported_files/daily   -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
     end
 
     def run_command_line(cmd)
