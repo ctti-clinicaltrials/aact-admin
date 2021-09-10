@@ -19,5 +19,5 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "www.example.com" }
   config.active_job.queue_adapter = :inline
 
-  config.aact = {static_files_directory: "public/static/aact-files"}
+  config.aact = {static_files_directory: "/tmp/aact-files"}
 end
