@@ -3,10 +3,10 @@
 # Send an HTTP status of 404 or 500 according to error page being rendered.
 class ErrorsController < ApplicationController
   def not_found
-    render(:status => 404)
+    render status: 404
   end
 
   def internal_server_error
-    render(:status => 500)
+    render status: 500
   end
 end
