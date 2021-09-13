@@ -119,7 +119,7 @@ module Util
       else
         project_schemas = ""
       end
-      
+
       Public::Study.connection.execute("grant read_only to \"#{username}\";")
       Public::Study.connection.execute("alter role \"#{username}\" login;")
       Public::Study.connection.execute("alter role \"#{username}\" IN DATABASE aact set search_path = ctgov, mesh_archive #{project_schemas};")
