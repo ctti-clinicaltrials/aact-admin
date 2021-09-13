@@ -17,7 +17,7 @@ task :finish_up do
     # create symlink to to the root directory containing aact static files
     # content of this directory can get big; we create this directory on a separate NAS drive
     target = release_path.join('public/static')
-    source = ENV.fetch('AACT_STATIC_FILE_DIR','/aact-files')
+    source = Rails.configuration.aact[:static_files_directory] || '/aact-files'
 
     execute :ln, '-s', source, target
     # restart the website
