@@ -7,15 +7,19 @@
   <p>ClinicalTrials.gov is changing the format of how they deliever data January 1st 2022. They will switch from XML to JSON format. 
   In preparation for migration that we have added the ability to capture that data to the code base of AACT and set up the data it captures into a separate database.</p>
   <p>On this page you will find information about AACT Beta. For those who are testing the beta database, you can submit issues and requests on this page. </p>
-  <br>
+  <br/>
 
   <h4>Connecting</h4>
-  <p>If you are interested in using the data in AACT Beta the method for connecting to it is almost the same as connecting to AACT. 
-  The only difference are:</p>
-  <ul class='regularDisplay'>
-    <li><p>database: aact_beta</p></li>
-    <li><p>schema: ctgov_beta</p></li>
-  </ul>
+  <p>If you are interested in using the data in AACT Beta the only thing you have to do is add "ctgov_beta" to any tables that you querying. For example if you want to see data from the studies table in beta you can run the following code</p>
+  
+  <p class="CodeRay">
+    <pre>
+      <p class="code">
+        SELECT * FROM ctgov_beta.studies WHERE nct_id='NCT04750434'
+      </p>
+    </pre>
+  </p>
+
   <p>Visit the <a href="/connect">Connect</a> page for information on connecting to AACT. 
   The steps on that page can be used for AACT Beta as long as you set "aact_beta" as the database name and "ctgov_beta" as the schema name.</p>
 
