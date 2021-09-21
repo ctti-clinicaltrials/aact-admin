@@ -21,6 +21,8 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
   config.active_record.dump_schema_after_migration = false
   config.action_mailer.default_url_options = { host: host }
+
+  config.aact = {static_files_directory: "/aact-files"}
 end
 Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
 
