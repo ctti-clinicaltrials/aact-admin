@@ -56,7 +56,7 @@ gem 'devise-encryptable'
 # deployment to server
 gem 'capistrano', '~> 3.8'
 gem 'capistrano-rails', '~> 1.2'
-gem 'byebug', '~> 9.0', '>= 9.0.5'
+
 group :development do
 #  gem "quiet_assets"
 #  gem "spring"
@@ -69,7 +69,7 @@ group :development, :test do
   gem "bullet"
   gem "bundler-audit"
   gem "factory_bot_rails"
-  # gem "pry-byebug"
+  gem "pry-byebug"
   gem "pry-rails"
   gem 'rspec-rails'
   gem 'single_test'
