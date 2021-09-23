@@ -1,4 +1,4 @@
-class CreateDbUserActivities < ActiveRecord::Migration
+class CreateDbUserActivities < ActiveRecord::Migration[4.2]
   def change
     create_table "ctgov.db_user_activities" do |t|
       t.string    :username

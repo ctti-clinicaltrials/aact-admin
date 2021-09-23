@@ -1,10 +1,3 @@
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 13.3
--- Dumped by pg_dump version 13.3
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -26,6 +19,18 @@ CREATE SCHEMA ctgov;
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
+
+--
+-- Name: ar_internal_metadata; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
 
 --
 -- Name: attachments; Type: TABLE; Schema: ctgov; Owner: -
@@ -772,6 +777,14 @@ ALTER TABLE ONLY ctgov.users ALTER COLUMN id SET DEFAULT nextval('ctgov.users_id
 
 
 --
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
 -- Name: attachments attachments_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -849,6 +862,14 @@ ALTER TABLE ONLY ctgov.public_announcements
 
 ALTER TABLE ONLY ctgov.publications
     ADD CONSTRAINT publications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
 
 
 --
@@ -998,31 +1019,19 @@ CREATE INDEX index_projects_on_year ON ctgov.projects USING btree (year);
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING btree (version);
-
-
---
 -- PostgreSQL database dump complete
 --
 
 SET search_path TO ctgov, support, public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160214191640');
+INSERT INTO "schema_migrations" (version) VALUES
+('20160214191640'),
+('20160912000000'),
+('20180226142044'),
+('20180427144951'),
+('20180813174540'),
+('20181108174440'),
+('20181208174440'),
+('20190321174440');
 
-INSERT INTO schema_migrations (version) VALUES ('20160912000000');
-
-INSERT INTO schema_migrations (version) VALUES ('20180226142044');
-
-INSERT INTO schema_migrations (version) VALUES ('20180427144951');
-
-INSERT INTO schema_migrations (version) VALUES ('20180813174540');
-
-INSERT INTO schema_migrations (version) VALUES ('20181108174440');
-
-INSERT INTO schema_migrations (version) VALUES ('20181208174440');
-
-INSERT INTO schema_migrations (version) VALUES ('20190321174440');
 
