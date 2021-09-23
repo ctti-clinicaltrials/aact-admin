@@ -130,8 +130,8 @@ end
       end
     end
     it "the user can use the database if they are confirmed" do
-      # @user.confirm  #simulate user email response confirming their account
-      @user.grant_db_privs
+      @user.confirm  #simulate user email response confirming their account
+      
       # once confirmed via email, user should be able to login to their account
       con=Public::PublicBase.establish_connection(
         adapter: 'postgresql',

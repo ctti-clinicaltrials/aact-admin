@@ -3,60 +3,75 @@ Administer AACT: Aggregated Analysis of ClinicalTrials.gov
 
 ## Getting Started
 
-At the moment you have to setup aact before setting up aact-admin. So make sure you do that first.
-* [aact core](https://github.com/ctti-clinicaltrials/aact)
-Make sure you've set values for the environmental variables AACT_DB_SUPER_USERNAME and AACT_PASSWORD
+You should always setup AACT Core before setting up AACT Admin. AACT Admin relies on AACT Core. So if you haven’t set up AACT Core yet, please do so now. [aact core](https://github.com/ctti-clinicaltrials/aact)  
+Make sure you've set values for the environmental variables `AACT_DB_SUPER_USERNAME` and `AACT_PASSWORD`
 
-You may still need to create aact_alt. So enter the psql shell to check if it's there and add it if it's not.
+You’ll need to add `PUBLIC_DB_USER` and `PUBLIC_DB_PASS` to the same place you put the other variables. You should set these variables to have the same values as your superuser and password to make things easier. Be sure to call `source` on the file where your passwords are. Example `source ~/.bash_profile`.  
 
-`psql template1`
+You may still need to create aact_alt. So enter the psql shell to check if it's there and add it if it's not.  
 
-`\l`
-if it's listed, you can exit the shell now. If it is missing, then create it.
+- `psql template1 - U <super_username>`  
 
-`template1=# create database aact_alt;`
+- `\l`  if it's listed, you can exit the shell now. If it is missing, then create it.  
 
-`template1=# \q` (quit out of postgres)
+- `template1=# create database aact_alt;`  
 
-Clone the aact-admin repo.
+- `template1=# \q` (quit out of postgres)  
 
-cd into the aact-admin directory and run the setup files
+- Clone the aact-admin repo.  
 
-For mac you can run the setup file in the terminal
+- `cd` into the aact-admin directory and run the setup files  
+- Setup gems
 
-`./bin/mac_setup`
+For mac you can run the setup file in the terminal  
+
+`./bin/mac_setup`  
 
 If you aren't on a mac, then install libv8 and therubyracer according to the method for your system.
-Then run the generic setup script:
+Then run the generic setup script:  
 
-`./bin/setup`
+`./bin/setup`  
 
-## Environment variables
+- Setup the databases and database privileges with automatically with `bin/rake setup:databases`  
 
-After running either setup scrupt, you'll have a `.env` file that contains an empty template for the environment variables you'll need. These variables are copied from `.env.example`
+Or you can do it this way:  
+`bin/rake db:create`  
+`bin/rake db:create RAILS_ENV=test`  
+`bin/rake db:migrate`  
+`bin/rake db:migrate RAILS_ENV=test`  
+`bin/rake db:setup_read_only`  
+`bin/rake db:setup_read_only RAILS_ENV=test`  
+<br>
+***
 
-Setup the folders you need with `Util::FileManager.new` in the console
+## Workflow
+### Branches:
+- master - This is the stable production branch, anything merged to master is meant to be propagated to production. Hot fixes will be merged directly to master, then pulled into dev. All other Pull Requests (PRs) will be merged into dev first.  
+- dev - This branch contains the changes for the sprint. It is an accumulation of everything that we believe is working and ready for the next release.  
+- feat/AACT-NUM-description - "AACT-Num" refers to the number of the card on Jira. Description is the name of the feature. This is the naming conventions for a feature that you are working on that eventually will be merged to dev once the PR is approved.  
+- fix/AACT-NUM-description - This is the naming conventions for a bug fix. The PR will be merged into dev when approved.  
+- hotfix/AACT-220-description - This is the naming conventions for an emergency fix. This branches off of master and gets merged into master when the PR is approved because it is a fix that needs to be deployed ASAP.  
 
-setup the databases with
-`RAILS_ENV=test bin/rake db:create`
-`bin/rake db:create`
-`RAILS_ENV=test bin/rake db:migrate`
-`bin/rake db:migrate`
+Treat dev as the main branch. Only branch off of master if you need to do a hotfix.
 
-Grant permissions to the read_only role.
-`bin/rake db:setup_read_only`
-`bin/rake db:setup_read_only RAILS_ENV=test`
+### Normal Process
+1.  Pick a ticket to work on  
+2.  Branch off of dev using the naming convention mentioned above to name your branch  
+3.  Work on the feature or bug fix  
+4.  Run tests and make sure they pass before creating a PR  
+5.  Once complete create a PR to dev  
+6.  Request review for the PR from two people  
+7.  If there are change requests, makes the changes, run tests and request a review. If not continue to the next step.   
+8.  The PR will be approved and merged to dev  
+9.  At the end of the sprint the dev will be merged to master (we will add a semantic tag, this is where we will decide which version number to pick)  
+10.  Deploy master to production  
 
-
-## Sanity checks
-
-Sanity checks are a simple way for us to check that the tables in the database have been imported correctly and gives some insight into how the data looks at a high level. Both the daily and full import rake tasks run the sanity check automatically. To run it manually, open up a Rails console and enter `SanityCheck.run`. This will create a record in the `sanity_checks` table with a report represented in JSON.
-
-## Guidelines
-
-Use the following guides for getting things done, programming well, and
-programming in style.
-
-* [Protocol](http://github.com/thoughtbot/guides/blob/master/protocol)
-* [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
-* [Style](http://github.com/thoughtbot/guides/blob/master/style)
+### Hotfix Process
+1.  Branch off of master using the naming convention mentioned above to name your branch   
+2.  Work on the bug fix  
+3.  Run tests and make sure they pass
+4.  Create PR to master  
+5.  Request review for the PR from two people. PR review could be expedited depending on the emergency  
+6.  Merge PR to master  
+7.  Deploy master to production  
+8.  Bring changes into dev (once things stabilize)  

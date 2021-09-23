@@ -11,13 +11,11 @@ set -e
 # to update the version of GEM, but prevents Bundler from updating 
 # the versions of any of the gems that GEM depends on, similar 
 # to changing a gem's version number in the Gemfile and then running `bundle install`.
-gem install bundler --conservative
+gem install bundler -v '~> 1.17.3' --conservative
 #  bundle-check - Verifies if dependencies are satisfied by installed gems 
 # check searches the local machine for each of the gems requested in the Gemfile. 
 # If all gems are found, Bundler prints a success message and exits with a status of 0.
 bundle check || bundle install
-
-cp ./.env.example ./.env
 
 # Only if this isn't CI
 # if [ -z "$CI" ]; then
