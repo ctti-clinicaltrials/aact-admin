@@ -1,23 +1,13 @@
 require 'rails_helper'
 
 describe User do
-  # before(:all) do
-  #   # In case tests failed in previous pass, remove db account in public database
-  #   begin
-  #     Util::UserDbManager.remove_user(User.new(:username=>'spec_test'))
-  #   rescue
-  #   end
-  # end
-
-before do
-  Public::PublicBase.establish_connection(
-      adapter: 'postgresql',
-      encoding: 'utf8',
-      hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
-      database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
-      username: AACT::Application::AACT_DB_SUPER_USERNAME,
-    ).connection
-end
+  before(:all) do
+    # In case tests failed in previous pass, remove db account in public database
+    begin
+      Util::UserDbManager.remove_user(User.new(:username=>'spec_test'))
+    rescue
+    end
+  end
 
   it { should validate_length_of(:first_name).is_at_most(100) }
   it { should validate_length_of(:last_name).is_at_most(100) }
