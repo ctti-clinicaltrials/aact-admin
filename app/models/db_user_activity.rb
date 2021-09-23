@@ -29,7 +29,7 @@ class DbUserActivity < ActiveRecord::Base
   end
 
   def self.update_user_records
-    active_users = uniq.pluck(:username)
+    active_users = all.uniq.pluck(:username)
     active_users.each{|username|
       user = User.where('username=?',username).try(:first)
       if !user.nil?
