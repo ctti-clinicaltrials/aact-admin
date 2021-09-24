@@ -42,6 +42,8 @@ Or you can do it this way:
 `bin/rake db:setup_read_only`  
 `bin/rake db:setup_read_only RAILS_ENV=test`  
 <br>
+
+- lastly you'll need to copy the contents from "public/documentaion" to "public/static/documentation"
 ***
 
 ## Workflow
