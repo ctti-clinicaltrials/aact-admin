@@ -82,11 +82,6 @@ require 'active_support/all'
       return {:last=>rows[-1], :next_last=>rows[-2]} if rows.size > 1
       
       return {}
-      # if rows.size > 1
-      #   return {:last=>rows.last, :next_last=>rows.offset(1).last} if rows.size > 1
-      # else
-      #   return {}
-      # end
     end
 
     def enums
