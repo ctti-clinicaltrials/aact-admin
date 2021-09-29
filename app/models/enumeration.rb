@@ -79,11 +79,14 @@ require 'active_support/all'
 
     def self.get_last_two_for(table_name, column_name, val)
       rows=where("table_name=? and column_name=? and column_value=?", table_name, column_name, val).order("created_at")
-      if rows.size > 1
-        return {:last=>rows.last, :next_last=>rows.offset(1).last} if rows.size > 1
-      else
-        return {}
-      end
+      return {:last=>rows[-1], :next_last=>rows[-2]} if rows.size > 1
+      
+      return {}
+      # if rows.size > 1
+      #   return {:last=>rows.last, :next_last=>rows.offset(1).last} if rows.size > 1
+      # else
+      #   return {}
+      # end
     end
 
     def enums

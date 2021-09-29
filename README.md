@@ -41,7 +41,7 @@ Or you can do it this way:
 `bin/rake db:migrate RAILS_ENV=test`  
 `bin/rake db:setup_read_only`  
 `bin/rake db:setup_read_only RAILS_ENV=test`  
-<br>
+<br>  
 
 - lastly you'll need to copy the contents from "public/documentaion" to "public/static/documentation"
 ***
