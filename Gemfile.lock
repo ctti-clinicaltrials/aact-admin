@@ -97,12 +97,6 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
-    database_cleaner (2.0.1)
-      database_cleaner-active_record (~> 2.0.0)
-    database_cleaner-active_record (2.0.1)
-      activerecord (>= 5.a)
-      database_cleaner-core (~> 2.0.0)
-    database_cleaner-core (2.0.1)
     devise (4.8.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -385,7 +379,6 @@ DEPENDENCIES
   capybara
   chromedriver-helper
   coderay
-  database_cleaner
   devise (>= 4.6.0)
   devise-encryptable
   enumerize

@@ -76,7 +76,6 @@ group :development, :test do
 end
 
 group :test do
-  gem "database_cleaner"
   gem 'capybara'
   gem 'webdrivers', '~> 4.0', require: false
   gem 'selenium-webdriver' # For Firefox
