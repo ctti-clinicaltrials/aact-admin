@@ -65,124 +65,114 @@ describe User do
     expect(User.count).to eq(0)
     expect(UserEvent.last.event_type).to eq('remove')
   end
+  describe "when a user signs up" do
+    before do
+      @dbconfig = YAML.load(File.read('config/database.yml'))
+      ActiveRecord::Base.establish_connection @dbconfig[:test]
+      
+      @con=Public::PublicBase.establish_connection(
+        adapter: 'postgresql',
+        encoding: 'utf8',
+        hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
+        database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
+        username: AACT::Application::AACT_DB_SUPER_USERNAME,
+      ).connection
+      @username='rspec'
+      @pwd='aact_pwd'
+      Util::UserDbManager.new.remove_user(@username)
+      # remove all existing users - both from Users table and db accounts
+      allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
+      User.all.each{|user| user.remove } 
+      @user=User.new(first_name: 'first', last_name: 'last', email: 'rspec.test@duke.edu', username: @username, password: @pwd)
+      @user.skip_password_validation=true
+      @user.save!
+    end
+    after do
+      @con=Public::PublicBase.establish_connection(
+        adapter: 'postgresql',
+        encoding: 'utf8',
+        hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
+        database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
+        username: AACT::Application::AACT_DB_SUPER_USERNAME,
+      ).connection
+    end
 
-  it "creates unconfirmed user db account in public db" do
-    @dbconfig = YAML.load(File.read('config/database.yml'))
-    ActiveRecord::Base.establish_connection @dbconfig[:test]
-    con=Public::PublicBase.establish_connection(
-      adapter: 'postgresql',
-      encoding: 'utf8',
-      hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
-      database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
-      username: AACT::Application::AACT_DB_SUPER_USERNAME,
-    ).connection
-    allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
-    User.all.each{|user| user.remove }  # remove all existing users - both from Users table and db accounts
-
-    username='rspec'
-    pwd='aact_pwd'
-    Util::UserDbManager.new.remove_user(username)
-
-    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>username,:password=>pwd)
-    user.skip_password_validation=true
-    user.save!
-
-    expect(User.count).to eq(1)
-    expect(user.sign_in_count).to eq(0)
-    # user added to db as un-confirmed
-    expect(Util::UserDbManager.new.user_account_exists?(user.username)).to be(true)
-    # user cannot login until they confirm their email address
-    begin
+    it "an unconfirmed user db account is created in public db" do
+      expect(User.count).to eq(1)
+      expect(@user.sign_in_count).to eq(0)
+      # user added to db as un-confirmed
+      expect(Util::UserDbManager.new.user_account_exists?(@user.username)).to be(true)
+    end
+    it "the user can't use the database if they are not confirmed" do
+      # user cannot login until they confirm their email address
+      begin
+        con=Public::PublicBase.establish_connection(
+          adapter: 'postgresql',
+          encoding: 'utf8',
+          hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
+          database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
+          username: @user.username,
+          password: @pwd,
+        ).connection
+      rescue => e
+        e.inspect
+        expect(e.message).to eq("FATAL:  password authentication failed for user \"rspec\"\n") 
+      end
+    end
+    it "the user can use the database if they are confirmed" do
+      @user.confirm  #simulate user email response confirming their account
+      
+      # once confirmed via email, user should be able to login to their account
       con=Public::PublicBase.establish_connection(
         adapter: 'postgresql',
         encoding: 'utf8',
         hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
         database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
-        username: user.username,
-        password: pwd,
+        username: @user.username,
+        password: @pwd,
       ).connection
-    rescue => e
-      e.inspect
-      expect(e.message).to eq("FATAL:  role \"rspec\" is not permitted to log in\n")
+      expect(con.active?).to eq(true)
+      con.execute('show search_path;')
+      expect(con.execute('select count(*) from ctgov.studies').count).to eq(1)
+      expect(con.execute('select count(*) from ctgov_beta.studies').count).to eq(1)
+      con.disconnect!
+      expect(con.active?).to eq(false)
+      con=nil
     end
-    #  To confirm the user, make sure app owner (superuser) logged into db connections
-    @dbconfig = YAML.load(File.read('config/database.yml'))
-    ActiveRecord::Base.establish_connection @dbconfig[:test]
-    con=Public::PublicBase.establish_connection(
-      adapter: 'postgresql',
-      encoding: 'utf8',
-      hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
-      database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
-      username: AACT::Application::AACT_DB_SUPER_USERNAME,
-    ).connection
-    # once db connections are back to normal, confirm the user
-    user.confirm  #simulate user email response confirming their account
-    
-    # once confirmed via email, user should be able to login to their account
-    con=Public::PublicBase.establish_connection(
-      adapter: 'postgresql',
-      encoding: 'utf8',
-      hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
-      database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
-      username: user.username,
-      password: pwd,
-    ).connection
-    expect(con.active?).to eq(true)
-    con.execute('show search_path;')
-    expect(con.execute('select count(*) from ctgov.studies').count).to eq(1)
-    expect(con.execute('select count(*) from ctgov_beta.studies').count).to eq(1)
-    con.disconnect!
-    expect(con.active?).to eq(false)
-    con=nil
-
-    # Again... reset db connections to normal...
-    ActiveRecord::Base.establish_connection @dbconfig[:test]
-    con=Public::PublicBase.establish_connection(
-      adapter: 'postgresql',
-      encoding: 'utf8',
-      hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
-      database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
-      username: AACT::Application::AACT_DB_SUPER_USERNAME,
-    ).connection
-
-    # Then remove the user
-    user.remove
-    expect(User.count).to eq(0)
-    # user can no longer access the public database
-    expect { Public::PublicBase.establish_connection(
-      adapter:'postgresql',
-      encoding:'utf8',
-      hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
-      database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
-      username: user.username,
-      password: pwd
-    ).connection}.to raise_error(PG::ConnectionBad) # for postgres 13
-    # postgres 9.6
-    # raise_error(ActiveRecord::NoDatabaseError)
-  end
-
-  it "isn't accepted if special char in username" do
-    allow_any_instance_of(described_class).to receive(:can_access_db?).and_return( true )
-    User.all.each{|user| user.remove}  # remove all existing users - both from Users table and db accounts
-    user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>'rspec!_test',:password=>'aact')
-    expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username can contain only lowercase characters and numbers')
-    expect(User.count).to eq(0)
-    begin
-      Public::PublicBase.establish_connection(
-        adapter: 'postgresql',
-        encoding: 'utf8',
+    it 'if the user is removed they can no longer access the database' do
+      @user.confirm
+      @user.remove
+      expect(User.count).to eq(0)
+      # user can no longer access the public database
+      expect { Public::PublicBase.establish_connection(
+        adapter:'postgresql',
+        encoding:'utf8',
         hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
         database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
-        username: user.username,
-        password: user.password
-      ).connection
-    rescue => e
-      expect(e.class).to eq(PG::ConnectionBad) # for postgres 13
-      expect(e.message).to eq("FATAL:  password authentication failed for user \"rspec!_test\"\n")
-      # postgres 9.6
-      # expect(e.class).to eq(ActiveRecord::NoDatabaseError) 
-      # expect(e.message).to eq("FATAL:  role \"rspec!_test\" does not exist\n")
+        username: @user.username,
+        password: @pwd
+      ).connection}.to raise_error(PG::ConnectionBad) # for postgres 13
     end
-  end
-
+    it "isn't accepted if special char in username" do
+      User.all.each{|user| user.remove } 
+      user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>'rspec!_test',:password=>'aact')
+      expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username can contain only lowercase characters and numbers')
+      expect(User.count).to eq(0)
+      begin
+        con = Public::PublicBase.establish_connection(
+          adapter: 'postgresql',
+          encoding: 'utf8',
+          hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
+          database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
+          username: user.username,
+          password: user.password
+        ).connection
+      rescue => e
+        expect(e.class).to eq(PG::ConnectionBad) # for postgres 13
+        expect(e.message).to eq("FATAL:  password authentication failed for user \"rspec!_test\"\n")
+        # postgres 9.6
+        # expect(e.class).to eq(ActiveRecord::NoDatabaseError) 
+        # expect(e.message).to eq("FATAL:  role \"rspec!_test\" does not exist\n")
+      end
+    end
 end
