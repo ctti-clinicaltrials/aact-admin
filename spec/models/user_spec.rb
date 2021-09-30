@@ -175,4 +175,5 @@ describe User do
         # expect(e.message).to eq("FATAL:  role \"rspec!_test\" does not exist\n")
       end
     end
+  end
 end
