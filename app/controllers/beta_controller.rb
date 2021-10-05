@@ -25,12 +25,28 @@ class BetaController < ApplicationController
   #   set_diagrams_and_dictionaries
   # end
 
-  # def schema
-  #   set_diagrams_and_dictionaries
-  #   @show_dictionary_link = true
-  #   @project_schema_files=Share::Project.schema_diagram_file_names
-  # end
+  def schema
+    set_diagrams_and_dictionaries
+    @show_dictionary_link = true
+    @project_schema_files=Share::Project.schema_diagram_file_names
+  end
 
+  def show
+    fpm=Util::FilePresentationManager.new
+    @admin_schema_diagram=fpm.admin_schema_diagram
+    @schema_diagram=fpm.schema_diagram
+    @data_dictionary=fpm.data_dictionary
+    @table_dictionary=fpm.table_dictionary
+    @tables = []
+    tabs=get_dictionary
+    header = tabs.first
+    (2..tabs.last_row).each do |i|
+      row = Hash[[header, tabs.row(i)].transpose]
+      if !row['table'].nil?
+        @tables << fix_attribs(row)
+      end
+    end
+  end
   # def covid_19_fields
   #   send_file(
   #     "#{Rails.root}/public/documentation/covid-19_field_explanation.xlsx",
