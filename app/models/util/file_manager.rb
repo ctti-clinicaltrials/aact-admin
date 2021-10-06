@@ -72,6 +72,10 @@ module Util
       "#{RootDir}/documentation/aact_data_definitions.xlsx"
     end
 
+    # def data_beta_dictionary
+    #   "#{RootDir}/documentation/aact_beta_data_definitions.xlsx"
+    # end
+
     def table_dictionary
       "#{RootDir}/documentation/aact_tables.xlsx"
     end
