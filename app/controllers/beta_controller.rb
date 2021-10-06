@@ -30,7 +30,7 @@ class BetaController < ApplicationController
     @show_dictionary_link = true
     @project_schema_files=Share::Project.schema_diagram_file_names
   end
-
+  #  ---------from dictionary_controller ---------start------
   def show
     fpm=Util::FilePresentationManager.new
     @admin_schema_diagram=fpm.admin_schema_diagram
@@ -47,6 +47,28 @@ class BetaController < ApplicationController
       end
     end
   end
+
+  def get_dictionary
+    Roo::Spreadsheet.open(Util::FileManager.new.table_dictionary)
+  end
+
+  def fix_attribs(hash)
+    # get row count from the DataDefinition.row_count
+    tab=hash['table'].downcase
+    col=(tab=='studies' ? 'nct_id' : 'id')
+    results=ActiveRecord::Base.connection.execute("SELECT row_count FROM data_definitions WHERE table_name='#{tab}' and column_name='#{col}'")
+    if results.ntuples > 0
+      row_count=results.getvalue(0,0).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+      hash['row count']=row_count
+    else
+      hash['row count']=0
+    end
+    hash['formatted_table'] = "<span id='#{tab}'>#{hash['table']}</span>"
+    hash
+  end
+
+#  ---------from dictionary_controller ---------end------
+
   # def covid_19_fields
   #   send_file(
   #     "#{Rails.root}/public/documentation/covid-19_field_explanation.xlsx",
