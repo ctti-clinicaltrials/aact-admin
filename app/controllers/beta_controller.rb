@@ -35,8 +35,8 @@ class BetaController < ApplicationController
     fpm=Util::FilePresentationManager.new
     @admin_schema_diagram=fpm.admin_schema_diagram
     @schema_diagram=fpm.schema_diagram
-    @data_dictionary=fpm.data_dictionary
-    @table_dictionary=fpm.table_beta_dictionary
+    @data_dictionary=fpm.data_beta_dictionary
+    @table_dictionary=fpm.table_dictionary
     @tables = []
     tabs=get_dictionary
     header = tabs.first
@@ -106,7 +106,7 @@ class BetaController < ApplicationController
   def set_diagrams_and_dictionaries
     fpm=Util::FilePresentationManager.new
     @admin_schema_diagram=fpm.admin_schema_diagram
-    @data_dictionary=fpm.data_dictionary
+    @data_dictionary=fpm.data_beta_dictionary
     @process_flow_diagram=fpm.process_flow_diagram
     @schema_diagram=fpm.schema_diagram
     @support_schema_diagram=fpm.support_schema_diagram
