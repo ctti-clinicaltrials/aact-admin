@@ -10,7 +10,7 @@ You’ll need to add `PUBLIC_DB_USER` and `PUBLIC_DB_PASS` to the same place you
 
 You may still need to create aact_alt. So enter the psql shell to check if it's there and add it if it's not.  
 
-- `psql template1 - U <super_username>`  
+- `psql postgres -U <super_username>`  
 
 - `\l`  if it's listed, you can exit the shell now. If it is missing, then create it.  
 
