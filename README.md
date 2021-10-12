@@ -4,9 +4,17 @@ Administer AACT: Aggregated Analysis of ClinicalTrials.gov
 ## Getting Started
 
 You should always setup AACT Core before setting up AACT Admin. AACT Admin relies on AACT Core. So if you haven’t set up AACT Core yet, please do so now. [aact core](https://github.com/ctti-clinicaltrials/aact)  
-Make sure you've set values for the environmental variables `AACT_DB_SUPER_USERNAME` and `AACT_PASSWORD`
+Make sure you've set values for the environmental variables 
+- `AACT_DB_SUPER_USERNAME=<superuser_name>`  
+- `AACT_PASSWORD=<superuser_password>`  
+- `AACT_PUBLIC_DATABASE_NAME=aact`  
+- `AACT_PUBLIC_BETA_DATABASE_NAME=aact`  
+- `PUBLIC_DB_USER=<superuser_name>`  
+- `PUBLIC_DB_PASS=<superuser_password>`  
+- `AACT_ALT_PUBLIC_DATABASE_NAME=aact_alt`  
+These variables should have been set when you setup AACT Core. If any are missing you should add them to where you store your variables (for instance ".bash_profile" or ".zshrc").  
 
-You’ll need to add `PUBLIC_DB_USER` and `PUBLIC_DB_PASS` to the same place you put the other variables. You should set these variables to have the same values as your superuser and password to make things easier. Be sure to call `source` on the file where your passwords are. Example `source ~/.bash_profile`.  
+Be sure to call `source` on the file where your passwords are. Example `source ~/.bash_profile` so they are reloaded into the terminal.   
 
 You may still need to create aact_alt. So enter the psql shell to check if it's there and add it if it's not.  
 
