@@ -46,7 +46,7 @@ if you run into issues with bundle installing `libv8` and the `rubyracer` on a m
 `bin/rake db:setup_read_only RAILS_ENV=test`  
 <br>  
 
-- lastly you'll need to copy the contents from "public/documentaion" to "public/static/documentation"
+- lastly you'll need to copy the contents from "public/documentation" to "public/static/documentation"
 ***
 
 ## Workflow
