@@ -16,7 +16,7 @@ These variables should have been set when you setup AACT Core. If any are missin
 
 Be sure to call `source` on the file where your passwords are. Example `source ~/.bash_profile` so they are reloaded into the terminal.   
 
-You may still need to create aact_alt. So enter the psql shell to check if it's there and add it if it's not.  
+You also should have created aact_alt when setting up AACT Core. But if you didn't, you will need to add it now. So enter the psql shell to create it if it had not been created already.  
 
 - `psql postgres -U <super_username>`  
 
@@ -28,21 +28,16 @@ You may still need to create aact_alt. So enter the psql shell to check if it's 
 
 - Clone the aact-admin repo.  
 
-- `cd` into the aact-admin directory and run the setup files  
-- Setup gems
+- `cd` into the aact-admin directory  
 
-For mac you can run the setup file in the terminal  
+- run `bundle install` (bundle version should be '~> 1.17.3')  
 
-`./bin/mac_setup`  
+if you run into issues with bundle installing `libv8` and the `rubyracer` on a mac you can follow these steps
+`brew install v8-315`  
+`gem install libv8 -v '3.16.14.19' -- --with-system-v8`  
+`gem install therubyracer -- --with-v8-dir=/usr/local/opt/v8@3.15`    
 
-If you aren't on a mac, then install libv8 and therubyracer according to the method for your system.
-Then run the generic setup script:  
-
-`./bin/setup`  
-
-- Setup the databases and database privileges with automatically with `bin/rake setup:databases`  
-
-Or you can do it this way:  
+- Setup the databases and database privileges  
 `bin/rake db:create`  
 `bin/rake db:create RAILS_ENV=test`  
 `bin/rake db:migrate`  

@@ -74,27 +74,5 @@ module Util
       beta_con.execute('grant select on all tables in schema ctgov_beta to read_only;')
       beta_con.execute('alter default privileges in schema ctgov_beta grant select on tables to read_only;')
     end
-
-    def setup_db
-      print 'dropping databases...'
-      run_command_line("bin/rake db:drop")
-      puts 'done'
-
-      print 'recreating databases...'
-      run_command_line("bin/rake db:create")
-      run_command_line("bin/rake db:create RAILS_ENV=test")
-      puts 'done'
-
-      print 'running migrations...'
-      run_command_line("bin/rake db:migrate")
-      run_command_line("bin/rake db:migrate RAILS_ENV=test")
-      puts 'done'
-
-      print 'granting permissions to the read_only role...'
-      `bin/rake db:setup_read_only`
-      `bin/rake db:setup_read_only RAILS_ENV=test`
-    end
-
   end
-
 end
