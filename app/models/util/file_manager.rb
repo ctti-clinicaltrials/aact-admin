@@ -72,10 +72,6 @@ module Util
       "#{RootDir}/documentation/aact_data_definitions.xlsx"
     end
 
-    def data_beta_dictionary
-      "#{RootDir}/documentation/aact_beta_data_definitions.xlsx"
-    end
-
     def table_dictionary
       "#{RootDir}/documentation/aact_tables.xlsx"
     end
@@ -200,7 +196,6 @@ module Util
       schema_diagram_file = File.open(schema_diagram.to_s)
       admin_schema_diagram_file = File.open(admin_schema_diagram.to_s)
       data_dictionary_file = File.open(data_dictionary.to_s)
-      data_beta_dictionary_file = File.open(data_beta_dictionary.to_s)
       nlm_protocol_file = make_file_from_website('nlm_protocol_definitions.html', fpm.nlm_protocol_data_url)
       nlm_results_file = make_file_from_website('nlm_results_definitions.html', fpm.nlm_results_data_url)
 
@@ -211,7 +206,6 @@ module Util
         zipfile.add('schema_diagram.png', schema_diagram_file)
         zipfile.add('admin_schema_diagram.png', admin_schema_diagram_file)
         zipfile.add('data_dictionary.xlsx', data_dictionary_file)
-        zipfile.add('data_beta_dictionary.xlsx', data_beta_dictionary_file)
         zipfile.add('postgres_data.dmp', pg_dump_file)
         zipfile.add('nlm_protocol_definitions.html', nlm_protocol_file)
         zipfile.add('nlm_results_definitions.html', nlm_results_file)
