@@ -32,11 +32,13 @@ module Util
 
     def flat_files_directory(schema='')
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
-        "#{RootDir}/exported_files/monthly" unless schema == 'beta'
-        "#{RootDir}/beta_exported_files/monthly" if schema == 'beta'
+        return "#{RootDir}/beta_exported_files/monthly" if schema == 'beta'
+        
+        "#{RootDir}/exported_files/monthly" 
       else
-        "#{RootDir}/exported_files/daily" unless schema == 'beta'
-        "#{RootDir}/beta_exported_files/daily" if schema == 'beta'
+        return "#{RootDir}/beta_exported_files/daily" if schema == 'beta'
+
+        "#{RootDir}/exported_files/daily"
       end
     end
 
