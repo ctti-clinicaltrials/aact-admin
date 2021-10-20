@@ -29,10 +29,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
 
-  
-
   config.before(:each) do |example|
-
     # ensure app user logged into db connections
     Public::PublicBase.establish_connection(
       adapter: 'postgresql',
@@ -43,7 +40,6 @@ RSpec.configure do |config|
     @dbconfig = YAML.load(File.read('config/database.yml'))
     ActiveRecord::Base.establish_connection @dbconfig[:test]
   end
-
 end
 
 ActiveRecord::Migration.maintain_test_schema!
