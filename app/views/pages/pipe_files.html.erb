@@ -24,13 +24,16 @@
   <hr>
   
   <div class="pt-3">
-    <h3>Archival AACT Flat Files</h3>
-    <p>ClinicalTrails.gov switched over to their a new API in 2022. The following downloads are from before that switch.</p>
+    <h3>Beta AACT Flat Files</h3>
+    <p>ClinicalTrails.gov will be switching over to their Beta API next year. We are storing the data from that API in a schema called "ctgov_beta". 
+    The following downloads are created from the "ctgov_beta" schema.</p>
     
-    <h4>Archival Monthly Archives</h4>
+    <h4>Beta Daily Copies</h4>
+    <p><%= render 'file_archive', :files => @beta_daily_files, type: 'download database' %></p>
+
+    <h4>Beta Monthly Archives</h4>
     <p><%= render 'file_archive', :files => @beta_archive_files, type: 'download database' %></p>
   </div>
-
   <div class="step">
     <span class="stepNumber">2</span>
     <h3 class="stepName">Extract Contents of Zip File</h3>
