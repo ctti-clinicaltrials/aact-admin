@@ -80,6 +80,7 @@ require 'active_support/all'
     def self.get_last_two_for(table_name, column_name, val)
       rows=where("table_name=? and column_name=? and column_value=?", table_name, column_name, val).order("created_at")
       return {:last=>rows[-1], :next_last=>rows[-2]} if rows.size > 1
+      
       return {}
     end
 
