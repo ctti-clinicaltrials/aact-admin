@@ -19,23 +19,19 @@
     <p>Download a zip file that contains the AACT database file. With a single command (see below), this file can be used to automatically configure the database & populate it with the clinical trials dataset. The zip file also contains documentation that describes the database at the time the static copy was created. (The download typically takes 3-7 minutes, depending on your network speed.)</p>
 
     <h4>Current Month's Daily Static Copies</h4>
-    <p><%= render 'file_archive', :files => @daily_files, type: 'download database' %></p>
+    <p><%= render 'file_archive', :files => @beta_daily_files, type: 'download database' %></p>
 
     <h4>Monthly Archive of Static Copies</h4>
-    <p><%= render 'file_archive', :files => @archive_files, type: 'download database' %></p>
+    <p><%= render 'file_archive', :files => @beta_archive_files, type: 'download database' %></p>
     <br>
     <hr>
 
     <div class="pt-3">
-      <h3>Beta AACT Static Copies</h3>
-      <p>ClinicalTrials.gov will be switching over to their Beta API next year. We are storing the data from that API in a schema called "ctgov_beta". 
-      The following downloads are created from the "ctgov_beta" schema.</p>
+      <h3>Archival AACT Static Copies</h3>
+      <p>ClinicalTrials.gov switched over to their a new API in 2022. The following downloads are from before that switch.</p>
       
-      <h4>Beta Daily Copies</h4>
-      <p><%= render 'file_archive', :files => @beta_daily_files, type: 'download database' %></p>
-
-      <h4>Beta Monthly Archives</h4>
-      <p><%= render 'file_archive', :files => @beta_archive_files, type: 'download database' %></p>
+      <h4>Archival Monthly Archives</h4>
+      <p><%= render 'file_archive', :files => @archive_files, type: 'download database' %></p>
     </div>
 
     <div class="step">
@@ -108,7 +104,7 @@
     <h5>Verify the database</h5>
 
     <p>Confirm the download was successful by logging into the database and perusing the data.</p>
-    <p><%= render partial: 'postgres_local_login' %></p>
+    <p><%= render partial: 'psql_local_login' %></p>
 
     <p id='createDbViaGui'><%= render 'create_db_via_gui' %></p>
 
