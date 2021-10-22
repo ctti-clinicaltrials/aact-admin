@@ -12,20 +12,28 @@ module Util
       "https://prsinfo.clinicaltrials.gov/results_definitions.html"
     end
 
-    def monthly_snapshot_files
+    def monthly_snapshot_files(schema='')
+      return Util::FileManager.new.files_in('beta_static_db_copies','monthly') if schema == 'beta'
+
       Util::FileManager.new.files_in('static_db_copies','monthly')
     end
 
-    def daily_snapshot_files
+    def daily_snapshot_files(schema='')
+      return Util::FileManager.new.files_in('beta_static_db_copies','daily') if schema == 'beta'
+
       Util::FileManager.new.files_in('static_db_copies','daily')
     end
 
-    def monthly_flat_files
+    def monthly_flat_files(schema='')
+      return Util::FileManager.new.files_in('beta_exported_files','monthly') if schema == 'beta'
+
       Util::FileManager.new.files_in('exported_files','monthly')
     end
 
-    def daily_flat_files
-      Util::FileManager.new.files_in('exported_files','daily')
+    def daily_flat_files(schema='')
+      return Util::FileManager.new.files_in('beta_exported_files','daily') if schema == 'beta'
+     
+      Util::FileManager.new.files_in('exported_files','daily') 
     end
 
     def covid_19_flat_files
