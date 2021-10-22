@@ -43,7 +43,7 @@ class PagesController < ApplicationController
     )
   end
 
-  def psql
+  def postgres
   end
 
   private
