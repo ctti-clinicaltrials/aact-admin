@@ -76,6 +76,10 @@ module Util
       "#{RootDir}/documentation/aact_tables.xlsx"
     end
 
+    def view_dictionary
+      "#{RootDir}/documentation/aact_views.xlsx"
+    end
+
     def default_mesh_terms
       "#{Rails.public_path}/mesh/mesh_terms.txt"
     end
