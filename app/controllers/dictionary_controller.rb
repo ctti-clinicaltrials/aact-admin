@@ -25,7 +25,6 @@ class DictionaryController < ApplicationController
         @view << fix_attribs(row)
       end
     end
-
   end
 
   def get_dictionary
@@ -34,7 +33,6 @@ class DictionaryController < ApplicationController
 
   def get_views
     Roo::Spreadsheet.open(Util::FileManager.new.view_dictionary)
-
   end
 
   def fix_attribs(hash)

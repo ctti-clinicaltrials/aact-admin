@@ -64,6 +64,10 @@ module Util
       "/static/documentation/aact_beta_data_definitions.xlsx"
     end
 
+    def view_beta_dictionary
+      "/static/documentation/aact_beta_views.xlsx"
+    end
+
     def view_dictionary
       "/static/documentation/aact_views.xlsx"
     end

@@ -80,6 +80,10 @@ module Util
       "#{RootDir}/documentation/aact_views.xlsx"
     end
 
+    def view_beta_dictionary
+      "#{RootDir}/documentation/aact_beta_views.xlsx"
+    end
+
     def default_mesh_terms
       "#{Rails.public_path}/mesh/mesh_terms.txt"
     end

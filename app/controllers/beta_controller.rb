@@ -46,10 +46,24 @@ class BetaController < ApplicationController
         @tables << fix_attribs(row)
       end
     end
+    # view_dictionary variables
+    @view = []
+    view_tabs=get_views
+    view_header = view_tabs.first
+    (2..view_tabs.last_row).each do |i|
+      row = Hash[[header, view_tabs.row(i)].transpose]
+      if !row['table'].nil?
+        @view << fix_attribs(row)
+      end
+    end
   end
 
   def get_dictionary
     Roo::Spreadsheet.open(Util::FileManager.new.table_dictionary)
+  end
+
+  def get_views
+    Roo::Spreadsheet.open(Util::FileManager.new.view_beta_dictionary)
   end
 
   def fix_attribs(hash)
@@ -102,7 +116,6 @@ class BetaController < ApplicationController
     @covid_19_files = fpm.covid_19_flat_files
   end
 
-
   def set_diagrams_and_dictionaries
     fpm=Util::FilePresentationManager.new
     @admin_schema_diagram=fpm.admin_schema_diagram
@@ -112,7 +125,6 @@ class BetaController < ApplicationController
     @support_schema_diagram=fpm.support_schema_diagram
     @table_dictionary=fpm.table_dictionary
   end
-
 
   def current_user_is_an_admin?
     return false if !current_user
