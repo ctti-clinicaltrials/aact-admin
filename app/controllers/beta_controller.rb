@@ -94,7 +94,7 @@ class BetaController < ApplicationController
   end
 
   def get_dictionary
-    Roo::Spreadsheet.open(Util::FileManager.new.table_dictionary)
+    Roo::Spreadsheet.open(Util::FileManager.new.table_beta_dictionary)
   end
 
   def fix_attribs(hash)
