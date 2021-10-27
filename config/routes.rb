@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   get "/pipe_files_with_sas"  => "pages#pipe_files_with_sas"
   get "/pgadmin"              => "pages#pgadmin"
   get "/points_to_consider"   => "pages#points_to_consider"
-  get "/psql"                 => "pages#psql"
+  get "/postgres"                 => "pages#postgres"
   get "/r"                    => "pages#r"
   get "/sanity_check_report"  => "pages#sanity_check", as: :sanity_check
   get "/sas"                  => "pages#sas"
@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   #beta
   get "/beta/migration" => "beta#migration"
   get "/beta/schema"     => "beta#schema"
-  get "/beta/data_dictionary"      => "beta#show"
+  get "/beta/data_dictionary" => "beta#data_dictionary"
 
   resources :definitions
   resources :users
