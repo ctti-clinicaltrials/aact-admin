@@ -68,6 +68,11 @@ module Util
       "/static/documentation/aact_data_definitions.xlsx"
     end
 
+    def data_beta_dictionary
+      "/static/documentation/aact_beta_data_definitions.xlsx"
+    end
+    
+
     def table_dictionary
       "/static/documentation/aact_tables.xlsx"
     end
