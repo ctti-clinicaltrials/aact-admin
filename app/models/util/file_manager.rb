@@ -9,8 +9,12 @@ module Util
       FileUtils.mkdir_p RootDir
       FileUtils.mkdir_p "#{RootDir}/static_db_copies/daily"
       FileUtils.mkdir_p "#{RootDir}/static_db_copies/monthly"
+      FileUtils.mkdir_p "#{RootDir}/beta_static_db_copies/daily"
+      FileUtils.mkdir_p "#{RootDir}/beta_static_db_copies/monthly"
       FileUtils.mkdir_p "#{RootDir}/exported_files/daily"
       FileUtils.mkdir_p "#{RootDir}/exported_files/monthly"
+      FileUtils.mkdir_p "#{RootDir}/beta_exported_files/daily"
+      FileUtils.mkdir_p "#{RootDir}/beta_exported_files/monthly"
       FileUtils.mkdir_p "#{RootDir}/db_backups"
       FileUtils.mkdir_p "#{RootDir}/documentation"
       FileUtils.mkdir_p "#{RootDir}/logs"
@@ -20,18 +24,26 @@ module Util
       FileUtils.mkdir_p "#{RootDir}/exported_files/covid-19"
     end
 
-    def static_copies_directory
+    def static_copies_directory(schema='')
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
+        return "#{RootDir}/beta_static_db_copies/monthly" if schema == 'beta'
+
         "#{RootDir}/static_db_copies/monthly"
       else
+        return "#{RootDir}/beta_static_db_copies/daily" if schema == 'beta'
+
         "#{RootDir}/static_db_copies/daily"
       end
     end
 
-    def flat_files_directory
+    def flat_files_directory(schema='')
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
-        "#{RootDir}/exported_files/monthly"
+        return "#{RootDir}/beta_exported_files/monthly" if schema == 'beta'
+        
+        "#{RootDir}/exported_files/monthly" 
       else
+        return "#{RootDir}/beta_exported_files/daily" if schema == 'beta'
+
         "#{RootDir}/exported_files/daily"
       end
     end
@@ -222,6 +234,8 @@ module Util
       keep = Time.zone.now.strftime('%Y%m')
       run_command_line("find #{Rails.configuration.aact[:static_files_directory]}/static_db_copies/daily -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
       run_command_line("find #{Rails.configuration.aact[:static_files_directory]}/exported_files/daily   -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
+      run_command_line("find #{Rails.configuration.aact[:static_files_directory]}/beta_static_db_copies/daily -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
+      run_command_line("find #{Rails.configuration.aact[:static_files_directory]}/beta_exported_files/daily   -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
     end
 
     def run_command_line(cmd)
