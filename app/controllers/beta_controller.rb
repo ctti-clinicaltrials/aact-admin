@@ -36,7 +36,7 @@ class BetaController < ApplicationController
     @admin_schema_diagram=fpm.admin_schema_diagram
     @schema_diagram=fpm.schema_diagram
     @data_dictionary=fpm.data_beta_dictionary
-    @table_dictionary=fpm.table_dictionary
+    @table_dictionary=fpm.table_beta_dictionary
     @tables = []
     tabs=get_dictionary
     header = tabs.first
@@ -100,7 +100,7 @@ class BetaController < ApplicationController
     @process_flow_diagram=fpm.process_flow_diagram
     @schema_diagram=fpm.schema_diagram
     @support_schema_diagram=fpm.support_schema_diagram
-    @table_dictionary=fpm.table_dictionary
+    @table_dictionary=fpm.table_beta_dictionary
   end
 
   def get_dictionary

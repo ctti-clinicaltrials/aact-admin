@@ -80,7 +80,6 @@ module Util
       "#{RootDir}/documentation/aact_beta_tables.xlsx"
     end
 
-
     def view_dictionary
       "#{RootDir}/documentation/aact_views.xlsx"
     end
