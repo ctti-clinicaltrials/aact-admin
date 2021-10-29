@@ -1,15 +1,22 @@
 class Notice < ApplicationRecord
   belongs_to: user
 
-  validates :title, :user_id, :emails_sent_at, presence: true
+  validates :title, :user_id,  :send_emails, :visible, presence: true
   validates :body, presence: true, length: { minimum: 10 }
-  validates :send_emails, inclusion: [true, false]
-  validates :visible, inclusion: [true, false]
 
-  scope :unsent, -> { where(send_emails: false) }
-  scope :sent, -> { where(send_emails: true)}
+  scope :unsent, -> { where(emails_sent_at: nil, send_emails: true) }
+  scope :sent, -> { where(send_emails: true).where.not(emails_sent_at: nil)}
 
   scope :invisible, -> { where(visible: false) }
   scope :visible, -> { where(visible: true)}
+
+  after_save :check_emails
+
+
+  def check_emails
+    
+  end
+
+
 
 end
