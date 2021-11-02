@@ -88,6 +88,10 @@ module Util
       "#{RootDir}/documentation/aact_tables.xlsx"
     end
 
+    def table_beta_dictionary
+      "#{RootDir}/documentation/aact_beta_tables.xlsx"
+    end
+
     def default_mesh_terms
       "#{Rails.public_path}/mesh/mesh_terms.txt"
     end
