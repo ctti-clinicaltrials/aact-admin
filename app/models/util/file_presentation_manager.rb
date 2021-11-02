@@ -24,7 +24,9 @@ module Util
       Util::FileManager.new.files_in('exported_files','monthly')
     end
 
-    def daily_flat_files
+    def daily_flat_files(schema='')
+      return Util::FileManager.new.files_in('beta_exported_files','daily') if schema == 'beta'
+
       Util::FileManager.new.files_in('exported_files','daily')
     end
 
@@ -74,6 +76,10 @@ module Util
 
     def table_dictionary
       "/static/documentation/aact_tables.xlsx"
+    end
+
+    def table_beta_dictionary
+      "/static/documentation/aact_beta_tables.xlsx"
     end
 
   end

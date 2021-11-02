@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   #beta
   get "/beta/migration" => "beta#migration"
   get "/beta/schema"     => "beta#schema"
-  get "/beta/data_dictionary"      => "beta#show"
+  get "/beta/data_dictionary" => "beta#data_dictionary"
 
   resources :definitions
   resources :users
