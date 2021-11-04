@@ -640,7 +640,8 @@ CREATE TABLE ctgov.users (
     confirmed_at timestamp without time zone,
     confirmation_sent_at timestamp without time zone,
     db_activity integer,
-    last_db_activity timestamp without time zone
+    last_db_activity timestamp without time zone,
+    admin boolean DEFAULT false
 );
 
 
@@ -865,14 +866,6 @@ ALTER TABLE ONLY ctgov.publications
 
 
 --
--- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.schema_migrations
-    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
-
-
---
 -- Name: use_case_attachments use_case_attachments_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -1019,6 +1012,13 @@ CREATE INDEX index_projects_on_year ON ctgov.projects USING btree (year);
 
 
 --
+-- Name: unique_schema_migrations; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING btree (version);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -1032,6 +1032,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180813174540'),
 ('20181108174440'),
 ('20181208174440'),
-('20190321174440');
+('20190321174440'),
+('20211102194357');
 
 

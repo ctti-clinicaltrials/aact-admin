@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :is_admin?
   before_action :set_global_vars
   # Prevent CSRF attacks by raising an exception.
   layout "application"
@@ -14,4 +15,9 @@ class ApplicationController < ActionController::Base
     @aact_admin_usernames      = AACT::Application::AACT_ADMIN_USERNAMES
   end
 
+  def is_admin?
+      # check if user is an admin
+      # if not admin, then redirect to root path
+      redirect_to root_path unless current_user.admin?
+  end
 end
