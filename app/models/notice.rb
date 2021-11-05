@@ -1,5 +1,5 @@
-class Notice < ApplicationRecord
-  belongs_to: user
+class Notice < ActiveRecord::Base
+  belongs_to :user
 
   validates :title, :user_id,  :send_emails, :visible, presence: true
   validates :body, presence: true, length: { minimum: 10 }
@@ -10,12 +10,12 @@ class Notice < ApplicationRecord
   scope :invisible, -> { where(visible: false) }
   scope :visible, -> { where(visible: true)}
 
-  after_save :check_emails
-
-
-  def check_emails
-    
-  end
+  # after_save :check_emails
+ # self.abstract_class = true
+  #
+  # def check_emails
+  #
+  # end
 
 
 

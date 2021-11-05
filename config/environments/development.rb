@@ -12,6 +12,18 @@ Rails.application.configure do
     :port    => '25',
     :domain  => host
   }
+
+  config.action_mailer.smtp_settings =  {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "duke.edu",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV["GMAIL_USERNAME"],
+    password: ENV["GMAIL_PASSWORD"]
+   }
+
+
   config.active_support.deprecation = :log
   config.active_record.migration_error = :page_load
   config.assets.debug = true
