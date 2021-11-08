@@ -8,8 +8,7 @@ class NoticeMailer < ApplicationMailer
   def notice_to_mail(notice)
     @notice = notice
     
-
-    mail to: "asya.bykova@gmail.com",
-        subject: "New notice from AACT"
+    mail to: @notice.user.email,
+    subject: @notice.title
   end
 end
