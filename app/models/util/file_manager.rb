@@ -246,6 +246,8 @@ module Util
       keep = Time.zone.now.strftime('%Y%m')
       run_command_line("find #{Rails.configuration.aact[:static_files_directory]}/static_db_copies/daily -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
       run_command_line("find #{Rails.configuration.aact[:static_files_directory]}/exported_files/daily   -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
+      run_command_line("find #{Rails.configuration.aact[:static_files_directory]}/beta_static_db_copies/daily -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
+      run_command_line("find #{Rails.configuration.aact[:static_files_directory]}/beta_exported_files/daily   -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
     end
 
     def run_command_line(cmd)
