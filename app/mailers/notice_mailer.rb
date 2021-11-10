@@ -4,12 +4,12 @@ class NoticeMailer < ApplicationMailer
   # with the following lookup:
   #
   #   en.notice_mailer.notice_to_mail.subject
-  # 
-  #  Preview all emails at http://localhost:3000/rails/mailers/notice_mailer
+  #
+  #  Preview all emails (changing notice id at the end): http://localhost:3000/rails/mailers/notice_mailer/notice_to_mail?id=1
+  #
   def notice_to_mail(notice)
     @notice = notice
-
     mail to: @notice.user.email,
-    subject: @notice.title
+         subject: @notice.title
   end
 end
