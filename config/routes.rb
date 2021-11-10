@@ -60,6 +60,12 @@ Rails.application.routes.draw do
   get "/beta/schema"     => "beta#schema"
   get "/beta/data_dictionary" => "beta#data_dictionary"
 
+  #archive
+  get "/archive/data_dictionary" => "archive#data_dictionary"
+  get "/archive/schema"    => "archive#schema"
+  get "/archive/migration" => "archive#migration"
+  get "/archive/download"  => "archive#download"
+
   resources :definitions
   resources :users
   resources :shared_data, param: :schema_name
