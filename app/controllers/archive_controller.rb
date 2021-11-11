@@ -25,6 +25,21 @@ class ArchiveController < ApplicationController
   def migration
   end
 
+  def download
+  end
+
+  def snapshots
+    set_daily_monthly_snapshot_files
+  end
+
+  def pipe_files
+    set_daily_monthly_pipe_files
+  end
+
+  def covid_19
+    set_covid_pipe_files
+  end
+
   private
 
   def get_dictionary
@@ -55,5 +70,27 @@ class ArchiveController < ApplicationController
     @support_schema_diagram=fpm.support_schema_diagram
     @table_dictionary=fpm.table_beta_dictionary
   end
+
+  def set_daily_monthly_snapshot_files
+    fpm = Util::FilePresentationManager.new
+    @daily_files = fpm.daily_snapshot_files
+    @archive_files = fpm.monthly_snapshot_files
+    @beta_daily_files = fpm.daily_snapshot_files('beta')
+    @beta_archive_files = fpm.monthly_snapshot_files('beta')
+  end
+
+  def set_daily_monthly_pipe_files
+    fpm=Util::FilePresentationManager.new
+    @daily_files=fpm.daily_flat_files
+    @archive_files=fpm.monthly_flat_files
+    @beta_daily_files=fpm.daily_flat_files('beta')
+    @beta_archive_files=fpm.monthly_flat_files('beta')
+  end
+
+  def set_covid_pipe_files
+    fpm=Util::FilePresentationManager.new
+    @covid_19_files = fpm.covid_19_flat_files
+  end
+
 
 end
