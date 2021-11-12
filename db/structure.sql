@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 13.3
--- Dumped by pg_dump version 13.3
+-- Dumped from database version 13.4
+-- Dumped by pg_dump version 13.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -292,6 +292,43 @@ CREATE SEQUENCE ctgov.health_checks_id_seq
 --
 
 ALTER SEQUENCE ctgov.health_checks_id_seq OWNED BY ctgov.health_checks.id;
+
+
+--
+-- Name: notices; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.notices (
+    id integer NOT NULL,
+    body character varying,
+    user_id integer,
+    title character varying,
+    send_emails boolean,
+    emails_sent_at timestamp without time zone,
+    visible boolean,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: notices_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.notices_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: notices_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.notices_id_seq OWNED BY ctgov.notices.id;
 
 
 --
@@ -709,6 +746,13 @@ ALTER TABLE ONLY ctgov.health_checks ALTER COLUMN id SET DEFAULT nextval('ctgov.
 
 
 --
+-- Name: notices id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.notices ALTER COLUMN id SET DEFAULT nextval('ctgov.notices_id_seq'::regclass);
+
+
+--
 -- Name: projects id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -825,6 +869,14 @@ ALTER TABLE ONLY ctgov.faqs
 
 ALTER TABLE ONLY ctgov.health_checks
     ADD CONSTRAINT health_checks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: notices notices_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.notices
+    ADD CONSTRAINT notices_pkey PRIMARY KEY (id);
 
 
 --
@@ -1025,4 +1077,6 @@ INSERT INTO schema_migrations (version) VALUES ('20181108174440');
 INSERT INTO schema_migrations (version) VALUES ('20181208174440');
 
 INSERT INTO schema_migrations (version) VALUES ('20190321174440');
+
+INSERT INTO schema_migrations (version) VALUES ('20211027220743');
 
