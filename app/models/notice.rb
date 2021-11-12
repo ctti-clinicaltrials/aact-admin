@@ -1,11 +1,11 @@
 class Notice < ActiveRecord::Base
   belongs_to :user
 
-  validates :title, :user_id,  :send_emails, :visible, presence: true
+  validates :title, :user_id, :send_emails, :visible, presence: true
   validates :body, presence: true, length: { minimum: 10 }
 
   # we want to send notice but haven't done it yet
-  scope :unsent, -> { where(send_emails: true, emails_sent_at: nil)}
+  scope :unsent, -> { where(emails_sent_at: nil, send_emails: true) }
   # we want to send notice and already did it
   scope :sent, -> { where(send_emails: true).where.not(emails_sent_at: nil)}
 

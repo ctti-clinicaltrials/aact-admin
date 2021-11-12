@@ -32,8 +32,8 @@ module Util
 
     def daily_flat_files(schema='')
       return Util::FileManager.new.files_in('beta_exported_files','daily') if schema == 'beta'
-     
-      Util::FileManager.new.files_in('exported_files','daily') 
+
+      Util::FileManager.new.files_in('exported_files','daily')
     end
 
     def covid_19_flat_files
@@ -71,10 +71,13 @@ module Util
     def data_beta_dictionary
       "/static/documentation/aact_beta_data_definitions.xlsx"
     end
-    
 
     def table_dictionary
       "/static/documentation/aact_tables.xlsx"
+    end
+
+    def table_beta_dictionary
+      "/static/documentation/aact_beta_tables.xlsx"
     end
 
   end
