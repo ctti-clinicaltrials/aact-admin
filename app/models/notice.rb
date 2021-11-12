@@ -15,7 +15,12 @@ class Notice < ActiveRecord::Base
   after_create :send_notice
 
   def send_notice
-    User.all.each {|user| NoticeMailer.notice_to_mail(user.email, self).deliver_now}
+    users = User.all.order(email: :asc)
+    remaining = users.count
+    users.each do |user|
+      puts "#{remaining} #{user.email}"
+      NoticeMailer.notice_to_mail(user.email, self).deliver_now
+    end
     self.emails_sent_at = Time.now
     self.save
   end
