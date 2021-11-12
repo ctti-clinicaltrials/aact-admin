@@ -54,7 +54,7 @@ describe Util::UserDbManager do
 
       expect(subject.user_account_exists?(user.username)).to be(true)
       expect(subject.can_create_user_account?(user)).to be(false)
-      user_rec=described_class.new.pub_con.execute("SELECT * FROM pg_catalog.pg_group where groname = '#{user.username}'")
+      user_rec= Public::Study.connection.execute("SELECT * FROM pg_catalog.pg_group where groname = '#{user.username}'")
       expect(user_rec.count).to eq(1)
       allow_any_instance_of(User).to receive(:can_access_db?).and_return( true )
       # ensure app user logged into db connections

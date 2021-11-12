@@ -4,14 +4,14 @@
     <h1>Beta Migration Documentation</h1>
   </div>
 
-  <p>ClinicalTrials.gov is changing the format of how they deliever data January 1st 2022. They will switch from XML to JSON format. 
+  <p>ClinicalTrials.gov is changing the format of how they deliever data January 1st 2022. They will switch from XML to JSON format.
   In preparation for migration that we have added the ability to capture that data to the code base of AACT and set up the data it captures into a separate database.</p>
   <p>On this page you will find information about AACT Beta. For those who are testing the beta database, you can submit issues and requests on this page. </p>
   <br/>
 
   <h4>Connecting</h4>
   <p>If you are interested in using the data in AACT Beta the only thing you have to do is add "ctgov_beta" to any tables that you querying. For example if you want to see data from the studies table in beta you can run the following code</p>
-  
+
   <p class="CodeRay">
     <pre>
       <p class="code">
@@ -20,7 +20,7 @@
     </pre>
   </p>
 
-  <p>Visit the <a href="/connect">Connect</a> page for information on connecting to AACT. 
+  <p>Visit the <a href="/connect">Connect</a> page for information on connecting to AACT.
   The steps on that page can be used for AACT Beta as long as you set "aact_beta" as the database name and "ctgov_beta" as the schema name.</p>
 
   <br>
@@ -43,6 +43,6 @@
   <h4>Form to submit Issues/Requests</h4>
   <iframe class="airtable-embed" src="https://airtable.com/embed/shrsjLUxT5X7Sabi4?backgroundColor=orange" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
 
-  
+
   <div style="display: none;"><%= ENV['PUBLIC_DB_HOST'] %></div>
 </div>
