@@ -39,8 +39,8 @@ module Util
     def flat_files_directory(schema='')
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
         return "#{RootDir}/beta_exported_files/monthly" if schema == 'beta'
-        
-        "#{RootDir}/exported_files/monthly" 
+
+        "#{RootDir}/exported_files/monthly"
       else
         return "#{RootDir}/beta_exported_files/daily" if schema == 'beta'
 
@@ -86,6 +86,10 @@ module Util
 
     def table_dictionary
       "#{RootDir}/documentation/aact_tables.xlsx"
+    end
+
+    def table_archive_dictionary
+      "#{RootDir}/documentation/aact_archive_tables.xlsx"
     end
 
     def table_beta_dictionary

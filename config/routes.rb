@@ -67,12 +67,9 @@ Rails.application.routes.draw do
   get "/archive/download"  => "archive#download"
   get "/archive/snapshots" => "archive#snapshots"
   get "/archive/pipe_files" => "archive#pipe_files"
-  get "/archive/covid_19"  => "archive#covid_19"
+  get "/archive/covid_19"   => "archive#covid_19"
   get "/archive/pipe_files_with_r"    => "archive#pipe_files_with_r"
   get "/archive/pipe_files_with_sas"  => "archive#pipe_files_with_sas"
-
-
-
 
   resources :definitions
   resources :users

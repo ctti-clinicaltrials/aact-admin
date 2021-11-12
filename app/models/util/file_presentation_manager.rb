@@ -72,8 +72,16 @@ module Util
       "/static/documentation/aact_beta_data_definitions.xlsx"
     end
 
+    def data_archive_dictionary
+      "/static/documentation/aact_archive_data_definitions.xlsx"
+    end
+
     def table_dictionary
       "/static/documentation/aact_tables.xlsx"
+    end
+
+    def table_archive_dictionary
+      "/static/documentation/aact_archive_tables.xlsx"
     end
 
     def table_beta_dictionary
