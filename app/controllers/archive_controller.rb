@@ -1,4 +1,5 @@
 class ArchiveController < ApplicationController
+
   def data_dictionary
     fpm=Util::FilePresentationManager.new
     @admin_schema_diagram=fpm.admin_schema_diagram

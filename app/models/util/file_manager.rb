@@ -15,6 +15,10 @@ module Util
       FileUtils.mkdir_p "#{RootDir}/exported_files/monthly"
       FileUtils.mkdir_p "#{RootDir}/beta_exported_files/daily"
       FileUtils.mkdir_p "#{RootDir}/beta_exported_files/monthly"
+      # FileUtils.mkdir_p "#{Root_dir}/ctgov_archive_static_db_copies/daily"
+      # FileUtils.mkdir_p "#{Root_dir}/ctgov_archive_static_db_copies/monthly"
+      # FileUtils.mkdir_p "#{Root_dir}/ctgov_archive_exported_files/daily"
+      # FileUtils.mkdir_p "#{Root_dir}/ctgov_archive_exported_files/monthly"
       FileUtils.mkdir_p "#{RootDir}/db_backups"
       FileUtils.mkdir_p "#{RootDir}/documentation"
       FileUtils.mkdir_p "#{RootDir}/logs"
@@ -24,27 +28,29 @@ module Util
       FileUtils.mkdir_p "#{RootDir}/exported_files/covid-19"
     end
 
-    def static_copies_directory(schema='')
+    def base_folder(schema = 'ctgov')
+      return"#{root_dir}/ctgov_archive_" if schema =~ /archive/
+
+      return "#{root_dir}/beta_" if schema =~ /beta/
+
+      return "#{root_dir}/"
+    end
+
+    def static_copies_directory(schema = 'ctgov')
+      folder = "#{base_folder(schema)}static_db_copies"
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
-        return "#{RootDir}/beta_static_db_copies/monthly" if schema == 'beta'
-
-        "#{RootDir}/static_db_copies/monthly"
+        "#{folder}/monthly"
       else
-        return "#{RootDir}/beta_static_db_copies/daily" if schema == 'beta'
-
-        "#{RootDir}/static_db_copies/daily"
+        "#{folder}/daily"
       end
     end
 
     def flat_files_directory(schema='')
+      folder = "#{base_folder(schema)}exported_files"
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
-        return "#{RootDir}/beta_exported_files/monthly" if schema == 'beta'
-
-        "#{RootDir}/exported_files/monthly"
+        "#{folder}/monthly"
       else
-        return "#{RootDir}/beta_exported_files/daily" if schema == 'beta'
-
-        "#{RootDir}/exported_files/daily"
+        "#{folder}/daily"
       end
     end
 
@@ -82,6 +88,14 @@ module Util
 
     def data_dictionary
       "#{RootDir}/documentation/aact_data_definitions.xlsx"
+    end
+
+    def data_beta_dictionary
+      "#{RootDir}/documentation/aact_beta_data_definitions.xlsx"
+    end
+
+    def data_archive_dictionary
+      "#{RootDir}/documentation/aact_archive_data_definitions.xlsx"
     end
 
     def table_dictionary
