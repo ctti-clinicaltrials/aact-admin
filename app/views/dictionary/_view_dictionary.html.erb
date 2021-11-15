@@ -14,51 +14,25 @@
   <table class='dictionaryDisplay'>
     <thead>
       <tr>
-        <th class='tableDictionaryHeader'>View</th>
+        <th class='tableDictionaryHeader'>Schema</th>
+        <th class='tableDictionaryHeader'>View/Function name</th>
+        <th class='tableDictionaryHeader'>Description</th>
         <th class='tableDictionaryHeader'>Source Data</th>
-        <th class='tableDictionaryHeader'>Sample Output</th>
+        <th class='tableDictionaryHeader'>Data Returned</th>
+        <th class='tableDictionaryHeader'>Example</th>
       </tr>
-      </thead>
+    </thead>
       <tbody>
-        <tr>
-          <td>all_conditions</td><td>browse_conditions.mesh_term</td><td>NCT00000146 | Multiple Sclerosis|Neuritis|Optic Neuritis</td>
-        </tr>
-        <tr>
-          <td>all_countries</td><td>countries.name</td><td>NCT00000919 | Italy|Puerto Rico|United States</td>
-        </tr>
-        <tr>
-          <td>all_design_outcomes</td><td>design_outcomes.measure</td><td>NCT00000208 | Drug use|Opiate craving|Withdrawal symptoms</td>
-        </tr>
-        <tr>
-          <td>all_facilities</td><td>facilities.name</td><td>NCT00000403 | University of Arizona Arthritis Center|University of Pittsburgh Medical Center|Arthritis Research Center Foundation|Indiana University Medical Center|Northwestern University Medical Center|University of Alabama at Birmingham</td>
-        </tr>
-        <tr>
-          <td>all_group_types</td><td>design_groups.group_type</td><td>NCT00002569 | Active Comparator|Experimental</td>
-        </tr>
-        <tr>
-          <td>all_id_information</td><td>id_information.id_value</td><td>NCT03803644 | CC-92480-CP-001|U1111-1224-6768</td>
-        </tr>
-        <tr>
-          <td>all_interventions</td><td>browse_interventions.mesh_term</td><td>NCT03802422 | Vitamin B Complex|Hydroxocobalamin|Vitamin B 12|Vitamins</td>
-        </tr>
-        <tr>
-          <td>all_intervention_types</td><td>interventions.intervention_type</td><td>NCT03802994 | Drug|Biological|Other</td>
-        </tr>
-        <tr>
-          <td>all_keywords</td><td>keywords.name</td><td>NCT03801915 | Pancreas and Liver Resections|Recurrence Free Survival|Well Tolerated Agent</td>
-        </tr>
-        <tr>
-          <td>all_primary_outcome_measures</td>design_outcomes.measure (where type='primary')<td></td><td>NCT03802162 | AUCt of D324|AUCt of D797|Cmax of D324|Cmax of D797</td>
-        </tr>
-        <tr>
-          <td>all_secondary_outcome_measures</td><td>design_outcomes.measure (where type='secondary')</td><td>NCT03803397 | Overall Survival|Progression-Free Survival|Tumor Response</td>
-        </tr>
-        <tr>
-          <td>all_sponsors</td><td>sponsors.name</td><td>NCT03803254 | Guangzhou No.12 People's Hospital|Kaiping Central Hospital|Sun Yat-sen University</td>
-        </tr>
-        <tr>
-          <td>all_states</td><td>facilities.state</td><td>NCT03802877 | Alberta|Manitoba|Ontario|Quebec</td>
-        </tr>
+        <% @view.each do |hash| %>
+            <tr>
+              <td><%= hash['db schema'] %></td>
+              <td><%= hash['table'].downcase %></td>
+              <td><%= hash['description'] %></td>
+              <td><%= hash['rows per study'] %></td>
+              <td><%= hash['domain'] %></td>
+              <td><%= hash['nlm doc'] %></td>
+            </tr>
+        <% end %>
       </tbody>
   </table>
 </main>
