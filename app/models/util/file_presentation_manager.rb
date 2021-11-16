@@ -57,7 +57,7 @@ module Util
     end
 
     def schema_diagram
-      "/static/documentation/aact_schema.png"
+      "/documentation/aact_schema.png"
     end
 
     def nested_criteria_example
@@ -65,7 +65,7 @@ module Util
     end
 
     def data_dictionary
-      "/static/documentation/aact_data_definitions.xlsx"
+      "/documentation/aact_data_definitions.xlsx"
     end
 
     def data_beta_dictionary
@@ -81,7 +81,7 @@ module Util
     end
 
     def table_dictionary
-      "/static/documentation/aact_tables.xlsx"
+      "/documentation/aact_tables.xlsx"
     end
 
     def table_beta_dictionary
