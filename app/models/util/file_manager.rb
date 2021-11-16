@@ -48,7 +48,9 @@ module Util
     def flat_files_directory(schema='')
       folder = "#{base_folder(schema)}exported_files"
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
-        "#{folder}/monthly"
+        return "#{RootDir}/beta_exported_files/monthly" if schema == 'beta'
+
+        "#{RootDir}/exported_files/monthly"
       else
         "#{folder}/daily"
       end
@@ -103,7 +105,19 @@ module Util
     end
 
     def table_dictionary
-      "#{RootDir}/documentation/aact_tables.xlsx"
+      "#{Rails.root}/public/documentation/aact_tables.xlsx"
+    end
+
+    def table_beta_dictionary
+      "#{RootDir}/documentation/aact_beta_tables.xlsx"
+    end
+
+    def view_dictionary
+      "#{RootDir}/documentation/aact_views.xlsx"
+    end
+
+    def view_beta_dictionary
+      "#{RootDir}/documentation/aact_beta_views.xlsx"
     end
 
     def table_archive_dictionary

@@ -63,7 +63,7 @@ module Util
     end
 
     def schema_diagram
-      "/static/documentation/aact_schema.png"
+      "/documentation/aact_schema.png"
     end
 
     def schema_archive_diagram
@@ -75,7 +75,7 @@ module Util
     end
 
     def data_dictionary
-      "/static/documentation/aact_data_definitions.xlsx"
+      "/documentation/aact_data_definitions.xlsx"
     end
 
     def data_beta_dictionary
@@ -84,10 +84,16 @@ module Util
 
     def data_archive_dictionary
       "/static/documentation/aact_archive_data_definitions.xlsx"
+    def view_beta_dictionary
+      "/static/documentation/aact_beta_views.xlsx"
+    end
+
+    def view_dictionary
+      "/static/documentation/aact_views.xlsx"
     end
 
     def table_dictionary
-      "/static/documentation/aact_tables.xlsx"
+      "/documentation/aact_tables.xlsx"
     end
 
     def table_archive_dictionary

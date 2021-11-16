@@ -1,4 +1,4 @@
-class CreateProjectTables < ActiveRecord::Migration[4.2]
+class CreateProjectTables < ActiveRecord::Migration
   def change
 
     create_table "projects" do |t|
