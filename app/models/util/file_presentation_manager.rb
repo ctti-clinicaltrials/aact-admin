@@ -15,11 +15,15 @@ module Util
     def monthly_snapshot_files(schema='')
       return Util::FileManager.new.files_in('beta_static_db_copies','monthly') if schema == 'beta'
 
+      return Util::FileManager.new.files_in('archive_static_db_copies','monthly') if schema == 'archive'
+
       Util::FileManager.new.files_in('static_db_copies','monthly')
     end
 
     def daily_snapshot_files(schema='')
       return Util::FileManager.new.files_in('beta_static_db_copies','daily') if schema == 'beta'
+
+      return Util::FileManager.new.files_in('archive_static_db_copies','monthly') if schema == 'archive'
 
       Util::FileManager.new.files_in('static_db_copies','daily')
     end
@@ -32,6 +36,8 @@ module Util
 
     def daily_flat_files(schema='')
       return Util::FileManager.new.files_in('beta_exported_files','daily') if schema == 'beta'
+
+      return Util::FileManager.new.files_in('archive_exported_files','daily') if schema == 'archive'
 
       Util::FileManager.new.files_in('exported_files','daily')
     end
@@ -58,6 +64,10 @@ module Util
 
     def schema_diagram
       "/static/documentation/aact_schema.png"
+    end
+
+    def schema_archive_diagram
+      "/static/documentation/aact_archive_schema.png"
     end
 
     def nested_criteria_example

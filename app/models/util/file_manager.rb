@@ -29,11 +29,11 @@ module Util
     end
 
     def base_folder(schema = 'ctgov')
-      return"#{root_dir}/ctgov_archive_" if schema =~ /archive/
+      return"#{Root_dir}/ctgov_archive_" if schema =~ /archive/
 
-      return "#{root_dir}/beta_" if schema =~ /beta/
+      return "#{Root_dir}/beta_" if schema =~ /beta/
 
-      return "#{root_dir}/"
+      return "#{Root_dir}/"
     end
 
     def static_copies_directory(schema = 'ctgov')
@@ -84,6 +84,10 @@ module Util
 
     def schema_diagram
       "#{RootDir}/documentation/aact_schema.png"
+    end
+
+    def schema_archive_diagram
+      "#{RootDir}/documentation/aact_archive_schema.png"
     end
 
     def data_dictionary

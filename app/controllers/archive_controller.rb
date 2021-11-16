@@ -3,7 +3,7 @@ class ArchiveController < ApplicationController
   def data_dictionary
     fpm=Util::FilePresentationManager.new
     @admin_schema_diagram=fpm.admin_schema_diagram
-    @schema_diagram=fpm.schema_diagram
+    @schema_diagram=fpm.schema_archive_diagram
     @data_dictionary=fpm.data_archive_dictionary
     @table_dictionary=fpm.table_archive_dictionary
     @tables = []
@@ -67,7 +67,7 @@ class ArchiveController < ApplicationController
     @admin_schema_diagram=fpm.admin_schema_diagram
     @data_dictionary=fpm.data_archive_dictionary
     @process_flow_diagram=fpm.process_flow_diagram
-    @schema_diagram=fpm.schema_diagram
+    @schema_diagram=fpm.schema_archive_diagram
     @support_schema_diagram=fpm.support_schema_diagram
     @table_dictionary=fpm.table_archive_dictionary
   end
