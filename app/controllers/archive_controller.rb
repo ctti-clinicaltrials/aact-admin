@@ -15,7 +15,18 @@ class ArchiveController < ApplicationController
         @tables << fix_attribs(row)
       end
     end
+
+    @view = []
+    view_tabs=get_views
+    view_header = view_tabs.first
+    (2..view_tabs.last_row).each do |i|
+      row = Hash[[header, view_tabs.row(i)].transpose]
+      if !row['table'].nil?
+        @view << fix_attribs(row)
+      end
+    end
   end
+
 
   def schema
     set_diagrams_and_dictionaries
@@ -45,6 +56,10 @@ class ArchiveController < ApplicationController
 
   def get_dictionary
     Roo::Spreadsheet.open(Util::FileManager.new.table_archive_dictionary)
+  end
+
+  def get_views
+    Roo::Spreadsheet.open(Util::FileManager.new.view_archive_dictionary)
   end
 
   def fix_attribs(hash)

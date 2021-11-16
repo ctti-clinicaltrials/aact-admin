@@ -31,6 +31,8 @@ module Util
     def monthly_flat_files(schema='')
       return Util::FileManager.new.files_in('beta_exported_files','monthly') if schema == 'beta'
 
+      return Util::FileManager.new.files_in('archive_exported_files','monthly') if schema == 'archive'
+
       Util::FileManager.new.files_in('exported_files','monthly')
     end
 
@@ -84,8 +86,14 @@ module Util
 
     def data_archive_dictionary
       "/static/documentation/aact_archive_data_definitions.xlsx"
+    end
+
     def view_beta_dictionary
       "/static/documentation/aact_beta_views.xlsx"
+    end
+
+    def view_archive_dictionary
+      "/static/documentation/aact_archive_views.xlsx"
     end
 
     def view_dictionary

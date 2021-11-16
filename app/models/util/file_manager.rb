@@ -15,10 +15,6 @@ module Util
       FileUtils.mkdir_p "#{RootDir}/exported_files/monthly"
       FileUtils.mkdir_p "#{RootDir}/beta_exported_files/daily"
       FileUtils.mkdir_p "#{RootDir}/beta_exported_files/monthly"
-      # FileUtils.mkdir_p "#{Root_dir}/ctgov_archive_static_db_copies/daily"
-      # FileUtils.mkdir_p "#{Root_dir}/ctgov_archive_static_db_copies/monthly"
-      # FileUtils.mkdir_p "#{Root_dir}/ctgov_archive_exported_files/daily"
-      # FileUtils.mkdir_p "#{Root_dir}/ctgov_archive_exported_files/monthly"
       FileUtils.mkdir_p "#{RootDir}/db_backups"
       FileUtils.mkdir_p "#{RootDir}/documentation"
       FileUtils.mkdir_p "#{RootDir}/logs"
@@ -118,6 +114,10 @@ module Util
 
     def view_beta_dictionary
       "#{RootDir}/documentation/aact_beta_views.xlsx"
+    end
+
+    def view_archive_dictionary
+      "#{RootDir}/documentation/aact_archive_views.xlsx"
     end
 
     def table_archive_dictionary
