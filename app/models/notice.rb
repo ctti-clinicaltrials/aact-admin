@@ -1,7 +1,7 @@
 class Notice < ActiveRecord::Base
   belongs_to :user
 
-  validates :title, :user_id, visible, presence: true
+  validates :title, :user_id, presence: true
   validates :body, presence: true, length: { minimum: 10 }
 
   # we want to send notice but haven't done it yet
