@@ -85,7 +85,7 @@ module Util
     end
 
     def table_dictionary
-      "#{RootDir}/documentation/aact_tables.xlsx"
+      "#{Rails.root}/public/documentation/aact_tables.xlsx"
     end
 
     def table_beta_dictionary
