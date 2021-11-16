@@ -46,6 +46,16 @@ class BetaController < ApplicationController
         @tables << fix_attribs(row)
       end
     end
+    # view_dictionary variables
+    @view = []
+    view_tabs=get_views
+    view_header = view_tabs.first
+    (2..view_tabs.last_row).each do |i|
+      row = Hash[[header, view_tabs.row(i)].transpose]
+      if !row['table'].nil?
+        @view << fix_attribs(row)
+      end
+    end
   end
 
 #  ---------from dictionary_controller ---------end------
@@ -95,6 +105,10 @@ class BetaController < ApplicationController
 
   def get_dictionary
     Roo::Spreadsheet.open(Util::FileManager.new.table_beta_dictionary)
+  end
+
+  def get_views
+    Roo::Spreadsheet.open(Util::FileManager.new.view_beta_dictionary)
   end
 
   def fix_attribs(hash)
