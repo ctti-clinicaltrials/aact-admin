@@ -426,6 +426,39 @@ ALTER SEQUENCE ctgov.publications_id_seq OWNED BY ctgov.publications.id;
 
 
 --
+-- Name: releases; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.releases (
+    id bigint NOT NULL,
+    title character varying,
+    subtitle character varying,
+    created_at timestamp without time zone NOT NULL,
+    body text,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: releases_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.releases_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: releases_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.releases_id_seq OWNED BY ctgov.releases.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -640,7 +673,8 @@ CREATE TABLE ctgov.users (
     confirmed_at timestamp without time zone,
     confirmation_sent_at timestamp without time zone,
     db_activity integer,
-    last_db_activity timestamp without time zone
+    last_db_activity timestamp without time zone,
+    admin boolean
 );
 
 
@@ -732,6 +766,13 @@ ALTER TABLE ONLY ctgov.public_announcements ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY ctgov.publications ALTER COLUMN id SET DEFAULT nextval('ctgov.publications_id_seq'::regclass);
+
+
+--
+-- Name: releases id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.releases ALTER COLUMN id SET DEFAULT nextval('ctgov.releases_id_seq'::regclass);
 
 
 --
@@ -865,11 +906,11 @@ ALTER TABLE ONLY ctgov.publications
 
 
 --
--- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+-- Name: releases releases_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
-ALTER TABLE ONLY ctgov.schema_migrations
-    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+ALTER TABLE ONLY ctgov.releases
+    ADD CONSTRAINT releases_pkey PRIMARY KEY (id);
 
 
 --
@@ -1019,6 +1060,13 @@ CREATE INDEX index_projects_on_year ON ctgov.projects USING btree (year);
 
 
 --
+-- Name: unique_schema_migrations; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING btree (version);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -1032,6 +1080,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180813174540'),
 ('20181108174440'),
 ('20181208174440'),
-('20190321174440');
+('20190321174440'),
+('20211102194357'),
+('20211109190158');
 
 
