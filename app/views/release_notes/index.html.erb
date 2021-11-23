@@ -1,5 +1,12 @@
 <h2 id="background">Release Notes</h2>
 
+<% @releases.each do |release| %>
+      <hr/>
+      <h3><%= release.title %> <i><%= release.released_on %></i></h3>
+      <h5><%= release.subtitle %></h5>
+      <p><%= release.body %></p>
+<% end %>
+
 <hr/> <%= render 'release_notes/v4.6.1' %>
 <hr/> <%= render 'release_notes/v4.6.0' %>
 <hr/> <%= render 'release_notes/v4.5.0' %>

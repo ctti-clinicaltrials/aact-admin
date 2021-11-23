@@ -3,7 +3,7 @@ class CreateReleases < ActiveRecord::Migration[5.2]
     create_table :releases do |t|
       t.string :title
       t.string :subtitle
-      t.datetime :created_at
+      t.date :released_on
       t.text :body
 
       t.timestamps

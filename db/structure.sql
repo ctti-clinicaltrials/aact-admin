@@ -433,8 +433,9 @@ CREATE TABLE ctgov.releases (
     id bigint NOT NULL,
     title character varying,
     subtitle character varying,
-    created_at timestamp without time zone NOT NULL,
+    released_on date,
     body text,
+    created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
 
