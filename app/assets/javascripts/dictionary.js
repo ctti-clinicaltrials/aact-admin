@@ -15,9 +15,19 @@ $(function() {
         pageSize: 40,
         controller: {
             loadData: function(filter) {
+
+              var schema=$("#jsGrid").data('schema')
+              let url;
+              if (schema == "archive"){
+                url = "archive";
+              } else if (schema == "ctgov"){
+                url = "ctgov";
+              } else {
+                url = "beta";
+              }
                 return $.ajax({
                     type: "GET",
-                    url: "/definitions",
+                    url: `/definitions?schema=${url}`,
                     data: filter
                 });
             }
