@@ -1,0 +1,45 @@
+<%= form_for(release) do |f| %>
+  <% if release.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(release.errors.count, "error") %> prohibited this release from being saved:</h2>
+
+      <ul>
+      <% release.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="container">
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= f.label :subtitle %>
+      <%= f.text_field :subtitle %>
+    </div>
+
+    <div class="field">
+      <%= f.label :released_on %>
+      <%= f.text_field :released_on, id: 'flatpickr-date' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :body %>
+      <%= f.text_field :body %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>
+
+<script>
+document.addEventListener('turbolinks:load', function() {
+  const flatpickrDate = document.getElementById('flatpickr-date');
+  flatpickr(flatpickrDate, { enableTime: false});
+})
+</script>
