@@ -1,4 +1,7 @@
 class DefinitionsController < ApplicationController
+  # include ActionView::Helpers::TextHelper
+
+
 
   # *******///********
   # This code uses data dictionary spreadsheet stored on the DO file server
@@ -17,7 +20,7 @@ class DefinitionsController < ApplicationController
         end
       end
     end
-  
+
     render json: dataOut, root: false
   end
 
@@ -47,6 +50,7 @@ class DefinitionsController < ApplicationController
     return true
   end
 
+  # is not being used
   def fix_attribs(hash)
     enums=Enumeration.new.enums
     enum_tabs=enums.map {|row| row[0]}
