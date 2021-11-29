@@ -1,6 +1,6 @@
 class ReleasesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :catch_not_found
-  before_action :set_release, only: [:index, :new, :edit, :create, :update, :destroy]
+  before_action :set_release, only: [:edit, :update, :show, :destroy]
 
   def index
     @releases = Release.all
@@ -11,6 +11,9 @@ class ReleasesController < ApplicationController
   end
 
   def edit
+  end
+
+  def show
   end
 
   def create

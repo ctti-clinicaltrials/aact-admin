@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'releases/index'
-  get 'releases/create'
-  get 'releases/new'
-  get 'releases/update'
-  get 'releases/edit'
-  get 'releases/destroy'
   # Adding these routes connects those requests to the appropriate actions of the errors controller.
   # Using match ... :via => :all allows the error pages to be displayed for any type of request (GET, POST, PUT, etc.)
   match "/404", to: "errors#not_found", via: :all
@@ -70,6 +64,7 @@ Rails.application.routes.draw do
   resources :users
   resources :shared_data, param: :schema_name
   resources :release_notes
+  resources :releases
   resources :datasets
   resources :attachments
   resources :use_cases
