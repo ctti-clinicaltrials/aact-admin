@@ -1,2 +1,8 @@
-<h1>Releases#new</h1>
-<p>Find me in app/views/releases/new.html.erb</p>
+<div class="container">
+  <br>
+  <h1>New Release</h1>
+  <br>
+  <%= render 'form', release: @release %>
+  <br>
+  <%= link_to 'Back', releases_path, :class => "btn btn-primary btn-sm" %>
+</div>

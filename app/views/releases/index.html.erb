@@ -1,2 +1,32 @@
-<h1>Releases#index</h1>
-<p>Find me in app/views/releases/index.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <h1>Releases</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Subtitle</th>
+        <th>Released On</th>
+        <th>Body</th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @releases.each do |release| %>
+        <tr>
+          <td><%= release.title %></td>
+          <td><%= release.subtitle %></td>
+          <td><%= release.released_on %></td>
+          <td><%= release.body %></td>
+          <td><%= link_to 'Edit', edit_release_path(release), :class => "btn btn-primary btn-sm" %> | </td>
+          <td><%= link_to 'Delete', release, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-sm" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to 'New Release', new_release_path, :class => "btn btn-primary btn-sm" %> |
+  <%= link_to 'Home', pages_home_path, :class => "btn btn-primary btn-sm" %>
+</div>
