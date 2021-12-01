@@ -1,4 +1,5 @@
 require 'active_support/all'
+
 class DataDefinition < ActiveRecord::Base
 
   def self.default_data_definitions
@@ -68,10 +69,8 @@ class DataDefinition < ActiveRecord::Base
     dataOut = []
     (2..data.last_row).each do |i|
       row = Hash[[header, data.row(i)].transpose]
-       # byebug
       if !row['table'].nil? and !row['column'].nil?
           dataOut << fix_attribs(row)
-          # byebug
       end
     end
     File.open("public/aact_data_definitions.json","w") do |f|
@@ -87,7 +86,8 @@ class DataDefinition < ActiveRecord::Base
     enums=Enumeration.new.enums
     enum_tabs=enums.map {|row| row[0]}
     enum_cols=enums.map {|row| row[1]}
-    tab=ActionController::Base.helpers.strip_tags(hash["table"]).downcase
+
+    tab=Rails::Html::FullSanitizer.new.sanitize(hash["table"]).downcase
     col=hash['column'].downcase
 
     if hash['source']
@@ -96,19 +96,16 @@ class DataDefinition < ActiveRecord::Base
     end
 
     if enum_tabs.include? tab and enum_cols.include? col
-      #byebug
       dd=DataDefinition.where('table_name=? and column_name=?',tab,col).first
       if dd and !dd.enumerations.nil?
-        # byebug
         str="<select>"
-        dd.enumerations.first(5).each{|e|
+        dd.enumerations.first(3).each{|e|
           cnt=e.last.first
           pct=e.last.last
           str=str+"<option>"+cnt+" ("+pct+")&nbsp&nbsp; - "+e.first+"</option>"
         }
         str=str+'</select>'
         hash['enumerations']=str.html_safe
-        # hash['enumerations'] = dd.enumerations.to_s.first(5)
       end
     end
 
