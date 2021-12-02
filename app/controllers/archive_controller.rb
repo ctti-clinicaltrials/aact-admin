@@ -34,9 +34,6 @@ class ArchiveController < ApplicationController
     @project_schema_files=Share::Project.schema_diagram_file_names
   end
 
-  def migration
-  end
-
   def download
   end
 
