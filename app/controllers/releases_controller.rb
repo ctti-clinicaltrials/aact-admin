@@ -3,7 +3,7 @@ class ReleasesController < ApplicationController
   before_action :set_release, only: [:edit, :update, :show, :destroy]
 
   def index
-    @releases = Release.all
+    @releases = Release.all.order(created_at: :desc)
   end
 
   def new
