@@ -2,7 +2,7 @@
 
 <% @releases.each do |release| %>
       <hr/>
-      <h3><%= release.title %> <i><%= release.released_on %></i></h3>
+      <h3><%= release.title %> <i> (<%= release.released_on.strftime('%B %d, %Y') %>) </i></h3>
       <h5><%= release.subtitle %></h5>
       <p><%= release.body %></p>
 <% end %>

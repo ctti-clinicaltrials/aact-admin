@@ -19,7 +19,7 @@ class ReleasesController < ApplicationController
   def create
     # create Method with Error Handling:
     # If @release.save return non-nil values, that means they succeeded,
-    # and we can redirect back to the show page with a success message.
+    # and we can redirect back to the release page with a success message.
     # If they return nil, we have the else processing:
     # First collect the error and put it in the flash.now.alert
     # Then do the render to :new.
@@ -36,7 +36,7 @@ class ReleasesController < ApplicationController
   def update
     # update Method with Error Processing
     # If @release.update return non-nil values, that means they succeeded,
-    # and we can redirect back to the show page with a success message.
+    # and we can redirect back to the release page with a success message.
     # If they return nil, we have the else processing:
     # First collect the error and put it in the flash.now.alert
     # Then do the render to :edit.
