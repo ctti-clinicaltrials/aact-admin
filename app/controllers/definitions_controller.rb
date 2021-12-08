@@ -1,8 +1,4 @@
 class DefinitionsController < ApplicationController
-  # include ActionView::Helpers::TextHelper
-
-
-
   # *******///********
   # This code uses data dictionary spreadsheet stored on the DO file server
   # *******///********

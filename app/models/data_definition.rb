@@ -1,5 +1,4 @@
 require 'active_support/all'
-
 class DataDefinition < ActiveRecord::Base
 
   def self.default_data_definitions
@@ -86,7 +85,6 @@ class DataDefinition < ActiveRecord::Base
     enums=Enumeration.new.enums
     enum_tabs=enums.map {|row| row[0]}
     enum_cols=enums.map {|row| row[1]}
-
     tab=Rails::Html::FullSanitizer.new.sanitize(hash["table"]).downcase
     col=hash['column'].downcase
 
