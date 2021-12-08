@@ -60,6 +60,17 @@ Rails.application.routes.draw do
   get "/beta/schema"     => "beta#schema"
   get "/beta/data_dictionary" => "beta#data_dictionary"
 
+  #archive
+  get "/archive/data_dictionary" => "archive#data_dictionary"
+  get "/archive/schema"    => "archive#schema"
+  get "/archive/migration" => "archive#migration"
+  get "/archive/download"  => "archive#download"
+  get "/archive/snapshots" => "archive#snapshots"
+  get "/archive/pipe_files" => "archive#pipe_files"
+  get "/archive/covid_19"   => "archive#covid_19"
+  get "/archive/pipe_files_with_r"    => "archive#pipe_files_with_r"
+  get "/archive/pipe_files_with_sas"  => "archive#pipe_files_with_sas"
+
   resources :definitions
   resources :users
   resources :shared_data, param: :schema_name
