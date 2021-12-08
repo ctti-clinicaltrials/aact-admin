@@ -30,7 +30,7 @@ $(function() {
             { name: 'column',             type: "text", width: 180 },
             { name: 'data type',          type: "text", width: 70 },
             { name: 'CTTI note',          type: "text", width: 350 },
-            { name: 'enumerations',       type: "text", width: 250 },
+            { name: 'enumerations',       type: "text", width: 300 },
             { name: 'source',             type: "text", width: 250 },
         ]
     });
