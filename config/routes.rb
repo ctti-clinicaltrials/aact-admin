@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get "/technical_documentation"    => "pages#technical_documentation"
   get "/update_policy"        => "pages#update_policy"
   get "/deploy_code"          => "pages#deploy_code"
+  get "/contactus"            => "pages#contactus"
 
   get "/install_postgres"     => "postgres_documentation#install_postgres"
   get "/credentials"          => "credentials#show"
@@ -63,7 +64,6 @@ Rails.application.routes.draw do
   #archive
   get "/archive/data_dictionary" => "archive#data_dictionary"
   get "/archive/schema"    => "archive#schema"
-  get "/archive/migration" => "archive#migration"
   get "/archive/download"  => "archive#download"
   get "/archive/snapshots" => "archive#snapshots"
   get "/archive/pipe_files" => "archive#pipe_files"
