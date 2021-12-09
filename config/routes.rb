@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   get "/beta/data_dictionary" => "beta#data_dictionary"
 
   #archive
+  get "/archive"           => "archive#archive"
   get "/archive/data_dictionary" => "archive#data_dictionary"
   get "/archive/schema"    => "archive#schema"
   get "/archive/download"  => "archive#download"
