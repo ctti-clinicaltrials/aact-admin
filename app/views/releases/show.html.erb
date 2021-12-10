@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>Release</h1>
+  <hr/>
+  <h3><%= @release.title %> <i> (<%= @release.released_on.strftime('%B %d, %Y') %>) </i></h3>
+  <h5><%= @release.subtitle %></h5>
+  <p><%= @release.body %></p>
+  <%= link_to 'Back', releases_path, :class => "btn btn-primary btn-sm" %>
+</div>
