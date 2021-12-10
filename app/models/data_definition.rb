@@ -109,7 +109,7 @@ class DataDefinition < ActiveRecord::Base
       dd=DataDefinition.where('table_name=? and column_name=?',tab,col).first
       if dd and !dd.enumerations.nil?
         str="<select>"
-        dd.enumerations.each{|e|
+        dd.enumerations.first(3).each{|e|
           cnt=e.last.first
           pct=e.last.last
           str=str+"<option>"+cnt+" ("+pct+")&nbsp&nbsp; - "+e.first+"</option>"
