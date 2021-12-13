@@ -28,18 +28,6 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: ar_internal_metadata; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.ar_internal_metadata (
-    key character varying NOT NULL,
-    value character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
 -- Name: attachments; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -470,40 +458,6 @@ ALTER SEQUENCE ctgov.publications_id_seq OWNED BY ctgov.publications.id;
 
 
 --
--- Name: releases; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.releases (
-    id bigint NOT NULL,
-    title character varying,
-    subtitle character varying,
-    released_on date,
-    body text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: releases_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
---
-
-CREATE SEQUENCE ctgov.releases_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: releases_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
---
-
-ALTER SEQUENCE ctgov.releases_id_seq OWNED BY ctgov.releases.id;
-
-
---
 -- Name: schema_migrations; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -719,7 +673,7 @@ CREATE TABLE ctgov.users (
     confirmation_sent_at timestamp without time zone,
     db_activity integer,
     last_db_activity timestamp without time zone,
-    admin boolean
+    admin boolean DEFAULT false
 );
 
 
@@ -821,13 +775,6 @@ ALTER TABLE ONLY ctgov.publications ALTER COLUMN id SET DEFAULT nextval('ctgov.p
 
 
 --
--- Name: releases id; Type: DEFAULT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.releases ALTER COLUMN id SET DEFAULT nextval('ctgov.releases_id_seq'::regclass);
-
-
---
 -- Name: use_case_attachments id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -867,14 +814,6 @@ ALTER TABLE ONLY ctgov.user_events ALTER COLUMN id SET DEFAULT nextval('ctgov.us
 --
 
 ALTER TABLE ONLY ctgov.users ALTER COLUMN id SET DEFAULT nextval('ctgov.users_id_seq'::regclass);
-
-
---
--- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.ar_internal_metadata
-    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
 
 
 --
@@ -963,14 +902,6 @@ ALTER TABLE ONLY ctgov.public_announcements
 
 ALTER TABLE ONLY ctgov.publications
     ADD CONSTRAINT publications_pkey PRIMARY KEY (id);
-
-
---
--- Name: releases releases_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.releases
-    ADD CONSTRAINT releases_pkey PRIMARY KEY (id);
 
 
 --
@@ -1151,6 +1082,4 @@ INSERT INTO schema_migrations (version) VALUES ('20190321174440');
 INSERT INTO schema_migrations (version) VALUES ('20211027220743');
 
 INSERT INTO schema_migrations (version) VALUES ('20211102194357');
-
-INSERT INTO schema_migrations (version) VALUES ('20211109190158');
 

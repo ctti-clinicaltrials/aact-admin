@@ -1,4 +1,4 @@
-class AddDbSchemaToDataDefs < ActiveRecord::Migration[4.2]
+class AddDbSchemaToDataDefs < ActiveRecord::Migration
 
   def up
     add_column 'data_definitions', :db_schema, :string
