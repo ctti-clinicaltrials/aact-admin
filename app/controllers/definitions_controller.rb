@@ -5,10 +5,8 @@ class DefinitionsController < ApplicationController
   # *******///********
 
   def index
-    unless File.exists?('public/aact_data_definitions.json')
-      DataDefinition.make_json_file
-    end
-    json_file = JSON.parse(File.read('public/aact_data_definitions.json'))
+
+    json_file=DataDefinition.make_json_file(params[:schema])
     dataOut = []
     json_file.each do |row|
       if !row['table'].nil? and !row['column'].nil?
@@ -17,7 +15,7 @@ class DefinitionsController < ApplicationController
         end
       end
     end
-  
+
     render json: dataOut, root: false
   end
 

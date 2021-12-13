@@ -62,20 +62,32 @@ class DataDefinition < ActiveRecord::Base
     ]
   end
 
-  def self.make_json_file
-    data = Roo::Spreadsheet.open("#{Rails.configuration.aact[:static_files_directory]}/documentation/aact_data_definitions.xlsx")
-    header = data.first
-    dataOut = []
-    (2..data.last_row).each do |i|
-      row = Hash[[header, data.row(i)].transpose]
-      if !row['table'].nil? and !row['column'].nil?
-          dataOut << fix_attribs(row)
+  def self.make_json_file(schema='ctgov')
+    if schema == "archive"
+      file_name="aact_archive_data_definitions"
+    elsif schema == "beta"
+      file_name="aact_beta_data_definitions"
+    else
+      file_name="aact_data_definitions"
+    end
+    data = Roo::Spreadsheet.open("#{Rails.configuration.aact[:static_files_directory]}/documentation/#{file_name}.xlsx")
+
+    unless File.exists?("public/#{file_name}.json")
+      header = data.first
+      dataOut = []
+      (2..data.last_row).each do |i|
+        row = Hash[[header, data.row(i)].transpose]
+        if !row['table'].nil? and !row['column'].nil?
+            dataOut << fix_attribs(row)
+        end
+      end
+      File.open("public/#{file_name}.json","w") do |f|
+        f.write(dataOut.to_json)
       end
     end
-    File.open("public/aact_data_definitions.json","w") do |f|
-      f.write(dataOut.to_json)
-    end 
-    dataOut
+
+    return JSON.parse(File.read("public/#{file_name}.json"))
+
   end
 
   def self.fix_attribs(hash)
@@ -97,7 +109,7 @@ class DataDefinition < ActiveRecord::Base
       dd=DataDefinition.where('table_name=? and column_name=?',tab,col).first
       if dd and !dd.enumerations.nil?
         str="<select>"
-        dd.enumerations.each{|e|
+        dd.enumerations.first(3).each{|e|
           cnt=e.last.first
           pct=e.last.last
           str=str+"<option>"+cnt+" ("+pct+")&nbsp&nbsp; - "+e.first+"</option>"

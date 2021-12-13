@@ -1,3 +1,10 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.3
+-- Dumped by pg_dump version 13.3
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -426,6 +433,40 @@ ALTER SEQUENCE ctgov.publications_id_seq OWNED BY ctgov.publications.id;
 
 
 --
+-- Name: releases; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.releases (
+    id bigint NOT NULL,
+    title character varying,
+    subtitle character varying,
+    released_on date,
+    body text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: releases_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.releases_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: releases_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.releases_id_seq OWNED BY ctgov.releases.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -641,7 +682,7 @@ CREATE TABLE ctgov.users (
     confirmation_sent_at timestamp without time zone,
     db_activity integer,
     last_db_activity timestamp without time zone,
-    admin boolean DEFAULT false
+    admin boolean
 );
 
 
@@ -733,6 +774,13 @@ ALTER TABLE ONLY ctgov.public_announcements ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY ctgov.publications ALTER COLUMN id SET DEFAULT nextval('ctgov.publications_id_seq'::regclass);
+
+
+--
+-- Name: releases id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.releases ALTER COLUMN id SET DEFAULT nextval('ctgov.releases_id_seq'::regclass);
 
 
 --
@@ -863,6 +911,14 @@ ALTER TABLE ONLY ctgov.public_announcements
 
 ALTER TABLE ONLY ctgov.publications
     ADD CONSTRAINT publications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: releases releases_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.releases
+    ADD CONSTRAINT releases_pkey PRIMARY KEY (id);
 
 
 --
@@ -1024,15 +1080,23 @@ CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING bt
 
 SET search_path TO ctgov, support, public;
 
-INSERT INTO "schema_migrations" (version) VALUES
-('20160214191640'),
-('20160912000000'),
-('20180226142044'),
-('20180427144951'),
-('20180813174540'),
-('20181108174440'),
-('20181208174440'),
-('20190321174440'),
-('20211102194357');
+INSERT INTO schema_migrations (version) VALUES ('20160214191640');
 
+INSERT INTO schema_migrations (version) VALUES ('20160912000000');
+
+INSERT INTO schema_migrations (version) VALUES ('20180226142044');
+
+INSERT INTO schema_migrations (version) VALUES ('20180427144951');
+
+INSERT INTO schema_migrations (version) VALUES ('20180813174540');
+
+INSERT INTO schema_migrations (version) VALUES ('20181108174440');
+
+INSERT INTO schema_migrations (version) VALUES ('20181208174440');
+
+INSERT INTO schema_migrations (version) VALUES ('20190321174440');
+
+INSERT INTO schema_migrations (version) VALUES ('20211102194357');
+
+INSERT INTO schema_migrations (version) VALUES ('20211109190158');
 

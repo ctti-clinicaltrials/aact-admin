@@ -1,4 +1,4 @@
-class AddUserEvents < ActiveRecord::Migration[4.2]
+class AddUserEvents < ActiveRecord::Migration
   def change
 
     create_table "ctgov.user_events" do |t|

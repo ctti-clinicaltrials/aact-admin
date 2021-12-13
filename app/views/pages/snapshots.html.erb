@@ -28,9 +28,9 @@
 
     <div class="pt-3">
       <h3>Beta AACT Static Copies</h3>
-      <p>ClinicalTrials.gov will be switching over to their Beta API next year. We are storing the data from that API in a schema called "ctgov_beta". 
-      The following downloads are created from the "ctgov_beta" schema.</p>
-      
+      <p>ClinicalTrials.gov will be switching over to their Beta API next year. We are storing the data from that API in a schema called "ctgov_beta".
+      The following downloads are created from the "ctgov_beta" schema.</p> 
+
       <h4>Beta Daily Copies</h4>
       <p><%= render 'file_archive', :files => @beta_daily_files, type: 'download database' %></p>
 
@@ -91,7 +91,7 @@
       </pre>
     </p>
 
-    <p>If the <i>AACT</i> database already exists on your local machine and you want to refresh it with another version, note that older dump files may not be compatible with your current database. 
+    <p>If the <i>AACT</i> database already exists on your local machine and you want to refresh it with another version, note that older dump files may not be compatible with your current database.
     This is because we make changes to schema structure from time to time as well as upgrade PostgreSQL. </p>
     <p>To refresh your existing database use this command:</p>
 
