@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_action :is_admin?
   before_action :set_global_vars
   # Prevent CSRF attacks by raising an exception.
   layout "application"
