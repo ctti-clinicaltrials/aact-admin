@@ -1,0 +1,35 @@
+<%= form_for([:admin, @notice]) do |f| %>
+  <% if @notice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@notice.errors.count, "error") %> prohibited this notice from being saved:</h2>
+      <ul>
+      <% @notice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="container">
+    <%# <div class="field"> %>
+      <%# <#%= f.label :user %> %>
+      <%# <#%= f.text_field :user_id %> %>
+    <%# </div> %>
+
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+
+    <div class="field mb-4">
+      <%= f.label :body %>
+      <%= f.text_area :body, rows: 10 %>
+    </div>
+     <%# <#%byebug%> %>
+    <%# <#%= f.hidden_field(:user_id), params[:user_id])%> 
+
+    <div class="actions">
+      <%= f.submit "Create" %>
+    </div>
+  </div>
+<% end %>
+
