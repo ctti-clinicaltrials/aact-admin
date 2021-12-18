@@ -1,5 +1,8 @@
 class ArchiveController < ApplicationController
 
+  def archive
+  end
+
   def data_dictionary
     fpm=Util::FilePresentationManager.new
     @admin_schema_diagram=fpm.admin_schema_diagram
@@ -32,9 +35,6 @@ class ArchiveController < ApplicationController
     set_diagrams_and_dictionaries
     @show_dictionary_link = true
     @project_schema_files=Share::Project.schema_diagram_file_names
-  end
-
-  def migration
   end
 
   def download
