@@ -5,4 +5,5 @@
   <h5><%= @release.subtitle %></h5>
   <p><%= @release.body %></p>
   <%= link_to 'Back', releases_path, :class => "btn btn-primary btn-sm" %>
+  <%= link_to 'Edit', edit_release_path(@release), :class => "btn btn-danger btn-sm" %>
 </div>

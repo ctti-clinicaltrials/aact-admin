@@ -97,7 +97,7 @@ class DataDefinition < ActiveRecord::Base
     enums=Enumeration.new.enums
     enum_tabs=enums.map {|row| row[0]}
     enum_cols=enums.map {|row| row[1]}
-    tab=hash['table'].downcase
+    tab=Rails::Html::FullSanitizer.new.sanitize(hash["table"]).downcase
     col=hash['column'].downcase
 
     if hash['source']
@@ -115,7 +115,7 @@ class DataDefinition < ActiveRecord::Base
           str=str+"<option>"+cnt+" ("+pct+")&nbsp&nbsp; - "+e.first+"</option>"
         }
         str=str+'</select>'
-        hash['enumerations'] = str.html_safe
+        hash['enumerations']=str.html_safe
       end
     end
 

@@ -3,7 +3,7 @@ class ReleasesController < ApplicationController
   before_action :set_release, only: [:edit, :update, :show, :destroy]
 
   def index
-    @releases = Release.all.order(created_at: :desc)
+    @releases = Release.all.order(released_on: :desc)
   end
 
   def new
@@ -17,12 +17,6 @@ class ReleasesController < ApplicationController
   end
 
   def create
-    # create Method with Error Handling:
-    # If @release.save return non-nil values, that means they succeeded,
-    # and we can redirect back to the release page with a success message.
-    # If they return nil, we have the else processing:
-    # First collect the error and put it in the flash.now.alert
-    # Then do the render to :new.
     @release = Release.new(release_params)
     if @release.save
       flash.notice = "The release record was created successfully."
@@ -34,12 +28,6 @@ class ReleasesController < ApplicationController
   end
 
   def update
-    # update Method with Error Processing
-    # If @release.update return non-nil values, that means they succeeded,
-    # and we can redirect back to the release page with a success message.
-    # If they return nil, we have the else processing:
-    # First collect the error and put it in the flash.now.alert
-    # Then do the render to :edit.
     if @release.update(release_params)
       flash.notice = "The release record was updated successfully."
       redirect_to @release

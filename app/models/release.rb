@@ -1,6 +1,3 @@
 class Release < ActiveRecord::Base
-  validates :title, presence: true
-  validates :subtitle, presence: true
-  validates :released_on, presence: true
-  validates :body, presence: true
+  validates :title, :subtitle, :released_on, :body, presence: true
 end
