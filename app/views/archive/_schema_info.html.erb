@@ -6,8 +6,8 @@
    <ul class='regularDisplay'>
      <li>Present data exactly as it exists in ClinicalTrials.gov.</li>
      <li>Make the information as easy to understand & analyze as possible.</li>
-     <li>Use consistent names and structures throughout the database ot make it predictable and minimize uncertainty.</li>
-     <li>Provide value-added attributes, identify them as such, and keep them separate from the raw ClinicalTrials.gov content. (For example the <i>Calculated_Values</i> table contains data elements that were derived from existing data.)</li>
+     <li>Use consistent names and structures throughout the database. Make it predictable; minimize uncertainty.</li>
+     <li>Provide value-added attributes, identify them as such, and keep them separate from the raw ClinicalTrials.gov content. (The <i>Calculated_Values</i> table contains data elements that were derived from existing data.)</li>
    </ul>
 
    <h4 id='namingConventions'>Naming Conventions</h4>
@@ -15,10 +15,10 @@
      <li>Table names are all plural. (ie. <i>studies, facilities, interventions,</i> etc.)</li>
      <li>Column names are all singular. (ie. <i>description, phase, name</i>, etc.)</li>
      <li>Table/column names derived from multiple words are delimited with underscores. (ie. <i>mesh_term, study_first_submitted_date, number_of_groups</i>, etc.)</li>
-     <li>Case (upper vs lower) is not relevant since PostgreSQL ignores case. <i>Studies</i>, <i>STUDIES</i> and <i>studies</i> all represent the same table and can be used interchangeably.</li>
+     <li>Case (upper vs lower) is not relevant since PostgreSQL ignores case. <i>Studies</i>, <i>STUDIES</i> and <i>studies</i> all represent the same table and can be used interchangably.</li>
      <li>Information about study design entered into ClinicalTrials.gov during registration is stored in AACT tables prefixed with <i>Design_</i> to distinguish it from the results data. For example, the <i>Design_Groups</i> table contains registry information about anticipated participant groups, whereas the <i>Result_Groups</i> table contains information that was entered after the study has completed to describe actual participant groups. <i>Design_Outcomes</i> contains information about the outcomes to be measured and <i>Outcomes</i> contains info about the actual outcomes reported when the study completed.</li>
      <li>Where possible, tables & columns are given fully qualified names; abbreviations are avoided. (ie. <i>description</i> rather than <i>desc</i>; <i>category</i> rather than <i>ctgry</i>)</li>
-     <li>Unnecessary and duplicate verbiage is avoided. For example: <i>Studies.source</i> instead of <i>Studies.study_source</i></li>
+     <li>Unnecssary and duplicate verbiage is avoided. For example: <i>Studies.source</i> instead of <i>Studies.study_source</i></li>
      <li id='idInformation'>Columns that end with <i>_id</i> represent foreign keys. The prefix to the <i>_id</i> suffix is always the singular name of the parent table to which the child table is related. These foreign keys always link to the <i>id</i> column of the parent table.</p>
        <p><i>Child_Table.parent_table_id = Parent_Tables.id</i></p>
        <p>For example, a row in <i>Facility_Contacts</i> links to it’s facility through the <i>facility_id</i> column.</p>
@@ -32,10 +32,10 @@
      <li>Every table has the primary key: <i>id</i>. (<i>Studies</i> is the one exception since it's primary key is the unique study identifier assigned by ClinicalTrials.gov: <i>nct_id</i>.)</li>
      <li>Columns that end with <i>_date</i> contain date-type values.</li>
      <li>Columns that contain month/year dates are saved as character strings in a column with a <i>_month_year</i> suffix. A date-type estimate of the value (using the 1st of the month as the 'day') is stored in an adjacent column with the <i>_date</i> suffix. (This applies to date values in the <i>Studies</i> table.)</li>
-     <li>Derived/calculated values are stored in the <i>Calculated_Values</i> table.</i>
+     <li>Derived/calculated value are stored in the <i>Calculated_Values</i> table.</i>
    </ul>
 
-   <p>While we tried to rigorously adhere to these conventions, reality occasionally failed to cooperate, so compromises were made and exceptions to these rules exist. For example, to limit duplicate verbiage, we preferred the table name <i>References</i> over <i>Study_References</i>, however the word 'References' is a PostgreSQL reserved word and cannot be used as a table name, so <i>Study_References</i> it is.</p>
+   <p>While we tried to rigorously adhere to these conventions, reality occassionally failed to cooperate, so compromises were made and exceptions to these rules exist. For example, to limit duplicate verbiage, we preferred the table name <i>References</i> over <i>Study_References</i>, however the word 'References' is a PostgreSQL reserved word and cannot be used as a table name, so <i>Study_References</i> it is.</p>
 
    <h2 id='arms_groups'>How are arms/groups identified?</h2>
    <p>Considerable thought went into how to present arm and group information to facilitate analysis by simplifying naming and data structures while retaining data fidelity.
@@ -49,7 +49,7 @@
    <p>In short, observational studies use the term ‘groups’; interventional studies use ‘arms’, though for the purpose of analysis, they both refer to the same thing. Because 'group' is more intuitive to the general public, AACT standardized on the term 'group(s)' and does not use the term 'arms'.</p>
 
    <h4>Participant Groups: Registry vs Results</h4>
-   <p>When a study is registered in ClinicalTrials.gov, information is entered about how the study defines participant groups. In AACT, this information is stored in the <i>Design_Groups</i> table, while info about actual groups that is entered after the study has completed is stored in the <i>Result_Groups</i> table. (AACT has not attempted to link data between these 2 tables.)</p>
+   <p>When a study is registered in ClinicalTrials.gov, information is entered about how the study defines partipant groups. In AACT, this information is stored in the <i>Design_Groups</i> table, while info about actual groups that is entered after the study has completed is stored in the <i>Result_Groups</i> table. (AACT has not attempted to link data between these 2 tables.)</p>
 
    <p>Result information, for the most part, is organized in ClinicalTrials.gov by participant group. <i>Result_Contacts</i> & <i>Result_Agreements</i> are the only result tables not associated with groups. This section describes how AACT has structured group-related results data.</p>
 
@@ -65,7 +65,7 @@
     <p>The <i>Result_Groups</i> table represents an aggregate list of all groups associated with these result types. All result tables (<i>Outcomes, Outcome_Counts, Baseline_Measures, Reported_Events</i>, etc.) relate to <i>Result_Groups</i> via the foreign key <i>result_group_id</i>.</p>
     <p>For example, <i>Outcomes.result_group_id = Result_Groups.id</i>.</p>
 
-    <p>ClinicalTrials.gov assigns an identifier to each group/result that is unique within the study. The identifier includes two leading characters that represent the type of result (BG for Baseline, OG for Outcomes, EG for Reported Event, and FG for Participant Flow) followed by a three digit number starting with 000 that uniquely identifies the group in that context. To illustrate assume that study NCT001 had 2 groups: experimental & control, and reported multiple baseline measures, outcome measures, reported events and milestone/drop-withdrawals for each group. The following table illustrates how the <i>Result_Groups</i> table organizes the group information received from ClinicalTrials.gov in this case:</p>
+    <p>ClinicalTrials.gov assigns an identifier to each group/result that is unique within the study. The identifier includes a leading character that represents the type of result (B for Baseline, O for Outcomes, R for Reported Event, and P for Participant Flow) followed by a number that uniquely identifies the group in that context. To illustrate... Study NCT001 had 2 groups: experimental & control, and reported multiple baseline measures, outcome measures, reported events and milestone/drop-withdrawals for each group. The following table illustrates how the <i>Result_Groups</i> table organizes the group information received from ClinicalTrials.gov in this case:</p>
      <table id='resultGroup' class='regularDisplay'>
        <tr>
          <th class='resultGroup'>id</th>
@@ -79,7 +79,7 @@
          <td class='schemaID'>1</td>
          <td class='schemaID'>NCT001</td>
          <td class='schemaID'>Baseline</td>
-         <td class='schemaID'>BG000</td>
+         <td class='schemaID'>B1</td>
          <td>Experimental Group</td>
          <td>All Baseline_Measures associated with this study's experimental group link to this row.</th>
        </tr>
@@ -87,7 +87,7 @@
          <td class='schemaID'>2</td>
          <td class='schemaID'>NCT001</td>
          <td class='schemaID'>Baseline</td>
-         <td class='schemaID'>BG001</td>
+         <td class='schemaID'>B2</td>
          <td>Control Group</td>
          <td>All Baseline_Measures associated with this study's control group link to this row.</td>
        </tr>
@@ -95,7 +95,7 @@
          <td class='schemaID'>3</td>
          <td class='schemaID'>NCT001</td>
          <td class='schemaID'>Outcome</td>
-         <td class='schemaID'>OG001</td>
+         <td class='schemaID'>O2</td>
          <td>Experimental Group</td>
          <td>All Outcome_Measures associated with this study's experimental group link to this row.</td>
        </tr>
@@ -103,7 +103,7 @@
          <td class='schemaID'>4</td>
          <td class='schemaID'>NCT001</td>
          <td class='schemaID'>Outcome</td>
-         <td class='schemaID'>OG000</td>
+         <td class='schemaID'>O1</td>
          <td>Control Group</td>
          <td>All Outcome_Measures associated with this study's control group link to this row.</td>
        </tr>
@@ -111,7 +111,7 @@
          <td class='schemaID'>5</td>
          <td class='schemaID'>NCT001</td>
          <td class='schemaID'>Reported Event</td>
-         <td class='schemaID'>EG000</td>
+         <td class='schemaID'>E1</td>
          <td>Experimental Group</td>
          <td>All Reported_Events associated with this study's experimental group link to this row.</td>
        </tr>
@@ -119,7 +119,7 @@
          <td class='schemaID'>6</td>
          <td class='schemaID'>NCT001</td>
          <td class='schemaID'>Reported Event</td>
-         <td class='schemaID'>EG001</td>
+         <td class='schemaID'>E2</td>
          <td>Control Group</td>
          <td>All Reported_Events associated with this study's control group link to this row.</td>
        </tr>
@@ -127,7 +127,7 @@
          <td class='schemaID'>7</td>
          <td class='schemaID'>NCT001</td>
          <td class='schemaID'>Participant Flow</td>
-         <td class='schemaID'>FG000</td>
+         <td class='schemaID'>P1</td>
          <td>Experimental Group</td>
          <td>All Milestones & Drop_Withdrawals associated with this study's experimental group link to this row.</td>
        </tr>
@@ -135,31 +135,19 @@
          <td class='schemaID'>8</td>
          <td class='schemaID'>NCT001</td>
          <td class='schemaID'>Participant Flow</td>
-         <td class='schemaID'>FG001</td>
+         <td class='schemaID'>P2</td>
          <td>Control Group</td>
          <td>All Milestones & Drop_Withdrawals associated with this study's studies control group link to this row.</td>
        </tr>
      </table>
 
-     <p>
-      Notice that the integer in the code provided by ClinicalTrials.gov (ctgov_group_code) is often the same for one group across the different result types, but this is not always the case. In the example above, BG000, EG000 & FG000 all represent the 'experimental group', so you're tempted to think that '000' equates to to the 'experimental group' for this study, however for Outcomes, OG000 represents the control group. In short, the number in the ctgov_group_code often links the same group across all result types in a study, but for about 25% of studies, this is not the case, so it can't be counted on to indicate this relationship.
-     </p>
+     <p>Notice that the integer in the code provided by ClinicalTrials.gov (ctgov_group_code) is often the same for one group across the different result types, but this is not always the case. In the example above, B1, E1 & P1 all represent the 'experimental group', so you're tempted to think that '1' equates to to the 'experimental group' for this study, however for Outcomes, O1 represents the control group. In short, the number in the ctgov_group_code often links the same group across all result types in a study, but for about 25% of studies, this is not the case, so it can't be counted on to indicate this relationship.  (We had hoped to use a single row in <i>Result_Groups</i> to uniquely represent a participant group in the study and link all related results data (from the various tables) to that one row, however this was not possible. Therefore, one group will typically be represented multiple times in the <i>Result_Groups</i> table: once for each type of result data.</p>
 
    <h2>Information about dates</h2>
-   <p>
-   When clinicaltrials.gov started tracking studies, it only tracked the month & year for some fields and not the day for several date values including start date, completion date, primary completion date and verification date. Because day is not provided for some studies, AACT stores these dates in the studies table as character type rather than date type values. Character type dates are of limited utility in an analytic database because they can’t be used to perform standard date calculations such as determining study duration or the average number of months for someone to report results or identify studies registered before/after a certain date.
-   </p>
+	 <p>ClinicalTrials.gov has historically provided the month/year (without day) for several date values including start date, completion date, primary completion date and verification date. Because the 'day' was not provided, AACT stored these dates in the <i>Studies</i> table as character-type rather than date-type values. Character-type dates are of limited utility in an analytic database because they can't be used to perform standard date calculations such as determining study duration or the average number of months for someone to report results or identifying studies registered before/after a certain date.</p>
 
-  <p>We provide 2 columns in the Studies table for each date element:</p>
-
-  <ol>
-    <li>A character-type column that displays the value exactly as it was received from ClinicalTrials.gov</li>
-    <li>A date-type column that can be used for date calculations.</li>
-  </ol>
-
-  <p>
-    If the date received from ClinicalTrials.gov has only month/year, in order to convert the string to a date, it is assigned the first day of the month. For example, a study with start date “June 2014” will have “June 2014” in the start_month_year column and “06/01/14” in the start_date column.
-  </p>
+   <p>NLM recently reported that ClinicalTrials.gov will start providing full date values (mm/dd/yy) for these date elements, however this only applies to new studies; studies entered prior to this announcement will continue to have only month/year date values. We considered various alternatives to handle dates given this issue. We decided to provide 2 columns in the <i>Studies</i> table for each date element: 1) a character-type column that displays the value exactly as it was received from ClinicalTrials.gov & 2) a date-type column that can be used for date calculations. If the date received from ClinicalTrials.gov has only month/year, in order to convert the string to a date, it is assigned the first day of the month. For example, a study with start date June, 2014 will have <i>June, 2014</i> in the <i>start_month_year</i> column and <i>06/01/14</i> in the <i>start_date</i> column.
+    <p>
 
     <div id='pending_results'>
       <h2>Information about dates related to 'pending results'</h2>
@@ -198,6 +186,11 @@
       <p>Users who are interested in identifying countries where participants are being/were enrolled may use either the <i>Facilities</i> or <i>Countries</i> (where <i>Countries.removed</i> is not true) with equivalent results.</p>
     </div>
 
+    <div id='mesh_terms'>
+      <h2>MeSH terms in Browse_Conditions and Browse_Interventions</h2>
+      <p>When data submitters provide information to ClinicalTrials.gov about a study, they’re encouraged to use Medical Subject Heading (<a target='_blank' href='https://www.nlm.nih.gov/mesh/meshhome.html'>MeSH</a>) terminology for interventions, conditions, and keywords. The <i>Browse_Conditions</i> and <i>Browse_Interventions</i> tables contain MeSH terms generated by an algorithm run by NLM. The NLM algorithm is re-run nightly on all studies in the ClinicalTrials.gov database, and sources the most up-to-date information in the study record, the latest version of the algorithm, and the version of the MeSH thesaurus in use at that time.</p>
+    </div>
+
     <div id='delayed_results'>
       <h2>“Delayed Results” data elements are available in AACT</h2>
       <p>A responsible party of an applicable clinical trial may delay the deadline for submitting results information to ClinicalTrials.gov for up to two additional years if one of the following two certification conditions applies to the trial:</p>
@@ -209,6 +202,7 @@
 
       <p>Studies for which a certification or extension request have been submitted include the date of the first certification or extension request in the data element: <i>Studies.disposition_first_submitted_date</i>.</p>
 
+      <p>In general, the content that is contained in the AACT database preserves the content in the source XML files that are downloaded from ClinicalTrials.gov.</p>
     </div>
 
 </section>

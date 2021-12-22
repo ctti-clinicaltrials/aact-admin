@@ -1,7 +1,7 @@
 class Notice < ActiveRecord::Base
   belongs_to :user
 
-  validates :title, :user_id, :send_emails, :visible, presence: true
+  validates :title, :user_id, visible, presence: true
   validates :body, presence: true, length: { minimum: 10 }
 
   # we want to send notice but haven't done it yet
@@ -12,7 +12,7 @@ class Notice < ActiveRecord::Base
   scope :invisible, -> { where(visible: false) }
   scope :visible, -> { where(visible: true)}
 
-  after_create :send_notice
+  # after_create :send_notice
 
   def send_notice
     User.all.each {|user| NoticeMailer.notice_to_mail(user.email, self).deliver_now}
