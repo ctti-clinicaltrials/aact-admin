@@ -1,6 +1,6 @@
-desc 'Populate the data'
 namespace :populate do
-    task :datadefinition, [:force] => :environment do
+    desc 'Populate data definition'
+    task :data_definition, [:force] => :environment do
         DataDefinition.populate
     end
 end
