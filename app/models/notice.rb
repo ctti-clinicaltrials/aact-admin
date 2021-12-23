@@ -12,8 +12,6 @@ class Notice < ActiveRecord::Base
   scope :invisible, -> { where(visible: false) }
   scope :visible, -> { where(visible: true)}
 
-  # after_create :send_notice
-
   def send_notice
     User.all.each {|user| NoticeMailer.notice_to_mail(user.email, self).deliver_now}
     self.emails_sent_at = Time.now

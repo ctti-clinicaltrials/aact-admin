@@ -4,6 +4,10 @@ class PagesController < ApplicationController
     this_method_is_missing
   end
 
+  def home
+    @notice=Notice.where(visible: true).last
+  end
+
   def snapshots
     set_daily_monthly_snapshot_files
   end

@@ -10,10 +10,6 @@
     </div>
   <% end %>
   <div class="container">
-    <%# <div class="field"> %>
-      <%# <#%= f.label :user %> %>
-      <%# <#%= f.text_field :user_id %> %>
-    <%# </div> %>
 
     <div class="field">
       <%= f.label :title %>
@@ -22,13 +18,20 @@
 
     <div class="field mb-4">
       <%= f.label :body %>
-      <%= f.text_area :body, rows: 10 %>
+      <%= f.text_area :body, rows: 6 %>
     </div>
-     <%# <#%byebug%> %>
-    <%# <#%= f.hidden_field(:user_id), params[:user_id])%> 
+     
+     <div class="field mb-4">
+      <%= f.label :visible %>
+      <% if @notice.visible? %>
+        <%= f.check_box :visible, checked: true %>
+      <% else %>
+        <%= f.check_box :visible %>
+      <% end %>
+    </div>
 
     <div class="actions">
-      <%= f.submit "Create" %>
+      <%= f.submit "Save" %>
     </div>
   </div>
 <% end %>

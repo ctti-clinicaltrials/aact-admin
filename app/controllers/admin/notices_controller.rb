@@ -2,7 +2,7 @@ class Admin::NoticesController < ApplicationController
   before_action :set_notice, only: [:show, :edit, :update, :destroy]
 
   def index
-    @notices= Notice.all
+    @notices= Notice.order(created_at: :desc)
   end
 
   def new
@@ -11,8 +11,11 @@ class Admin::NoticesController < ApplicationController
 
   def create
     @notice = Notice.new(notice_params)
+    # hardcoded  user------
+    @notice.user=User.find(2)
+    #-------------
     if @notice.save
-      redirect_to @notice, notice: 'Notice was successfully created.'
+      redirect_to admin_notice_path(@notice), notice: 'Notice was successfully created.'
     else
       render :new
     end
@@ -26,9 +29,9 @@ class Admin::NoticesController < ApplicationController
 
   def update
     if @notice.update(notice_params)
-      redirect_to @notice, notice: 'Notice was successfully updated.'
+      redirect_to admin_notice_path(@notice), notice: 'Notice was successfully updated.'
     else
-      alert_errors @notice
+      # alert_errors @notice
       render :edit
     end
   end
