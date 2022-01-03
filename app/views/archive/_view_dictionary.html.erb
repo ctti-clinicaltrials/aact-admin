@@ -1,0 +1,39 @@
+<section id='allViewDictionary' class='tableDictionary'>
+<main>
+  <h2>AACT Views & Functions</h2>
+
+  <p>Database views & functions have been provided to facilitate data retrieval. These features are described below. The first table identifies a set of views that provide concatenate sets of values per study. These views are useful for people who need to generate a spreadsheet that contains one row per study and would like to include info for which studies often have multiple values, such as conditions. For example, if you need a comma-separated list of the conditions associated with a study, you may get that from the all_conditions view. These views are in the ctgov schema; all include 2 columns: NCT_ID & Names. </p>
+  <p>Here is a sample query:</p>
+
+  <pre>
+    <p class='code'>
+      <span class='command-prompt'>aact=# </span><span class='command-entry'>select * from ctgov.all_conditions where nct_id='NCT00000146';</span>
+    </p>
+  </pre>
+
+  <table class='dictionaryDisplay'>
+    <thead>
+      <tr>
+        <th class='tableDictionaryHeader'>Schema</th>
+        <th class='tableDictionaryHeader'>View/Function name</th>
+        <th class='tableDictionaryHeader'>Description</th>
+        <th class='tableDictionaryHeader'>Source Data</th>
+        <th class='tableDictionaryHeader'>Data Returned</th>
+        <th class='tableDictionaryHeader'>Example</th>
+      </tr>
+    </thead>
+      <tbody>
+        <% @view.each do |hash| %>
+            <tr>
+              <td><%= hash['db schema'] %></td>
+              <td><%= hash['table'].downcase %></td>
+              <td><%= hash['description'] %></td>
+              <td><%= hash['rows per study'] %></td>
+              <td><%= hash['domain'] %></td>
+              <td><%= hash['nlm doc'] %></td>
+            </tr>
+        <% end %>
+      </tbody>
+  </table>
+</main>
+</section>

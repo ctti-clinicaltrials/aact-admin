@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 13.4
--- Dumped by pg_dump version 13.4
+-- Dumped from database version 13.3
+-- Dumped by pg_dump version 13.3
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -672,7 +672,8 @@ CREATE TABLE ctgov.users (
     confirmed_at timestamp without time zone,
     confirmation_sent_at timestamp without time zone,
     db_activity integer,
-    last_db_activity timestamp without time zone
+    last_db_activity timestamp without time zone,
+    admin boolean DEFAULT false
 );
 
 
@@ -1079,4 +1080,6 @@ INSERT INTO schema_migrations (version) VALUES ('20181208174440');
 INSERT INTO schema_migrations (version) VALUES ('20190321174440');
 
 INSERT INTO schema_migrations (version) VALUES ('20211027220743');
+
+INSERT INTO schema_migrations (version) VALUES ('20211102194357');
 

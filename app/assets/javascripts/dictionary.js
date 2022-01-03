@@ -15,9 +15,19 @@ $(function() {
         pageSize: 40,
         controller: {
             loadData: function(filter) {
+
+              var schema=$("#jsGrid").data('schema')
+              let url;
+              if (schema == "archive"){
+                url = "archive";
+              } else if (schema == "ctgov"){
+                url = "ctgov";
+              } else {
+                url = "beta";
+              }
                 return $.ajax({
                     type: "GET",
-                    url: "/definitions",
+                    url: `/definitions?schema=${url}`,
                     data: filter
                 });
             }
@@ -30,7 +40,7 @@ $(function() {
             { name: 'column',             type: "text", width: 180 },
             { name: 'data type',          type: "text", width: 70 },
             { name: 'CTTI note',          type: "text", width: 350 },
-            { name: 'enumerations',       type: "text", width: 250 },
+            { name: 'enumerations',       type: "text", width: 300 },
             { name: 'source',             type: "text", width: 250 },
         ]
     });
