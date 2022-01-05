@@ -1,7 +1,7 @@
 class Notice < ActiveRecord::Base
   belongs_to :user
 
-  validates :title, :user_id, visible, presence: true
+  validates :title, :user_id, presence: true
   validates :body, presence: true, length: { minimum: 10 }
 
   # we want to send notice but haven't done it yet
@@ -15,7 +15,12 @@ class Notice < ActiveRecord::Base
   # after_create :send_notice
 
   def send_notice
-    User.all.each {|user| NoticeMailer.notice_to_mail(user.email, self).deliver_now}
+    users = User.all.order(email: :asc)
+    remaining = users.count
+    users.each do |user|
+      puts "#{remaining} #{user.email}"
+      NoticeMailer.notice_to_mail(user.email, self).deliver_now
+    end
     self.emails_sent_at = Time.now
     self.save
   end
