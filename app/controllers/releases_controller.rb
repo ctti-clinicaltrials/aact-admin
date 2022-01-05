@@ -41,7 +41,6 @@ class ReleasesController < ApplicationController
     @release.destroy
     respond_to do |format|
       format.html { redirect_to releases_url, notice: 'The release record was successfully deleted.' }
-      format.json { head :no_content }
     end
   end
 
