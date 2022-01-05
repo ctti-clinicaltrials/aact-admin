@@ -21,13 +21,13 @@
       <%= f.text_area :body, rows: 6 %>
     </div>
      
-     <div class="field mb-4">
-      <%= f.label :visible %>
-      <% if @notice.visible? %>
-        <%= f.check_box :visible, checked: true %>
-      <% else %>
-        <%= f.check_box :visible %>
-      <% end %>
+     <div class="field mb-4 align: left ">
+        <%= f.label :visible %>
+      <%# <% if @notice.visible? %> 
+        <%= f.check_box :visible, {}, "true", "false" %>
+      <%# <% else %>
+        <%# <%= f.check_box :visible %> 
+      <%# <% end %> 
     </div>
 
     <div class="actions">

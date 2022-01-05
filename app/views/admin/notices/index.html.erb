@@ -10,6 +10,8 @@
       <tr>
         <th>Title</th>
         <th>Created at</th>
+        <th>Visible</th>
+        <th>Sent</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -18,9 +20,14 @@
         <tr>
           <td><%= link_to notice.title, admin_notice_path(notice) %> </td>
           <td><%= notice.created_at.strftime('%B %d, %Y') %></td>
-          <td><%= link_to 'Edit', edit_admin_notice_path(notice), :class => "btn btn-primary btn-sm" %></td>
+          <td><% if notice.visible? %>
+              <i class="fa fa-check"></i>
+              <%end%>
+          </td>
+          <td><%=   %></td>
+          <td><%= link_to 'Edit', edit_admin_notice_path(notice), class: "btn btn-primary btn-sm" %></td>
           <!-- data confirmation not working, need to investigate -->
-          <td><%= button_to 'Delete', admin_notice_path(notice), method: :delete %>
+          <td><%= button_to'Delete', admin_notice_path(notice), method: :delete, class: "btn btn-danger" %></td>
         </tr>
       <% end %>
     </tbody>

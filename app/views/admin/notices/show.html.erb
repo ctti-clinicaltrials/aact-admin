@@ -1,8 +1,28 @@
 <div class="container">
-  <h1>Notice</h1>
-  <hr/>
-  <h3><%= @notice.title %></h3>
   
+  <table class="notice-header">
+    <tr>
+        <th>From:</th>
+        <td>aact@ctti-clinicaltrials.org</td>
+    </tr>
+    <tr>
+        <th>To:</th>
+        <td>User's email to be added</td>
+    </tr>
+    <tr>
+        <th>Date:</th>
+        <td><%=@notice.created_at.strftime('%B %d, %Y')%></td>
+    </tr>
+    <tr>
+        <th>Subject:</th>
+        <td><%=@notice.title%></td>
+    </tr>
+  </table>
+
+  <hr/>
   <p><%= @notice.body %></p>
-  <%= link_to 'Back', admin_notices_path, :class => "btn btn-primary btn-sm" %>
+  <br/>
+
+<%= link_to 'Back', admin_notices_path, :class => "btn btn-primary btn-sm" %>
+<%# <#%= form.submit 'Send', admin_notices_path, :class => "btn btn-primary btn-sm" %> 
 </div>

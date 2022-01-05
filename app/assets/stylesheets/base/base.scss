@@ -89,6 +89,26 @@ table.gridDisplay, th.gridDisplay, tr.gridDisplay, td.gridDisplay {
   border-color: $primary;
 }
 
+table.notice-header > tr, th, td {
+  border-style: none !important;
+}
+
+.notice-header th {
+  text-align: right;
+  font-size: 1rem;
+  color: dimgrey;
+  padding-right: 20px;
+}
+.notice-header td {
+  font-size: 1rem;
+  color: dimgrey;
+}
+
+.notice-delete {
+  border-radius: 20px;
+  background-color: #cf2b1f;
+}
+
 ul.noBullets {
   list-style-type: none;
 }
