@@ -23,6 +23,11 @@ $(document).ready(function(){
   });
 
 });
+
+function openRow(index){
+  $('.projectDetail').hide();
+  $('#detail_'+index).show();
+}
 </script>
 
 <section class='standardLayout'>
@@ -54,16 +59,20 @@ $(document).ready(function(){
 
           <tbody class='projects'>
             <% @projects.each_with_index do |proj, index| %>
-              <tr id="row_<%= index %>" class="projectRow">
+              <tr id="row_<%= index %>" class="projectRow" onClick="openRow(<%=index%>)">
                 <td><%= proj.name %></td>
                 <td><%= proj.investigators %></td>
                 <td><%= proj.organizations %></td>
                 <td><%= proj.year %></td>
                 <td><%= proj.brief_summary %></td>
                 <td><%= proj.schema_name %></td>
-                <span style="display: none;" id="detail_<%= index %>">
-                  <%= render :partial => 'project_details', :locals => {:proj => proj} %>
-                </span>
+              </tr>
+              <tr class="projectDetail" id="detail_<%= index %>" style="display: none;">
+                <td colspan="6">
+                  <span id="detail_<%= index %>">
+                    <%= render :partial => 'project_details', :locals => {:proj => proj} %>
+                  </span>
+                </td>
               </tr>
             <% end %>
          </tbody>
