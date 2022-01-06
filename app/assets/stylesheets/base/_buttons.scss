@@ -1,6 +1,6 @@
 @import "variables";
 @import "library";
-button, input[type="submit"], a.button {
+button.old-btn, input[type="submit"].old-btn, a.button {
   background-color: $button-color;
   color: $button-text-color;
   font-size: 1rem;
@@ -76,7 +76,7 @@ button, input[type="submit"], a.button {
 
   &.large {
     font-size: 18px;
-    padding: 20px 40px;
+    padding: 20px 20px;
     border-radius: $border-radius;
 
     i.fa {
