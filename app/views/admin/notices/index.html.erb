@@ -27,7 +27,7 @@
           <td><%=   %></td>
           <td><%= link_to 'Edit', edit_admin_notice_path(notice), class: "btn btn-primary btn-sm" %></td>
           <!-- data confirmation not working, need to investigate -->
-          <td><%= button_to'Delete', admin_notice_path(notice), method: :delete, class: "btn btn-danger" %></td>
+          <td><%= button_to'Delete', admin_notice_path(notice), method: :delete, class: "btn btn-danger btn-sm" %></td>
         </tr>
       <% end %>
     </tbody>
