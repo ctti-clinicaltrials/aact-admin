@@ -1,6 +1,6 @@
 @import "variables";
 @import "library";
-button, input[type="submit"], a.button {
+button.old-btn, input[type="submit"].old-btn, a.button {
   background-color: $button-color;
   color: $button-text-color;
   font-size: 1rem;

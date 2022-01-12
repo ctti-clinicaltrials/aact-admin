@@ -9,7 +9,7 @@ span.circleButtons {
 
 div.circleButtons {
   margin-bottom: 4rem;
-  @include display-flex;
+  // @include display-flex;
   @include align-items(center);
   @include justify-content(center);
 
