@@ -1,6 +1,6 @@
 class Admin::NoticesController < ApplicationController
   before_action :set_notice, only: [:show, :edit, :update, :destroy]
-
+  # before_action :is_admin?
   def index
     @notices= Notice.order(created_at: :desc)
   end
@@ -11,7 +11,7 @@ class Admin::NoticesController < ApplicationController
 
   def create
     @notice = Notice.new(notice_params)
-    # hardcoded  user------
+    # # hardcoded  user------
     @notice.user=User.find(2)
     #-------------
     if @notice.save
@@ -47,7 +47,7 @@ class Admin::NoticesController < ApplicationController
   end
 
   def notice_params
-    params.require(:notice).permit(:body, :title, :user_id, :visible)
+    params.require(:notice).permit(:body, :title, :user_id, :visible, :send_emails)
   end
 
 end

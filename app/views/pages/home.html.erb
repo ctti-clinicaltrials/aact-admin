@@ -1,15 +1,15 @@
 <section class="basicHero">
-  <div class="alert alert-danger">
-    <p><%=@notice.body%></p>
-  </div>
-
   <div class="copy">
     <h1>Improving Public Access to Aggregate Content of ClinicalTrials.gov</h1>
 
-    <div class="alert alert-danger">
-      <h3>Recent Changes - November 15, 2021</h3>
-      <p>We have recently completed migrating from using an older verion of the clinicaltrials.gov api to get our data. Please go to the <a href="/beta/migration">migration</a> page to see what has changed.</p>
-    </div>
+    <% if @notice.present? %>
+      <div class="alert alert-danger">
+        <h3><%=@notice.title%></h3>
+        <p><%=@notice.body%></p>
+      <%# <h3>Recent Changes - November 15, 2021</h3>
+      <p>We have recently completed migrating from using an older verion of the clinicaltrials.gov api to get our data. Please go to the <a href="/beta/migration">migration</a> page to see what has changed.</p> %>
+       </div>
+    <%end%>
 
     <h3>What is AACT?</h3>
     <p>AACT is a publicly available relational database that contains all information (protocol and result data elements) about every study registered in ClinicalTrials.gov. Content is downloaded from ClinicalTrials.gov daily and loaded into AACT. The Clinical Trials Transformation Initiative (CTTI) enhanced AACT in October, 2016 to include the following features:</p>

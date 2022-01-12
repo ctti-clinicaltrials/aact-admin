@@ -21,18 +21,19 @@
       <%= f.text_area :body, rows: 6 %>
     </div>
      
-     <div class="field mb-4 align: left ">
-        <%= f.label :visible %>
-      <%# <% if @notice.visible? %> 
-        <%= f.check_box :visible, {}, "true", "false" %>
-      <%# <% else %>
-        <%# <%= f.check_box :visible %> 
-      <%# <% end %> 
+     <div class= "inline-checkbox">
+      <%= f.check_box :visible, {}, "true", "false" %>
+      <%= f.label :visible %>
     </div>
 
-    <div class="actions">
-      <%= f.submit "Save" %>
+    <div class= "inline-checkbox">
+      <%= f.check_box :send_emails, {}, "true", "false" %>
+      <%= f.label :send_emails %>    
     </div>
+    <div>
+      <%= f.submit "Save"  %>
+    </div>
+    <%= link_to 'Back', :back%>
   </div>
 <% end %>
 

@@ -6,13 +6,17 @@
         <td>aact@ctti-clinicaltrials.org</td>
     </tr>
     <tr>
-        <th>To:</th>
-        <td>User's email to be added</td>
-    </tr>
-    <tr>
         <th>Date:</th>
         <td><%=@notice.created_at.strftime('%B %d, %Y')%></td>
     </tr>
+
+    <% if @notice.send_emails?%>
+      <tr>
+          <th>Sent at:</th>
+          <td><%=@notice.emails_sent_at.strftime('%B %d, %Y')%></td>
+      </tr>
+    <%end%>
+
     <tr>
         <th>Subject:</th>
         <td><%=@notice.title%></td>
@@ -22,6 +26,7 @@
   <hr/>
   <p><%= @notice.body %></p>
   <br/>
+  <hr/>
 
 <%= link_to 'Back', admin_notices_path, :class => "btn btn-primary btn-sm" %>
 <%# <#%= form.submit 'Send', admin_notices_path, :class => "btn btn-primary btn-sm" %> 

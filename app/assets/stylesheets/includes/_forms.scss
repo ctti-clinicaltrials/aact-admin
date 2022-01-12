@@ -43,6 +43,13 @@ form {
     border-bottom: none;
   }
 
+  .inline-checkbox > * {
+    display: inline;
+    width: 5%;
+    margin-bottom: 50px;
+    padding-left: 0;
+  }
+
   span {
     padding-left: 10px;
     margin-bottom: 20px;
