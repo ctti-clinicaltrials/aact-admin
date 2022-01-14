@@ -22,7 +22,7 @@
           <td><%= release.released_on.strftime('%B %d, %Y') %></td>
           <td><%= link_to 'Edit', edit_release_path(release), :class => "btn btn-primary btn-sm" %></td>
           <!-- data confirmation not working, need to investigate -->
-          <td><%= button_to 'Delete', release_path(release), :class => "btn button-danger button-sm ", :method => :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= button_to 'Delete', release_path(release), :class => "btn btn-danger btn-sm", :method => :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>

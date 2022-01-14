@@ -9,32 +9,35 @@
       </ul>
     </div>
   <% end %>
-  <div class="container">
-    <div class="field">
+  <div class="modal-body">
+    <div class="container-fluid">
       <%= f.label :title %>
-      <%= f.text_field :title %>
+      <%= f.text_field :title, class: "form-control" %>
     </div>
 
-    <div class="field">
+    <div class="container-fluid">
       <%= f.label :subtitle %>
-      <%= f.text_field :subtitle %>
+      <%= f.text_field :subtitle, class: "form-control" %>
     </div>
 
-    <div class="field">
+    <div class="container-fluid">
       <%= f.label :released_on %>
-      <%= f.text_field :released_on, id: 'flatpickr-date' %>
+      <%= f.text_field :released_on, id: 'flatpickr-date', class: "form-control" %>
     </div>
 
-    <div class="field">
+    <div class="container-fluid">
       <%= f.label :body %>
-      <%= f.text_area :body, rows: 10 %>
+      <%= f.text_area :body, rows: 10, class: "form-control" %>
     </div>
 
     <div class="pb-3">
     </div>
 
-    <div class="actions">
-      <%= f.submit %>
+    <div class="actions container-fluid">
+      <%= f.submit :class => "btn btn-primary btn-sm"%>
+    </div>
+
+    <div class="pb-4">
     </div>
   </div>
 <% end %>
