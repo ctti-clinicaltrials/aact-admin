@@ -17,7 +17,7 @@
     </thead>
     <tbody>
       <% @notices.each do |notice| %>
-        <tr>
+        <tr style= "vertical-align: middle;">
           <td><%= link_to notice.title, admin_notice_path(notice) %> </td>
           <td><%= notice.created_at.strftime('%B %d, %Y') %></td>
           <td><% if notice.visible? %>
@@ -25,9 +25,9 @@
               <%end%>
           </td>
           <td><%=   %></td>
-          <td><%= link_to 'Edit', edit_admin_notice_path(notice), class: "btn btn-primary btn-sm" %></td>
+          <td><%= link_to 'Edit', edit_admin_notice_path(notice), class: "btn btn-primary btn-sm mb-2" %></td>
           <!-- data confirmation not working, need to investigate -->
-          <td><%= button_to'Delete', admin_notice_path(notice), method: :delete, class: "btn btn-danger btn-sm" %></td>
+          <td><%= button_to'Delete', admin_notice_path(notice), method: :delete, class: "btn btn-danger btn-sm mb-2" %></td>
         </tr>
       <% end %>
     </tbody>
