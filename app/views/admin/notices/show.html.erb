@@ -1,33 +1,38 @@
-<div class="container">
-  
-  <table class="notice-header">
-    <tr>
-        <th>From:</th>
-        <td>aact@ctti-clinicaltrials.org</td>
-    </tr>
-    <tr>
-        <th>Date:</th>
-        <td><%=@notice.created_at.strftime('%B %d, %Y')%></td>
-    </tr>
-
-    <% if @notice.send_emails?%>
+<%= form_for([:admin, @notice]) do |f| %>
+  <div class="container">
+    
+    <table class="notice-header">
       <tr>
-          <th>Sent at:</th>
-          <td><%=@notice.emails_sent_at.strftime('%B %d, %Y')%></td>
+          <th>From:</th>
+          <td>aact@ctti-clinicaltrials.org</td>
       </tr>
-    <%end%>
+      <tr>
+          <th>Date:</th>
+          <td><%=@notice.created_at.strftime('%B %d, %Y')%></td>
+      </tr>
 
-    <tr>
-        <th>Subject:</th>
-        <td><%=@notice.title%></td>
-    </tr>
-  </table>
+      <% if @notice.send_emails? && @notice.emails_sent_at? %>
+        <tr>
+            <th>Sent at:</th>
+            <td><%=@notice.emails_sent_at.strftime('%B %d, %Y')%></td>
+        </tr>
+      <%end%>
 
-  <hr/>
-  <p><%= @notice.body %></p>
-  <br/>
-  <hr/>
+      <tr>
+          <th>Subject:</th>
+          <td><%=@notice.title%></td>
+      </tr>
+    </table>
 
-<%= link_to 'Back', admin_notices_path, :class => "btn btn-primary btn-sm" %>
-<%# <#%= form.submit 'Send', admin_notices_path, :class => "btn btn-primary btn-sm" %> 
-</div>
+    <hr/>
+    <p><%= @notice.body %></p>
+    <br/>
+    <hr/>
+
+    <%= link_to 'Back', admin_notices_path, :class => "btn btn-primary btn-sm" %>
+
+     <% if @notice.send_emails? && @notice.emails_sent_at.nil? %>
+       <%= f.submit 'Send', :class => "old-btn" %> 
+     <%end%>
+  </div>
+<% end %>
