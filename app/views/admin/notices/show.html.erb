@@ -10,7 +10,7 @@
         <td><%=@notice.created_at.strftime('%B %d, %Y')%></td>
     </tr>
 
-    <% if @notice.send_emails?%>
+    <% if @notice.send_emails? && @notice.emails_sent_at?%>
       <tr>
           <th>Sent at:</th>
           <td><%=@notice.emails_sent_at.strftime('%B %d, %Y')%></td>
