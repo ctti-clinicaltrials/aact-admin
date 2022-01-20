@@ -24,8 +24,12 @@
               <i class="fa fa-check"></i>
               <%end%>
           </td>
-          <td><% if !notice.emails_sent_at.nil? %>
-              <i class="fa fa-check"></i>
+          <td><% if !notice.send_emails? %>
+                Not for sending
+              <%elsif notice.send_emails? && notice.emails_sent_at?%>
+                <%= notice.created_at.strftime('%B %d, %Y') %>
+              <%else notice.send_emails? && !notice.emails_sent_at?%> 
+                Not sent yet
               <%end%>
           </td>
           <td><%= link_to 'Edit', edit_admin_notice_path(notice), class: "btn btn-primary btn-sm mb-2" %></td>

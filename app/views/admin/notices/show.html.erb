@@ -1,38 +1,42 @@
-<%= form_for([:admin, @notice]) do |f| %>
-  <div class="container">
-    
+
+<div class="container">
+  
     <table class="notice-header">
       <tr>
-          <th>From:</th>
-          <td>aact@ctti-clinicaltrials.org</td>
+        <th>From:</th>
+        <td>aact@ctti-clinicaltrials.org</td>
       </tr>
       <tr>
-          <th>Date:</th>
-          <td><%=@notice.created_at.strftime('%B %d, %Y')%></td>
+        <th>Date:</th>
+        <td><%=@notice.created_at.strftime('%B %d, %Y')%></td>
       </tr>
 
       <% if @notice.send_emails? && @notice.emails_sent_at? %>
         <tr>
-            <th>Sent at:</th>
-            <td><%=@notice.emails_sent_at.strftime('%B %d, %Y')%></td>
+          <th>Sent at:</th>
+          <td><%=@notice.emails_sent_at.strftime('%B %d, %Y')%></td>
         </tr>
       <%end%>
 
       <tr>
-          <th>Subject:</th>
-          <td><%=@notice.title%></td>
-      </tr>
+        <th>Subject:</th>
+        <td><%=@notice.title%></td>
+       </tr>
     </table>
 
     <hr/>
     <p><%= @notice.body %></p>
-    <br/>
     <hr/>
+    
+      <% if @notice.send_emails? && @notice.emails_sent_at.nil? %>
+      
+        <%# <%= hidden_field_tag :title, @notice.title %>     
+        <%# <%= hidden_field_tag :body, @notice.body %>      %>
+        <%# <%= hidden_field_tag :user, @notice.user_id  %> %>
+        <%# <%= hidden_field_tag :visible, @notice.visible   %> %>
+        <%# <%= hidden_field_tag :send_emails, @notice.send_emails  %>  %> %>
+        <%= link_to 'Send', "admin/notices/send_notice/#{@notice.id}", :class => "old-btn" %> 
+      <%end%>
+  <%= link_to 'Back', admin_notices_path %>
+</div>
 
-    <%= link_to 'Back', admin_notices_path, :class => "btn btn-primary btn-sm" %>
-
-     <% if @notice.send_emails? && @notice.emails_sent_at.nil? %>
-       <%= f.submit 'Send', :class => "old-btn" %> 
-     <%end%>
-  </div>
-<% end %>

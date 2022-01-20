@@ -1,6 +1,6 @@
 class Admin::NoticesController < ApplicationController
-  before_action :set_notice, only: [:show, :edit, :update, :destroy]
-  # before_action :is_admin?
+  before_action :set_notice, only: [:show, :edit, :update, :destroy, :send_notice]
+  before_action :is_admin?
   def index
     @notices= Notice.order(created_at: :desc)
   end
@@ -12,7 +12,7 @@ class Admin::NoticesController < ApplicationController
   def create
     @notice = Notice.new(notice_params)
     # # hardcoded  user------
-    @notice.user=User.find(2)
+    @notice.user= current_user
     #-------------
     if @notice.save
       redirect_to admin_notice_path(@notice), notice: 'Notice was successfully created.'
@@ -21,10 +21,15 @@ class Admin::NoticesController < ApplicationController
     end
   end
 
+  def send_notice
+    byebug
+
+  end
+
   def edit
   end
 
-  def show
+  def show   
   end
 
   def update

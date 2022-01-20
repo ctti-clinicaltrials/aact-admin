@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    resources :notices
+    resources :notices do
+      member do
+        get "send_notice/:id" => "notices#send_notice"
+      end
+    end
   end
 
   # Adding these routes connects those requests to the appropriate actions of the errors controller.
@@ -20,7 +24,7 @@ Rails.application.routes.draw do
   get "/data_dictionary"      => "dictionary#show"
   get "/activities"           => "database_activity#show"
   get 'dictionary/show'
-
+  get "admin/notices/send_notice/:id" => "admin/notices#send_notice"
   get "/connect"              => "pages#connect"
   get "/download"             => "pages#download"
   get "/learn_more"           => "pages#learn_more"
