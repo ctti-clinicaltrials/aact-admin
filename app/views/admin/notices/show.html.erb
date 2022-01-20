@@ -28,6 +28,7 @@
   <br/>
   <hr/>
 
-<%= link_to 'Back', admin_notices_path, :class => "btn btn-primary btn-sm" %>
-<%# <#%= form.submit 'Send', admin_notices_path, :class => "btn btn-primary btn-sm" %> 
+  <p><%= link_to 'Edit', edit_admin_notice_path(@notice), class: "btn btn-primary btn-sm mb-2" %></p>
+
+  <%= link_to 'Back', admin_notices_path %>
 </div>

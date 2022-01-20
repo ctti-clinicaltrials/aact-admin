@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def home
-    @notice=Notice.where(visible: true).last
+    @notice=Notice.where(visible: true).order(created_at: :desc).first
   end
 
   def snapshots
@@ -17,7 +17,7 @@ class PagesController < ApplicationController
   end
 
   def covid_19
-    set_covid_pipe_files
+    set_covid_pipe_filess
   end
 
   def points_to_consider
