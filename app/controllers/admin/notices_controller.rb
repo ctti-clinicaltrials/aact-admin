@@ -1,6 +1,6 @@
 class Admin::NoticesController < ApplicationController
   before_action :set_notice, only: [:show, :edit, :update, :destroy]
-  # before_action :is_admin?
+  before_action :is_admin?
   def index
     @notices= Notice.order(created_at: :desc)
   end
