@@ -17,7 +17,7 @@ class PagesController < ApplicationController
   end
 
   def covid_19
-    set_covid_pipe_filess
+    set_covid_pipe_files
   end
 
   def points_to_consider
