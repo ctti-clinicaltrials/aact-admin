@@ -29,14 +29,10 @@
     <hr/>
     
       <% if @notice.send_emails? && @notice.emails_sent_at.nil? %>
-      
-        <%# <%= hidden_field_tag :title, @notice.title %>     
-        <%# <%= hidden_field_tag :body, @notice.body %>      %>
-        <%# <%= hidden_field_tag :user, @notice.user_id  %> %>
-        <%# <%= hidden_field_tag :visible, @notice.visible   %> %>
-        <%# <%= hidden_field_tag :send_emails, @notice.send_emails  %>  %> %>
         <%= link_to 'Send', "admin/notices/send_notice/#{@notice.id}", :class => "old-btn" %> 
       <%end%>
+  <p><%= link_to 'Edit', edit_admin_notice_path(@notice), class: "btn btn-primary btn-sm mb-2" %></p>
+
   <%= link_to 'Back', admin_notices_path %>
 </div>
 

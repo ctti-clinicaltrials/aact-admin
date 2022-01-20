@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def home
-    @notice=Notice.where(visible: true).last
+    @notice=Notice.where(visible: true).order(created_at: :desc).first
   end
 
   def snapshots
