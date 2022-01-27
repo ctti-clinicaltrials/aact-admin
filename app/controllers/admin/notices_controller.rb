@@ -20,7 +20,12 @@ class Admin::NoticesController < ApplicationController
   end
 
   def send_notice
-    byebug
+    @notice.send_notice
+    if !@notice.emails_sent_at?
+      redirect_to admin_notice_path(@notice), notice: 'Notice was sent.'
+    else
+      redirect_to admin_notice_path(@notice), alert: 'Something went wrong. Please try again.'
+    end
 
   end
 
@@ -31,7 +36,7 @@ class Admin::NoticesController < ApplicationController
   end
 
   def update
-    if @notice.update(notice_params)
+    if @notice.update(notice_params)   
       redirect_to admin_notice_path(@notice), notice: 'Notice was successfully updated.'
     else
       # alert_errors @notice

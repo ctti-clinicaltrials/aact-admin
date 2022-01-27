@@ -28,10 +28,15 @@
     <p><%= @notice.body %></p>
     <hr/>
     
-      <% if @notice.send_emails? && @notice.emails_sent_at.nil? %>
-        <%= link_to 'Send', "admin/notices/send_notice/#{@notice.id}", :class => "old-btn" %> 
-      <%end%>
-  <p><%= link_to 'Edit', edit_admin_notice_path(@notice), class: "btn btn-primary btn-sm mb-2" %></p>
+      
+  <div>
+    <%= link_to 'Edit', edit_admin_notice_path(@notice), class: "btn btn-primary btn-sm mb-2" %>
+    </div>
+    <div>
+    <% if @notice.send_emails? && @notice.emails_sent_at.nil? %>  
+      <%= link_to 'Send', "/admin/notices/#{@notice.id}/send_notice", :class =>"btn btn-primary btn-sm ml-4" %> 
+    <%end%>  
+  </div>
 
   <%= link_to 'Back', admin_notices_path %>
 </div>
