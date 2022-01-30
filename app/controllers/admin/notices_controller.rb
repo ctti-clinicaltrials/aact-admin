@@ -21,7 +21,7 @@ class Admin::NoticesController < ApplicationController
 
   def send_notice
     @notice.send_notice
-    if !@notice.emails_sent_at?
+    if !@notice.emails_sent_at.nil?
       redirect_to admin_notice_path(@notice), notice: 'Notice was sent.'
     else
       redirect_to admin_notice_path(@notice), alert: 'Something went wrong. Please try again.'
@@ -46,7 +46,7 @@ class Admin::NoticesController < ApplicationController
 
   def destroy
     @notice.destroy
-    redirect_to admin_notices_url, notice: 'Notice destroyed.'
+    redirect_to admin_notices_url, alert: 'Notice was destroyed.'
   end
 
   private
