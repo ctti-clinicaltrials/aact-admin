@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "AACT <aact@ctti-clinicaltrials.org>"
+  default from: "AACT <ctti-aact@duke.edu>"
   layout 'mailer'
 
   def self.admin_addresses

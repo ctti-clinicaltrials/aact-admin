@@ -1,0 +1,114 @@
+<section class="snapshots">
+
+  <div class="wrap">
+    <div class="basicHero">
+      <h1>Create Local Database from Static Copy of AACT</h1>
+    </div>
+
+    <p>If you would like to work with the complete set of clinical trials on your own computer... install PostgreSQL locally, download a static copy of the AACT database, and populate a local PostgreSQL AACT database instance with the data. This page provides the instructions.</p>
+
+    <p><i>Windows Users:  Click <a href='/install_postgres'>here</a> for step-by-step instructions to install PostgreSQL & create/load a local copy of AACT on a Windows machine.</i></p>
+
+    <%= render 'install_postgres' %>
+
+    <div class="step">
+      <span class="stepNumber">2</span>
+      <h3 class="stepName">Download Package Containing Static Copy of AACT Database</h3>
+    </div>
+
+    <p>Download a zip file that contains the AACT database file. With a single command (see below), this file can be used to automatically configure the database & populate it with the clinical trials dataset. The zip file also contains documentation that describes the database at the time the static copy was created. (The download typically takes 3-7 minutes, depending on your network speed.)</p>
+
+    <h4>Current Month's Daily Static Copies</h4>
+    <p><%= render 'file_archive', :files => @beta_daily_files, type: 'download database' %></p>
+
+    <h4>Monthly Archive of Static Copies</h4>
+    <p><%= render 'file_archive', :files => @beta_archive_files, type: 'download database' %></p>
+    <br>
+    <hr>
+
+    <div class="pt-3">
+      <h3>Archival AACT Static Copies</h3>
+      <p>ClinicalTrials.gov switched over to their a new API in 2022. The following downloads are from before that switch.</p>
+
+      <h4>Archival Monthly Archives</h4>
+      <p><%= render 'file_archive', :files => @archive_files, type: 'download database' %></p>
+    </div>
+
+    <div class="step">
+      <span class="stepNumber">3</span>
+      <h3 class="stepName">Populate Local PostgreSQL Database from the Static Copy</h3>
+    </div>
+
+    <p>Once PostgreSQL is installed on your local machine and you have downloaded a static copy of the AACT database, you can create and populate your own database. You have two alternatives for installing it: 1) via a terminal session using command lines or 2) via a graphical user interface (GUI) such as <i>pgAdmin</i>. The command line option is somewhat simpler, so we've highlighted instructions for this below and provided guidance for using the GUI <a href='/snapshots#createDbViaGui'>here</a>.</p>
+
+
+    <h4>Database Creation Via Command Line</h4>
+    <h5>Open a terminal session</h5>
+    <ul class='regularDisplay'>
+      <li>On a Mac: press [Command] [Spacebar] and enter 'Terminal' in the 'Spotlight Search' dialog that pops up. </li>
+      <li>On a PC: press [Start] and enter 'CMD' in the command input box.</li>
+    </ul>
+    <p>This should open a terminal session where you can enter the following commands.</p>
+
+    <h5>Locate and unzip the database package/zipfile</h5>
+    <p>Verify the location of the database package you downloaded in step 2 - both the path and the file name. You'll need to unzip this package and use the data dump file it contains to create and populate your own, local instance of the database.</p>
+    <ul class='regularDisplay'>
+      <li>On a Mac: The zip package is probably here: <i>~/Downloads/YYYYMMDD_clinical_trials.zip</i> (where YYYYMMDD is the date the database was copied).</li>
+    </ul>
+
+    <p class='CodeRay'>
+      <pre>
+        <p class='code'>
+          <span class='command-prompt'>-&gt; </span><span class='command-entry'> unzip <i>~/Downloads/YYYYMMDD_clinical_trials.zip </i></span>
+        </p>
+      </pre>
+    </p>
+    <p>This will unpack the files contained in the zip package and save them to the directory where the zip file exists. These files include:</p>
+  </ul>
+    <ul class='regularDisplay'>
+      <li><i>schema_diagram.png</i> - Database schema diagram that illustrates the relationships between tables.</li>
+      <li><i>postgres_data.dmp</i> - Postgres dump file containing all the instructions and data required to create a local copy of the AACT database.</li>
+      <li><i>data_dictionary.xlsx</i> - Spreadsheet that describes all tables and columns in the AACT database.</li>
+      <li><i>nlm_protocol_definitions.html</i> - Copy of the National Library of Medicine: ClinicalTrials.gov protocol-related documentation.</li>
+      <li><i>nlm_result_definitions.html</i> - Copy of the National Library of Medicine: ClinicalTrials.gov results-related documentation.</li>
+    </ul>
+
+    <h5>Create and populate your local database instance</h5>
+    <p>Enter the following command(s) to create the <i>AACT</i> database on your local machine & populate it with clinical trials data.</p>
+
+    <p>If this is the first time you're creating a local copy of the <i>AACT</i> database, enter these commands from a terminal session:</p>
+
+    <p class='CodeRay'>
+      <pre>
+        <p class='code'>
+          <span class='command-prompt'>-&gt; </span><span class='command-entry'> createdb aact </i></span> <span class='command-prompt'></span>
+          <span class='command-prompt'>-&gt; </span><span class='command-entry'> pg_restore -e -v -O -x -d aact --no-owner <i>~/Downloads/postgres_data.dmp</i></span>
+        </p>
+      </pre>
+    </p>
+
+    <p>If the <i>AACT</i> database already exists on your local machine and you want to refresh it with another version, note that older dump files may not be compatible with your current database.
+    This is because we make changes to schema structure from time to time as well as upgrade PostgreSQL. </p>
+    <p>To refresh your existing database use this command:</p>
+
+    <p class='CodeRay'>
+      <pre>
+        <p class='code'>
+          <span class='command-prompt'>-&gt; </span><span class='command-entry'> pg_restore -e -v -O -x -d aact --clean --no-owner <i>~/Downloads/postgres_data.dmp</i></span>
+        </p>
+      </pre>
+    </p>
+
+    <p class="note">This typically takes 5-15 minutes, depending on the speed of your machine.</p>
+
+    <h5>Verify the database</h5>
+
+    <p>Confirm the download was successful by logging into the database and perusing the data.</p>
+    <p><%= render partial: 'psql_local_login' %></p>
+
+    <p id='createDbViaGui'><%= render 'create_db_via_gui' %></p>
+
+    <p><%= render 'create_db_troubleshooting' %></p>
+
+  </div>
+</section>

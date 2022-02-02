@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   get "/pipe_files_with_sas"  => "pages#pipe_files_with_sas"
   get "/pgadmin"              => "pages#pgadmin"
   get "/points_to_consider"   => "pages#points_to_consider"
-  get "/psql"                 => "pages#psql"
+  get "/postgres"                 => "pages#postgres"
   get "/r"                    => "pages#r"
   get "/sanity_check_report"  => "pages#sanity_check", as: :sanity_check
   get "/sas"                  => "pages#sas"
@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get "/technical_documentation"    => "pages#technical_documentation"
   get "/update_policy"        => "pages#update_policy"
   get "/deploy_code"          => "pages#deploy_code"
+  get "/contactus"            => "pages#contactus"
 
   get "/install_postgres"     => "postgres_documentation#install_postgres"
   get "/credentials"          => "credentials#show"
@@ -57,6 +58,19 @@ Rails.application.routes.draw do
 
   #beta
   get "/beta/migration" => "beta#migration"
+  get "/beta/schema"     => "beta#schema"
+  get "/beta/data_dictionary" => "beta#data_dictionary"
+
+  #archive
+  get "/archive"           => "archive#archive"
+  get "/archive/data_dictionary" => "archive#data_dictionary"
+  get "/archive/schema"    => "archive#schema"
+  get "/archive/download"  => "archive#download"
+  get "/archive/snapshots" => "archive#snapshots"
+  get "/archive/pipe_files" => "archive#pipe_files"
+  get "/archive/covid_19"   => "archive#covid_19"
+  get "/archive/pipe_files_with_r"    => "archive#pipe_files_with_r"
+  get "/archive/pipe_files_with_sas"  => "archive#pipe_files_with_sas"
 
   resources :definitions
   resources :users

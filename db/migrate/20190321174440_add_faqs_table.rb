@@ -1,4 +1,4 @@
-class AddFaqsTable < ActiveRecord::Migration[4.2]
+class AddFaqsTable < ActiveRecord::Migration
 
   def change
 

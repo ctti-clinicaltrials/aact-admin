@@ -1,4 +1,4 @@
-class AddDeviseToUsers < ActiveRecord::Migration[4.2]
+class AddDeviseToUsers < ActiveRecord::Migration
   def change
     create_table "ctgov.users" do |t|
       ## Database authenticatable

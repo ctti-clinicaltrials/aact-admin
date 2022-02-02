@@ -9,8 +9,12 @@ module Util
       FileUtils.mkdir_p RootDir
       FileUtils.mkdir_p "#{RootDir}/static_db_copies/daily"
       FileUtils.mkdir_p "#{RootDir}/static_db_copies/monthly"
+      FileUtils.mkdir_p "#{RootDir}/beta_static_db_copies/daily"
+      FileUtils.mkdir_p "#{RootDir}/beta_static_db_copies/monthly"
       FileUtils.mkdir_p "#{RootDir}/exported_files/daily"
       FileUtils.mkdir_p "#{RootDir}/exported_files/monthly"
+      FileUtils.mkdir_p "#{RootDir}/beta_exported_files/daily"
+      FileUtils.mkdir_p "#{RootDir}/beta_exported_files/monthly"
       FileUtils.mkdir_p "#{RootDir}/db_backups"
       FileUtils.mkdir_p "#{RootDir}/documentation"
       FileUtils.mkdir_p "#{RootDir}/logs"
@@ -20,19 +24,31 @@ module Util
       FileUtils.mkdir_p "#{RootDir}/exported_files/covid-19"
     end
 
-    def static_copies_directory
+    def base_folder(schema = 'ctgov')
+      return"#{Root_dir}/ctgov_archive_" if schema =~ /archive/
+
+      return "#{Root_dir}/beta_" if schema =~ /beta/
+
+      return "#{Root_dir}/"
+    end
+
+    def static_copies_directory(schema = 'ctgov')
+      folder = "#{base_folder(schema)}static_db_copies"
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
-        "#{RootDir}/static_db_copies/monthly"
+        "#{folder}/monthly"
       else
-        "#{RootDir}/static_db_copies/daily"
+        "#{folder}/daily"
       end
     end
 
-    def flat_files_directory
+    def flat_files_directory(schema='')
+      folder = "#{base_folder(schema)}exported_files"
       if created_first_day_of_month? Time.zone.now.strftime('%Y%m%d')
+        return "#{RootDir}/beta_exported_files/monthly" if schema == 'beta'
+
         "#{RootDir}/exported_files/monthly"
       else
-        "#{RootDir}/exported_files/daily"
+        "#{folder}/daily"
       end
     end
 
@@ -68,12 +84,48 @@ module Util
       "#{RootDir}/documentation/aact_schema.png"
     end
 
+    def schema_archive_diagram
+      "#{RootDir}/documentation/aact_archive_schema.png"
+    end
+
     def data_dictionary
       "#{RootDir}/documentation/aact_data_definitions.xlsx"
     end
 
+    def data_beta_dictionary
+      "#{RootDir}/documentation/aact_beta_data_definitions.xlsx"
+    end
+
+    def data_archive_dictionary
+      "#{RootDir}/documentation/aact_archive_data_definitions.xlsx"
+    end
+
     def table_dictionary
-      "#{RootDir}/documentation/aact_tables.xlsx"
+      "#{Rails.root}/public/documentation/aact_tables.xlsx"
+    end
+
+    def table_beta_dictionary
+      "#{RootDir}/documentation/aact_beta_tables.xlsx"
+    end
+
+    def view_dictionary
+      "#{RootDir}/documentation/aact_views.xlsx"
+    end
+
+    def view_beta_dictionary
+      "#{RootDir}/documentation/aact_beta_views.xlsx"
+    end
+
+    def view_archive_dictionary
+      "#{RootDir}/documentation/aact_archive_views.xlsx"
+    end
+
+    def table_archive_dictionary
+      "#{RootDir}/documentation/aact_archive_tables.xlsx"
+    end
+
+    def table_beta_dictionary
+      "#{RootDir}/documentation/aact_beta_tables.xlsx"
     end
 
     def default_mesh_terms
@@ -218,6 +270,8 @@ module Util
       keep = Time.zone.now.strftime('%Y%m')
       run_command_line("find #{Rails.configuration.aact[:static_files_directory]}/static_db_copies/daily -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
       run_command_line("find #{Rails.configuration.aact[:static_files_directory]}/exported_files/daily   -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
+      run_command_line("find #{Rails.configuration.aact[:static_files_directory]}/beta_static_db_copies/daily -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
+      run_command_line("find #{Rails.configuration.aact[:static_files_directory]}/beta_exported_files/daily   -not -name '#{keep}*.zip' -print0 | xargs -0 rm --")
     end
 
     def run_command_line(cmd)

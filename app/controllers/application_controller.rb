@@ -14,4 +14,9 @@ class ApplicationController < ActionController::Base
     @aact_admin_usernames      = AACT::Application::AACT_ADMIN_USERNAMES
   end
 
+  def is_admin?
+      # check if user is an admin
+      # if not admin, then redirect to root path
+      redirect_to root_path unless current_user.admin?
+  end
 end

@@ -1,0 +1,35 @@
+<pre>
+  <p class='code'>
+    <span class='command-prompt'>-&gt; </span><span class='command-entry'> psql aact</span>
+    <span class='command-response'> </span>
+    <span class='command-response'>  psql (9.6.1)</span>
+    <span class='command-response'>  Type "help" for help.</span>
+    <span class='command-response'> </span>
+    <span class='command-prompt'>aact=# _</span>
+  </p>
+</pre>
+
+<p> The <i><span class='command-prompt'>aact=# </span></i>  prompt indicates that you're in a pSQL console session and can enter SQL commands. AACT tables are saved in a schema named <i>ctgov</i>. You need to add this schema to your pSQL search path: </p>
+
+<pre>
+  <p class='code'>
+   <span class='command-prompt'>aact=# </span><span class='command-entry'> alter role your-username in database aact set search_path = ctgov, public;</span>
+    <span class='command-response'>ALTER ROLE </span>
+    <span class='command-prompt'>aact=# _</span>
+  </p>
+</pre>
+
+<p>You will need to logout of psql (with command \q) and then back in for the search path to take effect. Then you can query the database. For example, to find the number of studies in the database:</p>
+
+<pre>
+  <p class='code'>
+   <span class='command-prompt'>aact=# </span><span class='command-entry'> select count(*) from studies;</span>
+    <span class='command-response'> </span>
+    <span class='command-response'>  count</span>
+    <span class='command-response'>  --------</span>
+    <span class='command-response'>  387486</span>
+    <span class='command-response'>  (1 row)</span>
+    <span class='command-response'> </span>
+    <span class='command-prompt'>aact=# _</span>                                                                                                                                             <span class='command-entry'> As of 08/24/21</span>
+  </p>
+</pre>

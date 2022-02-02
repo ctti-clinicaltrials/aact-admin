@@ -23,6 +23,20 @@
 
     <h4>Monthly Archive of Static Copies</h4>
     <p><%= render 'file_archive', :files => @archive_files, type: 'download database' %></p>
+    <br>
+    <hr>
+
+    <div class="pt-3">
+      <h3>Beta AACT Static Copies</h3>
+      <p>ClinicalTrials.gov will be switching over to their Beta API next year. We are storing the data from that API in a schema called "ctgov_beta".
+      The following downloads are created from the "ctgov_beta" schema.</p> 
+
+      <h4>Beta Daily Copies</h4>
+      <p><%= render 'file_archive', :files => @beta_daily_files, type: 'download database' %></p>
+
+      <h4>Beta Monthly Archives</h4>
+      <p><%= render 'file_archive', :files => @beta_archive_files, type: 'download database' %></p>
+    </div>
 
     <div class="step">
       <span class="stepNumber">3</span>
@@ -77,7 +91,7 @@
       </pre>
     </p>
 
-    <p>If the <i>AACT</i> database already exists on your local machine and you want to refresh it with another version, note that older dump files may not be compatible with your current database. 
+    <p>If the <i>AACT</i> database already exists on your local machine and you want to refresh it with another version, note that older dump files may not be compatible with your current database.
     This is because we make changes to schema structure from time to time as well as upgrade PostgreSQL. </p>
     <p>To refresh your existing database use this command:</p>
 
@@ -94,7 +108,7 @@
     <h5>Verify the database</h5>
 
     <p>Confirm the download was successful by logging into the database and perusing the data.</p>
-    <p><%= render partial: 'psql_local_login' %></p>
+    <p><%= render partial: 'postgres_local_login' %></p>
 
     <p id='createDbViaGui'><%= render 'create_db_via_gui' %></p>
 
