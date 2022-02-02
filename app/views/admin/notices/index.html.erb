@@ -27,7 +27,7 @@
           <td><% if !notice.send_emails? %>
                 Not for sending
               <%elsif notice.send_emails? && notice.emails_sent_at?%>
-                <%= notice.created_at.strftime('%B %d, %Y') %>
+                <%= notice.emails_sent_at.strftime('%B %d, %Y') %>
               <%else notice.send_emails? && !notice.emails_sent_at?%> 
                 Not sent yet
               <%end%>
