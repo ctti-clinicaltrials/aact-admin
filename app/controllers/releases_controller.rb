@@ -1,6 +1,7 @@
 class ReleasesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :catch_not_found
   before_action :set_release, only: [:edit, :update, :show, :destroy]
+  before_action :is_admin?
 
   def index
     @releases = Release.all.order(released_on: :desc)
