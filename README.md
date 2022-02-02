@@ -8,7 +8,6 @@ Make sure you've set values for the environmental variables
 - `AACT_DB_SUPER_USERNAME=<superuser_name>`  
 - `AACT_PASSWORD=<superuser_password>`  
 - `AACT_PUBLIC_DATABASE_NAME=aact`  
-- `AACT_PUBLIC_BETA_DATABASE_NAME=aact`  
 - `PUBLIC_DB_USER=<superuser_name>`  
 - `PUBLIC_DB_PASS=<superuser_password>`  
 - `AACT_ALT_PUBLIC_DATABASE_NAME=aact_alt`  
