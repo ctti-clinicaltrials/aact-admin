@@ -1,5 +1,5 @@
 class Admin::NoticesController < ApplicationController
-  before_action :set_notice, only: [:show, :edit, :update, :destroy]
+  before_action :set_notice, only: [:show, :edit, :update, :destroy, :send_notice]
   before_action :is_admin?
   def index
     @notices= Notice.order(created_at: :desc)
@@ -19,14 +19,24 @@ class Admin::NoticesController < ApplicationController
     end
   end
 
+  def send_notice
+    @notice.send_notice
+    if !@notice.emails_sent_at.nil?
+      redirect_to admin_notice_path(@notice), notice: 'Notice was sent.'
+    else
+      redirect_to admin_notice_path(@notice), alert: 'Something went wrong. Please try again.'
+    end
+
+  end
+
   def edit
   end
 
-  def show
+  def show   
   end
 
   def update
-    if @notice.update(notice_params)
+    if @notice.update(notice_params)   
       redirect_to admin_notice_path(@notice), notice: 'Notice was successfully updated.'
     else
       # alert_errors @notice
@@ -36,7 +46,7 @@ class Admin::NoticesController < ApplicationController
 
   def destroy
     @notice.destroy
-    redirect_to admin_notices_url, notice: 'Notice destroyed.'
+    redirect_to admin_notices_url, alert: 'Notice was destroyed.'
   end
 
   private
