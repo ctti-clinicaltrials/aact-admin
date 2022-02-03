@@ -76,6 +76,7 @@ Rails.application.routes.draw do
   resources :users
   resources :shared_data, param: :schema_name
   resources :release_notes
+  resources :releases
   resources :datasets
   resources :attachments
   resources :use_cases

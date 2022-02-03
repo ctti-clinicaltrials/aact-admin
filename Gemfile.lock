@@ -115,6 +115,7 @@ GEM
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
+    flatpickr (4.6.6.0)
     flutie (2.0.0)
     font-awesome-rails (4.7.0.3)
       railties (>= 3.2, < 5.2)
@@ -364,6 +365,7 @@ DEPENDENCIES
   factory_bot_rails
   faraday
   ffi (>= 1.9.24)
+  flatpickr
   flutie
   font-awesome-rails
   formulaic
