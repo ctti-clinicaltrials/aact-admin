@@ -57,13 +57,13 @@ form {
   }
   input, textarea, select {
     display: block;
-    width: 100%;
     padding: .8rem;
     font-family: $font-sans;
     font-size: 1.2rem;
     font-weight: lighter;
     color: $secondary;
     outline: none;
+    width: 100%;
     border-radius: $border-radius/2;
 
     &:active, &:focus {
