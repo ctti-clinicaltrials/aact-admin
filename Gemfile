@@ -57,6 +57,10 @@ gem 'devise-encryptable'
 gem 'capistrano', '~> 3.8'
 gem 'capistrano-rails', '~> 1.2'
 
+# datetimepicker with no dependencies. This gem packages flatpickr's assets
+# for drop-in use in Rails applications.
+gem 'flatpickr'
+
 group :development do
 #  gem "quiet_assets"
 #  gem "spring"

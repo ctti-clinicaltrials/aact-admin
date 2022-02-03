@@ -42,6 +42,11 @@ form {
     border-bottom: none;
   }
 
+  .inline-checkbox > *  {
+    display: inline;
+    width: 20%;   
+  }
+
   span {
     padding-left: 10px;
     margin-bottom: 20px;
@@ -49,7 +54,6 @@ form {
   }
   input, textarea, select {
     display: block;
-    width: 100%;
     padding: .8rem;
     font-family: $font-sans;
     font-size: 1.2rem;

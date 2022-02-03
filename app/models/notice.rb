@@ -12,8 +12,6 @@ class Notice < ActiveRecord::Base
   scope :invisible, -> { where(visible: false) }
   scope :visible, -> { where(visible: true)}
 
-  # after_create :send_notice
-
   def send_notice
     users = User.all.order(email: :asc)
     remaining = users.count

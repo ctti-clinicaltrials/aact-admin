@@ -29,7 +29,6 @@
    padding-bottom: 40px;
 h1 { font-weight: 500; }
 h3 { font-weight: 450; }
-a  { padding-left: 0.0rem; }
 
 }
 
@@ -89,6 +88,26 @@ table.gridDisplay, th.gridDisplay, tr.gridDisplay, td.gridDisplay {
   border-color: $primary;
 }
 
+table.notice-header > tr, th, td {
+  border-style: none !important;
+}
+
+.notice-header th {
+  text-align: right;
+  font-size: 1rem;
+  color: dimgrey;
+  padding-right: 20px;
+}
+.notice-header td {
+  font-size: 1rem;
+  color: dimgrey;
+}
+
+.notice-delete {
+  border-radius: 20px;
+  background-color: #cf2b1f;
+}
+
 ul.noBullets {
   list-style-type: none;
 }
@@ -114,6 +133,19 @@ body {
   // background-attachment: fixed;
   @include bg-size(30px 20px);
   position: relative !important;
+}
+
+.flashes{
+  font-size: 18px;
+  font-family: $font-sans ;
+  color: green;
+  margin: 1rem;  
+  position: relative; 
+  text-align: center;
+}
+
+.flash-alert {
+  color: red !important; 
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -306,4 +338,3 @@ div.step {
     font-family: $font-sans;
   }
 }
-

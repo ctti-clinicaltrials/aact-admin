@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :notices 
+      get "/notices/:id/send_notice" => "notices#send_notice"    
+  end
+
   # Adding these routes connects those requests to the appropriate actions of the errors controller.
   # Using match ... :via => :all allows the error pages to be displayed for any type of request (GET, POST, PUT, etc.)
   match "/404", to: "errors#not_found", via: :all
@@ -16,7 +21,7 @@ Rails.application.routes.draw do
   get "/data_dictionary"      => "dictionary#show"
   get "/activities"           => "database_activity#show"
   get 'dictionary/show'
-
+  # get "admin/notices/:id/send_notice" => "admin/notices#send_notice"
   get "/connect"              => "pages#connect"
   get "/download"             => "pages#download"
   get "/learn_more"           => "pages#learn_more"
@@ -76,6 +81,7 @@ Rails.application.routes.draw do
   resources :users
   resources :shared_data, param: :schema_name
   resources :release_notes
+  resources :releases
   resources :datasets
   resources :attachments
   resources :use_cases

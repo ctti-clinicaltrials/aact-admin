@@ -1,0 +1,43 @@
+<%# <p id="notice"><%= notice %></p> %>
+
+<div class="container">
+  <div class="pb-5" >
+    <h1>Notices</h1>
+    <%= link_to 'New Notice', new_admin_notice_path, :class => "btn btn-primary btn-sm" %>
+  </div>
+  <table class="table table-sm table-striped" style="max-width: 100rem;">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Created at</th>
+        <th>Visible</th>
+        <th>Sent</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @notices.each do |notice| %>
+        <tr style= "vertical-align: middle;">
+          <td><%= link_to notice.title, admin_notice_path(notice) %> </td>
+          <td><%= notice.created_at.strftime('%B %d, %Y') %></td>
+          <td><% if notice.visible? %>
+              <i class="fa fa-check"></i>
+              <%end%>
+          </td>
+          <td><% if !notice.send_emails? %>
+                Not for sending
+              <%elsif notice.send_emails? && notice.emails_sent_at?%>
+                <%= notice.emails_sent_at.strftime('%B %d, %Y') %>
+              <%else notice.send_emails? && !notice.emails_sent_at?%> 
+                Not sent yet
+              <%end%>
+          </td>
+          <td><%= link_to 'Edit', edit_admin_notice_path(notice), class: "btn btn-primary btn-sm mb-2" %></td>
+          <!-- data confirmation not working, need to investigate -->
+          <td><%= button_to'Delete', admin_notice_path(notice), method: :delete, class: "btn btn-danger btn-sm mb-2" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

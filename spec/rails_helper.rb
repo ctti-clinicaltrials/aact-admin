@@ -28,6 +28,9 @@ RSpec.configure do |config|
   config.include FormHelpers, :type => :feature
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
+  # Added these 2 lines so that we can use the sign_in method in request specs
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :system
 
   config.before(:each) do |example|
     # ensure app user logged into db connections
