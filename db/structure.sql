@@ -473,22 +473,13 @@ ALTER SEQUENCE ctgov.publications_id_seq OWNED BY ctgov.publications.id;
 --
 
 CREATE TABLE ctgov.releases (
-<<<<<<< HEAD
     id bigint NOT NULL,
-=======
-    id integer NOT NULL,
->>>>>>> dev
     title character varying,
     subtitle character varying,
     released_on date,
     body text,
-<<<<<<< HEAD
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
-=======
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
->>>>>>> dev
 );
 
 
@@ -497,10 +488,6 @@ CREATE TABLE ctgov.releases (
 --
 
 CREATE SEQUENCE ctgov.releases_id_seq
-<<<<<<< HEAD
-=======
-    AS integer
->>>>>>> dev
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -986,17 +973,6 @@ ALTER TABLE ONLY ctgov.releases
 
 
 --
-<<<<<<< HEAD
-=======
--- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.schema_migrations
-    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
-
-
---
->>>>>>> dev
 -- Name: use_case_attachments use_case_attachments_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -1140,6 +1116,13 @@ CREATE INDEX index_projects_on_start_date ON ctgov.projects USING btree (start_d
 --
 
 CREATE INDEX index_projects_on_year ON ctgov.projects USING btree (year);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING btree (version);
 
 
 --
