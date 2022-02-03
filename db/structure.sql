@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 13.3
--- Dumped by pg_dump version 13.3
+-- Dumped from database version 14.1
+-- Dumped by pg_dump version 14.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -311,15 +311,15 @@ ALTER SEQUENCE ctgov.health_checks_id_seq OWNED BY ctgov.health_checks.id;
 --
 
 CREATE TABLE ctgov.notices (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     body character varying,
     user_id integer,
     title character varying,
     send_emails boolean,
     emails_sent_at timestamp without time zone,
     visible boolean,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -328,7 +328,6 @@ CREATE TABLE ctgov.notices (
 --
 
 CREATE SEQUENCE ctgov.notices_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -474,13 +473,13 @@ ALTER SEQUENCE ctgov.publications_id_seq OWNED BY ctgov.publications.id;
 --
 
 CREATE TABLE ctgov.releases (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     title character varying,
     subtitle character varying,
     released_on date,
     body text,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -489,7 +488,6 @@ CREATE TABLE ctgov.releases (
 --
 
 CREATE SEQUENCE ctgov.releases_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -975,14 +973,6 @@ ALTER TABLE ONLY ctgov.releases
 
 
 --
--- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.schema_migrations
-    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
-
-
---
 -- Name: use_case_attachments use_case_attachments_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -1126,6 +1116,13 @@ CREATE INDEX index_projects_on_start_date ON ctgov.projects USING btree (start_d
 --
 
 CREATE INDEX index_projects_on_year ON ctgov.projects USING btree (year);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING btree (version);
 
 
 --

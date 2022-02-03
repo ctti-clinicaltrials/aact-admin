@@ -42,6 +42,11 @@ form {
     border-bottom: none;
   }
 
+  .inline-checkbox > *  {
+    display: inline;
+    width: 20%;   
+  }
+
   span {
     padding-left: 10px;
     margin-bottom: 20px;

@@ -1,0 +1,39 @@
+<%= form_for([:admin, @notice]) do |f| %>
+  <% if @notice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@notice.errors.count, "error") %> prohibited this notice from being saved:</h2>
+      <ul>
+      <% @notice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="container">
+
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+
+    <div class="field mb-4">
+      <%= f.label :body %>
+      <%= f.text_area :body, rows: 6 %>
+    </div>
+     
+     <div class= "inline-checkbox">
+      <%= f.check_box :visible, {}, "true", "false" %>
+      <%= f.label :visible %>
+    </div>
+
+    <div class= "inline-checkbox">
+      <%= f.check_box :send_emails, {}, "true", "false" %>
+      <%= f.label :send_emails %>    
+    </div>
+    <div>
+      <%= f.submit "Save" , class: "old-btn" %>
+    </div>
+    <%= link_to 'Back', :back%>
+  </div>
+<% end %>
+
