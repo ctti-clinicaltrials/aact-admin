@@ -1,3 +1,11 @@
+/*
+*= require flatpickr
+*/
+
+/* Optionally, you can include any of the flatpickr themes by adding in their styles, like so:
+*= require flatpickr/themes/dark
+*/
+
 @charset "utf-8";
 
 @import "normalize-rails";
@@ -20,4 +28,3 @@
 @import "release_notes/*";
 
 @import "users/*";
-

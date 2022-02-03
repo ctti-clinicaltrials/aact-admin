@@ -1,6 +1,12 @@
 <h2 id="background">Release Notes</h2>
 
-<hr/> <%= render 'release_notes/v5.0.0_admin' %>
+<% @releases.each do |release| %>
+      <hr/>
+      <h3><%= release.title %> <i> (<%= release.released_on.strftime('%B %d, %Y') %>) </i></h3>
+      <h5><%= release.subtitle %></h5>
+      <p><%= release.body %></p>
+<% end %>
+
 <hr/> <%= render 'release_notes/v6.0.0' %>
 <hr/> <%= render 'release_notes/v5.0.2.1' %>
 <hr/> <%= render 'release_notes/v5.0.1' %>
