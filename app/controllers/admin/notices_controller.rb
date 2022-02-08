@@ -1,4 +1,6 @@
 class Admin::NoticesController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :catch_not_found
+
   before_action :set_notice, only: [:show, :edit, :update, :destroy, :send_notice]
   before_action :is_admin?
   def index
@@ -56,6 +58,12 @@ class Admin::NoticesController < ApplicationController
 
   def notice_params
     params.require(:notice).permit(:body, :title, :user_id, :visible, :send_emails)
+  end
+
+  def catch_not_found(e)
+    Rails.logger.debug("We had a not found exception.")
+    flash.alert = e.to_s
+    redirect_to admin_notices_path
   end
 
 end
