@@ -48,7 +48,7 @@ class Admin::NoticesController < ApplicationController
 
   def destroy
     @notice.destroy
-    redirect_to admin_notices_url, alert: 'Notice was destroyed.'
+    redirect_to admin_notices_path, alert: 'Notice was destroyed.'
   end
 
   private
