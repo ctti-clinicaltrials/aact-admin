@@ -60,9 +60,9 @@ RSpec.describe "Notices", type: :request do
     end
 
     describe "POST /admin/notice with invalid data" do
-      it "does not save a new Release or redirect if invalid title" do
+      it "does not save a new Notice and redirects" do
         params = { notice: {title: ' ', body: 'Notice test body', send_emails: false} }
-        expect { post admin_notices_path, params }.to_not change(Release, :count)
+        expect { post admin_notices_path, params }.to_not change(Notice, :count)
         expect(response).to render_template(:new)
       end
     end
@@ -188,57 +188,56 @@ RSpec.describe "Notices", type: :request do
     end  
   end
 
-  # context "If User is not logged in" do
-  #   describe "GET /releases" do
-  #     it "redirects to the home page if user is not logged in" do
-  #       get releases_path
-  #       expect(response).to redirect_to root_path
-  #     end
-  #   end
+  context "If User is not logged in" do
+    describe "GET /admin/notices" do
+      it "redirects to the home page if user is not logged in" do
+        get admin_notices_path
+        expect(response).to redirect_to root_path
+      end
+    end
 
-  #   describe "GET /release" do
-  #     it "redirects to the home page if user is not logged in" do
-  #       get release_path(id: 1)
-  #       expect(response).to redirect_to root_path
-  #     end
-  #   end
+    describe "GET /admin/notice/" do
+      it "redirects to the home page if user is not logged in" do
+        get admin_notice_path(id: 6)
+        expect(response).to redirect_to root_path
+      end
+    end
 
-  #   describe "GET /releases/new" do
-  #     it "redirects to the home page if user is not logged in" do
-  #       get new_release_path
-  #       expect(response).to redirect_to root_path
-  #     end
-  #   end
+    describe "GET /admin/notice/new" do
+      it "redirects to the home page if user is not logged in" do
+        get "/admin/notices/new"
+        expect(response).to redirect_to root_path  
+      end
+    end
 
-  #   describe "GET /releases/:id/edit" do
-  #     it "redirects to the home page if user is not logged in" do
-  #       get edit_release_path(id: 2)
-  #       expect(response).to redirect_to root_path
-  #     end
-  #   end
+    # -------------
+    describe "GET /admin/notice/:id/edit" do
+      it "redirects to the home page if user is not logged in" do
+        get edit_admin_notice_path(id: 5)
+        expect(response).to redirect_to root_path     
+      end
+    end
 
-  #   describe "POST /releases/ with valid data" do
-  #     it "redirects to the home page if user is not logged in" do
-  #       release_attributes = { release: {title: 'Code the Dream', subtitle: 'AACT', released_on: Date.today, body: 'Testing valid data.'} }
-  #       expect { post releases_path, release_attributes }.to_not change(Release, :count)
-  #       expect(response).to redirect_to root_path
-  #     end
-  #   end
+    describe "POST /admin/notice with valid data" do
+      it "redirects to the home page if user is not logged in" do
+        params = { notice: {title: 'Test', body: 'Notice test body', send_emails: false} }
+        expect { post admin_notices_path, params }.to_not change(Notice, :count)
+        expect(response).to redirect_to root_path     
+      end
+    end
 
-  #   describe "PUT /release/ with valid data" do
-  #     it "redirects to the home page if user is not logged in" do
-  #       put release_path(id: 3), release: {released_on: Date.today}
-  #       expect(response).to redirect_to root_path
-  #     end
-  #   end
+    describe "PUT /admin/notice/ with valid data" do
+      it "redirects to the home page if user is not logged in" do
+        put admin_notice_path(id: 3), notice: {send_emails: true}
+        expect(response).to redirect_to root_path
+      end
+    end
 
-  #   describe "DELETE /release " do
-  #     it "redirects to the home page if user is not logged in" do
-  #       delete release_path(id: 18)
-  #       expect(response).to redirect_to root_path
-  #     end
-  #   end
-  # end
-
-
+    describe "DELETE /release " do
+      it "redirects to the home page if user is not logged in" do
+        delete admin_notice_path(id: 18)
+        expect(response).to redirect_to root_path
+      end
+    end
+  end
 end
