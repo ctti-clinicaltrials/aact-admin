@@ -7,7 +7,7 @@ FactoryBot.define do
   end
 
   factory :notice do
-    body { "MyString" }
+    body { "Test notice body" }
     user_id { 1 }
     title { "MyString" }
     send_emails { false }
