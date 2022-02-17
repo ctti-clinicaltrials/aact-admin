@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'summary/aact'
+
   namespace :admin do
     resources :notices 
       get "/notices/:id/send_notice" => "notices#send_notice"    
