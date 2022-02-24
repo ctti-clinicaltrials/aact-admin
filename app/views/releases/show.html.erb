@@ -1,6 +1,7 @@
 <div class="modal-body">
   <h1>Release</h1>
   <hr/>
+
   <div class="container-fluid">
     <h3><%= @release.title %> <i> (<%= @release.released_on.strftime('%B %d, %Y') %>) </i></h3>
   </div>
@@ -10,11 +11,12 @@
   </div>
 
   <div class="container-fluid">
-    <p><%= @release.body %></p>
+    <p><%= markdown(@release.body) %></p>
   </div>
 
   <div class="pb-5">
   </div>
+
   <%= link_to 'Back', releases_path, :class => "btn btn-primary btn-sm" %>
   <div class="pb-3">
   </div>

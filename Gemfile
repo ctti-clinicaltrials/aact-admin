@@ -61,6 +61,9 @@ gem 'capistrano-rails', '~> 1.2'
 # for drop-in use in Rails applications.
 gem 'flatpickr'
 
+# Redcarpet is a Ruby library for Markdown processing
+gem 'redcarpet'
+
 group :development do
 #  gem "quiet_assets"
 #  gem "spring"
