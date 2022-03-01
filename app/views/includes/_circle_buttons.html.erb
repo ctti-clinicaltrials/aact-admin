@@ -32,13 +32,15 @@
         <span class='circleButtons'>Shared Data</span>
       </a>
     </div>
-    <% if  (!current_user.nil? and @aact_admin_usernames.split(',').include? current_user.username) %>
-      <a href="/users">
-        <div class="iconWrap">
-          <%= fa_icon('address-card') %>
-        </div>
-        <span class='circleButtons'>Users</span>
-      </a>
+    <% if (!current_user.nil? and current_user.admin?) %>
+      <div class="col-sm">
+        <a href="/users">
+          <div class="iconWrap">
+            <%= fa_icon('address-card') %>
+          </div>
+          <span class='circleButtons'>Users</span>
+        </a>
+      </div>
     <% end %>
   </div>
 </div>
