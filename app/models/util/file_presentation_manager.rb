@@ -65,7 +65,7 @@ module Util
     end
 
     def schema_diagram
-      "/documentation/aact_schema.png"
+      "/static/documentation/aact_schema.png"
     end
 
     def schema_archive_diagram

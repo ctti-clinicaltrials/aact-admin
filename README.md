@@ -10,6 +10,7 @@ Make sure you've set values for the environmental variables
 - `AACT_PUBLIC_DATABASE_NAME=aact`  
 - `PUBLIC_DB_USER=<superuser_name>`  
 - `PUBLIC_DB_PASS=<superuser_password>`  
+- `PUBLIC_DB_HOST=<public_host>` could be the aact site `aact-db.ctti-clinicaltrials.org`
 - `AACT_ALT_PUBLIC_DATABASE_NAME=aact_alt`  
 These variables should have been set when you setup AACT Core. If any are missing you should add them to where you store your variables (for instance ".bash_profile" or ".zshrc").  
 

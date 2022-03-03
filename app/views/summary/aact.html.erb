@@ -1,0 +1,29 @@
+
+<div class="container">
+
+  <div class="pb-3">
+    <h1>Studies Database Summary</h1>
+  </div>
+
+  <table class="table table-sm table-striped" style="max-width: 100rem;">
+
+    <thead>
+      <tr>
+        <th>Date Last Updated</th>
+        <th>Number of Studies Updated</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @updates.each do |update| %>
+        <tr>
+          <td><%= update['last_updated'] %></td>
+          <td><%= update['number_of_studies'] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+  
+</div>
