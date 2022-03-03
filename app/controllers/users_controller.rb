@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, only: [:index, :show, :edit, :destroy]
+  before_action :is_admin?, only: [:index, :show, :edit, :destroy]
 
   def index
     @user_count = User.all.size
@@ -33,15 +33,4 @@ class UsersController < ApplicationController
       params.fetch(:user, {})
       params.require(:user).permit(:utf8, :authenticity_token, :commit, :_method, :first_name, :last_name, :email, :username)
     end
-
-    def authenticate_user
-      render plain: "Sorry - This page is intentionally inaccessible." if !current_user_is_an_admin?
-    end
-
-    def current_user_is_an_admin?
-      return false if !current_user
-      col=AACT::Application::AACT_ADMIN_USERNAMES.split(',')
-      col.include? current_user.username
-    end
 end
-
