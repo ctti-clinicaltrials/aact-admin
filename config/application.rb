@@ -75,5 +75,8 @@ module AACT
     #  LD_LIBRARY_PATH
     #  PATH
 
+    # aact-core database connection
+    AACT_CORE_DATABASE_URL  = ENV['AACT_CORE_DATABASE_URL']
+
   end
 end
