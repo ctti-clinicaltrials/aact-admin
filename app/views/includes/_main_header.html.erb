@@ -1,9 +1,16 @@
 <div id='navbar-top' class="navbar navbar-top">
 
-  <% if user_signed_in? %>
+  <% if user_signed_in? and current_user.admin? %>
 
       <p class='user-logged-in'>logged in as <%= current_user.full_name %></p>
     <p class='user-info'>
+    <%= link_to "Edit Profile", edit_user_registration_path %>&nbsp;&nbsp;
+    <%= link_to "Sign out", edit_user_registration_path('sign-out'), :id => current_user %>
+    <%= link_to "Edit Releases", edit_release_path('Edit'), :id => releases_path %>
+    <%= link_to "Summary", summary_aact_path %>
+    <% elsif user_signed_in? %>
+      <p class='user-logged-in'>logged in as <%= current_user.full_name %></p>
+    <p class='user-info'>    
         <%= link_to "Edit Profile", edit_user_registration_path %>&nbsp;&nbsp;
         <%= link_to "Sign out", edit_user_registration_path('sign-out'), :id => current_user %>
     </p>
@@ -13,6 +20,11 @@
         <%= link_to "Sign in", new_user_session_path, class: 'btn' %>
     </p>
   <% end %>
+
+
+
+
+
 </div>
 
 <nav class="navbar navbar-expand-lg">
