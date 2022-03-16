@@ -25,7 +25,16 @@
     <p><%= render 'file_archive', :files => @archive_files, type: 'download database' %></p>
     <br>
     <hr>
-    <a href='/archive/snapshots'> Go to Archived Snapshots</a>
+    <div>
+    <p>On Novermber 15, 2021 our database structured changed slightly. 
+    Monthly files generated after November 15, 2021 are not backwards compatible.
+    They can still be loaded into an SQL server or used.
+    </p>
+    <p>
+    <a href='/archive/snapshots'>Click here to see a list of these archived files</a>
+    </p>
+    </div>
+    <hr>
     
     <div class="step">
       <span class="stepNumber">3</span>
