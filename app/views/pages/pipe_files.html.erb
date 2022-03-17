@@ -22,6 +22,17 @@
   <p><%= render 'file_archive', :files => @archive_files, type: 'download database' %></p>
   <br>
   <hr>
+  <div>
+  <p>On Novermber 15, 2021 our database structured changed slightly. 
+  Monthly files generated after November 15, 2021 are not backwards compatible.
+  They can still be loaded into an SQL server or used.
+  </p>
+  <p>
+  <a href='/archive/pipe_files'>Click here to see a list of these archived files</a>
+  </p>
+  </div>
+  <hr>
+  
 
    <div class="step">
     <span class="stepNumber">2</span>
