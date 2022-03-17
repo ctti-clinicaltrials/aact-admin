@@ -89,18 +89,14 @@ class ArchiveController < ApplicationController
 
   def set_daily_monthly_snapshot_files
     fpm = Util::FilePresentationManager.new
-    @daily_files = fpm.daily_snapshot_files
-    @archive_files = fpm.monthly_snapshot_files
-    @beta_daily_files = fpm.daily_snapshot_files('archive')
-    @beta_archive_files = fpm.monthly_snapshot_files('archive')
+    @daily_files = fpm.daily_snapshot_files('archive')
+    @archive_files = fpm.daily_snapshot_files('archive')
   end
 
   def set_daily_monthly_pipe_files
     fpm=Util::FilePresentationManager.new
-    @daily_files=fpm.daily_flat_files
-    @archive_files=fpm.monthly_flat_files
-    @beta_daily_files=fpm.daily_flat_files('archive')
-    @beta_archive_files=fpm.monthly_flat_files('archive')
+    @daily_files=fpm.daily_flat_files('archive')
+    @archive_files=fpm.monthly_flat_files('archive')
   end
 
   def set_covid_pipe_files
