@@ -12,7 +12,7 @@ header {
     border-width: 1px;
     margin: 0px 0px;
     padding: 0rem .2rem 0rem 1rem;
-    font-size: 1.2rem;
+    font-size: large;
     color: black;
     text-align: right;
 }
@@ -52,6 +52,14 @@ p.user-info {
   nav {
     @include display-flex;
     text-align: center;
+  }
+
+  .navbar {
+    position: relative !important;
+    display: flex;
+    flex-wrap: wrap !important;
+    align-items: center;
+    justify-content: space-between !important;
   }
 
   div.navContainer {
@@ -100,7 +108,7 @@ p.user-info {
   }
 
   a.navItem {
-    font-size: 1.2rem;
+    font-size: large;
     padding: .4rem;
     text-transform: uppercase;
     margin-left: $gutter_width;
@@ -108,7 +116,7 @@ p.user-info {
 
     i {
       margin-right: 4px;
-      font-size: 1rem;
+      font-size: large;
     }
   }
 
