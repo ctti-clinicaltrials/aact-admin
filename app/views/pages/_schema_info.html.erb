@@ -1,6 +1,6 @@
 <main>
 <section class="namingConventions">
-  <h3>What were the primary considerations when designing the database?</h3>
+  <h2>What were the primary considerations when designing the database?</h2>
 
    <p>When designing the database, we tried to balance the following objectives:</p>
    <ul class='regularDisplay'>
@@ -37,7 +37,7 @@
 
    <p>While we tried to rigorously adhere to these conventions, reality occasionally failed to cooperate, so compromises were made and exceptions to these rules exist. For example, to limit duplicate verbiage, we preferred the table name <i>References</i> over <i>Study_References</i>, however the word 'References' is a PostgreSQL reserved word and cannot be used as a table name, so <i>Study_References</i> it is.</p>
 
-   <h3 id='arms_groups'>How are arms/groups identified?</h3>
+   <h2 id='arms_groups'>How are arms/groups identified?</h2>
    <p>Considerable thought went into how to present arm and group information to facilitate analysis by simplifying naming and data structures while retaining data fidelity.
 
    NLM defines groups/arms this way:</p>
@@ -145,7 +145,7 @@
       Notice that the integer in the code provided by ClinicalTrials.gov (ctgov_group_code) is often the same for one group across the different result types, but this is not always the case. In the example above, BG000, EG000 & FG000 all represent the 'experimental group', so you're tempted to think that '000' equates to to the 'experimental group' for this study, however for Outcomes, OG000 represents the control group. In short, the number in the ctgov_group_code often links the same group across all result types in a study, but for about 25% of studies, this is not the case, so it can't be counted on to indicate this relationship.
      </p>
 
-   <h3>Information about dates</h3>
+   <h2>Information about dates</h2>
    <p>
    When clinicaltrials.gov started tracking studies, it only tracked the month & year for some fields and not the day for several date values including start date, completion date, primary completion date and verification date. Because day is not provided for some studies, AACT stores these dates in the studies table as character type rather than date type values. Character type dates are of limited utility in an analytic database because they can’t be used to perform standard date calculations such as determining study duration or the average number of months for someone to report results or identify studies registered before/after a certain date.
    </p>
@@ -162,7 +162,7 @@
   </p>
 
     <div id='pending_results'>
-      <h3>Information about dates related to 'pending results'</h3>
+      <h2>Information about dates related to 'pending results'</h2>
       <p>On May 9, 2018, the NLM added a new section of date information to the ClinicalTrials.gov API. The section is labeled "pendng_results" and serves to provide information about result submission activity while the results await quality control review.</p>
 
       <p>NLM provides result submission date(s) for studies that have results awaiting quality control (QC) review. The results themselves are not publicly posted until the review is complete. The dates for three types of events related to results submission are reported in the Pending_Results table:</p>
@@ -184,7 +184,7 @@
     </div>
 
     <div id='trial_sites'>
-      <h3>Information about trial sites (Facilities and Countries)</h3>
+      <h2>Information about trial sites (Facilities and Countries)</h2>
       <p> Information about organizations where the study is/was conducted (aka. facilities, trial sites) is stored in the <i>Facilities</i> table. This represents the facility information that was included in the study record on the date that information was downloaded from ClinicalTrials.gov.</p>
 
       <p>The name and email/phone for the contact person (and optionally, a backup contact) at a facility is available if the facility status (<i>Facilities.status</i>) is ‘<i>Recruiting</i>’ or ‘<i>Not yet recruiting</i>’, and if the data provider has provided such information. This information is stored in AACT in the <i>Facility_Contacts</i> table, which is a ‘child’ of the <i>Facilities</i> table. Facility-level contact information is not required if a central contact has been provided. Contact information is removed from the publicly available content at ClinicalTrials.gov (and therefore from AACT) when the facility is no longer recruiting, or when the overall study status (<i>Studies.overall_status</i>) changes to indicate that the study has completed recruitment.</p>
@@ -199,7 +199,7 @@
     </div>
 
     <div id='delayed_results'>
-      <h3>“Delayed Results” data elements are available in AACT</h3>
+      <h2>“Delayed Results” data elements are available in AACT</h2>
       <p>A responsible party of an applicable clinical trial may delay the deadline for submitting results information to ClinicalTrials.gov for up to two additional years if one of the following two certification conditions applies to the trial:</p>
 
       <ul class='regularDisplay'>
