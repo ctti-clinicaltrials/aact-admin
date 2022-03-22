@@ -125,10 +125,6 @@ ul.indent {
     display: none;
 }
 
-div.wrap {
-  position: relative;
-}
-
 body {
   height: 100%;
   padding-left: 100px;
@@ -285,9 +281,6 @@ pre {
   position: relative;
 }
 
-div.wrap {
-  @extend %container;
-}
 
 a.card {
   background-color: rgb(249,249,249);
