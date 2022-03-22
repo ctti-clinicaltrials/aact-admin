@@ -69,10 +69,15 @@ table.regularDisplay {
    float: right;
 }
 
-html {
-    height: 100%;
-    padding-left: 100px;
-    padding-right: 100px;
+// html {
+    // height: 100%;
+    // padding-left: 100px;
+    // padding-right: 100px;
+// }
+
+.footer {
+  padding-left: 0 !important;
+  width: 100% !important;
 }
 
 table.regularDisplay, ul.regularDisplay, ol.regularDisplay {
@@ -125,6 +130,9 @@ div.wrap {
 }
 
 body {
+  height: 100%;
+  padding-left: 100px;
+  padding-right: 100px;
   background: transparent !important;
   font-size: 0px !important;
   min-height: 100%  !important;
