@@ -3,11 +3,11 @@
 
 <section class="pointsToConsider">
 
-    <h3>What is AACT?</h3>
+    <h2>What is AACT?</h2>
 
     <p class='ptc'>AACT is the database for Aggregate Analysis of <a target='_blank' href="https://clinicaltrials.gov"  onClick="ga('send','event','external link','guide page: clinicaltrials.gov')">ClinicalTrials.gov</a>. This version of AACT is a PostgreSQL relational database containing information about clinical studies that have been been registered at ClinicalTrials.gov. AACT includes all of the protocol and results data elements for studies that are publicly available at ClinicalTrials.gov. Content is downloaded daily from ClinicalTrials.gov and loaded into AACT.</p>
 
-    <h3>What population of studies is represented in AACT?</h3>
+    <h2>What population of studies is represented in AACT?</h2>
 
     <p class='ptc'>All studies registered and publicly available in ClinicalTrials.gov are included in AACT. The ClinicalTrials.gov was released for the registration of studies on <b>February 29, 2000</b>. The registry accepts interventional studies in which participants are assigned according to a research protocol to receive specific interventions, as well as observational studies. It also includes Expanded Access records which describe the procedure for obtaining an experimental drug or device for patients who are not adequately treated by existing therapy and who are unable to participate in a controlled clinical study.</p>
 
@@ -132,35 +132,35 @@
       <li>Although studies of FDA regulated devices are likely to be registered, the registration records for studies of devices not yet approved or cleared may not be publicly posted until after the device is cleared or approved.</li>
     </ul>
 
-     <h3>Is the information in AACT up-to-date?</h3>
+     <h2>Is the information in AACT up-to-date?</h2>
 
      <p class='ptc'>The AACT database is updated every night at midnight, so the information in AACT is one day behind that which appears in ClinicalTrials.gov. The nightly update process uses the ClinicalTrials.gov RSS feed to identify studies that were added or changed in ClinicalTrials.gov the previous day, and then uses the ClinicalTrials.gov API to retrieve current data for just these studies. Only new/changed studies are created/modified. This process takes about one and a half hours, depending on how many studies were added/changed in ClinicalTrials.gov the previous day.</p>
      <p class='ptc'>Occassionally, studies must be removed from ClinicalTrials.gov, such as those that were accidentally entered twice. The nightly update process does not detect removed studies so once a month, the AACT database is dropped and completely refreshed.</p>
      <p class='ptc'>Both the nightly (incremental) and monthly (full) updates are performed on a 'background' database so that the publicly accessible database remains accessible while updates take place. When the process completes, the updated version is copied to the public database. This 'copy step' takes about 5 minutes, during which time the database is inaccessible. Since the nightly load starts at midnight and takes about one and a half hours, this 5-minute downtime usually occurs sometime between 1am & 2am.</p>
      <p class='ptc'>Please refer to the posted <a target='_blank' href='/update_policy'>update schedule</a> for more details.</p>
 
-     <h3>How are unique studies identified in AACT?</h3>
+     <h2>How are unique studies identified in AACT?</h2>
 
      <p class='ptc'>Studies registered at ClinicalTrials.gov are identified by a unique identifier, the NCT_ID.  Because of the quality assurance measures applied by ClinicalTrials.gov staff on registration entries, we can be reasonably certain that each study (i.e., NCT_ID) entered in ClinialTrials.gov refers to a unique clinical study, however a small number of <a target='_blank' href='http://www.ncbi.nlm.nih.gov/pubmed/17507347'>duplicate records may exist in the database.</a></p>
 
-    <h3>How does content in AACT compare to what is in ClinicalTrials.gov?</h3>
+    <h2>How does content in AACT compare to what is in ClinicalTrials.gov?</h2>
 
     <p class='ptc'>AACT includes all protocol and results data for every study that is publicly available at ClinicalTrials.gov. All publicly available content from the current record for a study is included in AACT as it appears in ClinicalTrials.gov. The AACT database preserves the content from the source XML files downloaded from the ClinicalTrials.gov API; content is not cleaned or manipulated in any way. However, to help facilitate queries using AACT, several additional variables derived from the raw content are included in AACT's Calculated_Values table.</p>
     <p class='ptc'>The history of changes to a study record (available at the ClinicalTrials.gov archive site) is not included in the current version of AACT.</p>
 
-    <h3>What types of questions can be investigated using ClinicalTrials.gov data?</h3>
+    <h2>What types of questions can be investigated using ClinicalTrials.gov data?</h2>
 
     <p class='ptc'>The AACT database contains both ‘study protocol’ and ‘results data’ elements. The protocol (or registration) records describe the study characteristics including sponsor, disease condition, type of intervention, participant eligibility, anticipated enrollment, study design, locations, and outcome measures. Summary results data elements including participant flow, baseline characteristics, outcome results, and frequencies of serious and other adverse events are included in AACT.  The <a target='_blank' href='http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2821287/'>article by Tse et al</a> may be helpful in understanding the components of the basic results that are reported at ClinicalTrials.gov.</p>
 
-    <h3>How can protocol/registration data be used?</h3>
+    <h2>How can protocol/registration data be used?</h2>
 
     <p class='ptc'>We anticipate that investigators will use the current database to explore the characteristics of selected subsets of clinical studies (e.g., typical enrollment for a phase 3 study in breast cancer patients), and to compare and contrast these characteristics across different subgroups of studies (e.g., sponsor; device versus drug intervention; or prevention versus treatment).</p>
 
-    <h3>How can results and adverse events data be used?</h3>
+    <h2>How can results and adverse events data be used?</h2>
 
     <p class='ptc'>Researchers may be able to use the basic results and adverse events summary data reported at ClinicalTrials.gov for meta-analysis or systematic review (e.g., to compare the efficacy and safety of different types of diabetes therapies).  However, because only a small subset of studies registered at ClinicalTrials.gov are required to report results, the results data from ClinicalTrials.gov will most likely be a useful supplement to traditional data sources used for a meta-analysis or systematic review, such as published and unpublished manuscripts and abstracts, rather than the core data source. Standard techniques for valid meta-analysis or systematic review (e.g., <a target='_blank' href="http://annals.org/article.aspx?articleid=744664">PRISMA statement</a>) should be used when determining how to appropriately identify and aggregate summary data gleaned from ClinicalTrials.gov and/or literature.)</p>
 
-    <h3>How should data elements be interpreted?</h3>
+    <h2>How should data elements be interpreted?</h2>
 
     <p class='ptc'>When interpreting this information, you’re encouraged to refer to the authoritative definitions provided by the National Library of Medicine (NLM). The most recent data element definitions are available on the NLM site for <a target='_blank' href='https://prsinfo.clinicaltrials.gov/definitions.html'>studies</a> and <a target='_blank' href='https://prsinfo.clinicaltrials.gov/results_definitions.html'>results</a> data. Data interpretation may depend on:</p>
     <ul class='regularDisplay'>
@@ -171,7 +171,7 @@
 
     <p class="note">Note that the study record may be updated by the owner of the record at any time. Fields such as enrollment type may be changed from anticipated to actual, indicating that the value entered now reflects the actual rather than the planned enrollment. When data are downloaded, the result is a static copy of the database at that particular time point, and the history of changes made to the field is lost.</p>
 
-    <h3>How complete and accurate are the data?</h3>
+    <h2>How complete and accurate are the data?</h2>
 
     <p class='ptc'>The presence of a record in a table indicates that information was submitted to ClinicalTrials.gov for at least one element in that table before the data were downloaded from ClinicalTrials.gov. Some data elements are more/less likely than others to have missing information, depending on several known factors. For example:</p>
 
@@ -190,11 +190,11 @@
 
     <p class='ptc'>During our own analysis of the ClinicalTrials.gov database, several extreme values for numeric data elements were encountered, such as an anticipated enrollment of several million subjects. Before proceeding with aggregate analysis, users are encouraged to review data distributions in order to select appropriate analysis methods, and to run their own consistency checks (e.g., to compare whether the number of arm descriptions provided for the study matches the data element that quantifies the number of arms in the study design) as needed.</p>
 
-    <h3>Use of appropriate statistical inference</h3>
+    <h2>Use of appropriate statistical inference</h2>
 
     <p class='ptc'>If the AACT results data are to be used to support a meta-analysis or systematic review of the safety or efficacy of a particular intervention, then standard methods of meta-analysis or systematic review (e.g., the <a target='_blank' href="http://annals.org/article.aspx?articleid=744664" onClick="ga('send','event','external link','guide page: PRISMA')">PRISMA statement</a> should be used to appropriately account for study-to-study variability and other sources of uncertainty or bias. We recommend that authors consider the following points when deciding whether to report p-values, confidence intervals, or other probability-based inference when performing aggregate analysis of the ClinicalTrials.gov database:  </p>
 
-    <h3>Is the data-generating mechanism random?</h3>
+    <h2>Is the data-generating mechanism random?</h2>
     <p class='ptc'>Methods of statistical inference such as p-values and 95% confidence intervals are most appropriate when used to quantify the uncertainty of estimates or comparisons due to a random process that generates the data. Examples of such processes include selection of a random sample of subjects from a broader population, randomly assigning a treatment to a cohort of subjects, or a coin toss about which we aim to predict future results.</p>
 
     <p class='ptc'>In the following examples, we recommend against reporting p-values and 95% confidence intervals because the data generating mechanism is not random.</p>
@@ -203,7 +203,7 @@
 
     <p class='ptc'><b>Example 2: </b>Descriptive analysis of the “clinical trials enterprise” as characterized by the studies registered in ClinicalTrials.gov. Despite mandates for study registration <a href="#table1">(Table 1)</a>, it may be that some studies that are required to be registered are not. In this case the sample (studies registered in ClinicalTrials.gov) may not equal the population (clinical trials enterprise). However, it is likely that those studies not registered are not excluded at random, and therefore neither p-values nor confidence intervals are helpful to support extrapolation from the sample to the population. To support such extrapolation, we recommend careful consideration of the studies that are highly likely to be registered (see section above on Population), and to limit inference to this population so that sample-vs-population uncertainty is minimal.</p>
 
-    <h3>How can I objectively identify important differences?</h3>
+    <h2>How can I objectively identify important differences?</h2>
 
     <p class='ptc'>In practice, p-values and confidence intervals are often employed even when there is no random data generating process to highlight differences that are larger than “noise” (e.g., authors may want to highlight differences with a p-value < .001).  While this practice may not have a strong foundation in statistical philosophy, we acknowledge that many audiences (e.g., journal peer reviewers) may demand p-values because they appear to provide objective criteria for identifying larger-than-expected signals in the data.  While we don’t encourage reporting of p-values for this purpose, we do encourage analysts to specify objective criteria for evaluating signals in the data.  Examples are provided:</p>
 
@@ -218,7 +218,7 @@
       <li>To quantify signal to noise, the analyst could calculate a t-statistic or a chi-squared statistic (without the p-value) and rank differences between 2 groups based on these values.  The analyst might pre-specify a threshold (e.g., absolute value of 3) to flag notable differences.</li>
     </ul>
 
-    <h3>Specific tips for working with the AACT database</h3>
+    <h2>Specific tips for working with the AACT database</h2>
 
     <ul class='regularDisplay'>
       <li>Users are encouraged to use the <a href='/schema' target="_blank" onClick="ga('send','event','download','guide page: download schema')">Schema Diagram</a> to determine relationships between different AACT tables. These relationships determine how tables may be linked using tools such as SAS, R & SQL.</li>
@@ -233,7 +233,7 @@
     <p class='ptc'><%= render partial: 'schema_info' %></p>
 
 
-    <h3>References</h3>
+    <h2>References</h2>
 
     <ol>
       <li>Zarin, D. A., Tse, T. T., Williams, R. J., Califf, R. M., and Ide, N. C. (2011). <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMsa1012065#t=article" onClick="ga('send','event','external link','guide page: Zarin 1 ref')">The ClinicalTrials.gov results database – update and key issues</a>. N Engl J Med 364: 852–60.</li>
