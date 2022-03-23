@@ -13,6 +13,7 @@ Make sure you've set values for the environmental variables
 - `PUBLIC_DB_HOST=<public_host>` could be the aact site `aact-db.ctti-clinicaltrials.org`
 - `AACT_ALT_PUBLIC_DATABASE_NAME=aact_alt`
 - `AACT_CORE_DATABASE_URL=<postgresql://[postgres-user]:[postgres-password]@localhost:5432/aact>`  
+- `AACT_QUERY_DATABASE_URL=<postgresql://[postgres-user]:[postgres-password]@aact-db.ctti-clinicaltrials.org:5432/aact>`
 These variables should have been set when you setup AACT Core. If any are missing you should add them to where you store your variables (for instance ".bash_profile" or ".zshrc").  
 
 Be sure to call `source` on the file where your passwords are. Example `source ~/.bash_profile` so they are reloaded into the terminal.   
