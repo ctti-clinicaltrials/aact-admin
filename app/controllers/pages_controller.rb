@@ -9,7 +9,10 @@ class PagesController < ApplicationController
   end
 
   def snapshots
-    set_daily_monthly_snapshot_files
+    # daily
+    @daily = Core::FileRecord.daily('snapshot')
+    # monthly
+    @monthly = Core::FileRecord.monthly('snapshot')
   end
 
   def pipe_files
