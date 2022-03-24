@@ -1,6 +1,8 @@
-<div>
+<div class="wrap">
 
+  <div class="basicHero">
     <h1>AACT Archive Database Schema</h1>
+  </div>
 
   <p>The diagram below illustrates how ClinicalTrials.gov data are stored in the AACT database; it identifies all tables/columns and relationships.</p>
   <p>Each table includes the unique identifier assigned by ClinicalTrials.gov: <i>nct_id</i>. This provides a way to find all data about a particular study and serves as the key that joins related information across multiple tables. Every table (except Studies) also includes an <i>id</i> column which uniquely identifies each row in the table. In most cases, you need to use the <i>nct_id</i> to join tables. For more information about the <i>id</i> column, please refer to the documentation found <a href='/schema#idInformation'>here.</a></p>

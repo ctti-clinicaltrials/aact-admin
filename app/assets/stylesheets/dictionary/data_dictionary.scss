@@ -10,9 +10,6 @@ span.enum {
 
 table.dictionaryDisplay {
   box-shadow: 6px 6px 5px #888888;
-  margin-bottom: 40px;
-  border-style: solid;
-  border-width: 1px;
   border-spacing: 0px;
 
   th {
@@ -119,19 +116,26 @@ label:hover {
 }
 
 section.dataDictionaryShow {
+  padding-bottom: 500px;
 
   h2 {
     padding-top: 60px;
+    border-bottom: 1px solid $primary;
   }
 
   h4 {
     padding-top: 40px;
+    border-bottom: 1px solid $grey;
   }
 
   ul {
     margin-bottom: 0px;
   }
 
+  div.wrap {
+    display: block;
+    margin: 0 auto;
+  }
 
   div.gridContainer {
 //    @include columnify(12, true);
