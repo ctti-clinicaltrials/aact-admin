@@ -78,5 +78,8 @@ module AACT
     # aact-core database connection
     AACT_CORE_DATABASE_URL  = ENV['AACT_CORE_DATABASE_URL']
 
+    # aact-query database connection
+    AACT_QUERY_DATABASE_URL  = ENV['AACT_QUERY_DATABASE_URL']
+
   end
 end
