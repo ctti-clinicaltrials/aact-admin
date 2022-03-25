@@ -7,9 +7,10 @@
       Admin
     </a>
 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-  <li><a class="dropdown-item"><%= link_to "Notifcation", admin_notices_path%></a></li>
+  <li><a class="dropdown-item"><%= link_to "Notifications", admin_notices_path%></a></li>
   <li><a class="dropdown-item"><%= link_to "Releases", releases_path %></a></li>
   <li><a class="dropdown-item"><%= link_to "Summary", summary_aact_path %></a></li>
+  <li><a class="dropdown-item"><%= link_to "Users", users_path %></a></li>
   <li><hr class="dropdown-divider"></li>
   <li><a class="dropdown-item user-info"><%= link_to "Edit Profile", edit_user_registration_path %>&nbsp;&nbsp;</li>
   <li><a class="dropdown-item user-info"><%= link_to "Sign out", edit_user_registration_path('sign-out'), :id => current_user %></a></li>
