@@ -69,10 +69,15 @@ table.regularDisplay {
    float: right;
 }
 
-html {
-    height: 100%;
-    padding-left: 100px;
-    padding-right: 100px;
+// html {
+    // height: 100%;
+    // padding-left: 100px;
+    // padding-right: 100px;
+// }
+
+.footer {
+  padding-left: 0 !important;
+  width: 100% !important;
 }
 
 table.regularDisplay, ul.regularDisplay, ol.regularDisplay {
@@ -120,11 +125,10 @@ ul.indent {
     display: none;
 }
 
-div.wrap {
-  position: relative;
-}
-
 body {
+  height: 100%;
+  padding-left: 100px;
+  padding-right: 100px;
   background: transparent !important;
   font-size: 0px !important;
   min-height: 100%  !important;
@@ -175,7 +179,7 @@ b {
 
 a {
   text-decoration: none;
-  font-size: large;
+  font-size: 1.2rem;
   color: $link-color;
   font-family: $font-sans;
   padding: 0.4rem;
@@ -277,9 +281,6 @@ pre {
   position: relative;
 }
 
-div.wrap {
-  @extend %container;
-}
 
 a.card {
   background-color: rgb(249,249,249);

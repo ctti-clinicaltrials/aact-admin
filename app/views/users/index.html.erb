@@ -5,9 +5,9 @@
     <div class='userOptions'>
       <p class='download'>Download:</p>
         <%= link_to "CSV", users_path(format: "csv"), :class => 'userOptions' %>
-        <p class='download'>&nbsp;&nbsp;&nbsp;&nbsp;</p> <%= link_to "Excel", users_path(format: "xls"), :class => 'userOptions' %>
+        <%= link_to "Excel", users_path(format: "xls"), :class => 'userOptions' %>
     </div>
-
+    <br>
     <div class='shadowContainer'>
       <table id='userTable'
          data-toolbar="#toolbar"
