@@ -1,6 +1,10 @@
 # AACT
 Administer AACT: Aggregated Analysis of ClinicalTrials.gov
 
+## Database Explanation:  
+Below you'll find an image that illustrates the different AACT databases and schemas, while briefly describing their purposes.
+![Visualization of the database arrangement for AACT(backend) and AACT-Admin(frontend)](public/documentation/aact_architecture.png "AACT Database Visualization")   
+
 ## Getting Started
 
 You should always setup AACT Core before setting up AACT Admin. AACT Admin relies on AACT Core. So if you haven’t set up AACT Core yet, please do so now at [aact core](https://github.com/ctti-clinicaltrials/aact)  
