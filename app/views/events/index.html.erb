@@ -8,23 +8,21 @@
 
     <thead>
       <tr>
-        <th>Date Created</th>
+        <th>Started</th>
         <th>Event Type</th>
         <th>Status</th>
         <th>Description</th>
-        <th>Details Link</th>
-        <th colspan="5"></th>
+        <th colspan="4"></th>
       </tr>
     </thead>
 
     <tbody>
       <% @load_events.each do |loadevent| %>
         <tr>
-          <td><%= loadevent.created_at.strftime('%m/%d/%Y %l:%M %p') %></td>
+          <td><%= link_to loadevent.created_at.strftime('%m/%d/%Y %l:%M %p'), event_path(loadevent) %></td>
           <td><%= loadevent.event_type %></td>
           <td><%= loadevent.status %></td>
           <td><%= loadevent.description %></td>
-          <td><%= link_to loadevent.id, event_path(loadevent) %></td>
         </tr>
       <% end %>
     </tbody>
