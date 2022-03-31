@@ -17,10 +17,25 @@
     <p>Download a zip file that contains the AACT database file. With a single command (see below), this file can be used to automatically configure the database & populate it with the clinical trials dataset. The zip file also contains documentation that describes the database at the time the static copy was created. (The download typically takes 3-7 minutes, depending on your network speed.)</p>
 
     <h4>Current Month's Daily Static Copies</h4>
-    <p><%= render 'file_archive', :files => @daily_files, type: 'download database' %></p>
+      <select class="form-select w-50" aria-label="Default select example" onchange="location = this.value;">
+        <option selected>Select file to download</option>
+        <% @daily.each do |file| %>
+          <option value="<%= file.url%>">
+            <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> <%= file.file_size%> GB </a>
+          </option>
+        <% end %>
+      </select>
 
-    <h4>Monthly Archive of Static Copies</h4>
-    <p><%= render 'file_archive', :files => @archive_files, type: 'download database' %></p>
+    <h4 class="mt-3">Monthly Archive of Static Copies</h4>
+      <select class="form-select w-50" aria-label="Default select example" onchange="location = this.value;">
+        <option selected>Select file to download</option>
+        <% @monthly.each do |file| %>
+          <option value="<%= file.url%>">
+            <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> <%= file.file_size%> GB </a>
+          </option>
+        <% end %>
+      </select>
+
     <br>
     <hr>
     <div>

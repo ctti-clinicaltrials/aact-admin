@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 14.1
--- Dumped by pg_dump version 14.1
+-- Dumped from database version 14.2
+-- Dumped by pg_dump version 14.2
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -26,18 +26,6 @@ CREATE SCHEMA ctgov;
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
-
---
--- Name: ar_internal_metadata; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.ar_internal_metadata (
-    key character varying NOT NULL,
-    value character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
 
 --
 -- Name: attachments; Type: TABLE; Schema: ctgov; Owner: -
@@ -311,15 +299,15 @@ ALTER SEQUENCE ctgov.health_checks_id_seq OWNED BY ctgov.health_checks.id;
 --
 
 CREATE TABLE ctgov.notices (
-    id bigint NOT NULL,
+    id integer NOT NULL,
     body character varying,
     user_id integer,
     title character varying,
     send_emails boolean,
     emails_sent_at timestamp without time zone,
     visible boolean,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -328,6 +316,7 @@ CREATE TABLE ctgov.notices (
 --
 
 CREATE SEQUENCE ctgov.notices_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -473,13 +462,13 @@ ALTER SEQUENCE ctgov.publications_id_seq OWNED BY ctgov.publications.id;
 --
 
 CREATE TABLE ctgov.releases (
-    id bigint NOT NULL,
+    id integer NOT NULL,
     title character varying,
     subtitle character varying,
     released_on date,
     body text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -488,6 +477,7 @@ CREATE TABLE ctgov.releases (
 --
 
 CREATE SEQUENCE ctgov.releases_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -866,14 +856,6 @@ ALTER TABLE ONLY ctgov.user_events ALTER COLUMN id SET DEFAULT nextval('ctgov.us
 --
 
 ALTER TABLE ONLY ctgov.users ALTER COLUMN id SET DEFAULT nextval('ctgov.users_id_seq'::regclass);
-
-
---
--- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.ar_internal_metadata
-    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
 
 
 --
