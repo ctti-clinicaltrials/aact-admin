@@ -1,7 +1,5 @@
 module Core
   class FileRecord < Core::Base
-
-
     def self.daily(file_type)
       where(created_at: (Date.today.beginning_of_month..DateTime.current), file_type: file_type)
     end
