@@ -1,0 +1,32 @@
+<div class="container">
+
+  <div class="pb-3">
+    <h1>Load Events</h1>
+  </div>
+
+  <table class="table table-sm table-striped" style="max-width: 100rem;">
+
+    <thead>
+      <tr>
+        <th>Started</th>
+        <th>Event Type</th>
+        <th>Status</th>
+        <th>Description</th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @load_events.each do |loadevent| %>
+        <tr>
+          <td><%= link_to loadevent.created_at.strftime('%m/%d/%Y %l:%M %p'), event_path(loadevent) %></td>
+          <td><%= loadevent.event_type %></td>
+          <td><%= loadevent.status %></td>
+          <td><%= loadevent.description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+
+</div>

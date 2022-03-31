@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   get 'summary/aact'
 
   namespace :admin do
-    resources :notices 
-      get "/notices/:id/send_notice" => "notices#send_notice"    
+    resources :notices
+      get "/notices/:id/send_notice" => "notices#send_notice"
   end
 
   # Adding these routes connects those requests to the appropriate actions of the errors controller.
@@ -88,4 +88,5 @@ Rails.application.routes.draw do
   resources :attachments
   resources :use_cases
   resources :use_case_attachments
+  resources :events
 end

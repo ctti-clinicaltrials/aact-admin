@@ -1,14 +1,6 @@
-<div class="wrap">
-
-  <div class="basicHero">
+<div>
     <h1>Connect to AACT using SAS</h1>
-
-  </div>
-
-</div>
-
-<section class="sasAccess">
-  <div class="wrap">
+  <section class="sasAccess">
     <p>This method for accessing the AACT database is recommended for SAS users wanting to run analyses or queries using the live database. </p>
 
     <h3>Note:</h3>
@@ -18,6 +10,8 @@
       <li><p>For SAS users without SAS/ACCESS interface to PostgreSQL, the AACT database tables can be downloaded in delimited text file format.  See instructions: “SAS – downloading and working with the delimited text file version of a static copy of the AACT database”.</p></li>
     </ul>
 
+    </section>
+    <section class="sasAccess container">
     <div class="step">
       <span class="stepNumber">1</span>
       <h3 class="stepName">SAS Installation requirements</h3>
@@ -222,10 +216,11 @@ Using the LIBNAME statement in SAS, assign a <i>libref</i> (a shortcut name) to 
         </p>
       </pre>
     </p>
+    </section>
 
     <h2>Credentials</h2>
     <p>You will need the following information to access the database directly in the cloud.</p>
     <%= render 'credentials/credentials' %>
 
-  </div>
-</section>
+</div>
+
