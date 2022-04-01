@@ -3,7 +3,7 @@ Administer AACT: Aggregated Analysis of ClinicalTrials.gov
 
 ## Database Explanation:  
 Below you'll find an image that illustrates the different AACT databases and schemas, while briefly describing their purposes.
-![Visualization of the database arrangement for AACT(backend) and AACT-Admin(frontend)](public/documentation/aact_architecture.png "AACT Database Visualization")   
+![Visualization of the database arrangement for AACT(backend) and AACT-Admin(frontend)](https://github.com/ctti-clinicaltrials/aact/blob/master/public/aact_architecture.png "AACT Database Visualization")   
 
 ## Getting Started
 
