@@ -1,0 +1,7 @@
+<%= form_tag("/query/submit") do %>
+  <%= label_tag(:query, "SQL Query:") %>
+  <%= text_area_tag(:query) %>
+  <div class="pb-3">
+  </div>
+  <%= submit_tag("Execute SQL Query") %>
+<% end %>
