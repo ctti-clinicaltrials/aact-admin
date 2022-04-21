@@ -1,5 +1,15 @@
 <%= form_tag("/query/submit") do %>
   <%= label_tag(:query, "SQL Query:") %>
+  <% if @error.present? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@error.count, "error") %> Prohibited this query from being executed:</h2>
+      <ul>
+      <% @error.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= text_area_tag(:query) %>
   <div class="pb-3">
   </div>

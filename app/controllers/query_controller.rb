@@ -3,6 +3,11 @@ class QueryController < ApplicationController
   end
 
   def submit
-    @results = Query::Base.connection.execute(params[:query])
+    begin
+      @results = Query::Base.connection.execute(params[:query])
+    rescue PG::Error => e
+      # if there is an error in the view, display the form again with the error message
+      @error = e.message
+    end
   end
 end

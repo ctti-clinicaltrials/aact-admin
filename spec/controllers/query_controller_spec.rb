@@ -9,9 +9,9 @@ RSpec.describe QueryController, type: :controller do
     end
   end
 
-  describe "GET #submit" do
+  describe "POST #submit" do
     it "returns http success" do
-      get :submit
+      post :submit, query: 'SELECT nct_id, study_type, completion_date FROM studies LIMIT 5'
       expect(response).to have_http_status(:success)
     end
   end
