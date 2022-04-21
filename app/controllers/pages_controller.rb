@@ -22,6 +22,11 @@ class PagesController < ApplicationController
 
   def covid_19
     set_covid_pipe_files
+    # daily
+    @daily_covid_19_files = Core::FileRecord.daily('covid-19')
+    # monthly
+    @monthly_covid_19_files = Core::FileRecord.monthly('covid-19')
+    
   end
 
   def points_to_consider
