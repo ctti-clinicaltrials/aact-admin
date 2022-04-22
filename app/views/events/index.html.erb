@@ -1,32 +1,39 @@
-<div class="container">
+<div class="pb-3">
+  <h1>Load Events</h1>
+</div>
 
-  <div class="pb-3">
-    <h1>Load Events</h1>
-  </div>
+<div class="text-danger">
 
-  <table class="table table-sm table-striped" style="max-width: 100rem;">
+  <!-- <div class="row"> -->
+    <div class="col">
+      Started
+    </div>
+    <div class="col">
+      Event Type
+    </div>
+    <div class="col">
+      Status
+    </div>
+    <div class="col">
+      Description
+    </div>
+  <!-- </div> -->
 
-    <thead>
-      <tr>
-        <th>Started</th>
-        <th>Event Type</th>
-        <th>Status</th>
-        <th>Description</th>
-        <th colspan="4"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @load_events.each do |loadevent| %>
-        <tr>
-          <td><%= link_to loadevent.created_at.strftime('%m/%d/%Y %l:%M %p'), event_path(loadevent) %></td>
-          <td><%= loadevent.event_type %></td>
-          <td><%= loadevent.status %></td>
-          <td><%= loadevent.description %></td>
-        </tr>
-      <% end %>
-    </tbody>
-
-  </table>
+  <% @load_events.each do |loadevent| %>
+    <div class="row">
+      <div class="col-2">
+        <%= link_to loadevent.created_at.strftime('%m/%d/%Y %l:%M %p'), event_path(loadevent) %>
+      </div>
+      <div class="col">
+        <%= loadevent.event_type %> test1
+      </div>
+      <div class="col">
+        <%= loadevent.status %> test2
+      </div>
+      <div class="col">
+        <%= loadevent.description %> test3
+      </div>
+    </div>
+  <% end %>
 
 </div>
