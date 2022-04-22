@@ -1,13 +1,17 @@
 class QueryController < ApplicationController
+
   def index
+    begin
+      @results = Query::Base.connection.execute(params[:query])
+    # if there is an error in the SQL query, display the form again with the error message
+    rescue ActiveRecord::StatementInvalid => e
+      @error = [e.message]
+      # render :index
+      render :submit
+    end
   end
 
   def submit
-    begin
-      @results = Query::Base.connection.execute(params[:query])
-    rescue PG::Error => e
-      # if there is an error in the view, display the form again with the error message
-      @error = e.message
-    end
   end
+
 end

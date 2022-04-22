@@ -1,17 +1,27 @@
-<%= form_tag("/query/submit") do %>
-  <%= label_tag(:query, "SQL Query:") %>
-  <% if @error.present? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@error.count, "error") %> Prohibited this query from being executed:</h2>
-      <ul>
-      <% @error.each do |message| %>
-        <li><%= message %></li>
+<div class="container">
+  <div class="pb-3">
+    <h1>SQL Query Results</h1>
+  </div>
+  <table class="table table-sm table-striped" style="max-width: 100rem;">
+    <thead>
+      <tr>
+        <% @results.first %>
+        <% @results.first.each do |key,value| %>
+          <th><%= key %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @results.each do |data| %>
+        <tr>
+          <% data.each do |key,value| %>
+            <td><%= value %></td>
+          <% end %>
+        </tr>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <%= text_area_tag(:query) %>
+    </tbody>
+  </table>
   <div class="pb-3">
   </div>
-  <%= submit_tag("Execute SQL Query") %>
-<% end %>
+  <%= link_to 'Back', query_submit_path, :class => "btn btn-primary btn-sm" %>
+</div>
