@@ -6,7 +6,6 @@ class QueryController < ApplicationController
     # if there is an error in the SQL query, display the form again with the error message
     rescue ActiveRecord::StatementInvalid => e
       @error = [e.message]
-      # render :index
       render :submit
     end
   end

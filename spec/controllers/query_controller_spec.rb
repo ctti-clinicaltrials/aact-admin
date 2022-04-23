@@ -2,16 +2,16 @@ require 'rails_helper'
 
 RSpec.describe QueryController, type: :controller do
 
-  describe "GET #index" do
+  describe "GET #submit" do
     it "returns http success" do
-      get :index
+      get :submit
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "POST #submit" do
+  describe "POST #index" do
     it "returns http success" do
-      post :submit, query: 'SELECT nct_id, study_type, completion_date FROM studies LIMIT 5'
+      post :index, query: 'SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at FROM studies LIMIT 20'
       expect(response).to have_http_status(:success)
     end
   end

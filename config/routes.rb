@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
-  # get 'query/index'
-  # post 'query/submit'
-  post 'query/index'
   get 'query/submit'
+  post 'query/index'
 
   get 'summary/aact'
 
