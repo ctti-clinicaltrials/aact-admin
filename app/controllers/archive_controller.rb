@@ -50,6 +50,10 @@ class ArchiveController < ApplicationController
 
   def pipe_files
     set_daily_monthly_pipe_files
+    # daily
+    @daily_archive_pipe_files = Core::FileRecord.daily('archive')
+    # monthly
+    @monthly_archive_pipe_files = Core::FileRecord.monthly('archive')
   end
 
   def covid_19
