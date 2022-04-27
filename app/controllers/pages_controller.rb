@@ -18,6 +18,10 @@ class PagesController < ApplicationController
 
   def pipe_files
     set_daily_monthly_pipe_files
+    # daily
+    @daily_pipe_files = Core::FileRecord.daily('pipefiles')
+    # monthly
+    @monthly_pipe_files = Core::FileRecord.monthly('pipefiles')
   end
 
   def covid_19
@@ -59,16 +63,16 @@ class PagesController < ApplicationController
     fpm = Util::FilePresentationManager.new
     @daily_files = fpm.daily_snapshot_files
     @archive_files = fpm.monthly_snapshot_files
-    @beta_daily_files = fpm.daily_snapshot_files('beta')
-    @beta_archive_files = fpm.monthly_snapshot_files('beta')
+    # @beta_daily_files = fpm.daily_snapshot_files('beta')
+    # @beta_archive_files = fpm.monthly_snapshot_files('beta')
   end
 
   def set_daily_monthly_pipe_files
     fpm=Util::FilePresentationManager.new
     @daily_files=fpm.daily_flat_files
     @archive_files=fpm.monthly_flat_files
-    @beta_daily_files=fpm.daily_flat_files('beta')
-    @beta_archive_files=fpm.monthly_flat_files('beta')
+    # @beta_daily_files=fpm.daily_flat_files('beta')
+    # @beta_archive_files=fpm.monthly_flat_files('beta')
   end
 
   def set_covid_pipe_files
