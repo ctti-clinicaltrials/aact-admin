@@ -42,6 +42,10 @@ class ArchiveController < ApplicationController
 
   def snapshots
     set_daily_monthly_snapshot_files
+    # daily
+    @daily_archive_snapshot = Core::FileRecord.daily('archive')
+    # monthly
+    @monthly_archive_snapshot = Core::FileRecord.monthly('archive')
   end
 
   def pipe_files
