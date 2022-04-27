@@ -1,39 +1,19 @@
 <div class="pb-3">
-  <h1>Load Events</h1>
+  <h1>Events</h1>
 </div>
-
-<div class="container">
-
-  <div class="row justify-content-start">
-    <div class="col-3">
-      <li class="row justify-content-start list-group-item list-group-item-dark">Started</li>
-    </div>
-    <div class="col-2">
-      <li class="row justify-content-start list-group-item list-group-item-dark">Event Type</li>
-    </div>
-    <div class="col-2">
-      <li class="row justify-content-start list-group-item list-group-item-dark">Status</li>
-    </div>
-    <div class="col-5">
-      <li class="row justify-content-start list-group-item list-group-item-dark">Description</li>
-    </div>
-  </div>
-
+<ul class="list-group text-center">
+  <li class="row mb-0">
+    <div class="col-3 list-group-item list-group-item-dark">Started</div>
+    <div class="col-2 list-group-item list-group-item-dark">Event Type</div>
+    <div class="col-2 list-group-item list-group-item-dark">Status</div>
+    <div class="col-5 list-group-item list-group-item-dark">Description</div>
+  </li>
   <% @load_events.each do |loadevent| %>
-    <div class="row justify-content-start">
-      <div class="col-3">
-        <li class="row justify-content-start list-group-item"><%= link_to loadevent.created_at.strftime('%m/%d/%Y %l:%M %p'), event_path(loadevent) %></li>
-      </div>
-      <div class="col-2">
-        <li class="row justify-content-start list-group-item"><%= loadevent.event_type %></li>
-      </div>
-      <div class="col-2">
-        <li class="row justify-content-start list-group-item"><%= loadevent.status %></li>
-      </div>
-      <div class="col-5">
-        <li class="row justify-content-start list-group-item"><%= loadevent.description %></li>
-      </div>
-    </div>
+    <li class="row mb-0">
+      <div class="col-3 list-group-item "><%= link_to loadevent.created_at.strftime('%m/%d/%Y %l:%M %p'), event_path(loadevent) %></div>
+      <div class="col-2 list-group-item "><%= loadevent.event_type %></div>
+      <div class="col-2 list-group-item "><%= loadevent.status %></div>
+      <div class="col-5 list-group-item text-start"><%= loadevent.description %></div>
+    </li>
   <% end %>
-
-</div>
+</ul>
