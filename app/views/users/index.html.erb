@@ -1,9 +1,3 @@
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
-
 <section>
   <div class="container">
     <h3><%=number_with_delimiter(@user_count, :delimiter => ',') %> AACT Users</h3>
@@ -11,13 +5,12 @@
     <div class='userOptions'>
       <p class='download'>Download:</p>
         <%= link_to "CSV", users_path(format: "csv"), :class => 'userOptions' %>
-        <p class='download'>&nbsp;&nbsp;&nbsp;&nbsp;</p> <%= link_to "Excel", users_path(format: "xls"), :class => 'userOptions' %>
+        <%= link_to "Excel", users_path(format: "xls"), :class => 'userOptions' %>
     </div>
-
+    <br>
     <div class='shadowContainer'>
       <table id='userTable'
          data-toolbar="#toolbar"
-         data-toggle="table"
          data-pagination="true"
          data-show-toggle="true"
          data-show-columns="true"

@@ -130,7 +130,7 @@ body {
   padding-left: 100px;
   padding-right: 100px;
   background: transparent !important;
-  font-size: 0px !important;
+  // font-size: 0px !important;
   min-height: 100%  !important;
   font-family: $font-sans !important;
   color: $text-color  !important;
@@ -143,13 +143,13 @@ body {
   font-size: 18px;
   font-family: $font-sans ;
   color: green;
-  margin: 1rem;  
-  position: relative; 
+  margin: 1rem;
+  position: relative;
   text-align: center;
 }
 
 .flash-alert {
-  color: red !important; 
+  color: red !important;
 }
 
 h1, h2, h3, h4, h5, h6 {

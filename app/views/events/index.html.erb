@@ -1,32 +1,19 @@
-<div class="container">
-
-  <div class="pb-3">
-    <h1>Load Events</h1>
-  </div>
-
-  <table class="table table-sm table-striped" style="max-width: 100rem;">
-
-    <thead>
-      <tr>
-        <th>Started</th>
-        <th>Event Type</th>
-        <th>Status</th>
-        <th>Description</th>
-        <th colspan="4"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @load_events.each do |loadevent| %>
-        <tr>
-          <td><%= link_to loadevent.created_at.strftime('%m/%d/%Y %l:%M %p'), event_path(loadevent) %></td>
-          <td><%= loadevent.event_type %></td>
-          <td><%= loadevent.status %></td>
-          <td><%= loadevent.description %></td>
-        </tr>
-      <% end %>
-    </tbody>
-
-  </table>
-
+<div class="pb-3">
+  <h1>Events</h1>
 </div>
+<ul class="list-group text-center">
+  <li class="row mb-0">
+    <div class="col-3 list-group-item list-group-item-dark">Started</div>
+    <div class="col-2 list-group-item list-group-item-dark">Event Type</div>
+    <div class="col-2 list-group-item list-group-item-dark">Status</div>
+    <div class="col-5 list-group-item list-group-item-dark">Description</div>
+  </li>
+  <% @load_events.each do |loadevent| %>
+    <li class="row mb-0">
+      <div class="col-3 list-group-item "><%= link_to loadevent.created_at.strftime('%m/%d/%Y %l:%M %p'), event_path(loadevent) %></div>
+      <div class="col-2 list-group-item "><%= loadevent.event_type %></div>
+      <div class="col-2 list-group-item "><%= loadevent.status %></div>
+      <div class="col-5 list-group-item text-start"><%= loadevent.description %></div>
+    </li>
+  <% end %>
+</ul>

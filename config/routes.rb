@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'query/submit'
+  post 'query/index'
+
   get 'summary/aact'
 
   namespace :admin do
