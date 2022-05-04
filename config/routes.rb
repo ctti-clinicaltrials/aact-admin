@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'file_records/active_url'
+
   get 'query/submit'
   post 'query/index'
 
