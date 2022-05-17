@@ -1,0 +1,17 @@
+<div class = verifier_layout>  
+  <div class="pb-1">
+    <h1>Verifiers</h1>
+  </div>
+  <ul class="list-group text-center">
+    <li class="row mb-0">
+      <div class="col-1 list-group-item list-group-item-dark">ID</div>
+      <div class="col-2 list-group-item list-group-item-dark">Last Run</div>
+    </li>
+    <% @verifiers.each do |verifier| %>
+      <li class="row mb-0">
+      <div class="col-1 list-group-item "><%= link_to verifier.id, verifier_path(verifier)  %></div>
+        <div class="col-2 list-group-item "><%= verifier.last_run %></div>
+      </li>
+    <% end %>
+  </ul>
+</div>
