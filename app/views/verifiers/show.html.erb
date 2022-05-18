@@ -2,6 +2,21 @@
   <h1>Verifiers</h1>
   <hr/>
 
+
+
+  <div class="container-fluid">
+    <h5> <strong>Last Run:</strong> <%= @verifiers.last_run %> </h5>
+  </div>
+
+  <div class="container-fluid">
+    <h5> <strong>Created at:</strong> <%= @verifiers.created_at.strftime('%B %d, %Y') %> </h5>
+  </div>
+
+  <div class="container-fluid">
+    <h5> <strong>Updated at:</strong> <%= @verifiers.updated_at.strftime('%B %d, %Y') %> </h5>
+  </div>
+
+
  <div class="container-fluid">
     <h5><strong>Differences:</strong> </h5>
  </div>
@@ -31,18 +46,6 @@
    </li>
  <% end %>
 </ul>
-
-  <div class="container-fluid">
-    <h5> <strong>Last Run:</strong> <%= @verifiers.last_run %> </h5>
-  </div>
-
-  <div class="container-fluid">
-    <h5> <strong>Created at:</strong> <%= @verifiers.created_at.strftime('%B %d, %Y') %> </h5>
-  </div>
-
-  <div class="container-fluid">
-    <h5> <strong>Updated at:</strong> <%= @verifiers.updated_at.strftime('%B %d, %Y') %> </h5>
-  </div>
 
   <%= link_to 'Back', verifiers_path, :class => "btn btn-primary btn-sm" %>
 </div>
