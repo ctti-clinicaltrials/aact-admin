@@ -84,6 +84,9 @@ Rails.application.routes.draw do
   get "/archive/pipe_files_with_r"    => "archive#pipe_files_with_r"
   get "/archive/pipe_files_with_sas"  => "archive#pipe_files_with_sas"
 
+  #digitalocean
+  get "/static/:type/:time/:filename(:format)" => "file_records#active_url"
+
   resources :definitions
   resources :users
   resources :shared_data, param: :schema_name
