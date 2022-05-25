@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'file_records/active_url'
+
   get 'query/submit'
   post 'query/index'
 
@@ -81,6 +83,9 @@ Rails.application.routes.draw do
   get "/archive/covid_19"   => "archive#covid_19"
   get "/archive/pipe_files_with_r"    => "archive#pipe_files_with_r"
   get "/archive/pipe_files_with_sas"  => "archive#pipe_files_with_sas"
+
+  #digitalocean
+  get "/static/:type/:time/:filename(:format)" => "file_records#active_url"
 
   resources :definitions
   resources :users
