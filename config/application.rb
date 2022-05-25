@@ -38,7 +38,7 @@ module AACT
     AACT_ADMIN_USERNAMES   = ENV['AACT_ADMIN_USERNAMES'] || ''       # User who can see restricted pages like technical documentation, users, etc.
     AACT_ADMIN_DIR         = ENV['AACT_ADMIN_DIR']                   # Directory where admin app resides
     AACT_VIEW_PASSWORD     = ENV['AACT_VIEW_PASSWORD']               # needed to get to use case edit view
-    RACK_TIMEOUT           = ENV['RACK_TIMEOUT'] || 20
+    RACK_TIMEOUT           = ENV['RACK_TIMEOUT'] || 10
     if Rails.env == 'test'
       APPLICATION_HOST          = 'localhost'
       AACT_PUBLIC_HOSTNAME      = 'localhost'
