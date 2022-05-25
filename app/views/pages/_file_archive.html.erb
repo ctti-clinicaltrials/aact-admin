@@ -8,7 +8,7 @@
       <% end %>
       <th class='file-archive'>Size</>
       <% date = nil %>
-      <%= files.try(:each) do |file| %>
+      <% files.try(:each) do |file| %>
         <% if time %>
           <% if date != file[:date_created] %>
             <tr>
