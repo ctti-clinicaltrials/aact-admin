@@ -22,6 +22,39 @@
     <h5> <strong>Problems:</strong> <%= markdown(@load_event.problems) %></h5>
   </div>
 
+  <div class="container-fluid">
+    <h5> <strong>Verifier:</strong> </h5>
+  </div>
+
+  <ul class="list-group ">
+    <li class="row mb-0">
+      <div class="col-4 text-wrap text-break list-group-item list-group-item-dark"></div>
+      <div class="col-4 text-center text-wrap text-break list-group-item list-group-item-dark">Instances</div>
+      <div class="col-4 text-center text-wrap text-break list-group-item list-group-item-dark">Unique</div>
+    </li>
+
+    <li class="row mb-0">
+      <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Source</div>
+      <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Destination</div>
+      <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Source</div>
+      <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Destination</div>
+      <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Source</div>
+      <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Destination</div>
+    </li>
+
+    <% @load_event.verifier.differences.each do |diff| %>
+      <% next if (diff['source'].nil?) %>
+      <li class="row mb-0">
+        <div class="col-2 text-wrap text-break list-group-item"><%= diff['source'] %></div>
+        <div class="col-2 text-wrap text-break list-group-item"><%= diff['destination'] %></div>
+        <div class="col-2 text-center text-wrap text-break list-group-item"><%= diff['source_instances'] %></div>
+        <div class="col-2 text-center text-wrap text-break list-group-item"><%= diff['destination_instances'] %></div>
+        <div class="col-2 text-center text-wrap text-break list-group-item"><%= diff['source_unique_values'] %></div>
+        <div class="col-2 text-center text-wrap text-break list-group-item"><%= diff['destination_unique_values'] %></div>
+      </li>
+    <% end %>
+  </ul>
+
   <div class="pb-5">
   </div>
 
