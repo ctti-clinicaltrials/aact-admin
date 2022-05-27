@@ -15,4 +15,12 @@ FactoryBot.define do
     visible { false }
   end
 
+ factory :verifier do
+  source {"ProtocolSection|IdentificationModule|NCTId"}
+  destination {"studies#nct_id"}
+  source_instances {415358}
+  destination_instances {0}
+  source_unique_values {0}
+  destination_unique_values {0}
+ end
 end
