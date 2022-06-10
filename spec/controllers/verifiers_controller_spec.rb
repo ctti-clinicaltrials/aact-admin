@@ -11,7 +11,7 @@ RSpec.describe VerifiersController, type: :controller do
   describe "GET #show" do
   let(:verifier) { FactoryBot.create(:verifier)}
     it "returns http success" do
-      subject { get :show, params: { id: verifier.id } }
+      get :show, params: { id: verifier.id }
       expect(response).to have_http_status(:success)
     end
   end

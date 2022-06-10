@@ -5,15 +5,15 @@
 
 
   <div class="container-fluid">
-    <h5> <strong>Last Run:</strong> <%= @verifiers.last_run %> </h5>
+    <h5> <strong>Last Run:</strong> <%= @verifiers.last_run.strftime('%B %d, %Y %I:%M %p') %> </h5>
   </div>
 
   <div class="container-fluid">
-    <h5> <strong>Created at:</strong> <%= @verifiers.created_at.strftime('%B %d, %Y') %> </h5>
+    <h5> <strong>Created at:</strong> <%= @verifiers.created_at.strftime('%B %d, %Y %I:%M %p') %> </h5>
   </div>
 
   <div class="container-fluid">
-    <h5> <strong>Updated at:</strong> <%= @verifiers.updated_at.strftime('%B %d, %Y') %> </h5>
+    <h5> <strong>Updated at:</strong> <%= @verifiers.updated_at.strftime('%B %d, %Y %I:%M %p') %> </h5>
   </div>
 
 
