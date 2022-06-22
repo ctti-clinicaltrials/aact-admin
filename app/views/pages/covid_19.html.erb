@@ -25,7 +25,7 @@ Details on the search terms used to generate the list of studies are available <
           <option selected>Select file to download</option>
           <% @daily_covid_19_files.each do |file| %>
             <option value="<%= file.url%>">
-              <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> <%= file.file_size%> GB </a>
+              <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> <%= number_to_human_size(file.file_size) %></a>
             </option>
           <% end %>
         </select>
@@ -35,7 +35,7 @@ Details on the search terms used to generate the list of studies are available <
           <option selected>Select file to download</option>
           <% @monthly_covid_19_files.each do |file| %>
             <option value="<%= file.url%>">
-              <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> <%= file.file_size%> GB </a>
+              <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> <%= number_to_human_size(file.file_size) %></a>
             </option>
           <% end %>
         </select>
