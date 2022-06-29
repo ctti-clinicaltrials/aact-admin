@@ -5,6 +5,11 @@
     <h1>Studies Database Summary</h1>
   </div>
 
+  <div class="pb-3">
+    <p><b>ClinicalTrials.gov:</b> <%= ClinicalTrialsApi::number_of_studies %> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;     
+       <b>AACT:</b> <%= Public::Study.count %></p>
+  </div>
+
   <table class="table table-sm table-striped" style="max-width: 100rem;">
 
     <thead>
