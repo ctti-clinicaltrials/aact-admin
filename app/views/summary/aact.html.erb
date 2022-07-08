@@ -1,13 +1,23 @@
-
 <div class="container">
 
   <div class="pb-3">
     <h1>Studies Database Summary</h1>
   </div>
 
-  <div class="pb-3">
-    <p><b>ClinicalTrials.gov:</b> <%= ClinicalTrialsApi::number_of_studies %> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;     
-       <b>AACT:</b> <%= Public::Study.count %></p>
+  <div>
+    <p><b>Current Number of Studies:</b></p>
+  </div>
+
+  <div>
+    <p><b>ClinicalTrials.gov:</b> <%= ClinicalTrialsApi::number_of_studies %> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;     
+       <b>AACT:</b> <%= Public::Study.count %>
+    </p>
+  </div>
+
+  <div class="pb-4">
+      <p><b>As of:</b> <%= Time.now.strftime('%m/%d/%Y %l:%M %p') %> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+         <b>Last Updated:</b> <%= @latest_event ? @latest_event.completed_at.strftime('%m/%d/%Y %l:%M %p') : 'never' %>
+      </p>
   </div>
 
   <table class="table table-sm table-striped" style="max-width: 100rem;">
