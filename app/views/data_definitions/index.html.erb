@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="pb-3">
+    <h1>Data Definitions</h1>
+  </div>
+  <table class="table table-sm table-striped" style="max-width: 100rem;">
+    <thead>
+      <tr>
+        <th style="text-align: center">db_section</th>
+        <th style="text-align: center">table_name</th>
+        <th style="text-align: center">column_name</th>
+        <th style="text-align: center">data_type</th>
+        <th style="text-align: center">source</th>
+        <th style="text-align: center">nlm_link</th>
+        <th colspan="6"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @data_definitions.each do |data_definition| %>
+        <tr>
+          <td style="text-align: center"><%= data_definition.db_section %></td>
+          <td style="text-align: center"><%= data_definition.table_name %></td>
+          <td style="text-align: center"><%= data_definition.column_name %></td>
+          <td style="text-align: center"><%= data_definition.data_type %></td>
+          <td style="text-align: center"><%= data_definition.source %></td>
+          <td style="text-align: center"><%= data_definition.nlm_link %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
