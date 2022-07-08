@@ -1,0 +1,16 @@
+<div class = "container">  
+    <h1 class= "text-center">Verifiers</h1>
+  </div>
+  <ul class="list-group">
+    <li class="row mb-0 ">
+      <div class="col text-center text-wrap text-break list-group-item list-group-item-dark">ID</div>
+      <div class="col text-center text-wrap text-break list-group-item list-group-item-dark">Last Run</div>
+    </li>
+    <% @verifiers.each do |verifier| %>
+      <li class="row mb-0 ">
+      <div class="col text-center text-wrap text-break list-group-item "><%= link_to verifier.id, verifier_path(verifier)  %></div>
+        <div class="col text-center text-wrap text-break list-group-item "><%= verifier.last_run.strftime('%B %d, %Y %I:%M %p') %></div>
+      </li>
+    <% end %>
+  </ul>
+</div>

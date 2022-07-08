@@ -15,4 +15,11 @@ FactoryBot.define do
     visible { false }
   end
 
+  factory :verifier, class: Core::Verifier do
+    differences {{source: "source", destination: "destination", source_instances: "source_instances", destination_instances: "destination_instances", source_unique_values: "source_unique_values", destination_unique_values: "destination_unique_values"}}
+    source {{source: "source"}}
+    last_run { DateTime.now }
+    created_at { DateTime.now }
+    updated_at  { DateTime.now }
+ end
 end
