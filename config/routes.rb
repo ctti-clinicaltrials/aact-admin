@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'data_definitions/index'
-
   get 'file_records/active_url'
 
   get 'query/submit'
@@ -90,6 +88,7 @@ Rails.application.routes.draw do
   get "/static/:type/:time/:filename(:format)" => "file_records#active_url"
 
   resources :definitions
+  resources :data_definitions
   resources :users
   resources :shared_data, param: :schema_name
   resources :release_notes
