@@ -24,6 +24,7 @@
           <td style="text-align: center"><%= data_definition.data_type %></td>
           <td style="text-align: center"><%= data_definition.source %></td>
           <td style="text-align: center"><%= data_definition.nlm_link %></td>
+          <td><%= link_to 'Edit', edit_data_definition_path(data_definition), :class => "btn btn-primary btn-sm" %></td>
         </tr>
       <% end %>
     </tbody>
