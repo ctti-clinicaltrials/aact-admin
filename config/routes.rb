@@ -88,6 +88,7 @@ Rails.application.routes.draw do
   get "/static/:type/:time/:filename(:format)" => "file_records#active_url"
 
   resources :definitions
+  resources :data_definitions
   resources :users
   resources :shared_data, param: :schema_name
   resources :release_notes
@@ -97,4 +98,5 @@ Rails.application.routes.draw do
   resources :use_cases
   resources :use_case_attachments
   resources :events
+  resources :verifiers
 end
