@@ -10,27 +10,21 @@ class PagesController < ApplicationController
 
   def snapshots
     set_daily_monthly_snapshot_files
-    # daily
     @daily = Core::FileRecord.daily('snapshot')
-    # monthly
     @monthly = Core::FileRecord.monthly('snapshot')
   end
 
   def pipe_files
     set_daily_monthly_pipe_files
-    # daily
-    @daily_pipe_files = Core::FileRecord.daily('pipefiles')
-    # monthly
-    @monthly_pipe_files = Core::FileRecord.monthly('pipefiles')
+    @daily = Core::FileRecord.daily('pipefiles')
+    @monthly = Core::FileRecord.monthly('pipefiles')
   end
 
   def covid_19
     set_covid_pipe_files
-    # daily
-    @daily_covid_19_files = Core::FileRecord.daily('covid-19')
-    # monthly
-    @monthly_covid_19_files = Core::FileRecord.monthly('covid-19')
-    
+    @daily = Core::FileRecord.everything('covid-19')
+    byebug
+    a = 10
   end
 
   def points_to_consider
