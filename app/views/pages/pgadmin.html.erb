@@ -1,25 +1,15 @@
 <div>
-    <h1>Query AACT with pgAdmin</h1>
+  <h1>Query AACT with pgAdmin</h1>
   <p>
     pgAdmin is a free, reliable, open source graphical query tool that can be used to access any postgreSQL database. 
     A wealth of information about pgAdmin is available on the internet including the <a href='https://www.pgadmin.org/docs/' target='_blank'>pgAdmin Documenation Website.</a> 
-    Using pgAdmin necessitates that you install postgreSQL on your local machine, even though you need not download the AACT database to your local machine. 
     Use of this tool assumes a basic understanding of SQL. 
   </p>
 
-
-<section class="pgAdmin container">
-  
-
+  <section class="pgAdmin">
     <div class="step">
       <span class="stepNumber">1</span>
-        <h3 class="stepName">Install Database Platform: <i>PostgreSQL</i></h3>
-    </div>
-    <p>AACT is currently running on version <%= @aact_db_version %> of PostgreSQL; it's recommended you install this version or higher. Refer to <a href='http://www.enterprisedb.com/products-services-training/pgdownload#macosx' target='_blank'>PostgreSQL Downloads</a> for free software and installation instructions.</p>
-
-    <div class="step">
-      <span class="stepNumber">2</span>
-        <h3 class="stepName">Install Database Query Tool:  <i>pgAdmin4</i></h3>
+      <h3 class="stepName">Install pgAdmin4</h3>
     </div>
 
     <p>
@@ -33,7 +23,7 @@
     </p>
 
     <div class="step">
-      <span class="stepNumber">3</span>
+      <span class="stepNumber">2</span>
       <h3 class="stepName">Establish a Connection to AACT</h3>
     </div>
 
@@ -44,7 +34,7 @@
     <%= image_tag("right_click.png", :size => '400x400') %>
 
     <p>
-      Click on <em>General</em> tab fill in name with what prefences you prefer example "aact".
+      Click on <em>General</em> tab, and give a name to this database connection, for example "aact".
     </p>
 
     <%= image_tag("general_name.png", :size => '400x400') %>
@@ -58,7 +48,7 @@
     <%= image_tag("newserver.png", :size => '400x400') %>
 
     <div class="step">
-      <span class="stepNumber">4</span>
+      <span class="stepNumber">3</span>
       <h3 class="stepName">Confirm Connection</h3>
     </div>
 
@@ -69,7 +59,7 @@
     <%= image_tag("connected.png") %>
 
     <div class="step">
-      <span class="stepNumber">5</span>
+      <span class="stepNumber">4</span>
       <h3 class="stepName">Select the AACT Database</h3>
     </div>
 
@@ -81,7 +71,7 @@
 
 
     <div class="step">
-      <span class="stepNumber">6</span>
+      <span class="stepNumber">5</span>
       <h3 class="stepName">Open Query Window</h3>
     </div>
 
@@ -95,7 +85,7 @@
     <%= image_tag("emptyquery.png") %>
 
     <div class="step">
-      <span class="stepNumber">7</span>
+      <span class="stepNumber">6</span>
       <h3 class="stepName">Execute Query</h3>
     </div>
     <p>
@@ -106,6 +96,5 @@
       A simple example of a query that returns the number of studies in the AACT database:
     </p>
     <%= image_tag("countresults.png") %>
-
-</section>
+  </section>
 </div>
