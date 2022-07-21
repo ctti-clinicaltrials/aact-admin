@@ -16,7 +16,7 @@
 
   <div class="pb-4">
       <p><b>As of:</b> <%= Time.now.strftime('%m/%d/%Y %l:%M %p') %> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
-         <b>Last Updated:</b> <%= @latest_event ? @latest_event.completed_at.strftime('%m/%d/%Y %l:%M %p') : 'never' %>
+         <b>Last Updated:</b> <%= @latest_event ? @latest_event.completed_at&.strftime('%m/%d/%Y %l:%M %p') : 'never' %>
       </p>
   </div>
 
