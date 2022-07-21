@@ -1,22 +1,15 @@
 <div>
-    <h1>Query AACT with pgAdmin</h1>
+  <h1>Query AACT with pgAdmin</h1>
   <p>
-  pgAdmin is a free, reliable, open source graphical query tool that can be used to access any postgreSQL database. A wealth of information about pgAdmin is available on the internet including the <a href='https://www.pgadmin.org/docs/1.22/main.html' target='_blank'>pgAdmin III Documenation Website.</a>  Using pgAdmin necessitates that you install postgreSQL on your local machine, even though you need not download the AACT database to your local machine.  Use of this tool assumes a basic understanding of SQL.
+    pgAdmin is a free, reliable, open source graphical query tool that can be used to access any postgreSQL database. 
+    A wealth of information about pgAdmin is available on the internet including the <a href='https://www.pgadmin.org/docs/' target='_blank'>pgAdmin Documenation Website.</a> 
+    Use of this tool assumes a basic understanding of SQL. 
   </p>
 
-
-<section class="pgAdmin container">
-  
-
+  <section class="pgAdmin">
     <div class="step">
       <span class="stepNumber">1</span>
-        <h3 class="stepName">Install Database Platform: <i>PostgreSQL</i></h3>
-    </div>
-    <p>AACT is currently running on version <%= @aact_db_version %> of PostgreSQL; it's recommended you install this version or higher. Refer to <a href='http://www.enterprisedb.com/products-services-training/pgdownload#macosx' target='_blank'>PostgreSQL Downloads</a> for free software and installation instructions.</p>
-
-    <div class="step">
-      <span class="stepNumber">2</span>
-        <h3 class="stepName">Install Database Query Tool:  <i>pgAdmin3</i></h3>
+      <h3 class="stepName">Install pgAdmin4</h3>
     </div>
 
     <p>
@@ -26,19 +19,25 @@
     <p>Download packages for Windows are available <a href="https://www.pgadmin.org/download/pgadmin-4-windows/" target="_blank">here.</a></p>
 
     <p>
-      The following instructions present examples for pgAdmin3 on a PC. Screenshots will appear differently for other versions and/or operating systems.
+      The following instructions present examples for pgAdmin4 on a PC. Screenshots will appear differently for other versions and/or operating systems.
     </p>
 
     <div class="step">
-      <span class="stepNumber">3</span>
+      <span class="stepNumber">2</span>
       <h3 class="stepName">Establish a Connection to AACT</h3>
     </div>
 
     <p>
-      Once pgAdmin3 is installed, launch the application and click on the plug icon in the upper left of the top menu bar.
+      Right click on <em>Servers</em> → <em>Register</em> → <em>Server</em>. 
+    </p>
+    
+    <%= image_tag("right_click.png", :size => '400x400') %>
+
+    <p>
+      Click on <em>General</em> tab, and give a name to this database connection, for example "aact".
     </p>
 
-    <%= image_tag("plug_icon.png") %>
+    <%= image_tag("general_name.png", :size => '400x400') %>
 
     <p>
       Enter "New Server Registration" info with the following credentials and press [OK] in the lower right of the dialog box.
@@ -46,10 +45,10 @@
     <%= render 'credentials/credentials' %>
 
 
-    <%= image_tag("newserver.png") %>
+    <%= image_tag("newserver.png", :size => '400x400') %>
 
     <div class="step">
-      <span class="stepNumber">4</span>
+      <span class="stepNumber">3</span>
       <h3 class="stepName">Confirm Connection</h3>
     </div>
 
@@ -60,7 +59,7 @@
     <%= image_tag("connected.png") %>
 
     <div class="step">
-      <span class="stepNumber">5</span>
+      <span class="stepNumber">4</span>
       <h3 class="stepName">Select the AACT Database</h3>
     </div>
 
@@ -72,28 +71,30 @@
 
 
     <div class="step">
-      <span class="stepNumber">6</span>
+      <span class="stepNumber">5</span>
       <h3 class="stepName">Open Query Window</h3>
     </div>
 
     <p>With the AACT database selected, click the 'SQL' icon from the top menu bar.<p>
-    <div id='new-query'><p><%= image_tag('new_query.png') %></p></div>
+    <%= image_tag('new_query1.png') %>
+
+    <p>Select <em>Tools</em> -> <em>Query Tool</em></p>
+    <%= image_tag('new_query2.png') %>
     <p>This will trigger a popout dialog tool that allows you to enter SQL queries.</p>
 
-    <p><%= image_tag("emptyquery.png") %></p>
+    <%= image_tag("emptyquery.png") %>
 
     <div class="step">
-      <span class="stepNumber">7</span>
+      <span class="stepNumber">6</span>
       <h3 class="stepName">Execute Query</h3>
     </div>
     <p>
-      Enter queries in the SQL Editor in the upper left, and run them against the AACT database by pressing the green triangular play button.
+      Enter queries in the SQL Editor in the upper left, and run them against the AACT database by pressing the triangular play button.
     </p>
     <%= image_tag("playquery.png") %>
     <p>
       A simple example of a query that returns the number of studies in the AACT database:
     </p>
     <%= image_tag("countresults.png") %>
-
-</section>
+  </section>
 </div>

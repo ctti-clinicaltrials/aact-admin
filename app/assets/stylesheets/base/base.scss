@@ -182,7 +182,6 @@ a {
   font-size: 1.2rem;
   color: $link-color;
   font-family: $font-sans;
-  padding: 0.4rem;
 
   &:hover {
     color: $link-hover-color;
@@ -324,7 +323,6 @@ div.step {
   padding-top: 2rem;
   margin-bottom: 1rem;
   position: relative;
-  left: -2rem;
 
   span.stepNumber {
     background-color: $tertiary;

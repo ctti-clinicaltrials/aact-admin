@@ -3,7 +3,7 @@
     <h1>Install a Copy of AACT on Windows 10</h1>
   </div>
 
-  <p>The following information is based on our experience downloading PostgreSQL 9.6.9 from the <a target='_blank' href='https://www.enterprisedb.com/downloads/postgres-postgresql-downloads'>Enterprise DB website</a> and installing it on a Windows 10 machine. This was done in early July, 2018.</p>
+  <p>The following information is based on our experience downloading PostgreSQL 14.4 from the <a target='_blank' href='https://www.enterprisedb.com/downloads/postgres-postgresql-downloads'>Enterprise DB website</a> and installing it on a Windows 10 machine. This was done in early June 2022.</p>
 
   <div class="step">
      <span class="stepNumber">1</span>
@@ -12,9 +12,9 @@
 
   <p>The URL is: <a target='_blank' href='https://www.enterprisedb.com/downloads/postgres-postgresql-downloads'>https://www.enterprisedb.com/downloads/postgres-postgresql-downloads</a></p>
 
-  <p> <%= image_tag("postgres-documentation/download_postgres.png", :size => '420x350', :class => 'centerImage') %> </p>
+  <p> <%= image_tag("postgres-documentation/download_postgres.png", :size => '520x350', :class => 'centerImage') %> </p>
 
-  <p>The site starts by asking which version of PostgreSQL you want and the operating system of the machine you're downloading to. AACT is currently running on PostgreSQL version <%= @aact_db_version %>, so versions subsequent to that should work. For this demo, we chose version 6.9.6. If you're downloading to Windows or Linux, you need to specify whether you're on a 32 or 64 bit machine.</p>
+  <p>The site starts by asking which version of PostgreSQL you want and the operating system of the machine you're downloading to. AACT is currently running on PostgreSQL version 11.5, so versions subsequent to that should work. For this demo, we chose version 14.4. 
 
   <p>We googled to find these instructions about determining if your machine is 32 or 64 bit:</p>
   <p> <%= image_tag("postgres-documentation/pg-windows-system-type2.png", :size => '420x150', :class => 'centerImage') %> </p>
@@ -22,17 +22,13 @@
 
   <p> <%= image_tag("postgres-documentation/pg-windows-system-type.png", :size => '460x350', :class => 'centerImage') %> </p>
 
-  <p>With these two values specified, we pressed the <i>[Download Now]</i> button.</p>
-
-  <p> <%= image_tag("postgres-documentation/windows_system_type_select.png", :size => '450x200', :class => 'centerImage') %> </p>
-
   <div class="step">
      <span class="stepNumber">2</span>
      <h3 class="stepName">Install PostgreSQL</h3>
   </div>
-  <p>The website will ask what you want to do once the file finishes downloading.  Select [Run] so that it automatically launches the process that installs the software.</p>
+  <p>Go to where your downloads are and <i>[click]</i> on the installation for PostgreSQL.</p> 
 
-  <p> <%= image_tag("postgres-documentation/run_executable.png", :size => '600x70', :class => 'centerImage') %> </p>
+  <p> <%= image_tag("postgres-documentation/run_executable.png", :size => '500x100', :class => 'centerImage') %> </p>
   <p>Choose [Yes] when it asks if you allow the app to make changes to your device.</p>
   <p> <%= image_tag("postgres-documentation/allow_changes.png", :size => '420x270', :class => 'centerImage') %> </p>
   <p>This will fire off the setup wizard. Click <i>[ Next > ]</i> buttons (accepting all defaults) until it prompts you for the superuser password. <b>Enter a password you will remember!</b> You'll need it later to access PostgreSql & create the AACT database.</b></p>
@@ -59,12 +55,12 @@
 
   <p> This should present an input dialog box that allows you to define a new database. Enter the database name: 'AACT' in the first input box, and before you press <i>[Save]</i>, click the <i>Security</i> tab.</p>
 
-  <p> <%= image_tag("postgres-documentation/create_database_aact.png", :size => '320x320', :class => 'centerImage') %> </p>
+  <p> <%= image_tag("postgres-documentation/create_database_aact.png", :size => '400x400', :class => 'centerImage') %> </p>
 
   <p>Click the little plus icon to the right of 'Privileges' and then under 'Grantee' select <i>PUBLIC</i> from the drop down and assign it <b>All</b> Privileges by clicking in the 'Privileges' cell next to <i>PUBLIC</i> and checking the box next to 'All'.</p>
 
-  <p> <%= image_tag("postgres-documentation/grant_public_rights_to_db.png", :size => '320x320', :class => 'centerImage') %> </p>
-  <p> <%= image_tag("postgres-documentation/grant_db_access_to_public.png", :size => '320x320', :class => 'centerImage') %> </p>
+  <p> <%= image_tag("postgres-documentation/grant_public_rights_to_db.png", :size => '400x400', :class => 'centerImage') %> </p>
+  <p> <%= image_tag("postgres-documentation/grant_db_access_to_public.png", :size => '400x400', :class => 'centerImage') %> </p>
 
   <p>Now you can press <i>[Save]</i>. </p>
 
@@ -72,17 +68,17 @@
      <span class="stepNumber">4</span>
      <h3 class="stepName">Create database role: ctti</h3>
   </div>
-  <p>You need to create a specific database user/role to import data from AACT. This is because all database objects in the AACT dump file (the file which will be used to populate your local instance of AACT) are owned by a user named <i>ctti</i>.  If the role doesn't exist, you will get error messages that look something like:</P>
+  <p>You need to create a specific database user/role to import data from AACT. This is because all database objects in the AACT dump file (the file which will be used to populate your local instance of AACT) are owned by a user named <i>ctti</i>.  If the role doesn't exist, you will get error messages that look something like:</p>
   <p> <%= image_tag("postgres-documentation/missing_ctti_role_error_message.png", :size => '560x170', :class => 'centerImage') %> </p>
 
   <p>(We intend to modify the database dump process to avoid the need for you to create a database user/role named <i>ctti</i>, but for now, it's necessary.)</p>
 
-  <p>In the left pane, select <i>PostgreSQL 9.6</i> and then select <i>Object</i> - <i>Create</i> - <i>Login/Group Role</i>.
-  <p> <%= image_tag("postgres-documentation/create_role.png", :size => '320x170', :class => 'centerImage') %> </p>
+  <p>In the left pane, select <i>PostgreSQL 14.4</i> and then select <i>Object</i> - <i>Create</i> - <i>Login/Group Role</i>.
+  <p> <%= image_tag("postgres-documentation/create_role.png", :size => '400x400', :class => 'centerImage') %> </p>
 
   <p>In the 'Create - Login/Group Role' dialog that pops up, enter <i>ctti</i> in the Name input field.</p>
 
-  <p> <%= image_tag("postgres-documentation/create_ctti_role.png", :size => '320x250', :class => 'centerImage') %> </p>
+  <p> <%= image_tag("postgres-documentation/create_ctti_role.png", :size => '400x400', :class => 'centerImage') %> </p>
 
   <p>Then select the 'Privileges' tab at the top of the dialog and set 'Can Login?' to 'Yes'.</p>
 
@@ -92,6 +88,16 @@
 
   <div class="step">
      <span class="stepNumber">5</span>
+     <h3 class="stepName">Create database role: read_only</h3>
+  </div>
+  <p>You need to create a specific database user/role to import data from AACT. This is because all database objects in the AACT dump file (the file which will be used to populate your local instance of AACT) are owned by a user named <i>read_only</i>.  If the role doesn't exist, you will get error messages that look something like:</p>
+  
+  <p> <%= image_tag("postgres-documentation/missing_read_only_role_error_message.png", :size => '560x170', :class => 'centerImage') %> </p>
+  
+  <p>Repeat the <b>same steps</b> as you did for <b>ctti<b> database role</p> 
+
+  <div class="step">
+     <span class="stepNumber">6</span>
      <h3 class="stepName">Populate the AACT database</h3>
   </div>
 
@@ -105,7 +111,7 @@
 
   <pre>
     <p class='code'>
-      <span class='command-prompt'> &gt; </span><span class='command-entry'> C:\Program Files\PostgreSQL\9.6.9\bin\pg_restore.exe --host "127.0.0.1" --port "5432" --username "postgres"  --no-password --role "ctti" --dbname "aact"  --verbose "C:\\</span><span class='command-note'>&lt;directory containing downloaded file&gt;</span><span class='command-entry'>\\postgres_data.dmp"</span>
+      <span class='command-prompt'> &gt; </span><span class='command-entry'> C:\Program Files\PostgreSQL\14.4\bin\pg_restore.exe --host "127.0.0.1" --port "5432" --username "postgres"  --no-password --role "ctti" --dbname "aact"  --verbose "C:\\</span><span class='command-note'>&lt;directory containing downloaded file&gt;</span><span class='command-entry'>\\postgres_data.dmp"</span>
     </p>
   </pre>
 
@@ -113,7 +119,7 @@
   <p>You can import the content of <i>postgres_data.dmp</i> file into your new database by selecting the <i>AACT</i> database in the left pane and then clicking <i>[Tools]</i> in the top menu bar of pgAdmin and then click <i>Restore...</i> in the dropdown menu.</p>
   <p> <%= image_tag("postgres-documentation/restore_aact_db.png", :size => '420x360', :class => 'centerImage') %> </p>
 
-  <p>You'll need to click the elipses to the right of the Filename input box. This will present a 'Select file' dialog box.</p>
+  <p>You'll need to click the ellipses to the right of the Filename input box. This will present a 'Select file' dialog box.</p>
 
   <p> <%= image_tag("postgres-documentation/select_restore_file.png", :size => '420x270', :class => 'centerImage') %> </p>
 
@@ -123,7 +129,7 @@
 
   <p>Double click on <i>postgres_data.dmp</i>.  You'll return to the 'Restore (Database: AACT)' dialog box where you can press <i>[Restore]</i> to initiate the process that will import the contents of the dump file into the new AACT database.</p>
 
-  <p> <%= image_tag("postgres-documentation/restore_from_static_copy.png", :size => '420x270', :class => 'centerImage') %> </p>
+  <p> <%= image_tag("postgres-documentation/restore_from_static_copy.png", :size => '500x300', :class => 'centerImage') %> </p>
 
   <p>The process will take several minutes. While it's loading, the following message will display:</p>
 
