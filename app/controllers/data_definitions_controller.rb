@@ -1,6 +1,6 @@
 class DataDefinitionsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :catch_not_found
-  before_action :set_data_definition, only: [:edit, :update]
+  before_action :set_data_definition, only: [:edit, :update, :show]
  
   def index
     @data_definitions = DataDefinition.all
@@ -11,6 +11,9 @@ class DataDefinitionsController < ApplicationController
   end
 
   def edit
+  end
+
+  def show
   end
  
   def create
