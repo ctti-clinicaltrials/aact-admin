@@ -41,4 +41,13 @@ RSpec.describe DataDefinitionsController, type: :controller do
       expect(response).to have_http_status(:found)
     end
   end
+
+  describe "GET #show" do
+    it "returns http success" do
+      data_def = FactoryBot.create(:data_definition)
+      get :show, id: data_def.id
+      expect(response).to render_template(:show)
+      expect(response).to have_http_status(:success)
+    end
+  end
 end
