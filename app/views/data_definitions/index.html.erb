@@ -8,8 +8,8 @@
     <table class="table table-sm table-striped">
       <thead>
         <tr>
+          <th style="text-align: center">table_name.column_name</th>
           <th style="text-align: center">db_section</th>
-          <th style="text-align: center">table_name and column_name</th>
           <th style="text-align: center">data_type</th>
           <th style="text-align: center">source</th>
           <th style="text-align: center">nlm_link</th>
@@ -19,8 +19,9 @@
       <tbody>
         <% @data_definitions.each do |data_definition| %>
           <tr>
-            <td style="text-align: center"><%= link_to data_definition.db_section, data_definition_path(data_definition) %></td>
-            <td style="text-align: center"><%= data_definition.table_name%>.<%= data_definition.column_name %></td>
+            <td style="text-align: center"><%= link_to data_definition.table_name, data_definition_path(data_definition) %> .
+                                           <%= link_to data_definition.column_name, data_definition_path(data_definition) %></td>
+            <td style="text-align: center"><%= data_definition.db_section %></td>
             <td style="text-align: center"><%= data_definition.data_type %></td>
             <td style="text-align: center"><%= data_definition.source %></td>
             <td style="text-align: center"><%= data_definition.nlm_link %></td>
