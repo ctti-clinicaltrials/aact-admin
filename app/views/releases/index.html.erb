@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div class="container">
   <div class="pb-3">
     <h1>Releases</h1>
@@ -11,7 +9,6 @@
         <th>Title</th>
         <th>Subtitle</th>
         <th>Released On</th>
-        <th colspan="3"></th>
       </tr>
     </thead>
     <tbody>
@@ -21,8 +18,7 @@
           <td><%= release.subtitle %></td>
           <td><%= release.released_on.strftime('%B %d, %Y') %></td>
           <td><%= link_to 'Edit', edit_release_path(release), :class => "btn btn-primary btn-sm" %></td>
-          <!-- data confirmation not working, need to investigate -->
-          <td><%= button_to 'Delete', release_path(release), :class => "btn btn-danger btn-sm", :method => :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Delete', release_path(release), :class => "btn btn-danger btn-sm", :method => :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
