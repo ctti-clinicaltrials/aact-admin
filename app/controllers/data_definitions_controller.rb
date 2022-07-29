@@ -1,6 +1,6 @@
 class DataDefinitionsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :catch_not_found
-  before_action :set_data_definition, only: [:edit, :update, :show]
+  before_action :set_data_definition, only: [:edit, :update, :show, :destroy]
  
   def index
     @data_definitions = DataDefinition.all
@@ -35,6 +35,11 @@ class DataDefinitionsController < ApplicationController
       flash.now.alert = @data_definition.errors.full_messages.to_sentence
       render :edit
     end
+  end
+
+  def destroy
+    @data_definition.destroy
+    redirect_to data_definitions_path, notice: 'The Data Definition record was successfully deleted.'
   end
   
   private

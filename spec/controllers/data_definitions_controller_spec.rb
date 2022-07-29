@@ -50,4 +50,13 @@ RSpec.describe DataDefinitionsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe "DELETE #destroy" do
+    it "returns http found" do
+      data_def = FactoryBot.create(:data_definition)
+      delete :destroy, id: data_def.id
+      expect(response).to redirect_to data_definitions_path
+      expect(response).to have_http_status(:found)
+    end
+  end
 end
