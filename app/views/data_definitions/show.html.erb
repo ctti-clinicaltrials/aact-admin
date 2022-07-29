@@ -15,7 +15,7 @@
       <div>
         <%= link_to 'Edit', edit_data_definition_path(@data_definition), :class => "btn btn-primary" %>   
       </div>
-        <%= button_to 'Delete', data_definition_path(@data_definition), :class => "btn btn-danger", :method => :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Delete', data_definition_path(@data_definition), :class => "btn btn-danger", :method => :delete, data: { confirm: 'Are you sure?' } %>
       <div>
         <%= link_to 'Back', data_definitions_path, :class => "btn btn-primary" %>  
       </div>
