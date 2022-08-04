@@ -22,4 +22,13 @@ FactoryBot.define do
     created_at { DateTime.now }
     updated_at  { DateTime.now }
  end
+
+  factory :data_definition do
+    db_section { "TEST: protocol" }
+    table_name { "TEST: studies" }
+    column_name { "TEST: source" }
+    data_type { "TEST: string" }
+    source { "TEST: <clinical_study>.<source>" }
+    nlm_link { "TEST: https://prsinfo.clinicaltrials.gov/definitions.html"}
+  end
 end

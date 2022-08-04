@@ -1,0 +1,25 @@
+<div class="modal-body">
+  <h1>Data Definition</h1>
+  <hr/>
+
+  <div class="container-fluid">
+    <h5><strong>db_section:</strong> &emsp;&emsp;&ensp;&nbsp; <%= @data_definition.db_section %></h5>
+    <h5><strong>table_name:</strong> &emsp;&emsp;&nbsp;&nbsp; <%= @data_definition.table_name %></h5>
+    <h5><strong>column_name:</strong> &emsp;&nbsp; <%= @data_definition.column_name %></h5>
+    <h5><strong>data_type:</strong> &emsp;&emsp;&emsp;&nbsp; <%= @data_definition.data_type %></h5>
+    <h5><strong>source:</strong> &emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp; <%= @data_definition.source %></h5>
+    <h5><strong>nlm_link:</strong> &emsp;&emsp;&emsp;&ensp;&nbsp; <%= @data_definition.nlm_link %></h5>
+    <div class="pb-5">
+    </div>
+    <div class="d-flex justify-content-between w-25">
+      <div>
+        <%= link_to 'Edit', edit_data_definition_path(@data_definition), :class => "btn btn-primary" %>   
+      </div>
+        <%= link_to 'Delete', data_definition_path(@data_definition), :class => "btn btn-danger", :method => :delete, data: { confirm: 'Are you sure?' } %>
+      <div>
+        <%= link_to 'Back', data_definitions_path, :class => "btn btn-primary" %>  
+      </div>
+    </div>
+  </div>
+</div>  
+ 

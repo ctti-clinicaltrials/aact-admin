@@ -12,8 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require flatpickr
-//= require turbolinks
 //= require_tree .
 
 // var options = {
