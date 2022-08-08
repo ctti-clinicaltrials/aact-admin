@@ -23,8 +23,6 @@ class PagesController < ApplicationController
   def covid_19
     set_covid_pipe_files
     @daily = Core::FileRecord.everything('covid-19')
-    byebug
-    a = 10
   end
 
   def points_to_consider

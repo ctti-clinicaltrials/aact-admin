@@ -229,7 +229,7 @@ RSpec.describe "Releases", type: :request do
 
     describe "DELETE /release " do
       it "redirects to the home page if user is not logged in" do
-        expect {delete release_path(id: 15)}.to_not change(Release, :count)  
+        expect {delete release_path(id: 5)}.to_not change(Release, :count)  
         expect(response).to redirect_to root_path
       end
     end
