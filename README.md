@@ -19,7 +19,9 @@ Make sure you've set values for the following environmental variables:
 | `PUBLIC_DB_HOST=<public_host>` | This is the public database hostname used in the connection string to the production [aact-pub](https://aact.ctti-clinicaltrials.org/connect) database. Under most circumstances, we can use `aact-db.ctti-clinicaltrials.org` as the public-host. |
 | `AACT_ALT_PUBLIC_DATABASE_NAME=aact_alt` | This is the AACT alternate public database name that the database superuser will be accessing. It is used to for staging purposes that allows testing of the database before restoring to AACT. |
 | `AACT_CORE_DATABASE_URL=<postgresql://[postgres-user]:[postgres-password]@[hostname]:[port]/[dbname]>` | Connection string to the aact-core database. This allows us to connect to this database from aact-admin. The postgres-user and postgres-password are the superuser-name and superuser-password that you have created in the postgres database that comes with PostgreSQL. Under most circumstances, we can use `localhost` as the hostname and `5432` as the port. |  
-| `AACT_QUERY_DATABASE_URL=<postgresql://[postgres-user]:[postgres-password]@[hostname]:[port]/[dbname]>` | Connection string to the production [aact-pub](https://aact.ctti-clinicaltrials.org/connect) database that users query. This allows us to query this database from aact-admin. The postgres-user and postgres-password are the username and password that you have created at `https://aact.ctti-clinicaltrials.org`. Under most circumstances, we can use `aact-db.ctti-clinicaltrials.org` as the hostname and `5432` as the port. |
+| `AACT_QUERY_DATABASE_URL=<postgresql://[postgres-user]:[postgres-password]@[hostname]:[port]/[dbname]>` | Connection string to the production [aact-pub](https://aact.ctti-clinicaltrials.org/connect) database that users query. This allows us to query this database from aact-admin. The postgres-user and postgres-password are the username and password that you have created at `https://aact.ctti-clinicaltrials.org`. Under most circumstances, we can use `aact-db.ctti-clinicaltrials.org` as the hostname and `5432` as the port. | 
+|`PUBLIC_DB_NAME` |This is the public database name that mailcatcher uses name the variable `aact_public`|
+|`PUBLIC_DB_HOST=<public_host>` |This is the public database hostname used in the connection string to the production. We will be using `localhost` for mailcatcher|
 
 These variables should have been set when you setup AACT Core. If any are missing you should add them to where you store your variables (for instance ".bash_profile" or ".zshrc").  
 
@@ -57,6 +59,15 @@ if you run into issues with bundle installing `libv8` and the `rubyracer` on a m
 
 - lastly you'll need to copy the contents from "public/documentation" to "public/static/documentation"
 ***
+
+## Setting Up MailCatcher
+
+Instructions on how to install [mailcatcher](https://mailcatcher.me/)
+
+- Install with the following command in termnial `gem install mailcatcher`
+- Run the command `mailcatcher` in termnial
+- Go to http://127.0.0.1:1080/
+- Use `mailcatcher --help` to see the command line options
 
 ## Workflow
 ### Branches:
