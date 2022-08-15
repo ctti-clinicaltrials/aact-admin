@@ -2,10 +2,11 @@ class DefinitionsController < ApplicationController
   # *******///********
   # This code uses data dictionary spreadsheet stored on the DO file server
   # *******///********
+  require 'csv'
 
   def index
     data_def_entries = DataDefinition.all
-    data_def_entries = data_def_entries.map do |data_def_entry|
+    @data_def_entries = data_def_entries.map do |data_def_entry|
       {
         "CTTI note" => data_def_entry.ctti_note,
         "column" => data_def_entry.column_name,
@@ -18,7 +19,15 @@ class DefinitionsController < ApplicationController
         "table" => data_def_entry.table_name
       }
     end
-    render json: data_def_entries
+    respond_to do |format|
+      format.csv  do
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment; filename=definitions.csv"
+        render template: "definitions/index.csv.erb"
+      end
+      format.json  { render json: @data_def_entries }
+      format.html { redirect_to root_path }
+    end
   end
 
   def filtered?(params)
