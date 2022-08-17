@@ -86,50 +86,74 @@ Using the LIBNAME statement in SAS, assign a <i>libref</i> (a shortcut name) to 
     </p>
 
     <h4>Example 3.a - Get listing of contents of the database</h4>
-
-    <p class='CodeRay'>
-      <pre>
-        <p class='code'>
-          <span class='command-prompt'>proc contents data=</span><span class='command-entry'>cloud._all_;</span>
-          <span class='command-prompt'>run;</span>
-        </p>
-      </pre>
-    </p>
-
+    
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p class='CodeRay'>
+            <pre>
+              <p class='code'>
+                <span class='command-prompt'>proc contents data=</span><span class='command-entry'>cloud._all_;</span>
+                <span class='command-prompt'>run;</span>
+              </p>
+            </pre>
+          </p>
+        </div>
+        <div class="col">
+          <p> <%= image_tag("Example3A.png") %> </p>
+        </div>
+      </div>
+    </div>   
     <h4>Example 3.b - Count number of studies by values of the study_type variable using SAS PROC FREQ</h4>
-
-    <p class='CodeRay'>
-      <pre>
-        <p class='code'>
-          <span class='command-prompt'>title 'Number of studies by type';</span>
-          <span class='command-prompt'>proc freq data=</span><span class='command-entry'>cloud.studies;</span>
-          <span class='command-prompt'>   tables </span><span class='command-entry'>study_type;</span>
-          <span class='command-prompt'>   run;</span>
-          <span class='command-prompt'>title;</span>
-      </p>
-      </pre>
-    </p>
-
+   
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p class='CodeRay'>
+            <pre>
+              <p class='code'>
+                <span class='command-prompt'>title 'Number of studies by type';</span>
+                <span class='command-prompt'>proc freq data=</span><span class='command-entry'>cloud.studies;</span>
+                <span class='command-prompt'>   tables </span><span class='command-entry'>study_type;</span>
+                <span class='command-prompt'>   run;</span>
+                <span class='command-prompt'>title;</span>
+            </p>
+            </pre>
+          </p>
+        </div>
+        <div class="col">
+          <p> <%= image_tag("Example3B.png") %> </p>
+        </div>
+      </div>
+    </div>   
     <h4>Example 3.c – Example SAS PROC SQL queries </h4>
 
-    <p class='CodeRay'>
-      <pre>
-        <p class='code'>
-          <span class='command-response'>* - count number of records in STUDIES table;</span>
-          <span class='command-response'>* - count number of records by STUDY_TYPE;</span>
-          <span class='command-prompt'>proc sql;</span>
-          <span class='command-prompt'>   title 'Number of studies';</span>
-          <span class='command-entry'>      select count(*) from cloud.studies;</span>
-          <span class='command-prompt'>   title 'Number of studies by type';</span>
-          <span class='command-entry'>      select study_type, count(*) as Count</span>
-          <span class='command-entry'>         from cloud.studies</span>
-          <span class='command-entry'>         group by study_type;</span>
-          <span class='command-prompt'>quit;</span>
-          <span class='command-prompt'>title;</span>
-        </p>
-      </pre>
-    </p>
-
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p class='CodeRay'>
+            <pre>
+              <p class='code'>
+                <span class='command-response'>* - count number of records in STUDIES table;</span>
+                <span class='command-response'>* - count number of records by STUDY_TYPE;</span>
+                <span class='command-prompt'>proc sql;</span>
+                <span class='command-prompt'>   title 'Number of studies';</span>
+                <span class='command-entry'>      select count(*) from cloud.studies;</span>
+                <span class='command-prompt'>   title 'Number of studies by type';</span>
+                <span class='command-entry'>      select study_type, count(*) as Count</span>
+                <span class='command-entry'>         from cloud.studies</span>
+                <span class='command-entry'>         group by study_type;</span>
+                <span class='command-prompt'>quit;</span>
+                <span class='command-prompt'>title;</span>
+              </p>
+            </pre>
+          </p>
+        </div>
+        <div class="col">
+          <p> <%= image_tag("Example3A.png") %> </p>
+        </div>
+      </div>
+    </div>   
     <h4>Example 3.d – Use SAS DATA step to extract and save content as a permanent SAS dataset </h4>
 
     <p class='CodeRay'>
