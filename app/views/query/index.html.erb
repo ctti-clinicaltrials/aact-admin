@@ -1,26 +1,49 @@
-<div class="container">
+<%= form_tag("/query", :method => "get") do %>
+  <%= label_tag(:query, "Input SQL Query:") %>
+  <% if @error.present? %>
+    <div id="error_explanation">
+      <ul>
+      <% @error.each do |message| %>
+        <li class="text-danger"><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= text_area_tag(:query, params[:query], :required => 'required') %>
   <div class="pb-3">
-    <h1>SQL Query Results</h1>
   </div>
-  <table class="table table-sm table-striped" style="max-width: 100rem;">
-    <thead>
-      <tr>
-        <% @results.first %>
-        <% @results.first.each do |key,value| %>
-          <th><%= key %></th>
-        <% end %>
-      </tr>
-    </thead>
-    <tbody>
-      <% @results.each do |data| %>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary btn-sm">Execute SQL Query</button>
+  </div>
+<% end %>
+
+<div class="pb-5">
+</div>
+<% if @results %>
+  <div class="container">
+    <div class="pb-2">
+      <h1>SQL Query Results</h1>
+    </div>
+    <table class="table table-sm table-striped" style="max-width: 100rem;">
+      <thead>
         <tr>
-          <% data.each do |key,value| %>
-            <td><%= value %></td>
+          <% @results.first %>
+          <% @results.first.each do |key,value| %>
+            <th style="text-align: center"><%= key %></th>
           <% end %>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <div class="pb-3">
+      </thead>
+      <tbody>
+        <% @results.each do |data| %>
+          <tr>
+            <% data.each do |key,value| %>
+              <td style="text-align: center"><%= value %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="pb-3">
+    </div>
   </div>
-</div>
+<% end %>
