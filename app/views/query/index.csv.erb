@@ -1,0 +1,6 @@
+<%- headers = @results.first.map { |key,value| key } -%>
+<%= CSV.generate_line headers -%>
+<%- @results.each do |result| -%>
+<%- rows = result.each.map { |key,value| value } -%>    
+<%= CSV.generate_line(rows).html_safe -%>
+<%- end -%>

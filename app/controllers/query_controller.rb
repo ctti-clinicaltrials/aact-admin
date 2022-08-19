@@ -1,4 +1,6 @@
 class QueryController < ApplicationController
+  require 'csv'
+
   def index
     if params[:query]
       begin
@@ -7,6 +9,15 @@ class QueryController < ApplicationController
       rescue ActiveRecord::StatementInvalid => e
         @error = [e.message]
       end
-    end 
+    end
+    respond_to do |format|
+      format.csv  do
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment; filename=query.csv"
+        render template: "query/index.csv.erb"
+      end
+      # format.json  { render json: @results }
+      format.html { render template: "query/index.html.erb" }
+    end
   end
 end
