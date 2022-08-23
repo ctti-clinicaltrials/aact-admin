@@ -9,7 +9,7 @@
       </ul>
     </div>
   <% end %>
-  <%= text_area_tag(:query, params[:query], :required => 'required') %>
+  <%= text_area_tag(:query, params[:query], :required => "required") %>
   <div class="pb-3">
   </div>
   <div class="col-auto">
@@ -22,7 +22,9 @@
 <% if @results %>
   <div class="container">
     <div class="pb-2">
-      <h1>SQL Query Results</h1>
+      <h1>SQL Query Results &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 
+        <a class="btn btn-primary btn-sm" href=<%=query_path(format: :csv, query: params[:query])%> role="button">Export Query CSV </a> 
+      </h1>
     </div>
     <table class="table table-sm table-striped" style="max-width: 100rem;">
       <thead>

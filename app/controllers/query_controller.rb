@@ -13,11 +13,10 @@ class QueryController < ApplicationController
     respond_to do |format|
       format.csv  do
         response.headers['Content-Type'] = 'text/csv'
-        response.headers['Content-Disposition'] = "attachment; filename=query.csv"
-        render template: "query/index.csv.erb"
+        response.headers['Content-Disposition'] = 'attachment; filename=query.csv'
+        render template: 'query/index.csv.erb'
       end
-      # format.json  { render json: @results }
-      format.html { render template: "query/index.html.erb" }
+      format.html { render template: 'query/index.html.erb' }
     end
   end
 end
