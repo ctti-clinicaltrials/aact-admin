@@ -14,44 +14,35 @@
         <%= f.label :db_section %>
         <%= f.text_field :db_section, class: "form-control" %>
       </div>
-  
       <div class="container-fluid">
         <%= f.label :table_name %>
         <%= f.text_field :table_name, class: "form-control" %>
       </div>
-  
       <div class="container-fluid">
         <%= f.label :column_name %>
         <%= f.text_field :column_name, class: "form-control" %>
       </div>
-  
       <div class="container-fluid">
         <%= f.label :data_type %>
         <%= f.text_field :data_type, class: "form-control" %>
       </div>
-
       <div class="container-fluid">
         <%= f.label :source %>
-        <%= f.text_area :source, rows: 5, class: "form-control" %>
+        <%= f.text_area :source, rows: 2, class: "form-control" %>
       </div>
-
       <div class="container-fluid">
         <%= f.label :ctti_note %>
-        <%= f.text_area :ctti_note, rows: 5, class: "form-control" %>
+        <%= f.text_area :ctti_note, rows: 4, class: "form-control" %>
       </div>
-      
       <div class="container-fluid">
         <%= f.label :nlm_link %>
         <%= f.text_field :nlm_link, class: "form-control" %>
       </div>
-  
       <div class="pb-3">
       </div>
-  
       <div class="actions container-fluid">
         <%= f.submit :class => "old-btn"%>
       </div>
-  
       <div class="pb-4">
       </div>
     </div>
