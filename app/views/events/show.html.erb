@@ -1,38 +1,33 @@
 <div class="modal-body">
   <h1>Event</h1>
   <hr/>
-
   <div class="container-fluid">
     <h5> <strong>Started:</strong> <%= @load_event.created_at.strftime('%m/%d/%Y %l:%M %p') %> </h5>
   </div>
-
   <div class="container-fluid">
     <h5> <strong>Event Type:</strong> <%= @load_event.event_type %> </h5>
   </div>
-
   <div class="container-fluid">
     <h5> <strong>Status:</strong> <%= @load_event.status %></h5>
   </div>
-
+  <div class="container-fluid">
+    <h5> <strong>Completed At:</strong> <%= @load_event.completed_at %></h5>
+  </div>
   <div class="container-fluid">
     <h5> <strong>Description:</strong> <%= markdown(@load_event.description) %></h5>
   </div>
-
   <div class="container-fluid">
     <h5> <strong>Problems:</strong> <%= markdown(@load_event.problems) %></h5>
   </div>
-
   <div class="container-fluid">
     <h5> <strong>Verifier:</strong> </h5>
   </div>
-
   <ul class="list-group ">
     <li class="row mb-0">
       <div class="col-4 text-wrap text-break list-group-item list-group-item-dark"></div>
       <div class="col-4 text-center text-wrap text-break list-group-item list-group-item-dark">Instances</div>
       <div class="col-4 text-center text-wrap text-break list-group-item list-group-item-dark">Unique</div>
     </li>
-
     <li class="row mb-0">
       <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Source</div>
       <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Destination</div>
@@ -41,7 +36,6 @@
       <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Source</div>
       <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Destination</div>
     </li>
-
     <% @load_event.verifier.differences.each do |diff| %>
       <% next if (diff['source'].nil?) %>
       <li class="row mb-0">
@@ -54,9 +48,6 @@
       </li>
     <% end %>
   </ul>
-
-  <div class="pb-5">
-  </div>
-
+  <div class="pb-5"></div>
   <%= link_to 'Back', events_path, :class => "btn btn-primary btn-sm" %>
 </div>
