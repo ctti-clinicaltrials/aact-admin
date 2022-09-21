@@ -11,7 +11,7 @@
     <h5> <strong>Status:</strong> <%= @load_event.status %></h5>
   </div>
   <div class="container-fluid">
-    <h5> <strong>Completed At:</strong> <%= @load_event.completed_at %></h5>
+    <h5> <strong>Completed At:</strong> <%= @load_event.completed_at&.strftime('%m/%d/%Y %l:%M %p') %></h5>
   </div>
   <div class="container-fluid">
     <h5> <strong>Description:</strong> <%= markdown(@load_event.description) %></h5>
