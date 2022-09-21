@@ -14,7 +14,7 @@
       <div class="col-3 list-group-item "><%= link_to loadevent.created_at.strftime('%m/%d/%Y %l:%M %p'), event_path(loadevent) %></div>
       <div class="col-2 list-group-item "><%= loadevent.event_type %></div>
       <div class="col-2 list-group-item "><%= loadevent.status %></div>
-      <div class="col-2 list-group-item "><%= loadevent.completed_at %></div>
+      <div class="col-2 list-group-item "><%= loadevent.completed_at&.strftime('%m/%d/%Y %l:%M %p') %></div>
       <div class="col-3 list-group-item text-start"><%= loadevent.description %></div>
     </li>
   <% end %>
