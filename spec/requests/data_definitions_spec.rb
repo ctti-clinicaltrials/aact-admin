@@ -37,15 +37,48 @@ RSpec.describe "Data Definitions", type: :request do
     end
 
     describe "POST /data_definitions/ with valid data" do
-      it "saves a new Data Definition and redirects to the show page if valid attributes" do
-        data_def_attributes = { data_definition: {db_section: 'Code the Dream', table_name: 'AACT', data_type: 'string', ctti_note: 'Testing valid data.'} }
-        expect { post data_definitions_path, data_def_attributes }.to change(DataDefinition, :count)
+      it "saves a new Data Definition and redirects to the index page if valid attributes" do
+        data_def = FactoryBot.attributes_for(:data_definition)
+        expect { post data_definitions_path, data_definition: data_def }.to change(DataDefinition, :count)
         expect(response).to redirect_to data_definitions_path
+      end
+    end
+    
+    describe "POST /data_definitions/ with invalid data" do
+      it "does not save a new Data Definition and renders the new page if invalid attribute (blank db_section)" do
+        data_def = FactoryBot.attributes_for(:data_definition, db_section: '')
+        expect { post data_definitions_path, data_definition: data_def }.to_not change(DataDefinition, :count)
+        expect(response).to render_template(:new)
+      end
+      it "does not save a new Data Definition and renders the new page if invalid attribute (blank table_name)" do
+        data_def = FactoryBot.attributes_for(:data_definition, table_name: '')
+        expect { post data_definitions_path, data_definition: data_def }.to_not change(DataDefinition, :count)
+        expect(response).to render_template(:new)
+      end
+      it "does not save a new Data Definition and renders the new page if invalid attribute (blank column_name)" do
+        data_def = FactoryBot.attributes_for(:data_definition, column_name: '')
+        expect { post data_definitions_path, data_definition: data_def }.to_not change(DataDefinition, :count)
+        expect(response).to render_template(:new)
+      end
+      it "does not save a new Data Definition and renders the new page if invalid attribute (blank data_type)" do
+        data_def = FactoryBot.attributes_for(:data_definition, data_type: '')
+        expect { post data_definitions_path, data_definition: data_def }.to_not change(DataDefinition, :count)
+        expect(response).to render_template(:new)
+      end
+      it "does not save a new Data Definition and renders the new page if invalid attribute (blank source)" do
+        data_def = FactoryBot.attributes_for(:data_definition, source: '')
+        expect { post data_definitions_path, data_definition: data_def }.to_not change(DataDefinition, :count)
+        expect(response).to render_template(:new)
+      end
+      it "does not save a new Data Definition and renders the new page if invalid attribute (blank ctti_note)" do
+        data_def = FactoryBot.attributes_for(:data_definition, ctti_note: '')
+        expect { post data_definitions_path, data_definition: data_def }.to_not change(DataDefinition, :count)
+        expect(response).to render_template(:new)
       end
     end
 
     describe "PUT /data_definitions/ with valid data" do
-      it "updates a Data Definition and redirects to the show page if valid attribute" do
+      it "updates a Data Definition and redirects to the index page if valid attribute" do
         data_def = FactoryBot.create(:data_definition)
         put data_definition_path(data_def.id), data_definition: {ctti_note: 'Testing valid data.'}
         data_def.reload
@@ -54,8 +87,53 @@ RSpec.describe "Data Definitions", type: :request do
       end
     end
 
+    describe "PUT /data_definitions/ with invalid data" do
+      it "does not update a Data Definition and renders the edit page if invalid attribute (blank db_section)" do
+        data_def = FactoryBot.create(:data_definition)
+        put data_definition_path(data_def.id), data_definition: {db_section: ''}
+        data_def.reload
+        expect(data_def.db_section).to_not eq('')
+        expect(response).to render_template(:edit)
+      end
+      it "does not update a Data Definition and renders the edit page if invalid attribute (blank table_name)" do
+        data_def = FactoryBot.create(:data_definition)
+        put data_definition_path(data_def.id), data_definition: {table_name: ''}
+        data_def.reload
+        expect(data_def.table_name).to_not eq('')
+        expect(response).to render_template(:edit)
+      end
+      it "does not update a Data Definition and renders the edit page if invalid attribute (blank column_name)" do
+        data_def = FactoryBot.create(:data_definition)
+        put data_definition_path(data_def.id), data_definition: {column_name: ''}
+        data_def.reload
+        expect(data_def.column_name).to_not eq('')
+        expect(response).to render_template(:edit)
+      end
+      it "does not update a Data Definition and renders the edit page if invalid attribute (blank data_type)" do
+        data_def = FactoryBot.create(:data_definition)
+        put data_definition_path(data_def.id), data_definition: {data_type: ''}
+        data_def.reload
+        expect(data_def.data_type).to_not eq('')
+        expect(response).to render_template(:edit)
+      end
+      it "does not update a Data Definition and renders the edit page if invalid attribute (blank source)" do
+        data_def = FactoryBot.create(:data_definition)
+        put data_definition_path(data_def.id), data_definition: {source: ''}
+        data_def.reload
+        expect(data_def.source).to_not eq('')
+        expect(response).to render_template(:edit)
+      end
+      it "does not update a Data Definition and renders the edit page if invalid attribute (blank ctti_note)" do
+        data_def = FactoryBot.create(:data_definition)
+        put data_definition_path(data_def.id), data_definition: {ctti_note: ''}
+        data_def.reload
+        expect(data_def.ctti_note).to_not eq('')
+        expect(response).to render_template(:edit)
+      end
+    end
+
     describe "DELETE /data_definitions " do
-      it "deletes a Data Definition from Data Definitions" do
+      it "deletes a Data Definition from Data Definitions and redirects to the index page" do
         data_def = FactoryBot.create(:data_definition)
         expect { delete data_definition_path(data_def.id) }.to change(DataDefinition, :count)
         expect(response).to redirect_to data_definitions_path
