@@ -2,20 +2,32 @@ class DefinitionsController < ApplicationController
   # *******///********
   # This code uses data dictionary spreadsheet stored on the DO file server
   # *******///********
+  require 'csv'
 
   def index
-
-    json_file=DataDefinition.make_json_file(params[:schema])
-    dataOut = []
-    json_file.each do |row|
-      if !row['table'].nil? and !row['column'].nil?
-        if !filtered?(params) or passes_filter?(row,params)
-          dataOut << row
-        end
-      end
+    data_def_entries = DataDefinition.all
+    @data_def_entries = data_def_entries.map do |data_def_entry|
+      {
+        "CTTI note" => data_def_entry.ctti_note,
+        "column" => data_def_entry.column_name,
+        "data type" => data_def_entry.data_type,
+        "db schema" => data_def_entry.db_schema,
+        "db section" => data_def_entry.db_section,
+        "nlm doc" => data_def_entry.nlm_link,
+        "row count" => data_def_entry.row_count,
+        "source" => data_def_entry.source,
+        "table" => data_def_entry.table_name
+      }
     end
-
-    render json: dataOut, root: false
+    respond_to do |format|
+      format.csv  do
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment; filename=definitions.csv"
+        render template: "definitions/index.csv.erb"
+      end
+      format.json  { render json: @data_def_entries }
+      format.html { redirect_to root_path }
+    end
   end
 
   def filtered?(params)

@@ -50,7 +50,7 @@ class DataDefinitionsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def data_definition_params
       params.require(:data_definition)
-        .permit(:db_section, :table_name, :column_name, :data_type, :source, :nlm_link)
+        .permit(:db_section, :table_name, :column_name, :data_type, :source, :ctti_note, :nlm_link)
     end
 
     def catch_not_found(e)

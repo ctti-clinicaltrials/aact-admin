@@ -1,0 +1,894 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+@import "../old/base/variables";
+@import "../old/base/library";
+@import "../old/base/grid";
+@import "../old/base/buttons";
+@import "../old/base/forms";
+
+// connect.scss
+$gutter_width: 20px;
+
+section.connect {
+  background-color: $white;
+  padding-bottom: 40px;
+}
+
+pre {
+    background: #262626 none repeat scroll 0 0;
+    border: 1px dashed #999;
+    color: white;
+    overflow: auto;
+    padding: 0.5em;
+}
+
+div.connectionTypes, div.downloadTypes, div.learnMoreCards {
+  @include display-flex;
+	padding: 2rem 0rem 0rem;
+
+  h4 {
+    font-size: 1.5rem;
+    padding-top: 2rem;
+  }
+
+  i {
+    position: absolute;
+    bottom: .5rem;
+    right: 0rem;
+    font-size: 6rem;
+    opacity: .2;
+    color: $light-grey;
+  }
+
+  p {
+    padding-right: 1rem;
+  }
+
+  a.connectionCard, a.downloadCard, a.learnMoreCard {
+    width: 96%;
+    display: block;
+    margin-bottom: 60px;
+    background-color: rgb(249,249,249);
+    color: $grey;
+    padding: 1rem;
+    @include box-shadow(3px 3px 11px $light-grey);
+    margin: 1rem;
+    position: relative;
+    bottom: 40px;
+  }
+
+}
+
+section.credentials {
+  margin-bottom: 4rem;
+}
+
+section.intro {
+  margin-bottom: 4rem;
+}
+
+div.credentialRow {
+  @include display-flex;
+  @include flex-direction(row);
+  @include align-items(center);
+  margin-bottom: 10px;
+
+  p {
+    margin-bottom: 0px;
+    margin-right: $gutter_width;
+  }
+
+  pre {
+    margin: 0px;
+    padding: 10px;
+  }
+}
+
+section.pgAdmin, section.rAccess, section.sasAccess, section.psqlAccess, section.apiAccess {
+  background-color: $white;
+
+  img {
+    max-width: 70%;
+    display: block;
+    margin: 0 auto;
+    padding-top: 1rem;
+    margin-bottom: 3rem;
+    @include box-shadow(1px 1px 6px #ccc);
+  }
+}
+
+// consideration.scss 
+section.pointsToConsider {
+    background-color: $white;
+}
+
+// create_db_via_gui.scss
+section.createDbViaGui {
+
+    #input-toggle {
+      display: none;
+      visibility: hidden;
+    }
+  
+    #toggle:checked ~ #expand {
+      height: 550px;
+    }
+    #toggle:checked ~ label::before {
+      content: "Hide GUI Instructions";
+      width: 260px;
+    }
+  
+    #expand {
+      height: 0px;
+      overflow: hidden;
+      transition: height 0.6s;
+      background-color: #FFF;
+    }
+  
+    label {
+      display: block;
+      padding: 0.6em;
+      text-align: left;
+      border-bottom: 1px solid #CCC;
+      color: #666;
+    }
+    label:hover {
+      color: #000;
+    }
+    label::before {
+      font-family: Roboto, monaco, monospace;
+      font-weight: bold;
+      font-size: 16px;
+      color: white;
+      content: "View GUI Instructions";
+      width: 260px;
+      text-align: left;
+      padding-top: 4px;
+      padding-left: 10px;
+      vertical-align: text-center;
+      display: inline-block;
+      height: 26px;
+      margin-right: 3px;
+      @include box-shadow(4px 4px 12px $light-grey);
+      background: #008aa1;
+    }
+  
+  }
+  
+//download.scss
+section.downloadAact {
+    padding-bottom: 10px;
+    background-color: $white;
+
+    section.instructions {
+        background-color: $white;
+    }
+}
+  
+//file_archive.scss
+table.file-archive {
+    width: 90%;
+    margin: 10px auto;
+    padding: 4px 0;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+    padding-bottom: 2px;
+    font-family: Roboto;
+  
+  th.file-archive {
+    background-color: $tertiary;
+    font-family: "Roboto";
+    color: white;
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+  }
+  
+  td.file-archive {
+    text-align: center;
+    font-size: 16px;
+    font-family: "Roboto";
+    padding: 2;
+  }
+}
+  
+//learn_more.scss
+section.learnMore {
+    background-color: $white;
+  
+    div.overview {
+        background-color: $white;
+    }
+}
+  
+div.quickLinks {
+    display: block;
+    background-color: $white;
+    @include display-flex;
+    @include flex-wrap(wrap);
+    width: 100%;
+  
+    div.quickLink {
+      width: 50%;
+      display: inline-block;
+      padding: 1rem;
+    }
+  
+    h3 {
+      font-size: 1.5rem;
+      color: $secondary;
+      text-align: center;
+      font-weight: normal;
+    }
+}
+  
+// points_to_consider
+#pointsToConsider {
+    width: 100%;
+    font-size: 1.2rem;
+    box-shadow: 10px 10px 5px #888888;
+    padding: 2;
+}
+  
+p.ptc {
+    font-size: 1.2rem;
+}
+  
+p.ptcFootNote {
+    font-size: 1.0rem;
+    margin-left: 2rem;
+}
+  
+a.ptcFootNote {
+    font-size: 1.0rem;
+}
+  
+tr.even td {
+    background-color: $white;
+    border:  none;
+    padding: 8px;
+    vertical-align: top;
+}
+  
+tr.odd td {
+    background-color: rgb(240,240,240);
+    border:  none;
+    padding: 8px;
+    vertical-align: top;
+}
+
+//sanity_check.scss
+.sanityCheckSection {
+    @include display-flex;
+    @include flex-direction(column);
+    @include align-items(center);
+    margin-top: 50px;
+  }
+  
+.tableReportSection {
+    border: 1px solid $secondary;
+    border-radius: $border-radius;
+    padding: 30px;
+    margin-top: 40px;
+}
+  
+ul.stats {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-bottom: 1px solid $bg-grey;
+  
+    li {
+      font-size: 16px;
+    }
+}
+  
+h5.columnStatsHeader {
+    font-size: 20px;
+    margin: 0;
+}
+  
+//schema_info.scss
+#resultGroup {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-size: 1.2rem;
+    border-style: solid;
+    box-shadow: 10px 10px 5px #888888;
+    padding: 2;
+}
+  
+th.reultGroup {
+    background-color: $primary;
+    color: white;
+    font-weight: normal;
+    font-size: 1.4rem;
+}
+  
+tr.even {
+    background-color: $white;
+    font-size: 1.2rem;
+    color: black;
+}
+  
+tr.odd {
+    background-color: rgb(230,230,230);
+    font-size: 1.2rem;
+    color: black;
+}
+  
+td.schemaID {
+    text-align: center;
+}
+
+//snapshots.scss
+section.snapshots {
+    background-color: $white;
+    padding-top: 2rem;
+    padding-bottom: 20px;
+}
+
+//table_dictionary.scss
+section.tableDictionary {
+    display: block;
+    background-color: $white;
+    @include display-flex;
+    @include flex-wrap(wrap);
+    width: 100%;
+  }
+
+//troubleshooting.scss
+section.tips {
+
+    #input-toggle {
+      display: none;
+      visibility: hidden;
+    }
+  
+    #toggle-tips:checked ~ #expand-tips {
+      height: 550px;
+    }
+
+    #toggle-tips:checked ~ label::before {
+      content: "Hide Troubleshooting Tips";
+      width: 260px;
+    }
+  
+    #expand-tips {
+      height: 0px;
+      overflow: hidden;
+      transition: height 0.6s;
+      background-color: #FFF;
+    }
+  
+    label {
+      display: block;
+      padding: 0.6em;
+      text-align: left;
+      border-bottom: 1px solid #CCC;
+      color: #666;
+    }
+
+    label:hover {
+      color: #000;
+    }
+
+    label::before {
+      font-family: Roboto, monaco, monospace;
+      font-weight: bold;
+      font-size: 16px;
+      color: white;
+      content: "View Troubleshooting Tips";
+      width: 260px;
+      text-align: left;
+      padding-top: 4px;
+      padding-left: 10px;
+      vertical-align: text-center;
+      display: inline-block;
+      height: 26px;
+      margin-right: 3px;
+      @include box-shadow(4px 4px 12px $light-grey);
+      background: #008aa1;
+    }
+}
+
+//data_dictionary.scss
+span.enum {
+    color: red;
+    float: left;
+    width: 20px;
+}
+  
+table.dictionaryDisplay {
+    box-shadow: 6px 6px 5px #888888;
+    margin-bottom: 40px;
+    border-style: solid;
+    border-width: 1px;
+    border-spacing: 0px;
+  
+    th {
+      font-weight: normal;
+      background-color: $tertiary;
+      color: white;
+    }
+  
+    td {
+      border-style: solid;
+      border-width: 1px;
+      padding: 6px 4px 6px 4px;
+    }
+  
+    td.tableName {
+      font-weight: bold;
+    }
+  
+    td.numberType {
+      text-align: right;
+    }
+}
+  
+table.enumerations {
+    border-collapse:collapse;
+}
+  
+.enum-count td {
+    font-size: 12px;
+    font-family: "Roboto";
+    padding: 0;
+    text-align: right;
+}
+  
+td {
+    font-size: 12px;
+    font-family: "Roboto";
+    padding: 0;
+}
+  
+body {
+    font-family: Roboto;
+}
+main {
+    width: 100%;
+    margin: 20px auto;
+    padding: 10px 0;
+}
+  
+#input-toggle {
+    display: none;
+    visibility: hidden;
+}
+  
+#hintToggle:checked ~ #expand {
+    height: 620px;
+    font-size: 1.2rem;
+}
+  
+#hintToggle:checked ~ label::before {
+    content: "Hide Hints";
+}
+  
+#expand {
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.6s;
+    background-color: #FFF;
+}
+  
+label {
+    display: block;
+    padding: 0.6em;
+    text-align: left;
+    border-bottom: 1px solid #CCC;
+    color: #666;
+}
+
+label:hover {
+    color: #000;
+}
+
+#hintToggle:label::before {
+    font-family: Roboto, monaco, monospace;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    content: "View Hints";
+    text-align: left;
+    padding-top: 4px;
+    padding-left: 10px;
+    vertical-align: text-center;
+    display: inline-block;
+    width: 86px;
+    height: 26px;
+    margin-right: 3px;
+    @include box-shadow(4px 4px 12px $light-grey);
+    background: radial-gradient(ellipse at center, #CCC 50%, transparent 50%);
+    background: #008aa1;
+}
+  
+.standardLayout {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+  
+section.dataDictionaryShow {
+  
+    h2 {
+      padding-top: 60px;
+    }
+  
+    h4 {
+      padding-top: 40px;
+    }
+  
+    ul {
+      margin-bottom: 0px;
+    }
+  
+    div.gridContainer {
+      margin: 0 auto;
+      padding: 2px 2px 2px 0px;
+      background-color: $white;
+    }
+  
+    .jsgrid-header-row>.jsgrid-header-cell {
+      font-size: 11px;
+      font-family: $font-sans;
+      font-weight: normal;
+      background-color: $secondary;
+      color: $white;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-color: $primary;
+    }
+  
+    .jsgrid-cell {
+      font-size: 12px;
+      font-family: $font-sans;
+      word-wrap: break-word;
+  
+      input {
+        margin: 5px 0px;
+      }
+  
+      b, p, a {
+        font-size: 12px;
+      }
+  
+      b {
+        font-weight: bold;
+      }
+    }
+  
+    tr.jsgrid-filter-row {
+      .jsgrid-cell {
+        background-color: rgba(2,183,212, .2);
+        border: none;
+      }
+    }
+  
+    div#jsGrid {
+      @include box-shadow(3px 3px 11px $light-grey);
+    }
+  
+  
+    div.jsgrid-pager-container {
+      text-align: center;
+      padding: 10px;
+      background-color: rgba(2,183,212, .2);
+  
+      span {
+        font-family: $font-sans;
+        text-transform: uppercase;
+      }
+    }
+}
+
+//users/index.scss
+.download {
+    margin-top: 0.2rem;
+    margin-right: 0.5rem;
+    color: black;
+    float: left;
+    font-size: 1.8rem;
+}
+
+.userOptions {
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: $tertiary;
+  float: right;
+}
+
+#userTable {
+  font-size: 1.2rem;
+  width: 100%;
+  align-self: center;
+}
+
+//release_notes/home.scss
+.centerImage {
+    box-shadow: 10px 10px 10px #888888;
+    margin-bottom: 40px;
+    border-style: solid;
+    border-width: 1px;
+}
+  
+.innerQuotedText {
+    //font-family: verdana;
+    //font-size: 12px;
+    font-style: italic;
+    //color: #0000A0;
+}
+
+.quotedText {
+    box-shadow: 10px 10px 10px #888888;
+    //font-family: verdana;
+    //font-size: 12px;
+    font-style: italic;
+    //color: #0000A0;
+    padding: 14px;
+    margin: 20px;
+    margin-bottom: 40px;
+}
+
+//shared_data/index.scss
+#projectContainer {
+    width: 100%;
+}
+  
+#projectTable thead > tr > th:nth-child(2),
+#projectTable tbody > tr:not(.detail-view) > td:nth-child(2) {
+border-left: none!important;
+}
+  
+.pleaseNote {
+    margin-top: 5rem;
+}
+  
+.projectAactVersion {
+    float: left;
+}
+  
+.indentProjectLabel {
+    margin-top: 1rem;
+    margin-left: 2rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    font-weight: 400;
+    font-size: 1.4rem;
+}
+
+.projectLabel {
+    padding-top: 1rem;
+    font-weight: 400;
+    font-size: 1.4rem;
+    padding-right: 1rem;
+}
+
+#projectFilter {
+    font-size: 1.8rem;
+    font-weight: normal;
+    margin-top: 1rem;
+}
+  
+ul.projectDetails {
+    list-style: none;
+}
+  
+p.faqLine {
+    font-weight:  400;
+    font-size:    1.4rem;
+    font-style:   italic;
+}
+  
+p.indentProjectDetails {
+    font-size:    1.4rem;
+    margin-left:  8rem;
+    margin-right: 8rem;
+}
+  
+p.projectDetails {
+    font-size:    1.4rem;
+    margin-left:  0rem;
+    margin-right: 2rem;
+}
+
+.projects {
+    margin-left:  8rem;
+    margin-right: 8rem;
+}
+
+.seeMoreButton {
+    float: right;
+    margin-right: 4rem;
+    margin-bottom: 3rem;
+}
+  
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    color: white;
+    background-color: #26657a !important;
+    padding-left: 12px !important;
+}
+  
+.btn-primary:hover, .btn-primary:active {
+    color: white;
+    background-color: #008aa1 !important;
+    padding-left: 12px !important;
+}
+
+h1.projects {
+    color: #26657a;
+    margin-left: 1px;
+}
+  
+h2 {
+    color: #26657a;
+}
+  
+h3 {
+    color: #26657a;
+}
+  
+h4 {
+    color: #26657a;
+}
+  
+  
+.projectLabel {
+    padding-top: 1rem;
+}
+  
+p.projectDetails {
+    padding-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    font-size: 1.2rem;
+    font-family: "Roboto";
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+  
+tr.projectRow {
+    font-weight: 400;
+}
+  
+.projectName {
+    font-weight: bold;
+}
+  
+.projectData {
+     color: $maroon;
+     //font-size: 1rem;
+     border-style: groove;
+     border-color: $secondary;
+     padding-left: 40px;
+     padding-right: 40px;
+     padding-bottom: 10px;
+     padding-top: 10px;
+}
+  
+a.projectNavItem {
+    font-size: 1.8rem;
+    padding: .4rem;
+    text-transform: uppercase;
+    margin-left: 18px;
+    color: #008aa1
+}
+
+//shared_data/override_headers.scss
+a.user-info {
+	text-decoration: none;
+  font-size: 2rem;
+  color: #008aa1;
+  font-family: "Roboto";
+  padding: 0.4rem;
+  line-height: 1.5;
+  font-weight: 100;
+}
+
+.fixFont {
+   font-size: 1.8rem !important;
+}
+
+//use_cases/use_cases.scss
+
+
+.enter-label {
+  font-size: 1.2rem;
+}
+
+.enter-info {
+  font-size: 1.2rem;
+  color: $secondary;}
+
+#addUseCaseButton {
+  padding: 1rem;
+  @include box-shadow(3px 3px 11px $grey);
+  font-weight: 100;
+  margin:0 auto;
+  display:block;
+}
+
+section.useCases {
+  font-weight: 100;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+#useCaseTable table, tr, th {
+     border: 0;
+}
+
+tbody.useCases {
+  width: 96%;
+}
+
+tr.useCases {
+    display: block;
+    font-weight: 100;
+    background-color: rgb(249,249,249);
+    color: $grey;
+    @include box-shadow(3px 3px 11px $grey);
+    margin: 2rem;
+    padding-left: 10px;
+    padding-right: 10px;
+    bottom: 20px;
+  }
+
+p, ul, li.useCaseInvitation {
+  font-family: Roboto;
+  font-size: 1.2rem;
+  font-weight: 100;
+  line-height: 1.2;
+  bottom: 10px;
+}
+
+#useCaseHeading {
+  position: relative;
+  font-weight: 300;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  vertical-align: middle;
+}
+
+div.useCaseInfo {
+  bottom: 0;
+  color: $accent;
+}
+
+span.useCaseLabel {
+  color: $secondary;
+}
+
+p.headingText {
+  font-weight: bold;
+  color: #007488;
+  bottom: 0px;
+}
+
+.useCase {
+  position: relative;
+  width: 100%;
+  //background-color: $light-grey;
+  //@include box-shadow(3px 3px 11px $grey);
+  padding: 2rem;
+}
+
+#galleryHeading {
+  color: black;
+  text-align: center;
+  font-weight: 300;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+div.useCase {
+  text-align: center;
+  width: 96%;
+  display: block;
+  margin-bottom: 80px;
+  background-color: $light-grey;
+  padding: 2rem;
+  @include box-shadow(3px 3px 11px $grey);
+  position: relative;
+}

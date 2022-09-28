@@ -2,9 +2,8 @@ Rails.application.routes.draw do
 
   get 'file_records/active_url'
 
-  get 'query' => 'query#submit'
-  post 'query' => 'query#index'
-
+  get '/query' => 'query#index', as: :query
+  
   get 'summary/aact'
 
   namespace :admin do

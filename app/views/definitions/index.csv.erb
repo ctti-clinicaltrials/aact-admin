@@ -1,0 +1,5 @@
+<%- headers = ['CTTI note', 'column', 'data type', 'db schema', 'db section', 'nlm doc', 'row count', 'source', 'table'] -%>
+<%= CSV.generate_line headers -%>
+<%- @data_def_entries.each do |data_def_entry| -%>
+<%= CSV.generate_line([data_def_entry['CTTI note'], data_def_entry['column'], data_def_entry['data type'], data_def_entry['db schema'], data_def_entry['db section'], data_def_entry['nlm doc'], data_def_entry['row count'], data_def_entry['source'], data_def_entry['table']]).html_safe -%>
+<%- end -%>

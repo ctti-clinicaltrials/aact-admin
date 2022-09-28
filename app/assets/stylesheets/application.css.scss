@@ -15,16 +15,14 @@
 
 @import "font-awesome";
 
-@import "base/base";
+@import "old/base/base";
 
-@import "dictionary/*";
+@import "base/header.scss";
 
-@import "includes/*";
+@import "base/footer.scss";
 
-@import "pages/*";
+@import "base/shared.scss";
 
-@import "shared_data/*";
+@import "pages/home.scss";
 
-@import "release_notes/*";
-
-@import "users/*";
+@import "old/includes/*";

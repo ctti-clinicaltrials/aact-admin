@@ -27,7 +27,7 @@ $(function() {
               }
                 return $.ajax({
                     type: "GET",
-                    url: `/definitions?schema=${url}`,
+                    url: `/definitions.json?schema=${url}`,
                     data: filter
                 });
             }
