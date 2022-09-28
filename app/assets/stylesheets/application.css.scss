@@ -17,14 +17,12 @@
 
 @import "old/base/base";
 
-@import "old/dictionary/*";
+@import "base/header.scss";
+
+@import "base/footer.scss";
+
+@import "base/shared.scss";
+
+@import "pages/home.scss";
 
 @import "old/includes/*";
-
-@import "old/pages/*";
-
-@import "old/shared_data/*";
-
-@import "old/release_notes/*";
-
-@import "old/users/*";
