@@ -32,4 +32,13 @@ FactoryBot.define do
     ctti_note { "TEST: <clinical_study>.<ctti_note>" }
     nlm_link { "TEST: https://prsinfo.clinicaltrials.gov/definitions.html"}
   end
+
+  factory :event, class: Core::LoadEvent do
+    created_at { DateTime.now }
+    event_type { "incremental" }
+    status { "complete" }
+    completed_at { DateTime.now }
+    description { "Clinical Study description" }
+    problems { "Clinical Study problems" }
+  end
 end
