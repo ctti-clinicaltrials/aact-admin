@@ -9,19 +9,16 @@ class PagesController < ApplicationController
   end
 
   def snapshots
-    set_daily_monthly_snapshot_files
     @daily = Core::FileRecord.daily('snapshot')
     @monthly = Core::FileRecord.monthly('snapshot')
   end
 
   def pipe_files
-    set_daily_monthly_pipe_files
     @daily = Core::FileRecord.daily('pipefiles')
     @monthly = Core::FileRecord.monthly('pipefiles')
   end
 
   def covid_19
-    set_covid_pipe_files
     @daily = Core::FileRecord.everything('covid-19')
   end
 

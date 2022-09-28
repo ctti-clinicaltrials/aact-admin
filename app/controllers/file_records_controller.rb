@@ -2,7 +2,7 @@ class FileRecordsController < ApplicationController
 
   TYPE_MAP={
     "static_db_copies"  => "snapshot",
-    "exported_files"    => "pipefile",
+    "exported_files"    => "pipefiles",
     "covid-19"          => "covid-19",
     }
 
