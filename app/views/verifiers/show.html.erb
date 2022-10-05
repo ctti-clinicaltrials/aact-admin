@@ -1,51 +1,43 @@
 <div class="modal-body">
   <h1>Verifiers</h1>
   <hr/>
-
-
-
   <div class="container-fluid">
-    <h5> <strong>Last Run:</strong> <%= @verifiers.last_run.strftime('%B %d, %Y %I:%M %p') %> </h5>
+    <h5> <strong>Last Run:</strong> <%= @verifiers.last_run&.strftime('%B %d, %Y %I:%M %p') %> </h5>
   </div>
-
   <div class="container-fluid">
     <h5> <strong>Created at:</strong> <%= @verifiers.created_at.strftime('%B %d, %Y %I:%M %p') %> </h5>
   </div>
-
   <div class="container-fluid">
     <h5> <strong>Updated at:</strong> <%= @verifiers.updated_at.strftime('%B %d, %Y %I:%M %p') %> </h5>
   </div>
-
-
- <div class="container-fluid">
-    <h5><strong>Differences:</strong> </h5>
- </div>
- <ul class="list-group ">
- <li class="row mb-0">
-   <div class="col-4 text-wrap text-break list-group-item list-group-item-dark"></div>
-   <div class="col-4 text-center text-wrap text-break list-group-item list-group-item-dark">Instances</div>
-   <div class="col-4 text-center text-wrap text-break list-group-item list-group-item-dark">Unique</div>
- </li>
- <li class="row mb-0">
-   <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Source</div>
-   <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Destination</div>
-   <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Source</div>
-   <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Destination</div>
-   <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Source</div>
-   <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Destination</div>
- </li>
- <% @verifiers.differences.each do |diff| %>
-   <% next if (diff['source'].nil?) %>
-   <li class="row mb-0">
-     <div class="col-2 text-wrap text-break list-group-item"><%= diff['source'] %></div>
-     <div class="col-2 text-wrap text-break list-group-item"><%= diff['destination'] %></div>
-     <div class="col-2 text-center text-wrap text-break list-group-item"><%= diff['source_instances'] %></div>
-     <div class="col-2 text-center text-wrap text-break list-group-item"><%= diff['destination_instances'] %></div>
-     <div class="col-2 text-center text-wrap text-break list-group-item"><%= diff['source_unique_values'] %></div>
-     <div class="col-2 text-center text-wrap text-break list-group-item"><%= diff['destination_unique_values'] %></div>
-   </li>
- <% end %>
-</ul>
-
+  <div class="container-fluid">
+    <h5> <strong>Differences:</strong> </h5>
+  </div>
+  <ul class="list-group ">
+    <li class="row mb-0">
+      <div class="col-4 text-wrap text-break list-group-item list-group-item-dark"></div>
+      <div class="col-4 text-center text-wrap text-break list-group-item list-group-item-dark">Instances</div>
+      <div class="col-4 text-center text-wrap text-break list-group-item list-group-item-dark">Unique</div>
+    </li>
+    <li class="row mb-0">
+      <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Source</div>
+      <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Destination</div>
+      <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Source</div>
+      <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Destination</div>
+      <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Source</div>
+      <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Destination</div>
+    </li>
+    <% @verifiers.differences.each do |diff| %>
+      <% next if (diff['source'].nil?) %>
+      <li class="row mb-0">
+        <div class="col-2 text-wrap text-break list-group-item"><%= diff['source'] %></div>
+        <div class="col-2 text-wrap text-break list-group-item"><%= diff['destination'] %></div>
+        <div class="col-2 text-center text-wrap text-break list-group-item"><%= diff['source_instances'] %></div>
+        <div class="col-2 text-center text-wrap text-break list-group-item"><%= diff['destination_instances'] %></div>
+        <div class="col-2 text-center text-wrap text-break list-group-item"><%= diff['source_unique_values'] %></div>
+        <div class="col-2 text-center text-wrap text-break list-group-item"><%= diff['destination_unique_values'] %></div>
+      </li>
+    <% end %>
+  </ul>
   <%= link_to 'Back', verifiers_path, :class => "btn btn-primary btn-sm" %>
 </div>
