@@ -11,43 +11,13 @@
             <h3>Static Copy of the Database</h3>
             <p>
                <small>
-                  Static copies of the AACT database are created periodically and made available for download. Click here for access to these static copies as well as instructions on how to download and install your own instance of the AACT database.
+                  Click here for access to these static copies as well as instructions on how to download and install your own instance of the AACT database.
+                  Static copies of the AACT database are created periodically and made available for download.
                </small>
             </p>
          </button>
-
          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-            <div class="card-body d-flex justify-content-around">
-                  <div  class="col-4">
-                     <h4>Current Month's Daily Static Copies</h4>
-                     <select class="form-select" aria-label="Default select example" onchange="location = this.value;">
-                        <option selected>Select file to download</option>
-                        <% @daily_snapshots.each do |file| %>
-                           <option value="<%= file.url%>">
-                           <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> <%= number_to_human_size(file.file_size) %></a>
-                           </option>
-                        <% end %>
-                     </select>
-                  </div>
-                  <div class="col-4">
-                     <h4>Monthly Archive of Static Copies</h4>
-                     <select class="form-select" aria-label="Default select example" onchange="location = this.value;">
-                        <option selected>Select file to download</option>
-                        <% @monthly_snapshots.each do |file| %>
-                           <option value="<%= file.url%>">
-                           <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> <%= number_to_human_size(file.file_size) %></a>
-                           </option>
-                        <% end %>
-                     </select> 
-                  </div>
-                  <a href="/snapshots" class="col-2 d-flex align-items-end">
-                     <div class="d-flex align-items-center">
-                        <h2 class="m-0 p-0 px-2"><%= fa_icon("file")%></h2>
-                        <h5 class="m-0 p-0">Snapshot Usage Documentation</h5>
-                     </div>
-                  </a>
-               </div>
-            </div>
+            <%= render 'file_download',  daily: @daily_snapshots, monthly: @monthly_snapshots, file_type: 'Snapshot' %>
          </div>
       </div>
       <div class="card">
@@ -61,70 +31,21 @@
          </button>
 
          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-            <div class="card-body d-flex justify-content-around">
-               <div class="col-4">
-                  <h4>Current Month's Daily Static Copies</h4>
-                  <select class="form-select" aria-label="Default select example" onchange="location = this.value;">
-                     <option selected>Select file to download</option>
-                     <% @daily_pipefiles.each do |file| %>
-                        <option value="<%= file.url%>">
-                           <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> <%= number_to_human_size(file.file_size) %></a>
-                        </option>
-                     <% end %>
-                  </select>
-               </div>
-               <div class="col-4">
-                  <h4>Monthly Archive of Static Copies</h4>
-                  <select class="form-select" aria-label="Default select example" onchange="location = this.value;">
-                     <option selected>Select file to download</option>
-                     <% @monthly_pipefiles.each do |file| %>
-                        <option value="<%= file.url%>">
-                           <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> <%= number_to_human_size(file.file_size) %></a>
-                        </option>
-                     <% end %>
-                  </select>
-               </div>
-               <a href="/pipe_files" class="col-2 d-flex align-items-end">
-                  <div class="d-flex align-items-center">
-                        <h2 class="m-0 p-0 px-2"><%= fa_icon("file")%></h2>
-                        <h5 class="m-0 p-0">Pipe Files Usage Documentation</h5>
-                  </div>
-               </a>
+            <%= render 'file_download',  daily: @daily_pipefiles, monthly: @monthly_pipefiles, file_type: 'Pipe Delimited Files' %>
          </div>
       </div>
       <div class="card">
-            <button class="btn card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-               <h3>Covid-19 Files</h3>
-               <p>
-                  <small>
-                      Click here to download spreadsheets for covid-19 studies.
-                  </small>
-               </p>
-            </button>
-
+         <button class="btn card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <h3>Covid-19 Files</h3>
+            <p>
+               <small>
+                     Click here to download spreadsheets for covid-19 studies.
+               </small>
+            </p>
+         </button>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-               <div class="card-body d-flex justify-content-around">
-                  <div  class="col-4">
-                     <h4>Current Month's Daily Static Copies</h4>
-                     <select class="form-select" aria-label="Default select example" onchange="location = this.value;">
-                        <option selected>Select file to download</option>
-                        <% @daily_covid_19.each do |file| %>
-                           <option value="<%= file.url%>">
-                           <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> <%= number_to_human_size(file.file_size) %></a>
-                           </option>
-                        <% end %>
-                     </select>
-                  </div>
-                  <div  class="col-4"></div>
-                  <a href="/covid_19" class="col-2 d-flex align-items-end">
-                     <div class="d-flex align-items-center">
-                           <h2 class="m-0 p-0 px-2"><%= fa_icon("file")%></h2>
-                           <h5 class="m-0 p-0">Covid-19 Files Usage Documentation</h5>
-                     </div>
-                  </a>
-               </div>
+               <%= render 'file_download',  daily: @daily_covid_19, monthly: @monthly_covid_19, file_type: 'Covid-19 Files' %>
             </div>
-         </div>
       </div>
    </div>
 </div>
