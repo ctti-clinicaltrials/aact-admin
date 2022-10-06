@@ -16,7 +16,27 @@
     <span class="stepNumber">1</span>
     <h3 class="stepName">Download Zip File Containing Pipe-Delimited Files</h3>
   </div>
+ <div class="col-5 border rounded-3 p-3 bg-light">
+    <h4>Current Month's Daily Static Copies</h4>
+    <select class="form-select" aria-label="Default select example" onchange="location = this.value;">
+      <option selected>Select file to download</option>
+      <% @daily.each do |file| %>
+        <option value="<%= file.url%>">
+          <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> <%= number_to_human_size(file.file_size) %></a>
+        </option>
+      <% end %>
+    </select>
 
+    <h4 class="my-3">Monthly Archive of Static Copies</h4>
+    <select class="form-select" aria-label="Default select example" onchange="location = this.value;">
+      <option selected>Select file to download</option>
+      <% @monthly.each do |file| %>
+        <option value="<%= file.url%>">
+          <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> <%= number_to_human_size(file.file_size) %></a>
+        </option>
+      <% end %>
+    </select>
+  </div>
   <br>
   <hr>
   <div>

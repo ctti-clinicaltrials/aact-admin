@@ -15,6 +15,20 @@ class PagesController < ApplicationController
     @monthly_pipefiles = Core::FileRecord.monthly('pipefiles')
     @daily_covid_19 = Core::FileRecord.everything('covid-19')
   end
+  
+  def snapshots
+    @daily = Core::FileRecord.daily('snapshot')
+    @monthly = Core::FileRecord.monthly('snapshot')
+  end
+
+  def pipe_files
+    @daily = Core::FileRecord.daily('pipefiles')
+    @monthly = Core::FileRecord.monthly('pipefiles')
+  end
+
+  def covid_19
+    @daily = Core::FileRecord.everything('covid-19')
+  end
 
   def points_to_consider
     set_diagrams_and_dictionaries
