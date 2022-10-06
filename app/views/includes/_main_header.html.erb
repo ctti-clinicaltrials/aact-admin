@@ -2,23 +2,23 @@
 
 <% if user_signed_in? and current_user.admin? %>
       <p class='user-logged-in'>logged in as <%= current_user.full_name %></p>
-  <li class="nav-item dropdown">
+  <div class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
       Admin
     </a>
-<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-  <li><a class="dropdown-item"><%= link_to "Events", events_path %></a></li>
-  <li><a class="dropdown-item"><%= link_to "Notifications", admin_notices_path%></a></li>
-  <li><a class="dropdown-item"><%= link_to "Releases", releases_path %></a></li>
-  <li><a class="dropdown-item"><%= link_to "Summary", summary_aact_path %></a></li>
-  <li><a class="dropdown-item"><%= link_to "Users", users_path %></a></li>
-  <li><a class="dropdown-item"><%= link_to "Verifiers", verifiers_path %></a></li>
-  <li><a class="dropdown-item"><%= link_to "Query", '/query' %></a></li>
-  <li><hr class="dropdown-divider"></li>
-  <li><a class="dropdown-item user-info"><%= link_to "Edit Profile", edit_user_registration_path %>&nbsp;&nbsp;</li>
-  <li><a class="dropdown-item user-info"><%= link_to "Sign out", edit_user_registration_path('sign-out'), :id => current_user %></a></li>
-</ul>
-  </li>    
+<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+  <div class="dropdown-item"><a ><%= link_to "Events", events_path %></a></div>
+  <div class="dropdown-item"><a ><%= link_to "Notifications", admin_notices_path%></a></div>
+  <div class="dropdown-item"><a ><%= link_to "Releases", releases_path %></a></div>
+  <div class="dropdown-item"><a ><%= link_to "Summary", summary_aact_path %></a></div>
+  <div class="dropdown-item"><a ><%= link_to "Users", users_path %></a></div>
+  <div class="dropdown-item"><a ><%= link_to "Verifiers", verifiers_path %></a></div>
+  <div class="dropdown-item"><a ><%= link_to "Query", '/query' %></a></div>
+  <div class="dropdown-divider"></div>
+  <div class="dropdown-item user-info"><a><%= link_to "Edit Profile", edit_user_registration_path %>&nbsp;&nbsp;</div>
+  <div class="dropdown-item user-info"><a><%= link_to "Sign out", edit_user_registration_path('sign-out'), :id => current_user %></a></div>
+</div>
+  </div>    
     <% elsif user_signed_in? %>
       <p class='user-logged-in'>logged in as <%= current_user.full_name %></p>
     <p class='user-info'>    
