@@ -30,12 +30,12 @@
     <% @verifiers.differences.each do |diff| %>
       <% next if (diff['source'].nil?) %>
       <li class="row mb-0">
-        <div class="col-2 text-wrap text-break list-group-item"><%= diff['source'] %></div>
-        <div class="col-2 text-wrap text-break list-group-item"><%= diff['destination'] %></div>
-        <div class="col-2 text-center text-wrap text-break list-group-item"><%= diff['source_instances'] %></div>
-        <div class="col-2 text-center text-wrap text-break list-group-item"><%= diff['destination_instances'] %></div>
-        <div class="col-2 text-center text-wrap text-break list-group-item"><%= diff['source_unique_values'] %></div>
-        <div class="col-2 text-center text-wrap text-break list-group-item"><%= diff['destination_unique_values'] %></div>
+        <div class="col-2 text-center text-break list-group-item"><%= diff['source'] %></div>
+        <div class="col-2 text-center text-break list-group-item"><%= diff['destination'] %></div>
+        <div class="col-2 text-center text-break list-group-item"><%= diff['source_instances'] %></div>
+        <div class="col-2 text-center text-break list-group-item"><%= diff['destination_instances'] %></div>
+        <div class="col-2 text-center text-break list-group-item"><%= diff['source_unique_values'] %></div>
+        <div class="col-2 text-center text-break list-group-item"><%= diff['destination_unique_values'] %></div>
       </li>
     <% end %>
   </ul>

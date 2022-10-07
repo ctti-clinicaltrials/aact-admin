@@ -3,7 +3,7 @@ class VerifiersController < ApplicationController
     before_action :set_verifier, only: [:show]
     
     def index
-      @verifiers = Core::Verifier.all.order(id: :asc)
+      @verifiers = Core::Verifier.all.order(id: :desc)
     end
   
     def show
