@@ -5,6 +5,38 @@
 @import "../old/base/buttons";
 @import "../old/base/forms";
 
+.nav-svg {
+  margin-left: 0px;
+  transition: margin-left 0.5s;
+  transition: padding-left 0.5s ,padding-right 0.5s;
+
+}
+.nav-svg-no-margin {
+  margin-left: -25px;
+  transition: padding-left 0.5s ,padding-right 0.5s;
+}
+
+.nav-svg:hover {
+  padding-left: 30px;
+  padding-right: 30px;
+  
+  transition: padding-left 0.5s ,padding-right 0.5s;
+}
+
+.dropdown-offset {
+  margin-left: 25px;
+}
+
+.svg-polygone {
+  box-shadow: 10px 10px 5px 12px lightblue;
+}
+.svg-text {
+  text-anchor: middle;
+  dominant-baseline: middle;
+  font-weight: 400;
+  fill: #FFF;
+}
+
 // connect.scss
 $gutter_width: 20px;
 
