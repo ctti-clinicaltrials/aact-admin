@@ -1,36 +1,51 @@
 <div>
+   <div>
+      <h1>Download AACT</h1>
+      <p>
+      A static copy of the AACT database is created on the first of each month. The most recent and archived <a href='/snapshots'>copies</a> are available for download. These can be used to create a local copy of a particular instance of the database. A number of query and analytic tools (such as SAS, pgAdmin & R) can then be used to connect to and query your local copy.</p>
+      <p>For those who prefer to access the data via simple flat files, static copies are also available as a <a href='/pipe_files'>zipped package of pipe-delimited files</a>.</p>
+   </div>
+   <div id="accordion">
+      <div class="card">
+         <button class="btn card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            <h3>Static Copy of the Database</h3>
+            <p>
+               <small>
+                  Click here for access to these static copies as well as instructions on how to download and install your own instance of the AACT database.
+                  Static copies of the AACT database are created periodically and made available for download.
+               </small>
+            </p>
+         </button>
+         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <%= render 'file_download',  daily: @daily_snapshots, monthly: @monthly_snapshots, file_type: 'Snapshot' %>
+         </div>
+      </div>
+      <div class="card">
+         <button class="btn card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseOne">
+            <h3>Pipe-Delimited Files</h3>
+            <p>
+               <small>
+                  Click here to download a pipe delimited copy of the database. These pipe delimited files are compatible with many data visualization tools like SAS and R.
+               </small>
+            </p>
+         </button>
 
-    <h1>Download AACT</h1>
-       <p>
-       A static copy of the AACT database is created on the first of each month. The most recent and archived <a href='/snapshots'>copies</a> are available for download. These can be used to create a local copy of a particular instance of the database. A number of query and analytic tools (such as SAS, pgAdmin & R) can then be used to connect to and query your local copy.</p>
-       <p>For those who prefer to access the data via simple flat files, static copies are also available as a <a href='/pipe_files'>zipped package of pipe-delimited files</a>.<p>
-
-  <section class="downloadAact">
-     <div class="downloadTypes">
-      <section class="homeHero">
-       <a href="/snapshots" class="downloadCard">
-         <h4>Download Static Copy of the Database</h4>
-         <p>Static copies of the AACT database are created periodically and made available for download. Click here for access to these static copies as well as instructions on how to download and install your own instance of the AACT database.
-         </p>
-         <%= fa_icon("download") %>
-      </a>
-
-      <a href="/pipe_files" class="downloadCard">
-         <h4>Download Pipe-Delimited Files</h4>
-         <p>
-           Click here to download a pipe delimited copy of the database. These pipe delimited files are compatible with many data visualization tools like SAS and R.
-         </p>
-         <%= fa_icon("download") %>
-      </a>
-
-      <a href="/covid_19" class="downloadCard">
-         <h4>Download Covid-19 Files</h4>
-         <p>
-           Click here to download spreadsheets for covid-19 studies.
-         </p>
-         <%= fa_icon("download") %>
-      </a>
-
-     </div>
-  </section>
+         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <%= render 'file_download',  daily: @daily_pipefiles, monthly: @monthly_pipefiles, file_type: 'Pipe Delimited Files' %>
+         </div>
+      </div>
+      <div class="card">
+         <button class="btn card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <h3>Covid-19 Files</h3>
+            <p>
+               <small>
+                     Click here to download spreadsheets for covid-19 studies.
+               </small>
+            </p>
+         </button>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+               <%= render 'file_download',  daily: @daily_covid_19, monthly: @monthly_covid_19, file_type: 'Covid-19 Files' %>
+            </div>
+      </div>
+   </div>
 </div>

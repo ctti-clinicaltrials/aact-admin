@@ -8,6 +8,14 @@ class PagesController < ApplicationController
     @notice=Notice.where(visible: true).order(created_at: :desc).first
   end
 
+  def download
+    @daily_snapshots = Core::FileRecord.daily('snapshot')
+    @monthly_snapshots = Core::FileRecord.monthly('snapshot')
+    @daily_pipefiles = Core::FileRecord.daily('pipefiles')
+    @monthly_pipefiles = Core::FileRecord.monthly('pipefiles')
+    @daily_covid_19 = Core::FileRecord.everything('covid-19')
+  end
+  
   def snapshots
     @daily = Core::FileRecord.daily('snapshot')
     @monthly = Core::FileRecord.monthly('snapshot')
