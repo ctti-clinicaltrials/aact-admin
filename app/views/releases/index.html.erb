@@ -1,26 +1,31 @@
 <div class="container">
   <div class="pb-3">
     <h1>Releases</h1>
+  <% if @releases.empty? %>
+    <p> There is no Releases yet. You can click the button below to create one.</p>
+      <%= link_to 'New Release', new_release_path, :class => "btn btn-primary btn-sm" %>
+    </div>
+    <% else %>
     <%= link_to 'New Release', new_release_path, :class => "btn btn-primary btn-sm" %>
-  </div>
-  <table class="table table-sm table-striped" style="max-width: 100rem;">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Subtitle</th>
-        <th>Released On</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @releases.each do |release| %>
+    <table class="table table-sm table-striped" style="max-width: 100rem;">
+      <thead>
         <tr>
-          <td><%= link_to release.title, release_path(release) %> </td>
-          <td><%= release.subtitle %></td>
-          <td><%= release.released_on.strftime('%B %d, %Y') %></td>
-          <td><%= link_to 'Edit', edit_release_path(release), :class => "btn btn-primary btn-sm" %></td>
-          <td><%= link_to 'Delete', release_path(release), :class => "btn btn-danger btn-sm", :method => :delete, data: { confirm: 'Are you sure?' } %></td>
+          <th>Title</th>
+          <th>Subtitle</th>
+          <th>Released On</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @releases.each do |release| %>
+          <tr>
+            <td><%= link_to release.title, release_path(release) %> </td>
+            <td><%= release.subtitle %></td>
+            <td><%= release.released_on.strftime('%B %d, %Y') %></td>
+            <td><%= link_to 'Edit', edit_release_path(release), :class => "btn btn-primary btn-sm" %></td>
+            <td><%= link_to 'Delete', release_path(release), :class => "btn btn-danger btn-sm", :method => :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </div>
