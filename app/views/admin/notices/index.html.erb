@@ -1,8 +1,12 @@
 <div class="container">
   <div class="pb-5" >
     <h1>Notices</h1>
-    <%= link_to 'New Notice', new_admin_notice_path, :class => "btn btn-primary btn-sm" %>
+  <% if @notices.empty? %>
+  <p> There is no Notices yet. You can click the button below to create one.</p>
+    <%= link_to 'New Notification', new_admin_notice_path, :class => "btn btn-primary btn-sm" %>
   </div>
+  <% else %>
+    <%= link_to 'New Notice', new_admin_notice_path, :class => "btn btn-primary btn-sm" %>
   <table class="table table-sm table-striped" style="max-width: 100rem;">
     <thead>
       <tr>
@@ -37,5 +41,6 @@
       <% end %>
     </tbody>
   </table>
+<% end %>
 </div>
 
