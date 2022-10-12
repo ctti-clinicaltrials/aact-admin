@@ -8,6 +8,7 @@
           >Hi, <%= current_user.first_name.capitalize %> <%= current_user.last_name.chr %>.</text>
         </svg>
  <div class="dropdown-menu dropdown-offset" aria-labelledby="navbarDropdown">
+    <%= link_to "Data Definitions", data_definitions_path, class:"dropdown-item"%>
     <%= link_to "Events", events_path, class:"dropdown-item"%>
     <%= link_to "Notifications", admin_notices_path, class:"dropdown-item"%>
     <%= link_to "Releases", releases_path, class:"dropdown-item"%>
