@@ -1,4 +1,12 @@
 FactoryBot.define do
+  factory :saved_query do
+    title { "MyString" }
+    description { "MyString" }
+    sql { "MyString" }
+    public { false }
+    user { nil }
+  end
+
   factory :release do
     title { "MyString" }
     subtitle { "MyString" }
