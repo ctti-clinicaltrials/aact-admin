@@ -1,2 +1,5 @@
-<h1>Queries#new</h1>
-<p>Find me in app/views/queries/new.html.erb</p>
+<div class="modal-body">
+  <h1>New Query</h1>
+  <%= render 'form', saved_query: @saved_query %>
+  <%= link_to 'Back', queries_path, :class => "btn btn-primary btn-sm" %>
+</div>

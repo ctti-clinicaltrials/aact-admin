@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
   get 'queries/new'
-  get 'queries/create'
-
+  
   get 'file_records/active_url'
 
   get '/query' => 'query#index', as: :query

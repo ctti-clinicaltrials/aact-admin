@@ -2,16 +2,16 @@ class QueriesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :catch_not_found
 
   def new
-    @query = Query.new
+    @saved_query = SavedQuery.new
   end
 
   def create
-    @query = Query.new(query_params)
-    if @query.save
-      flash.notice = "The query record was created successfully."
-      redirect_to @query
+    @saved_query = SavedQuery.new(saved_query_params)
+    if @saved_query.save
+      flash.notice = "The saved query record was created successfully."
+      redirect_to @saved_query
     else
-      flash.now.alert = @query.errors.full_messages.to_sentence
+      flash.now.alert = @saved_query.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -19,8 +19,8 @@ class QueriesController < ApplicationController
   private
 
     # Only allow a list of trusted parameters through.
-    def query_params
-      params.require(:query)
+    def saved_query_params
+      params.require(:saved_query)
         .permit(:title, :description, :sql, :public, :user)
     end
 
