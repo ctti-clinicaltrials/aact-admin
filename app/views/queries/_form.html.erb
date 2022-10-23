@@ -1,4 +1,4 @@
-<%= form_for(saved_query) do |f| %>
+<%= form_for(queries_new_path) do |f| %>
   <% if saved_query.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(saved_query.errors.count, "error") %> prohibited this query from being saved:</h2>
@@ -16,18 +16,16 @@
     </div>
     <div class="container-fluid">
       <%= f.label :description %>
-      <%= f.text_area :description, rows: 10, class: "form-control" %>
+      <%= f.text_area :description, rows: 5, class: "form-control" %>
     </div>
     <div class="container-fluid">
       <%= f.label :sql %>
-      <%= f.text_area :sql, rows: 10, class: "form-control" %>
+      <%= f.text_area :sql, rows: 5, class: "form-control" %>
     </div>
-    <div class="pb-3">
+    <div class="pb-5">
     </div>
     <div class="actions container-fluid">
       <%= f.submit :class => "old-btn"%>
-    </div>
-    <div class="pb-4">
     </div>
   </div>
 <% end %>

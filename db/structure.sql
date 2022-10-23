@@ -493,6 +493,42 @@ ALTER SEQUENCE ctgov.releases_id_seq OWNED BY ctgov.releases.id;
 
 
 --
+-- Name: saved_queries; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.saved_queries (
+    id integer NOT NULL,
+    title character varying,
+    description character varying,
+    sql character varying,
+    public boolean,
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: saved_queries_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.saved_queries_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: saved_queries_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.saved_queries_id_seq OWNED BY ctgov.saved_queries.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -853,6 +889,13 @@ ALTER TABLE ONLY ctgov.releases ALTER COLUMN id SET DEFAULT nextval('ctgov.relea
 
 
 --
+-- Name: saved_queries id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.saved_queries ALTER COLUMN id SET DEFAULT nextval('ctgov.saved_queries_id_seq'::regclass);
+
+
+--
 -- Name: table_saved_queries id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -995,6 +1038,14 @@ ALTER TABLE ONLY ctgov.publications
 
 ALTER TABLE ONLY ctgov.releases
     ADD CONSTRAINT releases_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: saved_queries saved_queries_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.saved_queries
+    ADD CONSTRAINT saved_queries_pkey PRIMARY KEY (id);
 
 
 --
@@ -1152,10 +1203,25 @@ CREATE INDEX index_projects_on_year ON ctgov.projects USING btree (year);
 
 
 --
+-- Name: index_saved_queries_on_user_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_saved_queries_on_user_id ON ctgov.saved_queries USING btree (user_id);
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING btree (version);
+
+
+--
+-- Name: saved_queries fk_rails_add691a365; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.saved_queries
+    ADD CONSTRAINT fk_rails_add691a365 FOREIGN KEY (user_id) REFERENCES ctgov.users(id);
 
 
 --
@@ -1187,4 +1253,6 @@ INSERT INTO schema_migrations (version) VALUES ('20211102194357');
 INSERT INTO schema_migrations (version) VALUES ('20211109190158');
 
 INSERT INTO schema_migrations (version) VALUES ('20221005135246');
+
+INSERT INTO schema_migrations (version) VALUES ('20221018210501');
 
