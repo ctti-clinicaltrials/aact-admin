@@ -98,5 +98,5 @@ Rails.application.routes.draw do
   resources :use_case_attachments
   resources :events
   resources :verifiers
-  resources :queries
+  resources :saved_queries
 end

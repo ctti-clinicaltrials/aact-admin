@@ -1,4 +1,4 @@
-class QueriesController < ApplicationController
+class SavedQueriesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :catch_not_found
 
   def new
