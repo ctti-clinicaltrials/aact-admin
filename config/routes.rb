@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'queries/new'
-  
   get 'file_records/active_url'
 
   get '/query' => 'query#index', as: :query
@@ -100,4 +98,5 @@ Rails.application.routes.draw do
   resources :use_case_attachments
   resources :events
   resources :verifiers
+  resources :queries
 end
