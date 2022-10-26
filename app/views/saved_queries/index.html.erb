@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="pb-5">
+  <div class="pb-4"></div>
+  <h1>Saved Queries</h1>
+  <div class="pb-5"></div>
+  <% if @saved_queries.empty? %>
+    <p> There is no Saved Query yet. You can click the button below to create one.</p>
+    <%= link_to 'New Query', query_path, :class => "btn btn-primary btn-sm" %>
+  </div>
+  <% else %>
+    <%= link_to 'New Query', query_path, :class => "btn btn-primary btn-sm" %>
+    <div class="pb-4"></div>
+    <table class="table table-sm table-striped" style="max-width: 100rem;">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>SQL</th>
+          <th>User</th>
+          <th>Created</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @saved_queries.each do |query| %>
+          <tr>
+            <td><%= link_to query.title, saved_query_path(query) %> </td>
+            <td><%= query.description %></td>
+            <td><%= query.sql %></td>
+            <td><%= query.user %></td>
+            <td><%= query.created_at.strftime('%B %d, %Y') %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

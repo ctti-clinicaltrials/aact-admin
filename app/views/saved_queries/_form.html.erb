@@ -3,9 +3,9 @@
     <div id="error_explanation">
       <h2><%= pluralize(saved_query.errors.count, "error") %> prohibited this query from being saved:</h2>
       <ul>
-      <% saved_query.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% saved_query.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -22,8 +22,7 @@
       <%= f.label :sql %>
       <%= f.text_area :sql, rows: 5, class: "form-control" %>
     </div>
-    <div class="pb-5">
-    </div>
+    <div class="pb-5"></div>
     <div class="actions container-fluid">
       <%= f.submit :class => "old-btn"%>
     </div>
