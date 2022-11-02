@@ -1,0 +1,33 @@
+<div class="modal-body">
+  <h1>Saved Query</h1>
+  <hr/>
+  <div class="container-fluid">
+    <h3><strong><%= @saved_query.title %></strong></h3>
+  </div>
+  <div class="container-fluid">
+    <h5><%= @saved_query.description %></h5>
+  </div>
+
+  <%= form_tag("/query", :method => "get") do %>
+    <%= label_tag(:query, "SQL Query:") %>
+    <% if @error.present? %>
+      <div id="error_explanation">
+        <ul>
+        <% @error.each do |message| %>
+          <li class="text-danger"><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= text_area_tag(:query, @saved_query.sql, :required => "required", :size =>"25x5") %>
+    <div class="pb-3"></div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary btn-sm">Execute SQL Query</button>
+    </div>
+  <% end %>
+  
+  <div class="pb-5"></div>
+  
+  <div class="pb-3"></div>
+  <%= link_to 'Back', saved_queries_path, :class => "btn btn-primary btn-sm" %>
+</div>

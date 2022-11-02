@@ -1,5 +1,6 @@
 class SavedQueriesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :catch_not_found
+  before_action :set_saved_query, only: [:show]
 
   def index
     @saved_queries = SavedQuery.all.order(created_at: :desc)
@@ -7,6 +8,9 @@ class SavedQueriesController < ApplicationController
   
   def new
     @saved_query = SavedQuery.new
+  end
+
+  def show
   end
 
   def create
@@ -21,6 +25,10 @@ class SavedQueriesController < ApplicationController
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_saved_query
+      @saved_query = SavedQuery.find(params[:id])
+    end
 
     # Only allow a list of trusted parameters through.
     def saved_query_params
