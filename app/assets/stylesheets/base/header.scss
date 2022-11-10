@@ -30,11 +30,15 @@ p.user-info {
 }
 
 #navbar-top {
-  width: 100%;
+  width: 90%;
   font-size: 0px;
   font-family: "Roboto";
 }
 
+.navbar-brand {
+  margin-right: 0rem !important;
+  margin-left: -2rem !important;
+}
 #common-header {
   padding-top: 5rem !important;
 }
