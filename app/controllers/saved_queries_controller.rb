@@ -15,6 +15,7 @@ class SavedQueriesController < ApplicationController
 
   def create
     @saved_query = SavedQuery.new(saved_query_params)
+    @saved_query.user_id = current_user.id
     if @saved_query.save
       flash.notice = "The saved query record was created successfully."
       redirect_to @saved_query
@@ -33,7 +34,7 @@ class SavedQueriesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def saved_query_params
       params.require(:saved_query)
-        .permit(:title, :description, :sql)
+        .permit(:title, :description, :sql, :public)
     end
 
     def catch_not_found(e)

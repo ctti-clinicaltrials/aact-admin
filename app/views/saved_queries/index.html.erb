@@ -5,10 +5,10 @@
   <div class="pb-5"></div>
   <% if @saved_queries.empty? %>
     <p> There is no Saved Query yet. You can click the button below to create one.</p>
-    <%= link_to 'New Query', query_path, :class => "btn btn-primary btn-sm" %>
+    <%= link_to 'New Query', new_saved_query_path, :class => "btn btn-primary btn-sm" %>
   </div>
   <% else %>
-    <%= link_to 'New Query', query_path, :class => "btn btn-primary btn-sm" %>
+    <%= link_to 'New Query', new_saved_query_path, :class => "btn btn-primary btn-sm" %>
     <div class="pb-4"></div>
     <table class="table table-sm table-striped" style="max-width: 100rem;">
       <thead>
@@ -26,7 +26,7 @@
             <td><%= link_to query.title, saved_query_path(query) %> </td>
             <td><%= query.description %></td>
             <td><%= query.sql %></td>
-            <td><%= query.user %></td>
+            <td><%= query.user.username %></td>
             <td><%= query.created_at.strftime('%B %d, %Y') %></td>
           </tr>
         <% end %>

@@ -22,6 +22,13 @@
       <%= f.label :sql %>
       <%= f.text_area :sql, rows: 5, class: "form-control" %>
     </div>
+    <div class="pb-3"></div>
+    <div class="container-fluid">
+      <div class="form-check" >   
+        <%= f.check_box :public, class: "form-check-input" %>
+        <%= f.label :public, "Make SQL query public", class: "form-check-label" %> 
+      </div>
+    </div>
     <div class="pb-5"></div>
     <div class="actions container-fluid">
       <%= f.submit :class => "old-btn"%>
