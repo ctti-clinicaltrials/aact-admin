@@ -1,6 +1,6 @@
 class SavedQueriesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :catch_not_found
-  before_action :set_saved_query, only: [:show, :destroy]
+  before_action :set_saved_query, only: [:show, :edit, :update, :destroy]
 
   def index
     @saved_queries = SavedQuery.all.order(created_at: :desc)
@@ -13,6 +13,14 @@ class SavedQueriesController < ApplicationController
   def show
   end
 
+  def edit
+    if @saved_query.user_id  === current_user.id
+      render :edit
+    else
+      redirect_to saved_queries_path, alert: "You do not have permission to edit that query."  
+    end
+  end
+
   def create
     @saved_query = SavedQuery.new(saved_query_params)
     @saved_query.user_id = current_user.id
@@ -21,6 +29,16 @@ class SavedQueriesController < ApplicationController
     else
       flash.now.alert = @saved_query.errors.full_messages.to_sentence
       render :new
+    end
+  end
+
+  def update
+    if @saved_query.update(saved_query_params)
+      flash.notice = "The saved query record was updated successfully."
+      redirect_to @saved_query
+    else
+      flash.now.alert = @saved_query.errors.full_messages.to_sentence
+      render :edit
     end
   end
 
@@ -42,8 +60,7 @@ class SavedQueriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def saved_query_params
-      params.require(:saved_query)
-        .permit(:title, :description, :sql, :public)
+      params.require(:saved_query).permit(:title, :description, :sql, :public)
     end
 
     def catch_not_found(e)
