@@ -15,27 +15,32 @@
   </div>
   <ul class="list-group ">
     <li class="row mb-0">
-      <div class="col-4 text-wrap text-break list-group-item list-group-item-dark"></div>
-      <div class="col-4 text-center text-wrap text-break list-group-item list-group-item-dark">Instances</div>
-      <div class="col-4 text-center text-wrap text-break list-group-item list-group-item-dark">Unique</div>
+      <div class="col-6 text-wrap text-break list-group-item list-group-item-dark"></div>
+      <div class="col-3 text-center text-wrap text-break list-group-item list-group-item-dark">Instances</div>
+      <div class="col-3 text-center text-wrap text-break list-group-item list-group-item-dark">Unique</div>
     </li>
     <li class="row mb-0">
-      <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Source</div>
-      <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Destination</div>
-      <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Source</div>
-      <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Destination</div>
-      <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Source</div>
-      <div class="col-2 text-center text-wrap text-break list-group-item list-group-item-dark">Destination</div>
+      <div class="col-3 text-center text-wrap text-break list-group-item list-group-item-dark">Source</div>
+      <div class="col-3 text-center text-wrap text-break list-group-item list-group-item-dark">Destination</div>
+      <div class="col-1 text-center text-wrap text-break list-group-item list-group-item-dark">Source</div>
+      <div class="col-1 text-center text-wrap text-break list-group-item list-group-item-dark">Destination</div>
+      <div class="col-1 text-center text-wrap text-break list-group-item list-group-item-dark">Diff</div>
+      <div class="col-1 text-center text-wrap text-break list-group-item list-group-item-dark">Source</div>
+      <div class="col-1 text-center text-wrap text-break list-group-item list-group-item-dark">Destination</div>
+      <div class="col-1 text-center text-wrap text-break list-group-item list-group-item-dark">Diff</div>
     </li>
+    <% list = @verifiers.differences.sort{|a,b| (a[:source_instances].to_i - a[:destination_instances].to_i) <=> (b[:source_instances].to_i - a[:destination_instances].to_i)} %>
     <% @verifiers.differences.each do |diff| %>
       <% next if (diff['source'].nil?) %>
       <li class="row mb-0">
-        <div class="col-2 text-center text-break list-group-item"><%= diff['source'] %></div>
-        <div class="col-2 text-center text-break list-group-item"><%= diff['destination'] %></div>
-        <div class="col-2 text-center text-break list-group-item"><%= diff['source_instances'] %></div>
-        <div class="col-2 text-center text-break list-group-item"><%= diff['destination_instances'] %></div>
-        <div class="col-2 text-center text-break list-group-item"><%= diff['source_unique_values'] %></div>
-        <div class="col-2 text-center text-break list-group-item"><%= diff['destination_unique_values'] %></div>
+        <div class="col-3 text-center text-break list-group-item"><%= diff['source'] %></div>
+        <div class="col-3 text-center text-break list-group-item"><%= diff['destination'] %></div>
+        <div class="col-1 text-center text-break list-group-item"><%= diff['source_instances'] %></div>
+        <div class="col-1 text-center text-break list-group-item"><%= diff['source_instances'] - diff['destination_instances']%></div>
+        <div class="col-1 text-center text-break list-group-item"><%= diff['destination_instances'] %></div>
+        <div class="col-1 text-center text-break list-group-item"><%= diff['source_unique_values'] %></div>
+        <div class="col-1 text-center text-break list-group-item"><%= diff['destination_unique_values'] %></div>
+        <div class="col-1 text-center text-break list-group-item"><%= diff['source_unique_values'] - diff['destination_unique_values']%></div>
       </li>
     <% end %>
   </ul>
