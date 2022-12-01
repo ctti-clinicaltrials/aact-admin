@@ -11,7 +11,7 @@
     <h5> <strong>Updated at:</strong> <%= @verifiers.updated_at.strftime('%B %d, %Y %I:%M %p') %> </h5>
   </div>
   <div class="container-fluid">
-    <h5> <strong>Differences:</strong> </h5>
+    <h5> <strong>Differences: <span style="color: red;"><%= @verifiers.differences.count %></strong> </h5>
   </div>
   <ul class="list-group ">
     <li class="row mb-0">
