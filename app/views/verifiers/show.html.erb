@@ -29,7 +29,7 @@
       <div class="col-1 text-center text-wrap text-break list-group-item list-group-item-dark">Destination</div>
       <div class="col-1 text-center text-wrap text-break list-group-item list-group-item-dark">Diff</div>
     </li>
-    <% list = @verifiers.differences.sort{|a,b| (a[:source_instances].to_i - a[:destination_instances].to_i) <=> (b[:source_instances].to_i - b[:destination_instances].to_i)} %>
+    <% list = @verifiers.differences.sort{|a,b| (a['source_instances'].to_i - a['destination_instances'].to_i) <=> (b['source_instances'].to_i - b['destination_instances'].to_i)} %>
     <% list.each do |diff| %>
       <% next if (diff['source'].nil?) %>
       <li class="row mb-0">
