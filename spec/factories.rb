@@ -4,7 +4,6 @@ FactoryBot.define do
     description { "MyString" }
     sql { "MyString" }
     public { false }
-    user { nil }
   end
 
   factory :release do

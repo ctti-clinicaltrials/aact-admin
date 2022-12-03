@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :notices
+  has_many :saved_queries
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   include ActiveModel::Validations

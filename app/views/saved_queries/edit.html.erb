@@ -1,5 +1,10 @@
 <div class="modal-body">
   <h1>Edit Saved Query</h1>
   <%= render 'form', saved_query: @saved_query %>
-  <%= link_to 'Back', saved_query_path(@saved_query), :class => "btn btn-primary btn-sm" %>
-</div>
+  <div class="pb-4"></div>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <%= link_to 'Back', saved_query_path(@saved_query), :class => "btn btn-primary btn-sm" %>
+    </div>
+  </div>  
+</div>  
