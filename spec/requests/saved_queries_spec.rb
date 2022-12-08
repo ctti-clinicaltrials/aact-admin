@@ -62,16 +62,16 @@ RSpec.describe "Saved Queries", type: :request do
       expect { post saved_queries_path, saved_query: saved_q }.to_not change(SavedQuery, :count)
       expect(response).to render_template(:new)
     end
-  #   it "does not save a new Saved Query and renders the new page if invalid attribute (blank description)" do
-  #     saved_q = FactoryBot.attributes_for(:saved_query, description: '')
-  #     expect { post saved_queries_path, saved_query: saved_q }.to_not change(SavedQuery, :count)
-  #     expect(response).to render_template(:new)
-  #   end
-  #   it "does not save a new Saved Query and renders the new page if invalid attribute (blank sql)" do
-  #     saved_q = FactoryBot.attributes_for(:saved_query, sql: '')
-  #     expect { post saved_queries_path, saved_query: saved_q }.to_not change(SavedQuery, :count)
-  #     expect(response).to render_template(:new)
-  #   end
+    it "does not save a new Saved Query and renders the new page if invalid attribute (blank description)" do
+      saved_q = FactoryBot.attributes_for(:saved_query, description: '')
+      expect { post saved_queries_path, saved_query: saved_q }.to_not change(SavedQuery, :count)
+      expect(response).to render_template(:new)
+    end
+    it "does not save a new Saved Query and renders the new page if invalid attribute (blank sql)" do
+      saved_q = FactoryBot.attributes_for(:saved_query, sql: '')
+      expect { post saved_queries_path, saved_query: saved_q }.to_not change(SavedQuery, :count)
+      expect(response).to render_template(:new)
+    end
   end
 
   describe "GET /saved_queries/:id/edit" do
@@ -105,20 +105,20 @@ RSpec.describe "Saved Queries", type: :request do
       expect(saved_q.title).to_not eq('')
       expect(response).to render_template(:edit)
     end
-  #   it "does not update a Saved Query and renders the edit page if invalid attribute (blank description)" do
-  #     saved_q = FactoryBot.create(:saved_query, user_id: @user.id)
-  #     put saved_query_path(id: saved_q.id), saved_query: {description: ''}
-  #     saved_q.reload
-  #     expect(saved_q.description).to_not eq('')
-  #     expect(response).to render_template(:edit)
-  #   end
-  #   it "does not update a Saved Query and renders the edit page if invalid attribute (blank sql)" do
-  #     saved_q = FactoryBot.create(:saved_query, user_id: @user.id)
-  #     put saved_query_path(id:saved_q.id), saved_query: {sql: ''}
-  #     saved_q.reload
-  #     expect(saved_q.sql).to_not eq('')
-  #     expect(response).to render_template(:edit)
-  #   end  
+    it "does not update a Saved Query and renders the edit page if invalid attribute (blank description)" do
+      saved_q = FactoryBot.create(:saved_query, user_id: @user.id)
+      put saved_query_path(id: saved_q.id), saved_query: {description: ''}
+      saved_q.reload
+      expect(saved_q.description).to_not eq('')
+      expect(response).to render_template(:edit)
+    end
+    it "does not update a Saved Query and renders the edit page if invalid attribute (blank sql)" do
+      saved_q = FactoryBot.create(:saved_query, user_id: @user.id)
+      put saved_query_path(id:saved_q.id), saved_query: {sql: ''}
+      saved_q.reload
+      expect(saved_q.sql).to_not eq('')
+      expect(response).to render_template(:edit)
+    end  
   end
 
   describe "DELETE /saved_queries/:id " do
