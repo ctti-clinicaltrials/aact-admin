@@ -35,9 +35,15 @@ RSpec.describe "Saved Queries", type: :request do
       get saved_query_path(id: saved_q.id)
       expect(response).to render_template(:show)
     end
-    it "redirects to the Saved Queries index page if the Saved Query ID is invalid" do
+    it "renders the Not Found (404) page if the Saved Query ID is invalid" do
+      saved_q = FactoryBot.create(:saved_query, user_id: @user.id)
       get saved_query_path(id: 5000) # an ID that doesn't exist
-      expect(response).to redirect_to saved_queries_path
+      expect(response).to render_template("layouts/application")
+    end
+    it "renders the Not Found (404) page if the current logged-in User is NOT the User that created the Query" do
+      saved_q = FactoryBot.create(:saved_query, user_id: @user2.id)
+      get saved_query_path(id: saved_q.id)
+      expect(response).to render_template("layouts/application")
     end
   end  
 
@@ -80,10 +86,10 @@ RSpec.describe "Saved Queries", type: :request do
       get edit_saved_query_path(id: saved_q.id)
       expect(response).to render_template(:edit)
     end
-    it "renders the Saved Query edit page if the current logged-in User is NOT the User that created the Query" do
+    it "renders the Not Found (404) page if the current logged-in User is NOT the User that created the Query" do
       saved_q = FactoryBot.create(:saved_query, user_id: @user2.id)
       get edit_saved_query_path(id: saved_q.id)
-      expect(response).to redirect_to(saved_queries_path)
+      expect(response).to render_template("layouts/application")
     end
   end  
 
@@ -121,16 +127,26 @@ RSpec.describe "Saved Queries", type: :request do
     end  
   end
 
+  describe "PUT /saved_queries/:id by a User that is NOT the creator of the query" do
+    it "does not update a Saved Query and renders the Not Found (404) page if the current logged-in User is NOT the User that created the Query" do
+      saved_q = FactoryBot.create(:saved_query, user_id: @user2.id)
+      put saved_query_path(id: saved_q.id), saved_query: {title: 'Testing valid data.'}
+      saved_q.reload
+      expect(saved_q.title).to_not eq('Testing valid data.')
+      expect(response).to render_template("layouts/application")
+    end
+  end
+
   describe "DELETE /saved_queries/:id " do
     it "destroys a Saved Query and redirects to the index page if the current logged-in User is the User that created the Query" do
       saved_q = FactoryBot.create(:saved_query, user_id: @user.id)
       expect { delete saved_query_path(id: saved_q.id) }.to change(SavedQuery, :count)
       expect(response).to redirect_to saved_queries_path
     end
-    it "does NOT destroy a Saved Query and renders the show page if the current logged-in User is NOT the User that created the Query" do
+    it "does NOT destroy a Saved Query and renders the Not Found (404) page if the current logged-in User is NOT the User that created the Query" do
       saved_q = FactoryBot.create(:saved_query, user_id: @user2.id)
       expect { delete saved_query_path(id: saved_q.id) }.to_not change(SavedQuery, :count)
-      expect(response).to render_template(:show)
+      expect(response).to render_template("layouts/application")
     end
   end      
 end    

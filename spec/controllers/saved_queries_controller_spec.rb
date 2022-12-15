@@ -48,10 +48,22 @@ RSpec.describe SavedQueriesController, type: :controller do
 
   describe "GET #show" do
     it "returns http success" do
-      saved_q = FactoryBot.create(:saved_query)
+      saved_q = FactoryBot.create(:saved_query, user_id: @user.id)
       get :show, id: saved_q.id
       expect(response).to render_template(:show)
       expect(response).to have_http_status(:success)
+    end
+    it "returns http not found if the Saved Query ID is invalid" do
+      saved_q = FactoryBot.create(:saved_query, user_id: @user.id)
+      get :show, id: 5000 # an ID that doesn't exist
+      expect(response).to render_template("layouts/application")
+      expect(response).to have_http_status(:not_found)
+    end
+    it "returns http not found if the current logged-in User is NOT the User that created the Query" do
+      saved_q = FactoryBot.create(:saved_query, user_id: @user2.id)
+      get :show, id: saved_q.id
+      expect(response).to render_template("layouts/application")
+      expect(response).to have_http_status(:not_found)
     end
   end
 
@@ -62,20 +74,26 @@ RSpec.describe SavedQueriesController, type: :controller do
       expect(response).to render_template(:edit)
       expect(response).to have_http_status(:success)
     end
-    it "redirects to the index page if the current logged-in User is NOT the User that created the Query" do
+    it "returns http not found if the current logged-in User is NOT the User that created the Query" do
       saved_q = FactoryBot.create(:saved_query, user_id: @user2.id)
       get :edit, id: saved_q.id
-      expect(response).to redirect_to(saved_queries_path)
-      expect(response).to have_http_status(:found)
+      expect(response).to render_template("layouts/application")
+      expect(response).to have_http_status(:not_found)
     end
   end
 
   describe "PUT #update" do
     it "returns http found" do
-      saved_q = FactoryBot.create(:saved_query)
+      saved_q = FactoryBot.create(:saved_query, user_id: @user.id)
       put :update, id: saved_q.id, saved_query: { "public"=>"true" }
       expect(response).to redirect_to saved_query_path
       expect(response).to have_http_status(:found)
+    end
+    it "returns http not found if the current logged-in User is NOT the User that created the Query" do
+      saved_q = FactoryBot.create(:saved_query, user_id: @user2.id)
+      put :update, id: saved_q.id, saved_query: { "public"=>"true" }
+      expect(response).to render_template("layouts/application")
+      expect(response).to have_http_status(:not_found)
     end
   end
 
@@ -86,11 +104,11 @@ RSpec.describe SavedQueriesController, type: :controller do
       expect(response).to redirect_to saved_queries_path
       expect(response).to have_http_status(:found)
     end
-    it "renders the show page if the current logged-in User is NOT the User that created the Query" do
+    it "returns http not found if the current logged-in User is NOT the User that created the Query" do
       saved_q = FactoryBot.create(:saved_query, user_id: @user2.id)
       delete :destroy, id: saved_q.id
-      expect(response).to render_template(:show)
-      expect(response).to have_http_status(:success)
+      expect(response).to render_template("layouts/application")
+      expect(response).to have_http_status(:not_found)
     end
   end
 end

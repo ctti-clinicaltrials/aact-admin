@@ -24,14 +24,15 @@
     </div>
     <div class="pb-3"></div>
     <div class="container-fluid">
-      <div class="form-check" >   
+      <div class="form-check" >
         <%= f.check_box :public, class: "form-check-input" %>
-        <%= f.label :public, "Make SQL query public", class: "form-check-label" %> 
+        <%= f.label :public, "Public", class: "form-check-label" %>
+        <small>A public query will be visible to anyone</small> 
       </div>
     </div>
-    <div class="pb-3"></div>
+    <div class="pb-5"></div>
     <div class="container-fluid">
-      <%= f.button "Save Query", type: "submit", :class => "btn btn-primary btn-sm" %>
+      <%= f.button "Save", type: "submit", :class => "btn btn-primary btn-sm" %>
     </div>
   </div>
 <% end %>
