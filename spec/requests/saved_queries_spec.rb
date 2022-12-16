@@ -40,7 +40,12 @@ RSpec.describe "Saved Queries", type: :request do
       get saved_query_path(id: 5000) # an ID that doesn't exist
       expect(response).to render_template("layouts/application")
     end
-    it "renders the Not Found (404) page if the current logged-in User is NOT the User that created the Query" do
+    it "renders the Saved Query show page if the current logged-in User is NOT the User that created the Query and the Query is Public" do
+      saved_q = FactoryBot.create(:saved_query, user_id: @user2.id, public: true)
+      get saved_query_path(id: saved_q.id)
+      expect(response).to render_template(:show)
+    end
+    it "renders the Not Found (404) page if the current logged-in User is NOT the User that created the Query and the Query is Not Public" do
       saved_q = FactoryBot.create(:saved_query, user_id: @user2.id)
       get saved_query_path(id: saved_q.id)
       expect(response).to render_template("layouts/application")

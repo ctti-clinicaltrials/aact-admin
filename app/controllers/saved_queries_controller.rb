@@ -13,6 +13,9 @@ class SavedQueriesController < ApplicationController
   end
 
   def edit
+    if @saved_query.user_id != current_user.id
+      render :file => "app/views/errors/not_found.html", status: :not_found
+    end
   end
 
   def create
@@ -37,14 +40,18 @@ class SavedQueriesController < ApplicationController
   end
 
   def destroy
-    @saved_query.destroy
-    redirect_to saved_queries_path, notice: "The query was deleted successfully."
+    if @saved_query.user_id != current_user.id
+      render :file => "app/views/errors/not_found.html", status: :not_found
+    else
+      @saved_query.destroy
+      redirect_to saved_queries_path, notice: "The query was deleted successfully."
+    end  
   end
 
   private
     def set_saved_query
       @saved_query = SavedQuery.find_by_id(params[:id])
-      if @saved_query.nil? || @saved_query.user_id != current_user.id
+      if @saved_query.nil? || (@saved_query.user_id != current_user.id && !@saved_query.public)
         render :file => "app/views/errors/not_found.html", status: :not_found
       end  
     end
