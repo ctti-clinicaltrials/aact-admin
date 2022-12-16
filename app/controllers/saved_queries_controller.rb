@@ -1,5 +1,5 @@
 class SavedQueriesController < ApplicationController
-  before_action :set_saved_query, only: [:show, :edit, :update, :destroy]
+  before_action :set_saved_query, only: [:edit, :update, :destroy]
 
   def index
     @saved_queries = SavedQuery.where('public = true OR (public = false AND user_id = ?)', current_user.id).order(created_at: :desc)  
@@ -10,12 +10,13 @@ class SavedQueriesController < ApplicationController
   end
 
   def show
+    @saved_query = SavedQuery.find_by_id(params[:id])
+    if @saved_query.nil? || (@saved_query.user_id != current_user.id && !@saved_query.public)
+      render :file => "app/views/errors/not_found.html", status: :not_found
+    end
   end
 
   def edit
-    if @saved_query.user_id != current_user.id
-      render :file => "app/views/errors/not_found.html", status: :not_found
-    end
   end
 
   def create
@@ -40,18 +41,14 @@ class SavedQueriesController < ApplicationController
   end
 
   def destroy
-    if @saved_query.user_id != current_user.id
-      render :file => "app/views/errors/not_found.html", status: :not_found
-    else
-      @saved_query.destroy
-      redirect_to saved_queries_path, notice: "The query was deleted successfully."
-    end  
+    @saved_query.destroy
+    redirect_to saved_queries_path, notice: "The query was deleted successfully."
   end
 
   private
     def set_saved_query
       @saved_query = SavedQuery.find_by_id(params[:id])
-      if @saved_query.nil? || (@saved_query.user_id != current_user.id && !@saved_query.public)
+      if @saved_query.nil? || @saved_query.user_id != current_user.id
         render :file => "app/views/errors/not_found.html", status: :not_found
       end  
     end
