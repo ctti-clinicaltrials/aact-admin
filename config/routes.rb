@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'file_records/active_url'
-
-  get '/query' => 'query#index', as: :query
-  
-  get 'summary/aact'
-
   namespace :admin do
     resources :notices
       get "/notices/:id/send_notice" => "notices#send_notice"
@@ -21,6 +15,12 @@ Rails.application.routes.draw do
                                     passwords:     'users/passwords'}
 
   root "pages#home"
+
+  get 'file_records/active_url'
+  
+  get 'summary/aact'
+
+  get '/query' => 'query#index', as: :query
 
   get "/airbrake" => "pages#airbrake"
 
@@ -99,4 +99,5 @@ Rails.application.routes.draw do
   resources :events
   resources :verifiers
   resources :saved_queries
+  resources :study_statistics_comparison
 end
