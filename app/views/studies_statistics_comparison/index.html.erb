@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="pb-5">
+  <div class="pb-4"></div>
+  <h1>Studies Statistics Comparison</h1>
+  <div class="pb-5"></div>
+  <% if @studies_statistics_comparison.empty? %>
+    <p> There is no Study Statistics Comparison yet. You can click the button below to create one.</p>
+    <%#<%= link_to 'New Study Statistics Comparison', new_studies_statistics_comparison, :class => "btn btn-primary btn-sm" %>
+  </div>
+  <% else %>
+    <%#<%= link_to 'New Study Statistics Comparison', new_studies_statistics_comparison, :class => "btn btn-primary btn-sm" %>
+    <div class="pb-4"></div>
+    <table class="table table-sm table-striped" style="max-width: 100rem;">
+      <thead>
+        <tr>
+          <th>CTGOV_Selector</th>
+          <th>Table</th>
+          <th>Column</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @studies_statistics_comparison.each do |comparison| %>
+          <tr>
+            <td><%= comparison.ctgov_selector %> </td>
+            <td><%= comparison.table %></td>
+            <td><%= comparison.column %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

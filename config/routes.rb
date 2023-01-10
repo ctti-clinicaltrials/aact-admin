@@ -99,5 +99,5 @@ Rails.application.routes.draw do
   resources :events
   resources :verifiers
   resources :saved_queries
-  resources :study_statistics_comparison
+  resources :studies_statistics_comparison
 end
