@@ -1,7 +1,7 @@
 class StudiesStatisticsComparisonController < ApplicationController
   
   def index
-    @studies_statistics_comparison = Core::StudyStatisticsComparison.order(created_at: :desc)
+    @studies_statistics_comparison = Core::StudyStatisticsComparison.all.order(id: :desc)
   end
 
   def show

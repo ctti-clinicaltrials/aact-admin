@@ -21,7 +21,14 @@
       <tbody>
         <% @studies_statistics_comparison.each do |comparison| %>
           <tr>
-            <td><%= comparison.ctgov_selector %> </td>
+            <td>
+              <% split_selector = comparison.ctgov_selector.split('|', -1) %> 
+              <% split_selector.each_with_index do |selectors, index| %>
+                <% '&nbsp;' * index %>
+                <%= index %>
+                <%= selectors %><br>      
+              <% end %>      
+            </td>
             <td><%= comparison.table %></td>
             <td><%= comparison.column %></td>
           </tr>
