@@ -30,6 +30,7 @@
             <td><%= comparison.table %></td>
             <td><%= comparison.column %></td>
             <td><%= link_to 'Edit', edit_studies_statistics_comparison_path(comparison), :class => "btn btn-primary btn-sm" %></td>
+            <td><%= link_to 'Delete', studies_statistics_comparison_path(comparison), :class => "btn btn-danger btn-sm", :method => :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </tbody>

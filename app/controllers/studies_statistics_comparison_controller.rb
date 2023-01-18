@@ -1,5 +1,5 @@
 class StudiesStatisticsComparisonController < ApplicationController
-  before_action :set_study_statistics_comparison, only: [:edit, :update]
+  before_action :set_study_statistics_comparison, only: [:edit, :update, :destroy]
   
   def index
     @studies_statistics_comparison = Core::StudyStatisticsComparison.all.order(id: :desc)
@@ -32,6 +32,8 @@ class StudiesStatisticsComparisonController < ApplicationController
   end
 
   def destroy
+    @study_statistics_comparison.destroy
+    redirect_to studies_statistics_comparison_index_path, notice: "The study statistics comparison was deleted successfully."
   end
 
   private
