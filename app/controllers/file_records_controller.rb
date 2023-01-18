@@ -6,6 +6,14 @@ class FileRecordsController < ApplicationController
     "covid-19"          => "covid-19",
     }
 
+  def index 
+    records = Core::FileRecord.all
+    records = records.where(file_type: params[:type]) if params[:type]
+    records = records.where('created_at >= ?', params[:from]) if params[:from]
+    records = records.where('created_at <= ?', params[:to]) if params[:to]
+    render json:records.map(&:json)
+  end
+
   def active_url
     @type=params[:type]
     @time=params[:time]
