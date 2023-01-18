@@ -4,13 +4,18 @@ class StudiesStatisticsComparisonController < ApplicationController
     @studies_statistics_comparison = Core::StudyStatisticsComparison.all.order(id: :desc)
   end
 
-  def show
-  end
-
   def new
+    @study_statistics_comparison = Core::StudyStatisticsComparison.new
   end
 
   def create
+    @study_statistics_comparison = Core::StudyStatisticsComparison.new(study_statistics_comparison_params)
+    if @study_statistics_comparison.save
+      redirect_to studies_statistics_comparison_index_path, notice: "The study statistics comparison was created successfully."
+    else
+      flash.now.alert = @study_statistics_comparison.errors.full_messages.to_sentence
+      render :new
+    end
   end
 
   def edit
@@ -21,4 +26,10 @@ class StudiesStatisticsComparisonController < ApplicationController
 
   def destroy
   end
+
+  private
+    # Only allow a list of trusted parameters through.
+    def study_statistics_comparison_params
+      params.require(:study_statistics_comparison).permit(:ctgov_selector, :table, :column, :condition, :instances_query, :unique_query)
+    end
 end

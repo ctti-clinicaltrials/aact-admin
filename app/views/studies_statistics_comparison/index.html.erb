@@ -1,14 +1,13 @@
 <div class="container">
-  <div class="pb-5">
-  <div class="pb-4"></div>
+  <div class="pb-5"></div>
   <h1>Studies Statistics Comparison</h1>
   <div class="pb-5"></div>
   <% if @studies_statistics_comparison.empty? %>
     <p> There is no Study Statistics Comparison yet. You can click the button below to create one.</p>
-    <%#<%= link_to 'New Study Statistics Comparison', new_studies_statistics_comparison, :class => "btn btn-primary btn-sm" %>
+    <%= link_to 'New Study Statistics Comparison', new_studies_statistics_comparison_path, :class => "btn btn-primary btn-sm" %>
   </div>
   <% else %>
-    <%#<%= link_to 'New Study Statistics Comparison', new_studies_statistics_comparison, :class => "btn btn-primary btn-sm" %>
+    <%= link_to 'New Study Statistics Comparison', new_studies_statistics_comparison_path, :class => "btn btn-primary btn-sm" %>
     <div class="pb-4"></div>
     <table class="table table-sm table-striped" style="max-width: 100rem;">
       <thead>
@@ -24,8 +23,7 @@
             <td>
               <% split_selector = comparison.ctgov_selector.split('|', -1) %> 
               <% split_selector.each_with_index do |selectors, index| %>
-                <% '&nbsp;' * index %>
-                <%= index %>
+                <%= ('&nbsp;' * index * 5).html_safe %>
                 <%= selectors %><br>      
               <% end %>      
             </td>
