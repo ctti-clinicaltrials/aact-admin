@@ -1,4 +1,5 @@
 class StudiesStatisticsComparisonController < ApplicationController
+  before_action :set_study_statistics_comparison, only: [:edit, :update]
   
   def index
     @studies_statistics_comparison = Core::StudyStatisticsComparison.all.order(id: :desc)
@@ -22,12 +23,25 @@ class StudiesStatisticsComparisonController < ApplicationController
   end
 
   def update
+    if @study_statistics_comparison.update(study_statistics_comparison_params)
+      redirect_to studies_statistics_comparison_index_path, notice: "The study statistics comparison was updated successfully."
+    else
+      flash.now.alert = @study_statistics_comparison.errors.full_messages.to_sentence
+      render :edit  
+    end
   end
 
   def destroy
   end
 
   private
+    def set_study_statistics_comparison
+      @study_statistics_comparison = Core::StudyStatisticsComparison.find_by_id(params[:id])
+      if @study_statistics_comparison.nil?
+        render :file => "app/views/errors/not_found.html", status: :not_found
+      end  
+    end    
+
     # Only allow a list of trusted parameters through.
     def study_statistics_comparison_params
       params.require(:study_statistics_comparison).permit(:ctgov_selector, :table, :column, :condition, :instances_query, :unique_query)
