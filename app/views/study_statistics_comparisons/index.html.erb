@@ -1,13 +1,13 @@
 <div class="container">
   <div class="pb-5"></div>
-  <h1>Studies Statistics Comparison</h1>
+  <h1>Study Statistics Comparisons</h1>
   <div class="pb-5"></div>
-  <% if @studies_statistics_comparison.empty? %>
+  <% if @study_statistics_comparisons.empty? %>
     <p> There is no Study Statistics Comparison yet. You can click the button below to create one.</p>
-    <%= link_to 'New Study Statistics Comparison', new_studies_statistics_comparison_path, :class => "btn btn-primary btn-sm" %>
+    <%= link_to 'New Study Statistics Comparison', new_study_statistics_comparison_path, :class => "btn btn-primary btn-sm" %>
   </div>
   <% else %>
-    <%= link_to 'New Study Statistics Comparison', new_studies_statistics_comparison_path, :class => "btn btn-primary btn-sm" %>
+    <%= link_to 'New Study Statistics Comparison', new_study_statistics_comparison_path, :class => "btn btn-primary btn-sm" %>
     <div class="pb-4"></div>
     <table class="table table-sm table-striped" style="max-width: 100rem;">
       <thead>
@@ -18,7 +18,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @studies_statistics_comparison.each do |comparison| %>
+        <% @study_statistics_comparisons.each do |comparison| %>
           <tr>
             <td>
               <% split_selector = comparison.ctgov_selector.split('|', -1) %> 
@@ -29,8 +29,8 @@
             </td>
             <td><%= comparison.table %></td>
             <td><%= comparison.column %></td>
-            <td><%= link_to 'Edit', edit_studies_statistics_comparison_path(comparison), :class => "btn btn-primary btn-sm" %></td>
-            <td><%= link_to 'Delete', studies_statistics_comparison_path(comparison), :class => "btn btn-danger btn-sm", :method => :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Edit', edit_study_statistics_comparison_path(comparison), :class => "btn btn-primary btn-sm" %></td>
+            <td><%= link_to 'Delete', study_statistics_comparison_path(comparison), :class => "btn btn-danger btn-sm", :method => :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </tbody>

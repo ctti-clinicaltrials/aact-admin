@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe StudiesStatisticsComparisonController, type: :controller do
+RSpec.describe StudyStatisticsComparisonsController, type: :controller do
 
   describe "GET #index" do
     it "returns http success" do

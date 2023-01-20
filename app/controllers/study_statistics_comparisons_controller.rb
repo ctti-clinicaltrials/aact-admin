@@ -1,8 +1,8 @@
-class StudiesStatisticsComparisonController < ApplicationController
+class StudyStatisticsComparisonsController < ApplicationController
   before_action :set_study_statistics_comparison, only: [:edit, :update, :destroy]
   
   def index
-    @studies_statistics_comparison = Core::StudyStatisticsComparison.all.order(id: :desc)
+    @study_statistics_comparisons = Core::StudyStatisticsComparison.all.order(id: :desc)
   end
 
   def new
@@ -12,7 +12,7 @@ class StudiesStatisticsComparisonController < ApplicationController
   def create
     @study_statistics_comparison = Core::StudyStatisticsComparison.new(study_statistics_comparison_params)
     if @study_statistics_comparison.save
-      redirect_to studies_statistics_comparison_index_path, notice: "The study statistics comparison was created successfully."
+      redirect_to study_statistics_comparisons_path, notice: "The study statistics comparison was created successfully."
     else
       flash.now.alert = @study_statistics_comparison.errors.full_messages.to_sentence
       render :new
@@ -24,7 +24,7 @@ class StudiesStatisticsComparisonController < ApplicationController
 
   def update
     if @study_statistics_comparison.update(study_statistics_comparison_params)
-      redirect_to studies_statistics_comparison_index_path, notice: "The study statistics comparison was updated successfully."
+      redirect_to study_statistics_comparisons_path, notice: "The study statistics comparison was updated successfully."
     else
       flash.now.alert = @study_statistics_comparison.errors.full_messages.to_sentence
       render :edit  
@@ -33,7 +33,7 @@ class StudiesStatisticsComparisonController < ApplicationController
 
   def destroy
     @study_statistics_comparison.destroy
-    redirect_to studies_statistics_comparison_index_path, notice: "The study statistics comparison was deleted successfully."
+    redirect_to study_statistics_comparisons_path, notice: "The study statistics comparison was deleted successfully."
   end
 
   private
@@ -46,6 +46,6 @@ class StudiesStatisticsComparisonController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def study_statistics_comparison_params
-      params.require(:study_statistics_comparison).permit(:ctgov_selector, :table, :column, :condition, :instances_query, :unique_query)
+      params.require(:core_study_statistics_comparison).permit(:ctgov_selector, :table, :column, :condition, :instances_query, :unique_query)
     end
 end

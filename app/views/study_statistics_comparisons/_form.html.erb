@@ -1,4 +1,6 @@
-<%= form_for(study_statistics_comparison) do |f| %>
+<%= form_for(study_statistics_comparison, 
+            :url => (@study_statistics_comparison.persisted? ? 
+                    study_statistics_comparison_path(@study_statistics_comparison) : study_statistics_comparisons_path)) do |f| %>
   <% if study_statistics_comparison.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(study_statistics_comparison.errors.count, "error") %> prohibited this study statistics comparison from being saved:</h2>
