@@ -1,3 +1,5 @@
+<% if user_signed_in? and current_user.admin? %>
+
 <div class="container">
   <div class="pb-5">
     <h1>Data Definitions</h1>
@@ -33,3 +35,12 @@
     </table>
   </div>
 </div>
+
+<% else %>
+
+<div class="container">
+  <div class="pb-5">
+    <h1>Please login as <em>admin</em> to see <em>Data Definitions</em></h1>
+  </div>
+</div>
+<% end %>

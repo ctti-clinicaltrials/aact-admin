@@ -1,3 +1,4 @@
+<% if user_signed_in? and current_user.admin? %>
 <div class="modal-body">
   <h1>Data Definition</h1>
   <div class="container-fluid">
@@ -60,4 +61,11 @@
     </div>
   </div>
 </div>  
- 
+
+<% else %> 
+
+<div class="container">
+<div class="pb-5">
+  <h1>Please login as <em>admin</em>to see <em>Data Definition</em></h1>
+</div>
+<% end %>
