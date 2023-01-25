@@ -2,7 +2,7 @@ class StudyStatisticsComparisonsController < ApplicationController
   before_action :set_study_statistics_comparison, only: [:edit, :update, :destroy]
   
   def index
-    @study_statistics_comparisons = Core::StudyStatisticsComparison.all.order(id: :desc)
+    @study_statistics_comparisons = Core::StudyStatisticsComparison.all.order(ctgov_selector: :desc)
   end
 
   def new
