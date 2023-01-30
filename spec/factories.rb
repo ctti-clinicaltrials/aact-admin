@@ -1,4 +1,17 @@
 FactoryBot.define do
+  factory :core_study_statistics_comparison, class: 'Core::StudyStatisticsComparison' do
+    ctgov_selector { "MyText" }
+    table { "MyText" }
+    column { "MyText" }
+    condition { "MyText" }
+    instances_query { "SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at
+                       FROM studies
+                       LIMIT 8;" }
+    unique_query { "SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at
+                    FROM studies
+                    LIMIT 8;" }
+  end
+
   factory :saved_query do
     title { "MyString" }
     description { "MyString" }
