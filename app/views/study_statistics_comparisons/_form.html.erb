@@ -1,0 +1,44 @@
+<%= form_for(study_statistics_comparison, 
+            :url => (@study_statistics_comparison.persisted? ? 
+                    study_statistics_comparison_path(@study_statistics_comparison) : study_statistics_comparisons_path)) do |f| %>
+  <% if study_statistics_comparison.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(study_statistics_comparison.errors.count, "error") %> prohibited this study statistics comparison from being saved:</h2>
+      <ul>
+        <% study_statistics_comparison.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <%= f.label :ctgov_selector %>
+      <%= f.text_field :ctgov_selector, class: "form-control" %>
+    </div>
+    <div class="container-fluid">
+      <%= f.label :table %>
+      <%= f.text_field :table, class: "form-control" %>
+    </div>
+    <div class="container-fluid">
+      <%= f.label :column %>
+      <%= f.text_field :column, class: "form-control" %>
+    </div>
+    <div class="container-fluid">
+      <%= f.label :condition %>
+      <%= f.text_field :condition, class: "form-control" %>
+    </div>
+    <div class="container-fluid">
+      <%= f.label :instances_query %>
+      <%= f.text_area :instances_query, rows: 5, class: "form-control" %>
+    </div>
+    <div class="container-fluid">
+      <%= f.label :unique_query %>
+      <%= f.text_area :unique_query, rows: 5, class: "form-control" %>
+    </div>
+    <div class="pb-5"></div>
+    <div class="container-fluid">
+      <%= f.button "Save", type: "submit", :class => "btn btn-primary btn-sm" %>
+    </div>
+  </div>
+<% end %>
