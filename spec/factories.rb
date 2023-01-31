@@ -1,4 +1,9 @@
 FactoryBot.define do
+  factory :file_download do
+    file_record_id { "MyString" }
+    integer { "MyString" }
+  end
+
   factory :core_study_statistics_comparison, class: 'Core::StudyStatisticsComparison' do
     ctgov_selector { "MyText" }
     table { "MyText" }
