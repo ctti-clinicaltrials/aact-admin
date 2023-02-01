@@ -11,5 +11,15 @@ module Core
     def self.everything(file_type)
       where(file_type: file_type).order(created_at: :desc)
     end
+
+    def json
+      {
+        id: id,
+        file_size: file_size,
+        file_type: file_type,
+        created_at: created_at,
+        url: url
+      }
+    end
   end
 end
