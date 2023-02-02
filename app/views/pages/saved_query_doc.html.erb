@@ -1,0 +1,141 @@
+<div>
+  <h1>Connect to AACT using the Saved Query System</h1>
+  <section class="savedqueryAccess">
+    <p>
+      This method for accessing the AACT database is recommended for Saved Query System users wanting to run queries using the live database. 
+    </p>
+    <h4>Note:</h4>
+    <ul>
+      <li><p>The Saved Query System contains the stored public queries that users will be sharing. </p></li>
+      <li>
+        <p>The saved queries index page contains a table, called Saved Queries, that lists all of the public saved queries loaded from the database with the following columns:</p>
+        <p>
+          <p>- <b>Title</b> of query</p>
+          <p>- <b>Description</b> of query</p>
+          <p>- <b>SQL</b> code</p>
+          <p>- <b>User</b> name of the person that created the query</p>
+          <p>- <b>Created</b> at date of the query </p>
+        </p>
+      </li>
+      <p>At the top of the table there is a button, <b>"New Query"</b>, that lets a user create and save a new query to the database.</p> 
+      <li>
+        <p>
+          The title of each saved query is a link to a page that displays the saved query details in a table called Saved Query. The Saved Query table contains the columns shown below:
+          <p>- <b>Title</b> of query</p>
+          <p>- <b>Description</b> of query</p>
+          <p>- <b>Public</b> checkbox to make the query public to everyone</p>
+          <p>- <b>SQL</b> code</p>
+        </p>
+        <p>
+          This page also contains two buttons, <b>"Edit"</b> and <b>"Delete"</b>, that lets the user that created the query edit or delete it.
+          If the user did not create the query, the <b>"Edit"</b> and <b>"Delete"</b> buttons will not be displayed.
+        </p>
+        <p>
+          Finally, this page contains a button <b>"Execute SQL Query"</b> that allows any user to execute the SQL to communicate and perform tasks on the AACT database.
+          The <b>"Execute SQL Query"</b> button runs the SQL code and the output results are displayed in a table called SQL Query Results.
+        </p>          
+      </li>
+    </ul>
+  </section>
+  <h3>Saved Query System Process:</h3>
+  <section class="savedqueryAccess container">
+    <div class="step">
+      <span class="stepNumber">1</span>
+      <h4 class="stepName">Saved Queries</h4>
+    </div>
+    <p>
+      The Saved Queries index page contains a table of public SQL queries that can be run to access the AACT database. See Example 1.</p>
+    <h4>Example 1.</h4>
+    <div class="pb-2"></div>
+    <%= image_tag("saved_queries_index.png") %>
+    <div class="pb-5"></div>
+    <p>
+      Click on this link to go to the Saved Queries index page. 
+    </p>
+    <p>
+     
+    </p>
+    <div class="step">
+      <span class="stepNumber">2</span>
+      <h4 class="stepName">Saved Query</h4>
+    </div>
+    <p>
+      The title of each Saved Query is a link to a page that displays the Saved Query details in a table called Saved Query.</p>
+    <p>
+      Click on a Saved Query title to go to that Saved Query page. See Example 2.</p>
+    <h4>Example 2.</h4>
+    <div class="pb-2"></div>
+    <%= image_tag("saved_query_show.png") %>
+    <div class="pb-5"></div>
+    <div class="step">
+      <span class="stepNumber">3</span>
+      <h4 class="stepName">SQL Query Results</h4>
+    </div>
+    <p>
+      The <b>"Execute SQL Query"</b> button runs the SQL code and the output results are displayed in a table called SQL Query Results. See Example 3.</p>
+    <h4>Example 3.</h4>
+    <div class="pb-2"></div>
+    <%= image_tag("sql_query_results.png") %>
+    <div class="pb-5"></div>
+    <div class="step">
+      <span class="stepNumber">4</span>
+    <h4 class="stepName">Creating New SQL Query</h4>
+    </div>
+    <p>Clicking the <b>"New Query"</b> button takes the user to a form for creating a new SQL Query. See Example 4.</p>
+    <p>The New SQL Query form requires the following information that the user needs to input in order to create and save the SQL query:</p>
+    <p>- <b>Title</b> of query</p>
+    <p>- <b>Description</b> of query</p>
+    <p>- <b>SQL</b> code</p>
+    <p>- <b>Public</b> checkbox to make the query public to everyone</p>
+    <div class="pb-3"></div>
+    <p><b>Note:</b></p>
+    <p>
+      Clicking the <b>"Public"</b> checkbox lets the user to make the SQL Query public, thus allowing any user access to view and run the query. Not clicking the <b>"Public"</b> 
+      checkbox makes the query private and does not display the query in the Saved Queries table. Only the owner of the query will be able to see it displayed.
+    </p>
+    <h4>Example 4.</h4>
+    <div class="pb-2"></div>
+    <%= image_tag("new_saved_query.png") %>
+    <div class="pb-5"></div>
+    <div class="step">
+      <span class="stepNumber">5</span>
+    <h4 class="stepName">Edit SQL Query</h4>
+    </div>
+    <p>Clicking the <b>"Edit"</b> button takes the user to a form for editing the SQL Query. See Example 5a.</p>
+    <p>The Edit Query form requires the following information that the user needs to input in order to edit and save the SQL query:</p>
+    <p>- <b>Title</b> of query</p>
+    <p>- <b>Description</b> of query</p>
+    <p>- <b>SQL</b> code</p>
+    <p>- <b>Public</b> checkbox to make the query public to everyone</p>
+    <div class="pb-3"></div>
+    <p><b>Note:</b></p>
+    <p>
+      Clicking the <b>"Public"</b> checkbox lets the user to make the SQL Query public, thus allowing any user access to view and run the query. Not clicking the <b>"Public"</b> 
+      checkbox makes the query private and does not display the query in the Saved Queries table. Only the owner of the query will be able to see it displayed.
+    </p>
+    <h4>Example 5a.</h4>
+    <div class="pb-2"></div>
+    <%= image_tag("edit_saved_query1.png") %>
+    <div class="pb-5"></div>   
+    <p>The <b>"Edit"</b> button will not be displayed if the user did not create the SQL Query. See Example 5b.</p>  
+    <h4>Example 5b.</h4>
+    <div class="pb-2"></div>
+    <%= image_tag("edit_saved_query2.png") %>
+    <div class="pb-5"></div>
+    <div class="step">
+    <span class="stepNumber">6</span>
+    <h4 class="stepName">Delete SQL Query</h4>
+    </div>
+    <p>Clicking the <b>"Delete"</b> button will delete the SQL Query and take the user back to the SQL Queries page. See Example 6a.</p>
+    <h4>Example 6a.</h4>
+    <div class="pb-2"></div>
+    <%= image_tag("delete_saved_query1.png") %>
+    <div class="pb-5"></div>   
+    <p>The <b>"Delete"</b> button will not be displayed if the user did not create the SQL Query. See Example 6b.</p>  
+    <h4>Example 6b.</h4>
+    <div class="pb-2"></div>
+    <%= image_tag("delete_saved_query2.png") %>
+    <div class="pb-5"></div>
+
+    </section>
+</div>    

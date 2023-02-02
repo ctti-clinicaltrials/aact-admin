@@ -17,12 +17,9 @@ Rails.application.routes.draw do
   root "pages#home"
 
   get 'file_records/active_url'
-  
   get 'summary/aact'
 
-  get '/query' => 'query#index', as: :query
-
-  get "/airbrake" => "pages#airbrake"
+  get "/airbrake"             => "pages#airbrake"
 
   get "/data_dictionary"      => "dictionary#show"
   get "/activities"           => "database_activity#show"
@@ -38,10 +35,11 @@ Rails.application.routes.draw do
   get "/pipe_files_with_sas"  => "pages#pipe_files_with_sas"
   get "/pgadmin"              => "pages#pgadmin"
   get "/points_to_consider"   => "pages#points_to_consider"
-  get "/postgres"                 => "pages#postgres"
+  get "/postgres"             => "pages#postgres"
   get "/r"                    => "pages#r"
   get "/sanity_check_report"  => "pages#sanity_check", as: :sanity_check
   get "/sas"                  => "pages#sas"
+  get "/saved_query_doc"      => "pages#saved_query_doc"
   get "/schema"               => "pages#schema"
   get "/snapshots"            => "pages#snapshots"
   get "/snapshot_archive"     => "pages#snapshot_archive"
@@ -49,6 +47,8 @@ Rails.application.routes.draw do
   get "/update_policy"        => "pages#update_policy"
   get "/deploy_code"          => "pages#deploy_code"
   get "/contactus"            => "pages#contactus"
+
+  get "/query"                => "query#index", as: :query
 
   get "/install_postgres"     => "postgres_documentation#install_postgres"
   get "/credentials"          => "credentials#show"
