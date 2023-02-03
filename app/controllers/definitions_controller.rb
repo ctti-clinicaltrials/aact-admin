@@ -2,6 +2,7 @@ class DefinitionsController < ApplicationController
   # *******///********
   # This code uses data dictionary spreadsheet stored on the DO file server
   # *******///********
+  before_action :is_admin?
   require 'csv'
 
   def index
