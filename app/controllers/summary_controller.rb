@@ -1,5 +1,6 @@
 class SummaryController < ApplicationController
-
+  before_action :is_admin?
+  
   def aact
     @updates = Public::Study.connection.execute("SELECT updated_at::date AS last_updated,
                                                 count(*) AS number_of_studies
