@@ -1,6 +1,6 @@
 require 'active_support/all'
 class DataDefinition < ActiveRecord::Base
-  validates :db_section, :table_name, :column_name, :data_type, :source, :ctti_note, presence: true
+  validates :db_section, :table_name, :column_name, :data_type, :source, presence: true
 
   def self.default_data_definitions
     Roo::Spreadsheet.open("#{Rails.public_path}/documentation/aact_data_definitions.xlsx")
