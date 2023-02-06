@@ -3,7 +3,7 @@
 --
 
 -- Dumped from database version 14.2
--- Dumped by pg_dump version 14.3
+-- Dumped by pg_dump version 14.6 (Homebrew)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -259,6 +259,39 @@ ALTER SEQUENCE ctgov.faqs_id_seq OWNED BY ctgov.faqs.id;
 
 
 --
+-- Name: file_downloads; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.file_downloads (
+    id integer NOT NULL,
+    file_record_id integer,
+    count integer DEFAULT 0,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: file_downloads_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.file_downloads_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: file_downloads_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.file_downloads_id_seq OWNED BY ctgov.file_downloads.id;
+
+
+--
 -- Name: health_checks; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -490,6 +523,42 @@ CREATE SEQUENCE ctgov.releases_id_seq
 --
 
 ALTER SEQUENCE ctgov.releases_id_seq OWNED BY ctgov.releases.id;
+
+
+--
+-- Name: saved_queries; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.saved_queries (
+    id integer NOT NULL,
+    title character varying,
+    description character varying,
+    sql character varying,
+    public boolean,
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: saved_queries_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.saved_queries_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: saved_queries_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.saved_queries_id_seq OWNED BY ctgov.saved_queries.id;
 
 
 --
@@ -811,6 +880,13 @@ ALTER TABLE ONLY ctgov.faqs ALTER COLUMN id SET DEFAULT nextval('ctgov.faqs_id_s
 
 
 --
+-- Name: file_downloads id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.file_downloads ALTER COLUMN id SET DEFAULT nextval('ctgov.file_downloads_id_seq'::regclass);
+
+
+--
 -- Name: health_checks id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -850,6 +926,13 @@ ALTER TABLE ONLY ctgov.publications ALTER COLUMN id SET DEFAULT nextval('ctgov.p
 --
 
 ALTER TABLE ONLY ctgov.releases ALTER COLUMN id SET DEFAULT nextval('ctgov.releases_id_seq'::regclass);
+
+
+--
+-- Name: saved_queries id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.saved_queries ALTER COLUMN id SET DEFAULT nextval('ctgov.saved_queries_id_seq'::regclass);
 
 
 --
@@ -950,6 +1033,14 @@ ALTER TABLE ONLY ctgov.faqs
 
 
 --
+-- Name: file_downloads file_downloads_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.file_downloads
+    ADD CONSTRAINT file_downloads_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: health_checks health_checks_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -995,6 +1086,14 @@ ALTER TABLE ONLY ctgov.publications
 
 ALTER TABLE ONLY ctgov.releases
     ADD CONSTRAINT releases_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: saved_queries saved_queries_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.saved_queries
+    ADD CONSTRAINT saved_queries_pkey PRIMARY KEY (id);
 
 
 --
@@ -1152,10 +1251,25 @@ CREATE INDEX index_projects_on_year ON ctgov.projects USING btree (year);
 
 
 --
+-- Name: index_saved_queries_on_user_id; Type: INDEX; Schema: ctgov; Owner: -
+--
+
+CREATE INDEX index_saved_queries_on_user_id ON ctgov.saved_queries USING btree (user_id);
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: ctgov; Owner: -
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING btree (version);
+
+
+--
+-- Name: saved_queries fk_rails_add691a365; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.saved_queries
+    ADD CONSTRAINT fk_rails_add691a365 FOREIGN KEY (user_id) REFERENCES ctgov.users(id);
 
 
 --
@@ -1187,4 +1301,8 @@ INSERT INTO schema_migrations (version) VALUES ('20211102194357');
 INSERT INTO schema_migrations (version) VALUES ('20211109190158');
 
 INSERT INTO schema_migrations (version) VALUES ('20221005135246');
+
+INSERT INTO schema_migrations (version) VALUES ('20221018210501');
+
+INSERT INTO schema_migrations (version) VALUES ('20230131123222');
 
