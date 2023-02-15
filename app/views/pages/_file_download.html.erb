@@ -5,8 +5,8 @@
         <option selected>Select file to download</option>
         <% if !daily.nil? %>
         <% daily.each do |file| %>
-            <option value="<%= file.url%>">
-            <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> <%= number_to_human_size(file.file_size) %></a>
+            <option value=<%= "/static/#{file_type}/daily/#{file.created_at.strftime('%Y-%m-%d')}"%>>
+            <a href=<%="/static/#{file_type}/daily/#{file.created_at.strftime('%Y-%m-%d')}"%> download="proposed_file_name"> <%= file.filename%> <%= number_to_human_size(file.file_size) %></a>
             </option>
         <% end %>
         <% end %>
@@ -18,8 +18,8 @@
         <select class="form-select" aria-label="Default select example" onchange="location = this.value;">
         <option selected>Select file to download</option>
         <% monthly.each do |file| %>
-            <option value="<%= file.url%>">
-            <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> <%= number_to_human_size(file.file_size) %></a>
+            <option value="<%="/static/#{file_type}/monthly/#{file.created_at.strftime('%Y-%m-%d')}"%>">
+            <a href=<%="/static/#{file_type}/monthly/#{file.created_at.strftime('%Y-%m-%d')}"%> download="proposed_file_name"> <%= file.filename%> <%= number_to_human_size(file.file_size) %></a>
             </option>
         <% end %>
         </select> 
@@ -31,7 +31,7 @@
     <a href="/snapshots" class="col-2 d-flex align-items-end">
         <div class="d-flex align-items-center">
         <h2 class="m-0 p-0 px-2"><%= fa_icon("file")%></h2>
-        <h5 class="m-0 p-0"><%= file_type %> Usage Documentation</h5>
+        <h5 class="m-0 p-0"><%= file_type_group %> Usage Documentation</h5>
         </div>
     </a>
 </div>
