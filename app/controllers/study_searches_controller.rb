@@ -2,7 +2,7 @@ class StudySearchesController < ApplicationController
   before_action :set_study_search, only: [:edit, :update, :destroy]
 
   def index
-    @study_searches = Core::StudySearch.all
+    @study_searches = Core::StudySearch.all.order(name: :desc)
   end
 
   def new
@@ -48,6 +48,6 @@ class StudySearchesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def study_search_params
-      params.require(:core_study_search).permit(:save_tsv, :query, :grouping, :name, :beta_api, :checkbox_value)
+      params.require(:core_study_search).permit(:save_tsv, :query, :grouping, :name)
     end
 end

@@ -16,22 +16,22 @@
       <%= f.label :save_tsv %> <br />
       <%= f.check_box :save_tsv %> <br />
     </div>
+    
     <div class="container-fluid">
       <%= f.label :query %>
       <%= f.text_field :query, class: "form-control" %>
     </div>
+
     <div class="container-fluid">
       <%= f.label :grouping %>
       <%= f.text_field :grouping, class: "form-control" %>
     </div>
+
     <div class="container-fluid">
       <%= f.label :name %>
       <%= f.text_area :name, rows: 5, class: "form-control" %>
     </div>
-    <div class="field">
-      <%= f.label :beta_api %> <br />
-      <%= f.check_box :beta_api %> <br />
-    </div>
+
     <div class="pb-5"></div>
     <div class="container-fluid">
       <%= f.button "Save", type: "submit", :class => "btn btn-primary btn-sm" %>

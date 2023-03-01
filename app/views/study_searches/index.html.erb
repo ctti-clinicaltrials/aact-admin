@@ -13,11 +13,10 @@
     <table class="table table-sm table-striped" style="max-width: 100rem;">
       <thead>
         <tr>
-          <th>Save_tsv</th>
+          <th>Save TSV</th>
           <th>Query</th>
           <th>Grouping</th>
           <th>Name</th>
-          <th>Beta_api</th>
         </tr>
       </thead>
       <tbody>
@@ -27,7 +26,6 @@
             <td><%= search.query %></td>
             <td><%= search.grouping %></td>
             <td><%= search.name %></td>
-            <td><%= search.beta_api %></td>
             <td><%= link_to 'Edit', edit_study_search_path(search), :class => "btn btn-primary btn-sm" %></td>
             <td><%= link_to 'Delete', study_search_path(search), :class => "btn btn-danger btn-sm", :method => :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
