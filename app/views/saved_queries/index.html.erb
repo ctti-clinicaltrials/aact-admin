@@ -15,7 +15,6 @@
         <tr>
           <th>Title</th>
           <th>Description</th>
-          <th>SQL</th>
           <th>User</th>
           <th>Created</th>
         </tr>
@@ -25,7 +24,6 @@
           <tr>
             <td><%= link_to query.title, saved_query_path(query) %> </td>
             <td><%= query.description %></td>
-            <td><%= query.sql %></td>
             <td><%= query.user&.username %></td>
             <td><%= query.created_at.strftime('%B %d, %Y') %></td>
           </tr>
