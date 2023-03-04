@@ -19,9 +19,9 @@
     </div>
   <% end %>
 
-
+  <%= text_area_tag(:query, params[:query]) %>
   <script>
-    CodeMirror(document.getElementById('sql_code'), {
+    CodeMirror.fromTextArea(document.getElementById('query'), {
       mode: 'sql',
       indentWithTabs: true,
       smartIndent: true,
@@ -32,21 +32,14 @@
       extraKeys: {"Ctrl-Space": "autocomplete"}
     });      
   </script>
-
- 
-  <div id="sql_code"> 
-    <%= text_area_tag(:query, params[:query], :required => "required") %>
-  </div>
-
-
-  <div class="pb-3">
-  </div>
+  
+  <div class="pb-3"></div>
   <div class="col-auto">
     <button type="submit" class="btn btn-primary btn-sm">Execute SQL Query</button>
   </div>
 <% end %>
-<div class="pb-5">
-</div>
+
+<div class="pb-5"></div>
 <% if @results %>
   <% if @results.first %>
     <div class="container">
