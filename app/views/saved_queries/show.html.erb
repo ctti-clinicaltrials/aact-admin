@@ -1,3 +1,12 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.11/codemirror.min.css" integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.11/codemirror.min.js" integrity="sha512-rdFIN28+neM8H8zNsjRClhJb1fIYby2YCNmoqwnqBDEvZgpcp7MJiX8Wd+Oi6KcJOMOuvGztjrsI59rly9BsVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.11/addon/edit/matchbrackets.min.js" integrity="sha512-GSYCbN/le5gNmfAWVEjg1tKnOH7ilK6xCLgA7c48IReoIR2g2vldxTM6kZlN6o3VtWIe6fHu/qhwxIt11J8EBA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.11/mode/sql/sql.min.js" integrity="sha512-fb0A/RjJvLbWBSNDDNRUER4LHrkVQjlEs3a2myQH047y9+I6wZAZOboHn+EA7ZcEcVwSiH3okO/+XzMlGPqcow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.11/addon/hint/show-hint.min.css" integrity="sha512-W/cvA9Wiaq79wGy/VOkgMpOILyqxqIMU+rkneDUW2uqiUT53I6DKmrF4lmCbRG+/YrW0J69ecvanKCCyb+sIWA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.11/addon/hint/show-hint.min.js" integrity="sha512-4+hfJ/4qrBFEm8Wdz+mXpoTr/weIrB6XjJZAcc4pE2Yg5B06aKS/YLMN5iIAMXFTe0f1eneuLE5sRmnSHQqFNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.11/addon/hint/sql-hint.min.js" integrity="sha512-Pue0eeX9BJ4IA+BRNDOFwhQmxPjXIHiHOsvHNc9dQ+3J43swbPQDT9gwC8lzE1TTjR8iIxOd+lNiv4oTBRWqYw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.11/theme/monokai.min.css" integrity="sha512-R6PH4vSzF2Yxjdvb2p2FA06yWul+U0PDDav4b/od/oXf9Iw37zl10plvwOXelrjV2Ai7Eo3vyHeyFUjhXdBCVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <div class="modal-body">
   <h1>Saved Query</h1>
   <hr/>
@@ -10,6 +19,7 @@
   <div class="container-fluid">
     <h5><%= @saved_query.public ? 'Public' : 'Not Public' %></h5>
   </div>
+
   <div class="pb-3"></div>
   <%= form_tag("/query", :method => "get") do %>
     <%= label_tag(:query, 'SQL Query:') %>
@@ -22,12 +32,27 @@
         </ul>
       </div>
     <% end %>
-    <%= text_area_tag(:query, @saved_query.sql, :required => "required", :size =>"25x5") %>
+
+    <%= text_area_tag(:query, @saved_query.sql) %>
+    <script>
+      CodeMirror.fromTextArea(document.getElementById('query'), {
+        mode: 'sql',
+        indentWithTabs: true,
+        smartIndent: true,
+        lineNumbers: true,
+        matchBrackets : true,
+        autofocus: true,
+        theme: 'monokai',
+        extraKeys: {"Ctrl-Space": "autocomplete"}
+      });      
+    </script>
+
     <div class="pb-3"></div>
     <div class="d-flex">
       <div class="me-auto">
         <button type="submit" class="btn btn-primary btn-sm">Execute SQL Query</button>
       </div>
+      
       <% if @saved_query.user_id == current_user.id %>
         <div class="d-flex gap-3">
           <div>
@@ -40,6 +65,7 @@
       <% end %>
     </div>
   <% end %>
+
   <div class="pb-5"></div>
   <div>
     <%= link_to 'Back', saved_queries_path, :class => "btn btn-primary btn-sm" %>
