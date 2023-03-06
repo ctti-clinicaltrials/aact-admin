@@ -18,27 +18,24 @@
       </ul>
     </div>
   <% end %>
-
   <%= text_area_tag(:query, params[:query]) %>
-  <script>
-    CodeMirror.fromTextArea(document.getElementById('query'), {
-      mode: 'sql',
-      indentWithTabs: true,
-      smartIndent: true,
-      lineNumbers: true,
-      matchBrackets : true,
-      autofocus: true,
-      theme: 'monokai',
-      extraKeys: {"Ctrl-Space": "autocomplete"}
-    });      
-  </script>
-  
   <div class="pb-3"></div>
   <div class="col-auto">
     <button type="submit" class="btn btn-primary btn-sm">Execute SQL Query</button>
   </div>
 <% end %>
-
+<script>
+  CodeMirror.fromTextArea(document.getElementById('query'), {
+    mode: 'sql',
+    indentWithTabs: true,
+    smartIndent: true,
+    lineNumbers: true,
+    matchBrackets : true,
+    autofocus: true,
+    theme: 'monokai',
+    extraKeys: {"Ctrl-Space": "autocomplete"}
+  });      
+</script>
 <div class="pb-5"></div>
 <% if @results %>
   <% if @results.first %>
@@ -76,4 +73,3 @@
     No results found
   <% end %>
 <% end %>
-
