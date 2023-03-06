@@ -19,7 +19,6 @@
   <div class="container-fluid">
     <h5><%= @saved_query.public ? 'Public' : 'Not Public' %></h5>
   </div>
-
   <div class="pb-3"></div>
   <%= form_tag("/query", :method => "get") do %>
     <%= label_tag(:query, 'SQL Query:') %>
@@ -32,27 +31,12 @@
         </ul>
       </div>
     <% end %>
-
     <%= text_area_tag(:query, @saved_query.sql) %>
-    <script>
-      CodeMirror.fromTextArea(document.getElementById('query'), {
-        mode: 'sql',
-        indentWithTabs: true,
-        smartIndent: true,
-        lineNumbers: true,
-        matchBrackets : true,
-        autofocus: true,
-        theme: 'monokai',
-        extraKeys: {"Ctrl-Space": "autocomplete"}
-      });      
-    </script>
-
     <div class="pb-3"></div>
     <div class="d-flex">
       <div class="me-auto">
         <button type="submit" class="btn btn-primary btn-sm">Execute SQL Query</button>
       </div>
-      
       <% if @saved_query.user_id == current_user.id %>
         <div class="d-flex gap-3">
           <div>
@@ -65,9 +49,21 @@
       <% end %>
     </div>
   <% end %>
-
   <div class="pb-5"></div>
   <div>
     <%= link_to 'Back', saved_queries_path, :class => "btn btn-primary btn-sm" %>
   </div>
 </div>
+
+<script>
+  CodeMirror.fromTextArea(document.getElementById('query'), {
+    mode: 'sql',
+    indentWithTabs: true,
+    smartIndent: true,
+    lineNumbers: true,
+    matchBrackets : true,
+    autofocus: true,
+    theme: 'monokai',
+    extraKeys: {"Ctrl-Space": "autocomplete"}
+  });      
+</script>
