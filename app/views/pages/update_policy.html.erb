@@ -3,8 +3,8 @@
 <h4>In Summary:</h4>
 
 <ul class='regularDisplay'>
-<li>The live cloud-based database is updated every night at midnight to load all studies that have been aded to ClinicalTrials.gov the previous day or have an update posted on the previous day.</li>
-<li>The database is wiped out and completely refreshed every weekend. The process begins at midnight on Saturday and takes a little more than 24 hours. (The database remains available during this time.)</li>
+<li>The live cloud-based database is updated every night at midnight eastern time to load all studies that have been aded to ClinicalTrials.gov the previous day or have an update posted on the previous day.</li>
+<li>The database is wiped out and completely refreshed every weekend. The process begins at midnight eastern time on Saturday and takes a little more than 24 hours. (The database remains available during this time.)</li>
 <li>After every database update, a static copy of the refreshed database and a set of pipe-delimited flat files containing the content of each database table are published to the <a target='_blank' href='/download'>download page on the AACT website</a> where they are publicly accessible.</li>
 <li>There are no updates to studies on the weekend so only one database dump and one flat file dump will be created during the weekend at the end of the full load</li>
 <li>Static database copies & sets of pipe-delimited files created on the first day of the month (after the full refresh) are archived and remain permanently available for download.</li>
@@ -15,15 +15,15 @@
 
 <ul class='regularDisplay'>
 <li>
-  <p><b>Full Refresh:</b> A full refresh of the database is scheduled to run at midnight Saturday. This process takes 15-20 hours. The database remains available during this time; however it must be locked down for about 5 minutes at the end when it's restored from a version of the database that was refreshed. </p>
+  <p><b>Full Refresh:</b> A full refresh of the database is scheduled to run at midnight eastern time on Saturday. This process takes 15-20 hours. The database remains available during this time; however it must be locked down for about 5 minutes at the end when it's restored from a version of the database that was refreshed. </p>
 
-  <p>The full load begins by retrieving all data from ClinicalTrials.gov via the <a target='_blank' href='https://clinicaltrials.gov/ct2/resources/download#DownloadAllData'>ClinicalTrials.gov API</a>, therefore the AACT database created on Saturday will contain data as it existed in ClinicalTrials.gov as of midnight the previous day. The actual date when the study record was released via the ClinicalTrials.gov API is stored in the Studies.NLM_Download_Date_Description field.</p>
+  <p>The full load begins by retrieving all data from ClinicalTrials.gov via the <a target='_blank' href='https://clinicaltrials.gov/ct2/resources/download#DownloadAllData'>ClinicalTrials.gov API</a>, therefore the AACT database created on Saturday will contain data as it existed in ClinicalTrials.gov as of midnight (eastern) the previous day. The actual date when the study record was released via the ClinicalTrials.gov API is stored in the Studies.NLM_Download_Date_Description field.</p>
 
   <p>Why do a full refresh? ClinicalTrials.gov occasionally needs to merge studies that have been identified as duplicates; deleting one of the studies in the process or derived data changes when clinicaltrials.gov updates how derived data is calculated. The incremental/nightly update in AACT cannot detect when studies have been removed from ClinicalTrials.gov, therefore we wipe out the database and run a full refresh to prevent AACT from accumulating these obsolete records. It should be noted that a study that is deleted from ClinicalTrials.gov will not be removed from AACT until the .</p>
 </li>
 
 <li>
-  <p><b>Incremental Update:</b> A nightly, incremental update is scheduled to run each night at midnight; it takes about one and a half hours to complete. As with the full refresh, the database remains available for use throughout most of this process (excluding the 5 minutes it takes to perform the last step of restoring from the background/updated database). 
+  <p><b>Incremental Update:</b> A nightly, incremental update is scheduled to run each night at midnight eastern time; it takes about one and a half hours to complete. As with the full refresh, the database remains available for use throughout most of this process (excluding the 5 minutes it takes to perform the last step of restoring from the background/updated database). 
   
   This process uses the new clinicaltrials.gov beta api to find all the studies at clinicaltrials.gov and see what new updates have been posted.
 </li>
