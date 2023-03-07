@@ -1,17 +1,19 @@
 # How to Deploy AACT Admin
 
-First you need to connect to the Duke VPN. You can connect using *AnyConnect* through the command line or through the GUI
+1. [Connect to Duke VPN](#connect-to-duke-vpn)
+2. [Run Deploy commmand](#run-deploy-command)
 
-### Using the GUI ###
+
+## Connect to Duke VPN
+
+### Option 1 - Using the GUI ###
 1. Make sure you have downloaded and installed AnyConnect from Duke 
    a. Mac Instructions: https://oit.duke.edu/help/articles/kb0014020
    b. Windows Instructions: https://oit.duke.edu/help/articles/kb0016403
 2. Connect to the Duke VPN: https://oit.duke.edu/help/articles/kb0028460
 
-### Using the Command Line ###
+### Option 2 - Using the Command Line ###
 #### TODO: Instructions on how to install anyconnect in linux
-
-Connect to the Duke VPN
 
 ```
 /opt/cisco/anyconnect/bin/vpn -s connect portal.duke.edu
@@ -35,7 +37,7 @@ Connect to the Duke VPN
 ```
 
 
-### Deploy The Code to Production
+## Run Deploy Command
 
 ```bash
 # add your ssh key to the ssh-agent so that it can passed to the production server
