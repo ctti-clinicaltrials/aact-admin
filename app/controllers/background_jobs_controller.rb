@@ -5,6 +5,10 @@ class BackgroundJobsController < ApplicationController
   end
 
   def show
+    @background_job = Core::BackgroundJob.find_by_id(params[:id])
+    if @background_job.nil?
+      render :file => "app/views/errors/not_found.html", status: :not_found
+    end
   end
 
   def destroy
