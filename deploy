@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Development Environment variables
+export AACT_ADMIN_DEV_REPO_URL=git@github.com:ctti-clinicaltrials/aact-admin.git
+export AACT_ADMIN_DEV_DEPLOY_TO=/srv/web/aact-dev.oit.duke.edu
+export AACT_DEV_SERVER=ctti-aact@ctti-web-dev-01.oit.duke.edu
+
+# Production Environment variables
+export AACT_ADMIN_PROD_REPO_URL=git@github.com:ctti-clinicaltrials/aact-admin.git
+export AACT_ADMIN_PROD_DEPLOY_TO=/srv/web/aact.ctti-clinicaltrials.org
+export AACT_PROD_SERVER=ctti-aact@ctti-web-01.oit.duke.edu
+
+export AACT_STATIC_FILE_DIR=/aact-files
+export AACT_PATH=/home/ctti-aact/bin/:/srv/web/aact.ctti-clinicaltrials.org/shared/bundle/ruby/2.4.5/bin:/opt/rh/rh-ruby24/root/usr/lib64:$PATH
+export GEM_PATH=/home/ctti-aact/.gem/ruby/gems:/opt/rh/rh-ruby24/root/usr/share/gems:/opt/rh/rh-ruby24/root/usr/local/share/gems:/opt/rh/rh-ruby24/root/usr/lib64
+
+echo "DELPLOYING $1"
+bundle exec cap $1 deploy
