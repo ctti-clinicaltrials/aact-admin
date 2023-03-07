@@ -8,9 +8,9 @@
 
 ### Option 1 - Using the GUI ###
 1. Make sure you have downloaded and installed AnyConnect from Duke 
-  a. Mac Instructions: https://oit.duke.edu/help/articles/kb0014020
-  b. Windows Instructions: https://oit.duke.edu/help/articles/kb0016403
-2. Connect to the Duke VPN: https://oit.duke.edu/help/articles/kb0028460
+  - Mac Instructions: https://oit.duke.edu/help/articles/kb0014020
+  - Windows Instructions: https://oit.duke.edu/help/articles/kb0016403
+1. Connect to the Duke VPN: https://oit.duke.edu/help/articles/kb0028460
 
 ### Option 2 - Using the Command Line ###
 #### TODO: Instructions on how to install anyconnect in linux
