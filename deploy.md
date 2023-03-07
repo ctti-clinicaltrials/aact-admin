@@ -33,3 +33,17 @@ Connect to the Duke VPN
 
 # You should be connected to the VPN
 ```
+
+
+### Deploy The Code to Production
+
+```bash
+# add your ssh key to the ssh-agent so that it can passed to the production server
+eval $(ssh-agent)
+ssh-add
+
+# start the deployment using capistrano
+./deploy production
+
+# enter master to deploy the master branch to production
+```
