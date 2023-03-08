@@ -1,0 +1,40 @@
+<%= form_for(study_search, 
+:url => (@study_search.persisted? ? 
+        study_searches_path(@study_searches) : study_searches_path)) do |f| %>
+  <% if study_search.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(study_search.errors.count, "error") %> prohibited this Study Search from being saved:</h2>
+      <ul>
+      <% study_search.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="modal-body">
+    <div class="field">
+      <%= f.label :save_tsv %> <br />
+      <%= f.check_box :save_tsv %> <br />
+    </div>
+    
+    <div class="container-fluid">
+      <%= f.label :query %>
+      <%= f.text_field :query, class: "form-control" %>
+    </div>
+
+    <div class="container-fluid">
+      <%= f.label :grouping %>
+      <%= f.text_field :grouping, class: "form-control" %>
+    </div>
+
+    <div class="container-fluid">
+      <%= f.label :name %>
+      <%= f.text_area :name, rows: 5, class: "form-control" %>
+    </div>
+
+    <div class="pb-5"></div>
+    <div class="container-fluid">
+      <%= f.button "Save", type: "submit", :class => "btn btn-primary btn-sm" %>
+    </div>
+  </div>
+<% end %>

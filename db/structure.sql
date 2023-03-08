@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 14.2
--- Dumped by pg_dump version 14.6 (Homebrew)
+-- Dumped from database version 12.13 (Ubuntu 12.13-0ubuntu0.20.04.1)
+-- Dumped by pg_dump version 12.13 (Ubuntu 12.13-0ubuntu0.20.04.1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -256,39 +256,6 @@ CREATE SEQUENCE ctgov.faqs_id_seq
 --
 
 ALTER SEQUENCE ctgov.faqs_id_seq OWNED BY ctgov.faqs.id;
-
-
---
--- Name: file_downloads; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.file_downloads (
-    id integer NOT NULL,
-    file_record_id integer,
-    count integer DEFAULT 0,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: file_downloads_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
---
-
-CREATE SEQUENCE ctgov.file_downloads_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: file_downloads_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
---
-
-ALTER SEQUENCE ctgov.file_downloads_id_seq OWNED BY ctgov.file_downloads.id;
 
 
 --
@@ -571,42 +538,6 @@ CREATE TABLE ctgov.schema_migrations (
 
 
 --
--- Name: table_saved_queries; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.table_saved_queries (
-    id integer NOT NULL,
-    title character varying,
-    description character varying,
-    sql character varying,
-    public boolean,
-    user_id integer NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: table_saved_queries_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
---
-
-CREATE SEQUENCE ctgov.table_saved_queries_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: table_saved_queries_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
---
-
-ALTER SEQUENCE ctgov.table_saved_queries_id_seq OWNED BY ctgov.table_saved_queries.id;
-
-
---
 -- Name: use_case_attachments; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -880,13 +811,6 @@ ALTER TABLE ONLY ctgov.faqs ALTER COLUMN id SET DEFAULT nextval('ctgov.faqs_id_s
 
 
 --
--- Name: file_downloads id; Type: DEFAULT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.file_downloads ALTER COLUMN id SET DEFAULT nextval('ctgov.file_downloads_id_seq'::regclass);
-
-
---
 -- Name: health_checks id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -933,13 +857,6 @@ ALTER TABLE ONLY ctgov.releases ALTER COLUMN id SET DEFAULT nextval('ctgov.relea
 --
 
 ALTER TABLE ONLY ctgov.saved_queries ALTER COLUMN id SET DEFAULT nextval('ctgov.saved_queries_id_seq'::regclass);
-
-
---
--- Name: table_saved_queries id; Type: DEFAULT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.table_saved_queries ALTER COLUMN id SET DEFAULT nextval('ctgov.table_saved_queries_id_seq'::regclass);
 
 
 --
@@ -1033,14 +950,6 @@ ALTER TABLE ONLY ctgov.faqs
 
 
 --
--- Name: file_downloads file_downloads_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.file_downloads
-    ADD CONSTRAINT file_downloads_pkey PRIMARY KEY (id);
-
-
---
 -- Name: health_checks health_checks_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -1094,14 +1003,6 @@ ALTER TABLE ONLY ctgov.releases
 
 ALTER TABLE ONLY ctgov.saved_queries
     ADD CONSTRAINT saved_queries_pkey PRIMARY KEY (id);
-
-
---
--- Name: table_saved_queries table_saved_queries_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.table_saved_queries
-    ADD CONSTRAINT table_saved_queries_pkey PRIMARY KEY (id);
 
 
 --
@@ -1300,9 +1201,5 @@ INSERT INTO schema_migrations (version) VALUES ('20211102194357');
 
 INSERT INTO schema_migrations (version) VALUES ('20211109190158');
 
-INSERT INTO schema_migrations (version) VALUES ('20221005135246');
-
 INSERT INTO schema_migrations (version) VALUES ('20221018210501');
-
-INSERT INTO schema_migrations (version) VALUES ('20230131123222');
 
