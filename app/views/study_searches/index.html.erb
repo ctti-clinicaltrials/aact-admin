@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="pb-5">
+  <div class="pb-4"></div>
+  <h1>Study Searches</h1>
+  <div class="pb-5"></div>
+  <% if @study_searches.empty? %>
+    <p> There is no Study Search yet. You can click the button below to create one.</p>
+    <%= link_to 'New Study Search', new_study_search_path, :class => "btn btn-primary btn-sm" %>
+  </div>
+  <% else %>
+    <%= link_to 'New Study Search', new_study_search_path, :class => "btn btn-primary btn-sm" %>
+    <div class="pb-4"></div>
+    <table class="table table-sm table-striped" style="max-width: 100rem;">
+      <thead>
+        <tr>
+          <th>Save TSV</th>
+          <th>Query</th>
+          <th>Grouping</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @study_searches.each do |search| %>
+          <tr>
+            <td><%= search.save_tsv %> </td>
+            <td><%= search.query %></td>
+            <td><%= search.grouping %></td>
+            <td><%= search.name %></td>
+            <td><%= link_to 'Edit', edit_study_search_path(search), :class => "btn btn-primary btn-sm" %></td>
+            <td><%= link_to 'Delete', study_search_path(search), :class => "btn btn-danger btn-sm", :method => :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

@@ -3,6 +3,13 @@ FactoryBot.define do
     file_record_id { "MyString" }
     integer { "MyString" }
   end
+  
+  factory :core_study_search, class: 'Core::StudySearch' do
+    save_tsv {true}
+    query {"AREA[NCTID]NCT23123"}
+    grouping {"Causes of Deat"}
+    name {"Cancer"}
+  end
 
   factory :core_study_statistics_comparison, class: 'Core::StudyStatisticsComparison' do
     ctgov_selector { "MyText" }
