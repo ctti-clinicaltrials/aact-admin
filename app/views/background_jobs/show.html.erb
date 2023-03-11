@@ -2,7 +2,7 @@
   <h1>Background Job</h1>
   <hr/>
   <div class="container-fluid">
-    <h3><strong><%= @background_job.created_at %></strong></h3>
+    <h5><strong><%= @background_job.created_at.strftime('%B %d, %Y at %l:%M %p') %></strong></h5>
   </div>
   <div class="container-fluid">
     <h5><%= @background_job.type %></h5>
@@ -17,9 +17,12 @@
     <h5><%= @background_job.url %></h5>
   </div>
   <div class="pb-5"></div>
-  <div>
-    <%= link_to 'Delete', background_job_path(@background_job), :class => "btn btn-danger btn-sm", :method => :delete, data: { confirm: 'Are you sure?' } %>
-  </div>
+  <% if current_user.admin? || @background_job.user_id == current_user.id %>
+    <div>
+      <%= link_to 'Delete', background_job_path(@background_job), :class => "btn btn-danger btn-sm", :method => :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  <% end %>
+  <div class="pb-4"></div>
   <div>
     <%= link_to 'Back', background_jobs_path, :class => "btn btn-primary btn-sm" %>
   </div>

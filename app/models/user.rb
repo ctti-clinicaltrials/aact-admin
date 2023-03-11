@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :notices
   has_many :saved_queries
+  has_many :background_jobs
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   include ActiveModel::Validations
