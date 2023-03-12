@@ -16,8 +16,8 @@
   <div class="container-fluid">
     <h5><%= @background_job.url %></h5>
   </div>
-  <div class="pb-5"></div>
-  <% if current_user.admin? || @background_job.user_id == current_user.id %>
+  <div class="pb-4"></div>
+  <% if (current_user.admin? || @background_job.user_id == current_user.id) && @background_job.status == 'pending' %>
     <div>
       <%= link_to 'Delete', background_job_path(@background_job), :class => "btn btn-danger btn-sm", :method => :delete, data: { confirm: 'Are you sure?' } %>
     </div>
