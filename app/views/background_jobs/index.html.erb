@@ -2,30 +2,30 @@
   <div class="pb-4"></div>
   <h1>Background Jobs</h1>
   <div class="pb-4"></div>
-    <table class="table table-sm table-striped" style="max-width: 100rem;">
-      <thead>
-        <tr>
-          <th>Job ID</th>
-          <th>Created At</th>
-          <th>Status</th>
-          <th>URL</th>
-          <% if current_user.admin? %>
-            <th>User Name</th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% @background_jobs.each do |job| %>
-          <tr>
-            <td><%= link_to job.id, background_job_path(job) %></td>
-            <td><%= job.created_at.strftime('%B %d, %Y at %l:%M %p') %></td>
-            <td><%= job.status %></td>
-            <td><%= job.url %></td>
-            <% if current_user.admin? %>
-              <td><%= job.user&.username %></td>
-            <% end %>  
-          </tr>
+  <table class="table table-sm table-striped" style="max-width: 100rem;">
+    <thead>
+      <tr>
+        <th>Job ID</th>
+        <th>Created At</th>
+        <th>Status</th>
+        <th>URL</th>
+        <% if current_user.admin? %>
+          <th>User Name</th>
         <% end %>
-      </tbody>
-    </table>
+      </tr>
+    </thead>
+    <tbody>
+      <% @background_jobs.each do |job| %>
+        <tr>
+          <td><%= link_to job.id, background_job_path(job) %></td>
+          <td><%= job.created_at.strftime('%B %d, %Y at %l:%M %p') %></td>
+          <td><%= job.status %></td>
+          <td><%= job.url %></td>
+          <% if current_user.admin? %>
+            <td><%= job.user&.username %></td>
+          <% end %>  
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

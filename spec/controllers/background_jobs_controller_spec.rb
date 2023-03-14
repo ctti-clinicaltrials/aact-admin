@@ -43,12 +43,12 @@ RSpec.describe BackgroundJobsController, type: :controller do
   end
 
   describe "GET #destroy" do
-    it "returns http found if the current logged-in User is the User that created the Query" do
+    it "returns http found if the current logged-in User is the User that created the Background Job" do
       backgnd_job = FactoryBot.create(:background_job, user_id: @user.id)
       delete :destroy, id: backgnd_job.id
       expect(response).to have_http_status(:found)
     end
-    it "returns http not found if the current logged-in User is NOT the User that created the Query" do
+    it "returns http not found if the current logged-in User is NOT the User that created the Background Job" do
       backgnd_job = FactoryBot.create(:background_job, user_id: @user2.id)
       delete :destroy, id: backgnd_job.id
       expect(response).to have_http_status(:not_found)
