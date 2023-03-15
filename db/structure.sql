@@ -259,6 +259,38 @@ ALTER SEQUENCE ctgov.faqs_id_seq OWNED BY ctgov.faqs.id;
 
 
 --
+-- Name: file_downloads; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.file_downloads (
+    id integer NOT NULL,
+    file_record_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: file_downloads_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
+
+CREATE SEQUENCE ctgov.file_downloads_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: file_downloads_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
+--
+
+ALTER SEQUENCE ctgov.file_downloads_id_seq OWNED BY ctgov.file_downloads.id;
+
+
+--
 -- Name: health_checks; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -811,6 +843,13 @@ ALTER TABLE ONLY ctgov.faqs ALTER COLUMN id SET DEFAULT nextval('ctgov.faqs_id_s
 
 
 --
+-- Name: file_downloads id; Type: DEFAULT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.file_downloads ALTER COLUMN id SET DEFAULT nextval('ctgov.file_downloads_id_seq'::regclass);
+
+
+--
 -- Name: health_checks id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -947,6 +986,14 @@ ALTER TABLE ONLY ctgov.enumerations
 
 ALTER TABLE ONLY ctgov.faqs
     ADD CONSTRAINT faqs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: file_downloads file_downloads_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.file_downloads
+    ADD CONSTRAINT file_downloads_pkey PRIMARY KEY (id);
 
 
 --
@@ -1202,4 +1249,6 @@ INSERT INTO schema_migrations (version) VALUES ('20211102194357');
 INSERT INTO schema_migrations (version) VALUES ('20211109190158');
 
 INSERT INTO schema_migrations (version) VALUES ('20221018210501');
+
+INSERT INTO schema_migrations (version) VALUES ('20230131123222');
 

@@ -1,4 +1,9 @@
 FactoryBot.define do
+  factory :file_download do
+    file_record_id { "MyString" }
+    integer { "MyString" }
+  end
+  
   factory :core_study_search, class: 'Core::StudySearch' do
     save_tsv {true}
     query {"AREA[NCTID]NCT23123"}
