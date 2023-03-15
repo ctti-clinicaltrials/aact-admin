@@ -2,19 +2,27 @@
   <h1>Background Job</h1>
   <hr/>
   <div class="container-fluid">
-    <h5><strong><%= @background_job.created_at.strftime('%B %d, %Y at %l:%M %p') %></strong></h5>
+    <h5><strong>Created At: </strong><%= @background_job.created_at.strftime('%B %d, %Y at %l:%M %p') %></h5>
   </div>
   <div class="container-fluid">
-    <h5><%= @background_job.type %></h5>
+    <h5><strong>User Name: </strong><%= @background_job.user&.username %></h5>
   </div>
   <div class="container-fluid">
-    <h5><%= @background_job.status %></h5>
+    <h5><strong>Job Type: </strong><%= @background_job.type %></h5>
   </div>
   <div class="container-fluid">
-    <h5><%= @background_job.data %></h5>
+    <h5><strong>Job Status: </strong><%= @background_job.status %></h5>
+  </div>
+  <% if @background_job.status == 'completed' %>
+    <div class="container-fluid">
+      <h5><strong>Completed At: </strong><%= @background_job.completed_at.strftime('%B %d, %Y at %l:%M %p') %></h5>
+    </div>
+  <% end %>  
+  <div class="container-fluid">
+    <h5><strong>SQL Query: </strong><%= @background_job.data %></h5>
   </div>
   <div class="container-fluid">
-    <h5><%= @background_job.url %></h5>
+    <h5><strong>Results: </strong><a href="<%= @background_job.url %>">Download</a></h5>
   </div>
   <div class="pb-4"></div>
   <% if (current_user.admin? || @background_job.user_id == current_user.id) && @background_job.status == 'pending' %>

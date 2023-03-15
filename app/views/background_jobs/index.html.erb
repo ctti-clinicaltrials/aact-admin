@@ -6,9 +6,9 @@
     <thead>
       <tr>
         <th>Job ID</th>
-        <th>Created</th>
-        <th>Status</th>
-        <th>URL</th>
+        <th>Created At</th>
+        <th>Job Status</th>
+        <th>Results</th>
         <% if current_user.admin? %>
           <th>User Name</th>
         <% end %>
@@ -20,7 +20,7 @@
           <td><%= link_to job.id, background_job_path(job) %></td>
           <td><%= job.created_at.strftime('%B %d, %Y at %l:%M %p') %></td>
           <td><%= job.status %></td>
-          <td><a href="/query/<%= job.url %>"</a></td>
+          <td><a href="<%= job.url %>">Download</a></td>
           <% if current_user.admin? %>
             <td><%= job.user&.username %></td>
           <% end %>  
