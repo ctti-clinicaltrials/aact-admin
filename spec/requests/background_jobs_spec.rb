@@ -8,6 +8,8 @@ RSpec.describe "Background Jobs", type: :request do
     sign_in(@user)
     @user2 = User.create(email: 'User2Email2@email.com', first_name: 'Firstname2', last_name: 'Lastname2', username: 'user321', password: '1234567', db_activity: nil, last_db_activity: nil, admin: false)
     @user2.confirm
+    @user_admin = User.create(email: 'UserAdminEmail@email.com', first_name: 'FirstnameAdmin', last_name: 'LastnameAdmin', username: 'useradmin123', password: '1234567', db_activity: nil, last_db_activity: nil, admin: true)
+    @user_admin.confirm
   end
 
   after do
@@ -20,6 +22,10 @@ RSpec.describe "Background Jobs", type: :request do
       job.destroy
     end  
     @user2.destroy
+    @user_admin.background_jobs.each do |job|
+      job.destroy
+    end  
+    @user_admin.destroy
   end
 
   describe "GET /background_jobs" do
@@ -42,18 +48,11 @@ RSpec.describe "Background Jobs", type: :request do
       expect(response).to render_template("layouts/application")
     end
     it "renders the Background Job show page if the current logged-in User is an Admin" do
-      # create Admin User
-      @user_admin = User.create(email: 'UserAdminEmail@email.com', first_name: 'FirstnameAdmin', last_name: 'LastnameAdmin', username: 'useradmin123', password: '1234567', db_activity: nil, last_db_activity: nil, admin: true)
-      @user_admin.confirm
+      # sign in Admin User
       sign_in(@user_admin)  
       backgnd_job = FactoryBot.create(:background_job, user_id: @user_admin.id)
       get background_job_path(id: backgnd_job.id)
       expect(response).to render_template(:show)
-      # delete all Background Jobs associated with Admin User before deleting Admin User
-      @user_admin.background_jobs.each do |job|
-        job.destroy
-      end  
-      @user_admin.destroy
     end
     it "renders the Not Found (404) page if the current logged-in User is NOT the User that created the Background Job" do
       backgnd_job = FactoryBot.create(:background_job, user_id: @user2.id)

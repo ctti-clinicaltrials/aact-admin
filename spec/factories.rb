@@ -71,6 +71,6 @@ FactoryBot.define do
     data { "SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at
             FROM studies
             LIMIT 8" }
-    url { "Test: URL" }
+    url { "https://digitalocean.files.com/123.csv" }
   end
 end
