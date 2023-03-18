@@ -102,4 +102,6 @@ Rails.application.routes.draw do
   resources :saved_queries
   resources :study_statistics_comparisons
   resources :background_jobs
+  resources :study_searches
+  
 end
