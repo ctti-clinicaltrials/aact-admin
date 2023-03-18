@@ -4,9 +4,11 @@
   <div class="container-fluid">
     <h5><strong>Created At: </strong><%= @background_job.created_at.strftime('%B %d, %Y at %l:%M %p') %></h5>
   </div>
-  <div class="container-fluid">
-    <h5><strong>User Name: </strong><%= @background_job.user&.username %></h5>
-  </div>
+  <% if current_user.admin? %>
+    <div class="container-fluid">
+      <h5><strong>User Name: </strong><%= @background_job.user&.username %></h5>
+    </div>
+  <% end %>
   <div class="container-fluid">
     <h5><strong>Job Type: </strong><%= @background_job.type %></h5>
   </div>
