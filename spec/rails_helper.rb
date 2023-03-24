@@ -36,15 +36,18 @@ RSpec.configure do |config|
 
   config.before(:each) do |example|
     # ensure app user logged into db connections
-    Public::PublicBase.establish_connection(
-      adapter: 'postgresql',
-      encoding: 'utf8',
-      hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
-      database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
-      username: AACT::Application::AACT_DB_SUPER_USERNAME)
-    @dbconfig = YAML.load(File.read('config/database.yml'))
-    ActiveRecord::Base.establish_connection @dbconfig[:test]
+    # Public::PublicBase.establish_connection(
+    #   adapter: 'postgresql',
+    #   encoding: 'utf8',
+    #   hostname: AACT::Application::AACT_PUBLIC_HOSTNAME,
+    #   database: AACT::Application::AACT_PUBLIC_DATABASE_NAME,
+    #   username: AACT::Application::AACT_DB_SUPER_USERNAME)
+    # @dbconfig = YAML.load(File.read('config/database.yml'))
+    # ActiveRecord::Base.establish_connection @dbconfig[:test]
+  end
+
+  config.after(:each) do |example|
   end
 end
 
-ActiveRecord::Migration.maintain_test_schema!
+# tiveRecord::Migration.maintain_test_schema!

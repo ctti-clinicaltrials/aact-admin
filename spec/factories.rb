@@ -1,4 +1,13 @@
 FactoryBot.define do
+  factory :user do
+    sequence(:email) { |i| "user#{i}@email.com" }
+    sequence(:username) { |i| "user#{i}" }
+    first_name { 'Firstname' }
+    last_name { 'Lastname' }
+    password { '1234567' }
+    admin { false }
+  end
+
   factory :file_download do
     file_record_id { "MyString" }
     integer { "MyString" }
