@@ -12,6 +12,12 @@ FactoryBot.define do
     file_record_id { "MyString" }
     integer { "MyString" }
   end
+
+  factory :file_record, class: 'Core::FileRecord' do
+    filename { "20230327export.zip" }
+    file_size { 1_400_000 }
+    file_type { "snapshot" }
+  end
   
   factory :core_study_search, class: 'Core::StudySearch' do
     save_tsv {true}
