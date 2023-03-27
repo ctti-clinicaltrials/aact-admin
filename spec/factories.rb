@@ -1,4 +1,16 @@
 FactoryBot.define do
+  factory :file_download do
+    file_record_id { "MyString" }
+    integer { "MyString" }
+  end
+  
+  factory :core_study_search, class: 'Core::StudySearch' do
+    save_tsv {true}
+    query {"AREA[NCTID]NCT23123"}
+    grouping {"Causes of Deat"}
+    name {"Cancer"}
+  end
+
   factory :core_study_statistics_comparison, class: 'Core::StudyStatisticsComparison' do
     ctgov_selector { "MyText" }
     table { "MyText" }
@@ -60,5 +72,17 @@ FactoryBot.define do
     completed_at { DateTime.now }
     description { "Clinical Study description" }
     problems { "Clinical Study problems" }
+  end
+
+  factory :background_job do
+    user_id { 18 }
+    status { "pending" }
+    completed_at { nil }
+    logs { "Test: logs"}
+    type { "BackgroundJob"}
+    data { "SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at
+            FROM studies
+            LIMIT 8" }
+    url { "https://digitalocean.files.com/123.csv" }
   end
 end
