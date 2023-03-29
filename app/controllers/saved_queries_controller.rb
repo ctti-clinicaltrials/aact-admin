@@ -4,9 +4,9 @@ class SavedQueriesController < ApplicationController
 
   def index
     if user_signed_in?      
-    @saved_queries = SavedQuery.where('public = true OR (public = false AND user_id = ?)', current_user.id).order(created_at: :desc)  
+      @saved_queries = SavedQuery.where('public = true OR (public = false AND user_id = ?)', current_user.id).order(created_at: :desc)  
     else
-      @saved_queries = SavedQuery.order(created_at: :desc)  
+      @saved_queries = SavedQuery.where('public = true').order(created_at: :desc)  
     end
   end
   
