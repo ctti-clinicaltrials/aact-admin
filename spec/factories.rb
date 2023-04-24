@@ -77,9 +77,7 @@ FactoryBot.define do
   factory :background_job do
     user_id { 18 }
     status { "pending" }
-    completed_at { nil }
     logs { "Test: logs"}
-    type { "BackgroundJob"}
     data { "SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at
             FROM studies
             LIMIT 8" }

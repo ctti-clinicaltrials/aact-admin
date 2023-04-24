@@ -6,8 +6,6 @@ RSpec.describe "Queries", type: :request do
     @user = User.create(email: 'UserEmail@email.com', first_name: 'Firstname', last_name: 'Lastname', username: 'user123', password: '1234567', db_activity: nil, last_db_activity: nil, admin: false)
     @user.confirm
     sign_in(@user)
-    @user_admin = User.create(email: 'UserAdminEmail@email.com', first_name: 'FirstnameAdmin', last_name: 'LastnameAdmin', username: 'useradmin123', password: '1234567', db_activity: nil, last_db_activity: nil, admin: true)
-    @user_admin.confirm
   end
 
   after do
@@ -16,10 +14,6 @@ RSpec.describe "Queries", type: :request do
       job.destroy
     end  
     @user.destroy
-    @user_admin.background_jobs.each do |job|
-      job.destroy
-    end  
-    @user_admin.destroy
   end
 
   describe "GET /query" do
@@ -27,32 +21,57 @@ RSpec.describe "Queries", type: :request do
       get query_path
       expect(response).to render_template(:index)
     end
-    it "if less than 10 Background Jobs, creates a new Job and redirects to the Job's show page" do
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
+    it "if less than 10 Background Jobs (running + pending), creates a new Job and redirects to the Job's show page" do
+      5.times do
+        FactoryBot.create(:background_job, status: 'running', user_id: @user.id)
+      end
+      4.times do
+        FactoryBot.create(:background_job, status: 'pending', user_id: @user.id)
+      end  
+      sql = { query: 'SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at FROM studies LIMIT 10' }
+      get query_path, sql
       expect(response).to redirect_to background_job_path(id: BackgroundJob.last.id)
     end
-    it "if more than 10 Background Jobs, does NOT create a new Job and redirects to the Background Jobs index page" do
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      expect(response).to redirect_to background_jobs_path
+    it "if less than 10 Background Jobs (pending), creates a new Job and redirects to the Job's show page" do
+      9.times do
+        FactoryBot.create(:background_job, status: 'pending', user_id: @user.id)
+      end  
+      sql = { query: 'SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at FROM studies LIMIT 10' }
+      get query_path, sql
+      expect(response).to redirect_to background_job_path(id: BackgroundJob.last.id)
+    end
+    it "if less than 10 Background Jobs (running), creates a new Job and redirects to the Job's show page" do
+      9.times do
+        FactoryBot.create(:background_job, status: 'running', user_id: @user.id)
+      end  
+      sql = { query: 'SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at FROM studies LIMIT 10' }
+      get query_path, sql
+      expect(response).to redirect_to background_job_path(id: BackgroundJob.last.id)
+    end
+    it "if more than 10 Background Jobs (running + pending), does NOT create a new Job" do
+      5.times do
+        FactoryBot.create(:background_job, status: 'pending', user_id: @user.id)
+        FactoryBot.create(:background_job, status: 'running', user_id: @user.id)
+      end
+      sql = { query: 'SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at FROM studies LIMIT 11' }
+      get query_path, sql
+      expect(response).to render_template(:index)
+    end
+    it "if more than 10 Background Jobs (pending), does NOT create a new Job" do
+      10.times do
+        FactoryBot.create(:background_job, status: 'pending', user_id: @user.id)
+      end
+      sql = { query: 'SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at FROM studies LIMIT 11' }
+      get query_path, sql
+      expect(response).to render_template(:index)
+    end
+    it "if more than 10 Background Jobs (running), does NOT create a new Job" do
+      10.times do
+        FactoryBot.create(:background_job, status: 'running', user_id: @user.id)
+      end
+      sql = { query: 'SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at FROM studies LIMIT 11' }
+      get query_path, sql
+      expect(response).to render_template(:index)
     end
   end
 
