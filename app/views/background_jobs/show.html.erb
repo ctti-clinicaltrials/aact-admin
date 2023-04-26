@@ -27,7 +27,7 @@
     </div>
   <% end %>
   <div class="pb-5"></div>
-  <% if (current_user.admin? || @background_job.user_id == current_user.id) && @background_job.status != 'complete' %>
+  <% if (current_user.admin? || @background_job.user_id == current_user.id) && @background_job.status != 'complete' && @background_job.status != 'working' %>
     <div>
       <%= link_to 'Delete', background_job_path(@background_job), :class => "btn btn-danger btn-sm", :method => :delete, data: { confirm: 'Are you sure?' } %>
     </div>

@@ -78,9 +78,7 @@ FactoryBot.define do
     user_id { 18 }
     status { "pending" }
     logs { "Test: logs"}
-    data { "SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at
-            FROM studies
-            LIMIT 8" }
+    data { { 'query'=>'SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at FROM studies LIMIT 18;' } }
     url { "https://digitalocean.files.com/123.csv" }
   end
 end
