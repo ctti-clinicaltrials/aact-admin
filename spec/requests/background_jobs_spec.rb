@@ -96,13 +96,13 @@ RSpec.describe "Background Jobs", type: :request do
       expect(response).to render_template(:show)
       expect(response.body).not_to match(/Results/)
     end
-    it "renders the Background Job show page and displays 'Delete' button if the current User is the User that created Job and Job status is NOT 'complete' " do
+    it "renders the Background Job show page and displays 'Delete' button if the current User is the User that created Job and Job status is NOT 'complete' and is NOT 'working' " do
       backgnd_job = FactoryBot.create(:background_job, user_id: @user.id)
       get background_job_path(id: backgnd_job.id)
       expect(response).to render_template(:show)
       expect(response.body).to match(/Delete/)
     end
-    it "renders the Background Job show page and displays 'Delete' button if the current User is an Admin and Job status is NOT 'complete' " do
+    it "renders the Background Job show page and displays 'Delete' button if the current User is an Admin and Job status is NOT 'complete' and is NOT 'working' " do
       # sign in Admin User
       sign_in(@user_admin)
       backgnd_job = FactoryBot.create(:background_job, user_id: @user_admin.id)
@@ -115,7 +115,13 @@ RSpec.describe "Background Jobs", type: :request do
       get background_job_path(id: backgnd_job.id)
       expect(response).to render_template(:show)
       expect(response.body).not_to match(/Delete/)
-    end  
+    end
+    it "renders the Background Job show page and does NOT display 'Delete' button if the Job status is 'working' " do
+      backgnd_job = FactoryBot.create(:background_job, user_id: @user.id, status: 'working')
+      get background_job_path(id: backgnd_job.id)
+      expect(response).to render_template(:show)
+      expect(response.body).not_to match(/Delete/)
+    end    
   end
 
   describe "DELETE /background_jobs/:id " do
