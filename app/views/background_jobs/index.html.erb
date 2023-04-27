@@ -20,7 +20,7 @@
           <td><%= link_to job.id, background_job_path(job) %></td>
           <td><%= job.created_at.strftime('%B %d, %Y at %l:%M %p') %></td>
           <td><%= job.status %></td>
-          <% if job.status == 'completed' %> 
+          <% if job.status == 'complete' %> 
             <td><a href="<%= job.url %>">Download</a></td> 
           <% else %>  
             <td></td>

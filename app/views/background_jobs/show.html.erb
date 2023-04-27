@@ -18,7 +18,7 @@
   <div class="container-fluid">
     <h5><strong>Job Status: </strong><%= @background_job.status %></h5>
   </div>
-  <% if @background_job.status == 'completed' %>
+  <% if @background_job.status == 'complete' %>
     <div class="container-fluid">
       <h5><strong>Completed At: </strong><%= @background_job.completed_at.strftime('%B %d, %Y at %l:%M %p') %></h5>
     </div>
@@ -27,7 +27,7 @@
     </div>
   <% end %>
   <div class="pb-5"></div>
-  <% if (current_user.admin? || @background_job.user_id == current_user.id) && @background_job.status != 'completed' %>
+  <% if (current_user.admin? || @background_job.user_id == current_user.id) && @background_job.status != 'complete' && @background_job.status != 'working' %>
     <div>
       <%= link_to 'Delete', background_job_path(@background_job), :class => "btn btn-danger btn-sm", :method => :delete, data: { confirm: 'Are you sure?' } %>
     </div>
