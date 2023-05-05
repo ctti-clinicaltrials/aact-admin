@@ -1,38 +1,11 @@
 <h2 id="background">Database Update Policy and Schedule</h2>
-
-<h4>In Summary:</h4>
-
+<p>Clinicaltrials.gov updates their studies daily between 4AM-8AM EST. During this time they add and update studies. The amount of time that it takes them to do this depends on how many studies they have to add and update. </p>
+<p>Between <span style="color:#008aa1;font-weight:bold;font-style:italic"> 1:00 AM - 2:30 AM EST </span> we cut off access to the public database to update it. The amount of time that the database is unavailable depends on the number of new and updated studies that day. The update includes: </p>
 <ul class='regularDisplay'>
-<li>The live cloud-based database is updated every night at midnight to load all studies that have been aded to ClinicalTrials.gov the previous day or have an update posted on the previous day.</li>
-<li>The database is wiped out and completely refreshed every weekend. The process begins at midnight on Saturday and takes a little more than 24 hours. (The database remains available during this time.)</li>
-<li>After every database update, a static copy of the refreshed database and a set of pipe-delimited flat files containing the content of each database table are published to the <a target='_blank' href='/download'>download page on the AACT website</a> where they are publicly accessible.</li>
-<li>There are no updates to studies on the weekend so only one database dump and one flat file dump will be created during the weekend at the end of the full load</li>
-<li>Static database copies & sets of pipe-delimited files created on the first day of the month (after the full refresh) are archived and remain permanently available for download.</li>
-<li>Static database copies & sets of pipe-delimited files created on days of the month other than the first (ie. after incremental updates) remain available for download until the end of the month.</li>
+   <li>Any new studies that were added to clinicaltrials.gov between <span style="color:#008aa1;font-weight:bold;font-style:italic">4AM-8AM EST</span> the previous day.</li>
+   <li>Any studies with a newer LastUpdatePostDate. This field is updated when the new version of the study is posted.</li>
+   <li>About 80,000 of the oldest studies, studies that we haven’t updated in a while.</li>
 </ul>
-
-<h4>Details:</h4>
-
-<ul class='regularDisplay'>
-<li>
-  <p><b>Full Refresh:</b> A full refresh of the database is scheduled to run at midnight Saturday. This process takes 15-20 hours. The database remains available during this time; however it must be locked down for about 5 minutes at the end when it's restored from a version of the database that was refreshed. </p>
-
-  <p>The full load begins by retrieving all data from ClinicalTrials.gov via the <a target='_blank' href='https://clinicaltrials.gov/ct2/resources/download#DownloadAllData'>ClinicalTrials.gov API</a>, therefore the AACT database created on Saturday will contain data as it existed in ClinicalTrials.gov as of midnight the previous day. The actual date when the study record was released via the ClinicalTrials.gov API is stored in the Studies.NLM_Download_Date_Description field.</p>
-
-  <p>Why do a full refresh? ClinicalTrials.gov occasionally needs to merge studies that have been identified as duplicates; deleting one of the studies in the process or derived data changes when clinicaltrials.gov updates how derived data is calculated. The incremental/nightly update in AACT cannot detect when studies have been removed from ClinicalTrials.gov, therefore we wipe out the database and run a full refresh to prevent AACT from accumulating these obsolete records. It should be noted that a study that is deleted from ClinicalTrials.gov will not be removed from AACT until the .</p>
-</li>
-
-<li>
-  <p><b>Incremental Update:</b> A nightly, incremental update is scheduled to run each night at midnight; it takes about one and a half hours to complete. As with the full refresh, the database remains available for use throughout most of this process (excluding the 5 minutes it takes to perform the last step of restoring from the background/updated database). 
-  
-  This process uses the new clinicaltrials.gov beta api to find all the studies at clinicaltrials.gov and see what new updates have been posted.
-</li>
-
-<li>
-  <p><b>Static Database Copies:</b> The postgreSQL pg_dump command is used to create a static copy of the database after each update. It is zipped up with current documentation (the data dictionary, database schema and related information from the National Library of Medicine), and made available on the <a target='_blank' href='/snapshots'>download static copies page</a>. The database copies created after the nightly incremental loads remain available for download until the end of the month.  Database copies created after the full refresh on the first of the month are archived and made permanently available for download. (Note: archived copies of the database created before January, 2018 were not created on the first of the month.)</p>
-</li>
-
-<li>
-  <p><b>Pipe-Delimited Flat Files:</b> After each database update, all data from the database are extracted into a set of pipe-delimited flat files; one file per database table. These file sets can be obtained from the <a target='_blank' href='/pipe_files'>pipe-delimited flat file download page</a>. Like the static database copies, file sets created after the nightly incremental load will remain available for download until the end of the month. File sets created after the full refresh on the first of the month are archived and permanently available. (Note: archived copies of pipe-delimited files created before January, 2018 were not created on the first of the month.)</p>
-</li>
-</ul>
+<p>Clinicaltrials.gov sometimes updates or changes study data even if there is no new posted version of the study. For example, derived data that is not added by the researcher. For this reason we periodically want to update all the studies in the database. Given the time constraints we are only able to update about 80,000 studies daily. We prioritize the studies that haven’t been updated recently.</p>
+<p>After updating the public database we create a snapshot of it and make it available for download. We keep all the daily snapshots for the current month and all the snapshots for the first of the month. </p>
+<p>In addition to a postgres snapshot, we also generate an export of the database in a pipe delimited format that can be easily imported into excel or other similar applications. We also keep the current month’s exports and the exports generated at the first of the month. </p>

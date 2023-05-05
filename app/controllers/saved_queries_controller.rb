@@ -1,8 +1,13 @@
 class SavedQueriesController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
   before_action :set_saved_query, only: [:edit, :update, :destroy]
 
   def index
-    @saved_queries = SavedQuery.where('public = true OR (public = false AND user_id = ?)', current_user.id).order(created_at: :desc)  
+    if user_signed_in?      
+      @saved_queries = SavedQuery.where('public = true OR (public = false AND user_id = ?)', current_user.id).order(created_at: :desc)  
+    else
+      @saved_queries = SavedQuery.where('public = true').order(created_at: :desc)  
+    end
   end
   
   def new
