@@ -43,6 +43,15 @@ RSpec.describe "Background Jobs", type: :request do
       expect(response).to render_template(:index)
       expect(response.body).to match(/User Name/)
     end
+    it "it renders the Background Jobs index page with 'Job ID', 'Created At', 'Job Status', and 'Results' columns" do       
+      backgnd_job = FactoryBot.create(:background_job, user_id: @user.id)
+      get background_jobs_path
+      expect(response).to render_template(:index)
+      expect(response.body).to match(/Job ID/)
+      expect(response.body).to match(/Created At/)
+      expect(response.body).to match(/Job Status/)
+      expect(response.body).to match(/Results/)
+    end
   end
 
   describe "GET /background_jobs/:id" do
@@ -70,30 +79,20 @@ RSpec.describe "Background Jobs", type: :request do
       get background_job_path(id: backgnd_job.id)
       expect(response).to render_template("layouts/application")
     end
-    it "renders the Background Job show page and displays 'Completed At' and 'Download' if the Job status is 'complete' " do
+    it "renders the Background Job show page, does NOT display 'Delete' button, displays 'Completed At' and 'Download' URL if the Job status is 'complete' " do
       backgnd_job = FactoryBot.create(:background_job, user_id: @user.id, status: 'complete', completed_at: DateTime.now)
       get background_job_path(id: backgnd_job.id)
       expect(response).to render_template(:show)
+      expect(response.body).not_to match(/Delete/)
       expect(response.body).to match(/Completed At/)
       expect(response.body).to match(/Download/)
     end
-    it "renders the Background Job show page and does NOT display 'Completed At' and 'Results' if the Job status is NOT 'complete' " do
+    it "renders the Background Job show page, displays 'Queued...', and does NOT display 'Completed At' and 'Results' download URL if the Job status is 'pending' " do
       backgnd_job = FactoryBot.create(:background_job, user_id: @user.id)
       get background_job_path(id: backgnd_job.id)
       expect(response).to render_template(:show)
+      expect(response.body).to match(/Queued.../)
       expect(response.body).not_to match(/Completed At/)
-      expect(response.body).not_to match(/Results/)
-    end
-    it "renders the Background Job show page and displays 'Download' URL if the Job status is 'complete' " do
-      backgnd_job = FactoryBot.create(:background_job, user_id: @user.id, status: 'complete', completed_at: DateTime.now)
-      get background_job_path(id: backgnd_job.id)
-      expect(response).to render_template(:show)
-      expect(response.body).to match(/Download/)
-    end
-    it "renders the Background Job show page and does NOT display 'Results' download URL if the Job status is NOT 'complete' " do
-      backgnd_job = FactoryBot.create(:background_job, user_id: @user.id)
-      get background_job_path(id: backgnd_job.id)
-      expect(response).to render_template(:show)
       expect(response.body).not_to match(/Results/)
     end
     it "renders the Background Job show page and displays 'Delete' button if the current User is the User that created Job and Job status is NOT 'complete' and is NOT 'working' " do
@@ -110,18 +109,20 @@ RSpec.describe "Background Jobs", type: :request do
       expect(response).to render_template(:show)
       expect(response.body).to match(/Delete/)
     end
-    it "renders the Background Job show page and does NOT display 'Delete' button if the Job status is 'complete' " do
-      backgnd_job = FactoryBot.create(:background_job, user_id: @user.id, status: 'complete', completed_at: DateTime.now)
-      get background_job_path(id: backgnd_job.id)
-      expect(response).to render_template(:show)
-      expect(response.body).not_to match(/Delete/)
-    end
-    it "renders the Background Job show page and does NOT display 'Delete' button if the Job status is 'working' " do
+    it "renders the Background Job show page, displays 'Working...', and does NOT display 'Delete' button if the Job status is 'working' " do
       backgnd_job = FactoryBot.create(:background_job, user_id: @user.id, status: 'working')
       get background_job_path(id: backgnd_job.id)
       expect(response).to render_template(:show)
+      expect(response.body).to match(/Working.../)
       expect(response.body).not_to match(/Delete/)
-    end    
+    end  
+    it "renders the Background Job show page, displays 'User Error Message', and does NOT display 'Delete' button if the Job status is 'error' " do
+      backgnd_job = FactoryBot.create(:background_job, user_id: @user.id, status: 'error')
+      get background_job_path(id: backgnd_job.id)
+      expect(response).to render_template(:show)
+      expect(response.body).to match(/User Error Message/)
+      expect(response.body).not_to match(/Delete/)
+    end  
   end
 
   describe "DELETE /background_jobs/:id " do

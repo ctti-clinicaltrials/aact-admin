@@ -4,7 +4,6 @@ ruby "2.4.5"
 
 # gem 'bootstrap'
 # gem "bootstrap-table-rails"
-gem 'rack-cors'
 gem 'nokogiri', '~> 1.8.1'
 gem 'rails'
 gem 'rails-html-sanitizer', '~> 1.0.4'
