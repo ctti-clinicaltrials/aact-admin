@@ -26,6 +26,12 @@ class User < ActiveRecord::Base
   validate :can_create_db_account?, :on => :create
   validate :can_access_db?, :on => :create
 
+  # remove postgres user after user has been destroyed
+  after_destroy do
+    name = ActiveRecord::Base.sanitize(username).gsub("'", "\"")
+    Public::Study.connection.execute("DROP USER IF EXISTS #{name};")
+  end
+
   def can_create_db_account?
     if Util::UserDbManager.new.user_account_exists?(self.username)
       self.errors.add(:Username, "Database account already exists for '#{self.username}'")
@@ -116,7 +122,7 @@ class User < ActiveRecord::Base
       db_mgr.remove_user(self.username)
       self.destroy
     rescue => e
-      self.errors.add(e.message)
+      self.errors.add(:base, e.message)
       puts e.message
     end
   end
