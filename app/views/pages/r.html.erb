@@ -27,9 +27,9 @@
         <span class='command-prompt'>> </span><span class='command-entry'> drv &lt;- dbDriver('PostgreSQL')</span>
 
         <% if user_signed_in? %>
-        <span class='command-prompt'>> </span><span class='command-entry'> con &lt;- dbConnect(drv, dbname="<%=  @aact_public_database_name %>",host="<%= @aact_public_hostname %>", port=5432, user="<%= current_user.username %>", password="<span class='command-note'><i>'your AACT password' </i></span>")</span>
+        <span class='command-prompt'>> </span><span class='command-entry'> con &lt;- dbConnect(drv, dbname="<%=  @aact_public_database_name %>",host="<%= @aact_public_hostname %>", port=5432, user="<%= current_user.username %>", password="<span class='command-note'><i>your AACT password</i></span>")</span>
         <% else %>
-        <span class='command-prompt'>> </span><span class='command-entry'> con &lt;- dbConnect(drv, dbname="<%=  @aact_public_database_name %>",host="<%= @aact_public_hostname %>", port=5432, user=<span class='command-note'>(sign up/in to get a username)<span>, password="</span><span class='command-note'><i>'your AACT password' </i></span><span class=command-entry'>")</span>
+        <span class='command-prompt'>> </span><span class='command-entry'> con &lt;- dbConnect(drv, dbname="<%=  @aact_public_database_name %>",host="<%= @aact_public_hostname %>", port=5432, user=<span class='command-note'>(sign up/in to get a username)<span>, password="</span><span class='command-note'><i>your AACT password</i></span><span class=command-entry'>")</span>
         <% end %>
 
         <span class='command-prompt'>> </span><span class='command-entry'> aact_sample <- dbGetQuery(con, "select distinct study_type from studies")</span>
