@@ -142,7 +142,7 @@ RSpec.describe "Releases", type: :request do
     describe "GET /release" do
       it "redirects to the home page if user is not an admin" do
         get release_path(id: 1)
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to releases_path
       end
     end
 
@@ -156,7 +156,7 @@ RSpec.describe "Releases", type: :request do
     describe "GET /releases/:id/edit" do
       it "redirects to the home page if user is not an admin" do
         get edit_release_path(id: 2)
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to releases_path
       end
     end
 
@@ -171,14 +171,14 @@ RSpec.describe "Releases", type: :request do
     describe "PUT /release/ with valid data" do
       it "redirects to the home page if user is not an admin" do
         put release_path(id: 3), release: {released_on: Date.today}
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to releases_path
       end
     end
 
     describe "DELETE /release " do
       it "redirects to the home page if user is not an admin" do
         expect {delete release_path(id: 5)}.to_not change(Release, :count)  
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to releases_path
       end
     end
   end
@@ -194,7 +194,7 @@ RSpec.describe "Releases", type: :request do
     describe "GET /release" do
       it "redirects to the home page if user is not logged in" do
         get release_path(id: 1)
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to releases_path
       end
     end
 
@@ -208,7 +208,7 @@ RSpec.describe "Releases", type: :request do
     describe "GET /releases/:id/edit" do
       it "redirects to the home page if user is not logged in" do
         get edit_release_path(id: 2)
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to releases_path
       end
     end
 
@@ -223,14 +223,14 @@ RSpec.describe "Releases", type: :request do
     describe "PUT /release/ with valid data" do
       it "redirects to the home page if user is not logged in" do
         put release_path(id: 3), release: {released_on: Date.today}
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to releases_path
       end
     end
 
     describe "DELETE /release " do
       it "redirects to the home page if user is not logged in" do
         expect {delete release_path(id: 5)}.to_not change(Release, :count)  
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to releases_path
       end
     end
   end

@@ -50,8 +50,8 @@ module AACT
       # public database connection
       PUBLIC_DB_HOST = ENV['PUBLIC_DB_HOST'] || 'localhost'
       PUBLIC_DB_PORT = ENV['PUBLIC_DB_PORT'] || 5432
-      PUBLIC_DB_NAME = ENV['PUBLIC_DB_NAME'] || 'aact_pub_test'
-      PUBLIC_DB_USER = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
+      PUBLIC_DB_NAME = ENV['PUBLIC_DB_NAME'] || 'aact_public_test'
+      PUBLIC_DB_USER = ENV['AACT_USERNAME'] || 'ctti'
       PUBLIC_DB_PASS = ENV['AACT_PASSWORD'] || ''
       AACT_PUBLIC_DATABASE_URL = "postgres://#{PUBLIC_DB_USER}:#{PUBLIC_DB_PASS}@#{PUBLIC_DB_HOST}:#{PUBLIC_DB_PORT}/#{PUBLIC_DB_NAME}"
     else

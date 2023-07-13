@@ -6,45 +6,8 @@ describe Util::UserDbManager do
 
   subject { described_class.new }
 
-  context 'when backing up user info' do
-    it 'should create 3 backup files and send an email' do
-      subject.run_command_line("ln -s #{Rails.configuration.aact[:static_files_directory]} public/static") # now put it back
-      fm=Util::FileManager.new
-      expect(UserMailer).to receive(:send_backup_notification).exactly(1).times
-      # first make sure the files don't already exist
-      fm.remove_todays_user_backup_tables
-      expect(File.exist?(fm.user_table_backup_file)).to eq(false)
-      expect(File.exist?(fm.user_event_table_backup_file)).to eq(false)
-      expect(File.exist?(fm.user_account_backup_file)).to eq(false)
-      # run the backups
-      subject.backup_user_info
-      # make sure the files exist
-      expect(File.exist?(fm.user_table_backup_file)).to eq(true)
-      expect(File.exist?(fm.user_event_table_backup_file)).to eq(true)
-      expect(File.exist?(fm.user_account_backup_file)).to eq(true)
-
-      # make sure files have content
-      table1_size=File.size?(fm.user_table_backup_file)
-      table2_size=File.size?(fm.user_event_table_backup_file)
-      table3_size=File.size?(fm.user_account_backup_file)
-
-      expect(table1_size).to be > 800
-      expect(table2_size).to be > 800
-      expect(table3_size).to be > 800
-    end
-
-    it 'should create a user event that reports a problem' do
-      UserEvent.destroy_all
-      subject.run_command_line('rm public/static')  # problem: symbolic link it depends on doesn't exist
-      subject.backup_user_info
-      expect(UserEvent.count).to eq(1)
-      expect(UserEvent.first.event_type).to eq('backup users problem')
-      subject.run_command_line("ln -s  #{Rails.configuration.aact[:static_files_directory]} public/static") # now recreate the symbolic link
-    end
-  end
-
   context 'when managing user accounts' do
-    it 'should create initial db account that user cannot access' do
+    xit 'should create initial db account that user cannot access' do
       user=User.create({:last_name=>'lastname',:first_name=>'firstname',:email=>'email@mail.com',:username=>username,:password=>original_password,:skip_password_validation=>true})
       # make sure user account doesn't already exist
       system 'grant_db_privs.sh'

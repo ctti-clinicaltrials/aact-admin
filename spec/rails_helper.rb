@@ -32,8 +32,6 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :system
 
-  config.include RSpec::Rails::ViewRendering
-
   config.before(:each) do |example|
     # ensure app user logged into db connections
     # Public::PublicBase.establish_connection(

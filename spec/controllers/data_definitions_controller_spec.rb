@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe DataDefinitionsController, type: :controller do
+  before do
+    @user = FactoryBot.create(:user, admin: true)
+    @user.confirm
+    sign_in(@user)
+  end
+
+  after do
+    @user&.destroy
+  end
+
   describe "GET #index" do
     it "returns http success" do
       get :index
