@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 14.6 (Homebrew)
+-- Dumped from database version 14.2
 -- Dumped by pg_dump version 14.6 (Homebrew)
 
 SET statement_timeout = 0;
@@ -570,42 +570,6 @@ CREATE TABLE ctgov.schema_migrations (
 
 
 --
--- Name: table_saved_queries; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.table_saved_queries (
-    id integer NOT NULL,
-    title character varying,
-    description character varying,
-    sql character varying,
-    public boolean,
-    user_id integer NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: table_saved_queries_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
---
-
-CREATE SEQUENCE ctgov.table_saved_queries_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: table_saved_queries_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
---
-
-ALTER SEQUENCE ctgov.table_saved_queries_id_seq OWNED BY ctgov.table_saved_queries.id;
-
-
---
 -- Name: use_case_attachments; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -935,13 +899,6 @@ ALTER TABLE ONLY ctgov.saved_queries ALTER COLUMN id SET DEFAULT nextval('ctgov.
 
 
 --
--- Name: table_saved_queries id; Type: DEFAULT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.table_saved_queries ALTER COLUMN id SET DEFAULT nextval('ctgov.table_saved_queries_id_seq'::regclass);
-
-
---
 -- Name: use_case_attachments id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -1093,14 +1050,6 @@ ALTER TABLE ONLY ctgov.releases
 
 ALTER TABLE ONLY ctgov.saved_queries
     ADD CONSTRAINT saved_queries_pkey PRIMARY KEY (id);
-
-
---
--- Name: table_saved_queries table_saved_queries_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.table_saved_queries
-    ADD CONSTRAINT table_saved_queries_pkey PRIMARY KEY (id);
 
 
 --
@@ -1298,8 +1247,6 @@ INSERT INTO schema_migrations (version) VALUES ('20211027220743');
 INSERT INTO schema_migrations (version) VALUES ('20211102194357');
 
 INSERT INTO schema_migrations (version) VALUES ('20211109190158');
-
-INSERT INTO schema_migrations (version) VALUES ('20221005135246');
 
 INSERT INTO schema_migrations (version) VALUES ('20221018210501');
 

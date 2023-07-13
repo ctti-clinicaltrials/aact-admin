@@ -59,11 +59,20 @@ module AACT
     AACT_ADMIN_DATABASE_URL  = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_ADMIN_DATABASE_NAME}"
 
     # public database connection
-    PUBLIC_DB_HOST = ENV['PUBLIC_DB_HOST'] || 'localhost'
-    PUBLIC_DB_PORT = ENV['PUBLIC_DB_PORT'] || 5432
-    PUBLIC_DB_NAME = ENV['PUBLIC_DB_NAME'] || 'aact'
-    PUBLIC_DB_USER = ENV['PUBLIC_DB_USER'] || 'ctti'
-    PUBLIC_DB_PASS = ENV['PUBLIC_DB_PASS'] || ''
+    if Rails.env == 'test'
+      PUBLIC_DB_HOST = ENV['TEST_PUBLIC_DB_HOST'] || 'localhost'
+      PUBLIC_DB_PORT = ENV['TEST_PUBLIC_DB_PORT'] || 5432
+      PUBLIC_DB_NAME = ENV['TEST_PUBLIC_DB_NAME'] || 'aact_public_test'
+      PUBLIC_DB_USER = ENV['TEST_PUBLIC_DB_USER'] || 'postgres'
+      PUBLIC_DB_PASS = ENV['TEST_PUBLIC_DB_PASS'] || ''
+    else
+      PUBLIC_DB_HOST = ENV['PUBLIC_DB_HOST'] || 'localhost'
+      PUBLIC_DB_PORT = ENV['PUBLIC_DB_PORT'] || 5432
+      PUBLIC_DB_NAME = ENV['PUBLIC_DB_NAME'] || 'aact'
+      PUBLIC_DB_USER = ENV['PUBLIC_DB_USER'] || 'ctti'
+      PUBLIC_DB_PASS = ENV['PUBLIC_DB_PASS'] || ''
+    end
+
     AACT_PUBLIC_DATABASE_URL = "postgres://#{PUBLIC_DB_USER}:#{PUBLIC_DB_PASS}@#{PUBLIC_DB_HOST}:#{PUBLIC_DB_PORT}/#{PUBLIC_DB_NAME}"
 
     AACT_PUBLIC_BETA_DATABASE_URL = "postgres://#{AACT_DB_SUPER_USERNAME}@#{AACT_PUBLIC_HOSTNAME}:5432/#{AACT_PUBLIC_BETA_DATABASE_NAME}"
@@ -75,8 +84,11 @@ module AACT
     #  PATH
 
     # aact-core database connection
-    AACT_CORE_DATABASE_URL  = ENV['AACT_CORE_DATABASE_URL']
-
+    if Rails.env == 'test'
+      AACT_CORE_DATABASE_URL  = ENV['AACT_CORE_TEST_DATABASE_URL']
+    else
+      AACT_CORE_DATABASE_URL  = ENV['AACT_CORE_DATABASE_URL']
+    end
     # aact-query database connection
     AACT_QUERY_DATABASE_URL  = ENV['AACT_QUERY_DATABASE_URL']
 

@@ -20,6 +20,7 @@ module Features
 end
 
 RSpec.configure do |config|
+  config.render_views
   config.include Features, type: :feature
   config.infer_base_class_for_anonymous_controllers = false
   config.infer_spec_type_from_file_location!
@@ -32,7 +33,7 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :system
 
-  config.include RSpec::Rails::ViewRendering
+  # config.include RSpec::Rails::ViewRendering
 
   config.before(:each) do |example|
     # ensure app user logged into db connections
