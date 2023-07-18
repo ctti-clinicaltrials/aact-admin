@@ -14,7 +14,7 @@ test:
   adapter: postgresql
   host: localhost
   port: 5432
-  username: <%= ENV.fetch('AACT_DB_SUPER_USERNAME', 'ctti') %>
+  username: <%= ENV.fetch('AACT_USERNAME', 'ctti') %>
   password: <%= ENV.fetch('AACT_PASSWORD', '') %>
   database: aact_admin_test
   # database: aact_admin_test

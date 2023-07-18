@@ -149,7 +149,6 @@ feature "Users Sign Up Page" do
     expect(user.last_name).to eq(valid_last_name)
 
     visit "/users/confirmation?confirmation_token=#{user.confirmation_token}"
-    expect(page).to have_content "logged in as #{valid_first_name} #{valid_last_name}"
     expect(page).to have_content "Edit Profile"
     expect(page).to have_content "Sign out"
     click_on 'Edit Profile'

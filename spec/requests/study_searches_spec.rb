@@ -42,7 +42,7 @@ RSpec.describe "Study Searches", type: :request do
   describe "GET /study_searches/:id/edit" do
     it "renders the Study Search edit page" do
       study_search = FactoryBot.create(:core_study_search)
-      get edit_study_searches_path(id: study_search.id)
+      get edit_study_search_path(id: study_search.id)
       expect(response).to render_template(:edit)
     end
   end

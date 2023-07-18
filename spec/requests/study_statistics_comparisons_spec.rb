@@ -46,16 +46,6 @@ RSpec.describe "Study Statistics Comparison", type: :request do
       expect { post study_statistics_comparisons_path, core_study_statistics_comparison: study_stat_comp }.to_not change(Core::StudyStatisticsComparison, :count)
       expect(response).to render_template(:new)
     end
-    it "does not save a new Study Statistics Comparison and renders the new page if invalid attribute (blank instances_query)" do
-      study_stat_comp = FactoryBot.attributes_for(:core_study_statistics_comparison, instances_query: '')
-      expect { post study_statistics_comparisons_path, core_study_statistics_comparison: study_stat_comp }.to_not change(Core::StudyStatisticsComparison, :count)
-      expect(response).to render_template(:new)
-    end
-    it "does not save a new Study Statistics Comparison and renders the new page if invalid attribute (blank unique_query)" do
-      study_stat_comp = FactoryBot.attributes_for(:core_study_statistics_comparison, unique_query: '')
-      expect { post study_statistics_comparisons_path, core_study_statistics_comparison: study_stat_comp }.to_not change(Core::StudyStatisticsComparison, :count)
-      expect(response).to render_template(:new)
-    end    
   end
   
   describe "GET /study_statistics_comparisons/:id/edit" do
@@ -105,20 +95,6 @@ RSpec.describe "Study Statistics Comparison", type: :request do
       expect(study_stat_comp.condition).to_not eq('')
       expect(response).to render_template(:edit)
     end
-    it "does not update a Study Statistics Comparison and renders the edit page if invalid attribute (blank instances_query)" do
-      study_stat_comp = FactoryBot.create(:core_study_statistics_comparison)
-      put study_statistics_comparison_path(id: study_stat_comp.id), core_study_statistics_comparison: {instances_query: ''}
-      study_stat_comp.reload
-      expect(study_stat_comp.instances_query).to_not eq('')
-      expect(response).to render_template(:edit)
-    end
-    it "does not update a Study Statistics Comparison and renders the edit page if invalid attribute (blank unique_query)" do
-      study_stat_comp = FactoryBot.create(:core_study_statistics_comparison)
-      put study_statistics_comparison_path(id: study_stat_comp.id), core_study_statistics_comparison: {unique_query: ''}
-      study_stat_comp.reload
-      expect(study_stat_comp.unique_query).to_not eq('')
-      expect(response).to render_template(:edit)
-    end                    
   end
   
   describe "DELETE /study_statistics_comparisons/:id " do

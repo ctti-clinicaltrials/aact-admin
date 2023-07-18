@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :notices
   has_many :saved_queries
-  has_many :background_jobs
+  has_many :background_jobs, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   include ActiveModel::Validations
@@ -26,7 +26,10 @@ class User < ActiveRecord::Base
   validate :can_create_db_account?, :on => :create
   validate :can_access_db?, :on => :create
 
-  def test
+  # remove postgres user after user has been destroyed
+  after_destroy do
+    name = ActiveRecord::Base.sanitize(username).gsub("'", "\"")
+    Public::Study.connection.execute("DROP USER IF EXISTS #{name};")
   end
 
   def can_create_db_account?
@@ -119,7 +122,7 @@ class User < ActiveRecord::Base
       db_mgr.remove_user(self.username)
       self.destroy
     rescue => e
-      self.errors.add(e.message)
+      self.errors.add(:base, e.message)
       puts e.message
     end
   end
