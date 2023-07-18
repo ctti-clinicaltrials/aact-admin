@@ -26,6 +26,9 @@ class User < ActiveRecord::Base
   validate :can_create_db_account?, :on => :create
   validate :can_access_db?, :on => :create
 
+  def test
+  end
+
   def can_create_db_account?
     if Util::UserDbManager.new.user_account_exists?(self.username)
       self.errors.add(:Username, "Database account already exists for '#{self.username}'")
