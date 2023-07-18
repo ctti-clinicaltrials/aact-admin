@@ -1,11 +1,13 @@
-FROM ruby:2.4.5
+FROM ruby:2.7.8
 
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client vim
+
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client 
 
 RUN mkdir /app
 WORKDIR /app
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
+RUN gem install bundler:1.17.3
 RUN bundle install --without development test
 
 COPY . /app
