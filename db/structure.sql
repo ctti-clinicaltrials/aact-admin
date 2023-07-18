@@ -873,9 +873,6 @@ CREATE SEQUENCE ctgov.baseline_measurements_id_seq
 ALTER SEQUENCE ctgov.baseline_measurements_id_seq OWNED BY ctgov.baseline_measurements.id;
 
 
---
--- Name: brief_summaries; Type: TABLE; Schema: ctgov; Owner: -
---
 
 CREATE TABLE ctgov.brief_summaries (
     id integer NOT NULL,
@@ -884,9 +881,6 @@ CREATE TABLE ctgov.brief_summaries (
 );
 
 
---
--- Name: brief_summaries_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
---
 
 CREATE SEQUENCE ctgov.brief_summaries_id_seq
     AS integer
@@ -5315,8 +5309,14 @@ CREATE INDEX index_outcome_measurements_on_dispersion_type ON ctgov.outcome_meas
 
 
 --
--- Name: index_outcomes_on_dispersion_type; Type: INDEX; Schema: ctgov; Owner: -
---
+
+
+CREATE TABLE public.schema_migrations (
+    version character varying NOT NULL
+);
+
+
+
 
 CREATE INDEX index_outcomes_on_dispersion_type ON ctgov.outcomes USING btree (dispersion_type);
 
@@ -5703,11 +5703,18 @@ ALTER TABLE ONLY ctgov.file_records
 
 
 --
+
 -- Name: load_issues fk_rails_1a961417a0; Type: FK CONSTRAINT; Schema: support; Owner: -
 --
 
 ALTER TABLE ONLY support.load_issues
     ADD CONSTRAINT fk_rails_1a961417a0 FOREIGN KEY (load_event_id) REFERENCES support.load_events(id);
+
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
+
 
 
 --

@@ -1,5 +1,8 @@
 class AddDeviseToUsers < ActiveRecord::Migration
   def change
+    execute "CREATE SCHEMA IF NOT EXISTS ctgov";
+    execute "ALTER ROLE #{ENV['AACT_USERNAME']} SET search_path TO ctgov, support, public;"
+
     create_table "ctgov.users" do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
