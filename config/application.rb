@@ -50,8 +50,8 @@ module AACT
       # public database connection
       PUBLIC_DB_HOST = ENV['PUBLIC_DB_HOST'] || 'localhost'
       PUBLIC_DB_PORT = ENV['PUBLIC_DB_PORT'] || 5432
-      PUBLIC_DB_NAME = ENV['PUBLIC_DB_NAME'] || 'aact_pub_test'
-      PUBLIC_DB_USER = ENV['AACT_DB_SUPER_USERNAME'] || 'ctti'
+      PUBLIC_DB_NAME = ENV['PUBLIC_DB_NAME'] || 'aact_public_test'
+      PUBLIC_DB_USER = ENV['AACT_USERNAME'] || 'ctti'
       PUBLIC_DB_PASS = ENV['AACT_PASSWORD'] || ''
       AACT_PUBLIC_DATABASE_URL = "postgres://#{PUBLIC_DB_USER}:#{PUBLIC_DB_PASS}@#{PUBLIC_DB_HOST}:#{PUBLIC_DB_PORT}/#{PUBLIC_DB_NAME}"
     else
@@ -70,6 +70,7 @@ module AACT
       PUBLIC_DB_USER = ENV['PUBLIC_DB_USER'] || 'ctti'
       PUBLIC_DB_PASS = ENV['PUBLIC_DB_PASS'] || ''
       AACT_PUBLIC_DATABASE_URL = "postgres://#{PUBLIC_DB_USER}:#{PUBLIC_DB_PASS}@#{PUBLIC_DB_HOST}:#{PUBLIC_DB_PORT}/#{PUBLIC_DB_NAME}"
+      AACT_PUBLIC_DATABASE_URL = ENV['AACT_PUBLIC_DATABASE_URL'] || AACT_PUBLIC_DATABASE_URL
     end
     AACT_BACK_DATABASE_URL   = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_BACK_DATABASE_NAME}"
     AACT_ADMIN_DATABASE_URL  = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_ADMIN_DATABASE_NAME}"
@@ -87,7 +88,23 @@ module AACT
     AACT_CORE_DATABASE_URL  = ENV['AACT_CORE_DATABASE_URL']
 
     # aact-query database connection
-    AACT_QUERY_DATABASE_URL  = ENV['AACT_QUERY_DATABASE_URL']
+    AACT_QUERY_DATABASE_URL  = AACT_PUBLIC_DATABASE_URL
 
+  end
+end
+
+# MONKEY PATCHES
+if RUBY_VERSION>='2.6.0'
+  if Rails.version < '5'
+    class ActionController::TestResponse < ActionDispatch::TestResponse
+      def recycle!
+        # hack to avoid MonitorMixin double-initialize error:
+        @mon_mutex_owner_object_id = nil
+        @mon_mutex = nil
+        initialize
+      end
+    end
+  else
+    puts "Monkeypatch for ActionController::TestResponse no longer needed"
   end
 end

@@ -6,7 +6,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
   config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
   config.middleware.use Rack::Deflater
-  config.assets.js_compressor = :uglifier
+  # config.assets.js_compressor = :uglifier
   config.assets.digest = true
   config.log_level = :debug
   config.assets.precompile =  ['*.js', '*.css', '*.scss']
