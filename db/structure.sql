@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 12.13 (Ubuntu 12.13-0ubuntu0.20.04.1)
--- Dumped by pg_dump version 12.13 (Ubuntu 12.13-0ubuntu0.20.04.1)
+-- Dumped from database version 14.1
+-- Dumped by pg_dump version 14.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -561,15 +561,6 @@ ALTER SEQUENCE ctgov.saved_queries_id_seq OWNED BY ctgov.saved_queries.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.schema_migrations (
-    version character varying NOT NULL
-);
-
-
---
 -- Name: use_case_attachments; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -798,6 +789,15 @@ CREATE SEQUENCE ctgov.users_id_seq
 --
 
 ALTER SEQUENCE ctgov.users_id_seq OWNED BY ctgov.users.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.schema_migrations (
+    version character varying NOT NULL
+);
 
 
 --
@@ -1206,10 +1206,10 @@ CREATE INDEX index_saved_queries_on_user_id ON ctgov.saved_queries USING btree (
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: ctgov; Owner: -
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX unique_schema_migrations ON ctgov.schema_migrations USING btree (version);
+CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
 
 
 --

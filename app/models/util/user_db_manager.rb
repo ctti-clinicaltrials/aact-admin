@@ -123,7 +123,7 @@ module Util
       Public::Study.connection.execute("grant read_only to \"#{username}\";")
       Public::Study.connection.execute("alter role \"#{username}\" login;")
       Public::Study.connection.execute("alter role \"#{username}\" IN DATABASE aact set search_path = ctgov, mesh_archive #{project_schemas};")
-      Public::Study.connection.execute("alter role \"#{username}\" IN DATABASE aact_alt set search_path = ctgov, mesh_archive #{project_schemas};")
+      # Public::Study.connection.execute("alter role \"#{username}\" IN DATABASE aact_alt set search_path = ctgov, mesh_archive #{project_schemas};")
     end
 
     def revoke_db_privs(username)
