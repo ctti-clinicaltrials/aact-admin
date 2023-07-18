@@ -22,5 +22,5 @@ Rails.application.configure do
   config.logger = Logger.new(STDOUT)
   config.log_level = :error
 
-  config.aact = {static_files_directory: "/tmp/aact-files"}
+  config.aact = {static_files_directory: "public"}
 end
