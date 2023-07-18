@@ -35,7 +35,7 @@ jobs:
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.4.5
+          ruby-version: 2.6.6
           bundler-cache: true
 
       - name: Install PostgreSQL 12 client
