@@ -14,7 +14,6 @@ describe Util::FileManager do
       system("rm #{Rails.configuration.aact[:static_files_directory]}/static_db_copies/daily/*") # remove everything from daily file directory
       expect(File.exist?(this_month_file)).to eq(false)
       system("touch #{this_month_file}")    # create file for this month
-      raise "touch #{this_month_file}" + `touch #{this_month_file}`
       expect(File.exist?(this_month_file)).to eq(true)
       subject.remove_daily_files
       expect(File.exist?(this_month_file)).to eq(true)  # this month's file should remain
