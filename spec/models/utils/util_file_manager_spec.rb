@@ -9,6 +9,7 @@ describe Util::FileManager do
       dt = Time.zone.now
       year = dt.year
       month = dt.month.to_s.rjust(2, '0')
+      Util::FileManager.new
       this_month_file="#{Rails.configuration.aact[:static_files_directory]}/static_db_copies/daily/#{year}#{month}02_clinical_trials.zip"
       system("rm #{Rails.configuration.aact[:static_files_directory]}/static_db_copies/daily/*") # remove everything from daily file directory
       expect(File.exist?(this_month_file)).to eq(false)
