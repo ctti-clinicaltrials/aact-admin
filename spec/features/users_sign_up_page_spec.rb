@@ -116,7 +116,8 @@ feature "Users Sign Up Page" do
     # db is inaccessible
 
     # simulate revoke_db_privs.sh
-    Public::PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 0;")
+    database_name = Public::Study.connection_config[:database]
+    Public::PublicBase.connection.execute("ALTER DATABASE #{database_name} CONNECTION LIMIT 0;")
 
     begin
       expect(Util::DbManager.new.public_db_accessible?).to eq(false)
