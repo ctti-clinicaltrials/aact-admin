@@ -54,8 +54,8 @@ jobs:
           bundle exec rake db:migrate
           PGPASSWORD=password psql -h localhost -U rails -d rails_test -c "CREATE DATABASE aact_test;"
           PGPASSWORD=password psql -h localhost -U rails -d rails_test -c "CREATE DATABASE aact_public_test;"
-          PGPASSWORD=password psql -h localhost -U rails -d aact_test < db/core_schema.sql
-          PGPASSWORD=password psql -h localhost -U rails -d aact_public_test < db/public_schema.sql
+          PGPASSWORD=password psql -h localhost -U rails -d aact_test < db/core_structure.sql
+          PGPASSWORD=password psql -h localhost -U rails -d aact_public_test < db/public_structure.sql
 
       # Add or replace test runners here
       - name: Run tests
