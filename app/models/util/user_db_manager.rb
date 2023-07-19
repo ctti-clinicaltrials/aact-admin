@@ -8,7 +8,6 @@ module Util
     def create_user_account(user)
       begin
         return false if !can_create_user_account?(user)
-        raise Public::Study.connection_config.inspect
         Public::Study.connection.execute("create user \"#{user.username}\" password '#{user.password}';")
         Public::Study.connection.execute("alter user \"#{user.username}\" nologin;")  # can't login until they confirm their email
         return true
