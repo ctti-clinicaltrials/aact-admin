@@ -172,7 +172,7 @@ feature "Users Sign Up Page" do
     user=User.where('username=?',valid_username).first
     expect(user.first_name).to eq(new_first_name)
 
-    user.remove
+    user.destroy
     expect(User.where('username=?',valid_username).size).to eq(0)
     expect(Util::UserDbManager.new.user_account_exists?(user.username)).to eq(false)
   end
