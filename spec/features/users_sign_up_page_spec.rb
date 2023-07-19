@@ -129,7 +129,8 @@ feature "Users Sign Up Page" do
     end
 
     # simulate grant_db_privs.sh
-    Public::PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 200;")
+    database_name = Public::Study.connection_config[:database]
+    Public::PublicBase.connection.execute("ALTER DATABASE #{database_name} CONNECTION LIMIT 200;")
     expect(Util::DbManager.new.public_db_accessible?).to eq(true)
     submit
     expect(page).not_to have_content "Sorry AACT database is temporarily unavailable"
