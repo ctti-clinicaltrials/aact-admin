@@ -109,7 +109,7 @@ module Util
     end
 
     def view_dictionary
-      "#{RootDir}/documentation/aact_views.xlsx"
+      "public/documentation/aact_views.xlsx"
     end
 
     def view_beta_dictionary
