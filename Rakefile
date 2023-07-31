@@ -25,8 +25,7 @@ namespace :db do
 
 end
 
-Rake::Task['db:create'].enhance(['db:after_set_search_path'])
-
+# Rake::Task['db:create'].enhance(['db:after_set_search_path'])
 
 if Rails.env != 'production'
   begin

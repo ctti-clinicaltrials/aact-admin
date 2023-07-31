@@ -12,9 +12,13 @@ Rails.application.configure do
   config.assets.precompile =  ['*.js', '*.css', '*.scss']
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings =  {
-    :address => '127.0.0.1',
-    :port    => '25',
-    :domain  => host
+    address: 'email-smtp.us-east-1.amazonaws.com',
+    port: 587,
+    domain: ENV['APPLICATION_HOST'],
+    user_name: ENV['SMTP_USER'],
+    password: ENV['SMTP_PASS'],
+    authentication: :login,
+    enable_starttls_auto: true
   }
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify

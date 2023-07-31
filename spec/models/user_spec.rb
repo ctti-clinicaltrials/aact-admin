@@ -86,7 +86,7 @@ describe User do
     end
 
     it "isn't accepted if special char in username" do
-      User.all.each{|user| user.remove } 
+      User.all.each{|user| user.destroy } 
       user=User.new(:first_name=>'first', :last_name=>'last',:email=>'rspec.test@duke.edu',:username=>'rspec!_test',:password=>'aact')
       expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Username can contain only lowercase characters and numbers')
       expect(User.count).to eq(0)
