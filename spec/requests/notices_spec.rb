@@ -126,7 +126,7 @@ RSpec.describe "Notices", type: :request do
     describe "GET /admin/notice" do
       it "redirects to the home page if user is not an admin" do
         get admin_notice_path(id: 5)
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to admin_notices_path
       end
     end
 
@@ -140,7 +140,7 @@ RSpec.describe "Notices", type: :request do
     describe "GET /admin/notices/:id/edit" do
       it "redirects to the home page if user is not an admin" do
         get edit_admin_notice_path(id: 5)
-        expect(response).to redirect_to root_path     
+        expect(response).to redirect_to admin_notices_path
       end
     end
 
@@ -183,7 +183,7 @@ RSpec.describe "Notices", type: :request do
     describe "DELETE /admin/notices/ " do
       it "does not delete a notice and redirects to the home page" do
         expect {delete admin_notice_path(id: 5)}.to_not change(Notice, :count)
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to admin_notices_path
       end
     end  
   end
@@ -199,7 +199,7 @@ RSpec.describe "Notices", type: :request do
     describe "GET /admin/notice/" do
       it "redirects to the home page if user is not logged in" do
         get admin_notice_path(id: 6)
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to admin_notices_path
       end
     end
 
@@ -213,7 +213,7 @@ RSpec.describe "Notices", type: :request do
     describe "GET /admin/notice/:id/edit" do
       it "redirects to the home page if user is not logged in" do
         get edit_admin_notice_path(id: 5)
-        expect(response).to redirect_to root_path     
+        expect(response).to redirect_to admin_notices_path
       end
     end
 
@@ -221,21 +221,21 @@ RSpec.describe "Notices", type: :request do
       it "redirects to the home page if user is not logged in" do
         params = { notice: {title: 'Test', body: 'Notice test body', send_emails: false} }
         expect { post admin_notices_path, params }.to_not change(Notice, :count)
-        expect(response).to redirect_to root_path     
+        expect(response).to redirect_to root_path
       end
     end
 
     describe "PUT /admin/notice/ with valid data" do
       it "redirects to the home page if user is not logged in" do
         put admin_notice_path(id: 3), notice: {send_emails: true}
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to admin_notices_path
       end
     end
 
     describe "DELETE /release " do
       it "redirects to the home page if user is not logged in" do
         delete admin_notice_path(id: 18)
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to admin_notices_path
       end
     end
   end

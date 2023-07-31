@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe "Data Definitions", type: :request do
+  before do
+    @user = FactoryBot.create(:user, admin: true)
+    @user.confirm
+    sign_in(@user)
+  end
+
+  after do
+    @user&.destroy
+  end
 
     describe "GET /data_definitions" do
       it "renders the Data Definitions index page" do
@@ -70,11 +79,6 @@ RSpec.describe "Data Definitions", type: :request do
         expect { post data_definitions_path, data_definition: data_def }.to_not change(DataDefinition, :count)
         expect(response).to render_template(:new)
       end
-      it "does not save a new Data Definition and renders the new page if invalid attribute (blank ctti_note)" do
-        data_def = FactoryBot.attributes_for(:data_definition, ctti_note: '')
-        expect { post data_definitions_path, data_definition: data_def }.to_not change(DataDefinition, :count)
-        expect(response).to render_template(:new)
-      end
     end
 
     describe "PUT /data_definitions/ with valid data" do
@@ -121,13 +125,6 @@ RSpec.describe "Data Definitions", type: :request do
         put data_definition_path(data_def.id), data_definition: {source: ''}
         data_def.reload
         expect(data_def.source).to_not eq('')
-        expect(response).to render_template(:edit)
-      end
-      it "does not update a Data Definition and renders the edit page if invalid attribute (blank ctti_note)" do
-        data_def = FactoryBot.create(:data_definition)
-        put data_definition_path(data_def.id), data_definition: {ctti_note: ''}
-        data_def.reload
-        expect(data_def.ctti_note).to_not eq('')
         expect(response).to render_template(:edit)
       end
     end

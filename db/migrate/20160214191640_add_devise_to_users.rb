@@ -1,5 +1,20 @@
 class AddDeviseToUsers < ActiveRecord::Migration
   def change
+    execute "CREATE SCHEMA IF NOT EXISTS ctgov";
+    execute "ALTER ROLE #{ENV['AACT_USERNAME']} SET search_path TO ctgov, support, public;"
+
+    # create the read_only role
+    execute <<-SQL
+      DO
+      $do$
+        BEGIN
+           IF NOT EXISTS ( SELECT rolname FROM pg_catalog.pg_roles WHERE  rolname = 'read_only') THEN
+              CREATE ROLE read_only;
+           END IF;
+        END
+      $do$;
+    SQL
+
     create_table "ctgov.users" do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""

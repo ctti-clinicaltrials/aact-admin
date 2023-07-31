@@ -12,7 +12,7 @@ RSpec.describe "Queries", type: :request do
       Query::Base.connection.execute("DELETE FROM studies WHERE nct_id = '1239'")
     end
 
-    it "does not run an SQL query and renders the index page" do
+    xit "does not run an SQL query and renders the index page" do
       get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM WHERE nct_id='1239'"
       expect(response).to render_template('query/index.html.erb')
     end

@@ -11,15 +11,8 @@ RSpec.describe BackgroundJobsController, type: :controller do
   end
 
   after do
-    # delete all Background Jobs associated with each User before deleting each User
-    @user.background_jobs.each do |job|
-      job.destroy
-    end  
-    @user.destroy
-    @user2.background_jobs.each do |job|
-      job.destroy
-    end  
-    @user2.destroy
+    @user&.destroy
+    @user2&.destroy
   end
 
   describe "GET #index" do
