@@ -5,7 +5,7 @@ ruby "2.6.6"
 # gem 'bootstrap'
 # gem "bootstrap-table-rails"
 gem 'rack-cors'
-gem 'nokogiri', '~> 1.12.0'
+gem 'nokogiri', '~> 1.13.10'
 gem 'rails'
 gem 'rails-html-sanitizer', '~> 1.0.4'
 gem "rack-timeout"
