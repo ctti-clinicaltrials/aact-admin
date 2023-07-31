@@ -116,7 +116,8 @@ feature "Users Sign Up Page" do
     # db is inaccessible
 
     # simulate revoke_db_privs.sh
-    Public::PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 0;")
+    database_name = Public::Study.connection_config[:database]
+    Public::PublicBase.connection.execute("ALTER DATABASE #{database_name} CONNECTION LIMIT 0;")
 
     begin
       expect(Util::DbManager.new.public_db_accessible?).to eq(false)
@@ -128,7 +129,8 @@ feature "Users Sign Up Page" do
     end
 
     # simulate grant_db_privs.sh
-    Public::PublicBase.connection.execute("ALTER DATABASE aact CONNECTION LIMIT 200;")
+    database_name = Public::Study.connection_config[:database]
+    Public::PublicBase.connection.execute("ALTER DATABASE #{database_name} CONNECTION LIMIT 200;")
     expect(Util::DbManager.new.public_db_accessible?).to eq(true)
     submit
     expect(page).not_to have_content "Sorry AACT database is temporarily unavailable"
@@ -170,7 +172,7 @@ feature "Users Sign Up Page" do
     user=User.where('username=?',valid_username).first
     expect(user.first_name).to eq(new_first_name)
 
-    user.remove
+    user.destroy
     expect(User.where('username=?',valid_username).size).to eq(0)
     expect(Util::UserDbManager.new.user_account_exists?(user.username)).to eq(false)
   end
