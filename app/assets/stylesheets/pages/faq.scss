@@ -1,0 +1,23 @@
+#centerfaq {
+    h1,
+    h3 {
+      font-weight: bold;
+    }
+  
+    p {
+      font-style: italic;
+      font-weight: bold;
+    }
+  
+    width: 900px;
+    margin: auto;
+    text-align: center;
+  
+    /* Box styling */
+    padding: 20px;
+    border-style: solid;
+    border-color: #b6c7d6;
+    border-radius: 20px;
+    background-color: #eaf0f6;
+  }
+  
