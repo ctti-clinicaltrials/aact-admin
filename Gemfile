@@ -1,15 +1,15 @@
 source "https://rubygems.org"
 
-ruby "2.4.5"
+ruby "2.6.6"
 
-# gem 'bootstrap'
-# gem "bootstrap-table-rails"
+gem 'bootstrap'
+gem "bootstrap-table-rails"
 gem 'rack-cors'
-gem 'nokogiri', '~> 1.8.1'
-gem 'rails'
+gem 'nokogiri', '~> 1.10', '>= 1.10.10'
+gem 'rails', '~> 5.0.6'
 gem 'rails-html-sanitizer', '~> 1.0.4'
 gem "rack-timeout"
-gem "faraday"
+gem 'faraday', '~> 1.10', '>= 1.10.3'
 gem "autoprefixer-rails"
 gem "flutie"
 gem "high_voltage"
@@ -25,14 +25,14 @@ gem "rubyzip", ">= 1.2.2"
 gem "sprockets", ">= 3.7.2"
 gem "title"
 gem "uglifier"
-gem "jbuilder"
+gem 'jbuilder', '~> 2.9'
 gem "rails-erd"
 gem 'rest-client'
 gem 'enumerize'
 gem 'bulk_insert'
-gem 'activerecord-import'
+gem 'activerecord-import', '~> 1.4.0'
 gem 'sinatra', :require => nil
-gem 'font-awesome-rails'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.8'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 gem "ffi", ">= 1.9.24"
@@ -41,17 +41,17 @@ gem 'airbrake'
 
 gem 'roo', '~> 2.4.0'
 gem 'string-similarity'
-gem 'gon'
+gem 'gon', '~> 6.4'
 gem 'execjs'
 gem 'therubyracer', '~> 0.12.3'
 gem 'libv8', '~> 3.16.14.15'
-gem "loofah", ">= 2.2.3"
+gem 'loofah', '~>2.19.1'
 gem 'rack'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rack-protection', '~> 1.5.5'
 
 # user registration
- gem "devise", ">= 4.6.0"
+ gem "devise", ">= 4.9.1"
 gem 'devise-encryptable'
 
 # deployment to server
