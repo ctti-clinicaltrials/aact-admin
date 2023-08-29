@@ -6,7 +6,7 @@ gem 'bootstrap'
 gem "bootstrap-table-rails"
 gem 'rack-cors'
 gem 'nokogiri', '~> 1.10', '>= 1.10.10'
-gem 'rails', '~> 5.0.6'
+gem 'rails', '~> 5.0.7'
 gem 'rails-html-sanitizer', '~> 1.0.4'
 gem "rack-timeout"
 gem 'faraday', '~> 1.10', '>= 1.10.3'
