@@ -20,7 +20,7 @@
     <%= link_to "Verifiers", verifiers_path, class:"dropdown-item"%>
     <div class="dropdown-divider"></div>
     <%= link_to "Edit Profile", edit_user_registration_path , class:"dropdown-item"%>
-    <%= link_to "Sign out", edit_user_registration_path('sign-out'), :id => current_user, class:"dropdown-item"%>
+    <%= link_to "Sign out", destroy_current_user_session_path, :method => :delete, class:"dropdown-item"%>
     
     <% elsif user_signed_in? %>
    <div class="nav-svg nav-svg-no-margin dropdown"> 
