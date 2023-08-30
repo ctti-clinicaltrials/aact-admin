@@ -4,7 +4,7 @@ require 'webmock/rspec'
 RSpec.describe ClinicalTrialsApiV2 do
   BASE_URL_V2 = 'https://clinicaltrials.gov/api/v2/'
 
-  describe '.studies' do
+  describe '#studies' do
     it 'returns a list of studies' do
       stub_request(:get, "#{BASE_URL_V2}/studies").
         to_return(status: 200, body: '{"studies": [{"nct_id": "NCT123"}, {"nct_id": "NCT456"}]}', headers: {})
@@ -17,7 +17,7 @@ RSpec.describe ClinicalTrialsApiV2 do
     end
   end
 
-  describe '.study' do
+  describe '#study' do
     it 'returns details of a single study' do
       nct_id = 'NCT789'
       stub_request(:get, "#{BASE_URL_V2}/studies/#{nct_id}").
@@ -30,7 +30,7 @@ RSpec.describe ClinicalTrialsApiV2 do
     end
   end
 
-  describe '.metadata' do
+  describe '#metadata' do
     it 'returns data model fields' do
       stub_request(:get, "#{BASE_URL_V2}/studies/metadata").
         to_return(status: 200, body: '{"metadata": ["field1", "field2"]}', headers: {})
@@ -42,7 +42,7 @@ RSpec.describe ClinicalTrialsApiV2 do
     end
   end
 
-  describe '.size' do
+  describe '#size' do
     it 'returns study size statistics' do
       stub_request(:get, "#{BASE_URL_V2}/stats/size").
         to_return(status: 200, body: '{"size": 100}', headers: {})
@@ -53,7 +53,7 @@ RSpec.describe ClinicalTrialsApiV2 do
     end
   end
 
-  describe '.values' do
+  describe '#values' do
     it 'returns values statistics' do
       stub_request(:get, "#{BASE_URL_V2}/stats/fieldValues").
         to_return(status: 200, body: '{"values": ["value1", "value2"]}', headers: {})
@@ -65,37 +65,37 @@ RSpec.describe ClinicalTrialsApiV2 do
     end
   end
 
-  describe '#fieldValues' do
+  describe '#field_values' do
     it 'returns field values statistics for a specific field' do
       field = 'condition'
       stub_request(:get, "#{BASE_URL_V2}/stats/fieldValues/#{field}").
         to_return(status: 200, body: '{"field": "condition", "values": [10, 20]}', headers: {})
 
-      response = ClinicalTrialsApiV2.new.fieldValues(field)
+      response = ClinicalTrialsApiV2.new.field_values(field)
       expect(response).to be_a(Hash)
       expect(response['field']).to eq(field)
       expect(response['values']).to eq([10, 20])
     end
   end
 
-  describe '#listSizes' do
+  describe '#list_sizes' do
     it 'returns list sizes statistics' do
       stub_request(:get, "#{BASE_URL_V2}/stats/listSizes").
         to_return(status: 200, body: '{"listSizes": [10, 20]}', headers: {})
 
-      response = ClinicalTrialsApiV2.new.listSizes
+      response = ClinicalTrialsApiV2.new.list_sizes
       expect(response).to be_a(Hash)
       expect(response['listSizes']).to eq([10, 20])
     end
   end
 
-  describe '#listFields' do
+  describe '#list_fields' do
     it 'returns list field size statistics for a specific field' do
       field = 'condition'
       stub_request(:get, "#{BASE_URL_V2}/stats/listSizes/#{field}").
         to_return(status: 200, body: '{"field": "condition", "size": 5}', headers: {})
 
-      response = ClinicalTrialsApiV2.new.listFields(field)
+      response = ClinicalTrialsApiV2.new.list_fields(field)
       expect(response).to be_a(Hash)
       expect(response['field']).to eq(field)
       expect(response['size']).to eq(5)
