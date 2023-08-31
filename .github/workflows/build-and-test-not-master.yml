@@ -55,13 +55,17 @@ jobs:
           bundle install --jobs 4 --retry 3
               
       # Add or replace database setup steps here
-      - name: Load database schema
+      - name: setup aact-admin database
         run: |
           bundle exec rake db:create
           bundle exec rake db:migrate
+      - name: setup aact-core database
+        run: |
           PGPASSWORD=password psql -h localhost -U rails -d rails_test -c "CREATE DATABASE aact_test;"
-          PGPASSWORD=password psql -h localhost -U rails -d rails_test -c "CREATE DATABASE aact_public_test;"
           PGPASSWORD=password psql -h localhost -U rails -d aact_test < db/core_structure.sql
+      - name: setup aact-public database
+        run: |
+          PGPASSWORD=password psql -h localhost -U rails -d rails_test -c "CREATE DATABASE aact_public_test;"
           PGPASSWORD=password psql -h localhost -U rails -d aact_public_test < db/public_structure.sql
 
       # Add or replace test runners here
