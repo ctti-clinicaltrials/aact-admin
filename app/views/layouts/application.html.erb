@@ -39,7 +39,18 @@
     </script>
   <!-- End Google Analytics -->
 
-</head>
+<!-- Google Analytics 4.0 -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-26T8NJBNX3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-26T8NJBNX3');
+</script>
+<!-- End Google Analytics 4.0 -->
+
 <body class="<%= body_class %>">
   <header id='common-header'>
     <%= render 'includes/main_header' %>

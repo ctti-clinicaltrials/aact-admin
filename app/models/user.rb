@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :notices
   has_many :saved_queries
-  has_many :background_jobs
+  has_many :background_jobs, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   include ActiveModel::Validations
@@ -25,6 +25,12 @@ class User < ActiveRecord::Base
   validates_format_of :username, :with => /\A[a-z]/, :message => "must start with a lowercase character", unless: :skip_username_validation
   validate :can_create_db_account?, :on => :create
   validate :can_access_db?, :on => :create
+
+  # remove postgres user after user has been destroyed
+  after_destroy do
+    name = ActiveRecord::Base.sanitize(username).gsub("'", "\"")
+    Public::Study.connection.execute("DROP USER IF EXISTS #{name};")
+  end
 
   def can_create_db_account?
     if Util::UserDbManager.new.user_account_exists?(self.username)
@@ -116,7 +122,7 @@ class User < ActiveRecord::Base
       db_mgr.remove_user(self.username)
       self.destroy
     rescue => e
-      self.errors.add(e.message)
+      self.errors.add(:base, e.message)
       puts e.message
     end
   end

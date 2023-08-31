@@ -14,7 +14,7 @@ RSpec.configure do |config|
   end
 
   config.example_status_persistence_file_path = "tmp/rspec_examples.txt"
-  config.order = :random
+  # config.order = :random
 end
 
 WebMock.disable_net_connect!(allow_localhost: true)

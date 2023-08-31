@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   # get "admin/notices/:id/send_notice" => "admin/notices#send_notice"
   get "/connect"              => "pages#connect"
   get "/download"             => "pages#download"
+  get 'faq'                   => "pages#faq"
   get "/learn_more"           => "pages#learn_more"
   get "/covid_19"             => "pages#covid_19"
   get "/covid_19_fields"      => "pages#covid_19_fields"

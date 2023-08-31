@@ -46,6 +46,14 @@ module AACT
       AACT_PUBLIC_DATABASE_NAME = 'aact_test'
       AACT_PUBLIC_BETA_DATABASE_NAME = 'aact_test'
       AACT_PUBLIC_IP_ADDRESS    = '127.0.0.1'
+
+      # public database connection
+      PUBLIC_DB_HOST = ENV['PUBLIC_DB_HOST'] || 'localhost'
+      PUBLIC_DB_PORT = ENV['PUBLIC_DB_PORT'] || 5432
+      PUBLIC_DB_NAME = ENV['PUBLIC_DB_NAME'] || 'aact_public_test'
+      PUBLIC_DB_USER = ENV['AACT_USERNAME'] || 'ctti'
+      PUBLIC_DB_PASS = ENV['AACT_PASSWORD'] || ''
+      AACT_PUBLIC_DATABASE_URL = "postgres://#{PUBLIC_DB_USER}:#{PUBLIC_DB_PASS}@#{PUBLIC_DB_HOST}:#{PUBLIC_DB_PORT}/#{PUBLIC_DB_NAME}"
     else
       APPLICATION_HOST          = ENV['APPLICATION_HOST'] || 'localhost'
       AACT_PUBLIC_HOSTNAME      = ENV['AACT_PUBLIC_HOSTNAME'] || 'localhost'
@@ -54,26 +62,18 @@ module AACT
       AACT_PUBLIC_DATABASE_NAME = ENV['AACT_PUBLIC_DATABASE_NAME'] || 'aact'
       AACT_PUBLIC_BETA_DATABASE_NAME = ENV['AACT_PUBLIC_BETA_DATABASE_NAME'] || 'aact_beta'
       AACT_PUBLIC_IP_ADDRESS    = ENV['AACT_PUBLIC_IP_ADDRESS'] || '127.0.0.1'
-    end
-    AACT_BACK_DATABASE_URL   = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_BACK_DATABASE_NAME}"
-    AACT_ADMIN_DATABASE_URL  = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_ADMIN_DATABASE_NAME}"
 
-    # public database connection
-    if Rails.env == 'test'
-      PUBLIC_DB_HOST = ENV['TEST_PUBLIC_DB_HOST'] || 'localhost'
-      PUBLIC_DB_PORT = ENV['TEST_PUBLIC_DB_PORT'] || 5432
-      PUBLIC_DB_NAME = ENV['TEST_PUBLIC_DB_NAME'] || 'aact_public_test'
-      PUBLIC_DB_USER = ENV['TEST_PUBLIC_DB_USER'] || 'postgres'
-      PUBLIC_DB_PASS = ENV['TEST_PUBLIC_DB_PASS'] || ''
-    else
+      # public database connection
       PUBLIC_DB_HOST = ENV['PUBLIC_DB_HOST'] || 'localhost'
       PUBLIC_DB_PORT = ENV['PUBLIC_DB_PORT'] || 5432
       PUBLIC_DB_NAME = ENV['PUBLIC_DB_NAME'] || 'aact'
       PUBLIC_DB_USER = ENV['PUBLIC_DB_USER'] || 'ctti'
       PUBLIC_DB_PASS = ENV['PUBLIC_DB_PASS'] || ''
+      AACT_PUBLIC_DATABASE_URL = "postgres://#{PUBLIC_DB_USER}:#{PUBLIC_DB_PASS}@#{PUBLIC_DB_HOST}:#{PUBLIC_DB_PORT}/#{PUBLIC_DB_NAME}"
+      AACT_PUBLIC_DATABASE_URL = ENV['AACT_PUBLIC_DATABASE_URL'] || AACT_PUBLIC_DATABASE_URL
     end
-
-    AACT_PUBLIC_DATABASE_URL = "postgres://#{PUBLIC_DB_USER}:#{PUBLIC_DB_PASS}@#{PUBLIC_DB_HOST}:#{PUBLIC_DB_PORT}/#{PUBLIC_DB_NAME}"
+    AACT_BACK_DATABASE_URL   = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_BACK_DATABASE_NAME}"
+    AACT_ADMIN_DATABASE_URL  = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_ADMIN_DATABASE_NAME}"
 
     AACT_PUBLIC_BETA_DATABASE_URL = "postgres://#{AACT_DB_SUPER_USERNAME}@#{AACT_PUBLIC_HOSTNAME}:5432/#{AACT_PUBLIC_BETA_DATABASE_NAME}"
     #  env vars required for capistrano:
@@ -90,7 +90,23 @@ module AACT
       AACT_CORE_DATABASE_URL  = ENV['AACT_CORE_DATABASE_URL']
     end
     # aact-query database connection
-    AACT_QUERY_DATABASE_URL  = ENV['AACT_QUERY_DATABASE_URL']
+    AACT_QUERY_DATABASE_URL  = AACT_PUBLIC_DATABASE_URL
 
+  end
+end
+
+# MONKEY PATCHES
+if RUBY_VERSION>='2.6.0'
+  if Rails.version < '5'
+    class ActionController::TestResponse < ActionDispatch::TestResponse
+      def recycle!
+        # hack to avoid MonitorMixin double-initialize error:
+        @mon_mutex_owner_object_id = nil
+        @mon_mutex = nil
+        initialize
+      end
+    end
+  else
+    puts "Monkeypatch for ActionController::TestResponse no longer needed"
   end
 end

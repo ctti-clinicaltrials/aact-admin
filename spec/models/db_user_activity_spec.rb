@@ -32,9 +32,9 @@ describe DbUserActivity do
     user = User.where('username=?', username).first
     expect(user.db_activity).to eq(42213)
     expect(user.display_last_db_activity).to eq('2018/08/08')
-    user.remove
-    User.destroy_all
-    Util::UserDbManager.new.remove_user(username)
+    user.destroy
+    User.all.map(&:destroy)
+    # Util::UserDbManager.new.remove_user(username)
     DbUserActivity.destroy_all
   end
 

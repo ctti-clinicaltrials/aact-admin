@@ -53,19 +53,19 @@ module Util
     end
 
     def process_flow_diagram
-      '/static/documentation/process_flow_diagram.png'
+      '/documentation/process_flow_diagram.png'
     end
 
     def support_schema_diagram
-      "/static/documentation/aact_support_schema.png"
+      "/documentation/aact_support_schema.png"
     end
 
     def admin_schema_diagram
-      "/static/documentation/aact_admin_schema.png"
+      "/documentation/aact_admin_schema.png"
     end
 
     def schema_diagram
-      "/static/documentation/aact_schema.png"
+      "/documentation/aact_schema.png"
     end
 
     def schema_archive_diagram

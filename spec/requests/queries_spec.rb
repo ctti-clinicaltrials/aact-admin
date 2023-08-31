@@ -7,6 +7,22 @@ RSpec.describe "Queries", type: :request do
     @user.confirm
     sign_in(@user)
   end
+  
+  describe "GET /query with invalid SQL query" do
+    #  Can't create a study because Public::Study is READONLY, need to write SQL explicitly
+    before(:each) do
+      Query::Base.connection.execute("INSERT INTO studies(nct_id, brief_title, created_at, updated_at) VALUES('1239','hello', '2018-10-31', '2018-12-25')")
+    end
+    
+    after(:each) do
+      Query::Base.connection.execute("DELETE FROM studies WHERE nct_id = '1239'")
+    end
+
+    xit "does not run an SQL query and renders the index page" do
+      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM WHERE nct_id='1239'"
+      expect(response).to render_template('query/index.html.erb')
+    end
+  end
 
   after do
     # delete all Background Jobs associated with each User before deleting each User

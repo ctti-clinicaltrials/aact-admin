@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe "Events", type: :request do
+  before do
+    @user = FactoryBot.create(:user, admin: true)
+    @user.confirm
+    sign_in(@user)
+  end
+
+  after do
+    @user&.destroy
+  end
 
     describe "GET /events" do
       it "renders the Events index page" do

@@ -1,7 +1,22 @@
 FactoryBot.define do
+  factory :user do
+    sequence(:email) { |i| "user#{i}@email.com" }
+    sequence(:username) { |i| "user#{i}" }
+    first_name { 'Firstname' }
+    last_name { 'Lastname' }
+    password { '1234567' }
+    admin { false }
+  end
+
   factory :file_download do
     file_record_id { "MyString" }
     integer { "MyString" }
+  end
+
+  factory :file_record, class: 'Core::FileRecord' do
+    filename { "20230327export.zip" }
+    file_size { 1_400_000 }
+    file_type { "snapshot" }
   end
   
   factory :core_study_search, class: 'Core::StudySearch' do
@@ -48,7 +63,14 @@ FactoryBot.define do
   end
 
   factory :verifier, class: Core::Verifier do
-    differences { [{source: "source", destination: "destination", source_instances: "source_instances", destination_instances: "destination_instances", source_unique_values: "source_unique_values", destination_unique_values: "destination_unique_values"}] }
+    differences { [{
+      source: "source", 
+      destination: "destination", 
+      source_instances: 1, 
+      destination_instances: 1, 
+      source_unique_values: 1,
+      destination_unique_values: 1
+    }] }
     source { {source: "source"} }
     last_run { DateTime.now }
     created_at { DateTime.now }
