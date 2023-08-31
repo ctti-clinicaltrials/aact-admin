@@ -28,5 +28,4 @@ Rails.application.configure do
 
   config.aact = {static_files_directory: "/aact-files"}
 end
-Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
 
