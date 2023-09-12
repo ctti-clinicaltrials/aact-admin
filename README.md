@@ -5,9 +5,11 @@ Administer AACT: Aggregated Analysis of ClinicalTrials.gov
 Below you'll find an image that illustrates the different AACT databases and schemas, while briefly describing their purposes.
 ![Visualization of the database arrangement for AACT(backend) and AACT-Admin(frontend)](https://github.com/ctti-clinicaltrials/aact/blob/master/public/aact_architecture.png "AACT Database Visualization")   
 
-## Getting Started
+## Installing Node.js
+Install Node.js version 16 by clicking the following link: [node.js](https://nodejs.org/en/download):
 
-You should always setup AACT Core before setting up AACT Admin. AACT Admin relies on AACT Core. So if you haven’t set up AACT Core yet, please do so now at [aact core](https://github.com/ctti-clinicaltrials/aact). 
+## Getting Started
+You should always setup AACT Core before setting up AACT Admin. AACT Admin relies on AACT Core. So if you haven’t set up AACT Core yet, please do so now at [aact core](https://github.com/ctti-clinicaltrials/aact).  
 
 Make sure you've set values for the following environmental variables:
 | Variable | Explanation |
@@ -44,21 +46,6 @@ You also should have created aact_alt when setting up AACT Core. But if you didn
 
 - run `bundle install` (bundle version should be '~> 1.17.3')  
 
-If you run into issues with bundle installing `libv8` and `therubyracer` on a mac you can follow these steps:
-
-`brew install v8-315`  
-`gem install libv8 -v '3.16.14.19' -- --with-system-v8`  
-`gem install therubyracer -- --with-v8-dir=/usr/local/opt/v8@3.15`
-
-If you still are having issues with the gems `libv8` and `therubyracer`, an easier alternative is to install [node.js](https://nodejs.dev/en/download/):
-
-For macOS using Homebrew `brew install node`
-For windows using Winget `winget install OpenJS.NodeJS.LTS`
-For Debian and Ubuntu [Node.js binary distributions](https://github.com/nodesource/distributions/blob/master/README.md)
-For CentOS and Fedora `dnf module install nodejs:16`
-
-Now try to run `bundle install` (bundle version should be '~> 1.17.3').
-
 - Setup the databases and database privileges
 
 `bin/rake db:create`  
@@ -72,7 +59,6 @@ Now try to run `bundle install` (bundle version should be '~> 1.17.3').
 ***
 
 ## Setting Up MailCatcher
-
 Instructions on how to install [mailcatcher](https://mailcatcher.me/)
 
 - Install with the following command in termnial `gem install mailcatcher`
