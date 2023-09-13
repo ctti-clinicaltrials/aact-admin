@@ -174,15 +174,16 @@ b {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: underline;
   font-size: 1.2rem;
   color: $link-color;
+  font-weight: bold;
   font-family: $font-sans;
 
   &:hover {
-    color: $link-hover-color;
+    color: $link-color;
+    color: #008aa1;
   }
-
 }
 
 img {
