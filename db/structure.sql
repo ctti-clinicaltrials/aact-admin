@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 14.1
--- Dumped by pg_dump version 14.1
+-- Dumped from database version 14.9 (Homebrew)
+-- Dumped by pg_dump version 14.9 (Homebrew)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -44,6 +44,27 @@ CREATE FUNCTION ctgov.category_insert_function() RETURNS trigger
           RETURN NEW;
         END;
         $$;
+
+
+--
+-- Name: count_estimate(text); Type: FUNCTION; Schema: ctgov; Owner: -
+--
+
+CREATE FUNCTION ctgov.count_estimate(query text) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+      DECLARE
+        rec   record;
+        ROWS  INTEGER;
+      BEGIN
+        FOR rec IN EXECUTE 'EXPLAIN ' || query LOOP
+          ROWS := SUBSTRING(rec."QUERY PLAN" FROM ' rows=([[:digit:]]+)');
+          EXIT WHEN ROWS IS NOT NULL;
+      END LOOP;
+
+      RETURN ROWS;
+      END
+      $$;
 
 
 --
@@ -255,27 +276,6 @@ CREATE FUNCTION ctgov.study_summaries_for_condition(character varying) RETURNS T
         LEFT OUTER JOIN designs             d  ON s.nct_id = d.nct_id
         ;
         $_$;
-
-
---
--- Name: count_estimate(text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.count_estimate(query text) RETURNS integer
-    LANGUAGE plpgsql
-    AS $$
-      DECLARE
-        rec   record;
-        ROWS  INTEGER;
-      BEGIN
-        FOR rec IN EXECUTE 'EXPLAIN ' || query LOOP
-          ROWS := SUBSTRING(rec."QUERY PLAN" FROM ' rows=([[:digit:]]+)');
-          EXIT WHEN ROWS IS NOT NULL;
-      END LOOP;
-
-      RETURN ROWS;
-      END
-      $$;
 
 
 SET default_tablespace = '';
@@ -712,6 +712,18 @@ CREATE VIEW ctgov.all_states AS
 
 
 --
+-- Name: ar_internal_metadata; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
 -- Name: attachments; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -873,6 +885,9 @@ CREATE SEQUENCE ctgov.baseline_measurements_id_seq
 ALTER SEQUENCE ctgov.baseline_measurements_id_seq OWNED BY ctgov.baseline_measurements.id;
 
 
+--
+-- Name: brief_summaries; Type: TABLE; Schema: ctgov; Owner: -
+--
 
 CREATE TABLE ctgov.brief_summaries (
     id integer NOT NULL,
@@ -881,6 +896,9 @@ CREATE TABLE ctgov.brief_summaries (
 );
 
 
+--
+-- Name: brief_summaries_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
+--
 
 CREATE SEQUENCE ctgov.brief_summaries_id_seq
     AS integer
@@ -2218,7 +2236,10 @@ CREATE TABLE ctgov.outcome_analyses (
     method_description text,
     estimate_description text,
     groups_description text,
-    other_analysis_description text
+    other_analysis_description text,
+    ci_upper_limit_raw character varying,
+    ci_lower_limit_raw character varying,
+    p_value_raw character varying
 );
 
 
@@ -2334,7 +2355,9 @@ CREATE TABLE ctgov.outcome_measurements (
     dispersion_value_num numeric,
     dispersion_lower_limit numeric,
     dispersion_upper_limit numeric,
-    explanation_of_na text
+    explanation_of_na text,
+    dispersion_upper_limit_raw character varying,
+    dispersion_lower_limit_raw character varying
 );
 
 
@@ -2973,8 +2996,15 @@ ALTER SEQUENCE ctgov.saved_queries_id_seq OWNED BY ctgov.saved_queries.id;
 
 
 --
-<<<<<<< HEAD
-=======
+-- Name: schema_migrations; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.schema_migrations (
+    version character varying NOT NULL
+);
+
+
+--
 -- Name: search_results_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
@@ -3119,7 +3149,6 @@ ALTER SEQUENCE ctgov.study_searches_id_seq OWNED BY ctgov.study_searches.id;
 
 
 --
->>>>>>> dev
 -- Name: use_case_attachments; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -3351,8 +3380,6 @@ ALTER SEQUENCE ctgov.users_id_seq OWNED BY ctgov.users.id;
 
 
 --
-<<<<<<< HEAD
-=======
 -- Name: verifiers; Type: TABLE; Schema: ctgov; Owner: -
 --
 
@@ -3387,30 +3414,6 @@ ALTER SEQUENCE ctgov.verifiers_id_seq OWNED BY ctgov.verifiers.id;
 
 
 --
--- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.ar_internal_metadata (
-    key character varying NOT NULL,
-    value character varying,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
->>>>>>> dev
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.schema_migrations (
-    version character varying NOT NULL
-);
-
-
---
-<<<<<<< HEAD
-=======
 -- Name: load_events; Type: TABLE; Schema: support; Owner: -
 --
 
@@ -3638,7 +3641,6 @@ ALTER TABLE ONLY ctgov.active_storage_blobs ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
->>>>>>> dev
 -- Name: attachments id; Type: DEFAULT; Schema: ctgov; Owner: -
 --
 
@@ -4208,6 +4210,14 @@ ALTER TABLE ONLY ctgov.active_storage_blobs
 
 
 --
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
 -- Name: attachments attachments_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -4696,6 +4706,14 @@ ALTER TABLE ONLY ctgov.saved_queries
 
 
 --
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
+--
+
+ALTER TABLE ONLY ctgov.schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
 -- Name: search_results search_results_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -4789,22 +4807,6 @@ ALTER TABLE ONLY ctgov.users
 
 ALTER TABLE ONLY ctgov.verifiers
     ADD CONSTRAINT verifiers_pkey PRIMARY KEY (id);
-
-
---
--- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ar_internal_metadata
-    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
-
-
---
--- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.schema_migrations
-    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
 
 
 --
@@ -5318,14 +5320,8 @@ CREATE INDEX index_outcome_measurements_on_dispersion_type ON ctgov.outcome_meas
 
 
 --
-
-
-CREATE TABLE public.schema_migrations (
-    version character varying NOT NULL
-);
-
-
-
+-- Name: index_outcomes_on_dispersion_type; Type: INDEX; Schema: ctgov; Owner: -
+--
 
 CREATE INDEX index_outcomes_on_dispersion_type ON ctgov.outcomes USING btree (dispersion_type);
 
@@ -5450,12 +5446,6 @@ CREATE INDEX index_saved_queries_on_user_id ON ctgov.saved_queries USING btree (
 
 
 --
-<<<<<<< HEAD
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
-=======
 -- Name: index_search_results_on_nct_id_and_name; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -5691,7 +5681,6 @@ CREATE INDEX "index_support.study_xml_records_on_nct_id" ON support.study_xml_re
 --
 
 CREATE TRIGGER category_insert_trigger INSTEAD OF INSERT ON ctgov.categories FOR EACH ROW EXECUTE FUNCTION ctgov.category_insert_function();
->>>>>>> dev
 
 
 --
@@ -5719,18 +5708,11 @@ ALTER TABLE ONLY ctgov.file_records
 
 
 --
-
 -- Name: load_issues fk_rails_1a961417a0; Type: FK CONSTRAINT; Schema: support; Owner: -
 --
 
 ALTER TABLE ONLY support.load_issues
     ADD CONSTRAINT fk_rails_1a961417a0 FOREIGN KEY (load_event_id) REFERENCES support.load_events(id);
-
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
-
 
 
 --
@@ -5747,133 +5729,74 @@ ALTER TABLE ONLY support.sanity_checks
 
 SET search_path TO ctgov, support, public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160214191640');
+INSERT INTO "schema_migrations" (version) VALUES
+('20160214191640'),
+('20160630191037'),
+('20160910000000'),
+('20160911000000'),
+('20160912000000'),
+('20161011000000'),
+('20161030000000'),
+('20170411000122'),
+('20180226142044'),
+('20180427144951'),
+('20180813174540'),
+('20181108174440'),
+('20181208174440'),
+('20181212000000'),
+('20190115184850'),
+('20190115204850'),
+('20190301204850'),
+('20190321174440'),
+('20191125205210'),
+('20200217214455'),
+('20200217220919'),
+('20200424180206'),
+('20200622225910'),
+('20200814211239'),
+('20200922153536'),
+('20200922175002'),
+('20201201210834'),
+('20210108195415'),
+('20210108200600'),
+('20210308235723'),
+('20210414222919'),
+('20210526192648'),
+('20210526192804'),
+('20210601063550'),
+('20211027133828'),
+('20211027220743'),
+('20211102194357'),
+('20211109190158'),
+('20220202152642'),
+('20220207182529'),
+('20220212033048'),
+('20220308030627'),
+('20220329173304'),
+('20220429175157'),
+('20220512025646'),
+('20220512030503'),
+('20220512030831'),
+('20220520124716'),
+('20220520133313'),
+('20220522072233'),
+('20220523123928'),
+('20220608211340'),
+('20220817000001'),
+('20220919155542'),
+('20220928162956'),
+('20220928175111'),
+('20220930181441'),
+('20221018210501'),
+('20221122213435'),
+('20221219165747'),
+('20230102193531'),
+('20230131123222'),
+('20230214200400'),
+('20230216205237'),
+('20230416235053'),
+('20230628231316'),
+('20230629000057'),
+('20230720150513');
 
-INSERT INTO schema_migrations (version) VALUES ('20160630191037');
-
-INSERT INTO schema_migrations (version) VALUES ('20160910000000');
-
-INSERT INTO schema_migrations (version) VALUES ('20160911000000');
-
-INSERT INTO schema_migrations (version) VALUES ('20160912000000');
-
-INSERT INTO schema_migrations (version) VALUES ('20161011000000');
-
-INSERT INTO schema_migrations (version) VALUES ('20161030000000');
-
-INSERT INTO schema_migrations (version) VALUES ('20170411000122');
-
-INSERT INTO schema_migrations (version) VALUES ('20180226142044');
-
-INSERT INTO schema_migrations (version) VALUES ('20180427144951');
-
-INSERT INTO schema_migrations (version) VALUES ('20180813174540');
-
-INSERT INTO schema_migrations (version) VALUES ('20181108174440');
-
-INSERT INTO schema_migrations (version) VALUES ('20181208174440');
-
-INSERT INTO schema_migrations (version) VALUES ('20181212000000');
-
-INSERT INTO schema_migrations (version) VALUES ('20190115184850');
-
-INSERT INTO schema_migrations (version) VALUES ('20190115204850');
-
-INSERT INTO schema_migrations (version) VALUES ('20190301204850');
-
-INSERT INTO schema_migrations (version) VALUES ('20190321174440');
-
-INSERT INTO schema_migrations (version) VALUES ('20191125205210');
-
-INSERT INTO schema_migrations (version) VALUES ('20200217214455');
-
-INSERT INTO schema_migrations (version) VALUES ('20200217220919');
-
-INSERT INTO schema_migrations (version) VALUES ('20200424180206');
-
-INSERT INTO schema_migrations (version) VALUES ('20200622225910');
-
-INSERT INTO schema_migrations (version) VALUES ('20200814211239');
-
-INSERT INTO schema_migrations (version) VALUES ('20200922153536');
-
-INSERT INTO schema_migrations (version) VALUES ('20200922175002');
-
-INSERT INTO schema_migrations (version) VALUES ('20201201210834');
-
-INSERT INTO schema_migrations (version) VALUES ('20210108195415');
-
-INSERT INTO schema_migrations (version) VALUES ('20210108200600');
-
-INSERT INTO schema_migrations (version) VALUES ('20210308235723');
-
-INSERT INTO schema_migrations (version) VALUES ('20210414222919');
-
-INSERT INTO schema_migrations (version) VALUES ('20210526192648');
-
-INSERT INTO schema_migrations (version) VALUES ('20210526192804');
-
-INSERT INTO schema_migrations (version) VALUES ('20210601063550');
-
-INSERT INTO schema_migrations (version) VALUES ('20211027133828');
-
-INSERT INTO schema_migrations (version) VALUES ('20211027220743');
-
-INSERT INTO schema_migrations (version) VALUES ('20211102194357');
-
-INSERT INTO schema_migrations (version) VALUES ('20211109190158');
-
-INSERT INTO schema_migrations (version) VALUES ('20220202152642');
-
-INSERT INTO schema_migrations (version) VALUES ('20220207182529');
-
-INSERT INTO schema_migrations (version) VALUES ('20220212033048');
-
-INSERT INTO schema_migrations (version) VALUES ('20220308030627');
-
-INSERT INTO schema_migrations (version) VALUES ('20220329173304');
-
-INSERT INTO schema_migrations (version) VALUES ('20220429175157');
-
-INSERT INTO schema_migrations (version) VALUES ('20220512025646');
-
-INSERT INTO schema_migrations (version) VALUES ('20220512030503');
-
-INSERT INTO schema_migrations (version) VALUES ('20220512030831');
-
-INSERT INTO schema_migrations (version) VALUES ('20220520124716');
-
-INSERT INTO schema_migrations (version) VALUES ('20220520133313');
-
-INSERT INTO schema_migrations (version) VALUES ('20220522072233');
-
-INSERT INTO schema_migrations (version) VALUES ('20220523123928');
-
-INSERT INTO schema_migrations (version) VALUES ('20220608211340');
-
-INSERT INTO schema_migrations (version) VALUES ('20220817000001');
-
-INSERT INTO schema_migrations (version) VALUES ('20220919155542');
-
-INSERT INTO schema_migrations (version) VALUES ('20220928162956');
-
-INSERT INTO schema_migrations (version) VALUES ('20220928175111');
-
-INSERT INTO schema_migrations (version) VALUES ('20220930181441');
-
-INSERT INTO schema_migrations (version) VALUES ('20221018210501');
-
-INSERT INTO schema_migrations (version) VALUES ('20221122213435');
-
-INSERT INTO schema_migrations (version) VALUES ('20221219165747');
-
-INSERT INTO schema_migrations (version) VALUES ('20230102193531');
-
-INSERT INTO schema_migrations (version) VALUES ('20230131123222');
-
-INSERT INTO schema_migrations (version) VALUES ('20230214200400');
-
-INSERT INTO schema_migrations (version) VALUES ('20230216205237');
-
-INSERT INTO schema_migrations (version) VALUES ('20230416235053');
 

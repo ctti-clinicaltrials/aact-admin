@@ -5,9 +5,12 @@ Administer AACT: Aggregated Analysis of ClinicalTrials.gov
 Below you'll find an image that illustrates the different AACT databases and schemas, while briefly describing their purposes.
 ![Visualization of the database arrangement for AACT(backend) and AACT-Admin(frontend)](https://github.com/ctti-clinicaltrials/aact/blob/master/public/aact_architecture.png "AACT Database Visualization")   
 
-## Getting Started
+## Installing Node.js
+Install Node.js version 16 by clicking the following link: [node.js](https://nodejs.org/en/download):
 
-You should always setup AACT Core before setting up AACT Admin. AACT Admin relies on AACT Core. So if you haven’t set up AACT Core yet, please do so now at [aact core](https://github.com/ctti-clinicaltrials/aact)  
+## Getting Started
+You should always setup AACT Core before setting up AACT Admin. AACT Admin relies on AACT Core. So if you haven’t set up AACT Core yet, please do so now at [aact core](https://github.com/ctti-clinicaltrials/aact).  
+
 Make sure you've set values for the following environmental variables:
 | Variable | Explanation |
 | ------------ | ------------ |
@@ -20,18 +23,18 @@ Make sure you've set values for the following environmental variables:
 | `AACT_ALT_PUBLIC_DATABASE_NAME=aact_alt` | This is the AACT alternate public database name that the database superuser will be accessing. It is used to for staging purposes that allows testing of the database before restoring to AACT. |
 | `AACT_CORE_DATABASE_URL=<postgresql://[postgres-user]:[postgres-password]@[hostname]:[port]/[dbname]>` | Connection string to the aact-core database. This allows us to connect to this database from aact-admin. The postgres-user and postgres-password are the superuser-name and superuser-password that you have created in the postgres database that comes with PostgreSQL. Under most circumstances, we can use `localhost` as the hostname and `5432` as the port. |  
 | `AACT_QUERY_DATABASE_URL=<postgresql://[postgres-user]:[postgres-password]@[hostname]:[port]/[dbname]>` | Connection string to the production [aact-pub](https://aact.ctti-clinicaltrials.org/connect) database that users query. This allows us to query this database from aact-admin. The postgres-user and postgres-password are the username and password that you have created at `https://aact.ctti-clinicaltrials.org`. Under most circumstances, we can use `aact-db.ctti-clinicaltrials.org` as the hostname and `5432` as the port. | 
-|`PUBLIC_DB_NAME` |This is the public database name that mailcatcher uses name the variable `aact_public`|
-|`PUBLIC_DB_HOST=<public_host>` |This is the public database hostname used in the connection string to the production. We will be using `localhost` for mailcatcher|
+| `PUBLIC_DB_NAME` |This is the public database name that mailcatcher uses name the variable `aact_public`. |
+| `PUBLIC_DB_HOST=<public_host>` |This is the public database hostname used in the connection string to the production. We will be using `localhost` for mailcatcher. |
 
 These variables should have been set when you setup AACT Core. If any are missing you should add them to where you store your variables (for instance ".bash_profile" or ".zshrc").  
 
 Be sure to call `source` on the file where your passwords are. Example `source ~/.bash_profile` so they are reloaded into the terminal.   
 
-You also should have created aact_alt when setting up AACT Core. But if you didn't, you will need to add it now. So enter the psql shell to create it if it had not been created already.  
+You also should have created aact_alt when setting up AACT Core. But if you didn't, you will need to add it now. Enter the psql shell to create it if it had not been done previously:  
 
 - `psql postgres -U <super_username>`  
 
-- `\l`  if it's listed, you can exit the shell now. If it is missing, then create it.  
+- `\l`  If it is listed, you can exit the shell now. If it is missing, then create it.  
 
 - `template1=# create database aact_alt;`  
 
@@ -43,25 +46,19 @@ You also should have created aact_alt when setting up AACT Core. But if you didn
 
 - run `bundle install` (bundle version should be '~> 1.17.3')  
 
-if you run into issues with bundle installing `libv8` and the `rubyracer` on a mac you can follow these steps
-`brew install v8-315`  
-`gem install libv8 -v '3.16.14.19' -- --with-system-v8`  
-`gem install therubyracer -- --with-v8-dir=/usr/local/opt/v8@3.15`    
+- Setup the databases and database privileges
 
-- Setup the databases and database privileges  
 `bin/rake db:create`  
 `bin/rake db:create RAILS_ENV=test`  
 `bin/rake db:migrate`  
 `bin/rake db:migrate RAILS_ENV=test`  
 `bin/rake db:setup_read_only`  
 `bin/rake db:setup_read_only RAILS_ENV=test`  
-<br>  
 
-- lastly you'll need to copy the contents from "public/documentation" to "public/static/documentation"
+- Lastly you'll need to copy the contents from "public/documentation" to "public/static/documentation".
 ***
 
 ## Setting Up MailCatcher
-
 Instructions on how to install [mailcatcher](https://mailcatcher.me/)
 
 - Install with the following command in termnial `gem install mailcatcher`

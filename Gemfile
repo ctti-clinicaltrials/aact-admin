@@ -30,7 +30,6 @@ gem 'bulk_insert'
 gem 'activerecord-import', '~> 1.4.0'
 gem 'sinatra', :require => nil
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.8'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 gem "ffi", ">= 1.9.24"
 gem "puma"
@@ -40,8 +39,6 @@ gem 'roo', '~> 2.4.0'
 gem 'string-similarity'
 gem 'gon', '~> 6.4'
 gem 'execjs'
-gem 'therubyracer', '~> 0.12.3'
-gem 'libv8', '~> 3.16.14.15'
 gem 'loofah', '~>2.19.1'
 gem 'rack'
 gem 'rack-cors', :require => 'rack/cors'
@@ -55,8 +52,7 @@ gem 'devise-encryptable'
 gem 'capistrano', '~> 3.8'
 gem 'capistrano-rails', '~> 1.2'
 
-# datetimepicker with no dependencies. This gem packages flatpickr's assets
-# for drop-in use in Rails applications.
+# datetimepicker with no dependencies.
 gem 'flatpickr'
 
 # Redcarpet is a Ruby library for Markdown processing
