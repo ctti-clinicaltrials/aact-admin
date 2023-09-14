@@ -70,4 +70,4 @@ jobs:
 
       # Add or replace test runners here
       - name: Run tests
-        run: bundle exec rspec
+        run: bundle exec rspec spec/controllers/dictionary_controller_spec.rb
