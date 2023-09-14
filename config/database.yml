@@ -30,4 +30,5 @@ production: &deploy
   username: <%= ENV.fetch('DB_USER', 'ctti') %>
   password: <%= ENV['DB_PASS'] %>
   database: <%= ENV['DB_NAME'] %>
+  prepared_statements: false
   # url:  <%= "postgres://#{ENV.fetch('AACT_DB_SUPER_USERNAME','ctti')}@localhost:5432/#{ENV.fetch('AACT_ADMIN_DATABASE_NAME','aact_admin')}" %>
