@@ -35,6 +35,7 @@
   dominant-baseline: middle;
   font-weight: 400;
   fill: #FFF;
+  text-decoration: none;
 }
 
 // connect.scss
@@ -56,6 +57,10 @@ pre {
 div.connectionTypes, div.downloadTypes, div.learnMoreCards {
   @include display-flex;
 	padding: 2rem 0rem 0rem;
+
+  a {
+    text-decoration: none !important;
+  }
 
   h4 {
     font-size: 1.5rem;

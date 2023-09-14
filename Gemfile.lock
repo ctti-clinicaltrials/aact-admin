@@ -174,7 +174,6 @@ GEM
       addressable (~> 2.8)
     letter_opener (1.8.1)
       launchy (>= 2.2, < 3)
-    libv8 (3.16.14.19)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -276,7 +275,6 @@ GEM
     recipient_interceptor (0.3.1)
       mail
     redcarpet (3.6.0)
-    ref (2.0.0)
     regexp_parser (2.8.1)
     request_store (1.5.1)
       rack (>= 1.4)
@@ -350,9 +348,6 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     string-similarity (2.1.0)
-    therubyracer (0.12.3)
-      libv8 (~> 3.16.14.15)
-      ref
     thor (1.2.2)
     thread_safe (0.3.6)
     tilt (2.2.0)
@@ -422,7 +417,6 @@ DEPENDENCIES
   jquery-rails
   launchy
   letter_opener
-  libv8 (~> 3.16.14.15)
   loofah (~> 2.19.1)
   nokogiri (~> 1.13.10)
   normalize-rails
@@ -453,7 +447,6 @@ DEPENDENCIES
   single_test
   sprockets (>= 3.7.2)
   string-similarity
-  therubyracer (~> 0.12.3)
   timecop
   title
   turbolinks (~> 5)
