@@ -32,7 +32,7 @@ jobs:
       DB_USER: rails
       DB_PASS: password
       DB_NAME: aact_admin_test
-      AACT_CORE_DATABASE_URL: postgres://rails:password@localhost:5432/aact_test
+      AACT_CORE_TEST_DATABASE_URL: postgres://rails:password@localhost:5432/aact_test
       AACT_PUBLIC_DATABASE_URL: postgres://rails:password@localhost:5432/aact_public_test
     steps:
       - name: Checkout code
