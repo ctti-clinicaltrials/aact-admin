@@ -75,7 +75,6 @@ module AACT
     AACT_BACK_DATABASE_URL   = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_BACK_DATABASE_NAME}"
     AACT_ADMIN_DATABASE_URL  = "postgres://#{AACT_DB_SUPER_USERNAME}@#{APPLICATION_HOST}:5432/#{AACT_ADMIN_DATABASE_NAME}"
 
-
     AACT_PUBLIC_BETA_DATABASE_URL = "postgres://#{AACT_DB_SUPER_USERNAME}@#{AACT_PUBLIC_HOSTNAME}:5432/#{AACT_PUBLIC_BETA_DATABASE_NAME}"
     #  env vars required for capistrano:
     #  GEM_HOME
@@ -85,8 +84,11 @@ module AACT
     #  PATH
 
     # aact-core database connection
-    AACT_CORE_DATABASE_URL  = ENV['AACT_CORE_DATABASE_URL']
-
+    if Rails.env == 'test'
+      AACT_CORE_DATABASE_URL  = ENV['AACT_CORE_TEST_DATABASE_URL']
+    else
+      AACT_CORE_DATABASE_URL  = ENV['AACT_CORE_DATABASE_URL']
+    end
     # aact-query database connection
     AACT_QUERY_DATABASE_URL  = AACT_PUBLIC_DATABASE_URL
 

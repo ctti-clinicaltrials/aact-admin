@@ -2,6 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "Queries", type: :request do
 
+  before do
+    @user = User.create(email: 'UserEmail@email.com', first_name: 'Firstname', last_name: 'Lastname', username: 'user123', password: '1234567', db_activity: nil, last_db_activity: nil, admin: false)
+    @user.confirm
+    sign_in(@user)
+  end
+  
   describe "GET /query with invalid SQL query" do
     #  Can't create a study because Public::Study is READONLY, need to write SQL explicitly
     before(:each) do
@@ -17,53 +23,71 @@ RSpec.describe "Queries", type: :request do
       expect(response).to render_template('query/index.html.erb')
     end
   end
-  
-  describe "GET /query with valid SQL query" do
-    #  Can't create a study because Public::Study is READONLY, need to write SQL explicitly
-    before(:each) do
-      Query::Base.connection.execute("INSERT INTO studies(nct_id, brief_title, created_at, updated_at) VALUES('1238','hello', '2018-10-31', '2018-12-25')")
-    end
-    
-    after(:each) do
-      Query::Base.connection.execute("DELETE FROM studies WHERE nct_id = '1238'")
-    end
 
-    it "runs an SQL query and renders the index page" do
-      get query_path, query: "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'"
-      expect(response).to render_template('query/index.html.erb')
-    end
+  after do
+    # delete all Background Jobs associated with each User before deleting each User
+    @user.background_jobs.each do |job|
+      job.destroy
+    end  
+    @user.destroy
   end
 
-  describe "GET /query with valid SQL query and respond to format html" do
-    #  Can't create a study because Public::Study is READONLY, need to write SQL explicitly
-    before(:each) do
-      Query::Base.connection.execute("INSERT INTO studies(nct_id, brief_title, created_at, updated_at) VALUES('1238','hello', '2018-10-31', '2018-12-25')")
+  describe "GET /query" do
+    it "renders the Query index page" do
+      get query_path
+      expect(response).to render_template(:index)
     end
-    
-    after(:each) do
-      Query::Base.connection.execute("DELETE FROM studies WHERE nct_id = '1238'")
+    it "if less than 10 Background Jobs (running + pending), creates a new Job and redirects to the Job's show page" do
+      5.times do
+        FactoryBot.create(:background_job, status: 'running', user_id: @user.id)
+      end
+      4.times do
+        FactoryBot.create(:background_job, status: 'pending', user_id: @user.id)
+      end  
+      sql = { query: 'SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at FROM studies LIMIT 10' }
+      get query_path, sql
+      expect(response).to redirect_to background_job_path(id: BackgroundJob.last.id)
     end
-
-    it "runs an SQL query and renders the index html" do
-      get query_path(format: :html, query:  "SELECT nct_id, brief_title, created_at, updated_at FROM studies WHERE nct_id='1238'")
-      expect(response).to render_template('query/index.html.erb')
+    it "if less than 10 Background Jobs (pending), creates a new Job and redirects to the Job's show page" do
+      9.times do
+        FactoryBot.create(:background_job, status: 'pending', user_id: @user.id)
+      end  
+      sql = { query: 'SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at FROM studies LIMIT 10' }
+      get query_path, sql
+      expect(response).to redirect_to background_job_path(id: BackgroundJob.last.id)
     end
-  end
-
-  describe "GET /query with valid SQL query and respond to format CSV" do
-    #  Can't create a study because Public::Study is READONLY, need to write SQL explicitly
-    before(:each) do
-      Query::Base.connection.execute("INSERT INTO studies(nct_id, brief_title, created_at, updated_at) VALUES('1238','hello', '2018-10-31', '2018-12-25')")
+    it "if less than 10 Background Jobs (running), creates a new Job and redirects to the Job's show page" do
+      9.times do
+        FactoryBot.create(:background_job, status: 'running', user_id: @user.id)
+      end  
+      sql = { query: 'SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at FROM studies LIMIT 10' }
+      get query_path, sql
+      expect(response).to redirect_to background_job_path(id: BackgroundJob.last.id)
     end
-    
-    after(:each) do
-      Query::Base.connection.execute("DELETE FROM studies WHERE nct_id = '1238'")
+    it "if more than 10 Background Jobs (running + pending), does NOT create a new Job" do
+      5.times do
+        FactoryBot.create(:background_job, status: 'pending', user_id: @user.id)
+        FactoryBot.create(:background_job, status: 'running', user_id: @user.id)
+      end
+      sql = { query: 'SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at FROM studies LIMIT 11' }
+      get query_path, sql
+      expect(response).to render_template(:index)
     end
-
-    it "runs an SQL query and gets the query path to generate csv file" do
-      get query_path(format: :csv, query: "SELECT nct_id, brief_title, created_at, updated_at has_dmc FROM studies WHERE nct_id='1238'")
-      expect(response.body).to match(/1238/)
-      expect(response.body).to match(/hello/)
+    it "if more than 10 Background Jobs (pending), does NOT create a new Job" do
+      10.times do
+        FactoryBot.create(:background_job, status: 'pending', user_id: @user.id)
+      end
+      sql = { query: 'SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at FROM studies LIMIT 11' }
+      get query_path, sql
+      expect(response).to render_template(:index)
+    end
+    it "if more than 10 Background Jobs (running), does NOT create a new Job" do
+      10.times do
+        FactoryBot.create(:background_job, status: 'running', user_id: @user.id)
+      end
+      sql = { query: 'SELECT nct_id, study_type, brief_title, enrollment, has_dmc, completion_date, updated_at FROM studies LIMIT 11' }
+      get query_path, sql
+      expect(response).to render_template(:index)
     end
   end
 
