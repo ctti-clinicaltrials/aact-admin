@@ -7,9 +7,9 @@ class UserMailer < ApplicationMailer
   end
 
   def self.send_event_notification(event_type, user)
-    admin_addresses.each { |email_addr|
-      event_notification(email_addr, user, event_type).try(:deliver_now)
-    }
+    # admin_addresses.each { |email_addr|
+    #   event_notification(email_addr, user, event_type).try(:deliver_now)
+    # }
   end
 
   def backup_notification(email, event)
