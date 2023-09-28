@@ -1,7 +1,9 @@
 <div class="container">
   <div class="pb-5">
   <div class="pb-4"></div>
-  <h1>Saved Queries</h1>
+  <h1>User Submitted Queries</h1>
+  <h4>These queries were submitted by aact users and have not been verified by the ctti aact team.</h4>
+  <a href="/saved_query_doc">How to create query</a>
   <div class="pb-5"></div>
   <% if @saved_queries.empty? %>
     <p> There is no Saved Query yet. You can click the button below to create one.</p>
@@ -31,4 +33,5 @@
       </tbody>
     </table>
   <% end %>
+  <%= link_to 'Query Results', background_jobs_path, :class => "btn btn-primary btn-sm" %> 
 </div>
