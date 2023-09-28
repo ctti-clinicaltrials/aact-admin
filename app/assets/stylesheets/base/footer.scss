@@ -21,6 +21,8 @@ div.circleButtons {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: .8rem;
+    text-decoration: none !important;
+    font-weight: normal;
   }
 
   i {
@@ -88,6 +90,9 @@ footer {
 
  .footerBar {
     border-bottom: 1px solid $light-grey;
+    a{
+      text-decoration: none;
+    }
 }
 
   div.disclaimer {
