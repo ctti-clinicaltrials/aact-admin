@@ -18,6 +18,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  # def update
+  #   byebug
+  #   if @user.update(user_params)
+  #     redirect_to users_path, notice: "User successfuly updated."
+  #   else
+  #     flash.now.alert = @user.errors.full_messages[0]
+  #     render :edit
+  #   end
+  # end
+
   def destroy
     current_user.remove
     if resource.errors.empty?
@@ -54,5 +64,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       }
     end
   end
+
+  # def user_params
+  #   params.require(:user).permit(:first_name, :last_name, :email, :username, :password, :password_confirmation )
+  # end
 
 end
