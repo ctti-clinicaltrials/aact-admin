@@ -18,16 +18,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  # def update
-  #   byebug
-  #   if @user.update(user_params)
-  #     redirect_to users_path, notice: "User successfuly updated."
-  #   else
-  #     flash.now.alert = @user.errors.full_messages[0]
-  #     render :edit
-  #   end
-  # end
-
   def destroy
     current_user.remove
     if resource.errors.empty?
@@ -39,19 +29,38 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def password
+
+  end
+
   protected
 
   def update_resource(resource, params)
-    flash[:notice] = 'User succesfully updated!'
+    if params[:password_confirmation].nil?
+      flash[:notice] = 'User succesfully updated!'
+    else 
+      flash[:notice] = 'Password succesfully updated!'
+    end
     resource.update(params)
     UserMailer.send_event_notification('updated', resource) if resource.errors.size == 0
   end
+
+  # def password(resource, params)
+  #   flash[:notice] = 'Password succesfully updated!'
+  #   resource.update(params)
+  #   UserMailer.send_event_notification('updated', resource) if resource.errors.size == 0
+  #   redirect_to edit_user_registration_path resource
+  # end
 
   def configure_devise_permitted_parameters
     registration_params = [:first_name, :last_name, :email, :username, :password, :password_confirmation ]
 
     case params[:action]
     when 'update'
+      devise_parameter_sanitizer.permit(:account_update) {
+        |u| u.permit(registration_params << :current_password)
+      }
+    when 'password'
       devise_parameter_sanitizer.permit(:account_update) {
         |u| u.permit(registration_params << :current_password)
       }
@@ -65,9 +74,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
       }
     end
   end
-
-  # def user_params
-  #   params.require(:user).permit(:first_name, :last_name, :email, :username, :password, :password_confirmation )
-  # end
-
 end

@@ -14,6 +14,10 @@ Rails.application.routes.draw do
                                     confirmations: 'users/confirmations',
                                     passwords:     'users/passwords'}
 
+  devise_scope :user do
+    get 'users/password', :to => 'users/registrations#password'
+  end
+
   root "pages#home"
 
   get 'file_records/active_url'
