@@ -42,6 +42,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def update_resource(resource, params)
+    flash[:notice] = 'User succesfully updated!'
     resource.update(params)
     UserMailer.send_event_notification('updated', resource) if resource.errors.size == 0
   end
