@@ -30,27 +30,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def password
-
+    redirect_to root_path if current_user.nil? 
   end
 
   protected
 
-  def update_resource(resource, params)
-    if params[:password_confirmation].nil?
-      flash[:notice] = 'User succesfully updated!'
-    else 
-      flash[:notice] = 'Password succesfully updated!'
+  def update_resource(resource, params) 
+    if params[:password_confirmation].nil? && resource.errors.size == 0
+      flash.now[:notice] = 'User succesfully updated!'
     end
     resource.update(params)
+    if resource.errors.size == 0 && !params[:password_confirmation].nil?
+      flash.now[:notice] = 'Password succesfully updated!'
+    end
     UserMailer.send_event_notification('updated', resource) if resource.errors.size == 0
   end
-
-  # def password(resource, params)
-  #   flash[:notice] = 'Password succesfully updated!'
-  #   resource.update(params)
-  #   UserMailer.send_event_notification('updated', resource) if resource.errors.size == 0
-  #   redirect_to edit_user_registration_path resource
-  # end
 
   def configure_devise_permitted_parameters
     registration_params = [:first_name, :last_name, :email, :username, :password, :password_confirmation ]
