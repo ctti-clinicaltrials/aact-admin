@@ -29,10 +29,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def password
+    redirect_to root_path if current_user.nil? 
+  end
+
   protected
 
-  def update_resource(resource, params)
+  def update_resource(resource, params) 
+    if params[:password_confirmation].nil? && resource.errors.size == 0
+      flash.now[:notice] = 'User succesfully updated!'
+    end
     resource.update(params)
+    if resource.errors.size == 0 && !params[:password_confirmation].nil?
+      flash.now[:notice] = 'Password succesfully updated!'
+    end
     UserMailer.send_event_notification('updated', resource) if resource.errors.size == 0
   end
 
@@ -41,6 +51,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     case params[:action]
     when 'update'
+      devise_parameter_sanitizer.permit(:account_update) {
+        |u| u.permit(registration_params << :current_password)
+      }
+    when 'password'
       devise_parameter_sanitizer.permit(:account_update) {
         |u| u.permit(registration_params << :current_password)
       }
@@ -54,5 +68,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
       }
     end
   end
-
 end
