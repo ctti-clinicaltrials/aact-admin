@@ -54,6 +54,7 @@ Rails.application.routes.draw do
   get "/contactus"            => "pages#contactus"
 
   get "/query"                => "query#index", as: :query
+  get "/playground"           => "playground#index", as: :playground
 
   get "/install_postgres"     => "postgres_documentation#install_postgres"
   get "/credentials"          => "credentials#show"
