@@ -7,6 +7,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.11/addon/hint/sql-hint.min.js" integrity="sha512-Pue0eeX9BJ4IA+BRNDOFwhQmxPjXIHiHOsvHNc9dQ+3J43swbPQDT9gwC8lzE1TTjR8iIxOd+lNiv4oTBRWqYw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.11/theme/monokai.min.css" integrity="sha512-R6PH4vSzF2Yxjdvb2p2FA06yWul+U0PDDav4b/od/oXf9Iw37zl10plvwOXelrjV2Ai7Eo3vyHeyFUjhXdBCVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+<%= link_to "Community Queries", saved_queries_path %>
+<%= link_to "Help", saved_query_doc_path %>
+
 <%= form_tag("/playground", :method => "get") do %>
   <%= label_tag(:query, "Input SQL Query:") %>
   <% if @error.present? %>
@@ -21,7 +24,7 @@
   <%= text_area_tag(:query, params[:query]) %>
   <div class="pb-3"></div>
   <div class="col-auto">
-    <button type="submit" class="btn btn-primary btn-sm">Execute SQL Query</button>
+    <button type="submit" class="btn btn-primary btn-sm">Execute</button>
   </div>
 <% end %>
 <script>
