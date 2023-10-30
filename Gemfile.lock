@@ -160,6 +160,9 @@ GEM
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-like (0.3.1)
@@ -191,6 +194,7 @@ GEM
     mini_portile2 (2.8.4)
     minitest (5.19.0)
     multi_json (1.15.0)
+    multi_xml (0.6.0)
     multipart-post (2.3.0)
     net-imap (0.3.7)
       date
@@ -413,6 +417,7 @@ DEPENDENCIES
   formulaic
   gon (~> 6.4)
   high_voltage
+  httparty
   jbuilder (~> 2.9)
   jquery-rails
   launchy

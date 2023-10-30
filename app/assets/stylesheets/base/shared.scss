@@ -952,12 +952,3 @@ div.useCase {
   @include box-shadow(3px 3px 11px $grey);
   position: relative;
 }
-
-.resultsTable {
-  table {
-    border: 1px solid #070000;
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-}

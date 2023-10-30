@@ -43,6 +43,8 @@ gem 'loofah', '~>2.19.1'
 gem 'rack'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rack-protection', '~> 1.5.5'
+# work with CSV
+gem 'httparty'
 
 # user registration
  gem "devise", ">= 4.9.1"

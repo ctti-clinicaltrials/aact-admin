@@ -14,9 +14,16 @@ class PlaygroundController < ApplicationController
 
   def show_results
     @background_job = BackgroundJob.find_by_id(params[:id])
+    if @background_job.url
+      extractor = CsvDataExtractor.new(@background_job.url)
+      headers, data = extractor.fetch_and_extract_data
+      @headers = headers
+      @data = data
+    end
       if @background_job.nil? || (@background_job.user_id != current_user.id && !current_user.admin?)
         render :file => "app/views/errors/not_found.html", status: :not_found
+
       end 
   end
-
+  
 end
