@@ -14,6 +14,8 @@ class PlaygroundController < ApplicationController
 
   def show_results
     @background_job = BackgroundJob.find_by_id(params[:id])
+    Rails.cache.write('background_job_id', params[:id])
+
     if @background_job.url
       extractor = CsvDataExtractor.new(@background_job.url)
       headers, data = extractor.fetch_and_extract_data
@@ -22,8 +24,14 @@ class PlaygroundController < ApplicationController
     end
       if @background_job.nil? || (@background_job.user_id != current_user.id && !current_user.admin?)
         render :file => "app/views/errors/not_found.html", status: :not_found
-
       end 
+  end
+
+  def job_status
+    # Retrieve the job status from the cache
+    id = Rails.cache.read('background_job_id')
+    status = BackgroundJob.find(id).status
+    render json: { status: status }
   end
   
 end

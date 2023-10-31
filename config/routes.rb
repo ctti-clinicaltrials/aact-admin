@@ -56,7 +56,7 @@ Rails.application.routes.draw do
   get "/query"                => "query#index", as: :query
   get "/playground"           => "playground#index", as: :playground
   get "/playground/:id"       => "playground#show_results", as: :show_results 
-
+  get "job_status"           => "playground#job_status", as: :job_status
   get "/install_postgres"     => "postgres_documentation#install_postgres"
   get "/credentials"          => "credentials#show"
 
