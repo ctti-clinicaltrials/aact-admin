@@ -3,10 +3,42 @@ class SavedQueriesController < ApplicationController
   before_action :set_saved_query, only: [:edit, :update, :destroy]
 
   def index
-    if user_signed_in?      
-      @saved_queries = SavedQuery.where('public = true OR (public = false AND user_id = ?)', current_user.id).order(created_at: :desc)  
+    if user_signed_in?
+      if params[:search].present?
+        @saved_queries = SavedQuery.where(
+          '(public = true OR (public = false AND user_id = ?)) AND (title LIKE ? OR description LIKE ?)',
+          current_user.id,
+          "%#{params[:search]}%",
+          "%#{params[:search]}%"
+        ).order(created_at: :desc)
+      else
+        @saved_queries = SavedQuery.where('public = true OR (public = false AND user_id = ?)', current_user.id).order(created_at: :desc)
+      end
     else
-      @saved_queries = SavedQuery.where('public = true').order(created_at: :desc)  
+      if params[:search].present?
+        @saved_queries = SavedQuery.where(
+          'public = true AND (title LIKE ? OR description LIKE ?)',
+          "%#{params[:search]}%",
+          "%#{params[:search]}%"
+        ).order(created_at: :desc)
+      else
+        @saved_queries = SavedQuery.where('public = true').order(created_at: :desc)
+      end
+    end
+  end
+  
+  def my_queries
+    if params[:search].present?
+      @my_queries = SavedQuery.where(user_id: current_user.id)
+                              .where('title LIKE ? OR description LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
+                              .order(created_at: :desc)
+                              .page(params[:page])
+                              .per(20)
+    else
+      @my_queries = SavedQuery.where(user_id: current_user.id)
+                              .order(created_at: :desc)
+                              .page(params[:page])
+                              .per(20)
     end
   end
   

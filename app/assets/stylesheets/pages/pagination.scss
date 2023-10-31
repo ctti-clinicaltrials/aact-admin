@@ -1,0 +1,15 @@
+.pagination {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+}
+
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination a {
+  text-align: center;
+  line-height: 30px;
+  text-decoration: none;
+}
