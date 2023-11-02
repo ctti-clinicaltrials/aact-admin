@@ -53,7 +53,7 @@ Rails.application.routes.draw do
   get "/deploy_code"          => "pages#deploy_code"
   get "/contactus"            => "pages#contactus"
 
-  get "/query"                => "query#index", as: :query
+  # get "/query"                => "query#index", as: :query
   get "/playground"           => "playground#index", as: :playground
   get "/playground/:id"       => "playground#show_results", as: :show_results 
   get "job_status"           => "playground#job_status", as: :job_status

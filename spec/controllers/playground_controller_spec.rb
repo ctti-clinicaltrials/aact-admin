@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe QueryController, type: :controller do
+RSpec.describe PlaygroundController, type: :controller do
 
   describe "GET #index" do
     it "returns http success" do
