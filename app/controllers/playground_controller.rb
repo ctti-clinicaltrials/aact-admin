@@ -8,7 +8,7 @@ class PlaygroundController < ApplicationController
         redirect_to show_results_path(@background_job.id), notice: "The query was added to the queue successfully."
       else 
         flash.now.alert = "Cannot run query. You can only have a maximum of 10 queries in the queue."
-      end   
+      end
     end  
   end
 

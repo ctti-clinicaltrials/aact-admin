@@ -28,7 +28,7 @@
   <% end %>
 
   <div class="pb-4"></div>
-  <%= form_tag("/query", :method => "get") do %>
+  <%= form_tag("/playground", :method => "get") do %>
     <%= label_tag(:query, 'SQL Query:') %>
 
     <% if @error.present? %>
@@ -84,6 +84,9 @@
         <% end %>
       <% end %> 
     </div>
+    <div class="col-auto">
+    <button type="submit" class="btn btn-primary btn-sm mt-2">Execute</button>
+  </div>
   <% end %>
 
   <div id="status-container">
@@ -123,6 +126,7 @@
 
   // Poll the server every 5 seconds
   if (<%=@background_job.status != 'complete' %>) {
+  displayJobStatus();
   setInterval(checkJobStatus, 5000);
   } else {
     displayJobStatus();
