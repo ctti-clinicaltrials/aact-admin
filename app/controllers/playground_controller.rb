@@ -16,7 +16,7 @@ class PlaygroundController < ApplicationController
     @background_job = BackgroundJob.find_by_id(params[:id])
     Rails.cache.write('background_job_id', params[:id])
 
-    if @background_job.url
+    if @backgnd_job && @background_job.url
       extractor = CsvDataExtractor.new(@background_job.url)
       headers, data = extractor.fetch_and_extract_data
       @headers = headers
