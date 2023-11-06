@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.6.6"
 
+gem 'kaminari'
 gem 'nokogiri', '~> 1.13.10'
 gem 'rails', '~> 5.0.7'
 gem 'rails-html-sanitizer', '~> 1.0.4'
