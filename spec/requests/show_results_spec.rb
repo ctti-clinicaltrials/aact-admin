@@ -56,7 +56,7 @@ RSpec.describe "Background Jobs", type: :request do
 
   describe "GET /background_jobs/:id" do
     it "renders the Background Job show page and does not display the 'User Name' if the current logged-in User is NOT an admin and is the User that created the Background Job" do
-      backgnd_job = FactoryBot.create(:background_job, user_id: @user.id)
+      backgnd_job = FactoryBot.create(:background_job, url: nil, user_id: @user.id)
       get show_results_path(id: backgnd_job.id)
       expect(response).to render_template(:show_results)
       expect(response.body).not_to match(/User Name/)
@@ -69,7 +69,7 @@ RSpec.describe "Background Jobs", type: :request do
     it "renders the Background Job show page and displays the 'User Name' if the current logged-in User is an Admin" do
       # sign in Admin User
       sign_in(@user_admin)  
-      backgnd_job = FactoryBot.create(:background_job, user_id: @user_admin.id)
+      backgnd_job = FactoryBot.create(:background_job,url: nil, user_id: @user_admin.id)
       get show_results_path(id: backgnd_job.id)
       expect(response).to render_template(:show_results)
       expect(response.body).to match(/User Name/)
@@ -80,7 +80,7 @@ RSpec.describe "Background Jobs", type: :request do
       expect(response).to render_template("layouts/application")
     end
     it "renders the Background Job show page, does NOT display 'Delete' button, and 'Download' URL if the Job status is 'complete' " do
-      backgnd_job = FactoryBot.create(:background_job, user_id: @user.id, status: 'complete', completed_at: DateTime.now)
+      backgnd_job = FactoryBot.create(:background_job, user_id: @user.id, url: nil,  status: 'complete', completed_at: DateTime.now)
       get show_results_path(id: backgnd_job.id)
       expect(response).to render_template(:show_results)
       expect(response.body).not_to match(/Delete/)
@@ -88,7 +88,7 @@ RSpec.describe "Background Jobs", type: :request do
     end
 
     it "renders the Background Job show page and displays 'Delete' button if the current User is the User that created Job and Job status is NOT 'complete' and is NOT 'working' " do
-      backgnd_job = FactoryBot.create(:background_job, user_id: @user.id)
+      backgnd_job = FactoryBot.create(:background_job, url: nil, status: 'pending', user_id: @user.id)
       get show_results_path(id: backgnd_job.id)
       expect(response).to render_template(:show_results)
       expect(response.body).to match(/Delete/)
@@ -96,19 +96,19 @@ RSpec.describe "Background Jobs", type: :request do
     it "renders the Background Job show page and displays 'Delete' button if the current User is an Admin and Job status is NOT 'complete' and is NOT 'working' " do
       # sign in Admin User
       sign_in(@user_admin)
-      backgnd_job = FactoryBot.create(:background_job, user_id: @user_admin.id)
+      backgnd_job = FactoryBot.create(:background_job, url: nil, user_id: @user_admin.id)
       get show_results_path(id: backgnd_job.id)
       expect(response).to render_template(:show_results)
       expect(response.body).to match(/Delete/)
     end
     it "renders the Background Job show page, displays 'Working...', and does NOT display 'Delete' button if the Job status is 'working' " do
-      backgnd_job = FactoryBot.create(:background_job, user_id: @user.id, status: 'working')
+      backgnd_job = FactoryBot.create(:background_job, user_id: @user.id, url: nil, status: 'working')
       get show_results_path(id: backgnd_job.id)
       expect(response).to render_template(:show_results)
       expect(response.body).not_to match(/Delete/)
     end  
     it "renders the Background Job show page, displays 'User Error Message', and does NOT display 'Delete' button if the Job status is 'error' " do
-      backgnd_job = FactoryBot.create(:background_job, user_id: @user.id, status: 'error')
+      backgnd_job = FactoryBot.create(:background_job, user_id: @user.id, url: nil, status: 'error')
       get show_results_path(id: backgnd_job.id)
       expect(response).to render_template(:show_results)
       expect(response.body).to match(/User Error Message/)

@@ -43,7 +43,7 @@ end
 
   describe 'GET #show_results' do
     it 'renders the results page when the job exists and belongs to the user' do
-      background_job = create(:background_job, user: @user) # Assuming you have a BackgroundJob model and FactoryBot
+      background_job = create(:background_job, url: nil, user: @user)
       allow(controller).to receive(:current_user).and_return(@user)
 
       get :show_results, params: { id: background_job.id }
