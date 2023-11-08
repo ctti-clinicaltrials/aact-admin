@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.6.6"
+ruby "2.7.7"
 
 gem 'kaminari'
 gem 'nokogiri', '~> 1.13.10'
