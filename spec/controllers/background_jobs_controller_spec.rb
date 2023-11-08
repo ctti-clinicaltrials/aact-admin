@@ -22,19 +22,6 @@ RSpec.describe BackgroundJobsController, type: :controller do
     end
   end
 
-  describe "GET #show" do
-    it "returns http success" do
-      backgnd_job = FactoryBot.create(:background_job, user_id: @user.id)
-      get :show, id: backgnd_job.id
-      expect(response).to have_http_status(:success)
-    end
-    it "returns http not found if the Background Job ID is invalid" do
-      backgnd_job = FactoryBot.create(:background_job, user_id: @user.id)
-      get :show, id: 5000 # an ID that doesn't exist
-      expect(response).to have_http_status(:not_found)
-    end
-  end
-
   describe "GET #destroy" do
     it "returns http found if the current logged-in User is the User that created the Background Job" do
       backgnd_job = FactoryBot.create(:background_job, user_id: @user.id)

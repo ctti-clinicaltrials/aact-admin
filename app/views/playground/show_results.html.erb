@@ -28,7 +28,7 @@
   <% end %>
 
   <div class="pb-4"></div>
-  <%= form_tag("/query", :method => "get") do %>
+  <%= form_tag("/playground", :method => "get") do %>
     <%= label_tag(:query, 'SQL Query:') %>
 
     <% if @error.present? %>
@@ -51,27 +51,25 @@
               <%= link_to 'Delete', background_job_path(@background_job), :class => "btn btn-danger btn-sm", :method => :delete, data: { confirm: 'Are you sure?' } %>
             </div>
           </div>
-          <div class="d-flex">
-            <div>
-              <h5><strong> Queued... </strong></h5>
-            </div>  
-          </div>      
+          <div id="status-container">
+            <!-- Display job status here -->
+          </div>
         <% end %>
 
         <% if @background_job.status == 'working' %>
           <div class="me-auto"></div>
           <div class="d-flex">
-            <div>
-              <h5><strong> Working... </strong></h5>
-            </div>
+          <div id="status-container">
+            <!-- Display job status here -->
+          </div>
           </div>      
         <% end %>
 
         <% if @background_job.status == 'complete' %>
-          <div class="me-auto"></div>
+          <div class="me-auto"><span id="status-container"><span></div>
           <div class="d-flex">  
             <div>
-              <h5><strong> Results: </strong><a href="<%= @background_job.url %>">Download</a></h5>
+              <h5><a href="<%= @background_job.url %>">Download</a></h5>
             </div>
           </div> 
         <% end %>
@@ -86,7 +84,87 @@
         <% end %>
       <% end %> 
     </div>
+    <div class="col-auto">
+    <button type="submit" class="btn btn-primary btn-sm mt-2">Execute</button>
+  </div>
   <% end %>
+
+  <div id="status-container">
+  <!-- Display job status here -->
+</div>
+
+<script>
+  function checkJobStatus() {
+    $.ajax({
+      url: '<%= job_status_path %>', // Use the correct URL for your route
+      method: 'GET',
+      dataType: 'json',
+      success: function (data) {
+        console.log()
+        // Update the status container with the job status
+        $('#status-container').text('Job Status: ' + data.status);
+
+        if (data.status === 'complete') {
+          // If the status is "complete," refresh the view
+          location.reload();
+        }
+      }
+    });
+  }
+
+  function displayJobStatus() {
+    $.ajax({
+      url: '<%= job_status_path %>', // Use the correct URL for your route
+      method: 'GET',
+      dataType: 'json',
+      success: function (data) {
+        // Update the status container with the job status
+        $('#status-container').text('Job Status: ' + data.status);
+      }
+    });
+  }
+
+  // Poll the server every 5 seconds
+  if (<%=@background_job.status != 'complete' %>) {
+  displayJobStatus();
+  setInterval(checkJobStatus, 5000);
+  } else {
+    displayJobStatus();
+  }
+</script>
+
+  <h1>Results:</h1>
+  
+  <hr/>
+
+
+  <%= stylesheet_link_tag 'table_styles' %>
+  <% if @data.present? %>
+  <div class="result-table">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th> <!-- Add a header for the row numbers column -->
+        <% @headers.each do |header| %>
+          <th><%= header %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @data.each_with_index do |row, index| %>
+        <tr>
+          <td><%= index + 1 %></td> <!-- Display the row number, starting from 1 -->
+          <% row.each do |value| %>
+            <td><%= value %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+<% else %>
+  <p>No data available.</p>
+<% end %>
 
   <div class="pb-4"></div>
   <div>
