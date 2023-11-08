@@ -103,6 +103,10 @@
         console.log()
         // Update the status container with the job status
         $('#status-container').text('Job Status: ' + data.status);
+        
+        if (data.status === 'error') {
+        $('#status-container').text('User Error Message: ' + data.error_message);
+        }
 
         if (data.status === 'complete') {
           // If the status is "complete," refresh the view

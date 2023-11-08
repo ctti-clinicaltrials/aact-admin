@@ -30,7 +30,8 @@ class PlaygroundController < ApplicationController
     # Retrieve the job status from the cache
     id = Rails.cache.read('background_job_id')
     status = BackgroundJob.find(id).status
-    render json: { status: status }
+    error_message = BackgroundJob.find(id).user_error_message
+    render json: { status: status, error_message: error_message }
   end
   
 end
