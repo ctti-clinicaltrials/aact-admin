@@ -17,7 +17,7 @@ COPY . /app
 RUN RAILS_ENV=production bundle exec rake assets:precompile
 
 # Switch to the user
-USER aact
+# USER aact
 
 EXPOSE 3000
 
