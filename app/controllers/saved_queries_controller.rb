@@ -3,34 +3,30 @@ class SavedQueriesController < ApplicationController
   before_action :set_saved_query, only: [:edit, :update, :destroy]
 
   def index
+    base_query = SavedQuery.where(public: true)
+
     if user_signed_in?
-      if params[:search].present?
-        @saved_queries = SavedQuery.where(
-          '(public = true OR (public = false AND user_id = ?)) AND (title LIKE ? OR description LIKE ?)',
-          current_user.id,
-          "%#{params[:search]}%",
-          "%#{params[:search]}%"
-        ).order(created_at: :desc)
-      else
-        @saved_queries = SavedQuery.where('public = true OR (public = false AND user_id = ?)', current_user.id).order(created_at: :desc)
-      end
+      base_query = base_query.or(SavedQuery.where(public: false, user_id: current_user.id))
+    end
+
+    if params[:search].present?
+      @saved_queries = base_query
+        .where("title LIKE ? OR description LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+        .order(created_at: :desc)
+        .page(params[:page])
+        .per(20)
     else
-      if params[:search].present?
-        @saved_queries = SavedQuery.where(
-          'public = true AND (title LIKE ? OR description LIKE ?)',
-          "%#{params[:search]}%",
-          "%#{params[:search]}%"
-        ).order(created_at: :desc)
-      else
-        @saved_queries = SavedQuery.where('public = true').order(created_at: :desc)
-      end
+      @saved_queries = base_query
+        .order(created_at: :desc)
+        .page(params[:page])
+        .per(20)
     end
   end
   
   def my_queries
     if params[:search].present?
       @my_queries = SavedQuery.where(user_id: current_user.id)
-                              .where('title LIKE ? OR description LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
+                              .where("title LIKE ? OR description LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
                               .order(created_at: :desc)
                               .page(params[:page])
                               .per(20)

@@ -1,37 +1,33 @@
 <div class="container">
-  <div class="pb-5">
-  <div class="pb-4"></div>
-  <h1>User Submitted Queries</h1>
-  <h4>These queries were submitted by aact users and have not been verified by the ctti aact team.</h4>
-  <a href="/saved_query_doc">How to create query</a>
-  <div class="pb-5"></div>
-  <% if @saved_queries.empty? %>
-    <p> There is no Saved Query yet. You can click the button below to create one.</p>
-    <%= link_to 'New Query', new_saved_query_path, :class => "btn btn-primary btn-sm" %>
+  <%= render 'layouts/query_menu' %>
+
+  <div class="search-form">
+    <%= form_tag(my_queries_path, method: :get, class: 'form-inline') do %>
+      <div class="form-group" style="display: inline-flex; align-items: center;">
+        <%= text_field_tag :search, params[:search], class: 'form-control form-control-sm', style: 'width: 250px;'%>
+        <%= submit_tag "Search", class: 'btn btn-primary btn-sm', style: 'width: 100px;' %>
+      </div>
+    <% end %>
   </div>
-  <% else %>
-    <%= link_to 'New Query', new_saved_query_path, :class => "btn btn-primary btn-sm" %>
-    <div class="pb-4"></div>
-    <table class="table table-sm table-striped" style="max-width: 100rem;">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>User</th>
-          <th>Created</th>
+
+    <table id="data-table" class="table table-sm table-striped">
+    <tbody>
+      <% @saved_queries.each do |query| %>
+        <tr class="selectable-row" data-url="<%= saved_query_path(query) %>">
+          <td>
+            <%= link_to query.title, saved_query_path(query) %>
+            <br>
+            <%= query.description %>
+          </td>
+          <td>
+            <%= query.created_at.strftime('%B %d, %Y') %>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        <% @saved_queries.each do |query| %>
-          <tr>
-            <td><%= link_to query.title, saved_query_path(query) %> </td>
-            <td><%= query.description %></td>
-            <td><%= query.user&.username %></td>
-            <td><%= query.created_at.strftime('%B %d, %Y') %></td>
-          </tr>
-        <% end %>
-      </tbody>
+      <% end %>
+    </tbody>
     </table>
-  <% end %>
-  <%= link_to 'Query Results', background_jobs_path, :class => "btn btn-primary btn-sm" %> 
-</div>
+    
+    <div class="pagination">
+      <%= paginate @saved_queries %>
+    </div>
+  </div>
