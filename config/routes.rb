@@ -90,6 +90,7 @@ Rails.application.routes.draw do
   get "/archive/pipe_files_with_r"    => "archive#pipe_files_with_r"
   get "/archive/pipe_files_with_sas"  => "archive#pipe_files_with_sas"
   get 'my/queries', to: 'saved_queries#my_queries'
+  get '/queries', to: 'saved_queries#index'
 
   #digitalocean
   get "/static/:type/:time/:filename(:format)" => "file_records#active_url"
