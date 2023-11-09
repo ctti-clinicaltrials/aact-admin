@@ -4,13 +4,8 @@ class FaqController < ApplicationController
   private
 
   def authenticate_user
-    render plain: "Sorry - This page is only accessible to administrators." if !current_user_is_an_admin?
+    unless user_signed_in? && current_user.admin?
+      render file: Rails.root.join('app', 'views', 'errors', 'unauthorized_user.html.erb'), layout: true, status: :forbidden
+    end
   end
-
-  def current_user_is_an_admin?
-    return false if !current_user
-    col=AACT::Application::AACT_ADMIN_USERNAMES.split(',')
-    col.include? current_user.username
-  end
-
 end
