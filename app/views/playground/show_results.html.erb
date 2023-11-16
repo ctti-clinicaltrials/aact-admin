@@ -60,15 +60,9 @@
             </div>
           </div> 
         <% end %>
-
-        <% if @background_job.status == 'error' %>
-          <div class="me-auto"></div>
-          <div class="d-flex text-danger">  
-            <div>
-              <h5><strong> User Error Message: </strong><%= @background_job.user_error_message %></h5>
-            </div>
-          </div> 
-        <% end %>
+        <div id="status-container" >
+        <!-- Display job status here -->
+        </div>
       <% end %> 
     </div>
     <div class="col-auto">
