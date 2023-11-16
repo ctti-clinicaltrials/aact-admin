@@ -8,8 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.11/theme/monokai.min.css" integrity="sha512-R6PH4vSzF2Yxjdvb2p2FA06yWul+U0PDDav4b/od/oXf9Iw37zl10plvwOXelrjV2Ai7Eo3vyHeyFUjhXdBCVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <div class="modal-body">
-  <h1>Background Job</h1>
-  <hr/>
+  <%= render 'layouts/query_menu' %>
 
   <% if current_user.admin? %>
     <div class="container-fluid">
@@ -17,17 +16,6 @@
     </div>
   <% end %>
 
-  <div class="container-fluid">
-    <h5><strong> Created At: </strong><%= @background_job.created_at.strftime('%B %d, %Y at %l:%M %p') %></h5>
-  </div>
-
-  <% if @background_job.status == 'complete' %>
-    <div class="container-fluid">
-      <h5><strong> Completed At: </strong><%= @background_job.completed_at.strftime('%B %d, %Y at %l:%M %p') %></h5>
-    </div>
-  <% end %>
-
-  <div class="pb-4"></div>
   <%= form_tag("/playground", :method => "get") do %>
     <%= label_tag(:query, 'SQL Query:') %>
 
