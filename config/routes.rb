@@ -53,7 +53,9 @@ Rails.application.routes.draw do
   get "/deploy_code"          => "pages#deploy_code"
   get "/contactus"            => "pages#contactus"
 
-  # get "/query"                => "query#index", as: :query
+  get '/history', to: 'background_jobs#history'
+  get '/queries', to: 'saved_queries#index'
+  get '/my/queries', to: 'saved_queries#my_queries'
   get "/playground"           => "playground#index", as: :playground
   get "/playground/:id"       => "playground#show_results", as: :show_results 
   get "job_status"           => "playground#job_status", as: :job_status
@@ -89,8 +91,6 @@ Rails.application.routes.draw do
   get "/archive/covid_19"   => "archive#covid_19"
   get "/archive/pipe_files_with_r"    => "archive#pipe_files_with_r"
   get "/archive/pipe_files_with_sas"  => "archive#pipe_files_with_sas"
-  get 'my/queries', to: 'saved_queries#my_queries'
-  get '/queries', to: 'saved_queries#index'
 
   #digitalocean
   get "/static/:type/:time/:filename(:format)" => "file_records#active_url"
@@ -110,7 +110,7 @@ Rails.application.routes.draw do
   resources :verifiers
   resources :saved_queries
   resources :study_statistics_comparisons
-  resources :background_jobs
+  resources :background_jobs, path: '/history', only: [:index, :show]
   resources :study_searches
   
 end
