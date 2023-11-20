@@ -110,7 +110,7 @@ Rails.application.routes.draw do
   resources :verifiers
   resources :saved_queries
   resources :study_statistics_comparisons
-  resources :background_jobs, path: '/history', only: [:index, :show]
+  resources :background_jobs, path: '/history', only: [:index, :show, :destroy]
   resources :study_searches
   
 end
