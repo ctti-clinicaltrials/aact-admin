@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 15.3 (Ubuntu 15.3-1.pgdg20.04+1)
--- Dumped by pg_dump version 15.3 (Ubuntu 15.3-1.pgdg20.04+1)
+-- Dumped from database version 12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)
+-- Dumped by pg_dump version 12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -21,20 +21,6 @@ SET row_security = off;
 --
 
 CREATE SCHEMA ctgov;
-
-
---
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA public;
-
-
---
--- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON SCHEMA public IS 'standard public schema';
 
 
 --
@@ -900,36 +886,6 @@ ALTER SEQUENCE ctgov.calculated_values_id_seq OWNED BY ctgov.calculated_values.i
 
 
 --
--- Name: search_results; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.search_results (
-    id integer NOT NULL,
-    nct_id character varying NOT NULL,
-    name character varying NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    "grouping" character varying DEFAULT ''::character varying NOT NULL,
-    study_search_id integer
-);
-
-
---
--- Name: categories; Type: VIEW; Schema: ctgov; Owner: -
---
-
-CREATE VIEW ctgov.categories AS
- SELECT search_results.id,
-    search_results.nct_id,
-    search_results.name,
-    search_results.created_at,
-    search_results.updated_at,
-    search_results."grouping",
-    search_results.study_search_id
-   FROM ctgov.search_results;
-
-
---
 -- Name: categories_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
@@ -1015,211 +971,6 @@ CREATE SEQUENCE ctgov.countries_id_seq
 --
 
 ALTER SEQUENCE ctgov.countries_id_seq OWNED BY ctgov.countries.id;
-
-
---
--- Name: designs; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.designs (
-    id integer NOT NULL,
-    nct_id character varying,
-    allocation character varying,
-    intervention_model character varying,
-    observational_model character varying,
-    primary_purpose character varying,
-    time_perspective character varying,
-    masking character varying,
-    masking_description text,
-    intervention_model_description text,
-    subject_masked boolean,
-    caregiver_masked boolean,
-    investigator_masked boolean,
-    outcomes_assessor_masked boolean
-);
-
-
---
--- Name: detailed_descriptions; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.detailed_descriptions (
-    id integer NOT NULL,
-    nct_id character varying,
-    description text
-);
-
-
---
--- Name: eligibilities; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.eligibilities (
-    id integer NOT NULL,
-    nct_id character varying,
-    sampling_method character varying,
-    gender character varying,
-    minimum_age character varying,
-    maximum_age character varying,
-    healthy_volunteers character varying,
-    population text,
-    criteria text,
-    gender_description text,
-    gender_based boolean,
-    adult boolean,
-    child boolean,
-    older_adult boolean
-);
-
-
---
--- Name: studies; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.studies (
-    nct_id character varying,
-    nlm_download_date_description character varying,
-    study_first_submitted_date date,
-    results_first_submitted_date date,
-    disposition_first_submitted_date date,
-    last_update_submitted_date date,
-    study_first_submitted_qc_date date,
-    study_first_posted_date date,
-    study_first_posted_date_type character varying,
-    results_first_submitted_qc_date date,
-    results_first_posted_date date,
-    results_first_posted_date_type character varying,
-    disposition_first_submitted_qc_date date,
-    disposition_first_posted_date date,
-    disposition_first_posted_date_type character varying,
-    last_update_submitted_qc_date date,
-    last_update_posted_date date,
-    last_update_posted_date_type character varying,
-    start_month_year character varying,
-    start_date_type character varying,
-    start_date date,
-    verification_month_year character varying,
-    verification_date date,
-    completion_month_year character varying,
-    completion_date_type character varying,
-    completion_date date,
-    primary_completion_month_year character varying,
-    primary_completion_date_type character varying,
-    primary_completion_date date,
-    target_duration character varying,
-    study_type character varying,
-    acronym character varying,
-    baseline_population text,
-    brief_title text,
-    official_title text,
-    overall_status character varying,
-    last_known_status character varying,
-    phase character varying,
-    enrollment integer,
-    enrollment_type character varying,
-    source character varying,
-    limitations_and_caveats character varying,
-    number_of_arms integer,
-    number_of_groups integer,
-    why_stopped character varying,
-    has_expanded_access boolean,
-    expanded_access_type_individual boolean,
-    expanded_access_type_intermediate boolean,
-    expanded_access_type_treatment boolean,
-    has_dmc boolean,
-    is_fda_regulated_drug boolean,
-    is_fda_regulated_device boolean,
-    is_unapproved_device boolean,
-    is_ppsd boolean,
-    is_us_export boolean,
-    biospec_retention character varying,
-    biospec_description text,
-    ipd_time_frame character varying,
-    ipd_access_criteria character varying,
-    ipd_url character varying,
-    plan_to_share_ipd character varying,
-    plan_to_share_ipd_description character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    source_class character varying,
-    delayed_posting character varying,
-    expanded_access_nctid character varying,
-    expanded_access_status_for_nctid character varying,
-    fdaaa801_violation boolean,
-    baseline_type_units_analyzed character varying
-);
-
-
---
--- Name: covid_19_studies; Type: VIEW; Schema: ctgov; Owner: -
---
-
-CREATE VIEW ctgov.covid_19_studies AS
- SELECT s.nct_id,
-    s.overall_status,
-    s.study_type,
-    s.official_title,
-    s.acronym,
-    s.phase,
-    s.why_stopped,
-    s.has_dmc,
-    s.enrollment,
-    s.is_fda_regulated_device,
-    s.is_fda_regulated_drug,
-    s.is_unapproved_device,
-    s.has_expanded_access,
-    s.study_first_submitted_date,
-    s.last_update_posted_date,
-    s.results_first_posted_date,
-    s.start_date,
-    s.primary_completion_date,
-    s.completion_date,
-    s.study_first_posted_date,
-    cv.number_of_facilities,
-    cv.has_single_facility,
-    cv.nlm_download_date,
-    s.number_of_arms,
-    s.number_of_groups,
-    sp.name AS lead_sponsor,
-    aid.names AS other_ids,
-    e.gender,
-    e.gender_based,
-    e.gender_description,
-    e.population,
-    e.minimum_age,
-    e.maximum_age,
-    e.criteria,
-    e.healthy_volunteers,
-    ak.names AS keywords,
-    ai.names AS interventions,
-    ac.names AS conditions,
-    d.primary_purpose,
-    d.allocation,
-    d.observational_model,
-    d.intervention_model,
-    d.masking,
-    d.subject_masked,
-    d.caregiver_masked,
-    d.investigator_masked,
-    d.outcomes_assessor_masked,
-    ado.names AS design_outcomes,
-    bs.description AS brief_summary,
-    dd.description AS detailed_description
-   FROM (((((((((((ctgov.studies s
-     FULL JOIN ctgov.all_conditions ac ON (((s.nct_id)::text = (ac.nct_id)::text)))
-     FULL JOIN ctgov.all_id_information aid ON (((s.nct_id)::text = (aid.nct_id)::text)))
-     FULL JOIN ctgov.all_design_outcomes ado ON (((s.nct_id)::text = (ado.nct_id)::text)))
-     FULL JOIN ctgov.all_keywords ak ON (((s.nct_id)::text = (ak.nct_id)::text)))
-     FULL JOIN ctgov.all_interventions ai ON (((s.nct_id)::text = (ai.nct_id)::text)))
-     FULL JOIN ctgov.sponsors sp ON (((s.nct_id)::text = (sp.nct_id)::text)))
-     FULL JOIN ctgov.calculated_values cv ON (((s.nct_id)::text = (cv.nct_id)::text)))
-     FULL JOIN ctgov.designs d ON (((s.nct_id)::text = (d.nct_id)::text)))
-     FULL JOIN ctgov.eligibilities e ON (((s.nct_id)::text = (e.nct_id)::text)))
-     FULL JOIN ctgov.brief_summaries bs ON (((s.nct_id)::text = (bs.nct_id)::text)))
-     FULL JOIN ctgov.detailed_descriptions dd ON (((s.nct_id)::text = (dd.nct_id)::text)))
-  WHERE (((sp.lead_or_collaborator)::text = 'lead'::text) AND ((s.nct_id)::text IN ( SELECT search_results.nct_id
-           FROM ctgov.search_results
-          WHERE ((search_results.name)::text = 'covid-19'::text))));
 
 
 --
@@ -1414,6 +1165,28 @@ ALTER SEQUENCE ctgov.design_outcomes_id_seq OWNED BY ctgov.design_outcomes.id;
 
 
 --
+-- Name: designs; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.designs (
+    id integer NOT NULL,
+    nct_id character varying,
+    allocation character varying,
+    intervention_model character varying,
+    observational_model character varying,
+    primary_purpose character varying,
+    time_perspective character varying,
+    masking character varying,
+    masking_description text,
+    intervention_model_description text,
+    subject_masked boolean,
+    caregiver_masked boolean,
+    investigator_masked boolean,
+    outcomes_assessor_masked boolean
+);
+
+
+--
 -- Name: designs_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
@@ -1431,6 +1204,17 @@ CREATE SEQUENCE ctgov.designs_id_seq
 --
 
 ALTER SEQUENCE ctgov.designs_id_seq OWNED BY ctgov.designs.id;
+
+
+--
+-- Name: detailed_descriptions; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.detailed_descriptions (
+    id integer NOT NULL,
+    nct_id character varying,
+    description text
+);
 
 
 --
@@ -1523,6 +1307,28 @@ CREATE SEQUENCE ctgov.drop_withdrawals_id_seq
 --
 
 ALTER SEQUENCE ctgov.drop_withdrawals_id_seq OWNED BY ctgov.drop_withdrawals.id;
+
+
+--
+-- Name: eligibilities; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.eligibilities (
+    id integer NOT NULL,
+    nct_id character varying,
+    sampling_method character varying,
+    gender character varying,
+    minimum_age character varying,
+    maximum_age character varying,
+    healthy_volunteers character varying,
+    population text,
+    criteria text,
+    gender_description text,
+    gender_based boolean,
+    adult boolean,
+    child boolean,
+    older_adult boolean
+);
 
 
 --
@@ -2857,26 +2663,6 @@ ALTER SEQUENCE ctgov.saved_queries_id_seq OWNED BY ctgov.saved_queries.id;
 
 
 --
--- Name: search_results_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
---
-
-CREATE SEQUENCE ctgov.search_results_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: search_results_id_seq; Type: SEQUENCE OWNED BY; Schema: ctgov; Owner: -
---
-
-ALTER SEQUENCE ctgov.search_results_id_seq OWNED BY ctgov.search_results.id;
-
-
---
 -- Name: sponsors_id_seq; Type: SEQUENCE; Schema: ctgov; Owner: -
 --
 
@@ -2894,6 +2680,84 @@ CREATE SEQUENCE ctgov.sponsors_id_seq
 --
 
 ALTER SEQUENCE ctgov.sponsors_id_seq OWNED BY ctgov.sponsors.id;
+
+
+--
+-- Name: studies; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.studies (
+    nct_id character varying,
+    nlm_download_date_description character varying,
+    study_first_submitted_date date,
+    results_first_submitted_date date,
+    disposition_first_submitted_date date,
+    last_update_submitted_date date,
+    study_first_submitted_qc_date date,
+    study_first_posted_date date,
+    study_first_posted_date_type character varying,
+    results_first_submitted_qc_date date,
+    results_first_posted_date date,
+    results_first_posted_date_type character varying,
+    disposition_first_submitted_qc_date date,
+    disposition_first_posted_date date,
+    disposition_first_posted_date_type character varying,
+    last_update_submitted_qc_date date,
+    last_update_posted_date date,
+    last_update_posted_date_type character varying,
+    start_month_year character varying,
+    start_date_type character varying,
+    start_date date,
+    verification_month_year character varying,
+    verification_date date,
+    completion_month_year character varying,
+    completion_date_type character varying,
+    completion_date date,
+    primary_completion_month_year character varying,
+    primary_completion_date_type character varying,
+    primary_completion_date date,
+    target_duration character varying,
+    study_type character varying,
+    acronym character varying,
+    baseline_population text,
+    brief_title text,
+    official_title text,
+    overall_status character varying,
+    last_known_status character varying,
+    phase character varying,
+    enrollment integer,
+    enrollment_type character varying,
+    source character varying,
+    limitations_and_caveats character varying,
+    number_of_arms integer,
+    number_of_groups integer,
+    why_stopped character varying,
+    has_expanded_access boolean,
+    expanded_access_type_individual boolean,
+    expanded_access_type_intermediate boolean,
+    expanded_access_type_treatment boolean,
+    has_dmc boolean,
+    is_fda_regulated_drug boolean,
+    is_fda_regulated_device boolean,
+    is_unapproved_device boolean,
+    is_ppsd boolean,
+    is_us_export boolean,
+    biospec_retention character varying,
+    biospec_description text,
+    ipd_time_frame character varying,
+    ipd_access_criteria character varying,
+    ipd_url character varying,
+    plan_to_share_ipd character varying,
+    plan_to_share_ipd_description character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    source_class character varying,
+    delayed_posting character varying,
+    expanded_access_nctid character varying,
+    expanded_access_status_for_nctid character varying,
+    fdaaa801_violation boolean,
+    baseline_type_units_analyzed character varying
+);
 
 
 --
@@ -3514,8 +3378,7 @@ CREATE TABLE support.study_json_records (
     saved_study_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    download_date character varying,
-    version character varying DEFAULT '1'::character varying
+    download_date character varying
 );
 
 
@@ -4052,13 +3915,6 @@ ALTER TABLE ONLY ctgov.retractions ALTER COLUMN id SET DEFAULT nextval('ctgov.re
 --
 
 ALTER TABLE ONLY ctgov.saved_queries ALTER COLUMN id SET DEFAULT nextval('ctgov.saved_queries_id_seq'::regclass);
-
-
---
--- Name: search_results id; Type: DEFAULT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.search_results ALTER COLUMN id SET DEFAULT nextval('ctgov.search_results_id_seq'::regclass);
 
 
 --
@@ -4678,14 +4534,6 @@ ALTER TABLE ONLY ctgov.retractions
 
 ALTER TABLE ONLY ctgov.saved_queries
     ADD CONSTRAINT saved_queries_pkey PRIMARY KEY (id);
-
-
---
--- Name: search_results search_results_pkey; Type: CONSTRAINT; Schema: ctgov; Owner: -
---
-
-ALTER TABLE ONLY ctgov.search_results
-    ADD CONSTRAINT search_results_pkey PRIMARY KEY (id);
 
 
 --
@@ -5433,20 +5281,6 @@ CREATE INDEX index_saved_queries_on_user_id ON ctgov.saved_queries USING btree (
 
 
 --
--- Name: index_search_results_on_nct_id_and_name; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_search_results_on_nct_id_and_name ON ctgov.search_results USING btree (nct_id, name);
-
-
---
--- Name: index_search_results_on_nct_id_and_name_and_grouping; Type: INDEX; Schema: ctgov; Owner: -
---
-
-CREATE UNIQUE INDEX index_search_results_on_nct_id_and_name_and_grouping ON ctgov.search_results USING btree (nct_id, name, "grouping");
-
-
---
 -- Name: index_sponsors_on_agency_class; Type: INDEX; Schema: ctgov; Owner: -
 --
 
@@ -5692,13 +5526,6 @@ CREATE INDEX "index_support.study_xml_records_on_nct_id" ON support.study_xml_re
 
 
 --
--- Name: categories category_insert_trigger; Type: TRIGGER; Schema: ctgov; Owner: -
---
-
-CREATE TRIGGER category_insert_trigger INSTEAD OF INSERT ON ctgov.categories FOR EACH ROW EXECUTE FUNCTION ctgov.category_insert_function();
-
-
---
 -- Name: saved_queries fk_rails_add691a365; Type: FK CONSTRAINT; Schema: ctgov; Owner: -
 --
 
@@ -5742,7 +5569,7 @@ ALTER TABLE ONLY support.file_records
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO ctgov,support,public;
+SET search_path TO ctgov, support, public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20160214191640'),
@@ -5813,6 +5640,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230628231316'),
 ('20230629000057'),
 ('20230720150513'),
-('20231012015547');
+('20231121201546');
 
 
