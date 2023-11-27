@@ -5,7 +5,7 @@ class FaqController < ApplicationController
 
   def authenticate_user
     unless user_signed_in? && current_user.admin?
-      render file: Rails.root.join('app', 'views', 'errors', 'unauthorized_user.html.erb'), layout: true, status: :forbidden
+      render 'errors/unauthorized_user', status: :forbidden
     end
   end
 end
