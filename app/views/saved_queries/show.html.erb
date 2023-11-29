@@ -20,7 +20,7 @@
     <h5><%= @saved_query.public ? 'Public' : 'Not Public' %></h5>
   </div>
   <div class="pb-3"></div>
-  <%= form_tag("/query", :method => "get") do %>
+  <%= form_tag("/playground", :method => "get") do %>
     <%= label_tag(:query, 'SQL Query:') %>
     <% if @error.present? %>
       <div id="error_explanation">
