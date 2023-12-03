@@ -17,22 +17,43 @@ RSpec.describe BackgroundJobsController, type: :controller do
 
   describe "GET #index" do
     it "returns http success" do
-      get :index
+      get :history
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET #destroy" do
-    it "returns http found if the current logged-in User is the User that created the Background Job" do
-      backgnd_job = FactoryBot.create(:background_job, user_id: @user.id)
-      delete :destroy, params: { id: backgnd_job.id }
-      expect(response).to have_http_status(:found)
+  describe "DELETE #destroy" do
+    context "when the current logged-in User created the Background Job" do
+      it "redirects to background_jobs_path" do
+        backgnd_job = FactoryBot.create(:background_job, user_id: @user.id)
+        delete :destroy, params: { id: backgnd_job.id }
+        expect(response).to redirect_to(background_jobs_path)
+      end
+
+      it "deletes the Background Job" do
+        backgnd_job = FactoryBot.create(:background_job, user_id: @user.id)
+        expect { delete :destroy, params: { id: backgnd_job.id } }.to change(BackgroundJob, :count).by(-1)
+      end
     end
 
-    it "returns http not found if the current logged-in User is NOT the User that created the Background Job" do
-      backgnd_job = FactoryBot.create(:background_job, user_id: @user2.id)
-      delete :destroy, params: { id: backgnd_job.id }
-      expect(response).to have_http_status(:not_found)
+    context "when the current logged-in User did NOT create the Background Job" do
+      it "returns http not found" do
+        backgnd_job = FactoryBot.create(:background_job, user_id: @user2.id)
+        delete :destroy, params: { id: backgnd_job.id }
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it "does not delete the Background Job" do
+        backgnd_job = FactoryBot.create(:background_job, user_id: @user2.id)
+        expect { delete :destroy, params: { id: backgnd_job.id } }.not_to change(BackgroundJob, :count)
+      end
+    end
+  end
+
+  describe "GET #admin_history" do
+    it "returns http success" do
+      get :admin_history
+      expect(response).to have_http_status(:success)
     end
   end
 end

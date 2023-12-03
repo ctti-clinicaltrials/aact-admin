@@ -14,10 +14,10 @@
     <tbody>
       <% @history.each do |job| %>
         <tr class="selectable-row" data-url="<%= background_job_path(job) %>">
-          <td>
+          <td class="job-data">
             <% if job.data.present? %>
               <% job.data.each do |key, value| %>
-                <strong><%= key.capitalize %>: <%= value %></strong><br>
+                <p><strong><%= value[0, 50] %></strong>...</p>
               <% end %>
             <% else %>
               No data available
