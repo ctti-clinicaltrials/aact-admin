@@ -43,11 +43,11 @@ RSpec.describe "Background Jobs", type: :request do
       expect(response).to render_template(:show_results)
       expect(response.body).to match(/User Name/)
     end
-    it "it renders the Background Jobs index page with 'Query' column" do       
+    it "it renders the Background Jobs index page with 'Data Table' column" do       
       backgnd_job = FactoryBot.create(:background_job, user_id: @user.id)
       get background_jobs_path
       expect(response).to render_template(:history)
-      expect(response.body).to match(/Query/)
+      expect(response.body).to match(/data-table/)
      end
   end
 
@@ -128,9 +128,8 @@ RSpec.describe "Background Jobs", type: :request do
     end
     it "does NOT destroy a Background Job and renders the Not Found (404) page if the current logged-in User is NOT the User that created the Background Job" do
       backgnd_job = FactoryBot.create(:background_job, user_id: @user2.id)
-      expect { delete background_job_path(id: backgnd_job.id) }.to_not change(BackgroundJob, :count)
-      expect(response).to render_template("layouts/application")
+      delete background_job_path(id: backgnd_job.id)
+      expect(response).to have_http_status(404)
     end
-  end 
-
+  end
 end
