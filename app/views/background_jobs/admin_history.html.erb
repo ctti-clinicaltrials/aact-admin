@@ -1,0 +1,45 @@
+<div class="container">
+  <%= render 'layouts/query_menu' %>
+
+  <div class="search-form">
+    <%= form_tag(admin_history_path, method: :get, class: 'form-inline') do %>
+      <div class="form-group" style="display: inline-flex; align-items: center;">
+        <%= text_field_tag :search, params[:search], class: 'form-control form-control-sm', style: 'width: 250px; margin-right: 10px;' %>
+        <%= submit_tag "Search", class: 'btn btn-primary btn-sm', style: 'width: 100px;' %>
+      </div>
+    <% end %>
+  </div>
+
+  <table id="data-table" class="table table-sm table-striped">
+    <tbody>
+      <% @admin_history.each do |job| %>
+          <tr class="selectable-row" data-url="<%= background_job_path(job) %>">
+            <td>
+              <% if job.data.present? %>
+                <% job.data.first(1).each do |key, value| %>
+                  <strong><%= value %></strong><br>
+                <% end %>
+                <% if job.data.size > 1 %>
+                  <span class="more-data">click to see more...</span>
+                <% end %>
+              <% else %>
+                No data available
+              <% end %>
+            </td>
+
+            <td class="text-right">
+              <%= job.created_at.strftime('%B %d, %Y at %l:%M %p') %>
+              <br>
+              <%= job.status %>
+              <br>
+              <%= job.user&.username %>
+            </td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <%= paginate @admin_history %>
+  </div>
+</div>

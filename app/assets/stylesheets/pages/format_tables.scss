@@ -1,0 +1,19 @@
+// custom_styles.scss
+
+.selectable-row {
+  td {
+    padding-left: 50px; // Adjust the padding value as needed
+    padding-right: 50px; // Adjust the padding value as needed
+    border: 1px solid #ccc; // Add a border for separation
+  }
+}
+
+.more-data {
+  padding-left: 10px; // Adjust the padding value as needed
+  color: blue; // Example: Set the color to blue for emphasis
+  cursor: pointer; // Example: Make it look clickable
+}
+
+.text-right {
+  text-align: right; // Align content to the right
+}

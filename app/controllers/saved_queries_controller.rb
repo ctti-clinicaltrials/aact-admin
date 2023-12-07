@@ -8,10 +8,11 @@ class SavedQueriesController < ApplicationController
     if user_signed_in?
       base_query = base_query.or(SavedQuery.where(public: false, user_id: current_user.id))
     end
-
-    if params[:search].present?
+    
+    if params[:search].present? || params[:search].blank?
+      search_term = "%#{params[:search]}%"
       @saved_queries = base_query
-        .where("title LIKE ? OR description LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+        .where("LOWER(title) LIKE ? OR LOWER(description) LIKE ?", search_term.downcase, search_term.downcase)
         .order(created_at: :desc)
         .page(params[:page])
         .per(20)
@@ -24,9 +25,10 @@ class SavedQueriesController < ApplicationController
   end
   
   def my_queries
-    if params[:search].present?
+    if params[:search].present? || params[:search].blank?
+      search_term = "%#{params[:search]}%"
       @my_queries = SavedQuery.where(user_id: current_user.id)
-                              .where("title LIKE ? OR description LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+                              .where("LOWER(title) LIKE ? OR LOWER(description) LIKE ?", search_term.downcase, search_term.downcase)
                               .order(created_at: :desc)
                               .page(params[:page])
                               .per(20)

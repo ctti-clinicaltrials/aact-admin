@@ -1,33 +1,36 @@
 <div class="container">
+
   <%= render 'layouts/query_menu' %>
 
-  <div class="search-form">
-    <%= form_tag(my_queries_path, method: :get, class: 'form-inline') do %>
-      <div class="form-group" style="display: inline-flex; align-items: center;">
-        <%= text_field_tag :search, params[:search], class: 'form-control form-control-sm', style: 'width: 250px;'%>
+  <div class="search-form" style="display: flex; justify-content: space-between; align-items: center;">
+    <%= form_tag(queries_path, method: :get, class: 'form-inline') do %>
+      <div class="form-group" style="display: flex; align-items: center;">
+        <%= text_field_tag :search, params[:search], class: 'form-control form-control-sm', style: 'width: 250px; margin-right: 10px;' %>
         <%= submit_tag "Search", class: 'btn btn-primary btn-sm', style: 'width: 100px;' %>
       </div>
     <% end %>
   </div>
 
-    <table id="data-table" class="table table-sm table-striped">
+  <table id="data-table" class="table table-sm table-striped">
     <tbody>
       <% @saved_queries.each do |query| %>
-        <tr class="selectable-row" data-url="<%= saved_query_path(query) %>">
-          <td>
-            <%= link_to query.title, saved_query_path(query) %>
-            <br>
-            <%= query.description %>
-          </td>
-          <td>
-            <%= query.created_at.strftime('%B %d, %Y') %>
-          </td>
-        </tr>
+        <% if query.public %>
+          <tr class="selectable-row" data-url="<%= saved_query_path(query) %>">
+            <td>
+              <%= link_to query.title, saved_query_path(query) %>
+              <br>
+              <%= query.description %>
+            </td>
+            <td class="text-right">
+              <%= query.created_at.strftime('%B %d, %Y') %>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
-    </table>
-    
-    <div class="pagination">
-      <%= paginate @saved_queries %>
-    </div>
+  </table>
+
+  <div class="pagination">
+    <%= paginate @saved_queries %>
   </div>
+</div>

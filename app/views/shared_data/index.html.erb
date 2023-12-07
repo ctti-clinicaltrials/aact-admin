@@ -36,48 +36,18 @@ function openRow(index){
 
     <%= render 'explanation' %>
 
-    <div class='shadowContainer table-responsive'>
-      <table id='projectTable'
-         data-toggle="table"
-         data-detail-view="true"
-         data-detail-formatter="detailFormatter"
-         data-pagination="true"
-         data-show-columns="true"
-         data-sort-order="name"
-         class='sortable table table-striped table-hover regularDisplay'>
-
-          <thead>
-            <tr>
-              <th data-field='name'>Name</th>
-              <th data-field='investigators'>Investigators</th>
-              <th data-field='organizations'>Organizations</th>
-              <th data-field='year'>Publication Year</th>
-              <th data-field='brief_summary'>Brief Summary</th>
-              <th data-field='schema_name'>DB Schema</th>
-            </tr>
-          </thead>
-
-          <tbody class='projects'>
-            <% @projects.each_with_index do |proj, index| %>
-              <tr id="row_<%= index %>" class="projectRow" onClick="openRow(<%=index%>)">
-                <td><%= proj.name %></td>
-                <td><%= proj.investigators %></td>
-                <td><%= proj.organizations %></td>
-                <td><%= proj.year %></td>
-                <td><%= proj.brief_summary %></td>
-                <td><%= proj.schema_name %></td>
-              </tr>
-              <tr class="projectDetail" id="detail_<%= index %>" style="display: none;">
-                <td colspan="6">
-                  <span id="detail_<%= index %>">
-                    <%= render :partial => 'project_details', :locals => {:proj => proj} %>
-                  </span>
-                </td>
-              </tr>
+  <div class="list-group">
+    <% @projects.each_with_index do |proj, index| %>
+      <a href="/shared_data/<%= proj.schema_name %>"class="list-group-item list-group-item-action fw-normal ">
+          <div class="d-flex flex-row justify-content-between">
+            <h3 class=""><%= proj.name %></h3>
+            <% unless proj.year.nil? %><div>Published:<span class="px-2"><%= proj.year %></span></div>
             <% end %>
-         </tbody>
-      </table>
-    </div>
+          </div>
+          <div class="d-flex flex-row"><%= proj.description %></div>
+      </a>
+    <% end %>
+  </div>
 
     <%= render 'please_note' %>
   </div>
