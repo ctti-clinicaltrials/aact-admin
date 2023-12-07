@@ -7,7 +7,7 @@ class BackgroundJobsController < ApplicationController
 
   def admin_history
     @admin_history = search_background_jobs(BackgroundJob.all, params[:search])
-               .order(created_at: :asc)
+               .order(created_at: :desc)
                .page(params[:page])
                .per(20)
   end
