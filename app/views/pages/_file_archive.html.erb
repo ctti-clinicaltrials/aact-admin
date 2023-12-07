@@ -10,7 +10,7 @@
         <a href="<%= file.url %>" onClick="ga('send','event','download','<%= type %>')"><%= file.filename %></a>
       </td>
       <td class='file-archive'><%= file.created_at.strftime("%m/%d/%Y") %></td>
-      <td class='file-archive'><%= number_to_human_size(file.file_size) %></td>
+      <td class='file-archive'> </td>
     </tr>
   <% end %>
 </table>
