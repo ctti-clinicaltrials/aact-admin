@@ -13,7 +13,6 @@
   <table id="data-table" class="table table-sm table-striped">
     <tbody>
       <% @admin_history.each do |job| %>
-        <% if job.user&.admin? %>
           <tr class="selectable-row" data-url="<%= background_job_path(job) %>">
             <td>
               <% if job.data.present? %>
@@ -36,7 +35,6 @@
               <%= job.user&.username %>
             </td>
           </tr>
-        <% end %>
       <% end %>
     </tbody>
   </table>
