@@ -97,3 +97,9 @@ Treat dev as the main branch. Only branch off of master if you need to do a hotf
 6.  Merge PR to master  
 7.  Deploy master to production  
 8.  Bring changes into dev (once things stabilize)  
+
+## Process for creating a user in local enviroment
+1.  Open rails console `rails c`
+2.  To create user run command: `User.create(email: 'UserEmail@email.com', first_name: 'Firstname', last_name: 'Lastname',  username: 'user123', password: '**********', db_activity: nil, last_db_activity: nil, admin: false)`
+3. Confirm user with `User.last.confirm`
+4. Make user an admin with `User.last..update_columns(admin:true)`

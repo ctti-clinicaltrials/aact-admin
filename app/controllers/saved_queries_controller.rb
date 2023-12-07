@@ -3,10 +3,40 @@ class SavedQueriesController < ApplicationController
   before_action :set_saved_query, only: [:edit, :update, :destroy]
 
   def index
-    if user_signed_in?      
-      @saved_queries = SavedQuery.where('public = true OR (public = false AND user_id = ?)', current_user.id).order(created_at: :desc)  
+    base_query = SavedQuery.where(public: true)
+
+    if user_signed_in?
+      base_query = base_query.or(SavedQuery.where(public: false, user_id: current_user.id))
+    end
+    
+    if params[:search].present? || params[:search].blank?
+      search_term = "%#{params[:search]}%"
+      @saved_queries = base_query
+        .where("LOWER(title) LIKE ? OR LOWER(description) LIKE ?", search_term.downcase, search_term.downcase)
+        .order(created_at: :desc)
+        .page(params[:page])
+        .per(20)
     else
-      @saved_queries = SavedQuery.where('public = true').order(created_at: :desc)  
+      @saved_queries = base_query
+        .order(created_at: :desc)
+        .page(params[:page])
+        .per(20)
+    end
+  end
+  
+  def my_queries
+    if params[:search].present? || params[:search].blank?
+      search_term = "%#{params[:search]}%"
+      @my_queries = SavedQuery.where(user_id: current_user.id)
+                              .where("LOWER(title) LIKE ? OR LOWER(description) LIKE ?", search_term.downcase, search_term.downcase)
+                              .order(created_at: :desc)
+                              .page(params[:page])
+                              .per(20)
+    else
+      @my_queries = SavedQuery.where(user_id: current_user.id)
+                              .order(created_at: :desc)
+                              .page(params[:page])
+                              .per(20)
     end
   end
   

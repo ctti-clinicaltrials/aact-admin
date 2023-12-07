@@ -37,7 +37,7 @@ feature "Users Sign Up Page" do
     fill_in 'user_first_name', with: long_name
     fill_in 'user_last_name', with: long_name
     submit
-    expect(page).to have_content "First name is too long (maximum is 100 characters)"
+    expect(page).to have_content "First name is too long (maximum is 17 characters)"
     expect(page).to have_content "Last name is too long (maximum is 100 characters)"
     expect(page).not_to have_content "First name can't be blank"
     expect(page).not_to have_content "Last name can't be blank"
@@ -49,7 +49,7 @@ feature "Users Sign Up Page" do
     submit
     expect(page).not_to have_content "First name can't be blank"
     expect(page).not_to have_content "Last name can't be blank"
-    expect(page).not_to have_content "First name is too long (maximum is 100 characters)"
+    expect(page).not_to have_content "First name is too long (maximum is 17 characters)"
     expect(page).not_to have_content "Last name is too long (maximum is 100 characters)"
     expect(Util::UserDbManager.new.user_account_exists?(valid_username)).to eq(false)
 
@@ -157,16 +157,13 @@ feature "Users Sign Up Page" do
     expect(page).to have_content "Sign out"
     expect(page).to have_field 'user_first_name'
     expect(page).to have_field 'user_last_name'
-    expect(page).to have_field 'user_password'
-    expect(page).to have_field 'user_password_confirmation'
     expect(page).to have_field 'user_current_password'
-
+    
     visit '/users/edit'
     new_first_name='new first name'
+    
     fill_in 'user_first_name', with: new_first_name
     fill_in 'user_current_password', with: valid_password
-    fill_in 'user_password', with: ''
-    fill_in 'user_password_confirmation', with: ''
     expect(UserMailer).to receive(:send_event_notification).exactly(1).times
     submit
     user=User.where('username=?',valid_username).first

@@ -1,0 +1,40 @@
+<div class="container">
+  <%= render 'layouts/query_menu' %>
+
+  <div class="search-form" style="display: flex; justify-content: space-between; align-items: center;">
+    <%= form_tag(background_jobs_path, method: :get, class: 'form-inline') do %>
+      <div class="form-group" style="display: inline-flex; align-items: center;">
+        <%= text_field_tag :search, params[:search], class: 'form-control form-control-sm', style: 'width: 250px; margin-right: 10px;' %>
+        <%= submit_tag "Search", class: 'btn btn-primary btn-sm', style: 'width: 100px;' %>
+      </div>
+    <% end %>
+  </div>
+
+  <table id="data-table" class="table table-sm table-striped">
+    <tbody>
+      <% @history.each do |job| %>
+        <tr class="selectable-row" data-url="<%= background_job_path(job) %>">
+          <td class="job-data">
+            <% if job.data.present? %>
+              <% job.data.each do |key, value| %>
+                <p><strong><%= value[0, 50] %></strong>...</p>
+              <% end %>
+            <% else %>
+              No data available
+            <% end %>
+          </td>
+
+          <td class="text-right">
+            <%= job.created_at.strftime('%B %d, %Y at %l:%M %p') %>
+            <br>
+            <%= job.status %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <%= paginate @history %>
+  </div>
+</div>

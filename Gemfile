@@ -1,7 +1,8 @@
 source "https://rubygems.org"
 
-ruby "2.6.6"
+ruby "2.7.7"
 
+gem 'kaminari'
 gem 'nokogiri', '~> 1.13.10'
 gem 'rails', '~> 5.0.7'
 gem 'rails-html-sanitizer', '~> 1.0.4'
@@ -43,6 +44,8 @@ gem 'loofah', '~>2.19.1'
 gem 'rack'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rack-protection', '~> 1.5.5'
+# work with CSV
+gem 'httparty'
 
 # user registration
  gem "devise", ">= 4.9.1"

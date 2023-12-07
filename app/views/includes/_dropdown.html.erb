@@ -11,7 +11,7 @@
     <%= link_to "Data Definitions", data_definitions_path, class:"dropdown-item"%>
     <%= link_to "Events", events_path, class:"dropdown-item"%>
     <%= link_to "Notices", admin_notices_path, class:"dropdown-item"%>
-    <%= link_to "Query", '/query', class:"dropdown-item"%>
+    <%= link_to "Playground", '/playground', class:"dropdown-item"%>
     <%= link_to "Releases", releases_path, class:"dropdown-item"%>
     <%= link_to "Study Searches", study_searches_path, class:"dropdown-item"%>
     <%= link_to "Study Statistics Comparisons ", '/study_statistics_comparisons', class:"dropdown-item"%>
@@ -19,15 +19,15 @@
     <%= link_to "Users", users_path, class:"dropdown-item" %>
     <%= link_to "Verifiers", verifiers_path, class:"dropdown-item"%>
     <div class="dropdown-divider"></div>
-    <%= link_to "Edit Profile", edit_user_registration_path , class:"dropdown-item"%>
+    <%= link_to "Edit Profile", edit_user_registration_path, class:"dropdown-item"%>
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete, class:"dropdown-item"%>
     
     <% elsif user_signed_in? %>
    <div class="nav-svg nav-svg-no-margin dropdown"> 
-        <svg height="74" width="175" class="dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <polygon points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#02b7d4" />
+        <svg height="74" width="298" class="dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <polygon points="0,0 255,0 297,37 255,74 0,74 25,37" style="fill:#02b7d4" />
           <text
-          x="50%" y="50%"
+          x="53%" y="50%"
           class="svg-text nav-svg nav-svg-no-margin"
           >Hi, <%= current_user.first_name.capitalize %> <%= current_user.last_name.chr %>.</text>
         </svg>
