@@ -1,5 +1,5 @@
 class PlaygroundController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     if params[:query]
       # instead of running the query, create a background job if user has less than 10 jobs in the queue    
