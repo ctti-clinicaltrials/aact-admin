@@ -2,7 +2,6 @@
  <tr>
     <th class="file-archive">Downloadable File</th>
     <th class="file-archive">Date File Was Created</th>
-    <th class="file-archive">Size</th>
   </tr>
   <% files.try(:each) do |file| %>
     <tr>
@@ -10,7 +9,6 @@
         <a href="<%= file.url %>" onClick="ga('send','event','download','<%= type %>')"><%= file.filename %></a>
       </td>
       <td class='file-archive'><%= file.created_at.strftime("%m/%d/%Y") %></td>
-      <td class='file-archive'><%= number_to_human_size(file.file_size) %></td>
     </tr>
   <% end %>
 </table>

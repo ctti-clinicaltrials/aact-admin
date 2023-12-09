@@ -159,7 +159,7 @@ module Util
           date_created = (date_string.size == 8 || date_string.size == 14 ? Date.parse(date_string).strftime('%m/%d/%Y') : nil)
           time_created = (date_string.size == 14 ? DateTime.parse(date_string).strftime('%I:%M:%S %p') : nil)
           if downloadable?(file_name)
-            entries << { name: file_name, date_created: date_created, size: number_to_human_size(size), url: file_url,
+            entries << { name: file_name, date_created: date_created, url: file_url,
                          time_created: time_created }
           else
             puts "Not a downloadable file: #{file_name}"
