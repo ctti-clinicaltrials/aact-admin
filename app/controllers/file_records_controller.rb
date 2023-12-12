@@ -24,6 +24,6 @@ class FileRecordsController < ApplicationController
       if file_record
         file_downloads = FileDownload.create(file_record_id: file_record.id )
       end
-    redirect_to file_record.url
+    render 'errors/not_found', status: :not_found
   end
 end
