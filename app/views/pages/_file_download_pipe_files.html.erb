@@ -1,0 +1,37 @@
+<div class="card-body d-flex justify-content-around">
+    <div class="col-4">
+        <h4>Current Month's Daily Static Copies</h4>
+        <select class="form-select" aria-label="Default select example" onchange="location = this.value;">
+        <option selected>Select file to download</option>
+        <% if !daily.nil? %>
+        <% daily.each do |file| %>
+            <option value=<%= file.active_url %>>
+            <a href=<%= file.active_url %> download="proposed_file_name"> <%= file.filename%> </a>
+            </option>
+        <% end %>
+        <% end %>
+        </select>
+    </div>
+    <% if !monthly.nil? %>
+    <div class="col-4">
+        <h4>Monthly Archive of Static Copies</h4>
+        <select class="form-select" aria-label="Default select example" onchange="location = this.value;">
+        <option selected>Select file to download</option>
+        <% monthly.each do |file| %>
+            <option value="<%= file.active_url %>">
+            <a href=<%= file.active_url %> download="proposed_file_name"> <%= file.filename %> </a>
+            </option>
+        <% end %>
+        </select> 
+    </div>
+
+    <% else %>
+    <div class="col-4"></div>
+    <% end %>
+    <a href="/pipe_files" class="col-2 d-flex align-items-end">
+        <div class="d-flex align-items-center">
+            <h2 class="m-0 p-0 px-2"><%= fa_icon("file") %></h2>
+            <h5 class="m-0 p-0"><%= file_type_group %> Usage Documentation</h5>
+        </div>
+    </a>
+</div>

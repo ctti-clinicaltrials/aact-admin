@@ -65,7 +65,7 @@
           <option selected>Select file to download</option>
           <% @daily_archive_pipe_files.each do |file| %>
             <option value="<%= file.url%>">
-              <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> <%= number_to_human_size(file.file_size) %></a>
+              <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> </a>
             </option>
           <% end %>
         </select>
@@ -75,7 +75,7 @@
           <option selected>Select file to download</option>
           <% @monthly_archive_pipe_files.each do |file| %>
             <option value="<%= file.url%>">
-              <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> <%= number_to_human_size(file.file_size) %></a>
+              <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> </a>
             </option>
           <% end %>
         </select>

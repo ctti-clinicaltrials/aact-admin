@@ -6,7 +6,7 @@
         <% if !daily.nil? %>
         <% daily.each do |file| %>
             <option value=<%= file.active_url %>>
-            <a href=<%= file.active_url %> download="proposed_file_name"> <%= file.filename%> <%= number_to_human_size(BigDecimal(file.file_size)) %></a>
+            <a href=<%= file.active_url %> download="proposed_file_name"> <%= file.filename%> </a>
             </option>
         <% end %>
         <% end %>
@@ -19,7 +19,7 @@
         <option selected>Select file to download</option>
         <% monthly.each do |file| %>
             <option value="<%= file.active_url %>">
-            <a href=<%= file.active_url %> download="proposed_file_name"> <%= file.filename %> <%= number_to_human_size(BigDecimal(file.file_size)) %></a>
+            <a href=<%= file.active_url %> download="proposed_file_name"> <%= file.filename %> </a>
             </option>
         <% end %>
         </select> 
@@ -30,8 +30,8 @@
     <% end %>
     <a href="/snapshots" class="col-2 d-flex align-items-end">
         <div class="d-flex align-items-center">
-        <h2 class="m-0 p-0 px-2"><%= fa_icon("file")%></h2>
-        <h5 class="m-0 p-0"><%= file_type_group %> Usage Documentation</h5>
+            <h2 class="m-0 p-0 px-2"><%= fa_icon("file") %></h2>
+            <h5 class="m-0 p-0"><%= file_type_group %> Usage Documentation</h5>
         </div>
     </a>
 </div>
