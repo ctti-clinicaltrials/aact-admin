@@ -17,7 +17,7 @@
             </p>
          </button>
          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-            <%= render 'file_download',  daily: @daily_snapshots, monthly: @monthly_snapshots, file_type: 'static_db_copies', file_type_group: 'Snapshot Files' %>
+            <%= render 'file_download_snapshots',  daily: @daily_snapshots, monthly: @monthly_snapshots, file_type: 'static_db_copies', file_type_group: 'Snapshot Files' %>
          </div>
       </div>
       <div class="card">
@@ -31,7 +31,7 @@
          </button>
 
          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-            <%= render 'file_download',  daily: @daily_pipefiles, monthly: @monthly_pipefiles, file_type: 'exported_files', file_type_group: 'Pipe Delimited Files' %>
+            <%= render 'file_download_pipe_files',  daily: @daily_pipefiles, monthly: @monthly_pipefiles, file_type: 'exported_files', file_type_group: 'Pipe Delimited Files' %>
          </div>
       </div>
       <div class="card">
@@ -44,7 +44,7 @@
             </p>
          </button>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-               <%= render 'file_download',  daily: @daily_covid_19, monthly: @monthly_covid_19, file_type: 'covid-19', file_type_group: 'Covid-19 Files' %>
+               <%= render 'file_download_covid_19',  daily: @daily_covid_19, monthly: @monthly_covid_19, file_type: 'covid-19', file_type_group: 'Covid-19 Files' %>
             </div>
       </div>
    </div>
