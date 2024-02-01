@@ -68,7 +68,7 @@ class DefinitionsController < ApplicationController
 
   def generate_select_snippet(data_def_entry)
     if data_def_entry['enumerations'].present?
-      options_hash = JSON.parse(data_def_entry['enumerations'])
+      options_hash = data_def_entry['enumerations']
   
       options = options_hash.map do |key, value|
         "<option value='#{key}'>#{key} (#{value[0]} - #{value[1]})</option>"
