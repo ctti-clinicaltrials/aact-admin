@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
 
   # remove postgres user after user has been destroyed
   after_destroy do
-    name = ActiveRecord::Base.sanitize(username).gsub("'", "\"")
+    name = ActiveRecord::Base.sanitize_sql(username).gsub("'", "\"")
     Public::Study.connection.execute("DROP USER IF EXISTS #{name};")
   end
 
