@@ -14,8 +14,10 @@ class UseCase < ActiveRecord::Base
   end
 
   def initialize(params = {})
-    file = params.delete(:file)
-    image_file = params.delete(:image_file)
+    if params
+      file = params.delete(:file)
+      image_file = params.delete(:image_file)
+    end
     super
     self.attachments << UseCaseAttachment.create_from(file) if file and attachment.nil?
     self.attachments << UseCaseAttachment.create_from(image_file,'image') if image_file and image.nil?
