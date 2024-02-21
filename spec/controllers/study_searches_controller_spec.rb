@@ -19,7 +19,7 @@ RSpec.describe StudySearchesController, type: :controller do
   describe "POST #create" do
     it "returns http found" do
      study_search_test = FactoryBot.attributes_for(:core_study_search)
-      post :create, core_study_search: study_search_test
+      post :create, params: {core_study_search: study_search_test}
       expect(response).to have_http_status(:found)
     end
   end
@@ -27,7 +27,7 @@ RSpec.describe StudySearchesController, type: :controller do
   describe "GET #edit" do
     it "returns http success" do
      study_search_test = FactoryBot.create(:core_study_search)
-      get :edit, id: study_search_test.id
+      get :edit, params: {id: study_search_test.id}
       expect(response).to have_http_status(:success)
     end
   end
@@ -35,7 +35,7 @@ RSpec.describe StudySearchesController, type: :controller do
   describe "PUT #update" do
     it "returns http found" do
      study_search_test = FactoryBot.create(:core_study_search)
-      put :update, id: study_search_test.id, core_study_search: { "save_tsv"=>"false" }
+      put :update, params: {id: study_search_test.id, core_study_search: { "save_tsv"=>"false" }}
       expect(response).to have_http_status(:found)
     end
   end
@@ -43,7 +43,7 @@ RSpec.describe StudySearchesController, type: :controller do
   describe "DELETE #destroy" do
     it "returns http found" do
      study_search_test = FactoryBot.create(:core_study_search)
-      delete :destroy, id: study_search_test.id
+      delete :destroy, params: {id: study_search_test.id}
       expect(response).to have_http_status(:found)
     end
   end

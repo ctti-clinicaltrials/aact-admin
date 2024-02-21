@@ -72,7 +72,8 @@ group :development, :test do
   gem "awesome_print"
   gem "bullet"
   gem "bundler-audit"
-  gem "factory_bot_rails"
+  gem 'factory_bot_rails', '~> 6.4', '>= 6.4.3'
+  gem 'factory_bot', '~> 6.4', '>= 6.4.4'
   gem "pry-byebug"
   gem "pry-rails"
   gem 'rspec-rails'
@@ -89,6 +90,6 @@ group :test do
   gem "shoulda-matchers"
   gem "simplecov", require: false
   gem "timecop"
-  gem "webmock"
+  gem 'webmock', '3.15.1'
   gem "vcr"
 end

@@ -19,7 +19,7 @@ RSpec.describe StudyStatisticsComparisonsController, type: :controller do
   describe "POST #create" do
     it "returns http found" do
       study_stat_comp = FactoryBot.attributes_for(:core_study_statistics_comparison)
-      post :create, core_study_statistics_comparison: study_stat_comp
+      post :create, params: { core_study_statistics_comparison: study_stat_comp }
       expect(response).to have_http_status(:found)
     end
   end
@@ -27,7 +27,7 @@ RSpec.describe StudyStatisticsComparisonsController, type: :controller do
   describe "GET #edit" do
     it "returns http success" do
       study_stat_comp = FactoryBot.create(:core_study_statistics_comparison)
-      get :edit, id: study_stat_comp.id
+      get :edit, params: { id: study_stat_comp.id }
       expect(response).to have_http_status(:success)
     end
   end
@@ -35,7 +35,7 @@ RSpec.describe StudyStatisticsComparisonsController, type: :controller do
   describe "PUT #update" do
     it "returns http found" do
       study_stat_comp = FactoryBot.create(:core_study_statistics_comparison)
-      put :update, id: study_stat_comp.id, core_study_statistics_comparison: { "ctgov_selector"=>"Test CTGOV Selector" }
+      put :update, params: { id: study_stat_comp.id, core_study_statistics_comparison: { "ctgov_selector"=>"Test CTGOV Selector" } }
       expect(response).to have_http_status(:found)
     end
   end
@@ -43,7 +43,7 @@ RSpec.describe StudyStatisticsComparisonsController, type: :controller do
   describe "DELETE #destroy" do
     it "returns http found" do
       study_stat_comp = FactoryBot.create(:core_study_statistics_comparison)
-      delete :destroy, id: study_stat_comp.id
+      delete :destroy, params: { id: study_stat_comp.id }
       expect(response).to have_http_status(:found)
     end
   end
