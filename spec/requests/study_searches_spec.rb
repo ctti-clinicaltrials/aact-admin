@@ -20,7 +20,7 @@ RSpec.describe "Study Searches", type: :request do
   describe "POST /study_searches/ with valid data" do
     it "saves a new Study Searches and redirects to the index page if valid attributes" do      
       study_search = FactoryBot.attributes_for(:core_study_search)
-      expect { post study_searches_path, core_study_search: study_search }.to change(Core::StudySearch, :count)
+      expect { post study_searches_path, params: {core_study_search: study_search} }.to change(Core::StudySearch, :count)
       expect(response).to redirect_to study_searches_path
     end
   end 
@@ -28,13 +28,13 @@ RSpec.describe "Study Searches", type: :request do
   describe "POST /study_searches/ with invalid data" do
     it "does not save a new Study Searh and renders the new page if invalid attribute (blank name)" do
       study_search = FactoryBot.attributes_for(:core_study_search, name: '')
-      expect { post study_searches_path, core_study_search: study_search }.to_not change(Core::StudySearch, :count)
+      expect { post study_searches_path, params: {core_study_search: study_search }}.to_not change(Core::StudySearch, :count)
       expect(response).to render_template(:new)
     end
 
     it "does not save a new Study Searches and renders the new page if invalid attribute (blank grouping)" do
       study_search = FactoryBot.attributes_for(:core_study_search, grouping: '')
-      expect { post study_searches_path, core_study_search: study_search }.to_not change(Core::StudySearch, :count)
+      expect { post study_searches_path, params: {core_study_search: study_search }}.to_not change(Core::StudySearch, :count)
       expect(response).to render_template(:new)
     end
   end

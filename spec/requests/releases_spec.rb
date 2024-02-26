@@ -46,7 +46,7 @@ RSpec.describe "Releases", type: :request do
     describe "POST /releases/ with valid data" do
       it "saves a new Release and redirects to the show page if valid attributes" do
         release_attributes = { release: {title: 'Code the Dream', subtitle: 'AACT', released_on: Date.today, body: 'Testing valid data.'} }
-        expect { post releases_path, release_attributes }.to change(Release, :count)
+        expect { post releases_path(release_attributes)}.to change(Release, :count)
         expect(response).to redirect_to release_path(id: Release.last.id)
       end
     end
@@ -54,22 +54,22 @@ RSpec.describe "Releases", type: :request do
     describe "POST /release/ with invalid data" do
       it "does not save a new Release or redirect if invalid title" do
         release_attributes = { release: {title: '', subtitle: 'subtitle', released_on: Date.today, body: 'body'} }
-        expect { post releases_path, release_attributes }.to_not change(Release, :count)
+        expect { post releases_path(release_attributes) }.to_not change(Release, :count)
         expect(response).to render_template(:new)
       end
       it "does not save a new Release or redirect if invalid subtitle" do
         release_attributes = { release: {title: 'title', subtitle: '', released_on: Date.today, body: 'body'} }
-        expect { post releases_path, release_attributes }.to_not change(Release, :count)
+        expect { post releases_path(release_attributes) }.to_not change(Release, :count)
         expect(response).to render_template(:new)
       end
       it "does not save a new Release or redirect if invalid released on date" do
         release_attributes = { release: {title: 'title', subtitle: 'subtitle', released_on: 18, body: 'body'} }
-        expect { post releases_path, release_attributes }.to_not change(Release, :count)
+        expect { post releases_path(release_attributes) }.to_not change(Release, :count)
         expect(response).to render_template(:new)
       end
       it "does not save a new Release or redirect if invalid body" do
         release_attributes = { release: {title: 'title', subtitle: 'subtitle', released_on: Date.today, body: ''} }
-        expect { post releases_path, release_attributes }.to_not change(Release, :count)
+        expect { post releases_path(release_attributes) }.to_not change(Release, :count)
         expect(response).to render_template(:new)
       end
     end
@@ -77,7 +77,7 @@ RSpec.describe "Releases", type: :request do
     describe "PUT /release/ with valid data" do
       it "updates a Release and redirects to the show page if valid attribute" do
         release = FactoryBot.create(:release)
-        put release_path(release.id), release: {released_on: Date.today}
+        put release_path(release.id), params: {release: {released_on: Date.today}}
         release.reload
         expect(release.released_on).to eq(Date.today)
         expect(response).to redirect_to release_path(release.id)
@@ -87,28 +87,28 @@ RSpec.describe "Releases", type: :request do
     describe "PUT /release/ with invalid data" do
       it "does not update the Release or redirect if invalid title" do
         release = FactoryBot.create(:release)
-        put release_path(release.id), release: {title: ''}
+        put release_path(release.id), params: {release: {title: ''}}
         release.reload
         expect(release.title).not_to eq('')
         expect(response).to render_template(:edit)
       end
       it "does not update the Release or redirect if invalid subtitle" do
         release = FactoryBot.create(:release)
-        put release_path(release.id), release: {subtitle: ''}
+        put release_path(release.id), params: {release: {subtitle: ''}}
         release.reload
         expect(release.released_on).not_to eq('')
         expect(response).to render_template(:edit)
       end
       it "does not update the Release or redirect if invalid released on date" do
         release = FactoryBot.create(:release)
-        put release_path(release.id), release: {released_on: 18}
+        put release_path(release.id), params: {release: {released_on: 18}}
         release.reload
         expect(release.released_on).not_to eq(Date.today)
         expect(response).to render_template(:edit)
       end
       it "does not update the Release or redirect if invalid body" do
         release = FactoryBot.create(:release)
-        put release_path(release.id), release: {body: ''}
+        put release_path(release.id), params: {release: {body: ''}}
         release.reload
         expect(release.released_on).not_to eq('')
         expect(response).to render_template(:edit)
@@ -163,14 +163,14 @@ RSpec.describe "Releases", type: :request do
     describe "POST /releases/ with valid data" do
       it "redirects to the home page if user is not an admin" do
         release_attributes = { release: {title: 'Code the Dream', subtitle: 'AACT', released_on: Date.today, body: 'Testing valid data.'} }
-        expect { post releases_path, release_attributes }.to_not change(Release, :count)
+        expect { post releases_path(release_attributes) }.to_not change(Release, :count)
         expect(response).to redirect_to root_path
       end
     end
 
     describe "PUT /release/ with valid data" do
       it "redirects to the home page if user is not an admin" do
-        put release_path(id: 3), release: {released_on: Date.today}
+        put release_path(id: 3),params: { release: {released_on: Date.today}}
         expect(response).to redirect_to releases_path
       end
     end
@@ -215,14 +215,14 @@ RSpec.describe "Releases", type: :request do
     describe "POST /releases/ with valid data" do
       it "redirects to the home page if user is not logged in" do
         release_attributes = { release: {title: 'Code the Dream', subtitle: 'AACT', released_on: Date.today, body: 'Testing valid data.'} }
-        expect { post releases_path, release_attributes }.to_not change(Release, :count)
+        expect { post releases_path(release_attributes) }.to_not change(Release, :count)
         expect(response).to redirect_to root_path
       end
     end
 
     describe "PUT /release/ with valid data" do
       it "redirects to the home page if user is not logged in" do
-        put release_path(id: 3), release: {released_on: Date.today}
+        put release_path(id: 3),params: { release: {released_on: Date.today}}
         expect(response).to redirect_to releases_path
       end
     end
