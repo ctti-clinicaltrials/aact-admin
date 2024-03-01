@@ -20,13 +20,21 @@
       <tbody>
         <% @data_definitions.each do |data_definition| %>
           <tr>
-            <td style="text-align: center"><%= link_to data_definition.table_name, data_definition_path(data_definition) %> .
-                                           <%= link_to data_definition.column_name, data_definition_path(data_definition) %></td>
+            <td style="text-align: center"><%= link_to "#{data_definition.table_name}.#{data_definition.column_name}", data_definition_path(data_definition) %></td>
             <td style="text-align: center"><%= data_definition.db_section %></td>
             <td style="text-align: center"><%= data_definition.data_type %></td>
             <td style="text-align: center"><%= data_definition.source %></td>
             <td style="text-align: center"><%= data_definition.ctti_note %></td>
-            <td style="text-align: center"><%= data_definition.nlm_link %></td>
+            <td style="text-align: center">
+              <% if data_definition.nlm_link.present? %>
+                <% results_url = Util::FilePresentationManager.new.nlm_results_data_url %>
+                <% protocol_url = Util::FilePresentationManager.new.nlm_protocol_data_url %>
+                <% url = data_definition.db_section.downcase == "results" ? results_url : protocol_url %>
+                <%= link_to raw("<i class='fa fa-book'></i>"), "#{url}##{data_definition.nlm_link}", class: 'navItem', target: '_blank' %>
+              <% else %>
+                N/A
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
