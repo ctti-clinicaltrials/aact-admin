@@ -1,7 +1,4 @@
 class DefinitionsController < ApplicationController
-  # *******///********
-  # This code uses data dictionary spreadsheet stored on the DO file server
-  # *******///********
   require 'csv'
 
   def index
@@ -23,6 +20,16 @@ class DefinitionsController < ApplicationController
         hash["enumerations"] = generate_select_snippet(data_def_entry)
       end
       fix_attribs(hash)
+
+      results_url = Util::FilePresentationManager.new.nlm_results_data_url
+      protocol_url = Util::FilePresentationManager.new.nlm_protocol_data_url
+
+      if hash['nlm doc'].present?
+        url = hash["db section"].downcase == "results" ? results_url : protocol_url
+        hash['nlm doc'] = "<a href=#{url}##{hash['nlm doc']} class='navItem' target='_blank'><i class='fa fa-book'></i></a>".html_safe
+      end
+
+      hash
     end
 
     respond_to do |format|

@@ -43,7 +43,14 @@
           <h5><strong>nlm_link:</strong></h5>
         </div>
         <div class="col">
-          <h5><%= @data_definition.nlm_link %></h5>
+          <% if @data_definition.nlm_link.present? %>
+            <% results_url = Util::FilePresentationManager.new.nlm_results_data_url %>
+            <% protocol_url = Util::FilePresentationManager.new.nlm_protocol_data_url %>
+            <% url = @data_definition.db_section.downcase == "results" ? results_url : protocol_url %>
+            <%= link_to raw("<i class='fa fa-book'></i>"), "#{url}##{@data_definition.nlm_link}", class: 'navItem', target: '_blank' %>
+          <% else %>
+            N/A
+          <% end %>
         </div>
       </div>  
     </div>  
@@ -53,11 +60,10 @@
       <div>
         <%= link_to 'Edit', edit_data_definition_path(@data_definition), :class => "btn btn-primary" %>   
       </div>
-        <%= link_to 'Delete', data_definition_path(@data_definition), :class => "btn btn-danger", :method => :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Delete', data_definition_path(@data_definition), :class => "btn btn-danger", :method => :delete, data: { confirm: 'Are you sure?' } %>
       <div>
         <%= link_to 'Back', data_definitions_path, :class => "btn btn-primary" %>  
       </div>
     </div>
   </div>
 </div>  
- 
