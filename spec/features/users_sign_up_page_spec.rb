@@ -37,7 +37,7 @@ feature "Users Sign Up Page" do
     fill_in 'user_first_name', with: long_name
     fill_in 'user_last_name', with: long_name
     submit
-    expect(page).to have_content "First name is too long (maximum is 17 characters)"
+    expect(page).to have_content "First name is too long (maximum is 100 characters)"
     expect(page).to have_content "Last name is too long (maximum is 100 characters)"
     expect(page).not_to have_content "First name can't be blank"
     expect(page).not_to have_content "Last name can't be blank"
