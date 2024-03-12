@@ -8,6 +8,11 @@
         <%= submit_tag "Search", class: 'btn btn-primary btn-sm', style: 'width: 100px;' %>
       </div>
     <% end %>
+    <% if current_user.admin? %>
+      <div style="margin-left: auto;">
+        <%= link_to "Show Everyone", "/admin/history" %>
+      </div>
+    <% end %>
   </div>
 
   <table id="data-table" class="table table-sm table-striped">
