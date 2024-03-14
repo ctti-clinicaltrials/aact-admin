@@ -54,7 +54,7 @@ RSpec.describe "Notices", type: :request do
     describe "POST /admin/notice with valid data" do
       it "creates a new notice and redirects to the show page if attributes are valid" do
         params = { notice: {title: 'Test', body: 'Notice test body', send_emails: false} }
-        expect { post admin_notices_path, params }.to change(Notice, :count)
+        expect { post admin_notices_path(params) }.to change(Notice, :count)
         expect(response).to redirect_to admin_notice_path(id: Notice.last.id)
       end
     end
@@ -62,7 +62,7 @@ RSpec.describe "Notices", type: :request do
     describe "POST /admin/notice with invalid data" do
       it "does not save a new Notice and redirects" do
         params = { notice: {title: ' ', body: 'Notice test body', send_emails: false} }
-        expect { post admin_notices_path, params }.to_not change(Notice, :count)
+        expect { post admin_notices_path(params) }.to_not change(Notice, :count)
         expect(response).to render_template(:new)
       end
     end
@@ -70,7 +70,7 @@ RSpec.describe "Notices", type: :request do
     describe "PUT /admin/notice with valid data" do
       it "updates a notice with valid attributes and redirects to the show page " do
         notice = FactoryBot.create(:notice)
-        put admin_notice_path(id: notice.id), notice: {visible: true}
+        put admin_notice_path(notice.id), params: {notice: {visible: true}}
         notice.reload
         expect(notice.visible).to eq true
         expect(response).to redirect_to admin_notice_path(id: notice.id)
@@ -80,7 +80,7 @@ RSpec.describe "Notices", type: :request do
     describe "PUT /admin/notice with invalid data" do
       it "does not updates a notice with invalid attributes and redirect to the edit page" do
         notice = FactoryBot.create(:notice)
-        put admin_notice_path(id: notice.id), notice: {body: " "}
+        put admin_notice_path(id: notice.id), params: {notice: {body: " "}}
         notice.reload
         expect(notice.body).not_to eq(" ")
         expect(response).to render_template(:edit)
@@ -147,7 +147,7 @@ RSpec.describe "Notices", type: :request do
     describe "POST /admin/notice " do
       it "redirects to the home page if user is not an admin" do
         params = { notice: {title: 'Test', body: 'Notice test body', send_emails: false} }
-        expect { post admin_notices_path, params }.to_not change(Notice, :count)
+        expect { post admin_notices_path(params) }.to_not change(Notice, :count)
         expect(response).to redirect_to root_path     
       end
     end
@@ -155,7 +155,7 @@ RSpec.describe "Notices", type: :request do
     describe "POST /admin/notice with invalid data" do
       it "redirects to the home page if user is not an admin" do
         params = { notice: {title: ' ', body: 'Notice test body', send_emails: false} }
-        expect { post admin_notices_path, params }.to_not change(Notice, :count)
+        expect { post admin_notices_path(params) }.to_not change(Notice, :count)
         expect(response).to redirect_to root_path     
       end
     end
@@ -163,7 +163,7 @@ RSpec.describe "Notices", type: :request do
     describe "PUT /admin/notice with valid data" do
       it "redirects to the home page if user is not an admin " do
         notice = FactoryBot.create(:notice)
-        put admin_notice_path(id: notice.id), notice: {visible: true}
+        put admin_notice_path(id: notice.id), params: {notice: {visible: true}}
         notice.reload
         expect(notice.visible).to eq false
         expect(response).to redirect_to root_path   
@@ -173,7 +173,7 @@ RSpec.describe "Notices", type: :request do
     describe "PUT /admin/notice with invalid data" do
       it "does not updates a notice with invalid attributes and redirect to the home page" do
         notice = FactoryBot.create(:notice)
-        put admin_notice_path(id: notice.id), notice: {body: " "}
+        put admin_notice_path(id: notice.id), params: {notice: {body: " "}}
         notice.reload
         expect(notice.body).not_to eq(" ")
         expect(response).to redirect_to root_path   
@@ -220,14 +220,14 @@ RSpec.describe "Notices", type: :request do
     describe "POST /admin/notice with valid data" do
       it "redirects to the home page if user is not logged in" do
         params = { notice: {title: 'Test', body: 'Notice test body', send_emails: false} }
-        expect { post admin_notices_path, params }.to_not change(Notice, :count)
+        expect { post admin_notices_path(params) }.to_not change(Notice, :count)
         expect(response).to redirect_to root_path
       end
     end
 
     describe "PUT /admin/notice/ with valid data" do
       it "redirects to the home page if user is not logged in" do
-        put admin_notice_path(id: 3), notice: {send_emails: true}
+        put admin_notice_path(id: 3), params: {notice: {send_emails: true}}
         expect(response).to redirect_to admin_notices_path
       end
     end

@@ -1,4 +1,4 @@
-class CreateSavedQueries < ActiveRecord::Migration
+class CreateSavedQueries < ActiveRecord::Migration[4.2]
   def change
     create_table :saved_queries do |t|
       t.string :title

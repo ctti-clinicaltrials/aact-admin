@@ -62,7 +62,7 @@ RSpec.describe "Saved Queries", type: :request do
   describe "POST /saved_queries/ with valid data" do
     it "saves a new Saved Query and redirects to the show page if valid attributes" do      
       saved_q = FactoryBot.attributes_for(:saved_query)
-      expect { post saved_queries_path, saved_query: saved_q }.to change(SavedQuery, :count)
+      expect { post saved_queries_path, params: {saved_query: saved_q} }.to change(SavedQuery, :count)
       expect(response).to redirect_to saved_query_path(id: SavedQuery.last.id)
     end
   end
@@ -70,17 +70,17 @@ RSpec.describe "Saved Queries", type: :request do
   describe "POST /saved_queries/ with invalid data" do
     it "does not save a new Saved Query and renders the new page if invalid attribute (blank title)" do
       saved_q = FactoryBot.attributes_for(:saved_query, title: '')
-      expect { post saved_queries_path, saved_query: saved_q }.to_not change(SavedQuery, :count)
+      expect { post saved_queries_path, params: {saved_query: saved_q} }.to_not change(SavedQuery, :count)
       expect(response).to render_template(:new)
     end
     it "does not save a new Saved Query and renders the new page if invalid attribute (blank description)" do
       saved_q = FactoryBot.attributes_for(:saved_query, description: '')
-      expect { post saved_queries_path, saved_query: saved_q }.to_not change(SavedQuery, :count)
+      expect { post saved_queries_path, params: {saved_query: saved_q} }.to_not change(SavedQuery, :count)
       expect(response).to render_template(:new)
     end
     it "does not save a new Saved Query and renders the new page if invalid attribute (blank sql)" do
       saved_q = FactoryBot.attributes_for(:saved_query, sql: '')
-      expect { post saved_queries_path, saved_query: saved_q }.to_not change(SavedQuery, :count)
+      expect { post saved_queries_path, params: {saved_query: saved_q} }.to_not change(SavedQuery, :count)
       expect(response).to render_template(:new)
     end
   end
@@ -101,7 +101,7 @@ RSpec.describe "Saved Queries", type: :request do
   describe "PUT /saved_queries/:id with valid data" do
     it "updates a Saved Query and redirects to the show page if valid attribute" do
       saved_q = FactoryBot.create(:saved_query, user_id: @user.id)
-      put saved_query_path(id: saved_q.id), saved_query: {title: 'Testing valid data.'}
+      put saved_query_path(id: saved_q.id), params: {saved_query: {title: 'Testing valid data.'}}
       saved_q.reload
       expect(saved_q.title).to eq('Testing valid data.')
       expect(response).to redirect_to saved_query_path
@@ -111,21 +111,21 @@ RSpec.describe "Saved Queries", type: :request do
   describe "PUT /saved_queries/:id with invalid data" do
     it "does not update a Saved Query and renders the edit page if invalid attribute (blank title)" do
       saved_q = FactoryBot.create(:saved_query, user_id: @user.id)
-      put saved_query_path(id: saved_q.id), saved_query: {title: ''}
+      put saved_query_path(id: saved_q.id), params: { saved_query: {title: ''}}
       saved_q.reload
       expect(saved_q.title).to_not eq('')
       expect(response).to render_template(:edit)
     end
     it "does not update a Saved Query and renders the edit page if invalid attribute (blank description)" do
       saved_q = FactoryBot.create(:saved_query, user_id: @user.id)
-      put saved_query_path(id: saved_q.id), saved_query: {description: ''}
+      put saved_query_path(id: saved_q.id), params: {saved_query: {description: ''}}
       saved_q.reload
       expect(saved_q.description).to_not eq('')
       expect(response).to render_template(:edit)
     end
     it "does not update a Saved Query and renders the edit page if invalid attribute (blank sql)" do
       saved_q = FactoryBot.create(:saved_query, user_id: @user.id)
-      put saved_query_path(id:saved_q.id), saved_query: {sql: ''}
+      put saved_query_path(id:saved_q.id), params: {saved_query: {sql: ''}}
       saved_q.reload
       expect(saved_q.sql).to_not eq('')
       expect(response).to render_template(:edit)
@@ -135,7 +135,7 @@ RSpec.describe "Saved Queries", type: :request do
   describe "PUT /saved_queries/:id by a User that is NOT the creator of the query" do
     it "does not update a Saved Query and renders the Not Found (404) page if the current logged-in User is NOT the User that created the Query" do
       saved_q = FactoryBot.create(:saved_query, user_id: @user2.id)
-      put saved_query_path(id: saved_q.id), saved_query: {title: 'Testing valid data.'}
+      put saved_query_path(id: saved_q.id), params: {saved_query: {title: 'Testing valid data.'}}
       saved_q.reload
       expect(saved_q.title).to_not eq('Testing valid data.')
       expect(response).to render_template("layouts/application")
