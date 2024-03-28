@@ -1,5 +1,5 @@
 class Users::PasswordsController < Devise::PasswordsController
-  skip_before_filter :require_no_authentication, :only => [:edit, :update]
+  skip_before_action :require_no_authentication, :only => [:edit, :update]
   before_action :configure_devise_permitted_parameters
 
   def new
