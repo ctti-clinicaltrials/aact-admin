@@ -3,7 +3,7 @@ require 'webmock/rspec'
 
 RSpec.describe SummaryController, type: :controller do
   before do
-    stub_request(:get, "https://classic.clinicaltrials.gov/api//info/study_statistics?fmt=json").
+    stub_request(:get, "https://clinicaltrials.gov/api/v2//stats/size?fmt=json").
          with(
            headers: {
           'Accept'=>'*/*',
