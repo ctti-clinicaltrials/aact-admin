@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   get "/update_policy"        => "pages#update_policy"
   get "/deploy_code"          => "pages#deploy_code"
   get "/contactus"            => "pages#contactus"
+  get "/playground_info"      => "pages#playground_info"
 
   get '/history', to: 'background_jobs#history'
   get '/admin/history', to: 'background_jobs#admin_history'
