@@ -1,50 +1,40 @@
 <div>
   <h1>Connect to AACT</h1>
     <div class="connectionTypes">
-      <a href="/playground" class="connectionCard w-100">
+      <a href="/playground_info" class="connectionCard w-100">
         <h4>Playground</h4>
         <p>
-        Click here to create account and run queries on the AACT data from your web browser.
+        Click here to learn more on how to run queries on the AACT data from your web browser.
         </p>
         <%= fa_icon("plug") %>
       </a>
     </div>
     <p>
-       In addition to the Playground you can use one of the popular Postgres clients from a list below to connect to AACT which are free and straightforward to install and set up.
+       In addition to the Playground you can use any Postgres clients. Below is some examples of clients to connect to AACT which are free and straightforward to install and set up.
     </p>
     <section class="connect">
-    <div class="connectionTypes">
-      <a href="/pgadmin" class="connectionCard">
-        <h4>pgAdmin</h4>
-        <p>
-          Click here for instructions on how to use a standard graphical user interface to query the cloud-based AACT directly with SQL.
-        </p>
-        <%= fa_icon("plug") %>
-      </a>
-      <a href="/r" class="connectionCard">
-        <h4>R and RStudio</h4>
-        <p>
-          Click here for instructions about how to use R/RStudio to analyze the AACT data directly.
-        </p>
-        <%= fa_icon("plug") %>
-      </a>
-      <a href="/sas" class="connectionCard">
-        <h4>SAS</h4>
-        <p>
-          Click here for instructions about how to use SAS to analyze the AACT data directly.
-        </p>
-        <%= fa_icon("plug") %>
-      </a>
-      <a href="/postgres" class="connectionCard">
-        <h4>pSQL</h4>
-        <p>
-          Click here to receive instructions on how to use the command line PostgreSQL tool to query the cloud-based AACT directly with SQL.
-        </p>
-        <%= fa_icon("plug") %>
-      </a>
-    </div>
-   
-        <p>Dont forget to whitelist IP address: 174.138.61.222</p>
+     <ul class='regularDisplay indent'>
+      <li>   
+        <a href="/pgadmin" class="connectionCard">
+        pgAdmin
+        </a>
+      </li> 
+      <li>
+        <a href="/r" class="connectionCard">
+          R and RStudio
+        </a>
+      </li> 
+      <li>
+        <a href="/sas" class="connectionCard">
+        SAS
+        </a>
+      </li>
+      <li>
+        <a href="/postgres" class="connectionCard">
+        pSQL
+        </a>
+      </li>
+    </ul>
 
     <% if user_signed_in? %>
       <%= render 'credentials/credentials' %>
@@ -74,3 +64,4 @@
     <% end %>
   </div>
 </section>
+</div>
