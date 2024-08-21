@@ -33,11 +33,12 @@ class DefinitionsController < ApplicationController
     end
 
     respond_to do |format|
-      format.csv do
-        response.headers['Content-Type'] = 'text/csv'
-        response.headers['Content-Disposition'] = "attachment; filename=definitions.csv"
-        render template: "definitions/index.csv.erb"
-      end
+      # format.csv do
+      #   response.headers['Content-Type'] = 'text/csv'
+      #   response.headers['Content-Disposition'] = "attachment; filename=definitions.csv"
+      #   render template: "definitions/index.csv.erb"
+      # end
+      format.csv { send_definitions_xlsx }
       format.json { render json: @data_def_entries }
       format.html { redirect_to root_path }
     end
@@ -75,7 +76,13 @@ class DefinitionsController < ApplicationController
 
   def generate_select_snippet(data_def_entry)
     if data_def_entry['enumerations'].present?
-      options_hash = JSON.parse(data_def_entry['enumerations'])
+      options_hash = {}
+      case data_def_entry['enumerations']
+      when Hash
+        options_hash = data_def_entry['enumerations']
+      when String
+        options_hash = JSON.parse(data_def_entry['enumerations'])
+      end
   
       options = options_hash.map do |key, value|
         "<option value='#{key}'>#{key} (#{value[0]} - #{value[1]})</option>"
@@ -96,5 +103,14 @@ class DefinitionsController < ApplicationController
 
   def searchable_attribs
     ['db schema', 'table', 'column', 'data type', 'xml source', 'source', 'CTTI note']
+  end
+
+  private
+
+  # sends file and configures browser to download it
+  def send_definitions_xlsx
+    type = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    file_path = Rails.root.join('public', 'documentation', 'definitions.xlsx')
+    send_file file_path, type: type,  disposition: 'attachment'
   end
 end
