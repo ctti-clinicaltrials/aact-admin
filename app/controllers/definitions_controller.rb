@@ -26,11 +26,12 @@ class DefinitionsController < ApplicationController
     end
 
     respond_to do |format|
-      format.csv do
-        response.headers['Content-Type'] = 'text/csv'
-        response.headers['Content-Disposition'] = "attachment; filename=definitions.csv"
-        render template: "definitions/index.csv.erb"
-      end
+      # format.csv do
+      #   response.headers['Content-Type'] = 'text/csv'
+      #   response.headers['Content-Disposition'] = "attachment; filename=definitions.csv"
+      #   render template: "definitions/index.csv.erb"
+      # end
+      format.csv { send_definitions_xlsx }
       format.json { render json: @data_def_entries }
       format.html { redirect_to root_path }
     end
@@ -95,5 +96,14 @@ class DefinitionsController < ApplicationController
 
   def searchable_attribs
     ['db schema', 'table', 'column', 'data type', 'xml source', 'source', 'CTTI note']
+  end
+
+  private
+
+  # sends file and configures browser to download it
+  def send_definitions_xlsx
+    type = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    file_path = Rails.root.join('public', 'documentation', 'definitions.xlsx')
+    send_file file_path, type: type,  disposition: 'attachment'
   end
 end
