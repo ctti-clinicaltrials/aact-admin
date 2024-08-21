@@ -31,6 +31,10 @@ class ClinicalTrialsApiV2
     JSON.parse(body)
   end
 
+  def self.number_of_studies
+    ClinicalTrialsApiV2.size.dig('totalStudies')
+  end
+
   #Values stats
   def self.values
     body = Faraday.get("#{BASE_URL_V2}/stats/fieldValues").body

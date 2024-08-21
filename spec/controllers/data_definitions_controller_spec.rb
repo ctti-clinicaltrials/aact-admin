@@ -28,7 +28,7 @@ RSpec.describe DataDefinitionsController, type: :controller do
   describe "POST #create" do
     it "returns http found" do
       data_def = FactoryBot.attributes_for(:data_definition)
-      post :create, data_definition: data_def
+      post :create, params: { data_definition: data_def }
       expect(response).to redirect_to data_definitions_path
       expect(response).to have_http_status(:found)
     end
@@ -37,7 +37,7 @@ RSpec.describe DataDefinitionsController, type: :controller do
   describe "GET #edit" do
     it "returns http success" do
       data_def = FactoryBot.create(:data_definition)
-      get :edit, id: data_def.id
+      get :edit, params: { id: data_def.id }
       expect(response).to render_template(:edit)
       expect(response).to have_http_status(:success)
     end
@@ -46,7 +46,7 @@ RSpec.describe DataDefinitionsController, type: :controller do
   describe "PUT #update" do
     it "returns http found" do
       data_def = FactoryBot.create(:data_definition)
-      put :update, id: data_def.id, data_definition: { "db_section"=>"TEST: results" }
+      put :update, params: { id: data_def.id, data_definition: { "db_section"=>"TEST: results" } }
       expect(response).to redirect_to data_definitions_path
       expect(response).to have_http_status(:found)
     end
@@ -55,7 +55,7 @@ RSpec.describe DataDefinitionsController, type: :controller do
   describe "GET #show" do
     it "returns http success" do
       data_def = FactoryBot.create(:data_definition)
-      get :show, id: data_def.id
+      get :show, params: {id: data_def.id}
       expect(response).to render_template(:show)
       expect(response).to have_http_status(:success)
     end
@@ -64,7 +64,7 @@ RSpec.describe DataDefinitionsController, type: :controller do
   describe "DELETE #destroy" do
     it "returns http found" do
       data_def = FactoryBot.create(:data_definition)
-      delete :destroy, id: data_def.id
+      delete :destroy, params: { id: data_def.id }
       expect(response).to redirect_to data_definitions_path
       expect(response).to have_http_status(:found)
     end

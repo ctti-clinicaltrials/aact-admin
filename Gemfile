@@ -4,7 +4,7 @@ ruby "2.7.7"
 
 gem 'kaminari'
 gem 'nokogiri', '~> 1.13.10'
-gem 'rails', '~> 5.0.7'
+gem 'rails', '~> 5.2.8.1'
 gem 'rails-html-sanitizer', '~> 1.0.4'
 gem "rack-timeout"
 gem 'faraday', '~> 1.10', '>= 1.10.3'
@@ -72,7 +72,8 @@ group :development, :test do
   gem "awesome_print"
   gem "bullet"
   gem "bundler-audit"
-  gem "factory_bot_rails"
+  gem 'factory_bot_rails', '~> 6.4', '>= 6.4.3'
+  gem 'factory_bot', '~> 6.4', '>= 6.4.4'
   gem "pry-byebug"
   gem "pry-rails"
   gem 'rspec-rails'
@@ -83,13 +84,12 @@ group :test do
   gem 'rails-controller-testing'
   gem 'capybara'
   gem 'webdrivers', '~> 4.0', require: false
-  gem 'selenium-webdriver' # For Firefox
-  gem 'chromedriver-helper'
+  gem 'selenium-webdriver', '~> 4.0', '>= 4.0.2'
   gem "formulaic"
   gem "launchy"
   gem "shoulda-matchers"
   gem "simplecov", require: false
   gem "timecop"
-  gem "webmock"
+  gem 'webmock', '3.15.1'
   gem "vcr"
 end

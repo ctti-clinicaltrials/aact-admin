@@ -1,4 +1,4 @@
-class AddDeviseToUsers < ActiveRecord::Migration
+class AddDeviseToUsers < ActiveRecord::Migration[4.2]
   def change
     execute "CREATE SCHEMA IF NOT EXISTS ctgov";
     execute "ALTER ROLE #{ENV['AACT_USERNAME']} SET search_path TO ctgov, support, public;"

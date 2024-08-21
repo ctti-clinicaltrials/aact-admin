@@ -52,6 +52,9 @@ class SavedQueriesController < ApplicationController
   end
 
   def edit
+    unless current_user.admin? || current_user == @saved_query.user
+      redirect_to :root, alert: "You are not authorized to edit this query."
+    end
   end
 
   def create
@@ -66,6 +69,11 @@ class SavedQueriesController < ApplicationController
   end
 
   def update
+    unless current_user.admin? || current_user == @saved_query.user
+      redirect_to :root, alert: "You are not authorized to update this query."
+      return
+    end
+
     if @saved_query.update(saved_query_params)
       flash.notice = "The query was updated successfully."
       redirect_to @saved_query
@@ -76,6 +84,11 @@ class SavedQueriesController < ApplicationController
   end
 
   def destroy
+    unless current_user.admin? || current_user == @saved_query.user
+      redirect_to :root, alert: "You are not authorized to delete this query."
+      return
+    end
+
     @saved_query.destroy
     redirect_to saved_queries_path, notice: "The query was deleted successfully."
   end
@@ -83,9 +96,9 @@ class SavedQueriesController < ApplicationController
   private
     def set_saved_query
       @saved_query = SavedQuery.find_by_id(params[:id])
-      if @saved_query.nil? || @saved_query.user_id != current_user.id
+      if @saved_query.nil? || (@saved_query.user_id != current_user.id && !current_user.admin?)
         render :file => "app/views/errors/not_found.html", status: :not_found
-      end  
+      end
     end
 
     # Only allow a list of trusted parameters through.
