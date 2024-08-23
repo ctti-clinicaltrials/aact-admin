@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
+  before_action :check_registration_disabled, only: [:new, :create]
 
   def edit
     user_sign_out if params['format'] == 'sign-out'
@@ -66,6 +67,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
       devise_parameter_sanitizer.permit(:delete) {
         |u| u.permit(registration_params)
       }
+    end
+  end
+
+  private
+
+  def check_registration_disabled
+    if ENV['DISABLE_USER_REGISTRATION'] == 'true'
+      flash[:alert] = 'User registration is currently disabled. Please try again later.'
+      redirect_to root_path
     end
   end
 end
