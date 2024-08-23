@@ -1,9 +1,45 @@
+<%= render 'layouts/query_menu' %>
 <div>
   <h1>Connect to AACT through your browser</h1>
   <section class="savedqueryAccess">
     <p>
     This method for accessing the AACT database is recommended if you do not wish to install any software. You can run queries on the live database through your browser. 
     </p>
+
+    <div>
+  <h1>Playground workflow description:</h1>
+  <p> Playground allowes you to get the data in 3 easy steps: </p>
+  <ol class='regularDisplay'>
+    <li>Input query.</li>
+    <li>Click Execute.</li>
+    <li>Verify results.</li> 
+  </ol>
+  <p> <%= image_tag("playground_info.jpg", :class => 'centerImage') %> </p>
+</div>
+    <div>
+  <h1>How To searh query in History:</h1>
+  <ol class='regularDisplay'>
+    <li>Click on History tab.</li>
+    <p> <%= image_tag("history_step_1.jpg", :class => 'centerImage') %> </p>
+    <li>Input keywords into the search bar and click "Search" or click on preffered query from the list:</li>
+      <p> <%= image_tag("history_step_2.jpg", :class => 'centerImage') %> </p>
+    <li>Click on preffered query from the list:</li>
+      <p> <%= image_tag("history_step_3.jpg", :class => 'centerImage') %> </p>
+    <li>Verify results.</li> 
+      <p> <%= image_tag("history_step_4.jpg", :class => 'centerImage') %> </p>
+  </ol>
+</div>
+ <div>
+  <h1>How To searh query in Community Queries History:</h1>
+  <ol class='regularDisplay'>
+
+    <li>Click on Community queries tab.</li>
+    <li>Input keywords into the search bar and click "Search"</li>
+    <li>Click on preffered query from the list:</li>
+    <li>Verify results.</li> 
+    <p> <%= image_tag("community_queries.jpg", :class => 'centerImage') %> </p>
+  </ol>
+</div>
     <h4>Note:</h4>
     <ul>
       <li><p>Users can share example queries that can be run on the live database, and if you write a query we encourage you to share it with other users.</p></li>
