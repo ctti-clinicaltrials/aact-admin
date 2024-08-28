@@ -106,6 +106,10 @@ GEM
     diff-lcs (1.5.1)
     docile (1.4.0)
     domain_name (0.6.20240107)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     enumerize (2.7.0)
       activesupport (>= 3.2)
     erubi (1.12.0)
@@ -421,6 +425,7 @@ DEPENDENCIES
   coderay
   devise (>= 4.9.1)
   devise-encryptable
+  dotenv-rails
   enumerize
   execjs
   factory_bot (~> 6.4, >= 6.4.4)
