@@ -5,10 +5,12 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   include ActiveModel::Validations
-  after_create { create_db_account }
+  after_create  :create_db_account, :grant_db_privs 
   after_save :grant_db_privs, :if => proc { |l| l.confirmed_at_changed? && l.confirmed_at_was.nil? }
   attr_accessor :current_password, :skip_password_validation, :skip_username_validation
-  devise :confirmable, :database_authenticatable, :registerable,
+  # devise :confirmable, :database_authenticatable, :registerable,
+  # temp fix for the confirm of the users
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :current_password, presence: true, on: :update, unless: :skip_password_validation
