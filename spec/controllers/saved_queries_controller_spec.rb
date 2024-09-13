@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe SavedQueriesController, type: :controller do
   before do
     @user = User.create(email: 'UserEmail@email.com', first_name: 'Firstname', last_name: 'Lastname', username: 'user123', password: '1234567', db_activity: nil, last_db_activity: nil, admin: false)
-    # @user.confirm
+    @user.confirm
     sign_in(@user)
     @user2 = User.create(email: 'User2Email@email.com', first_name: 'Firstname', last_name: 'Lastname2', username: 'user12345', password: '1234567', db_activity: nil, last_db_activity: nil, admin: false)
-    # @user2.confirm
+    @user2.confirm
   end
 
   after do

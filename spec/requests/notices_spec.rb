@@ -6,7 +6,7 @@ RSpec.describe "Notices", type: :request do
     before do 
       User.destroy_all      
       @user = User.create(email: 'UserEmail@email.com', first_name: 'Firstname', last_name: 'Lastname', username: 'User123', password: '1234567', db_activity: nil, last_db_activity: nil, admin: true)
-      # @user.confirm
+      @user.confirm
       sign_in(@user)
     end
 
@@ -112,7 +112,7 @@ RSpec.describe "Notices", type: :request do
     before do # Had to set it to call for each test because of database connection error
       User.destroy_all
       @user = User.create(email: 'Javier.Jimenez@email.com', first_name: 'Javier', last_name: 'Jimenez', username: 'JavierJimenez2022', password: '1234567', db_activity: nil, last_db_activity: nil, admin: false)
-      # @user.confirm
+      @user.confirm
       sign_in(@user)
     end
 

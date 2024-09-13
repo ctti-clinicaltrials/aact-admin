@@ -68,7 +68,7 @@ describe User do
     end
 
     xit "the user can use the database if they are confirmed" do
-      # @user.confirm  #simulate user email response confirming their account
+      @user.confirm  #simulate user email response confirming their account
       
       # once confirmed via email, user should be able to login to their account
       cmd = "PGPASSWORD=password psql -U #{@user.username} -h #{AACT::Application::PUBLIC_DB_HOST} -d aact_public_test -c 'select 1 + 1'"
@@ -77,7 +77,7 @@ describe User do
     end
 
     it 'if the user is removed they can no longer access the database' do
-      # @user.confirm
+      @user.confirm
       @user.destroy
       expect(User.count).to eq(0)
       cmd = "PGPASSWORD=password psql -U #{@user.username} -h #{AACT::Application::PUBLIC_DB_HOST} -d aact_public_test"

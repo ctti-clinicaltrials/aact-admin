@@ -14,7 +14,7 @@ RSpec.describe SummaryController, type: :controller do
     to_return(status: 200, body: "{}", headers: {})
 
     @user = create(:user, admin: true)
-    # @user.confirm
+    @user.confirm
     sign_in(@user)
   end
 
