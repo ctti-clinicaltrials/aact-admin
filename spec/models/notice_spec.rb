@@ -4,7 +4,7 @@ RSpec.describe Notice, type: :model do
   before do  
     User.destroy_all      
     @user = User.create(email: 'UserEmail@email.com', first_name: 'Firstname', last_name: 'Lastname', username: 'User123', password: '1234567', db_activity: nil, last_db_activity: nil, admin: true)
-    @user.confirm
+    # @user.confirm
     @notice = Notice.create(body: 'Notice body', title: "Notice title", user_id: @user.id, visible: true, emails_sent_at: nil, send_emails: true)
     @notice1 = Notice.create(body: 'Notice 1 body', title: "Title", user_id: @user.id, visible: false, emails_sent_at: nil, send_emails: false)
     @notice2 = Notice.create(body: 'Notice for sent body', title: "Title", user_id: @user.id, visible: false, emails_sent_at: Time.current, send_emails: true)

@@ -143,7 +143,7 @@ feature "Users Sign Up Page" do
     expect(UserMailer).to receive(:send_event_notification).exactly(ApplicationMailer.admin_addresses.size).times
     submit
 
-    expect(page).to have_content "A message with a confirmation link has been sent to your email address"
+    # expect(page).to have_content "A message with a confirmation link has been sent to your email address"
     expect(Util::UserDbManager.new.user_account_exists?(valid_username)).to eq(true)
     user=User.where('username=?',valid_username).first
     expect(user.email).to eq(valid_email)

@@ -4,7 +4,7 @@ RSpec.describe "Queries", type: :request do
 
   before do
     @user = User.create(email: 'UserEmail@email.com', first_name: 'Firstname', last_name: 'Lastname', username: 'user123', password: '1234567', db_activity: nil, last_db_activity: nil, admin: false)
-    @user.confirm
+    # @user.confirm
     sign_in(@user)
   end
   

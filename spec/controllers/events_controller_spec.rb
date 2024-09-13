@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe EventsController, type: :controller do
   before do
     @user = create(:user, admin: true)
-    @user.confirm
+    # @user.confirm
     sign_in(@user)
   end
 
