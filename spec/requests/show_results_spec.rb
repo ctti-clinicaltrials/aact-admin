@@ -9,7 +9,7 @@ RSpec.describe "Background Jobs", type: :request do
     @user2 = User.create(email: 'User2Email2@email.com', first_name: 'Firstname2', last_name: 'Lastname2', username: 'user321', password: '1234567', db_activity: nil, last_db_activity: nil, admin: false)
     @user2.confirm
     @user_admin = User.create(email: 'UserAdminEmail@email.com', first_name: 'FirstnameAdmin', last_name: 'LastnameAdmin', username: 'useradmin123', password: '1234567', db_activity: nil, last_db_activity: nil, admin: true)
-    # @user_admin.confirm
+    @user_admin.confirm
   end
 
   after do
