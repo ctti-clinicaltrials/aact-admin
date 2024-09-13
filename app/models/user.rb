@@ -115,6 +115,9 @@ class User < ActiveRecord::Base
     end
   end
 
+  def confirm
+  end
+
   def remove
     begin
       return false if !can_access_db?
