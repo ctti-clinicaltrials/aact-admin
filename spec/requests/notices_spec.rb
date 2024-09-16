@@ -5,7 +5,7 @@ RSpec.describe "Notices", type: :request do
   context "If User is an admin" do
     before do 
       User.destroy_all      
-      @user = User.create(email: 'UserEmail@email.com', first_name: 'Firstname', last_name: 'Lastname', username: 'User123', password: '1234567', db_activity: nil, last_db_activity: nil, admin: true)
+      @user = User.create(email: 'useremail@email.com', first_name: 'Firstname', last_name: 'Lastname', username: 'user123', password: '1234567', db_activity: nil, last_db_activity: nil, admin: true)
       @user.confirm
       sign_in(@user)
     end
