@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Notice, type: :model do
   before do  
     User.destroy_all      
-    @user = User.create(email: 'UserEmail@email.com', first_name: 'Firstname', last_name: 'Lastname', username: 'User123', password: '1234567', db_activity: nil, last_db_activity: nil, admin: true)
+    @user = User.create(email: 'useremail@email.com', first_name: 'Firstname', last_name: 'Lastname', username: 'user123', password: '1234567', db_activity: nil, last_db_activity: nil, admin: true)
     @user.confirm
     @notice = Notice.create(body: 'Notice body', title: "Notice title", user_id: @user.id, visible: true, emails_sent_at: nil, send_emails: true)
     @notice1 = Notice.create(body: 'Notice 1 body', title: "Title", user_id: @user.id, visible: false, emails_sent_at: nil, send_emails: false)
@@ -24,6 +24,8 @@ RSpec.describe Notice, type: :model do
         notice1 = build :notice, title: nil
         notice2 = build :notice, title: " "
         notice3 = build :notice, title: "title"
+      
+
         
         expect(notice1).not_to be_valid
         expect(notice2).not_to be_valid
