@@ -1,0 +1,41 @@
+<!-- app/views/mappings/index.html.erb -->
+<input type="text" id="search" placeholder="Search by field name" onkeyup="filterTable()">
+<table id="mappings-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Table Name</th>
+      <th>Field Name</th>
+      <th>Active</th>
+      <th>API Path</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @mappings.each do |mapping| %>
+      <tr>
+        <td><%= mapping["id"] %></td>
+        <td><%= mapping["table_name"] %></td>
+        <td><%= mapping["field_name"] %></td>
+        <td><%= mapping["active"] %></td>
+        <td><%= mapping["api_path"] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%# TODO: temp - move to a js controller %>
+<script>
+  function filterTable() {
+    const input = document.getElementById("search").value.toLowerCase();
+    const table = document.getElementById("mappings-table");
+    const rows = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < rows.length; i++) {
+      const fieldName = rows[i].getElementsByTagName("td")[2].textContent.toLowerCase();
+      if (fieldName.includes(input)) {
+        rows[i].style.display = "";
+      } else {
+        rows[i].style.display = "none";
+      }
+    }
+  }
+</script>
