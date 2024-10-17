@@ -23,6 +23,6 @@ class MappingController < ApplicationController
 
 
   def filter_data(data, filter)
-    data.select { |item| item['field_name'].downcase.include?(filter.downcase) }
+    data.select { |item| item['ctgov_path'].downcase.include?(filter.downcase) }
   end
 end

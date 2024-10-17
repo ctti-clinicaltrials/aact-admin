@@ -1,24 +1,32 @@
 <%= form_with url: mapping_index_path, method: :get, local: true do %>
-  <%= label_tag :filter, "Search Field Name" %>
+  <%= label_tag :filter, "Search" %>
   <%= text_field_tag :filter, params[:filter] %>
   <%= submit_tag "Search" %>
 <% end %>
 <table id="mappings-table">
   <thead>
     <tr>
-      <th>Table Name</th>
-      <th>Field Name</th>
+      <th>Table</th>
+      <th>Field</th>
       <th>Active</th>
-      <th>API Path</th>
+      <th>ctgov_path</th>
+      <th>ctgov_section</th>
+      <th>ctgov_module</th>
+      <th>ctgov_field_name</th>
+      <th>ctgov_doc_url</th>
     </tr>
   </thead>
   <tbody>
     <% @mappings.each do |mapping| %>
       <tr>
-        <td><%= mapping["table_name"] %></td>
-        <td><%= mapping["field_name"] %></td>
-        <td><%= mapping["active"] %></td>
-        <td><%= mapping["api_path"] %></td>
+        <td><%= mapping["aact_table"] %></td>
+        <td><%= mapping["aact_field"] %></td>
+        <td><%= mapping["aact_active"] %></td>
+        <td><%= mapping["ctgov_path"] %></td>
+        <td><%= mapping["ctgov_section"] %></td>
+        <td><%= mapping["ctgov_module"] %></td>
+        <td><%= mapping["ctgov_field_name"] %></td>
+        <td><%= link_to mapping["ctgov_doc_url_label"], mapping["ctgov_doc_url"], target: '_blank' %></td>
       </tr>
     <% end %>
   </tbody>
