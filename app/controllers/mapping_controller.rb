@@ -2,6 +2,10 @@ class MappingController < ApplicationController
 
   def index
     @mappings = fetch_data
+
+    if params[:filter].present?
+      @mappings = filter_data(@mappings, params[:filter])
+    end
   end
 
   private
@@ -15,5 +19,10 @@ class MappingController < ApplicationController
     rescue StandardError => e
       Rails.logger.error "Failed to fetch data: #{e.message}"
       []
+  end
+
+
+  def filter_data(data, filter)
+    data.select { |item| item['field_name'].downcase.include?(filter.downcase) }
   end
 end
