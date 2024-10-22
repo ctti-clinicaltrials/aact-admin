@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @mappings.each do |mapping| %>
+    <% @paginated_mappings.each do |mapping| %>
       <tr>
         <td><%= mapping["aact_table"] %></td>
         <td><%= mapping["aact_field"] %></td>
@@ -31,3 +31,4 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @paginated_mappings %>

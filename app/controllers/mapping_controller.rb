@@ -6,6 +6,8 @@ class MappingController < ApplicationController
     if params[:filter].present?
       @mappings = filter_data(@mappings, params[:filter])
     end
+
+    @paginated_mappings = Kaminari.paginate_array(@mappings).page(params[:page]).per(5)
   end
 
   private
