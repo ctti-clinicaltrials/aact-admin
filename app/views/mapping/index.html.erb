@@ -1,34 +1,79 @@
-<%= form_with url: mapping_index_path, method: :get, local: true do %>
-  <%= label_tag :filter, "Search" %>
-  <%= text_field_tag :filter, params[:filter] %>
-  <%= submit_tag "Search" %>
-<% end %>
-<table id="mappings-table">
-  <thead>
-    <tr>
-      <th>Table</th>
-      <th>Field</th>
-      <th>Active</th>
-      <th>ctgov_path</th>
-      <th>ctgov_section</th>
-      <th>ctgov_module</th>
-      <th>ctgov_field_name</th>
-      <th>ctgov_doc_url</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @paginated_mappings.each do |mapping| %>
-      <tr>
-        <td><%= mapping["aact_table"] %></td>
-        <td><%= mapping["aact_field"] %></td>
-        <td><%= mapping["aact_active"] %></td>
-        <td><%= mapping["ctgov_path"] %></td>
-        <td><%= mapping["ctgov_section"] %></td>
-        <td><%= mapping["ctgov_module"] %></td>
-        <td><%= mapping["ctgov_field_name"] %></td>
-        <td><%= link_to mapping["ctgov_doc_url_label"], mapping["ctgov_doc_url"], target: '_blank' %></td>
-      </tr>
+<div class="container mt-4">
+  <% if @paginated_mappings.any? %>
+    <%= form_with url: mapping_index_path, method: :get, local: true, class: "mb-3" do %>
+      <div>
+        <%= submit_tag "Filter", class: "btn btn-primary", style: "width: 100px" %>
+        <%= link_to "Clear Filters", mapping_index_path, class: "btn btn-secondary" %>
+      </div>
+      <table class="table table-striped table-bordered documentation-table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Active</th>
+            <th scope="col">Table</th>
+            <th scope="col">Field</th>
+            <th scope="col">Type</th>
+            <th scope="col">Description</th>
+            <th scope="col">CTGov Name</th>
+            <th scope="col">CTGov Data Type</th>
+            <th scope="col">CTGov Piece</th>
+            <th scope="col">CTGov Source Type</th>
+            <th scope="col">CTGov Synonyms</th>
+            <th scope="col">CTGov Label</th>
+            <th scope="col">CTGov Section</th>
+            <th scope="col">CTGov Module</th>
+            <th scope="col">CTGov Path</th>
+            <th scope="col">CTGov Documentation</th>
+          </tr>
+          <tr>
+            <td><%= text_field_tag :active, params[:active], class: "form-control" %></td>
+            <td><%= text_field_tag :table_name, params[:table_name], class: "form-control" %></td>
+            <td><%= text_field_tag :column_name, params[:column_name], class: "form-control" %></td>
+            <td><%= text_field_tag :data_type, params[:data_type], class: "form-control" %></td>
+            <td><%= text_field_tag :description, params[:description], class: "form-control" %></td>
+            <td><%= text_field_tag :ctgov_name, params[:ctgov_name], class: "form-control" %></td>
+            <td><%= text_field_tag :ctgov_data_type, params[:ctgov_data_type], class: "form-control" %></td>
+            <td><%= text_field_tag :ctgov_piece, params[:ctgov_piece], class: "form-control" %></td>
+            <td><%= text_field_tag :ctgov_source_type, params[:ctgov_source_type], class: "form-control" %></td>
+            <td><%= text_field_tag :ctgov_synonyms, params[:ctgov_synonyms], class: "form-control" %></td>
+            <td><%= text_field_tag :ctgov_label, params[:ctgov_label], class: "form-control" %></td>
+            <td><%= text_field_tag :ctgov_section, params[:ctgov_section], class: "form-control" %></td>
+            <td><%= text_field_tag :ctgov_module, params[:ctgov_module], class: "form-control" %></td>
+            <td><%= text_field_tag :ctgov_path, params[:ctgov_path], class: "form-control" %></td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @paginated_mappings.each do |mapping| %>
+            <tr>
+              <td><%= mapping['active'] ? 'Yes' : 'No' %></td>
+              <td><%= mapping['table_name'] %></td>
+              <td><%= mapping['column_name'] %></td>
+              <td><%= mapping['data_type'] %></td>
+              <td><%= mapping['description'] || 'N/A' %></td>
+              <td><%= mapping['ctgov_name'] || 'N/A' %></td>
+              <td><%= mapping['ctgov_data_type'] || 'N/A' %></td>
+              <td><%= mapping['ctgov_piece'] || 'N/A' %></td>
+              <td><%= mapping['ctgov_source_type'] || 'N/A' %></td>
+              <td><%= mapping['ctgov_synonyms'] ? 'Yes' : 'No' %></td>
+              <td><%= mapping['ctgov_label'] || 'N/A' %></td>
+              <td><%= mapping['ctgov_section'] || 'N/A' %></td>
+              <td><%= mapping['ctgov_module'] || 'N/A' %></td>
+              <td><%= mapping['ctgov_path'] || 'N/A' %></td>
+              <td>
+                <% if mapping['ctgov_url'] %>
+                  <a href="<%= mapping['ctgov_url'] %>" title="<%= mapping['ctgov_label'] %>"><%= mapping['ctgov_label'] %></a>
+                <% else %>
+                  N/A
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     <% end %>
-  </tbody>
-</table>
-<%= paginate @paginated_mappings %>
+    <%= paginate @paginated_mappings, class: "pagination justify-content-center" %>
+  <% else %>
+    <div class="alert alert-info" role="alert">
+      No mappings found.
+    </div>
+  <% end %>
+</div>

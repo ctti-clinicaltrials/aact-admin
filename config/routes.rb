@@ -97,6 +97,7 @@ Rails.application.routes.draw do
   get "/static/:type/:time/:filename(:format)" => "file_records#active_url"
 
   resources :mapping, only: [:index]
+
   resources :file_records, only: [:index, :show]
   resources :definitions, only: [:index]
   resources :data_definitions
