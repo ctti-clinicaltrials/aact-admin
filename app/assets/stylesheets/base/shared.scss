@@ -210,7 +210,7 @@ section.createDbViaGui {
       height: 26px;
       margin-right: 3px;
       @include box-shadow(4px 4px 12px $light-grey);
-      background: #008aa1;
+      background: #246bb0;
     }
   
   }
@@ -447,7 +447,7 @@ section.tips {
       height: 26px;
       margin-right: 3px;
       @include box-shadow(4px 4px 12px $light-grey);
-      background: #008aa1;
+      background: #246bb0;
     }
 }
 
@@ -560,7 +560,7 @@ label:hover {
     margin-right: 3px;
     @include box-shadow(4px 4px 12px $light-grey);
     background: radial-gradient(ellipse at center, #CCC 50%, transparent 50%);
-    background: #008aa1;
+    background: #246bb0;
 }
   
 .standardLayout {
@@ -764,31 +764,31 @@ p.projectDetails {
   
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     color: white;
-    background-color: #26657a !important;
+    background-color: #224989 !important;
     padding-left: 12px !important;
 }
   
 .btn-primary:hover, .btn-primary:active {
     color: white;
-    background-color: #008aa1 !important;
+    background-color: #246bb0 !important;
     padding-left: 12px !important;
 }
 
 h1.projects {
-    color: #26657a;
+    color: #224989;
     margin-left: 1px;
 }
   
 h2 {
-    color: #26657a;
+    color: #224989;
 }
   
 h3 {
-    color: #26657a;
+    color: #224989;
 }
   
 h4 {
-    color: #26657a;
+    color: #224989;
 }
   
   
@@ -832,14 +832,14 @@ a.projectNavItem {
     padding: .4rem;
     text-transform: uppercase;
     margin-left: 18px;
-    color: #008aa1
+    color: #246bb0
 }
 
 //shared_data/override_headers.scss
 a.user-info {
 	text-decoration: none;
   font-size: 2rem;
-  color: #008aa1;
+  color: #246bb0;
   font-family: "Roboto";
   padding: 0.4rem;
   line-height: 1.5;

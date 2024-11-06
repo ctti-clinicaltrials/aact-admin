@@ -7,7 +7,7 @@ queryMenuItems.forEach(function(item) {
   var link = item.querySelector('a');
   if (link.getAttribute('href') === currentPage) {
     item.classList.add('active');
-    link.style.color = '#26657a';
+    link.style.color = '#224989';
   } else {
     item.classList.remove('active');
     link.style.color = '';
@@ -18,7 +18,7 @@ queryMenuRightItems.forEach(function(item) {
   var link = item.querySelector('a');
   if (link.getAttribute('href') === currentPage) {
     item.classList.add('active');
-    link.style.color = '#26657a';
+    link.style.color = '#224989';
   } else {
     item.classList.remove('active');
     link.style.color = '';
