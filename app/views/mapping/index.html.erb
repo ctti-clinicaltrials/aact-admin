@@ -7,38 +7,33 @@
       </div>
       <table class="table table-striped table-bordered documentation-table">
         <thead class="thead-dark">
-          <tr>
-            <th scope="col">Active</th>
-            <th scope="col">Table</th>
-            <th scope="col">Field</th>
-            <th scope="col">Type</th>
-            <th scope="col">Description</th>
-            <th scope="col">CTGov Name</th>
-            <th scope="col">CTGov Data Type</th>
-            <th scope="col">CTGov Piece</th>
-            <th scope="col">CTGov Source Type</th>
-            <th scope="col">CTGov Synonyms</th>
-            <th scope="col">CTGov Label</th>
-            <th scope="col">CTGov Section</th>
-            <th scope="col">CTGov Module</th>
-            <th scope="col">CTGov Path</th>
-            <th scope="col">CTGov Documentation</th>
-          </tr>
+          <thead>
+            <tr>
+              <th>Active</th>
+              <th>Table Name</th>
+              <th>Column Name</th>
+              <th>Data Type</th>
+              <th>Nullable</th>
+              <th>Description</th>
+              <th>CTGov Data Point</th>
+              <th>CTGov Section</th>
+              <th>CTGov Module</th>
+              <th>CTGov JSON Path</th>
+              <th>CTGov Doc URL</th>
+            </tr>
+          </thead>
           <tr>
             <td><%= text_field_tag :active, params[:active], class: "form-control" %></td>
             <td><%= text_field_tag :table_name, params[:table_name], class: "form-control" %></td>
             <td><%= text_field_tag :column_name, params[:column_name], class: "form-control" %></td>
             <td><%= text_field_tag :data_type, params[:data_type], class: "form-control" %></td>
+            <td><%= text_field_tag :nullable, params[:nullable], class: "form-control" %></td>
             <td><%= text_field_tag :description, params[:description], class: "form-control" %></td>
-            <td><%= text_field_tag :ctgov_name, params[:ctgov_name], class: "form-control" %></td>
-            <td><%= text_field_tag :ctgov_data_type, params[:ctgov_data_type], class: "form-control" %></td>
-            <td><%= text_field_tag :ctgov_piece, params[:ctgov_piece], class: "form-control" %></td>
-            <td><%= text_field_tag :ctgov_source_type, params[:ctgov_source_type], class: "form-control" %></td>
-            <td><%= text_field_tag :ctgov_synonyms, params[:ctgov_synonyms], class: "form-control" %></td>
-            <td><%= text_field_tag :ctgov_label, params[:ctgov_label], class: "form-control" %></td>
+            <td><%= text_field_tag :ctgov_data_point_label, params[:ctgov_data_point_label], class: "form-control" %></td>
             <td><%= text_field_tag :ctgov_section, params[:ctgov_section], class: "form-control" %></td>
             <td><%= text_field_tag :ctgov_module, params[:ctgov_module], class: "form-control" %></td>
             <td><%= text_field_tag :ctgov_path, params[:ctgov_path], class: "form-control" %></td>
+            <td><%= text_field_tag :ctgov_url_label, params[:ctgov_url_label], class: "form-control" %></td>
           </tr>
         </thead>
         <tbody>
@@ -48,19 +43,15 @@
               <td><%= mapping['table_name'] %></td>
               <td><%= mapping['column_name'] %></td>
               <td><%= mapping['data_type'] %></td>
+              <td><%= mapping['nullable'] %></td>
               <td><%= mapping['description'] || 'N/A' %></td>
-              <td><%= mapping['ctgov_name'] || 'N/A' %></td>
-              <td><%= mapping['ctgov_data_type'] || 'N/A' %></td>
-              <td><%= mapping['ctgov_piece'] || 'N/A' %></td>
-              <td><%= mapping['ctgov_source_type'] || 'N/A' %></td>
-              <td><%= mapping['ctgov_synonyms'] ? 'Yes' : 'No' %></td>
-              <td><%= mapping['ctgov_label'] || 'N/A' %></td>
+              <td><%= mapping['ctgov_data_point_label'] || 'N/A' %></td>
               <td><%= mapping['ctgov_section'] || 'N/A' %></td>
               <td><%= mapping['ctgov_module'] || 'N/A' %></td>
               <td><%= mapping['ctgov_path'] || 'N/A' %></td>
               <td>
                 <% if mapping['ctgov_url'] %>
-                  <a href="<%= mapping['ctgov_url'] %>" title="<%= mapping['ctgov_label'] %>"><%= mapping['ctgov_label'] %></a>
+                  <a href="<%= mapping['ctgov_url'] %>" title="<%= mapping['ctgov_url_label'] %>"><%= mapping['ctgov_url_label'] %></a>
                 <% else %>
                   N/A
                 <% end %>
