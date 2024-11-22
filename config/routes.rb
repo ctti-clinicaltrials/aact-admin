@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   get '/queries', to: 'saved_queries#index'
   get '/my/queries', to: 'saved_queries#my_queries'
   get "/playground"           => "playground#index", as: :playground
-  get "/playground/:id"       => "playground#show_results", as: :show_results 
+  get "/playground/:id"       => "playground#show_results", as: :show_results
   get "job_status"           => "playground#job_status", as: :job_status
   get "/install_postgres"     => "postgres_documentation#install_postgres"
   get "/credentials"          => "credentials#show"
@@ -96,7 +96,7 @@ Rails.application.routes.draw do
   #digitalocean
   get "/static/:type/:time/:filename(:format)" => "file_records#active_url"
 
-  resources :mapping, only: [:index]
+  resources :documentation, only: [:index]
 
   resources :file_records, only: [:index, :show]
   resources :definitions, only: [:index]
@@ -115,5 +115,5 @@ Rails.application.routes.draw do
   resources :study_statistics_comparisons
   resources :background_jobs, path: '/history', only: [:index, :show, :destroy]
   resources :study_searches
-  
+
 end

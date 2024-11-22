@@ -1,24 +1,22 @@
-class MappingController < ApplicationController
+class DocumentationController < ApplicationController
   def index
-    @mappings = fetch_and_cache_data
-    @mappings = filter_data(@mappings)
-    @paginated_mappings = Kaminari.paginate_array(@mappings).page(params[:page]).per(20)
+    @docs = fetch_and_cache_data
+    @docs = filter_data(@docs)
+    @paginated_docs = Kaminari.paginate_array(@docs).page(params[:page]).per(20)
   end
 
   private
 
   def fetch_and_cache_data
     Rails.logger.info "Fetching documentation from Cache"
-    # Rails.cache.fetch("mapping_data", expires_in: 1.minutes) do
-    #   fetch_data_from_api
-    # end
-    fetch_data_from_api
+    Rails.cache.fetch("mapping_data", expires_in: 1.minutes) do
+      fetch_data_from_api
+    end
   end
 
   def fetch_data_from_api
     Rails.logger.info "Cache is not available -> Fetching documentation from API"
-    # url = "http://localhost:3000/api/v1/documentation"
-    url = "https://seashell-app-4caa4.ondigitalocean.app/api/v1/documentation"
+    url = ENV["DOCUMENTATION_API_URL"]
     response = HTTParty.get(url)
     response.parsed_response
   rescue StandardError => e
@@ -27,7 +25,6 @@ class MappingController < ApplicationController
   end
 
   def filter_data(mappings)
-    puts "Filtering data", mappings
     mappings.select do |mapping|
       (params[:active].blank? || mapping['active'].to_s.include?(params[:active])) &&
       (params[:table_name].blank? || mapping['table_name'].include?(params[:table_name])) &&
