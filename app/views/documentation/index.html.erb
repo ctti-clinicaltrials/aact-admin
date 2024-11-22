@@ -1,5 +1,6 @@
 <div class="container mt-4">
   <% if @paginated_docs.any? %>
+    <%= link_to 'Download CSV', documentation_index_path(format: 'csv'), class: 'btn btn-secondary' %>
     <%= form_with url: documentation_index_path, method: :get, local: true, class: "mb-3" do %>
       <div>
         <%= submit_tag "Filter", class: "btn btn-primary", style: "width: 100px" %>

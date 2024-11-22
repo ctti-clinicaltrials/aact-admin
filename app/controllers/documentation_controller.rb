@@ -1,11 +1,46 @@
+require "csv"
+
 class DocumentationController < ApplicationController
   def index
     @docs = fetch_and_cache_data
     @docs = filter_data(@docs)
-    @paginated_docs = Kaminari.paginate_array(@docs).page(params[:page]).per(20)
+    # @paginated_docs = Kaminari.paginate_array(@docs).page(params[:page]).per(20)
+
+    respond_to do |format|
+      format.html do
+        @paginated_docs = Kaminari.paginate_array(@docs).page(params[:page]).per(20)
+      end
+      format.csv do
+        csv_data = fetch_csv_from_api
+        send_data csv_data[:body], filename: "documentation_#{Time.now.strftime('%Y%m%d')}.csv", type: 'text/csv'
+      end
+    end
   end
 
+  # TODO: Only save in case if response is success
+  # TODO: Add error handling
+
   private
+
+
+  def fetch_csv_from_api
+    Rails.logger.info "Fetching CSV documentation from Cache"
+    Rails.cache.fetch("csv_mapping_data", expires_in: 1.minutes) do
+      Rails.logger.info "Cache is not available -> Fetching CSV documentation from API"
+      url = ENV["DOCUMENTATION_API_URL"]
+      response = HTTParty.get(url, headers: { 'Accept' => 'text/csv' })
+
+      if response.success?
+        { body: response.body }
+      else
+        Rails.logger.error "Failed to fetch CSV data: #{response.message}"
+        { body: "" }
+      end
+    rescue StandardError => e
+      Rails.logger.error "Failed to fetch CSV data: #{e.message}"
+      { body: "" }
+    end
+  end
 
   def fetch_and_cache_data
     Rails.logger.info "Fetching documentation from Cache"
@@ -38,4 +73,6 @@ class DocumentationController < ApplicationController
       (params[:ctgov_url_label].blank? || (mapping['ctgov_url_label'] || 'N/A').include?(params[:ctgov_url_label]))
     end
   end
+
+
 end
