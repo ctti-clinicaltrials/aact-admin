@@ -1,71 +1,55 @@
-<div class="container mt-4">
-  <% if @paginated_docs.any? %>
-    <%= link_to 'Download CSV', documentation_index_path(format: 'csv'), class: 'btn btn-secondary' %>
-    <%= form_with url: documentation_index_path, method: :get, local: true, class: "mb-3" do %>
-      <div>
-        <%= submit_tag "Filter", class: "btn btn-primary", style: "width: 100px" %>
-        <%= link_to "Clear Filters", documentation_index_path, class: "btn btn-secondary" %>
+<div class="docs-container mt-4">
+  <div class="search-form" style="display: flex; justify-content: space-between; align-items: center;">
+    <%= form_tag(documentation_index_path, method: :get, class: 'form-inline') do %>
+      <div class="form-group" style="display: inline-flex; align-items: center;">
+        <%= text_field_tag :search, params[:search], class: 'form-control form-control-sm',
+          style: 'width: 400px; margin-right: 10px;',
+          placeholder: 'Search across all fields...' %>
+        <%= submit_tag "Search", class: 'btn btn-primary btn-sm' %>
       </div>
-      <table class="table table-striped table-bordered documentation-table">
-        <thead class="thead-dark">
-          <thead>
-            <tr>
-              <th>Active</th>
-              <th>Table Name</th>
-              <th>Column Name</th>
-              <th>Data Type</th>
-              <th>Nullable</th>
-              <th>Description</th>
-              <th>CTGov Data Point</th>
-              <th>CTGov Section</th>
-              <th>CTGov Module</th>
-              <th>CTGov JSON Path</th>
-              <th>CTGov Doc URL</th>
-            </tr>
-          </thead>
-          <tr>
-            <td><%= text_field_tag :active, params[:active], class: "form-control" %></td>
-            <td><%= text_field_tag :table_name, params[:table_name], class: "form-control" %></td>
-            <td><%= text_field_tag :column_name, params[:column_name], class: "form-control" %></td>
-            <td><%= text_field_tag :data_type, params[:data_type], class: "form-control" %></td>
-            <td><%= text_field_tag :nullable, params[:nullable], class: "form-control" %></td>
-            <td><%= text_field_tag :description, params[:description], class: "form-control" %></td>
-            <td><%= text_field_tag :ctgov_data_point_label, params[:ctgov_data_point_label], class: "form-control" %></td>
-            <td><%= text_field_tag :ctgov_section, params[:ctgov_section], class: "form-control" %></td>
-            <td><%= text_field_tag :ctgov_module, params[:ctgov_module], class: "form-control" %></td>
-            <td><%= text_field_tag :ctgov_path, params[:ctgov_path], class: "form-control" %></td>
-            <td><%= text_field_tag :ctgov_url_label, params[:ctgov_url_label], class: "form-control" %></td>
-          </tr>
-        </thead>
-        <tbody>
-          <% @paginated_docs.each do |item| %>
-            <tr>
-              <td><%= item['active'] ? 'Yes' : 'No' %></td>
-              <td><%= item['table_name'] %></td>
-              <td><%= item['column_name'] %></td>
-              <td><%= item['data_type'] %></td>
-              <td><%= item['nullable'] %></td>
-              <td><%= item['description'] || "-" %></td>
-              <td><%= item['ctgov_data_point_label'] || "-" %></td>
-              <td><%= item['ctgov_section'] || "-" %></td>
-              <td><%= item['ctgov_module'] || "-" %></td>
-              <td><%= item['ctgov_path'] || "-" %></td>
-              <td>
-                <% if item['ctgov_url'] %>
-                  <a href="<%= item['ctgov_url'] %>" title="<%= item['ctgov_url_label'] %>"><%= item['ctgov_url_label'] %></a>
-                <% else %>
-                  -
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
     <% end %>
-    <%= paginate @paginated_docs, class: "pagination justify-content-center" %>
-  <% else %>
-    <div class="alert alert-info" role="alert">
-      No mappings found.
+    <%= link_to 'Download CSV', documentation_index_path(format: 'csv'), class: 'btn btn-secondary' %>
+  </div>
+  <div class="docs-grid">
+    <div class="grid-header">
+      <div>Details</div>
+      <div>Active</div>
+      <div>Table</div>
+      <div>Column</div>
+      <div>Type</div>
+      <div>Description</div>
+      <div>CTGov Data Point</div>
+      <div>CTGov Doc URL</div>
     </div>
-  <% end %>
-</div>
+    <% if @paginated_docs.any? %>
+      <%= form_with url: documentation_index_path, method: :get, local: true, class: "mb-3" do %>
+        <table class="table table-striped table-bordered documentation-table">
+          <tbody>
+            <% @paginated_docs.each do |item| %>
+              <tr>
+                <td><%= item['active'] ? 'Yes' : 'No' %></td>
+                <td><%= item['table_name'] %></td>
+                <td><%= item['column_name'] %></td>
+                <td><%= item['data_type'] %></td>
+                <td><%= item['nullable'] %></td>
+                <td><%= item['description'] || "-" %></td>
+                <td><%= item['ctgov_data_point_label'] || "-" %></td>
+                <td>
+                  <% if item['ctgov_url'] %>
+                    <a href="<%= item['ctgov_url'] %>" title="<%= item['ctgov_url_label'] %>"><%= item['ctgov_url_label'] %></a>
+                  <% else %>
+                    -
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+      <%= paginate @paginated_docs, class: "pagination justify-content-center" %>
+    <% else %>
+      <div class="alert alert-info" role="alert">
+        No mappings found.
+      </div>
+    <% end %>
+  </div>

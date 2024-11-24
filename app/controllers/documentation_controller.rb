@@ -1,6 +1,7 @@
 require "csv"
 
 class DocumentationController < ApplicationController
+
   def index
     @docs = fetch_and_cache_data
     @docs = filter_data(@docs)
@@ -22,6 +23,23 @@ class DocumentationController < ApplicationController
 
   private
 
+  def fetch_documentation_format(format)
+    url = ENV["DOCUMENTATION_API_URL"]
+    if format == "csv"
+      response = HTTParty.get(url, headers: { 'Accept' => 'text/csv' })
+    elif format == "html"
+      response = HTTParty.get(url)
+    else
+      puts "Invalid format"
+    end
+  end
+
+  def handle_csv_response(response)
+  end
+
+  def handle_html_response(response)
+
+  end
 
   def fetch_csv_from_api
     Rails.logger.info "Fetching CSV documentation from Cache"
@@ -60,19 +78,26 @@ class DocumentationController < ApplicationController
   end
 
   def filter_data(mappings)
-    mappings.select do |mapping|
-      (params[:active].blank? || mapping['active'].to_s.include?(params[:active])) &&
-      (params[:table_name].blank? || mapping['table_name'].include?(params[:table_name])) &&
-      (params[:column_name].blank? || mapping['column_name'].include?(params[:column_name])) &&
-      (params[:data_type].blank? || mapping['data_type'].include?(params[:data_type])) &&
-      (params[:description].blank? || (mapping['description'] || 'N/A').include?(params[:description])) &&
-      (params[:ctgov_data_point_label].blank? || (mapping['ctgov_data_point_label'] || 'N/A').include?(params[:ctgov_data_point_label])) &&
-      (params[:ctgov_section].blank? || (mapping['ctgov_section'] || 'N/A').include?(params[:ctgov_section])) &&
-      (params[:ctgov_module].blank? || (mapping['ctgov_module'] || 'N/A').include?(params[:ctgov_module])) &&
-      (params[:ctgov_path].blank? || (mapping['ctgov_path'] || 'N/A').include?(params[:ctgov_path])) &&
-      (params[:ctgov_url_label].blank? || (mapping['ctgov_url_label'] || 'N/A').include?(params[:ctgov_url_label]))
+  return mappings if params[:search].blank?
+
+  search_term = params[:search].downcase
+  mappings.select do |mapping|
+    searchable_fields = [
+      mapping['active'].to_s,
+      mapping['table_name'],
+      mapping['column_name'],
+      mapping['data_type'],
+      mapping['description'],
+      mapping['ctgov_data_point_label'],
+      mapping['ctgov_section'],
+      mapping['ctgov_module'],
+      mapping['ctgov_path'],
+      mapping['ctgov_url_label']
+    ]
+
+    searchable_fields.any? do |field|
+      field.to_s.downcase.include?(search_term)
     end
   end
-
-
+end
 end
