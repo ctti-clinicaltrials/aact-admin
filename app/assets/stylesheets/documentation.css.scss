@@ -38,7 +38,15 @@
 
   .grid-row {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns:
+      100px
+      50px
+      1fr
+      1fr
+      1fr
+      1fr
+      1fr;
+
     background: #fff;
     gap: 0;
   }
@@ -50,6 +58,7 @@
   }
 
   .grid-row > div {
+    font-size: 14px;
     padding: 12px 16px;
     white-space: nowrap;
     overflow: hidden;
@@ -74,5 +83,18 @@
 
   .details-button:hover {
     background: #f3f4f6;
+  }
+
+
+  /* Link */
+  .custom-link {
+    font-size: 14px;
+    color: #224989;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .custom-link:hover {
+    color: #871621;
   }
 }

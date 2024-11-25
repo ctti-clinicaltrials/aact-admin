@@ -21,25 +21,35 @@
   <div class="grid-table">
     <!-- Grid Header -->
     <div class="grid-row grid-header">
+      <div>Details</div>
       <div>Active</div>
       <div>Table</div>
       <div>Column</div>
       <div>Type</div>
       <div>Description</div>
       <div>CTGov Field</div>
-      <div>Details</div>
     </div>
     <!-- Grid Rows -->
-    <% @paginated_docs.each do |doc| %>
+    <% @paginated_docs.each do |doc_item| %>
       <div class="grid-row">
-        <div><%= doc["active"] ? "Yes" : "No" %></div>
-        <div><%= doc["table_name"] %></div>
-        <div><%= doc["column_name"] %></div>
-        <div><%= doc["data_type"] %></div>
-        <div><%= doc["description"] || "-" %></div>
-        <div><%= doc["ctgov_data_point_label"] || "-" %></div>
         <div>
           <button class="details-button">Details</button>
+        </div>
+        <div><%= doc_item["active"] ? "Yes" : "No" %></div>
+        <div><%= doc_item["table_name"] %></div>
+        <div><%= doc_item["column_name"] %></div>
+        <div><%= doc_item["data_type"] %></div>
+        <div><%= doc_item["description"] || "-" %></div>
+        <div>
+          <% if doc_item["ctgov_data_point_label"].present? %>
+            <% if doc_item["ctgov_url"].present? %>
+              <%= link_to doc_item["ctgov_data_point_label"], doc_item["ctgov_url"], class: "custom-link", target: "_blank", title: "View CTGov Description" %>
+            <% else %>
+              <%= doc_item["ctgov_data_point_label"] %>
+            <% end %>
+          <% else %>
+            -
+          <% end %>
         </div>
       </div>
     <% end %>
