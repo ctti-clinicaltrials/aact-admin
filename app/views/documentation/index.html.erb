@@ -21,23 +21,21 @@
   <div class="grid-table">
     <!-- Grid Header -->
     <div class="grid-row grid-header">
-      <div>Details</div>
       <div>Active</div>
       <div>Table</div>
       <div>Column</div>
       <div>Type</div>
       <div>Description</div>
-      <div>CTGov Field</div>
+      <div>CTGov Data Point</div>
     </div>
     <!-- Grid Rows -->
     <% @paginated_docs.each do |doc_item| %>
       <div class="grid-row">
-        <div>
-          <button class="details-button">Details</button>
-        </div>
         <div><%= doc_item["active"] ? "Yes" : "No" %></div>
         <div><%= doc_item["table_name"] %></div>
-        <div><%= doc_item["column_name"] %></div>
+        <div>
+          <%= link_to doc_item["column_name"], documentation_path(doc_item["id"]), class: "custom-link", title: "View Item Details" %>
+        </div>
         <div><%= doc_item["data_type"] %></div>
         <div><%= doc_item["description"] || "-" %></div>
         <div>
@@ -54,5 +52,7 @@
       </div>
     <% end %>
   </div>
-  <%= paginate @paginated_docs %>
+  <div class="pagination-wrapper">
+    <%= paginate @paginated_docs, class: "pagination" %>
+  </div>
 </div>

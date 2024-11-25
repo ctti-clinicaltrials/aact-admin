@@ -1,6 +1,9 @@
 .docs-container {
   max-width: 1600px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
 
   /* Controls Block */
   .controls-block {
@@ -39,11 +42,10 @@
   .grid-row {
     display: grid;
     grid-template-columns:
-      100px
-      50px
+      60px
       1fr
       1fr
-      1fr
+      0.5fr
       1fr
       1fr;
 

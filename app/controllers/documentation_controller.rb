@@ -18,8 +18,13 @@ class DocumentationController < ApplicationController
     end
   end
 
+  def show
+    @doc_item = fetch_and_cache_data.find { |doc| doc["id"] == params[:id].to_i }
+  end
+
   # TODO: Only save in case if response is success
   # TODO: Add error handling
+  # TODO: Add Short Type for index view
 
   private
 
