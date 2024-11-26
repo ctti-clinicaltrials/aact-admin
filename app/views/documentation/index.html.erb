@@ -1,0 +1,58 @@
+<div class="docs-container">
+  <div class="controls-block">
+    <%= form_tag(documentation_index_path, method: :get, class: "form-inline") do %>
+      <div class="form-group">
+        <%= text_field_tag :search,
+          params[:search],
+          class: "form-control",
+          placeholder: "Search across all fields..."
+        %>
+        <%= submit_tag "Search", class: "btn btn-primary control-btn" %>
+      </div>
+    <% end %>
+    <div>
+      <%= link_to "Download CSV",
+        documentation_index_path(format: "csv"),
+        class: "btn btn-secondary control-btn"
+      %>
+    </div>
+  </div>
+  <!-- Grid Table Container -->
+  <div class="grid-table">
+    <!-- Grid Header -->
+    <div class="grid-row grid-header">
+      <div>Active</div>
+      <div>Table</div>
+      <div>Column</div>
+      <div>Type</div>
+      <div>Description</div>
+      <div>CTGov Data Point</div>
+    </div>
+    <!-- Grid Rows -->
+    <% @paginated_docs.each do |doc_item| %>
+      <div class="grid-row">
+        <div><%= doc_item["active"] ? "Yes" : "No" %></div>
+        <div><%= doc_item["table_name"] %></div>
+        <div>
+          <%= link_to doc_item["column_name"], documentation_path(doc_item["id"]), class: "custom-link", title: "View Item Details" %>
+        </div>
+        <div><%= doc_item["data_type"] %></div>
+        <div><%= doc_item["description"] || "-" %></div>
+        <div>
+          <% if doc_item["ctgov_data_point_label"].present? %>
+            <% if doc_item["ctgov_url"].present? %>
+              <%= link_to doc_item["ctgov_data_point_label"], doc_item["ctgov_url"], class: "custom-link", target: "_blank", title: "View CTGov Description" %>
+            <% else %>
+              <%= doc_item["ctgov_data_point_label"] %>
+            <% end %>
+          <% else %>
+            -
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="pagination-wrapper">
+    <%= paginate @paginated_docs, class: "pagination" %>
+  </div>
+</div>
