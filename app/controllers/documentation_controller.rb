@@ -2,6 +2,8 @@ require "csv"
 
 class DocumentationController < ApplicationController
 
+  before_action :is_admin?, only: [:edit, :update]
+
   def index
     @docs = fetch_and_cache_data
     @docs = filter_data(@docs)
@@ -22,11 +24,52 @@ class DocumentationController < ApplicationController
     @doc_item = fetch_and_cache_data.find { |doc| doc["id"] == params[:id].to_i }
   end
 
+  def edit
+    @doc_item = fetch_and_cache_data.find { |doc| doc["id"] == params[:id].to_i }
+    if @doc_item.nil?
+      flash[:alert] = "Document not found."
+      redirect_to documentation_index_path
+    end
+  end
+
+  def update
+    @doc_item = fetch_and_cache_data.find { |doc| doc["id"] == params[:id].to_i }
+    if @doc_item
+      @doc_item["active"] = doc_params[:active]
+      @doc_item["description"] = doc_params[:description]
+      puts "Updating document"
+      puts "Params: #{doc_params}"
+
+      response = send_doc_params_to_api(@doc_item["id"], doc_params)
+
+      if response.success?
+        Rails.cache.delete("mapping_data")
+        flash[:notice] = "Document updated successfully."
+      else
+        flash[:alert] = "Failed to update document."
+      end
+      redirect_to documentation_path(@doc_item["id"])
+    else
+      flash[:alert] = "Document not found."
+      redirect_to documentation_index_path
+    end
+  end
+
   # TODO: Only save in case if response is success
   # TODO: Add error handling
   # TODO: Add Short Type for index view
 
   private
+
+  def doc_params
+    params.require(:doc_item).permit(:active, :description)
+  end
+
+  def send_doc_params_to_api(id, doc_params)
+    url = "http://127.0.0.1:3000/api/v1/documentation/#{id}"
+    response = HTTParty.patch(url, body: { description: doc_params[:description], active: doc_params[:active] }.to_json, headers: { 'Content-Type' => 'application/json' })
+    response
+  end
 
   def fetch_documentation_format(format)
     url = ENV["DOCUMENTATION_API_URL"]
