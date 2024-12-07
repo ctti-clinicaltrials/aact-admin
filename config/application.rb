@@ -13,6 +13,8 @@ require 'csv'
 Bundler.require(*Rails.groups)
 module AACT
   class Application < Rails::Application
+    config.autoload_paths << Rails.root.join('app', 'services')
+
     # This tells Rails to serve error pages from the Rails app itself (i.e. config/routes.rb),
     # rather than using static error pages in public/
     config.exceptions_app = self.routes
