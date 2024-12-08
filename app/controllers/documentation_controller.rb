@@ -6,8 +6,15 @@ class DocumentationController < ApplicationController
   before_action :set_documentation_service
   before_action :set_doc_item, only: [:show, :edit, :update]
 
+
   def index
     @docs = @docs_service.fetch_and_cache_data
+    if @docs.nil? || @docs.empty?
+      # TODO: Empty State view instead of flash message
+      flash[:alert] = "Failed to fetch documentation data."
+      # TODO: Airbrake
+      @docs = []
+    end
     @docs = filter_data(@docs)
     @paginated_docs = Kaminari.paginate_array(@docs).page(params[:page]).per(20)
   end
@@ -29,13 +36,20 @@ class DocumentationController < ApplicationController
       redirect_to documentation_path(@doc_item["id"]), notice: "Item Updated"
     else
       flash.now[:alert] = "Something went wrong. Please try again."
+      # TODO: Airbrake
       render :edit
     end
   end
 
   def download_csv
-    csv_data = @docs_service.fetch_csv_from_api
-    send_data csv_data[:body], filename: "documentation_#{Time.now.strftime("%Y%m%d")}.csv", type: "text/csv"
+    csv_data = @docs_service.fetch_and_cache_data(format: :csv)
+    if csv_data.nil? || csv_data.empty?
+      flash[:alert] = "Something went wrong. Please try again later"
+      # TODO: Airbrake
+      redirect_to documentation_index_path
+    else
+      send_data csv_data, filename: "documentation_#{Time.now.strftime("%Y%m%d")}.csv", type: "text/csv"
+    end
   end
 
   # TODO: Only save in case if response is success
