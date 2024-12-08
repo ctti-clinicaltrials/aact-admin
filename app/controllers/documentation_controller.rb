@@ -8,7 +8,8 @@ class DocumentationController < ApplicationController
 
 
   def index
-    @docs = @docs_service.fetch_and_cache_data
+    # @docs = @docs_service.fetch_and_cache_data
+    @docs = @docs_service.fetch_json_data
     if @docs.nil? || @docs.empty?
       # TODO: Empty State view instead of flash message
       flash[:alert] = "Failed to fetch documentation data."
@@ -42,7 +43,9 @@ class DocumentationController < ApplicationController
   end
 
   def download_csv
-    csv_data = @docs_service.fetch_and_cache_data(format: :csv)
+    # csv_data = @docs_service.fetch_and_cache_data(format: :csv)
+    csv_data = @docs_service.fetch_csv_data
+    puts csv_data, "CSV DATA"
     if csv_data.nil? || csv_data.empty?
       flash[:alert] = "Something went wrong. Please try again later"
       # TODO: Airbrake

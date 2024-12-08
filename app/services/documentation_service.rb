@@ -1,24 +1,24 @@
 # app/services/documentation_service.rb
 class DocumentationService
 
-  CACHE_KEY = "docs_json"
-  CSV_CACHE_KEY = "docs_csv"
+  def fetch_json_data
+    puts "Fetching JSON Data"
+    data = fetch_and_cache_data(csv: false)
+    # what are success and failure cases?
+    # prepare or chack data format before returning to the controller
+    # TODO: consider adding active model
+    return data
+  end
 
+  def fetch_csv_data
+    puts "Fetching CSV Data"
+    data = fetch_and_cache_data(csv: true)
 
-  def fetch_and_cache_data(format: :json)
-    Rails.logger.info "Checking Cache for format: #{format}"
-    cache_key = format == :csv ? CSV_CACHE_KEY : CACHE_KEY
-    cached_data = Rails.cache.read(cache_key)
-    return cached_data unless cached_data.nil?
-
-    data = AactApiClient.fetch_documentation(format: format)
-    if data.nil? || data.empty? # TODO: review what is falsey api response
-      Rails.logger.warn "API returned nil, not caching this result."
-      return nil
-    else
-      Rails.cache.write(cache_key, data, expires_in: 10.minutes)
-      return data
-    end
+    # what are success and failure cases?
+    # prepare or chack data format before returning to the controller csv data
+    puts "CSV: #{data}"
+    return data
+    # return nil
   end
 
 
@@ -33,6 +33,26 @@ class DocumentationService
   end
 
   private
+
+
+  # generic method for checking cache -> calling api client -> caching the result if it was success
+  def fetch_and_cache_data(csv: false)
+    cache_key = csv ? "docs_csv" : "docs_json"
+    Rails.logger.info "Checking cache for key: #{cache_key}"
+    cached_data = Rails.cache.read(cache_key)
+    return cached_data unless cached_data.nil?
+    Rails.logger.info "Fetching data from API"
+
+    data = AactApiClient.fetch_documentation(format: csv ? :csv : :json)
+    if data.nil? || data.empty? # client returns nil, check can api return empty array?
+      Rails.logger.warn "Not caching this result."
+      return nil
+    else
+      Rails.logger.info "Caching data for key: #{cache_key}"
+      Rails.cache.write(cache_key, data, expires_in: 10.minutes)
+      return data
+    end
+  end
 
 
   def update_data_in_api(id, attrs)

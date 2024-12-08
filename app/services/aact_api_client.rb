@@ -6,7 +6,6 @@ class AactApiClient
   headers 'Content-Type' => 'application/json', 'Accept' => 'application/json'
 
   def self.fetch_documentation(format: :json)
-    Rails.logger.info "Fetching documentation from API (format: #{format})"
     headers = default_headers(format)
     puts "#{headers}"
     response = get('/documentation', headers: headers)
