@@ -1,0 +1,56 @@
+<div class="details-wrapper">
+  <%= form_with url: documentation_path(@doc_item["id"]), method: :patch, local: true do %>
+    <div class="details-controls">
+      <%= link_to "Cancel", documentation_path(@doc_item["id"]), class: "btn btn-danger control-btn" %>
+      <%= submit_tag "Save", class: "btn btn-success control-btn" %>
+    </div>
+    <div class="details-grid">
+      <div class="details-group" id="aact-data">
+        <div class="details-title">ID:</div>
+        <div class="details-value"><%= @doc_item["id"] %></div>
+        <div class="details-title">Table:</div>
+        <div class="details-value"><%= @doc_item["table_name"] %></div>
+        <div class="details-title">Field:</div>
+        <div class="details-value"><%= @doc_item["column_name"] %></div>
+        <div class="details-title">Type:</div>
+        <div class="details-value"><%= @doc_item["data_type"] %></div>
+        <div class="details-title">Nullable:</div>
+        <div class="details-value"><%= @doc_item["nullable"] ? "Yes" : "No" %></div>
+        <div class="details-title">Active:</div>
+        <div class="details-value">
+          <%= select_tag 'doc_item[active]', options_for_select([["Yes", true], ["No", false]], @doc_item["active"]), class: "form-control" %>
+        </div>
+        <div class="details-title">Description:</div>
+        <div class="details-value">
+          <%= text_area_tag 'doc_item[description]', @doc_item["description"], rows: 3, class: "form-control" %>
+        </div>
+      </div>
+      <div class="details-group" id="ctgov-data">
+        <div class="details-title">CTGov Section:</div>
+        <div class="details-value"><%= @doc_item["ctgov_section"] %></div>
+        <div class="details-title">CTGov Module:</div>
+        <div class="details-value"><%= @doc_item["ctgov_module"] %></div>
+        <div class="details-title">CTGov Data Point:</div>
+        <div class="details-value"><%= @doc_item["ctgov_data_point_label"] %></div>
+        <div class="details-title">CTGov API Field Path:</div>
+        <div class="details-value"><%= @doc_item["ctgov_path"] %></div>
+        <div class="details-title">CTGov Data API Field:</div>
+        <div class="details-value"><%= @doc_item["ctgov_data_point_name"] %></div>
+        <div class="details-title">CTGov Data Type:</div>
+        <div class="details-value"><%= @doc_item["ctgov_data_type"] %></div>
+        <div class="details-title">CTGov Source Type:</div>
+        <div class="details-value"><%= @doc_item["ctgov_source_type"] %></div>
+        <div class="details-title">CTGov Synonyms:</div>
+        <div class="details-value"><%= @doc_item["ctgov_synonyms"] ? "Yes" : "No" %></div>
+        <div class="details-title">CTGov Doc URL Label:</div>
+        <div class="details-value"><%= @doc_item["ctgov_url_label"] %></div>
+        <div class="details-title">CTGov Documentation URL:</div>
+        <div class="details-value">
+          <% if @doc_item["ctgov_url"].present? %>
+            <a href="<%= @doc_item["ctgov_url"] %>" target="_blank"><%= @doc_item["ctgov_url"] %></a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

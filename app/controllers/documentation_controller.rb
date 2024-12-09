@@ -2,24 +2,49 @@ require "csv"
 
 class DocumentationController < ApplicationController
 
-  def index
-    @docs = fetch_and_cache_data
-    @docs = filter_data(@docs)
-    # @paginated_docs = Kaminari.paginate_array(@docs).page(params[:page]).per(20)
+  before_action :is_admin?, only: [:edit, :update]
+  before_action :set_documentation_service
+  before_action :set_doc_item, only: [:show, :edit, :update]
 
-    respond_to do |format|
-      format.html do
-        @paginated_docs = Kaminari.paginate_array(@docs).page(params[:page]).per(20)
-      end
-      format.csv do
-        csv_data = fetch_csv_from_api
-        send_data csv_data[:body], filename: "documentation_#{Time.now.strftime("%Y%m%d")}.csv", type: "text/csv"
-      end
+
+  def index
+    @docs = @docs_service.fetch_json_data
+    if @docs.nil? || @docs.empty?
+      # TODO: Empty State view instead of flash message
+      flash[:alert] = "Failed to fetch documentation data."
+      # TODO: Airbrake
+      @docs = []
+    end
+    @docs = filter_data(@docs)
+    @paginated_docs = Kaminari.paginate_array(@docs).page(params[:page]).per(20)
+  end
+
+
+  def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @docs_service.update_doc_item(@doc_item, doc_params)
+      redirect_to documentation_path(@doc_item["id"]), notice: "Item Updated"
+    else
+      flash.now[:alert] = "Something went wrong. Please try again."
+      # TODO: Airbrake
+      render :edit
     end
   end
 
-  def show
-    @doc_item = fetch_and_cache_data.find { |doc| doc["id"] == params[:id].to_i }
+  def download_csv
+    csv_data = @docs_service.fetch_csv_data
+    if csv_data.nil? || csv_data.empty?
+      flash[:alert] = "Something went wrong. Please try again later"
+      # TODO: Airbrake
+      redirect_to documentation_index_path
+    else
+      send_data csv_data, filename: "documentation_#{Time.now.strftime("%Y%m%d")}.csv", type: "text/csv"
+    end
   end
 
   # TODO: Only save in case if response is success
@@ -28,58 +53,17 @@ class DocumentationController < ApplicationController
 
   private
 
-  def fetch_documentation_format(format)
-    url = ENV["DOCUMENTATION_API_URL"]
-    if format == "csv"
-      response = HTTParty.get(url, headers: { "Accept" => "text/csv" })
-    elif format == "html"
-      response = HTTParty.get(url)
-    else
-      puts "Invalid format"
-    end
+  def doc_params
+    params.require(:doc_item).permit(:active, :description)
   end
 
-  def handle_csv_response(response)
+  def set_documentation_service
+    @docs_service = DocumentationService.new
   end
 
-  def handle_html_response(response)
-
-  end
-
-  def fetch_csv_from_api
-    Rails.logger.info "Fetching CSV documentation from Cache"
-    Rails.cache.fetch("csv_mapping_data", expires_in: 10.minutes) do
-      Rails.logger.info "Cache is not available -> Fetching CSV documentation from API"
-      url = ENV["DOCUMENTATION_API_URL"]
-      response = HTTParty.get(url, headers: { "Accept" => "text/csv" })
-
-      if response.success?
-        { body: response.body }
-      else
-        Rails.logger.error "Failed to fetch CSV data: #{response.message}"
-        { body: "" }
-      end
-    rescue StandardError => e
-      Rails.logger.error "Failed to fetch CSV data: #{e.message}"
-      { body: "" }
-    end
-  end
-
-  def fetch_and_cache_data
-    Rails.logger.info "Fetching documentation from Cache"
-    Rails.cache.fetch("mapping_data", expires_in: 10.minutes) do
-      fetch_data_from_api
-    end
-  end
-
-  def fetch_data_from_api
-    Rails.logger.info "Cache is not available -> Fetching documentation from API"
-    url = ENV["DOCUMENTATION_API_URL"]
-    response = HTTParty.get(url)
-    response.parsed_response
-  rescue StandardError => e
-    Rails.logger.error "Failed to fetch data: #{e.message}"
-    []
+  def set_doc_item
+    @doc_item = @docs_service.fetch_json_data.find { |doc| doc["id"] == params[:id].to_i }
+    redirect_to documentation_index_path, alert: "Something went wrong" unless @doc_item
   end
 
   def filter_data(mappings)
