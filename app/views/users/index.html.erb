@@ -1,11 +1,12 @@
 <section>
   <div class="container">
-    <h3><%=number_with_delimiter(@user_count, :delimiter => ',') %> AACT Users</h3>
-
-    <div class='userOptions'>
-      <p class='download'>Download:</p>
-        <%= link_to "CSV", users_path(format: "csv"), :class => 'userOptions' %>
-    </div>
+  <div class="d-flex justify-content-between">
+    <h3><%=number_with_delimiter(@user_count, :delimiter => ',') %> AACT Users</h3> 
+         <%= link_to users_path(format: "csv"), class: 'userOptions' do %>
+        <i class="fa fa-download"></i>
+      <% end %>
+      </div>
+ 
     <br>
     <table id='userTable'
         data-toolbar="#toolbar"
