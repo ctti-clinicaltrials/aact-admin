@@ -6,8 +6,7 @@ class UsersController < ApplicationController
     @users = User.order(:last_name)
     respond_to do |format|
       format.html
-      format.csv { render text: @users.to_csv }
-      format.xls { render text: @users.to_csv(col_sep: "\t") }
+      format.csv { send_data generate_csv(@users), filename: "users-#{Date.today}.csv"}
     end
   end
 
@@ -32,5 +31,14 @@ class UsersController < ApplicationController
     def user_params
       params.fetch(:user, {})
       params.require(:user).permit(:utf8, :authenticity_token, :commit, :_method, :first_name, :last_name, :email, :username)
+    end
+
+    def generate_csv(users)
+      CSV.generate(headers: true) do |csv|
+        csv << %w[ID Full_Name Email Username Confirmed DB_Activity Last_DB_Activity]
+        users.each do |user|
+          csv << [user.id, user.full_name, user.email, user.username, user.display_confirmed_at, user.db_activity, user.display_last_db_activity]
+        end
+      end
     end
 end

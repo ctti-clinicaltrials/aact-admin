@@ -5,7 +5,7 @@
           <text
           x="50%" y="50%"
           class="svg-text nav-svg nav-svg-no-margin"
-          >Hi, <%= current_user.first_name.capitalize %></text>
+          >Hi, <%= current_user.first_name.length > 10 ? "#{current_user.first_name[0].capitalize}#{current_user.last_name[0].capitalize}" : current_user.first_name.capitalize %></text>
         </svg>
  <div class="dropdown-menu dropdown-offset" aria-labelledby="navbarDropdown">
     <%= link_to "Data Definitions", data_definitions_path, class:"dropdown-item"%>
