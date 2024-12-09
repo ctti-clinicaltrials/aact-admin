@@ -194,15 +194,6 @@ img {
   background-color: $bg-grey;
 }
 
-ul {
-  padding: 0px;
-  margin-bottom: 1rem;
-
-  li {
-    font-size: 1.2rem;
-    margin-bottom: .5rem;
-  }
-}
 
 h1 {
   font-size: 3rem;
@@ -230,17 +221,17 @@ h5 {  font-size: 1.2rem;  }
 
 h6 {  font-size: 1rem;  }
 
-ul, ol {
-  padding: 0px;
-  margin-bottom: 1rem;
-  font-family: $font-sans;
-  padding: 1rem 2rem;
+// ul, ol {
+//   padding: 0px;
+//   margin-bottom: 1rem;
+//   font-family: $font-sans;
+//   padding: 1rem 2rem;
 
-  li {
-    font-size: 1.2rem;
-    margin-bottom: .5rem;
-  }
-}
+//   li {
+//     font-size: 1.2rem;
+//     margin-bottom: .5rem;
+//   }
+// }
 
 pre {
   background-color: rgb(29, 31, 33);
