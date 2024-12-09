@@ -1,8 +1,14 @@
 # app/services/documentation_service.rb
 class DocumentationService
 
+  CACHE_JSON_KEY = "docs_json"
+  CACHE_CSV_KEY = "docs_csv"
+
+  def initialize
+    @api_client = AactApiClient.new
+  end
+
   def fetch_json_data
-    puts "Fetching JSON Data"
     data = fetch_and_cache_data(csv: false)
     # what are success and failure cases?
     # prepare or chack data format before returning to the controller
@@ -11,19 +17,14 @@ class DocumentationService
   end
 
   def fetch_csv_data
-    puts "Fetching CSV Data"
     data = fetch_and_cache_data(csv: true)
-
-    # what are success and failure cases?
-    # prepare or chack data format before returning to the controller csv data
-    puts "CSV: #{data}"
+    # TODO: consider adding active model
     return data
-    # return nil
   end
 
 
   def update_doc_item(doc_item, attrs)
-    response = update_data_in_api(doc_item["id"], attrs)
+    response = @api_client.update_documentation(doc_item["id"], attrs)
     if response.success?
       invalidate_cache
       true
@@ -34,42 +35,45 @@ class DocumentationService
 
   private
 
-
-  # generic method for checking cache -> calling api client -> caching the result if it was success
-  def fetch_and_cache_data(csv: false)
-    cache_key = csv ? "docs_csv" : "docs_json"
-    Rails.logger.info "Checking cache for key: #{cache_key}"
-    cached_data = Rails.cache.read(cache_key)
-    return cached_data unless cached_data.nil?
-    Rails.logger.info "Fetching data from API"
-
-    data = AactApiClient.fetch_documentation(format: csv ? :csv : :json)
-    if data.nil? || data.empty? # client returns nil, check can api return empty array?
-      Rails.logger.warn "Not caching this result."
-      return nil
-    else
-      Rails.logger.info "Caching data for key: #{cache_key}"
-      Rails.cache.write(cache_key, data, expires_in: 10.minutes)
-      return data
-    end
-  end
-
-
-  def update_data_in_api(id, attrs)
-    HTTParty.patch(
-      "#{API_URL}/#{id}",
-       body: {
-        documentation: {
-          description: attrs[:description],
-          active: attrs[:active]
-        }
-      }.to_json,
-      headers: { 'Content-Type' => 'application/json' }
-    )
-  end
-
   def invalidate_cache
-    Rails.cache.delete(CACHE_KEY)
-    Rails.cache.delete(CSV_CACHE_KEY)
+    Rails.cache.delete(CACHE_JSON_KEY)
+    Rails.cache.delete(CACHE_CSV_KEY)
+  end
+
+  def fetch_and_cache_data(csv: false)
+    cache_key = csv ? CACHE_CSV_KEY : CACHE_JSON_KEY
+    Rails.logger.info "Checking cache for key: #{cache_key}"
+
+    cached_data = Rails.cache.read(cache_key)
+    return cached_data if cached_data
+
+    Rails.logger.info "Fetching data from API"
+    response = @api_client.get_documentation(csv: csv)
+    data = parse_and_validate_response(response, csv)
+
+    if data
+      Rails.cache.write(cache_key, data, expires_in: 10.minutes)
+    else
+      Rails.logger.warn "No valid data to cache."
+    end
+
+    data || default_empty_value(csv)
+  end
+
+
+  def parse_and_validate_response(response, csv)
+    unless response.success?
+      Rails.logger.error "API request failed: #{response.message} (Status: #{response.code})"
+      return nil
+    end
+
+    data = csv ? response.body : response.parsed_response
+    return nil if data.blank?
+
+    data
+  end
+
+  def default_empty_value(csv)
+    csv ? "" : []
   end
 end

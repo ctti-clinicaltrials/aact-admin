@@ -8,7 +8,6 @@ class DocumentationController < ApplicationController
 
 
   def index
-    # @docs = @docs_service.fetch_and_cache_data
     @docs = @docs_service.fetch_json_data
     if @docs.nil? || @docs.empty?
       # TODO: Empty State view instead of flash message
@@ -25,11 +24,6 @@ class DocumentationController < ApplicationController
   end
 
   def edit
-    @doc_item = @docs_service.fetch_and_cache_data.find { |doc| doc["id"] == params[:id].to_i }
-    if @doc_item.nil?
-      flash[:alert] = "Document not found."
-      redirect_to documentation_index_path
-    end
   end
 
   def update
@@ -43,9 +37,7 @@ class DocumentationController < ApplicationController
   end
 
   def download_csv
-    # csv_data = @docs_service.fetch_and_cache_data(format: :csv)
     csv_data = @docs_service.fetch_csv_data
-    puts csv_data, "CSV DATA"
     if csv_data.nil? || csv_data.empty?
       flash[:alert] = "Something went wrong. Please try again later"
       # TODO: Airbrake
@@ -70,7 +62,7 @@ class DocumentationController < ApplicationController
   end
 
   def set_doc_item
-    @doc_item = @docs_service.fetch_and_cache_data.find { |doc| doc["id"] == params[:id].to_i }
+    @doc_item = @docs_service.fetch_json_data.find { |doc| doc["id"] == params[:id].to_i }
     redirect_to documentation_index_path, alert: "Something went wrong" unless @doc_item
   end
 
