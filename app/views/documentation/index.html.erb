@@ -12,7 +12,8 @@
     <% end %>
     <div>
       <%= link_to "Download CSV",
-        documentation_index_path(format: "csv"),
+        # documentation_index_path(format: "csv"),
+        download_csv_documentation_index_path,
         class: "btn btn-secondary control-btn"
       %>
     </div>

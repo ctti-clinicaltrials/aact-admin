@@ -100,3 +100,57 @@
     color: #871621;
   }
 }
+
+
+.details-wrapper {
+  // max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+
+
+  .details-controls {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    margin-bottom: 20px;
+  }
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .details-group {
+    display: grid;
+    grid-template-columns: auto 2fr;
+    gap: 10px;
+    border: 1px solid #e5e7eb;
+  }
+
+  .details-title {
+    font-weight: bold;
+  }
+
+  .details-value {
+  }
+
+  /* Link */
+  .custom-link {
+    font-size: 16px;
+    color: #224989;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .custom-link:hover {
+    color: #871621;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .control-btn {
+    width: 150px;
+  }
+}

@@ -96,7 +96,11 @@ Rails.application.routes.draw do
   #digitalocean
   get "/static/:type/:time/:filename(:format)" => "file_records#active_url"
 
-  resources :documentation, only: [:index, :show]
+  resources :documentation, only: [:index, :show, :edit, :update] do
+    collection do
+      get :download_csv
+    end
+  end
 
   resources :file_records, only: [:index, :show]
   resources :definitions, only: [:index]
