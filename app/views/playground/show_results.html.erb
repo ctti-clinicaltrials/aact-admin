@@ -77,7 +77,7 @@
 <script>
   function checkJobStatus() {
     $.ajax({
-      url: '<%= job_status_path %>', // Use the correct URL for your route
+      url: '<%= job_status_path(@background_job.id) %>', // Use the correct URL for your route
       method: 'GET',
       dataType: 'json',
       success: function (data) {
