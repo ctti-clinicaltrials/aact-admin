@@ -1,48 +1,45 @@
 <section>
   <div class="container">
-    <h3><%=number_with_delimiter(@user_count, :delimiter => ',') %> AACT Users</h3>
-
-    <div class='userOptions'>
-      <p class='download'>Download:</p>
-        <%= link_to "CSV", users_path(format: "csv"), :class => 'userOptions' %>
-        <%= link_to "Excel", users_path(format: "xls"), :class => 'userOptions' %>
-    </div>
+  <div class="d-flex justify-content-between">
+    <h3><%=number_with_delimiter(@user_count, :delimiter => ',') %> AACT Users</h3> 
+         <%= link_to users_path(format: "csv"), class: 'userOptions' do %>
+        <i class="fa fa-download"></i>
+      <% end %>
+      </div>
+ 
     <br>
-    <div class='shadowContainer'>
-      <table id='userTable'
-         data-toolbar="#toolbar"
-         data-pagination="true"
-         data-show-toggle="true"
-         data-show-columns="true"
-         data-sort-order="name"
-         class='table-striped table-responsive table-hover table-bordered regularDisplay'>
+    <table id='userTable'
+        data-toolbar="#toolbar"
+        data-pagination="true"
+        data-show-toggle="true"
+        data-show-columns="true"
+        data-sort-order="name"
+        class='table-striped table-responsive table-hover table-bordered regularDisplay'>
 
-          <thead>
+        <thead>
+          <tr>
+            <th data-sortable='true' data-field='last_name'>Name</th>
+            <th data-sortable='true' data-field='email'>Email</th>
+            <th data-sortable='true' data-field='username'>UserName</th>
+            <th data-sortable='true' data-field='display_confirmed_at'>Confirmed</th>
+            <th data-sortable='true' data-field='db_activity'>DB Activity</th>
+            <th data-sortable='true' data-field='display_last_dbactivity'>Last DB Activity</th>
+          </tr>
+        <thead>
+
+        <tbody>
+          <% @users.each do |user| %>
             <tr>
-              <th data-sortable='true' data-field='last_name'>Name</th>
-              <th data-sortable='true' data-field='email'>Email</th>
-              <th data-sortable='true' data-field='username'>UserName</th>
-              <th data-sortable='true' data-field='display_confirmed_at'>Confirmed</th>
-              <th data-sortable='true' data-field='db_activity'>DB Activity</th>
-              <th data-sortable='true' data-field='display_last_dbactivity'>Last DB Activity</th>
+              <td><%= user.full_name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.username %></td>
+              <td><%= user.display_confirmed_at %></td>
+              <td align='center'><%= user.db_activity %></td>
+              <td><%= user.display_last_db_activity %></td>
             </tr>
-          <thead>
-
-          <tbody>
-            <% @users.each do |user| %>
-              <tr>
-                <td><%= user.full_name %></td>
-                <td><%= user.email %></td>
-                <td><%= user.username %></td>
-                <td><%= user.display_confirmed_at %></td>
-                <td align='center'><%= user.db_activity %></td>
-                <td><%= user.display_last_db_activity %></td>
-              </tr>
-            <% end %>
-         </tbody>
-      </table>
-    </div>
-
+          <% end %>
+        </tbody>
+    </table>
   </div>
 
 </section>

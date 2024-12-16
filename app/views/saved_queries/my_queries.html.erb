@@ -1,6 +1,4 @@
-<div class="container">
   <%= render 'layouts/query_menu' %>
-
 
   <div class="search-form" style="display: flex; justify-content: space-between; align-items: center;">
     <%= form_tag(my_queries_path, method: :get, class: 'form-inline') do %>
@@ -31,5 +29,4 @@
     
   <div class="pagination">
     <%= paginate @my_queries %>
-  </div>
 </div>
