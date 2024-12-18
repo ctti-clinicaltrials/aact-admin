@@ -107,9 +107,7 @@
         <select class="form-select" aria-label="Default select example" onchange="location = this.value;">
           <option selected>Select file to download</option>
           <% @daily_archive_snapshot.each do |file| %>
-            <option value="<%= file.url%>">
-              <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> </a>
-            </option>
+            <option value="<%= file.url%>"><%= file.filename%></option>
           <% end %>
         </select>
 
@@ -117,9 +115,7 @@
         <select class="form-select" aria-label="Default select example" onchange="location = this.value;">
           <option selected>Select file to download</option>
           <% @monthly_archive_snapshot.each do |file| %>
-            <option value="<%= file.url%>">
-              <a href=<%= file.url%> download="proposed_file_name"> <%= file.filename%> </a>
-            </option>
+            <option value="<%= file.url%>"><%= file.filename%></option>
           <% end %>
         </select>
   </section>
