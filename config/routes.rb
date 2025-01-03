@@ -58,8 +58,8 @@ Rails.application.routes.draw do
   get '/queries', to: 'saved_queries#index'
   get '/my/queries', to: 'saved_queries#my_queries'
   get "/playground"           => "playground#index", as: :playground
-  get "/playground/:id"       => "playground#show_results", as: :show_results
-  get "job_status"           => "playground#job_status", as: :job_status
+  get "/playground/:id"       => "playground#show_results", as: :show_results 
+  get "job_status/:id"        => "playground#job_status", as: :job_status
   get "/install_postgres"     => "postgres_documentation#install_postgres"
   get "/credentials"          => "credentials#show"
 
