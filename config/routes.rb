@@ -96,6 +96,12 @@ Rails.application.routes.draw do
   #digitalocean
   get "/static/:type/:time/:filename(:format)" => "file_records#active_url"
 
+  resources :documentation, only: [:index, :show, :edit, :update] do
+    collection do
+      get :download_csv
+    end
+  end
+
   resources :file_records, only: [:index, :show]
   resources :definitions, only: [:index]
   resources :data_definitions
@@ -113,5 +119,5 @@ Rails.application.routes.draw do
   resources :study_statistics_comparisons
   resources :background_jobs, path: '/history', only: [:index, :show, :destroy]
   resources :study_searches
-  
+
 end

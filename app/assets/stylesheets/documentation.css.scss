@@ -1,0 +1,156 @@
+.docs-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+
+  /* Controls Block */
+  .controls-block {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+  }
+
+  .form-group {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
+  }
+  .control-btn {
+    width: 150px;
+  }
+
+  /* Table */
+  .grid-table {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: #e5e7eb;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .grid-row {
+    display: grid;
+    grid-template-columns:
+      60px
+      1fr
+      1fr
+      0.5fr
+      1fr
+      1fr;
+
+    background: #fff;
+    gap: 0;
+  }
+
+  .grid-header {
+    background: #f9fafb;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  .grid-row > div {
+    font-size: 14px;
+    padding: 12px 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+  }
+
+  .grid-row:hover {
+    background-color: #f3f4f6;
+  }
+
+  /* Details Button */
+  .details-button {
+    padding: 6px 12px;
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .details-button:hover {
+    background: #f3f4f6;
+  }
+
+
+  /* Link */
+  .custom-link {
+    font-size: 14px;
+    color: #224989;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .custom-link:hover {
+    color: #871621;
+  }
+}
+
+
+.details-wrapper {
+  // max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+
+
+  .details-controls {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    margin-bottom: 20px;
+  }
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .details-group {
+    display: grid;
+    grid-template-columns: auto 2fr;
+    gap: 10px;
+    border: 1px solid #e5e7eb;
+  }
+
+  .details-title {
+    font-weight: bold;
+  }
+
+  .details-value {
+  }
+
+  /* Link */
+  .custom-link {
+    font-size: 16px;
+    color: #224989;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .custom-link:hover {
+    color: #871621;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .control-btn {
+    width: 150px;
+  }
+}
