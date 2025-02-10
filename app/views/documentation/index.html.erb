@@ -54,6 +54,6 @@
     <% end %>
   </div>
   <div class="pagination-wrapper">
-    <%= paginate @paginated_docs, class: "pagination" %>
+    <%= paginate @paginated_docs, class: "pagination", inner_window: 2, outer_window: 0 %>
   </div>
 </div>
