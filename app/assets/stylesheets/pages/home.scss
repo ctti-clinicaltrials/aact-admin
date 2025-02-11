@@ -158,3 +158,21 @@ div.heroPanelRow {
     }
   }
 }
+
+.adjustments {
+  margin-bottom: 1rem !important;
+}
+
+.active {
+  color: #224989 !important;
+  background-color: #fff !important;
+  border-color: #dee2e6 #dee2e6 #fff !important;
+}
+
+.nav-link {
+  color: $secondary;
+}
+
+.nav-link:hover {
+  color: $tertiary !important;
+}
