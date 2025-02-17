@@ -36,8 +36,9 @@ class DocumentationService
   private
 
   def invalidate_cache
-    Rails.cache.delete(CACHE_JSON_KEY)
-    Rails.cache.delete(CACHE_CSV_KEY)
+    Rails.logger.info "Invalidating documentation cache"
+    Rails.cache.write(CACHE_JSON_KEY, nil, force: true)
+    Rails.cache.write(CACHE_CSV_KEY, nil, force: true)
   end
 
   def fetch_and_cache_data(csv: false)
