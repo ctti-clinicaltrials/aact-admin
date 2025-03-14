@@ -14,19 +14,19 @@ You should always setup AACT Core before setting up AACT Admin. AACT Admin relie
 Make sure you've set values for the following environmental variables:
 | Variable | Explanation |
 | ------------ | ------------ |
-| `AACT_DB_SUPER_USERNAME=<superuser_name>` | This is a database superuser that is used within AACT to make database changes. |  
-| `AACT_PASSWORD=<superuser_password>` | This is a database superuser password created to verify the database superuser. |
+<!-- | `AACT_DB_SUPER_USERNAME=<superuser_name>` | This is a database superuser that is used within AACT to make database changes. |   -->
+<!-- | `AACT_PASSWORD=<superuser_password>` | This is a database superuser password created to verify the database superuser. | -->
 | `AACT_PUBLIC_DATABASE_NAME=aact` | This is the AACT public database name that the database superuser will be accessing. |  
-| `PUBLIC_DB_USER=<superuser_name>` | This is a database superuser that is used to access the production [aact-pub](https://aact.ctti-clinicaltrials.org/connect) database. |  
-| `PUBLIC_DB_PASS=<superuser_password>` | This is a database superuser password created to verify the database superuser. |  
+<!-- | `PUBLIC_DB_USER=<superuser_name>` | This is a database superuser that is used to access the production [aact-pub](https://aact.ctti-clinicaltrials.org/connect) database. |  
+| `PUBLIC_DB_PASS=<superuser_password>` | This is a database superuser password created to verify the database superuser. |   -->
 | `PUBLIC_DB_HOST=<public_host>` | This is the public database hostname used in the connection string to the production [aact-pub](https://aact.ctti-clinicaltrials.org/connect) database. Under most circumstances, we can use `aact-db.ctti-clinicaltrials.org` as the public-host. |
 | `AACT_ALT_PUBLIC_DATABASE_NAME=aact_alt` | This is the AACT alternate public database name that the database superuser will be accessing. It is used to for staging purposes that allows testing of the database before restoring to AACT. |
-| `AACT_CORE_DATABASE_URL=<postgresql://[postgres-user]:[postgres-password]@[hostname]:[port]/[dbname]>` | Connection string to the aact-core database. This allows us to connect to this database from aact-admin. The postgres-user and postgres-password are the superuser-name and superuser-password that you have created in the postgres database that comes with PostgreSQL. Under most circumstances, we can use `localhost` as the hostname and `5432` as the port. |  
+<!-- | `AACT_CORE_DATABASE_URL=<postgresql://[postgres-user]:[postgres-password]@[hostname]:[port]/[dbname]>` | Connection string to the aact-core database. This allows us to connect to this database from aact-admin. The postgres-user and postgres-password are the superuser-name and superuser-password that you have created in the postgres database that comes with PostgreSQL. Under most circumstances, we can use `localhost` as the hostname and `5432` as the port. |   -->
 | `AACT_QUERY_DATABASE_URL=<postgresql://[postgres-user]:[postgres-password]@[hostname]:[port]/[dbname]>` | Connection string to the production [aact-pub](https://aact.ctti-clinicaltrials.org/connect) database that users query. This allows us to query this database from aact-admin. The postgres-user and postgres-password are the username and password that you have created at `https://aact.ctti-clinicaltrials.org`. Under most circumstances, we can use `aact-db.ctti-clinicaltrials.org` as the hostname and `5432` as the port. | 
-| `PUBLIC_DB_NAME` |This is the public database name that mailcatcher uses name the variable `aact_public`. |
+| `PUBLIC_DB_NAME=aact_public` |This is the public database name that mailcatcher uses. Name the variable `aact_public`. |
 | `PUBLIC_DB_HOST=<public_host>` |This is the public database hostname used in the connection string to the production. We will be using `localhost` for mailcatcher. |
 
-These variables should have been set when you setup AACT Core. If any are missing you should add them to where you store your variables (for instance ".bash_profile" or ".zshrc").  
+<!-- These variables should have been set when you setup AACT Core. If any are missing you should add them to where you store your variables (for instance ".bash_profile" or ".zshrc").   -->
 
 Be sure to call `source` on the file where your passwords are. Example `source ~/.bash_profile` so they are reloaded into the terminal.   
 
