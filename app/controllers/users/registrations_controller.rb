@@ -12,10 +12,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    super
-    if resource.errors.size == 0
+    build_resource(sign_up_params)
+
+    if resource.save
+      sign_in(resource)
       UserMailer.send_event_notification('created', resource)
-      flash[:notice] = 'You will soon receive an email from AACT. When you verify your email, you will have acces to your database account.'
+      flash[:notice] = 'Welcome! You have signed up successfully. You will soon receive an email from AACT. When you verify your email, you will have access to your database account.'
+      redirect_to root_path and return
+    else
+      clean_up_passwords(resource)
+      respond_with resource
     end
   end
 
