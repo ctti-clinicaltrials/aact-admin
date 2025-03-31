@@ -1,0 +1,89 @@
+<div class="snapshots-container">
+  <h1 class="mt-4 mb-4">Latest AACT Database Snapshots</h1>
+  <% if @latest_snapshots.present? && @latest_snapshots.is_a?(Array) && @latest_snapshots.any? %>
+    <div class="row">
+      <% @latest_snapshots.each do |snapshot| %>
+        <div class="col-md-6">
+          <div class="card mb-4">
+            <div class="card-header <%= snapshot["type"] == "pgdump" ? "bg-primary" : "bg-success" %> text-white">
+              <h4 class="mb-0">
+                <%= snapshot["type"] == "pgdump" ? "PostgreSQL Database Dump" : "Flat Files (CSV/TSV)" %>
+              </h4>
+            </div>
+            <div class="card-body">
+              <!-- File information section -->
+              <dl class="row">
+                <dt class="col-sm-4">Date:</dt>
+                <dd class="col-sm-8"><%= snapshot["date"] %></dd>
+                <dt class="col-sm-4">File:</dt>
+                <dd class="col-sm-8"><%= snapshot["file_name"] %></dd>
+                <dt class="col-sm-4">Size:</dt>
+                <dd class="col-sm-8"><%= snapshot["size"] %></dd>
+                <% if snapshot["md5"].present? %>
+                  <dt class="col-sm-4">MD5:</dt>
+                  <dd class="col-sm-8"><code><%= snapshot["md5"] %></code></dd>
+                <% end %>
+              </dl>
+              <!-- Description section moved from "Using AACT Data" -->
+              <div class="mt-3 mb-3">
+                <% if snapshot["type"] == "pgdump" %>
+                  <h5>About PostgreSQL Database Dump</h5>
+                  <p>Use this file to create a complete copy of the AACT database on your own PostgreSQL server.</p>
+                  <pre class="bg-light p-2"><code>pg_restore -c -d your_database_name path_to_downloaded_file</code></pre>
+                <% else %>
+                  <h5>About Flat Files</h5>
+                  <p>Use these pipe-delimited text files to import AACT data into any database or analysis tool.</p>
+                  <p>Each file corresponds to a table in the AACT database schema.</p>
+                <% end %>
+              </div>
+              <!-- Download and view all buttons -->
+              <div class="d-flex justify-content-between">
+                <a href="<%= snapshot["download_url"] %>"
+                  class="btn <%= snapshot["type"] == "pgdump" ? "btn-primary" : "btn-success" %>"
+                  target="_blank">
+                  <i class="fas fa-download"></i>
+                  Download File
+                </a>
+                <button
+                  onclick="console.log('View all <%= snapshot["type"] %> snapshots')"
+                  class="btn btn-outline-secondary">
+                  View All Available <%= snapshot["type"] == "pgdump" ? "Database Dumps" : "Flat Files" %>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h4>Additional Resources</h4>
+          </div>
+          <div class="card-body">
+            <div class="mt-3">
+              <a href="/learn_more" class="btn btn-info">Learn More About AACT Data</a>
+              <a href="/documentation" class="btn btn-secondary ml-2">View Documentation</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="alert alert-warning">
+      No snapshot data is currently available. Please try again later.
+    </div>
+  <% end %>
+  <!-- Debug information to help troubleshoot (only in development) -->
+  <% if Rails.env.development? && @latest_snapshots.nil? %>
+    <div class="alert alert-info mt-4">
+      <strong>Debug:</strong> Latest snapshots data is nil.
+    </div>
+  <% elsif Rails.env.development? %>
+    <div class="alert alert-info mt-4">
+      <strong>Debug:</strong> Latest snapshots data type: <%= @latest_snapshots.class.name %>
+      <pre><%= JSON.pretty_generate(@latest_snapshots) rescue @latest_snapshots.inspect %></pre>
+    </div>
+  <% end %>
+</div>

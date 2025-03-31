@@ -19,6 +19,10 @@ class AactApiClient
       }.to_json, headers: json_headers)
   end
 
+  def get_latest_snapshots
+    HTTParty.get("#{@api_url}/snapshots/latest", headers: json_headers)
+  end
+
   private
 
   def csv_headers
