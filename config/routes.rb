@@ -102,7 +102,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :downloads, only: [:index]
+  # TODO: review and optimize naming before releasing
+  resources :downloads, only: [:index] do
+    collection do
+      get 'snapshots'
+    end
+  end
+
 
   resources :file_records, only: [:index, :show]
   resources :definitions, only: [:index]
