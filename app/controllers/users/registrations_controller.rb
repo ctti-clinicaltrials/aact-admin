@@ -17,7 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource.save
       sign_in(resource)
       UserMailer.send_event_notification('created', resource)
-      flash[:notice] = 'Welcome! You have signed up successfully. You will soon receive an email from AACT. When you verify your email, you will have access to your database account.'
+      flash[:notice] = 'Welcome! You have signed up successfully. You can now log into your account and access the database.'
       redirect_to root_path and return
     else
       clean_up_passwords(resource)
