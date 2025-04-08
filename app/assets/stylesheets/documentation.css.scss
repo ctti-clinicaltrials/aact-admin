@@ -212,3 +212,20 @@
     display: none;
   }
 }
+
+.usersearchbtn {
+  border: 4px solid #d1d5db;
+  background: #f9fafb;
+  color: #224989;
+  font-weight: 800;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.usersearchbtn:hover {
+  background: #224989;
+  color: #ffffff;
+  border-color: #1b3b73;
+}
+
