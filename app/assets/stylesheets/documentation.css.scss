@@ -214,7 +214,7 @@
 }
 
 .usersearchbtn {
-  border: 4px solid #d1d5db;
+  border: 1px solid #d1d5db;
   background: #f9fafb;
   color: #224989;
   font-weight: 800;
@@ -229,3 +229,17 @@
   border-color: #1b3b73;
 }
 
+.form-inline {
+  display: flex;
+  align-items: center;
+}
+
+.form-inline .form-control {
+  flex: 0 0 80%;
+  margin-right: 10px; 
+}
+
+.form-inline .usersearchbtn {
+  flex: 0 0 20%;
+  white-space: nowrap;
+}

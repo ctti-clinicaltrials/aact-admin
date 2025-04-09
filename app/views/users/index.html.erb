@@ -10,11 +10,12 @@
     <br>
     <div class="mb-3">
       <%= form_tag(users_path, method: :get, class: 'form-inline') do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Search users by name, email, or username", class: 'form-control mr-sm-2' %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search users by name, email, or username", class: 'form-control' %>
         <%= submit_tag "Search", class: "btn usersearchbtn" %>
       <% end %>
     </div>
-
+  
+  
     <% if params[:search].present? %>
       <p>
         Showing results for "<strong><%= params[:search] %></strong>"
@@ -36,7 +37,8 @@
             <th data-sortable='true' data-field='last_name'>Name</th>
             <th data-sortable='true' data-field='email'>Email</th>
             <th data-sortable='true' data-field='username'>UserName</th>
-            <th data-sortable='true' data-field='display_last_dbactivity'>Last DB Activity</th>
+            <th data-sortable='true' data-field='date_joined'>Date Joined</th>
+            <th data-sortable='true' data-field='display_last_db_activity'>Last DB Activity</th>
             <th data-sortable='true' data-field='db_activity'>DB Activity</th>
           </tr>
         <thead>
@@ -47,6 +49,7 @@
               <td><%= user.full_name %></td>
               <td><%= user.email %></td>
               <td><%= user.username %></td>
+              <td><%= user.display_remember_created_at%></td>
               <td><%= user.display_last_db_activity %></td>
               <td><%= user.db_activity %></td>
             </tr>
