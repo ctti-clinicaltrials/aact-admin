@@ -1,12 +1,12 @@
 <div class="snapshots-wrapper">
-  <h1 class="snapshots-title"><%= snapshot_title(@type) %> Snapshots</h1>
-  <div class="mb-4">
-    <%= link_to "Back to Latest Snapshots", downloads_path, class: "action-button secondary" %>
+  <div class="details-controls">
+    <%= link_to "Back", downloads_path, class: "btn btn-secondary control-btn" %>
+    <div class="snapshots-title"><%= snapshot_title(@type) %></div>
   </div>
   <% if @all_snapshots.present? %>
     <!-- Daily Snapshots Section -->
     <div class="snapshots-section">
-      <h2 class="section-title">Recent Daily Snapshots</h2>
+      <h2 class="snapshots-section-title">Recent Daily Snapshots</h2>
       <div class="snapshots-grid-table">
         <!-- Grid Header -->
         <div class="snapshots-grid-row snapshots-grid-header">
@@ -19,13 +19,12 @@
         <% if @paginated_daily_snapshots.present? && @paginated_daily_snapshots.any? %>
           <% @paginated_daily_snapshots.each do |snapshot| %>
             <div class="snapshots-grid-row">
-              <div data-label="Date:"><%= snapshot["date"] %></div>
+              <div data-label="Date:"><strong><%= snapshot["date"] %></strong></div>
               <div data-label="File:"><%= snapshot["file_name"] %></div>
               <div data-label="Size:"><%= snapshot["size"] %></div>
               <div class="snapshots-grid-actions">
                 <a href="<%= snapshot["download_url"] %>"
-                  class="action-button primary"
-                  target="_blank">
+                  class="snapshots-action-button primary">
                   Download
                 </a>
               </div>
@@ -48,20 +47,18 @@
     </div>
     <!-- Monthly Snapshots Section -->
     <div class="snapshots-section mt-5">
-      <h2 class="section-title">Monthly Archives</h2>
+      <h2 class="snapshots-section-title">Monthly Archives</h2>
       <!-- Year Navigation -->
       <div class="year-navigation">
         <% if @all_snapshots[:monthly].present? && @all_snapshots[:monthly].any? %>
           <% @all_snapshots[:monthly].keys.sort.reverse.each do |year| %>
             <%= link_to year,
                 snapshots_downloads_path(type: @type, year: year),
-                class: "year-link #{year == @year ? 'active' : ''}" %>
+                class: "year-link #{year == @year ? 'selected-year' : ''}" %>
           <% end %>
         <% end %>
       </div>
-      <!-- Monthly Snapshots Grid -->
       <div class="snapshots-grid-table">
-        <!-- Grid Header -->
         <div class="snapshots-grid-row snapshots-grid-header">
           <div>Date</div>
           <div>File Name</div>
@@ -76,11 +73,9 @@
               <div data-label="File:"><%= snapshot["file_name"] %></div>
               <div data-label="Size:"><%= snapshot["size"] %></div>
               <div class="snapshots-grid-actions">
-                <a href="<%= snapshot["download_url"] %>"
-                  class="action-button primary"
-                  target="_blank">
+                <%= link_to snapshot["download_url"], class: "snapshots-action-button primary", download: snapshot["file_name"] do %>
                   Download
-                </a>
+                <% end %>
               </div>
             </div>
           <% end %>

@@ -1,11 +1,13 @@
 module DownloadsHelper
   include ActionView::Helpers::TagHelper
 
+  # TODO: remove description_title
   SNAPSHOT_CONFIG = {
     'pgdump' => {
-      title: 'PostgreSQL Database Dump',
+      title: 'PostgreSQL Database Dump', # PostgreSQL Database Dump
       description_title: 'About PostgreSQL Database Dump',
       view_all_text: 'Database Dumps',
+      instructions_path: '/snapshots',
       description_content: lambda do |helper|
         helper.safe_join([
           helper.content_tag(:p, 'Use this file to create a complete copy of the AACT database on your own PostgreSQL server.'),
@@ -17,10 +19,11 @@ module DownloadsHelper
       title: 'Flat Text Files',
       description_title: 'About Flat Files',
       view_all_text: 'Flat Files',
+      instructions_path: '/pipe_files',
       description_content: lambda do |helper|
         helper.safe_join([
-          helper.content_tag(:p, 'Use these pipe-delimited text files to import AACT data into any database or analysis tool.'),
-          helper.content_tag(:p, 'Each file corresponds to a table in the AACT database schema.')
+          helper.content_tag(:p, 'Use these pipe-delimited text files to import AACT data into any database or analysis tool. Each file corresponds to a table in the AACT database schema.'),
+          # helper.content_tag(:p, '')
         ])
 
       end
@@ -46,5 +49,9 @@ module DownloadsHelper
     else
       content_tag(:p, "No description available yet.")
     end
+  end
+
+  def snapshot_instructions_path(type)
+    SNAPSHOT_CONFIG.dig(type, :instructions_path)
   end
 end

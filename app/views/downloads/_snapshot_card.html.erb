@@ -1,10 +1,13 @@
 <%# dynamic class name based on snapshot type %>
 <div class="snapshot-card <%= snapshot["type"] %>">
   <div class="snapshot-header">
-    <h3 class="snapshot-type <%= snapshot["type"] %>"><%= snapshot_title(snapshot["type"]) %></h3>
-    <span class="snapshot-date"><%= snapshot["date"] %></span>
+    <div class="snapshot-type <%= snapshot["type"] %>"><%= snapshot_title(snapshot["type"]) %></div>
+    <div class="snapshot-date">Last Exported: <%= snapshot["date"] %></div>
   </div>
   <div class="snapshot-content">
+    <div class="snapshot-description">
+      <%= snapshot_description_content(snapshot["type"]) %>
+    </div>
     <div class="snapshot-details">
       <div class="detail-item">
         <span class="detail-label">File:</span>
@@ -15,18 +18,16 @@
         <span class="detail-value"><%= snapshot["size"] %></span>
       </div>
     </div>
-    <div class="snapshot-description">
-      <h4><%= snapshot_description_title(snapshot["type"]) %></h4>
-      <%= snapshot_description_content(snapshot["type"]) %>
-    </div>
+
     <div class="snapshot-actions">
-      <a href="<%= snapshot["download_url"] %>"
-        class="action-button primary"
-        target="_blank">
+      <%= link_to snapshot_instructions_path(snapshot["type"]), class: "snapshots-action-button secondary" do %>
+        Instructions
+      <% end %>
+      <%= link_to snapshots_downloads_path(type: snapshot["type"]), class: "snapshots-action-button secondary" do %>
+        Historical Data
+      <% end %>
+      <%= link_to snapshot["download_url"], class: "snapshots-action-button primary", download: snapshot["file_name"] do %>
         Download File
-      </a>
-      <%= link_to snapshots_downloads_path(type: snapshot["type"]), class: "action-button secondary" do %>
-        View All Available <%= snapshot_view_all_text(snapshot["type"]) %>
       <% end %>
     </div>
   </div>

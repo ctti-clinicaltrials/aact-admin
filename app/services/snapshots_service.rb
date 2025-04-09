@@ -27,80 +27,31 @@ class SnapshotsService
     nil
   end
 
-  # def fetch_all_snapshots_by_type(type)
-  #   case type
-  #   when 'pgdump'
-  #     [
-  #       {
-  #         "type" => "pgdump",
-  #         "date" => "2023-06-15",
-  #         "file_name" => "aact-postgres-dump-20230615.zip",
-  #         "size" => "1.2 GB",
-  #         "download_url" => "/downloads/aact-postgres-dump-20230615.zip"
-  #       },
-  #       {
-  #         "type" => "pgdump",
-  #         "date" => "2023-06-01",
-  #         "file_name" => "aact-postgres-dump-20230601.zip",
-  #         "size" => "1.1 GB",
-  #         "download_url" => "/downloads/aact-postgres-dump-20230601.zip"
-  #       },
-  #       {
-  #         "type" => "pgdump",
-  #         "date" => "2023-05-15",
-  #         "file_name" => "aact-postgres-dump-20230515.zip",
-  #         "size" => "1.0 GB",
-  #         "download_url" => "/downloads/aact-postgres-dump-20230515.zip"
-  #       }
-  #     ]
-  #   when 'flatfiles'
-  #     [
-  #       {
-  #         "type" => "flatfiles",
-  #         "date" => "2023-06-15",
-  #         "file_name" => "aact-flatfiles-20230615.zip",
-  #         "size" => "800 MB",
-  #         "download_url" => "/downloads/aact-flatfiles-20230615.zip"
-  #       },
-  #       {
-  #         "type" => "flatfiles",
-  #         "date" => "2023-06-01",
-  #         "file_name" => "aact-flatfiles-20230601.zip",
-  #         "size" => "790 MB",
-  #         "download_url" => "/downloads/aact-flatfiles-20230601.zip"
-  #       },
-  #       {
-  #         "type" => "flatfiles",
-  #         "date" => "2023-05-15",
-  #         "file_name" => "aact-flatfiles-20230515.zip",
-  #         "size" => "780 MB",
-  #         "download_url" => "/downloads/aact-flatfiles-20230515.zip"
-  #       }
-  #     ]
-  #   else
-  #     []
-  #   end
-  # end
-
 
   def fetch_all_snapshots_by_type(type)
-    case type
-    when 'pgdump'
-      {
-        daily: generate_daily_snapshots('pgdump'),
-        monthly: generate_monthly_snapshots('pgdump')
-      }
-    when 'flatfiles'
-      {
-        daily: generate_daily_snapshots('flatfiles'),
-        monthly: generate_monthly_snapshots('flatfiles')
+    response = @api_client.get_snapshots_by_type(type)
+
+    # Check if it's an HTTParty response and extract the parsed_response
+    if response.respond_to?(:parsed_response)
+      data = response.parsed_response
+    else
+      data = response
+    end
+
+    # Process the response based on the new API structure
+    if data.is_a?(Hash) && data[type].is_a?(Hash)
+      # Return the structure directly as it already matches our expected format
+      return {
+        daily: data[type]["daily"] || [],
+        monthly: data[type]["monthly"] || {}
       }
     else
-      {
-        daily: [],
-        monthly: {}
-      }
+      Rails.logger.error "Unexpected response format from API: #{response.inspect}"
+      { daily: [], monthly: {} }
     end
+  rescue StandardError => e
+    Rails.logger.error "Error fetching snapshots by type: #{e.message}"
+    { daily: [], monthly: {} }
   end
 
   private
@@ -110,7 +61,7 @@ class SnapshotsService
     snapshots = []
 
     30.times do |i|
-      date = (Date.today - i.days).strftime("%Y-%m-%d")
+      date = (Date.today - i.days).strftime("%m-%d-%Y")
       file_size = type == 'pgdump' ? "#{1.0 + (rand * 0.3).round(1)} GB" : "#{700 + rand(300)} MB"
 
       snapshots << {

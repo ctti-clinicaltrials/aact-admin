@@ -4,6 +4,8 @@ class AactApiClient
     @api_url = ENV["AACT_API_URL"]
   end
 
+
+  # DOCUMENTATION
   def get_documentation(csv: false)
     headers = csv ? csv_headers : json_headers
     HTTParty.get("#{@api_url}/documentation", headers: headers)
@@ -19,8 +21,13 @@ class AactApiClient
       }.to_json, headers: json_headers)
   end
 
+  # SNAPSHOTS
   def get_latest_snapshots
     HTTParty.get("#{@api_url}/snapshots/latest", headers: json_headers)
+  end
+
+  def get_snapshots_by_type(type)
+    HTTParty.get("#{@api_url}/snapshots?type=#{type}", headers: json_headers)
   end
 
   private
