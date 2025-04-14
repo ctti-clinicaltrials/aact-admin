@@ -227,6 +227,21 @@ $flatfiles-color: #f8ebe4;
     border: 1px solid #e5e7eb;
     border-radius: 8px;
     color: #4b5563;
+    margin: 20px 0;
+
+    .empty-state-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+
+    .empty-state-message {
+      font-size: 16px;
+      line-height: 1.5;
+      max-width: 800px;
+      margin: 0 auto 16px;
+    }
   }
 
   .debug-info {

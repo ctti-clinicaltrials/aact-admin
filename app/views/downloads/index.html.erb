@@ -1,11 +1,17 @@
 <div class="snapshots-wrapper">
   <h1 class="snapshots-title">Latest AACT Database Snapshots</h1>
-  <% if @latest_snapshots.present? && @latest_snapshots.is_a?(Array) && @latest_snapshots.any? %>
+  <% if @latest_snapshots.present? %>
     <div class="snapshots-list">
       <% @latest_snapshots.each do |snapshot| %>
         <%= render partial: 'snapshot_card', locals: { snapshot: snapshot } %>
       <% end %>
     </div>
+  <% else %>
+    <%= render partial: 'empty_state', locals: {
+      title: "No Snapshots Available",
+      message: "We couldn't retrieve the latest database snapshots at this moment. This might be due to scheduled maintenance or a temporary connection issue. Please try again later."
+    } %>
+  <% end %>
     <div class="additional-resources">
       <div class="resource-header">
         <h4>Additional Resources</h4>
@@ -15,11 +21,6 @@
         <a href="/documentation" class="resource-link">View Documentation</a>
       </div>
     </div>
-  <% else %>
-    <div class="empty-state">
-      No snapshot data is currently available. Please try again later.
-    </div>
-  <% end %>
   <% if Rails.env.development? && @latest_snapshots.nil? %>
     <div class="debug-info">
       <strong>Debug:</strong> Latest snapshots data is nil.
