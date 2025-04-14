@@ -5,7 +5,7 @@ module Cacheable
   class_methods do
     attr_writer :cache_expiry # setter
 
-    # getter with default value
+    # getter with the default value
     def cache_expiry
       @cache_expiry || 10.minutes
     end

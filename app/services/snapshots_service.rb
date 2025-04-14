@@ -3,12 +3,14 @@ class SnapshotsService
   CACHE_LATEST_KEY = "latest_snapshots"
   CACHE_TYPE_PREFIX = "snapshots_by_type_"
 
-  self.cache_expiry = 30.minutes # configuration class level
+  # TODO: set different values for enviroments
+  self.cache_expiry = 60.minutes # configuration class level
 
   def initialize
     @api_client = AactApiClient.new
   end
 
+  # TODO: report errors to Airbrake
   def fetch_latest_snapshots
     fetch_with_cache(CACHE_LATEST_KEY) do
       response = @api_client.get_latest_snapshots
@@ -16,11 +18,8 @@ class SnapshotsService
     end || []
   end
 
-
-  # TODO: empty state if no data returned for any reason
   def fetch_all_snapshots_by_type(type)
     cache_key = "#{CACHE_TYPE_PREFIX}#{type}"
-
     fetch_with_cache(cache_key) do
       response = @api_client.get_snapshots_by_type(type)
       parse_and_validate_type_response(response, type)

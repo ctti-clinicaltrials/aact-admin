@@ -3,54 +3,60 @@
     <%= link_to "Back", downloads_path, class: "btn btn-secondary control-btn" %>
     <div class="snapshots-title"><%= snapshot_title(@type) %></div>
   </div>
-  <% if @all_snapshots.present? %>
+
+  <% if @all_snapshots[:daily].any? || @all_snapshots[:monthly].keys.any? %>
     <!-- Daily Snapshots Section -->
     <div class="snapshots-section">
       <h2 class="snapshots-section-title">Recent Daily Snapshots</h2>
-      <div class="snapshots-grid-table">
-        <!-- Grid Header -->
-        <div class="snapshots-grid-row snapshots-grid-header">
-          <div>Date</div>
-          <div>File Name</div>
-          <div>Size</div>
-          <div>Actions</div>
-        </div>
+      <% if @paginated_daily_snapshots.any? %>
+        <div class="snapshots-grid-table">
+          <!-- Grid Header -->
+          <div class="snapshots-grid-row snapshots-grid-header">
+            <div>Date</div>
+            <div>File Name</div>
+            <div>Size</div>
+            <div>Actions</div>
+          </div>
         <!-- Grid Rows -->
-        <% if @paginated_daily_snapshots.present? && @paginated_daily_snapshots.any? %>
           <% @paginated_daily_snapshots.each do |snapshot| %>
             <div class="snapshots-grid-row">
               <div data-label="Date:"><strong><%= snapshot["date"] %></strong></div>
               <div data-label="File:"><%= snapshot["file_name"] %></div>
               <div data-label="Size:"><%= snapshot["size"] %></div>
               <div class="snapshots-grid-actions">
-                <a href="<%= snapshot["download_url"] %>"
-                  class="snapshots-action-button primary">
+                <%= link_to snapshot["download_url"], class: "snapshots-action-button primary", download: snapshot["file_name"] do %>
                   Download
-                </a>
+                <% end %>
               </div>
             </div>
           <% end %>
         <% else %>
-          <div class="snapshots-grid-row empty-row">
-            <div colspan="4">No daily snapshots available.</div>
-          </div>
+          <%= render partial: 'empty_state', locals: {
+            title: "No Daily Snapshots",
+            message: "No daily snapshots are currently available for #{snapshot_title(@type)}. Daily snapshots are typically created each night."
+          } %>
         <% end %>
       </div>
+
       <!-- Pagination for Daily Snapshots -->
-      <div class="pagination-wrapper mt-3">
-        <%= paginate @paginated_daily_snapshots,
-          class: "pagination",
-          inner_window: 2,
-          outer_window: 0
+      <% if @paginated_daily_snapshots.any? %>
+        <div class="pagination-wrapper mt-3">
+          <%= paginate @paginated_daily_snapshots,
+            class: "pagination",
+            inner_window: 2,
+            outer_window: 0
           %>
-      </div>
+        </div>
+      <% end %>
     </div>
+
     <!-- Monthly Snapshots Section -->
     <div class="snapshots-section mt-5">
       <h2 class="snapshots-section-title">Monthly Archives</h2>
+      <!-- TODO: Refactor out sorting logic from the view layer-->
       <!-- Year Navigation -->
       <div class="year-navigation">
-        <% if @all_snapshots[:monthly].present? && @all_snapshots[:monthly].any? %>
+        <% if @all_snapshots[:monthly].keys.any? %>
           <% @all_snapshots[:monthly].keys.sort.reverse.each do |year| %>
             <%= link_to year,
                 snapshots_downloads_path(type: @type, year: year),
@@ -58,15 +64,16 @@
           <% end %>
         <% end %>
       </div>
-      <div class="snapshots-grid-table">
-        <div class="snapshots-grid-row snapshots-grid-header">
-          <div>Date</div>
-          <div>File Name</div>
-          <div>Size</div>
-          <div>Actions</div>
-        </div>
-        <!-- Grid Rows -->
-        <% if @all_snapshots[:monthly][@year].present? && @all_snapshots[:monthly][@year].any? %>
+
+      <% if @all_snapshots[:monthly][@year].present? && @all_snapshots[:monthly][@year].any? %>
+        <div class="snapshots-grid-table">
+          <div class="snapshots-grid-row snapshots-grid-header">
+            <div>Date</div>
+            <div>File Name</div>
+            <div>Size</div>
+            <div>Actions</div>
+          </div>
+
           <% @all_snapshots[:monthly][@year].sort_by { |s| s["date"] }.reverse.each do |snapshot| %>
             <div class="snapshots-grid-row">
               <div data-label="Date:"><%= snapshot["date"] %></div>
@@ -79,18 +86,22 @@
               </div>
             </div>
           <% end %>
-        <% else %>
-          <div class="snapshots-grid-row empty-row">
-            <div colspan="4">No monthly snapshots available for <%= @year %>.</div>
-          </div>
-        <% end %>
-      </div>
+        </div>
+      <% else %>
+        <%= render partial: 'empty_state', locals: {
+          title: "No Monthly Archives",
+          message: "No monthly archives are currently available for #{@year}. Monthly snapshots are created at the beginning of each month."
+        } %>
+      <% end %>
     </div>
   <% else %>
-    <div class="empty-state">
-      No snapshot data is currently available.
-    </div>
+    <!-- Neither Daily or Monthly Snapshots available -->
+    <%= render partial: 'empty_state', locals: {
+      title: "No Snapshots Available",
+      message: "We couldn't retrieve any #{snapshot_title(@type)} snapshots at this moment. This might be due to scheduled maintenance or a temporary connection issue. Please try again later."
+    } %>
   <% end %>
+
   <% if Rails.env.development? %>
     <div class="debug-info mt-4">
       <strong>Debug:</strong> Snapshot type: <%= @type %>
