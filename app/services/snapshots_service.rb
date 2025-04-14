@@ -1,6 +1,7 @@
 class SnapshotsService
   include Cacheable
   CACHE_LATEST_KEY = "latest_snapshots"
+  CACHE_TYPE_PREFIX = "snapshots_by_type_"
 
   self.cache_expiry = 30.minutes # configuration class level
 
@@ -16,30 +17,14 @@ class SnapshotsService
   end
 
 
+  # TODO: empty state if no data returned for any reason
   def fetch_all_snapshots_by_type(type)
-    response = @api_client.get_snapshots_by_type(type)
+    cache_key = "#{CACHE_TYPE_PREFIX}#{type}"
 
-    # Check if it's an HTTParty response and extract the parsed_response
-    if response.respond_to?(:parsed_response)
-      data = response.parsed_response
-    else
-      data = response
-    end
-
-    # Process the response based on the new API structure
-    if data.is_a?(Hash) && data[type].is_a?(Hash)
-      # Return the structure directly as it already matches our expected format
-      return {
-        daily: data[type]["daily"] || [],
-        monthly: data[type]["monthly"] || {}
-      }
-    else
-      Rails.logger.error "Unexpected response format from API: #{response.inspect}"
-      { daily: [], monthly: {} }
-    end
-  rescue StandardError => e
-    Rails.logger.error "Error fetching snapshots by type: #{e.message}"
-    { daily: [], monthly: {} }
+    fetch_with_cache(cache_key) do
+      response = @api_client.get_snapshots_by_type(type)
+      parse_and_validate_type_response(response, type)
+    end || { daily: [], monthly: {} }
   end
 
   private
@@ -58,5 +43,28 @@ class SnapshotsService
       Rails.logger.error "Unexpected response format from API: #{data.inspect}"
       nil
     end
+  end
+
+  def parse_and_validate_type_response(response, type)
+    unless response.success?
+      Rails.logger.error "API request failed: #{response.message} (Status: #{response.code})"
+      return nil
+    end
+
+    data = response.parsed_response # HTTParty response
+
+    # process the response based on the expected API structure
+    if data.is_a?(Hash) && data[type].is_a?(Hash)
+      {
+        daily: data[type]["daily"] || [],
+        monthly: data[type]["monthly"] || {}
+      }
+    else
+      Rails.logger.error "Unexpected response format from API: #{data.inspect}"
+      nil
+    end
+  rescue StandardError => e
+    Rails.logger.error "Error processing response in parse_and_validate_type_response: #{e.message}"
+    nil
   end
 end
