@@ -6,8 +6,6 @@ class SnapshotsService
   def fetch_latest_snapshots
     response = @api_client.get_latest_snapshots
 
-    puts "Response: #{response.inspect}"  # Debugging line
-
     # Check if it's an HTTParty response and extract the parsed_response
     if response.respond_to?(:parsed_response)
       data = response.parsed_response
@@ -53,58 +51,4 @@ class SnapshotsService
     Rails.logger.error "Error fetching snapshots by type: #{e.message}"
     { daily: [], monthly: {} }
   end
-
-  private
-
-  def generate_daily_snapshots(type)
-    # Generate mock data for the last 30 days
-    snapshots = []
-
-    30.times do |i|
-      date = (Date.today - i.days).strftime("%m-%d-%Y")
-      file_size = type == 'pgdump' ? "#{1.0 + (rand * 0.3).round(1)} GB" : "#{700 + rand(300)} MB"
-
-      snapshots << {
-        "type" => type,
-        "date" => date,
-        "file_name" => "aact-#{type}-#{date}.zip",
-        "size" => file_size,
-        "download_url" => "/downloads/#{type}/aact-#{type}-#{date}.zip"
-      }
-    end
-
-    snapshots
-  end
-
-  def generate_monthly_snapshots(type)
-    # Generate mock monthly snapshots grouped by year
-    monthly_by_year = {}
-
-    # Current year plus 2 previous years
-    (Date.today.year - 2..Date.today.year).each do |year|
-      months = []
-
-      # For the current year, only include past months
-      max_month = year == Date.today.year ? Date.today.month : 12
-
-      max_month.times do |i|
-        month = i + 1  # 1-based month
-        date = Date.new(year, month, 1).strftime("%Y-%m-%d")
-        file_size = type == 'pgdump' ? "#{1.0 + (rand * 0.3).round(1)} GB" : "#{700 + rand(300)} MB"
-
-        months << {
-          "type" => type,
-          "date" => date,
-          "file_name" => "aact-#{type}-#{date}.zip",
-          "size" => file_size,
-          "download_url" => "/downloads/#{type}/aact-#{type}-#{date}.zip"
-        }
-      end
-
-      monthly_by_year[year.to_s] = months
-    end
-
-    monthly_by_year
-  end
-
 end

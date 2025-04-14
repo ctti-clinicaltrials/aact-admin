@@ -24,8 +24,6 @@ class DownloadsController < ApplicationController
     end
 
     @paginated_daily_snapshots = Kaminari.paginate_array(@all_snapshots[:daily] || []).page(params[:page]).per(5)
-
-    Rails.logger.info "All snapshots data for type #{@type}: #{@all_snapshots.inspect}"
   end
 
   private
