@@ -1,0 +1,34 @@
+<div class="snapshots-wrapper">
+  <h1 class="snapshots-title">Latest AACT Database Snapshots</h1>
+  <% if @latest_snapshots.present? %>
+    <div class="snapshots-list">
+      <% @latest_snapshots.each do |snapshot| %>
+        <%= render partial: 'snapshot_card', locals: { snapshot: snapshot } %>
+      <% end %>
+    </div>
+  <% else %>
+    <%= render partial: 'empty_state', locals: {
+      title: "No Snapshots Available",
+      message: "We couldn't retrieve the latest database snapshots at this moment. This might be due to scheduled maintenance or a temporary connection issue. Please try again later."
+    } %>
+  <% end %>
+    <div class="additional-resources">
+      <div class="resource-header">
+        <h4>Additional Resources</h4>
+      </div>
+      <div class="resource-links">
+        <a href="/learn_more" class="resource-link">Learn More About AACT Data</a>
+        <a href="/documentation" class="resource-link">View Documentation</a>
+      </div>
+    </div>
+  <% if Rails.env.development? && @latest_snapshots.nil? %>
+    <div class="debug-info">
+      <strong>Debug:</strong> Latest snapshots data is nil.
+    </div>
+  <% elsif Rails.env.development? %>
+    <div class="debug-info">
+      <strong>Debug:</strong> Latest snapshots data type: <%= @latest_snapshots.class.name %>
+      <pre><%= JSON.pretty_generate(@latest_snapshots) rescue @latest_snapshots.inspect %></pre>
+    </div>
+  <% end %>
+</div>
