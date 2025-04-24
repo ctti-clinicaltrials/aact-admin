@@ -2,13 +2,23 @@ class UsersController < ApplicationController
   before_action :is_admin?, only: [:index, :show, :edit, :destroy]
 
   def index
-    @user_count = User.all.size
-    @users = User.order(:last_name)
+    @user_count = User.count
+  
+    if params[:search].present?
+      search_term = "%#{params[:search]}%"
+      @users = User.where(
+        "LOWER(first_name) LIKE :search OR LOWER(last_name) LIKE :search OR LOWER(email) LIKE :search OR LOWER(username) LIKE :search",
+        search: search_term.downcase
+      ).order(last_db_activity: :desc).page(params[:page]).per(20)
+    else
+      @users = User.order(last_db_activity: :desc).page(params[:page]).per(20)
+    end
+  
     respond_to do |format|
       format.html
-      format.csv { send_data generate_csv(@users), filename: "users-#{Date.today}.csv"}
+      format.csv { send_data generate_csv(@users), filename: "users-#{Date.today}.csv" }
     end
-  end
+  end  
 
   def edit
   end
@@ -24,7 +34,7 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
   private
 
     # Never trust parameters from the scary internet, only allow the white list through.
