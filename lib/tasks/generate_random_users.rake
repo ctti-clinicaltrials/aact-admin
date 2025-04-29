@@ -8,7 +8,6 @@ namespace :db do
         last_name: "User#{i + 1}",
         username: "testuser#{i + 1}",
         password: "test123",
-        remember_created_at: rand(61..100).days.ago.to_date,
         db_activity: rand(0..1000),
         last_db_activity: rand(1..60).days.ago.to_date,
         admin: false

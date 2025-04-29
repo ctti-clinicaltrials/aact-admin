@@ -2,6 +2,18 @@ class UsersController < ApplicationController
   before_action :is_admin?, only: [:index, :show, :edit, :destroy]
 
   def index
+    @joined_this_week = User.where(created_at: Time.current.beginning_of_week..Time.current.end_of_day).count
+    @joined_this_month = User.where(created_at: Time.current.beginning_of_month..Time.current.end_of_day).count
+  
+    @queries_this_week = DbUserActivity
+    .where(when_recorded: Time.zone.today.beginning_of_week(:sunday)..Time.zone.today)
+    .sum(:event_count)
+  
+
+    @queries_this_month = DbUserActivity
+      .where(when_recorded: Time.zone.now.beginning_of_month..Time.zone.now.end_of_month)
+      .sum(:event_count)
+
     @user_count = User.count
   
     if params[:search].present?
@@ -11,7 +23,9 @@ class UsersController < ApplicationController
         search: search_term.downcase
       ).order(last_db_activity: :desc).page(params[:page]).per(20)
     else
-      @users = User.order(last_db_activity: :desc).page(params[:page]).per(20)
+      sort_by = params[:sort] || "last_db_activity"
+      asc_or_desc = params[:direction] == "asc" ? "asc" : "desc"
+      @users = User.order(Arel.sql("#{sort_by} #{asc_or_desc} NULLS LAST")).page(params[:page]).per(20)
     end
   
     respond_to do |format|
