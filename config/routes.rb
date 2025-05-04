@@ -107,6 +107,7 @@ Rails.application.routes.draw do
     collection do
       get 'snapshots'
       get 'postgres_instructions'
+      get 'flatfiles_instructions'
     end
   end
 

@@ -17,6 +17,10 @@ class DownloadsController < ApplicationController
     render 'downloads/instructions/postgres'
   end
 
+  def flatfiles_instructions
+    render 'downloads/instructions/flatfiles'
+  end
+
   private
 
   def set_snapshots_service

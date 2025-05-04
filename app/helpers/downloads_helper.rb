@@ -19,7 +19,7 @@ module DownloadsHelper
       title: 'Flat Text Files',
       description_title: 'About Flat Files',
       view_all_text: 'Flat Files',
-      instructions_path: '/pipe_files',
+      instructions_path: 'downloads/flatfiles_instructions',
       description_content: lambda do |helper|
         helper.safe_join([
           helper.content_tag(:p, 'Use these pipe-delimited text files to import AACT data into any database or analysis tool. Each file corresponds to a table in the AACT database schema.'),
