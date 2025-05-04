@@ -7,7 +7,7 @@ module DownloadsHelper
       title: 'PostgreSQL Database Dump', # PostgreSQL Database Dump
       description_title: 'About PostgreSQL Database Dump',
       view_all_text: 'Database Dumps',
-      instructions_path: '/snapshots',
+      instructions_path: 'downloads/postgres_instructions',
       description_content: lambda do |helper|
         helper.safe_join([
           helper.content_tag(:p, 'Use this file to create a complete copy of the AACT database on your own PostgreSQL server.'),

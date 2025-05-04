@@ -1,0 +1,177 @@
+<div class="instructions-wrapper">
+  <div class="instructions-header">
+    <h1 class="instructions-title">PostgreSQL Database Instructions</h1>
+  </div>
+
+  <div class="instructions-content">
+    <div class="instructions-section">
+      <h2>Overview</h2>
+      <p>
+        The PostgreSQL snapshots contain complete dumps of the AACT database that can be loaded into your local PostgreSQL installation. This option is ideal for users who need to perform complex queries, want the best performance, or need to integrate AACT data with other databases or tools.
+      </p>
+      <p>
+        The AACT system provides access to the <span class="highlight">30 most recent daily snapshots</span> along with permanent <span class="highlight">monthly archives</span> that are created on the first day of each month. This ensures you have both current data and historical reference points.
+      </p>
+    </div>
+
+    <div class="instructions-section">
+      <h2>Prerequisites</h2>
+      <p>
+        <span class="highlight">PostgreSQL Installation:</span> You must have PostgreSQL installed on your system to use these database dumps. If you haven't installed PostgreSQL yet, visit the <a href="https://www.postgresql.org/download/" class="inline-link" target="_blank">official PostgreSQL website</a> to download the appropriate version for your operating system.
+      </p>
+      <p>
+        <span class="highlight">Version Compatibility:</span> We recommend using PostgreSQL version 14 or higher for working with current AACT database dumps. The pg_dump tool used to create these snapshots is from PostgreSQL 14, and the dumps may contain features that aren't compatible with earlier PostgreSQL versions.
+      </p>
+      <p>
+        <span class="highlight">System Requirements:</span> We recommend at least 8GB of RAM and 10GB of available disk space for optimal performance when working with the full AACT database.
+      </p>
+      <p>
+        <span class="highlight">Technical Knowledge:</span> Basic familiarity with command-line operations and SQL queries is helpful but not required. These instructions provide step-by-step guidance for all necessary commands.
+      </p>
+    </div>
+
+    <div class="instructions-section">
+      <h2>Using the PostgreSQL Snapshots</h2>
+
+      <div class="instruction-step">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Download Snapshot File</h3>
+        </div>
+        <div class="step-content">
+          <p>
+            Choose between the <%= link_to "current snapshot", downloads_path, class: "inline-link" %> on the Downloads page or explore <%= link_to "past archives", snapshots_downloads_path(type: "postgres"), class: "inline-link" %> if you need older data.
+          </p>
+        </div>
+      </div>
+      <div class="instruction-step">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Extract Contents of Zip File</h3>
+        </div>
+        <div class="step-content">
+          <p>
+            Locate the downloaded ZIP file in your system's Downloads folder. Extract its contents to a folder of your choice using your operating system's extraction tool or the command line.
+          </p>
+          <p>
+            The primary file you'll need is <span class="highlight">postgres.dmp</span>, which contains the PostgreSQL database dump. The archive may also include supplementary files to help you understand the database structure and field definitions.
+          </p>
+          <p>
+            To better understand the database structure, we recommend reviewing the <%= link_to "schema diagram", "/schema", class: "inline-link" %> and <%= link_to "documentation", documentation_index_path, class: "inline-link" %> available on our website.
+          </p>
+        </div>
+      </div>
+
+      <div class="instruction-step">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Create Local Database</h3>
+        </div>
+        <div class="step-content">
+          <p>
+            Open a terminal or command prompt and run the following command to create a new database called "aact":
+          </p>
+          <div class="code-block">
+            <code>createdb aact</code>
+          </div>
+          <p>
+            If you want to use a different database name, replace "aact" with your preferred name in this command and the next one.
+          </p>
+        </div>
+      </div>
+
+      <div class="instruction-step">
+        <div class="step-header">
+          <div class="step-number">4</div>
+          <h3 class="step-title">Restore Database from Dump File</h3>
+        </div>
+        <div class="step-content">
+          <p>
+            Use the <span class="highlight">pg_restore</span> command to load the database dump into your newly created database:
+          </p>
+          <div class="code-block">
+            <code>pg_restore -e -v -O -x -d aact --no-owner path/to/postgres.dmp</code>
+          </div>
+          <p>
+            Replace <span class="highlight">path/to/postgres.dmp</span> with the actual path to where you extracted the dump file. This process typically takes 5-15 minutes depending on your system's performance.
+          </p>
+          <p>
+            If you already have an AACT database and want to replace it with the new data, use this command instead:
+          </p>
+          <div class="code-block">
+            <code>pg_restore -e -v -O -x -d aact --clean --no-owner path/to/postgres.dmp</code>
+          </div>
+        </div>
+      </div>
+      <div class="instruction-step">
+  <div class="step-header">
+    <div class="step-number">4</div>
+    <h3 class="step-title">Restore Database from Dump File</h3>
+  </div>
+  <div class="step-content">
+    <p>
+      Use the <span class="highlight">pg_restore</span> command to load the database dump into your newly created database:
+    </p>
+    <div class="code-block">
+      <code>pg_restore -c -d aact path/to/postgres.dmp</code>
+    </div>
+    <p>
+      Replace <span class="highlight">path/to/postgres.dmp</span> with the actual path to where you extracted the dump file. This process typically takes 5-15 minutes depending on your system's performance.
+    </p>
+    <p>
+      For more detailed control over the restoration process, you can use these additional parameters:
+    </p>
+    <div class="code-block">
+      <code>pg_restore -e -v -O -x -c -d aact --no-owner path/to/postgres.dmp</code>
+    </div>
+    <p><span class="highlight">Parameter explanation:</span></p>
+    <ul class="">
+      <li><span class="highlight">-c:</span> Clean (drop) database objects before recreating them</li>
+      <li><span class="highlight">-e:</span> Exit if an error occurs during restore</li>
+      <li><span class="highlight">-v:</span> Verbose mode (shows progress)</li>
+      <li><span class="highlight">-O:</span> Do not set ownership to match the original database</li>
+      <li><span class="highlight">-x:</span> Prevent restoration of access privileges (grant/revoke)</li>
+      <li><span class="highlight">--no-owner:</span> Skip restoration of object ownership</li>
+    </ul>
+  </div>
+</div>
+
+      <div class="instruction-step">
+        <div class="step-header">
+          <div class="step-number">5</div>
+          <h3 class="step-title">Connect to Your Database</h3>
+        </div>
+        <div class="step-content">
+          <p>
+            You can now connect to your local AACT database using any PostgreSQL client. To connect using the command-line client:
+          </p>
+          <div class="code-block">
+            <code>psql -d aact</code>
+          </div>
+          <p>
+            Alternatively, you can use GUI tools like pgAdmin, DBeaver, Beekeeper Studio, or Postico to connect to and query your database with a visual interface.
+          </p>
+          <p>
+            For a quick test to verify your database is working, try running this simple query after connecting:
+          </p>
+          <div class="code-block">
+            <code>SELECT count(*) FROM studies;</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="instructions-section">
+      <h2>Common Issues & Troubleshooting</h2>
+      <p>
+        <span class="highlight">Permission Errors:</span> If you encounter permission issues during database creation or restoration, you may need to run the commands with administrator/sudo privileges or check that your PostgreSQL user has the appropriate permissions.
+      </p>
+      <p>
+        <span class="highlight">Database Already Exists:</span> If you get an error saying the database already exists, you can either drop the existing database with <span class="inline-code">dropdb aact</span> before creating it again, or use the --clean option in pg_restore as shown in step 4.
+      </p>
+      <p>
+        <span class="highlight">Memory or Disk Space Issues:</span> If restoration fails due to insufficient resources, try closing other applications to free up memory, or ensure you have adequate disk space available.
+      </p>
+    </div>
+  </div>
+</div>
