@@ -101,41 +101,17 @@
           <div class="code-block">
             <code>pg_restore -e -v -O -x -d aact --clean --no-owner path/to/postgres.dmp</code>
           </div>
+          <p><span class="highlight">Parameter explanation:</span></p>
+          <ul class="">
+            <li><span class="highlight">-c:</span> Clean (drop) database objects before recreating them</li>
+            <li><span class="highlight">-e:</span> Exit if an error occurs during restore</li>
+            <li><span class="highlight">-v:</span> Verbose mode (shows progress)</li>
+            <li><span class="highlight">-O:</span> Do not set ownership to match the original database</li>
+            <li><span class="highlight">-x:</span> Prevent restoration of access privileges (grant/revoke)</li>
+            <li><span class="highlight">--no-owner:</span> Skip restoration of object ownership</li>
+          </ul>
         </div>
       </div>
-      <div class="instruction-step">
-  <div class="step-header">
-    <div class="step-number">4</div>
-    <h3 class="step-title">Restore Database from Dump File</h3>
-  </div>
-  <div class="step-content">
-    <p>
-      Use the <span class="highlight">pg_restore</span> command to load the database dump into your newly created database:
-    </p>
-    <div class="code-block">
-      <code>pg_restore -c -d aact path/to/postgres.dmp</code>
-    </div>
-    <p>
-      Replace <span class="highlight">path/to/postgres.dmp</span> with the actual path to where you extracted the dump file. This process typically takes 5-15 minutes depending on your system's performance.
-    </p>
-    <p>
-      For more detailed control over the restoration process, you can use these additional parameters:
-    </p>
-    <div class="code-block">
-      <code>pg_restore -e -v -O -x -c -d aact --no-owner path/to/postgres.dmp</code>
-    </div>
-    <p><span class="highlight">Parameter explanation:</span></p>
-    <ul class="">
-      <li><span class="highlight">-c:</span> Clean (drop) database objects before recreating them</li>
-      <li><span class="highlight">-e:</span> Exit if an error occurs during restore</li>
-      <li><span class="highlight">-v:</span> Verbose mode (shows progress)</li>
-      <li><span class="highlight">-O:</span> Do not set ownership to match the original database</li>
-      <li><span class="highlight">-x:</span> Prevent restoration of access privileges (grant/revoke)</li>
-      <li><span class="highlight">--no-owner:</span> Skip restoration of object ownership</li>
-    </ul>
-  </div>
-</div>
-
       <div class="instruction-step">
         <div class="step-header">
           <div class="step-number">5</div>
