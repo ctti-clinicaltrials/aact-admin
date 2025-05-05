@@ -22,79 +22,91 @@
 
   .instructions-section {
     margin-bottom: 24px;
-  }
 
-  .instructions-section p {
-    font-size: 17px;
-    line-height: 1.6;
-    color: #34495e;
-    margin-bottom: 8px;
-  }
+    p {
+      font-size: 17px;
+      line-height: 1.6;
+      color: #34495e;
+      margin-bottom: 8px;
+    }
 
-  .instructions-section h2 {
-    font-size: 20px;
-    color: #236a9a;
-    border-bottom: 1px solid #e0e0e0;
-    padding-bottom: 8px;
-    margin-bottom: 15px;
-    position: relative;
-    padding-left: 15px;
+    h2 {
+      font-size: 20px;
+      color: #236a9a;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+      position: relative;
+      padding-left: 15px;
 
-    &:before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 6px;
-      height: 22px;
-      background-color: #e67e22;
-      border-radius: 2px;
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 6px;
+        height: 22px;
+        background-color: #e67e22;
+        border-radius: 2px;
+      }
     }
   }
 
-  // Updated step layout
   .instruction-step {
     margin-bottom: 16px;
-  }
 
-  .step-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 12px;
-  }
+    .step-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
 
-  // Step number styling
-  .step-number {
-    background-color: #e67e22;
-    background-image: linear-gradient(to bottom right, #e67e22, #d35400);
-    color: white;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    margin-right: 12px;
-    box-shadow: 0 2px 4px rgba(231, 76, 60, 0.2);
-    font-size: 16px;
-  }
+      .step-number {
+        background-color: #e67e22;
+        background-image: linear-gradient(to bottom right, #e67e22, #d35400);
+        color: white;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 12px;
+        box-shadow: 0 2px 4px rgba(231, 76, 60, 0.2);
+        font-size: 16px;
+      }
 
-  // Step title styling
-  .step-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: #d35400;
-    margin: 0;
-    padding-top: 3px;
-  }
+      .step-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #d35400;
+        margin: 0;
+        padding-top: 3px;
+      }
+    }
 
-  .step-content p {
-    font-size: 17px;
-    line-height: 1.6;
-    color: #34495e;
-    margin-bottom: 8px;
+    .step-content {
+      p {
+        font-size: 17px;
+        line-height: 1.6;
+        color: #34495e;
+        margin-bottom: 8px;
+      }
+
+      ul {
+        list-style-type: none;
+        margin-bottom: 16px;
+        padding-left: 0;
+
+        li {
+          font-size: 15px;
+          color: #34495e;
+          margin-bottom: 4px;
+          position: relative;
+        }
+      }
+    }
   }
 
   .highlight {
@@ -137,44 +149,29 @@
   }
 }
 
-// Add to instructions.css.scss
 .code-block {
   background-color: #d9dbdd;
-  // border-left: 4px solid #e67e22;
-  padding: 12px 12px;
+  padding: 12px;
   margin: 12px 0;
   border-radius: 4px;
   overflow-x: auto;
   line-height: 1.1;
+
+  code {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    color: #2c3e50;
+    background-color: #d9dbdd;
+    white-space: pre;
+  }
 }
 
-.code-block code {
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-  font-size: 14px;
-  color: #2c3e50;
-  background-color: #d9dbdd;
-  white-space: pre;
-}
 .inline-code {
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
   font-size: 14px;
   color: #2c3e50;
   background-color: #d9dbdd;
   white-space: pre;
-  padding: 4px 4px;
+  padding: 4px;
   border-radius: 4px;
-}
-
-// List styling within step content
-.step-content ul {
-  list-style-type: none;
-  margin-bottom: 16px;
-  padding-left: 0px;
-}
-
-.step-content ul li {
-  font-size: 15px;
-  color: #34495e;
-  margin-bottom: 4px;
-  position: relative;
 }
