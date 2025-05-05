@@ -23,9 +23,23 @@ module DownloadsHelper
       description_content: lambda do |helper|
         helper.safe_join([
           helper.content_tag(:p, 'Use these pipe-delimited text files to import AACT data into any database or analysis tool. Each file corresponds to a table in the AACT database schema.'),
-          # helper.content_tag(:p, '')
         ])
 
+      end
+    },
+    'covid' => {
+      title: 'Covid Spreadsheets',
+      description_title: 'About Covid Spreadsheets',
+      view_all_text: 'Covid Spreadsheets',
+      instructions_path: '/covid_19',
+      description_content: lambda do |helper|
+        helper.safe_join([
+          helper.content_tag(:p, 'These files contain current clinical studies related to COVID-19 from ClinicalTrials.gov as of the date of file creation. Each file allows users without advanced database skills to explore the trials in a spreadsheet format.'),
+          helper.content_tag(:p) do
+            helper.content_tag(:strong, 'Please Note: ') +
+            'COVID-19 spreadsheets are no longer actively generated. Please check the "Last Exported" date above for the most recent available data.'
+          end
+        ])
       end
     }
   }
