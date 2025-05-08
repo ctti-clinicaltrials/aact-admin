@@ -13,6 +13,14 @@ class DownloadsController < ApplicationController
     @paginated_daily_snapshots = Kaminari.paginate_array(@all_snapshots[:daily] || []).page(params[:page]).per(10)
   end
 
+  def postgres_instructions
+    render 'downloads/instructions/postgres'
+  end
+
+  def flatfiles_instructions
+    render 'downloads/instructions/flatfiles'
+  end
+
   private
 
   def set_snapshots_service

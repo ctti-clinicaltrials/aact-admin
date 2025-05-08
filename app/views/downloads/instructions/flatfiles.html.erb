@@ -1,0 +1,84 @@
+<div class="instructions-wrapper">
+  <div class="instructions-header">
+    <h1 class="instructions-title">Pipe-Delimited Flat Files Instructions</h1>
+  </div>
+
+  <div class="instructions-content">
+    <div class="instructions-section">
+      <h2>Overview</h2>
+      <p>
+        Pipe-delimited flat files are text files that contain AACT data in a format where fields are separated by the pipe character ("|"). These files are designed for users who cannot connect to the live PostgreSQL database or who prefer working with conventional text-based formats. The flat files can also be used to populate non-PostgreSQL databases or for analysis with statistical software like R, SAS, or SPSS.
+      </p>
+      <p>
+        The AACT system provides access to the <span class="highlight">30 most recent daily snapshots</span> along with permanent <span class="highlight">monthly archives</span> that are created on the first day of each month. This ensures you have both current data and historical reference points.
+      </p>
+    </div>
+
+    <div class="instructions-section">
+      <h2>General Information About Flat Files</h2>
+      <%# TODO: add class to the links %>
+      <p>
+        <span class="highlight">File Structure:</span> Each flat file corresponds to a single table in the AACT database schema. For example, the studies.txt file contains all data from the studies table in the database. To understand how these tables relate to each other, refer to the <%= link_to "schema diagram", "/schema", class: "inline-link" %>. These relationships are essential for correctly joining data across multiple files.
+      </p>
+      <p>
+        <span class="highlight">File Format:</span> The files use UTF-8 encoding with pipe characters ("|") separating each field. Consecutive pipes indicate a null or missing value. Each record ends with a line feed (LF) character.
+      </p>
+      <p>
+        <span class="highlight">Header Row:</span> The first row of each file contains the column names, which match the field names in the database. The order of these names corresponds to the order of data in each row.
+      </p>
+      <p>
+        <span class="highlight">Data Format:</span> Fields are typically not enclosed in quotes. However, text fields may contain embedded quotes (single or double) as part of their content.
+      </p>
+      <p>
+        <span class="highlight">Modifications to Source Content:</span> In rare cases, the actual content of the study data contains an embedded pipe character ("|"). To prevent software from interpreting the embedded pipe as a delimiter, the entire string containing the pipe has been enclosed in double quotes. Additionally, line feed and paragraph break characters within fields have been removed to maintain record integrity.
+      </p>
+    </div>
+
+    <div class="instructions-section">
+      <h2>Using the Flat Files</h2>
+
+      <div class="instruction-step">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Download Snapshot File</h3>
+        </div>
+        <p>
+          Choose between the <%= link_to "current snapshot", downloads_path, class: "inline-link" %> on the Downloads page or explore <%= link_to "past archives", snapshots_downloads_path(type: "flatfiles"), class: "inline-link" %> if you need older data.
+        </p>
+      </div>
+
+      <div class="instruction-step">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Extract Contents of Zip File</h3>
+        </div>
+        <div class="step-content">
+          <p>
+            After downloading, locate the ZIP file in your system’s Downloads folder. Unzip into a folder of your choice. When extraction completes, you will find a set of pipe‑delimited text files named after their corresponding database tables (for example, <span class="highlight">studies.txt</span>, <span class="highlight">interventions.txt</span>, etc.). Use these files directly with your analysis tools.
+          </p>
+        </div>
+      </div>
+
+      <div class="instruction-step">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Access Content with Your Analysis Tool</h3>
+        </div>
+        <div class="step-content">
+          <p>
+            The flat files can be read with many software tools. Statistical analysis packages are particularly well-suited for working with these files.
+          </p>
+          <p>
+            The most common tools for analyzing AACT flat files are <span class="highlight">R</span> (a free, open-source statistical package) and <span class="highlight">SAS</span> (widely used in clinical research). To learn how to import and analyze your data, see our detailed <%= link_to "R instructions", "/pipe_files_with_r", class: "inline-link" %> or <%= link_to "SAS instructions", "/pipe_files_with_sas", class: "inline-link" %>.
+          </p>
+          <p>
+            Other analysis tools like Python (pandas), SPSS, and STATA also have functions for importing pipe-delimited files. When importing, always specify the pipe character ("|") as the delimiter and indicate that the first row contains header information.
+          </p>
+          <p>
+            <span class="highlight">Note about Excel:</span> While it's possible to open these files in Excel (by specifying the pipe character as delimiter during import), this is not recommended for AACT data files. Many of the files exceed Excel's row limits, and Excel may not properly handle all special cases in the data.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
