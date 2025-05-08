@@ -35,6 +35,7 @@ gem 'turbolinks', '~> 5'
 gem "ffi", ">= 1.9.24"
 gem "puma"
 gem 'airbrake'
+gem 'whenever', require: false
 
 gem 'roo', '~> 2.4.0'
 gem 'string-similarity'
