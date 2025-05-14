@@ -108,6 +108,7 @@ Rails.application.routes.draw do
       get 'snapshots'
       get 'postgres_instructions'
       get 'flatfiles_instructions'
+      get 'covid19_instructions'
     end
   end
 

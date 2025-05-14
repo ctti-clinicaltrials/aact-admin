@@ -28,10 +28,10 @@ module DownloadsHelper
       end
     },
     'covid' => {
-      title: 'Covid Spreadsheets',
-      description_title: 'About Covid Spreadsheets',
-      view_all_text: 'Covid Spreadsheets',
-      instructions_path: '/covid_19',
+      title: 'COVID-19 Spreadsheets',
+      description_title: 'About COVID-19 Spreadsheets',
+      view_all_text: 'COVID-19 Spreadsheets',
+      instructions_path: 'downloads/covid19_instructions',
       description_content: lambda do |helper|
         helper.safe_join([
           helper.content_tag(:p, 'These files contain current clinical studies related to COVID-19 from ClinicalTrials.gov as of the date of file creation. Each file allows users without advanced database skills to explore the trials in a spreadsheet format.'),
