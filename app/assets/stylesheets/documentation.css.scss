@@ -212,3 +212,61 @@
     display: none;
   }
 }
+
+.usersearchbtn {
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  color: #224989;
+  font-weight: 800;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.usersearchbtn:hover {
+  background: #224989;
+  color: #ffffff;
+  border-color: #1b3b73;
+}
+
+.form-inline {
+  display: flex;
+  align-items: center;
+}
+
+.form-inline .form-control {
+  flex: 0 0 80%;
+  margin-right: 10px; 
+}
+
+.form-inline .usersearchbtn {
+  flex: 0 0 20%;
+  white-space: nowrap;
+}
+
+.sortable{
+  color: white; 
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.sortable.asc:after {
+  content: "▲"; 
+  font-size: 12px;
+  position: absolute;
+  right: -25px;
+  top: 5px;
+}
+
+.sortable.desc:after {
+  content: "▼";
+  font-size: 12px;
+  position: absolute;
+  right: -25px;
+  top: 5px;
+}
+
+#userTable {
+  box-shadow: none;
+}

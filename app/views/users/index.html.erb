@@ -1,45 +1,96 @@
 <section>
-  <div class="container">
-  <div class="d-flex justify-content-between">
-    <h3><%=number_with_delimiter(@user_count, :delimiter => ',') %> AACT Users</h3> 
-         <%= link_to users_path(format: "csv"), class: 'userOptions' do %>
-        <i class="fa fa-download"></i>
-      <% end %>
+  <div class="container-fluid px-4 mt-4">
+    <div class="row align-items-start g-3">
+      <!-- AACT Users Heading -->
+      <div class="col-md-3 d-flex align-items-center">
+        <h3 class="mb-0">
+          <%= number_with_delimiter(@user_count, delimiter: ',') %> AACT Users
+        </h3>
       </div>
- 
-    <br>
-    <table id='userTable'
-        data-toolbar="#toolbar"
-        data-pagination="true"
-        data-show-toggle="true"
-        data-show-columns="true"
-        data-sort-order="name"
-        class='table-striped table-responsive table-hover table-bordered regularDisplay'>
 
-        <thead>
-          <tr>
-            <th data-sortable='true' data-field='last_name'>Name</th>
-            <th data-sortable='true' data-field='email'>Email</th>
-            <th data-sortable='true' data-field='username'>UserName</th>
-            <th data-sortable='true' data-field='display_confirmed_at'>Confirmed</th>
-            <th data-sortable='true' data-field='db_activity'>DB Activity</th>
-            <th data-sortable='true' data-field='display_last_dbactivity'>Last DB Activity</th>
-          </tr>
-        <thead>
+      <div class="col-md-3">
+        <div class="card p-3 h-100 d-flex flex-column justify-content-center text-center">
+          <h4> Users Joined </h4>
+          <div>
+            <p class="mb-0 fs-4">This Month: <%= number_with_delimiter(@joined_this_month) %></p>
+            <p class="mb-0 fs-4">This Week: <%= number_with_delimiter(@joined_this_week) %></p>
+          </div>
+        </div>
+      </div>
 
-        <tbody>
-          <% @users.each do |user| %>
-            <tr>
-              <td><%= user.full_name %></td>
-              <td><%= user.email %></td>
-              <td><%= user.username %></td>
-              <td><%= user.display_confirmed_at %></td>
-              <td align='center'><%= user.db_activity %></td>
-              <td><%= user.display_last_db_activity %></td>
-            </tr>
-          <% end %>
-        </tbody>
-    </table>
+      <div class="col-md-3">
+        <div class="card p-3 h-100 d-flex flex-column justify-content-center text-center">
+          <h4> DB Queries </h4>
+          <div>
+            <p class="mb-0 fs-4">This Month: <%= number_with_delimiter(@queries_this_month) %></p>
+            <p class="mb-0 fs-4">This Week: <%= number_with_delimiter(@queries_this_week) %></p>
+          </div>
+          
+        </div>
+      </div>
+    
+      <div class="col-md-3 d-flex align-items-start justify-content-end pt-1">
+        <%= link_to users_path(format: "csv"), class: 'btn btn-outline-secondary' do %>
+          Download Users CSV   <i class="fa fa-download ms-2"></i>
+        <% end %>
+      </div>
+    </div>
   </div>
 
+
+  <br>
+  <div class="mb-3">
+    <%= form_tag(users_path, method: :get, class: 'form-inline') do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search users by name, email, or username", class: 'form-control' %>
+      <%= submit_tag "Search", class: "btn usersearchbtn" %>
+    <% end %>
+  </div>
+
+
+  <% if params[:search].present? %>
+    <p>
+      Showing results for "<strong><%= params[:search] %></strong>"
+      — <%= @users.total_count %> user(s) found.
+      <%= link_to "Clear", users_path, class: "btn btn-sm btn-link" %>
+    </p>
+  <% end %>
+
+  <table id='userTable'
+      data-toolbar="#toolbar"
+      data-pagination="true"
+      data-show-toggle="true"
+      data-show-columns="true"
+      data-sort-order="name"
+      class='table-striped table-responsive table-hover table-bordered regularDisplay'>
+
+      <thead>
+        <tr>
+          <th data-field="last_name"><%= sortable "last_name", "Name" %></th>
+          <th data-field="email"><%= sortable "email", "Email" %></th>
+          <th data-field="username"><%= sortable "username", "Username" %></th>
+          <th data-field="display_created_at"><%= sortable "created_at", "User Joined " %></th>
+          <th data-field="display_last_db_activity"><%= sortable "last_db_activity", "Last DB Activity" %></th>
+          <th data-field="db_activity"><%= sortable "db_activity", "DB Activity" %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.full_name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.username %></td>
+            <td><%= user.display_created_at %></td>
+            <td><%= user.display_last_db_activity %></td>
+            <td><%= user.db_activity %></td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+
+  <div class="docs-container">
+    <div class="pagination-wrapper">
+      <%= paginate @users %>
+    </div>
+  </div>
 </section>

@@ -30,12 +30,14 @@ Rails.application.routes.draw do
   get 'dictionary/show'
   # get "admin/notices/:id/send_notice" => "admin/notices#send_notice"
   get "/connect"              => "pages#connect"
-  get "/download"             => "pages#download"
+  # TODO: remove legacy routes and its references
+  # get "/download"             => "pages#download"
+  # get "/covid_19"             => "pages#covid_19"
+  # get "/snapshots"            => "pages#snapshots"
+  # get "/pipe_files"           => "pages#pipe_files"
   get 'faq'                   => "pages#faq"
   get "/learn_more"           => "pages#learn_more"
-  get "/covid_19"             => "pages#covid_19"
   get "/covid_19_fields"      => "pages#covid_19_fields"
-  get "/pipe_files"           => "pages#pipe_files"
   get "/pipe_files_with_r"    => "pages#pipe_files_with_r"
   get "/pipe_files_with_sas"  => "pages#pipe_files_with_sas"
   get "/pgadmin"              => "pages#pgadmin"
@@ -46,7 +48,6 @@ Rails.application.routes.draw do
   get "/sas"                  => "pages#sas"
   get "/saved_query_doc"      => "pages#saved_query_doc"
   get "/schema"               => "pages#schema"
-  get "/snapshots"            => "pages#snapshots"
   get "/snapshot_archive"     => "pages#snapshot_archive"
   get "/technical_documentation"    => "pages#technical_documentation"
   get "/update_policy"        => "pages#update_policy"
@@ -58,7 +59,7 @@ Rails.application.routes.draw do
   get '/queries', to: 'saved_queries#index'
   get '/my/queries', to: 'saved_queries#my_queries'
   get "/playground"           => "playground#index", as: :playground
-  get "/playground/:id"       => "playground#show_results", as: :show_results 
+  get "/playground/:id"       => "playground#show_results", as: :show_results
   get "job_status/:id"        => "playground#job_status", as: :job_status
   get "/install_postgres"     => "postgres_documentation#install_postgres"
   get "/credentials"          => "credentials#show"
@@ -101,6 +102,17 @@ Rails.application.routes.draw do
       get :download_csv
     end
   end
+
+  # TODO: review and optimize naming before releasing
+  resources :downloads, only: [:index] do
+    collection do
+      get 'snapshots'
+      get 'postgres_instructions'
+      get 'flatfiles_instructions'
+      get 'covid19_instructions'
+    end
+  end
+
 
   resources :file_records, only: [:index, :show]
   resources :definitions, only: [:index]

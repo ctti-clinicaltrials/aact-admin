@@ -1,0 +1,111 @@
+<div class="snapshots-wrapper">
+  <div class="details-controls">
+    <%= link_to "Back", downloads_path, class: "btn btn-secondary control-btn" %>
+    <div class="snapshots-title"><%= snapshot_title(@type) %></div>
+  </div>
+
+  <% if @all_snapshots[:daily].any? || @all_snapshots[:monthly].keys.any? %>
+    <!-- Daily Snapshots Section -->
+    <div class="snapshots-section">
+      <h2 class="snapshots-section-title">Recent Daily Snapshots</h2>
+      <% if @paginated_daily_snapshots.any? %>
+        <div class="snapshots-grid-table">
+          <!-- Grid Header -->
+          <div class="snapshots-grid-row snapshots-grid-header">
+            <div>Date</div>
+            <div>File Name</div>
+            <div>Size</div>
+            <div>Actions</div>
+          </div>
+        <!-- Grid Rows -->
+          <% @paginated_daily_snapshots.each do |snapshot| %>
+            <div class="snapshots-grid-row">
+              <div data-label="Date:"><strong><%= snapshot["date"] %></strong></div>
+              <div data-label="File:"><%= snapshot["file_name"] %></div>
+              <div data-label="Size:"><%= snapshot["size"] %></div>
+              <div class="snapshots-grid-actions">
+                <%= link_to snapshot["download_url"], class: "snapshots-action-button primary", download: snapshot["file_name"] do %>
+                  Download
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <%= render partial: 'empty_state', locals: {
+            title: "No Daily Snapshots",
+            message: "No daily snapshots are currently available for #{snapshot_title(@type)}. Daily snapshots are typically created each night."
+          } %>
+        <% end %>
+      </div>
+
+      <!-- Pagination for Daily Snapshots -->
+      <% if @paginated_daily_snapshots.any? %>
+        <div class="pagination-wrapper mt-3">
+          <%= paginate @paginated_daily_snapshots,
+            class: "pagination",
+            inner_window: 2,
+            outer_window: 0
+          %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Monthly Snapshots Section -->
+    <div class="snapshots-section mt-5">
+      <h2 class="snapshots-section-title">Monthly Archives</h2>
+      <!-- TODO: Refactor out sorting logic from the view layer-->
+      <!-- Year Navigation -->
+      <div class="year-navigation">
+        <% if @all_snapshots[:monthly].keys.any? %>
+          <% @all_snapshots[:monthly].keys.sort.reverse.each do |year| %>
+            <%= link_to year,
+                snapshots_downloads_path(type: @type, year: year),
+                class: "year-link #{year == @year ? 'selected-year' : ''}" %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <% if @all_snapshots[:monthly][@year].present? && @all_snapshots[:monthly][@year].any? %>
+        <div class="snapshots-grid-table">
+          <div class="snapshots-grid-row snapshots-grid-header">
+            <div>Date</div>
+            <div>File Name</div>
+            <div>Size</div>
+            <div>Actions</div>
+          </div>
+
+          <% @all_snapshots[:monthly][@year].sort_by { |s| s["date"] }.reverse.each do |snapshot| %>
+            <div class="snapshots-grid-row">
+              <div data-label="Date:"><%= snapshot["date"] %></div>
+              <div data-label="File:"><%= snapshot["file_name"] %></div>
+              <div data-label="Size:"><%= snapshot["size"] %></div>
+              <div class="snapshots-grid-actions">
+                <%= link_to snapshot["download_url"], class: "snapshots-action-button primary", download: snapshot["file_name"] do %>
+                  Download
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <%= render partial: 'empty_state', locals: {
+          title: "No Monthly Archives",
+          message: "No monthly archives are currently available for #{@year}. Monthly snapshots are created at the beginning of each month."
+        } %>
+      <% end %>
+    </div>
+  <% else %>
+    <!-- Neither Daily or Monthly Snapshots available -->
+    <%= render partial: 'empty_state', locals: {
+      title: "No Snapshots Available",
+      message: "We couldn't retrieve any #{snapshot_title(@type)} snapshots at this moment. This might be due to scheduled maintenance or a temporary connection issue. Please try again later."
+    } %>
+  <% end %>
+
+  <% if Rails.env.development? %>
+    <div class="debug-info mt-4">
+      <strong>Debug:</strong> Snapshot type: <%= @type %>
+      <pre><%= JSON.pretty_generate(@all_snapshots) rescue @all_snapshots.inspect %></pre>
+    </div>
+  <% end %>
+</div>
