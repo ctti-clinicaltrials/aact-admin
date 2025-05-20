@@ -21,6 +21,10 @@ class DownloadsController < ApplicationController
     render 'downloads/instructions/flatfiles'
   end
 
+  def covid19_instructions
+    render 'downloads/instructions/covid19'
+  end
+
   private
 
   def set_snapshots_service

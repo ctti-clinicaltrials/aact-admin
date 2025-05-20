@@ -1,0 +1,51 @@
+<div class="instructions-wrapper">
+  <div class="instructions-header">
+    <h1 class="instructions-title">COVID-19 Spreadsheet Instructions</h1>
+  </div>
+  <div class="instructions-section">
+    <div class="alert alert-warning">
+      <strong>Please Note:</strong> COVID-19 spreadsheets are no longer actively generated. Please check the "Last Exported" date on the snapshots page for the most recent available data.
+    </div>
+    <h2>Overview</h2>
+    <p>
+      The following files contain clinical studies related to <span class="highlight">Coronavirus Disease 2019 (COVID-19)</span> from ClinicalTrials.gov as of the date and time of file creation.
+      There may be more studies on ClinicalTrials.gov that were uploaded after the most recent file here.
+      Each file allows users without advanced database skills to explore the trials in a spreadsheet format.
+    </p>
+    <p>
+      The spreadsheet was created using <%= link_to "ClinicalTrials.gov's COVID-19 search criteria", "https://clinicaltrials.gov/search?cond=COVID-19", class: "inline-link", target: "_blank" %>
+      and the database for Aggregate Analysis of ClinicalTrials.gov (AACT).
+      This search strategy includes specific terms and filters to identify all <span class="highlight">COVID-19</span> related trials.
+    </p>
+    <p>
+      Each study appears as a single row in the spreadsheet with 68 columns of study information. You can <a href='/covid_19_fields' class="inline-link">download</a> a detailed explanation of these fields, which include study identifiers, titles, conditions, interventions, locations, and results status.
+    </p>
+  </div>
+  <div class="instructions-section">
+    <h2>Using COVID-19 Data</h2>
+    <div class="instruction-step">
+      <div class="step-header">
+        <div class="step-number">1</div>
+        <h3 class="step-title">Download a COVID-19 Spreadsheet</h3>
+      </div>
+      <div class="step-content">
+        <p>
+          View and download available COVID-19 spreadsheets from our <%= link_to "COVID-19 spreadsheets", snapshots_downloads_path(type: "covid"), class: "inline-link" %> page.
+          These files contain historical data from when COVID-19 spreadsheets were still being generated. For the most current clinical trial information, please visit <%= link_to "ClinicalTrials.gov", "https://clinicaltrials.gov/search?cond=COVID-19", class: "inline-link", target: "_blank" %> directly.
+        </p>
+      </div>
+    </div>
+    <div class="instruction-step">
+      <div class="step-header">
+        <div class="step-number">2</div>
+        <h3 class="step-title">Working with the spreadsheet data</h3>
+      </div>
+      <div class="step-content">
+        <p>
+          You can open the downloaded file in spreadsheet software like <span class="highlight">Microsoft Excel, Google Sheets, or LibreOffice Calc</span>.
+          Each row represents a single clinical trial, with columns containing various attributes of the study.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
