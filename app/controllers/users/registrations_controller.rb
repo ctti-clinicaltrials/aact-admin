@@ -1,4 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  require 'net/http'
+  require 'uri'
+  require 'json'
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
   before_action :check_registration_disabled, only: [:new, :create]
 
@@ -10,10 +13,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
     sign_out(:user)
     redirect_to root_path
   end
-
+  
   def create
+    token = params[:recaptcha_token]
+  
+    unless verify_recaptcha_token(token)
+      flash[:alert] = 'reCAPTCHA verification failed. Please try again.'
+      redirect_to new_registration_path(resource_name) and return
+    end
+  
     build_resource(sign_up_params)
-
+  
     if resource.save
       sign_in(resource)
       UserMailer.send_event_notification('created', resource)
@@ -77,6 +87,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   private
+  def verify_recaptcha_token(token)
+    secret_key = ENV['RECAPTCHA_SECRET_KEY']
+    uri = URI.parse("https://www.google.com/recaptcha/api/siteverify")
+    response = Net::HTTP.post_form(uri, {
+      'secret' => secret_key,
+      'response' => token
+    })
+  
+    result = JSON.parse(response.body)
+    score = result['score'].to_f
+  
+    Rails.logger.info "reCAPTCHA score: #{score} for token #{token}"
+  
+    result['success'] && score >= 0.5
+  end
 
   def check_registration_disabled
     if ENV['DISABLE_USER_REGISTRATION'] == 'true'

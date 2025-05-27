@@ -1,9 +1,11 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<script src="https://www.google.com/recaptcha/api.js?render=<%= ENV['RECAPTCHA_SITE_KEY'] %>"></script>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: 'demo-form' }) do |f| %>
 
   <%= devise_error_messages! %>
-  
+
   <div class="form-group">
     <%= f.label :first_name %>
     <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
@@ -24,6 +26,7 @@
     <%= f.text_field :username, class: "form-control" %>
   </div>
 
+
   <div class="form-group">
     <%= f.label :password %> <i>(can be 3 to 128 characters long)</i>
     <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
@@ -34,9 +37,22 @@
     <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
   </div>
 
+  <%= hidden_field_tag :recaptcha_token, '', id: 'recaptcha_token' %>
+
   <div class="form-group">
-    <%= f.submit "Sign up", class: "old-btn" %>
+    <%= f.submit 'Sign up', class: 'btn btn-primary' %>
   </div>
+
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    grecaptcha.ready(function() {
+      grecaptcha.execute('<%= ENV['RECAPTCHA_SITE_KEY'] %>', {action: 'register'}).then(function(token) {
+        document.getElementById('recaptcha_token').value = token;
+      });
+    });
+  });
+</script>
