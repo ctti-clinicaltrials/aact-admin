@@ -5,148 +5,98 @@
 
     <h2>What is AACT?</h2>
 
-    <p class='ptc'>AACT is the database for Aggregate Analysis of <a target='_blank' href="https://clinicaltrials.gov"  onClick="ga('send','event','external link','guide page: clinicaltrials.gov')">ClinicalTrials.gov</a>. This version of AACT is a PostgreSQL relational database containing information about clinical studies that have been been registered at ClinicalTrials.gov. AACT includes all of the protocol and results data elements for studies that are publicly available at ClinicalTrials.gov. Content is downloaded daily from ClinicalTrials.gov and loaded into AACT.</p>
+<div class="info-box">
+  <p class='ptc'>
+    AACT (Aggregate Analysis of 
+    <a target='_blank' href="https://clinicaltrials.gov" onClick="ga('send','event','external link','guide page: clinicaltrials.gov')">
+      ClinicalTrials.gov
+    </a>) is a publicly available PostgreSQL database maintained by the Clinical Trials Transformation Initiative (CTTI). It contains a structured version of all study records from ClinicalTrials.gov.
+  </p>
 
-    <h2>What population of studies is represented in AACT?</h2>
+  <dl class='ptc'>
+    <dt><b>Updated Daily:</b></dt>
+    <dd>New and changed study records are added nightly based on the ClinicalTrials.gov RSS feed and API.</dd>
 
-    <p class='ptc'>All studies registered and publicly available in ClinicalTrials.gov are included in AACT. The ClinicalTrials.gov was released for the registration of studies on <b>February 29, 2000</b>. The registry accepts interventional studies in which participants are assigned according to a research protocol to receive specific interventions, as well as observational studies. It also includes Expanded Access records which describe the procedure for obtaining an experimental drug or device for patients who are not adequately treated by existing therapy and who are unable to participate in a controlled clinical study.</p>
+    <dt><b>Full Monthly Refresh:</b></dt>
+    <dd>The entire database is rebuilt once a month to capture deletions and ensure completeness.</dd>
 
-    <p class='ptc'>The registration of studies and reporting of results and adverse events has been mandated to a large extent by requirements (both legal and institutional) implemented as part of the Food and Drug Administration Amendments Act (FDAAA), as well as by requirements introduced by the International Committee of Medical Journal Editors (<a target='_blank' href='http://www.icmje.org/about-icmje/faqs/clinical-trials-registration/'  onClick="ga('send','event','external link','guide page: ICMJE')">ICMJE</a>), the European Medicines Agency (EMA) and the National Institutes of Health (NIH) regarding registration and reporting of results of clinical studies. Table 1 describes the scope of these requirements.</p>
+    <dt><b>Structured Format:</b></dt>
+    <dd>AACT transforms XML records into a relational database with organized tables and fields.</dd>
 
-    <h4>Table 1: Scope of Interventional Studies Covered by Major Reporting Policies*</h4>
+    <dt><b>Open Access:</b></dt>
+    <dd>Anyone can query the data using SQL or download full database dumps.</dd>
+  </dl>
+</div>
 
-  <table id='pointsToConsider' class='regularDisplay'>
-    <thead>
-      <th>Policy</th>
-      <th>Registration & Results Reporting Requirements</th>
-      <th>Effective Date(s)</th>
-    </thead>
+<h2>What population of studies is represented in AACT?</h2>
 
-    <tbody>
-      <tr class='even'>
-        <td><p class='ptc'><a target='_blank' href='https://www.federalregister.gov/documents/2016/09/21/2016-22379/nih-policy-on-the-dissemination-of-nih-funded-clinical-trial-information' onClick="ga('send','event','external link','guide page: NIH Policy')">NIH Policy</a></p></td>
-        <td><p class='ptc'>Every clinical trial funded in whole or in part by NIH is expected to be registered on ClinicalTrials.gov and have summary results information submitted and posted in a timely manner, whether subject to FDAAA 801 or not.</p></td>
-  January 18, 2017. The policy is effective for applications for funding, including grants, other transactions, and contracts submitted on or after January 18, 2017. For the NIH intramural program, the policy applies to clinical trials initiated on or after January 18, 2017.
-          <br>
-  Timelines for registration and results/adverse event reporting are the same as for trials subject to FDAAA 801.
-        <td>
-           <p class='ptc'><b>January 18, 2017.</b> The policy is effective for applications for funding, including grants, other transactions, and contracts submitted on or after January 18, 2017. For the NIH intramural program, the policy applies to clinical trials initiated on or after January 18, 2017. Timelines for registration and results/adverse event reporting are the same as for trials subject to FDAAA 801.</p>
-        </td>
-      </tr>
+<div class="info-box">
+  <p class='ptc'>
+    AACT includes all publicly available study records from ClinicalTrials.gov, across various types:
+  </p>
 
-      <tr class='odd'>
-        <td><a target='_blank' href='https://grants.nih.gov/grants/guide/notice-files/NOT-CA-15-011.html' onClick="ga('send','event','external link','guide page: NCI Access Policy')">NCI Access Policy</a></p></td>
-        <td><p class='ptc'>The NCI issued its <i>Policy Ensuring Public Availability of Results from NCI-supported Clinical Trials</i>. Generally, for "all initiated or commenced NCI-Supported Interventional Clinical Trials whether extramural or intramural" (Covered Trials), "Final Trial Results are expected to be reported in a publicly accessible manner within 12 months of the Trial's Primary Completion Date regardless of whether the clinical trial was completed as planned or terminated earlier." This policy "will be incorporated as a Term and Condition of the award."</p></td>
-        <td><p class='ptc'><b>January, 2015</b></p></td>
-    </tr>
+  <ul class='regularDisplay'>
+    <li>Interventional trials (e.g., drug/device studies)</li>
+    <li>Observational studies</li>
+    <li>Expanded access programs</li>
+  </ul>
 
-    <tr class='even'>
-      <td><a target='_blank' href='http://www.fda.gov/RegulatoryInformation/Legislation/SignificantAmendmentstotheFDCAct/FoodandDrugAdministrationAmendmentsActof2007/default.htm' onClick="ga('send','event','external link','guide page: FDAAA')">FDAAA and Final Rule</a></td>
-      <td>
-        <p class='ptc'>The following must be registered in ClinicalTrials.gov ('Applicable Clinical Trials (ACTs)':
-        <ul class='regularDisplay'>
-          <li>Interventional studies of drugs, biologics, or devices (whether or not approved for marketing)</li>
-          <li>Studies phases 2 through 4</li>
-          <li>Studies with at least 1 US site or conducted under IND/IDE</li>
-        </ul>
-        </p>
+  <p class='ptc'>
+    Several global policies drive study registration and results reporting. These include:
+  </p>
 
-        <p class='ptc'>
-        Results and adverse event reporting is required for studies that meet the above registration requirements if they study drugs, biologics, or devices that are approved, licensed, or cleared by the FDA.
-        </p>
-        <p class='ptc'>
-        The <a target='_blank' href='http://www.nejm.org/doi/full/10.1056/NEJMsr1611785' onClick="ga('send','event','external link','guide page: Final Rules')">Final Rule</a> clarified the definition of an ACT, and expanded results and adverse events reporting requirements to include ACTs of unapproved products.
-        </p>
-      </td>
+  <ul class='regularDisplay'>
+    <li><b>FDAAA 801 (2007) & Final Rule (2017)</b> — U.S. laws requiring certain trials to register and report results.</li>
+    <li><b>NIH Policy (2016)</b> — Extends reporting expectations to all NIH-funded studies.</li>
+    <li><b>ICMJE Policy</b> — Requires trial registration for publication eligibility in participating journals.</li>
+    <li><b>EMA (2014) and NCI Requirements</b> — Encourage transparency in clinical research.</li>
+  </ul>
+</div>
 
-      <td>
-        <p class='ptc'><b>September 27, 2007.</b> Studies initiated after this date, or with a completion date later than December 25, 2007 are subject to FDAAA requirements. Registration is required no later than 21 days after first patient is enrolled. Results and adverse events must be reported for these studies (if required) within 1 year of completing data collection for the pre-specified primary outcome.
-        <br><br>
-        For ACTs of devices not previously approved or cleared by FDA, public posting of registration information is delayed until after FDA approval/clearance.
-        <br><br>
-        <b>September, 2008.</b> Results reporting launched with optional adverse event reporting.
-        <br><br>
-        <b>September, 2009.</b>  Adverse event information became required.
-        <p class='ptc'><b>January 18, 2017.</b> Final Rule for FDAAA 801 effective, with compliance expected as of April 18, 2017. </p>
-        <ul class='regularDisplay'>
-          <li>Responsible parties of ACTs of devices not previously cleared or approved by FDA may authorize NIH to post registration information prior to FDA approval/ clearance.</li>
-          <li>For ACTs of unapproved products, results reporting may be delayed for up to 2 additional years (i.e., up to 3 years total after the primary completion date).</li>
-        </ul>
-         </p>
-      </td>
-    </tr>
+<h2>Is the information in AACT up-to-date?</h2>
 
-    <tr class='odd'>
-      <td><a target='_blank' href='http://www.icmje.org/about-icmje/faqs/clinical-trials-registration/' onClick="ga('send','event','external link','guide page: ICMJE')">ICMJE</a></td>
-      <td><p class='ptc'>
-        Interventional studies of any intervention type, phase, or geographical location must be registered in ClinicalTrials.gov or other approved registry.
-        <br>No results reporting requirements.
-        </p>
-      </td>
-      <td><p class='ptc'><b>July 1, 2005</b>. Studies initiated after this date must be registered before first patient enrolled; studies initiated before this date must be retrospectively registered to be considered for publication.
-        </p>
-      </td>
-    </tr>
+<div class="info-box">
+  <h4>Nightly Updates</h4>
+  <p class='ptc'>
+    Every night around midnight (U.S. Eastern Time), new or modified study records from ClinicalTrials.gov are imported into a background version of AACT. After validation, the updated database is copied to the public AACT database, usually within 90 minutes.
+  </p>
+  <p class='ptc'>
+    During this brief copy process (typically 5 minutes), AACT is unavailable.
+  </p>
 
-    <tr class='even'>
-      <td><a target='_blank' href='https://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000629.jsp&mid=WC0b01ac05808768df' onClick="ga('send','event','external link','guide page: EMA')">EMA</a></td>
-      <td>
-        <p class='ptc'>The following must be registered in ClinicalTrials.gov or other approved registry:
-        <ul class='regularDisplay'>
-          <li>Interventional studies of drugs or biologics (whether or not approved for marketing)</li>
-          <li>Pediatric phase 1 studies;</li>
-          <li>Studies in phases 2 through 4</li>
-          <li>Studies taking place in at least 1 EU site</li>
-        </ul>
-        </p>
-        <p class='ptc'>Results reporting required for all studies that meet registration requirements.</p>
-      </td>
-      <td>
-          <p>
-            <b>May 1, 2004</b>. <a target='_blank' href='http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000629.jsp&mid=WC0b01ac05808768df'  onClick="ga('send','event','external link','guide page: EMA')">EMA</a> launched <a target='_blank' href='https://eudract.ema.europa.eu/'  onClick="ga('send','event','external link','guide page: EudraCT')">EudraCT</a>
-            <br><br>
-            <b>March 22, 2011</b>. <a target='_blank' href='http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000629.jsp&mid=WC0b01ac05808768df' onClick="ga('send','event','external link','guide page: EMA')">EMA</a> launched the <a target='_blank' href='https://www.clinicaltrialsregister.eu/' onClick="ga('send','event','external link','guide page: EU Clinical Trials Register')">EU Clinical Trials Register</a>
-            <br><br>
-            <b>October 11, 2013</b>. EMA expanded EudraCT to include summary results.
-         </p>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <h4>Monthly Refresh</h4>
+  <p class='ptc'>
+    Once a month, AACT is completely rebuilt from scratch using the entire ClinicalTrials.gov dataset. This ensures:
+  </p>
+  <ul class='regularDisplay'>
+    <li>Deleted studies (those removed from ClinicalTrials.gov) are reflected.</li>
+    <li>Data integrity is maintained across all tables and fields.</li>
+  </ul>
+</div>
 
+<h2>How are unique studies identified in AACT?</h2>
+
+<p class='ptc'>
+  Studies registered at ClinicalTrials.gov are identified by a unique identifier, the NCT_ID.  
+  Because of the quality assurance measures applied by ClinicalTrials.gov staff on registration entries, 
+  we can be reasonably certain that each study (i.e., NCT_ID) entered in ClinicalTrials.gov refers to a unique clinical study, 
+  however a small number of 
+  <a target='_blank' href='http://www.ncbi.nlm.nih.gov/pubmed/17507347'>
+    duplicate records may exist in the database.
+  </a>
 </p>
-<p class='ptcFootNote'>* Adapted from <a class='ptcFootNote' target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMsa1012065#t=article">The ClinicalTrials.gov results database – update and key issues</a> and <a class='ptcFootNote' target='_blank' href='https://clinicaltrials.gov/ct2/about-site/history'>ClinicalTrials.gov summary of selected events, policies, and laws related to the development and expansion of ClinicalTrials.gov</a>. For complete descriptions of policy requirements, see the references cited. <a class='ptcFootNote' target='_blank' href='http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000629.jsp&mid=WC0b01ac05808768df'>EMA</a> denotes European Medicines Agency; EU, European Union; FDAAA, Food and Drug Administration Amendments Act; <a class='ptcFootNote' target='_blank' href='http://www.icmje.org/about-icmje/faqs/clinical-trials-registration/'>ICMJE</a>, International Committee of Medical Journal Editors; IDE, investigational device exemption; IND, investigational new drug application, NCI, National Cancer Institute; NIH, National Institutes of Health; US, United States.</p>
 
-    <p class='ptc'>Based on these policies, the following are examples of characteristics that may influence the likelihood that a study is included in the ClinicalTrials.gov registry:</p>
+<h2>How does content in AACT compare to what is in ClinicalTrials.gov?</h2>
 
-    <ul class='regularDisplay'>
-      <li>Interventional studies are more likely to be registered than observational studies.</li>
-      <li>Studies that began before the <a target='_blank' href='http://www.icmje.org/about-icmje/faqs/clinical-trials-registration/'>ICMJE</a> requirement in <b>July, 2005</b> are less likely to be registered, especially if their results are unpublished (e.g., negative studies).</li>
-      <li>Studies with drug, biological, or device interventions are more likely to be registered than studies of other interventions.</li>
-      <li>Studies with at least one site in the United States or European Union are more likely to be registered than studies with no such sites.</li>
-      <li>Studies involving a drug or device that is manufactured in the United States are more likely to be registered than studies involving a drug or device manufactured outside of the United States.</li>
-      <li>Studies subject to an IND or IDE are more likely to be registered (i.e., if the study is intended to support approval for marketing in the United States).</li>
-      <li>Phase 1 adult drug studies or small feasibility studies of devices are less likely to be registered.</li>
-      <li>Studies in pediatric populations may be more likely to be registered.</li>
-      <li>Studies with NIH funding are likely to be registered, regardless of intervention and phase.</li>
-      <li>Although studies of FDA regulated devices are likely to be registered, the registration records for studies of devices not yet approved or cleared may not be publicly posted until after the device is cleared or approved.</li>
-    </ul>
+<div class="info-box">
+  <p class='ptc'>
+    AACT contains the same publicly available study data as ClinicalTrials.gov but stores it in a structured, relational database format.
+  </p>
+  <p class='ptc'>
+    It reflects only the most current version of each study record and does not preserve historical edits. While the core content remains unchanged, AACT includes some derived fields (like those in the calculated_values table) to make querying and analysis easier.
+  </p>
+</div>
 
-     <h2>Is the information in AACT up-to-date?</h2>
-
-     <p class='ptc'>The AACT database is updated every night at midnight, so the information in AACT is one day behind that which appears in ClinicalTrials.gov. The nightly update process uses the ClinicalTrials.gov RSS feed to identify studies that were added or changed in ClinicalTrials.gov the previous day, and then uses the ClinicalTrials.gov API to retrieve current data for just these studies. Only new/changed studies are created/modified. This process takes about one and a half hours, depending on how many studies were added/changed in ClinicalTrials.gov the previous day.</p>
-     <p class='ptc'>Occassionally, studies must be removed from ClinicalTrials.gov, such as those that were accidentally entered twice. The nightly update process does not detect removed studies so once a month, the AACT database is dropped and completely refreshed.</p>
-     <p class='ptc'>Both the nightly (incremental) and monthly (full) updates are performed on a 'background' database so that the publicly accessible database remains accessible while updates take place. When the process completes, the updated version is copied to the public database. This 'copy step' takes about 5 minutes, during which time the database is inaccessible. Since the nightly load starts at midnight and takes about one and a half hours, this 5-minute downtime usually occurs sometime between 1am & 2am.</p>
-     <p class='ptc'>Please refer to the posted <a target='_blank' href='/update_policy'>update schedule</a> for more details.</p>
-
-     <h2>How are unique studies identified in AACT?</h2>
-
-     <p class='ptc'>Studies registered at ClinicalTrials.gov are identified by a unique identifier, the NCT_ID.  Because of the quality assurance measures applied by ClinicalTrials.gov staff on registration entries, we can be reasonably certain that each study (i.e., NCT_ID) entered in ClinialTrials.gov refers to a unique clinical study, however a small number of <a target='_blank' href='http://www.ncbi.nlm.nih.gov/pubmed/17507347'>duplicate records may exist in the database.</a></p>
-
-    <h2>How does content in AACT compare to what is in ClinicalTrials.gov?</h2>
-
-    <p class='ptc'>AACT includes all protocol and results data for every study that is publicly available at ClinicalTrials.gov. All publicly available content from the current record for a study is included in AACT as it appears in ClinicalTrials.gov. The AACT database preserves the content from the source XML files downloaded from the ClinicalTrials.gov API; content is not cleaned or manipulated in any way. However, to help facilitate queries using AACT, several additional variables derived from the raw content are included in AACT's Calculated_Values table.</p>
-    <p class='ptc'>The history of changes to a study record (available at the ClinicalTrials.gov archive site) is not included in the current version of AACT.</p>
 
     <h2>What types of questions can be investigated using ClinicalTrials.gov data?</h2>
 
