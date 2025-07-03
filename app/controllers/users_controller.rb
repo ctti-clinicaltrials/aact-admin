@@ -4,18 +4,8 @@ class UsersController < ApplicationController
   def index
     @joined_this_week = User.where(created_at: Time.current.beginning_of_week..Time.current.end_of_day).count
     @joined_this_month = User.where(created_at: Time.current.beginning_of_month..Time.current.end_of_day).count
-  
-    @queries_this_week = DbUserActivity
-    .where(when_recorded: Time.zone.today.beginning_of_week(:sunday)..Time.zone.today)
-    .sum(:event_count)
-  
-
-    @queries_this_month = DbUserActivity
-      .where(when_recorded: Time.zone.now.beginning_of_month..Time.zone.now.end_of_month)
-      .sum(:event_count)
-
     @user_count = User.count
-  
+
     if params[:search].present?
       search_term = "%#{params[:search]}%"
       @users = User.where(
@@ -23,16 +13,16 @@ class UsersController < ApplicationController
         search: search_term.downcase
       ).order(last_db_activity: :desc).page(params[:page]).per(20)
     else
-      sort_by = params[:sort] || "last_db_activity"
+      sort_by = params[:sort] || "created_at"
       asc_or_desc = params[:direction] == "asc" ? "asc" : "desc"
       @users = User.order(Arel.sql("#{sort_by} #{asc_or_desc} NULLS LAST")).page(params[:page]).per(20)
     end
-  
+
     respond_to do |format|
       format.html
       format.csv { send_data generate_csv(@users), filename: "users-#{Date.today}.csv" }
     end
-  end  
+  end
 
   def edit
   end
@@ -48,7 +38,7 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   private
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -59,9 +49,9 @@ class UsersController < ApplicationController
 
     def generate_csv(users)
       CSV.generate(headers: true) do |csv|
-        csv << %w[ID Full_Name Email Username Confirmed DB_Activity Last_DB_Activity]
+        csv << %w[ID Full_Name Email Username Joined]
         users.each do |user|
-          csv << [user.id, user.full_name, user.email, user.username, user.display_confirmed_at, user.db_activity, user.display_last_db_activity]
+          csv << [user.id, user.full_name, user.email, user.username, user.created_at]
         end
       end
     end
