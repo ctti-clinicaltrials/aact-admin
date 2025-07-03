@@ -2,61 +2,78 @@
   <div class="navbar-header">
     <%= link_to("https://www.ctti-clinicaltrials.org/", class: "navbar-brand") do %>
       <%= image_tag("new_ctti_logo.svg", class:"logo",  height: '100', width: '200') %>
-      <% end %>
-    </div>
+    <% end %>
+  </div>
   <button class="navbar-toggler navbar-dark bg-aact" type="button" data-bs-toggle="collapse" data-bs-target="#topNavToggler" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="topNavToggler">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      
-      <a href="/" class="nav-svg">
-      <svg height="74" width="175">
-  <polygon  class="svg-polygone" points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#ef4638;" />
-  <text class="svg-text" x="50%" y="50%"> Home</text>
-</svg>
-  </a>
-        <a href="/connect" class="nav-svg nav-svg-no-margin">   
-        <svg height="74" width="175">
-  <polygon points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#b81237;" />
-  <text class="svg-text" x="50%" y="50%"> Connect</text>
-</svg></a>
-        <a href="/download" class="nav-svg nav-svg-no-margin">
-        <svg height="74" width="175">
-  <polygon points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#871621;" />
-  <text class="svg-text" x="50%" y="50%"> Download</text>
-</svg></a>
+      <li>
+        <a href="/" class="nav-svg">
+          <svg height="74" width="175">
+            <polygon class="svg-polygone" points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#ef4638;" />
+            <text class="svg-text" x="50%" y="50%"> Home</text>
+          </svg>
+        </a>
       </li>
-      <a href="/learn_more" class="nav-svg nav-svg-no-margin"><svg height="74" width="175">
-  <polygon points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#22356b;" />
-  <text class="svg-text" x="50%" y="50%"> Learn</text>
-</svg></a>
+      <li>
+        <a href="/connect" class="nav-svg nav-svg-no-margin">
+          <svg height="74" width="175">
+            <polygon points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#b81237;" />
+            <text class="svg-text" x="50%" y="50%"> Connect</text>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a href="/downloads" class="nav-svg nav-svg-no-margin">
+          <svg height="74" width="175">
+            <polygon points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#871621;" />
+            <text class="svg-text" x="50%" y="50%"> Download</text>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a href="/learn_more" class="nav-svg nav-svg-no-margin">
+          <svg height="74" width="175">
+            <polygon points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#22356b;" />
+            <text class="svg-text" x="50%" y="50%"> Learn</text>
+          </svg>
+        </a>
+      </li>
+      <li>
         <a href="/shared_data" class="nav-svg nav-svg-no-margin">
-        <svg height="74" width="175">
-          <polygon points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#224989;" />
-          <text class="svg-text" x="50%" y="50%"> Shared Data</text>
-        </svg>
-</a>
-        <a href="/contactus" class="nav-svg nav-svg-no-margin"><svg height="74" width="175">
-  <polygon points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#246bb0;" />
-  <text class="svg-text" x="50%" y="50%"> Contact Us</text>
-</svg></a>
-    <%= render 'includes/dropdown'%>
-</a>
+          <svg height="74" width="175">
+            <polygon points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#224989;" />
+            <text class="svg-text" x="50%" y="50%"> Shared Data</text>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a href="/contactus" class="nav-svg nav-svg-no-margin">
+          <svg height="74" width="175">
+            <polygon points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#246bb0;" />
+            <text class="svg-text" x="50%" y="50%"> Contact Us</text>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <%= render 'includes/dropdown'%>
+      </li>
     </ul>
   </div>
 </nav>
 <% if PublicAnnouncement.count > 0 %>
   <section class='basicHero'>
-  <div class='copy announcement'>
-    <h1 class='announcement'>Announcement</h1>
-    <div class='wrap'>
-      <ul class='announcement'>
-        <% PublicAnnouncement.all.each do |announcement| %>
-          <li><%= announcement.description %></li>
-        <% end %>
-      </ul>
+    <div class='copy announcement'>
+      <h1 class='announcement'>Announcement</h1>
+      <div class='wrap'>
+        <ul class='announcement'>
+          <% PublicAnnouncement.all.each do |announcement| %>
+            <li><%= announcement.description %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
-  </div>
   </section>
 <% end %>

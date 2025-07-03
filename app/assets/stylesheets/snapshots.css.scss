@@ -154,7 +154,7 @@ $flatfiles-color: #f8ebe4;
       background: #f9fafb;
     }
 
-    &.pgdump {
+    &.pgdump, &.covid {
       border: 3px solid $pgdump-color;
       .snapshot-header {
         background: $pgdump-color;
@@ -319,8 +319,8 @@ $flatfiles-color: #f8ebe4;
     border-radius: 8px;
     overflow: hidden;
 
-    &.pgdump {
-      border-left: 4px solid rgb(34, 53, 107);
+    &.pgdump, &.covid {
+      border-left: 44px solid rgb(34, 53, 107);
     }
 
     &.flatfiles {

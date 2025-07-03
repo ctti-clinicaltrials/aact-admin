@@ -7,12 +7,12 @@
         </div>
         <span class='circleButtons'>Connect</span>
       </a>
-      <a href="/download">
+      <%= link_to downloads_path do %>
         <div class="iconWrap">
           <%= fa_icon('download') %>
         </div>
         <span class='circleButtons'>Download</span>
-      </a>
+      <% end %>
       <a href="/learn_more">
         <div class="iconWrap">
           <%= fa_icon('university') %>
@@ -25,7 +25,6 @@
         </div>
         <span class='circleButtons'>Shared Data</span>
       </a>
-
       <% if (!current_user.nil? and current_user.admin?) %>
         <a href="/users">
           <div class="iconWrap">
