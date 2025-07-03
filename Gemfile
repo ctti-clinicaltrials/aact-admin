@@ -47,6 +47,8 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'rack-protection', '~> 1.5.5'
 # work with CSV
 gem 'httparty'
+gem 'recaptcha', require: 'recaptcha/rails'
+
 
 # user registration
  gem "devise", ">= 4.9.1"
