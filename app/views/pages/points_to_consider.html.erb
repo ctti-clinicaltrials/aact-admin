@@ -3,197 +3,216 @@
 
 <section class="pointsToConsider">
 
-    <h2>What is AACT?</h2>
+  <h2>What is AACT?</h2>
 
-<div class="info-box">
+  <div class="info-box">
+    <p class='ptc'>
+      AACT (Aggregate Analysis of 
+      <a target='_blank' href="https://clinicaltrials.gov" onClick="ga('send','event','external link','guide page: clinicaltrials.gov')">
+        ClinicalTrials.gov
+      </a>) is a publicly available PostgreSQL database maintained by the Clinical Trials Transformation Initiative (CTTI). It contains a structured version of all study records from ClinicalTrials.gov.
+    </p>
+
+    <dl class='ptc'>
+      <dt><b>Updated Daily:</b></dt>
+      <dd>New and changed study records are added nightly based on the ClinicalTrials.gov RSS feed and API.</dd>
+
+      <dt><b>Full Monthly Refresh:</b></dt>
+      <dd>The entire database is rebuilt once a month to capture deletions and ensure completeness.</dd>
+
+      <dt><b>Structured Format:</b></dt>
+      <dd>AACT transforms XML records into a relational database with organized tables and fields.</dd>
+
+      <dt><b>Open Access:</b></dt>
+      <dd>Anyone can query the data using SQL or download full database dumps.</dd>
+    </dl>
+  </div>
+
+  <h2>What population of studies is represented in AACT?</h2>
+
+  <div class="info-box">
+    <p class='ptc'>
+      AACT includes all publicly available study records from ClinicalTrials.gov, across various types:
+    </p>
+
+    <ul class='regularDisplay'>
+      <li>Interventional trials (e.g., drug/device studies)</li>
+      <li>Observational studies</li>
+      <li>Expanded access programs</li>
+    </ul>
+
+    <p class='ptc'>
+      Several global policies drive study registration and results reporting. These include:
+    </p>
+
+    <ul class='regularDisplay'>
+      <li><b>FDAAA 801 (2007) & Final Rule (2017)</b> — U.S. laws requiring certain trials to register and report results.</li>
+      <li><b>NIH Policy (2016)</b> — Extends reporting expectations to all NIH-funded studies.</li>
+      <li><b>ICMJE Policy</b> — Requires trial registration for publication eligibility in participating journals.</li>
+      <li><b>EMA (2014) and NCI Requirements</b> — Encourage transparency in clinical research.</li>
+    </ul>
+  </div>
+
+  <h2>Is the information in AACT up-to-date?</h2>
+
+  <div class="info-box">
+    <h4>Nightly Updates</h4>
+    <p class='ptc'>
+      Every night around midnight (U.S. Eastern Time), new or modified study records from ClinicalTrials.gov are imported into a background version of AACT. After validation, the updated database is copied to the public AACT database, usually within 90 minutes.
+    </p>
+    <p class='ptc'>
+      During this brief copy process (typically 5 minutes), AACT is unavailable.
+    </p>
+
+    <h4>Monthly Refresh</h4>
+    <p class='ptc'>
+      Once a month, AACT is completely rebuilt from scratch using the entire ClinicalTrials.gov dataset. This ensures:
+    </p>
+    <ul class='regularDisplay'>
+      <li>Deleted studies (those removed from ClinicalTrials.gov) are reflected.</li>
+      <li>Data integrity is maintained across all tables and fields.</li>
+    </ul>
+  </div>
+
+  <h2>How are unique studies identified in AACT?</h2>
+
   <p class='ptc'>
-    AACT (Aggregate Analysis of 
-    <a target='_blank' href="https://clinicaltrials.gov" onClick="ga('send','event','external link','guide page: clinicaltrials.gov')">
-      ClinicalTrials.gov
-    </a>) is a publicly available PostgreSQL database maintained by the Clinical Trials Transformation Initiative (CTTI). It contains a structured version of all study records from ClinicalTrials.gov.
+    Studies registered at ClinicalTrials.gov are identified by a unique identifier, the NCT_ID.  
+    Because of the quality assurance measures applied by ClinicalTrials.gov staff on registration entries, 
+    we can be reasonably certain that each study (i.e., NCT_ID) entered in ClinicalTrials.gov refers to a unique clinical study, 
+    however a small number of 
+    <a target='_blank' href='http://www.ncbi.nlm.nih.gov/pubmed/17507347'>
+      duplicate records may exist in the database.
+    </a>
   </p>
 
-  <dl class='ptc'>
-    <dt><b>Updated Daily:</b></dt>
-    <dd>New and changed study records are added nightly based on the ClinicalTrials.gov RSS feed and API.</dd>
+  <h2>How does content in AACT compare to what is in ClinicalTrials.gov?</h2>
 
-    <dt><b>Full Monthly Refresh:</b></dt>
-    <dd>The entire database is rebuilt once a month to capture deletions and ensure completeness.</dd>
-
-    <dt><b>Structured Format:</b></dt>
-    <dd>AACT transforms XML records into a relational database with organized tables and fields.</dd>
-
-    <dt><b>Open Access:</b></dt>
-    <dd>Anyone can query the data using SQL or download full database dumps.</dd>
-  </dl>
-</div>
-
-<h2>What population of studies is represented in AACT?</h2>
-
-<div class="info-box">
-  <p class='ptc'>
-    AACT includes all publicly available study records from ClinicalTrials.gov, across various types:
-  </p>
-
-  <ul class='regularDisplay'>
-    <li>Interventional trials (e.g., drug/device studies)</li>
-    <li>Observational studies</li>
-    <li>Expanded access programs</li>
-  </ul>
-
-  <p class='ptc'>
-    Several global policies drive study registration and results reporting. These include:
-  </p>
-
-  <ul class='regularDisplay'>
-    <li><b>FDAAA 801 (2007) & Final Rule (2017)</b> — U.S. laws requiring certain trials to register and report results.</li>
-    <li><b>NIH Policy (2016)</b> — Extends reporting expectations to all NIH-funded studies.</li>
-    <li><b>ICMJE Policy</b> — Requires trial registration for publication eligibility in participating journals.</li>
-    <li><b>EMA (2014) and NCI Requirements</b> — Encourage transparency in clinical research.</li>
-  </ul>
-</div>
-
-<h2>Is the information in AACT up-to-date?</h2>
-
-<div class="info-box">
-  <h4>Nightly Updates</h4>
-  <p class='ptc'>
-    Every night around midnight (U.S. Eastern Time), new or modified study records from ClinicalTrials.gov are imported into a background version of AACT. After validation, the updated database is copied to the public AACT database, usually within 90 minutes.
-  </p>
-  <p class='ptc'>
-    During this brief copy process (typically 5 minutes), AACT is unavailable.
-  </p>
-
-  <h4>Monthly Refresh</h4>
-  <p class='ptc'>
-    Once a month, AACT is completely rebuilt from scratch using the entire ClinicalTrials.gov dataset. This ensures:
-  </p>
-  <ul class='regularDisplay'>
-    <li>Deleted studies (those removed from ClinicalTrials.gov) are reflected.</li>
-    <li>Data integrity is maintained across all tables and fields.</li>
-  </ul>
-</div>
-
-<h2>How are unique studies identified in AACT?</h2>
-
-<p class='ptc'>
-  Studies registered at ClinicalTrials.gov are identified by a unique identifier, the NCT_ID.  
-  Because of the quality assurance measures applied by ClinicalTrials.gov staff on registration entries, 
-  we can be reasonably certain that each study (i.e., NCT_ID) entered in ClinicalTrials.gov refers to a unique clinical study, 
-  however a small number of 
-  <a target='_blank' href='http://www.ncbi.nlm.nih.gov/pubmed/17507347'>
-    duplicate records may exist in the database.
-  </a>
-</p>
-
-<h2>How does content in AACT compare to what is in ClinicalTrials.gov?</h2>
-
-<div class="info-box">
-  <p class='ptc'>
-    AACT contains the same publicly available study data as ClinicalTrials.gov but stores it in a structured, relational database format.
-  </p>
-  <p class='ptc'>
-    It reflects only the most current version of each study record and does not preserve historical edits. While the core content remains unchanged, AACT includes some derived fields (like those in the calculated_values table) to make querying and analysis easier.
-  </p>
-</div>
+  <div class="info-box">
+    <p class='ptc'>
+      AACT contains the same publicly available study data as ClinicalTrials.gov but stores it in a structured, relational database format.
+    </p>
+    <p class='ptc'>
+      It reflects only the most current version of each study record and does not preserve historical edits. While the core content remains unchanged, AACT includes some derived fields (like those in the calculated_values table) to make querying and analysis easier.
+    </p>
+  </div>
 
 
-    <h2>What types of questions can be investigated using ClinicalTrials.gov data?</h2>
+  <h2>What types of questions can be investigated using ClinicalTrials.gov data?</h2>
 
-    <p class='ptc'>The AACT database contains both ‘study protocol’ and ‘results data’ elements. The protocol (or registration) records describe the study characteristics including sponsor, disease condition, type of intervention, participant eligibility, anticipated enrollment, study design, locations, and outcome measures. Summary results data elements including participant flow, baseline characteristics, outcome results, and frequencies of serious and other adverse events are included in AACT.  The <a target='_blank' href='http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2821287/'>article by Tse et al</a> may be helpful in understanding the components of the basic results that are reported at ClinicalTrials.gov.</p>
+  <p class='ptc'>The AACT database contains both ‘study protocol’ and ‘results data’ elements. The protocol (or registration) records describe the study characteristics including sponsor, disease condition, type of intervention, participant eligibility, anticipated enrollment, study design, locations, and outcome measures. Summary results data elements including participant flow, baseline characteristics, outcome results, and frequencies of serious and other adverse events are included in AACT.  The <a target='_blank' href='http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2821287/'>article by Tse et al</a> may be helpful in understanding the components of the basic results that are reported at ClinicalTrials.gov.</p>
 
+  <div class="info-box">
     <h2>How can protocol/registration data be used?</h2>
 
-    <p class='ptc'>We anticipate that investigators will use the current database to explore the characteristics of selected subsets of clinical studies (e.g., typical enrollment for a phase 3 study in breast cancer patients), and to compare and contrast these characteristics across different subgroups of studies (e.g., sponsor; device versus drug intervention; or prevention versus treatment).</p>
+    <p class='ptc'>Researchers can use protocol data from AACT to explore and compare the characteristics of different groups of clinical studies. For example, you might examine typical enrollment sizes for phase 3 breast cancer trials or analyze differences between studies based on sponsor type, intervention (e.g., drug vs. device), or purpose (e.g., prevention vs. treatment).</p>
+  </div>
 
-    <h2>How can results and adverse events data be used?</h2>
+  <h2>How can results and adverse events data be used?</h2>
 
-    <p class='ptc'>Researchers may be able to use the basic results and adverse events summary data reported at ClinicalTrials.gov for meta-analysis or systematic review (e.g., to compare the efficacy and safety of different types of diabetes therapies).  However, because only a small subset of studies registered at ClinicalTrials.gov are required to report results, the results data from ClinicalTrials.gov will most likely be a useful supplement to traditional data sources used for a meta-analysis or systematic review, such as published and unpublished manuscripts and abstracts, rather than the core data source. Standard techniques for valid meta-analysis or systematic review (e.g., <a target='_blank' href="http://annals.org/article.aspx?articleid=744664">PRISMA statement</a>) should be used when determining how to appropriately identify and aggregate summary data gleaned from ClinicalTrials.gov and/or literature.)</p>
+  <p class='ptc'>Researchers can use results and adverse events data from AACT to support meta-analyses or systematic reviews—for example, comparing the safety and effectiveness of different diabetes treatments. However, because only a subset of studies on ClinicalTrials.gov are required to report results, this data often serves as a supplement rather than a primary source. When using these data for research, it’s important to follow standard guidelines for systematic reviews, such as the PRISMA statement.</p>
 
+  <div class="info-box">
     <h2>How should data elements be interpreted?</h2>
-
-    <p class='ptc'>When interpreting this information, you’re encouraged to refer to the authoritative definitions provided by the National Library of Medicine (NLM). The most recent data element definitions are available on the NLM site for <a target='_blank' href='https://prsinfo.clinicaltrials.gov/definitions.html'>studies</a> and <a target='_blank' href='https://prsinfo.clinicaltrials.gov/results_definitions.html'>results</a> data. Data interpretation may depend on:</p>
+    <p class='ptc'>
+      When working with AACT data, it’s important to understand how each data element is defined and collected. For example:
+    </p>
     <ul class='regularDisplay'>
-      <li><b>How the question was phrased.</b> For example, the definition of “Sponsor” does not necessarily imply that the sponsor is the agency paying for the clinical study, as might be expected from the common use of the term.</li>
-      <li><b>Whether the respondent can enter a free-text answer to a specific question, or is restricted to a fixed set of possible responses.</b> Note that the definition of a data element and the available responses may have changed over time. The most recent data element definitions are available at the ClinicalTrials.gov site for <a target='_blank' href='https://prsinfo.clinicaltrials.gov/definitions.html'>study</a> and <a target='_blank' href='https://prsinfo.clinicaltrials.gov/results_definitions.html'>results</a> data. A history of changes through September 2011 for the study definitions can be viewed in the <a target='_blank' href="http://ctti-clinicaltrials.org/files/documents/AACTcomprehensiveDataDictionaryV3_2011.xlsx" download>AACT 2011 Data Dictionary</a>. Monthly copies of the AACT database are bundled with the data element definitions, AACT schema, and AACT data dictionary that were current at the time the copy was created.</li>
-      <li><b>Whether there is dependence between fields.</b> Certain data elements need to be interpreted together with other data elements. For example, data elements such as enrollment date and completion date have a companion data element that indicates whether the value in the first field is an anticipated or actual value.</li>
+      <li><b>Terminology may differ from everyday use.</b> A term like “Sponsor” doesn’t always mean the organization funding the study.</li>
+      <li><b>Data formats vary.</b> Some fields accept free-text answers, while others require choosing from a fixed list of options, which may have changed over time.</li>
+      <li><b>Fields can depend on each other.</b> For instance, a date field may indicate whether it’s an anticipated or actual date.</li>
+      <li><b>Records can be updated at any time.</b> Downloaded data reflects a snapshot in time and doesn’t include a full history of changes.</li>
     </ul>
+    <p class='ptc'>
+      For precise definitions, refer to the National Library of Medicine’s data element documentation or the AACT data dictionary included with each database release.
+    </p>
+  </div>
 
-    <p class="note">Note that the study record may be updated by the owner of the record at any time. Fields such as enrollment type may be changed from anticipated to actual, indicating that the value entered now reflects the actual rather than the planned enrollment. When data are downloaded, the result is a static copy of the database at that particular time point, and the history of changes made to the field is lost.</p>
+  <h2>How complete and accurate are the data?</h2>
+  <p class='ptc'>
+    Data completeness in AACT varies by field and depends on several factors:
+  </p>
 
-    <h2>How complete and accurate are the data?</h2>
+  <ul class='regularDisplay'>
+    <li><b>Regulatory requirements:</b> Fields required by laws like FDAAA are more likely to be filled out.</li>
+    <li><b>Date of study registration:</b> Older studies may lack newer fields added after policy updates.</li>
+    <li><b>Conditional logic:</b> Some fields appear only when certain answers are selected (e.g., biospecimen questions apply only to observational studies).</li>
+    <li><b>Response options:</b> Fields that allow “N/A” are less likely to be missing.</li>
+  </ul>
 
-    <p class='ptc'>The presence of a record in a table indicates that information was submitted to ClinicalTrials.gov for at least one element in that table before the data were downloaded from ClinicalTrials.gov. Some data elements are more/less likely than others to have missing information, depending on several known factors. For example:</p>
+  <p class='ptc'>
+    Even when data is present, accuracy is not guaranteed. ClinicalTrials.gov applies automated and manual checks for completeness and consistency, but submitted data is not independently verified. Errors and outliers (e.g., extremely high enrollment numbers) can occur.
+  </p>
 
-    <ul class='regularDisplay'>
-      <li><b>The data element being required by the FDAAA and/or the ClinicalTrials.gov website.</b> Refer to NLM's <a target='_blank' href='https://prsinfo.clinicaltrials.gov/definitions.html' onClick="ga('send','event','external link','guide page: NLM Protocols')">study</a> and <a target='_blank' href='https://prsinfo.clinicaltrials.gov/results_definitions.html' onClick="ga('send','event','external link','guide page: NLM Results')">results</a> data element definitions for specifics regarding these requirements. Requirements may have changed over the history of the ClincalTrials.gov database.</li>
-      <li><b>The date when the data element was introduced.</b> Not all data elements were included in the database at the time of its launch in 2000, but were added later. Studies registered after FDAAA when into effect must meet more requirements than studies registered earlier in the life of ClinicalTrials.gov.</li>
-      <li><b>The branching structure of questions.</b> The availability of certain questions to the person submitting data depends on answers to previous questions. For example, questions about bio-specimen retention are only available for observational studies. Therefore, interventional studies should be excluded when analyzing data elements pertaining to bio-specimens.</li>
-      <li><b>The list of possible answers for data elements with a fixed set of responses.</b> For example, questions that include “N/A” as a possible response are likely to have fewer missing values than questions that do not provide a “N/A” response.</li>
-    </ul>
+  <p class='ptc'>
+    ⚠️ Researchers should examine data distributions, handle missing values transparently, and run consistency checks before analysis. For fewer missing fields, consider limiting analyses to studies registered after September 2007 (when FDAAA requirements began).
+  </p>
 
-    <p class='ptc'>“Missingness” of data may also depend on other unknown factors. Regardless of the cause of missing data, users of ClinicalTrials.gov data sets are encouraged to specify clearly how missing values and “N/A” values are handled in their statistical analysis. For example, are studies with missing values excluded from statistics summarizing that data element, or are they included? In some cases, missing values may be imputed based on other fields (e.g., if a study has a single arm, it cannot employ a randomized design).</p>
-
-    <p class='ptc'>Although the FDAAA and other requirements do not apply to all fields in the database, users might consider including only studies registered post-FDAAA (September 2007), or studies with a primary completion date after December 2007. This will help to limit the number of missing values across many data elements. Users could also consider annotating data elements used in analysis according to whether or not they are FDAAA-required fields, if the user believes this might affect the extent of missing data.</p>
-
-		<p class='ptc'>Even when the data elements for a particular study are complete, users are cautioned to have modest expectations about their accuracy. In particular, results data posted at ClinicalTrials.gov may not be subject to the same level of critical scrutiny as results published in a peer-reviewed journal. As described by <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMsa1012065#t=article" onClick="ga('send','event','external link','guide page: Zarin ref')">Zarin and colleagues in <i>'The ClinicalTrials.gov results database – update and key issues'</i></a>, ClinicalTrials.gov has implemented several measures to ensure data quality. For example, NLM staff apply automated business rules that alert data-providers when required elements are missing or inconsistent. In addition, some manual review is performed by NLM, and a record may be returned to the data-provider if revision is required.  However, ClinicalTrials.gov staff cannot always validate the accuracy of submitted data (e.g., against an independent source).  As Zarin et al. note, “… individual record review has inherent limitations, and posting does not guarantee that the record is fully compliant with either ClinialTrials.gov or legal requirements” <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMsa1012065#t=article" onClick="ga('send','event','external link','guide page: Zarin ref')"><sup>[1]</sup></a></p>
-
-    <p class='ptc'>During our own analysis of the ClinicalTrials.gov database, several extreme values for numeric data elements were encountered, such as an anticipated enrollment of several million subjects. Before proceeding with aggregate analysis, users are encouraged to review data distributions in order to select appropriate analysis methods, and to run their own consistency checks (e.g., to compare whether the number of arm descriptions provided for the study matches the data element that quantifies the number of arms in the study design) as needed.</p>
-
+  <div class="info-box">
     <h2>Use of appropriate statistical inference</h2>
 
     <p class='ptc'>If the AACT results data are to be used to support a meta-analysis or systematic review of the safety or efficacy of a particular intervention, then standard methods of meta-analysis or systematic review (e.g., the <a target='_blank' href="http://annals.org/article.aspx?articleid=744664" onClick="ga('send','event','external link','guide page: PRISMA')">PRISMA statement</a> should be used to appropriately account for study-to-study variability and other sources of uncertainty or bias. We recommend that authors consider the following points when deciding whether to report p-values, confidence intervals, or other probability-based inference when performing aggregate analysis of the ClinicalTrials.gov database:  </p>
+  </div>
 
-    <h2>Is the data-generating mechanism random?</h2>
-    <p class='ptc'>Methods of statistical inference such as p-values and 95% confidence intervals are most appropriate when used to quantify the uncertainty of estimates or comparisons due to a random process that generates the data. Examples of such processes include selection of a random sample of subjects from a broader population, randomly assigning a treatment to a cohort of subjects, or a coin toss about which we aim to predict future results.</p>
+  <h2>Is the data-generating mechanism random?</h2>
+  <p class='ptc'>
+    Methods of statistical inference such as p-values and 95% confidence intervals are most appropriate when used to quantify the uncertainty of estimates or comparisons due to a random process that generates the data. Examples of such processes include selection of a random sample of subjects from a broader population, randomly assigning a treatment to a cohort of subjects, or a coin toss about which we aim to predict future results.
+  </p>
 
-    <p class='ptc'>In the following examples, we recommend against reporting p-values and 95% confidence intervals because the data generating mechanism is not random.</p>
+  <p class='ptc'>
+    In the following examples, we recommend against reporting p-values and 95% confidence intervals because the data-generating mechanism is not random.
+  </p>
 
-    <p class='ptc'><b> Example 1:</b> Descriptive analysis of studies registered in the ClinicalTrials.gov database. In this case, the “sample” equals the “population” (i.e., the group about which we are making conclusions) and there is no role for statistical inference because there is no sample-vs-population uncertainty to be quantified.</p>
+  <ul class='regularDisplay'>
+    <li>
+      <b>Example 1:</b> Descriptive analysis of studies registered in the ClinicalTrials.gov database. In this case, the “sample” equals the “population” (i.e., the group about which we are making conclusions) and there is no role for statistical inference because there is no sample-vs-population uncertainty to be quantified.
+    </li>
+    <li>
+      <b>Example 2:</b> Descriptive analysis of the “clinical trials enterprise” as characterized by the studies registered in ClinicalTrials.gov. Despite mandates for study registration (Table 1), it may be that some studies that are required to be registered are not. In this case, the sample (studies registered in ClinicalTrials.gov) may not equal the population (clinical trials enterprise). However, it is likely that those studies not registered are not excluded at random, and therefore neither p-values nor confidence intervals are helpful to support extrapolation from the sample to the population. To support such extrapolation, we recommend careful consideration of the studies that are highly likely to be registered (see section above on Population), and to limit inference to this population so that sample-vs-population uncertainty is minimal.
+    </li>
+  </ul>
 
-    <p class='ptc'><b>Example 2: </b>Descriptive analysis of the “clinical trials enterprise” as characterized by the studies registered in ClinicalTrials.gov. Despite mandates for study registration <a href="#table1">(Table 1)</a>, it may be that some studies that are required to be registered are not. In this case the sample (studies registered in ClinicalTrials.gov) may not equal the population (clinical trials enterprise). However, it is likely that those studies not registered are not excluded at random, and therefore neither p-values nor confidence intervals are helpful to support extrapolation from the sample to the population. To support such extrapolation, we recommend careful consideration of the studies that are highly likely to be registered (see section above on Population), and to limit inference to this population so that sample-vs-population uncertainty is minimal.</p>
+  <h2>How can I objectively identify important differences?</h2>
 
-    <h2>How can I objectively identify important differences?</h2>
+  <p class='ptc'>In practice, p-values and confidence intervals are often employed even when there is no random data generating process to highlight differences that are larger than “noise” (e.g., authors may want to highlight differences with a p-value < .001).  While this practice may not have a strong foundation in statistical philosophy, we acknowledge that many audiences (e.g., journal peer reviewers) may demand p-values because they appear to provide objective criteria for identifying larger-than-expected signals in the data.  While we don’t encourage reporting of p-values for this purpose, we do encourage analysts to specify objective criteria for evaluating signals in the data.  Examples are provided:</p>
 
-    <p class='ptc'>In practice, p-values and confidence intervals are often employed even when there is no random data generating process to highlight differences that are larger than “noise” (e.g., authors may want to highlight differences with a p-value < .001).  While this practice may not have a strong foundation in statistical philosophy, we acknowledge that many audiences (e.g., journal peer reviewers) may demand p-values because they appear to provide objective criteria for identifying larger-than-expected signals in the data.  While we don’t encourage reporting of p-values for this purpose, we do encourage analysts to specify objective criteria for evaluating signals in the data.  Examples are provided:</p>
+  <p class='ptc'>a) Prior to examining the data, specify comparisons of major interest, or quantities to be estimated. </p>
 
-    <p class='ptc'>a) Prior to examining the data, specify comparisons of major interest, or quantities to be estimated. </p>
+  <p class='ptc'>b) Determine the magnitude of differences that would have practical significance.  (e.g., a 25% difference in source of funding between studies of 2 pediatric <i>Conditions</i>, or a difference in enrollment of 100 participants).  </p>
 
-    <p class='ptc'>b) Determine the magnitude of differences that would have practical significance.  (e.g., a 25% difference in source of funding between studies of 2 pediatric <i>Conditions</i>, or a difference in enrollment of 100 participants).  </p>
+  <p class='ptc'>c) Determine appropriate formulas for quantifying differences between groups or summarizing population variability.  This quantification could take into account of the observed difference, variability in the data, and the number of observations.  Examples are provided:</p>
 
-    <p class='ptc'>c) Determine appropriate formulas for quantifying differences between groups or summarizing population variability.  This quantification could take into account of the observed difference, variability in the data, and the number of observations.  Examples are provided:</p>
+  <ul class='regularDisplay'>
+    <li>When summarizing a continuous characteristic such as enrollment, the analyst might choose to report the median and 5th to 95th percentiles.</li>
+    <li>To quantify signal to noise, the analyst could calculate a t-statistic or a chi-squared statistic (without the p-value) and rank differences between 2 groups based on these values.  The analyst might pre-specify a threshold (e.g., absolute value of 3) to flag notable differences.</li>
+  </ul>
 
-    <ul class='regularDisplay'>
-      <li>When summarizing a continuous characteristic such as enrollment, the analyst might choose to report the median and 5th to 95th percentiles.</li>
-      <li>To quantify signal to noise, the analyst could calculate a t-statistic or a chi-squared statistic (without the p-value) and rank differences between 2 groups based on these values.  The analyst might pre-specify a threshold (e.g., absolute value of 3) to flag notable differences.</li>
-    </ul>
+  <h2>Specific tips for working with the AACT database</h2>
 
-    <h2>Specific tips for working with the AACT database</h2>
+  <ul class='regularDisplay'>
+    <li>Users are encouraged to use the <a href='/schema' target="_blank" onClick="ga('send','event','download','guide page: download schema')">Schema Diagram</a> to determine relationships between different AACT tables. These relationships determine how tables may be linked using tools such as SAS, R & SQL.</li>
+    <li>The <i>nct_id</i> uniquely identifies each study; it serves as the primary key in the <i>Studies</i> table. Each record in the <i>Studies</i> table has a unique <i>nct_id</i> value. <i>nct_id</i> also appears in every table related to <i>Studies</i> so that every record in every table can link back to the study to which it refers.</li>
+    <li>Every table other than <i>Studies</i> has a primary key named <i>id</i>, which provides an integer that uniquely identifies each row in that table. (The <i>Studies</i> table uses <i>nct_id</i> instead of <i>id</i> as the unique identifier for each row.)</li>
+    <li>To link table information to the study to which it refers, you simply match on <i>nct_id</i>. For example, every record in the <i><i>Conditions</i></i> table with an NCT_ID of ‘NCT0000001’ refers to the study with the NCT_ID: ‘NCT0000001’ (saved in <i>Studies.nct_id</i>). The <i>Conditions</i> table may contain multiple records with an NCT_ID of ‘NCT0000001’ which means this study was defined in ClinicalTrials.gov as being associated with the <i>Conditions</i> listed in <i>Conditions</i> with that NCT_ID.</li>
+    <li>Information in several tables are also related to information in other tables. In this case, the table that belongs to another table will include a foreign key that identifies the record to which it belongs. Foreign keys are always named according to a simple rule: the singular name of the related table followed by: ‘_id’.  For example, <i>Facility_Contacts</i> includes a data element: <i>facility_id</i> which is the foreign key to <i>Facilities.id</i></li>
+    <li>Each record’s foreign_key (ie. <i>facility_id</i>) contains the value of the unique identifier (id) of the record in the other table to which it belongs. For example, a facility may have multiple contacts. To find the contacts for a particular facility, look for the records in <i>Facility_Contacts</i> where the value in <i>facility_id</i> is same as the value in id for that facility in <i>Facilities</i>. In short, tables are related to each other with this pattern: <i>child.&lt;parent_name&gt;_id = parent.id</i> </li>
+    <li>Note that the ID assigned to a particular record (e.g., to a record in the <i>Facilities</i> table) is merely the method used to identify unique records in the database table, and to facilitate linking of records between database tables. The ID does not identify unique facilities in the real world. For example, if studies A and B are both enrolling patients at Duke University Medical Center, there will be one instance of Duke University Medical Center for each study, and these records will have different ID values, even though they may be the same physical research site.</li>
+  </ul>
 
-    <ul class='regularDisplay'>
-      <li>Users are encouraged to use the <a href='/schema' target="_blank" onClick="ga('send','event','download','guide page: download schema')">Schema Diagram</a> to determine relationships between different AACT tables. These relationships determine how tables may be linked using tools such as SAS, R & SQL.</li>
-      <li>The <i>nct_id</i> uniquely identifies each study; it serves as the primary key in the <i>Studies</i> table. Each record in the <i>Studies</i> table has a unique <i>nct_id</i> value. <i>nct_id</i> also appears in every table related to <i>Studies</i> so that every record in every table can link back to the study to which it refers.</li>
-      <li>Every table other than <i>Studies</i> has a primary key named <i>id</i>, which provides an integer that uniquely identifies each row in that table. (The <i>Studies</i> table uses <i>nct_id</i> instead of <i>id</i> as the unique identifier for each row.)</li>
-      <li>To link table information to the study to which it refers, you simply match on <i>nct_id</i>. For example, every record in the <i><i>Conditions</i></i> table with an NCT_ID of ‘NCT0000001’ refers to the study with the NCT_ID: ‘NCT0000001’ (saved in <i>Studies.nct_id</i>). The <i>Conditions</i> table may contain multiple records with an NCT_ID of ‘NCT0000001’ which means this study was defined in ClinicalTrials.gov as being associated with the <i>Conditions</i> listed in <i>Conditions</i> with that NCT_ID.</li>
-      <li>Information in several tables are also related to information in other tables. In this case, the table that belongs to another table will include a foreign key that identifies the record to which it belongs. Foreign keys are always named according to a simple rule: the singular name of the related table followed by: ‘_id’.  For example, <i>Facility_Contacts</i> includes a data element: <i>facility_id</i> which is the foreign key to <i>Facilities.id</i></li>
-      <li>Each record’s foreign_key (ie. <i>facility_id</i>) contains the value of the unique identifier (id) of the record in the other table to which it belongs. For example, a facility may have multiple contacts. To find the contacts for a particular facility, look for the records in <i>Facility_Contacts</i> where the value in <i>facility_id</i> is same as the value in id for that facility in <i>Facilities</i>. In short, tables are related to each other with this pattern: <i>child.&lt;parent_name&gt;_id = parent.id</i> </li>
-      <li>Note that the ID assigned to a particular record (e.g., to a record in the <i>Facilities</i> table) is merely the method used to identify unique records in the database table, and to facilitate linking of records between database tables. The ID does not identify unique facilities in the real world. For example, if studies A and B are both enrolling patients at Duke University Medical Center, there will be one instance of Duke University Medical Center for each study, and these records will have different ID values, even though they may be the same physical research site.</li>
-    </ul>
-
-    <p class='ptc'><%= render partial: 'schema_info' %></p>
+  <p class='ptc'><%= render partial: 'schema_info' %></p>
 
 
-    <h2>References</h2>
+  <h2>References</h2>
 
-    <ol>
-      <li>Zarin, D. A., Tse, T. T., Williams, R. J., Califf, R. M., and Ide, N. C. (2011). <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMsa1012065#t=article" onClick="ga('send','event','external link','guide page: Zarin 1 ref')">The ClinicalTrials.gov results database – update and key issues</a>. N Engl J Med 364: 852–60.</li>
-      <li><a target='_blank' href="http://www.fda.gov/RegulatoryInformation/Legislation/SignificantAmendmentstotheFDCAct/FoodandDrugAdministrationAmendmentsActof2007/default.htm"  onClick="ga('send','event','external link','guide page: FDA ref')" >Food and Drug Administration Amendments Act of 2007</a>. Public Law 110-95.</li>
-      <li>Laine, C., Horton R., DeAngelis C.D., et al. <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMe078110#t=article"  onClick="ga('send','event','external link','guide page: Laine ref')">Clinical trial registration – looking back and moving ahead</a>. N Engl J Med 356: 2734–6.</li>
-      <li><a target='_blank' href="http://ec.europa.eu/health/files/eudralex/vol-10/2008_07/c_16820080703en00030004_en.pdf" onClick="ga('send','event','external link','guide page: European Commission ref')" >Communication from the Commission regarding the guideline on the data fields contained in the clinical trials database provided for in Article 11 of Directive 2001/20/EC to be included in the database on medicinal products provided for in Article 57 or Regulation (EC) No 726/2004</a>. In: European Commission, ed. Official Journal of the European Union, 2008. (2008/C 168/02.)</li>
-      <li><a target='_blank' href="http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000044.jsp"  onClick="ga('send','event','external link','guide page: EudraCT ref')">Guidance on the information concerning paediatric clinical trials to be entered into the EU Database on Clinical Trials (EudraCT) and on the information to be made public by the European Medicines Agency (EMEA), in accordance with Article 41 of Regulation (EC) No 1901/2006</a>. In: European Commission, ed. Official Journal of the European Union, 2009. (2009/C 28/01.)</li>
-      <li>Zarin, D. A., Ide, N. C., Tse, T. et al. (2007). <a target='_blank' href="http://www.ncbi.nlm.nih.gov/pubmed/17507347"  onClick="ga('send','event','external link','guide page: Zarin2 ref')">Issues in the registration of clinical trials</a>. JAMA 297: 2112—2120.</li>
-      <li>Moher, D., Liberati, A., Tetzlaff, J. and Altman, D. G. (for the PRISMA Group)(2009). <a target='_blank' href="http://annals.org/article.aspx?articleid=744664"  onClick="ga('send','event','external link','guide page: Moher ref')">Preferred reporting items for systematic reviews and meta-analyses: the PRISMA statement</a>, BMJ 339: 332—336.</li>
-      <li>Tse, T., Williams, R. J., Zarin, D. A. (2009). <a target='_blank' href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2821287/"  onClick="ga('send','event','external link','guide page: Tse ref')">Reporting “basic results” in ClinicalTrials.gov</a>. CHEST 136: 295—303.</li>
-    </ol>
+  <ol>
+    <li>Zarin, D. A., Tse, T. T., Williams, R. J., Califf, R. M., and Ide, N. C. (2011). <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMsa1012065#t=article" onClick="ga('send','event','external link','guide page: Zarin 1 ref')">The ClinicalTrials.gov results database – update and key issues</a>. N Engl J Med 364: 852–60.</li>
+    <li><a target='_blank' href="http://www.fda.gov/RegulatoryInformation/Legislation/SignificantAmendmentstotheFDCAct/FoodandDrugAdministrationAmendmentsActof2007/default.htm"  onClick="ga('send','event','external link','guide page: FDA ref')" >Food and Drug Administration Amendments Act of 2007</a>. Public Law 110-95.</li>
+    <li>Laine, C., Horton R., DeAngelis C.D., et al. <a target='_blank' href="http://www.nejm.org/doi/full/10.1056/NEJMe078110#t=article"  onClick="ga('send','event','external link','guide page: Laine ref')">Clinical trial registration – looking back and moving ahead</a>. N Engl J Med 356: 2734–6.</li>
+    <li><a target='_blank' href="http://ec.europa.eu/health/files/eudralex/vol-10/2008_07/c_16820080703en00030004_en.pdf" onClick="ga('send','event','external link','guide page: European Commission ref')" >Communication from the Commission regarding the guideline on the data fields contained in the clinical trials database provided for in Article 11 of Directive 2001/20/EC to be included in the database on medicinal products provided for in Article 57 or Regulation (EC) No 726/2004</a>. In: European Commission, ed. Official Journal of the European Union, 2008. (2008/C 168/02.)</li>
+    <li><a target='_blank' href="http://www.ema.europa.eu/ema/index.jsp?curl=pages/regulation/general/general_content_000044.jsp"  onClick="ga('send','event','external link','guide page: EudraCT ref')">Guidance on the information concerning paediatric clinical trials to be entered into the EU Database on Clinical Trials (EudraCT) and on the information to be made public by the European Medicines Agency (EMEA), in accordance with Article 41 of Regulation (EC) No 1901/2006</a>. In: European Commission, ed. Official Journal of the European Union, 2009. (2009/C 28/01.)</li>
+    <li>Zarin, D. A., Ide, N. C., Tse, T. et al. (2007). <a target='_blank' href="http://www.ncbi.nlm.nih.gov/pubmed/17507347"  onClick="ga('send','event','external link','guide page: Zarin2 ref')">Issues in the registration of clinical trials</a>. JAMA 297: 2112—2120.</li>
+    <li>Moher, D., Liberati, A., Tetzlaff, J. and Altman, D. G. (for the PRISMA Group)(2009). <a target='_blank' href="http://annals.org/article.aspx?articleid=744664"  onClick="ga('send','event','external link','guide page: Moher ref')">Preferred reporting items for systematic reviews and meta-analyses: the PRISMA statement</a>, BMJ 339: 332—336.</li>
+    <li>Tse, T., Williams, R. J., Zarin, D. A. (2009). <a target='_blank' href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2821287/"  onClick="ga('send','event','external link','guide page: Tse ref')">Reporting “basic results” in ClinicalTrials.gov</a>. CHEST 136: 295—303.</li>
+  </ol>
 
 </section>
