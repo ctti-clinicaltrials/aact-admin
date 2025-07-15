@@ -9,32 +9,50 @@
         <%= fa_icon("plug") %>
       </a>
     </div>
-    <p>
-       In addition to the Playground you can use any Postgres clients. Below is some examples of clients to connect to AACT which are free and straightforward to install and set up.
-    </p>
+      <p>
+        The AACT database is hosted on a PostgreSQL server. A database server stores and manages the clinical trials data and makes it accessible for analysis and reporting.
+        You can connect to the AACT database using various database client tools, which help you write queries and download the data you need.
+      </p>
+      <p>
+        Below are several free and popular clients you can use to connect to AACT. We recommend visiting each tool’s official website for the latest downloads and connection instructions.
+      </p>
+
     <section class="connect">
-     <ul class='regularDisplay indent'>
-      <li>   
-        <a href="/pgadmin" class="connectionCard">
-        pgAdmin
-        </a>
-      </li> 
-      <li>
-        <a href="/r" class="connectionCard">
-          R and RStudio
-        </a>
-      </li> 
-      <li>
-        <a href="/sas" class="connectionCard">
-        SAS
-        </a>
-      </li>
-      <li>
-        <a href="/postgres" class="connectionCard">
-        pSQL
-        </a>
-      </li>
-    </ul>
+      <div class="circleButtons container">
+        <div class="row">
+          <div class="d-flex justify-content-sm-center">
+
+            <a href="https://www.pgadmin.org/download/" target="_blank" class="clientButton">
+              <div class="iconWrapConnectPage">
+                <%= image_tag "pgadmin.png", alt: "PgAdmin Logo" %>
+              </div>
+              <span class="circleButtons">pgAdmin</span>
+            </a>
+
+            <a href="https://cran.r-project.org/" target="_blank" class="clientButton">
+              <div class="iconWrapConnectPage">
+                <%= image_tag "RStudio.png", alt: "RStudio Logo" %>
+              </div>
+              <span class="circleButtons">R / RStudio</span>
+            </a>
+
+            <a href="https://documentation.sas.com/doc/en/helpcenterwlcm/1.0/home.htm" target="_blank" class="clientButton">
+              <div class="iconWrapConnectPage">
+                <%= image_tag "sas.png", alt: "SAS Logo" %>
+              </div>
+              <span class="circleButtons">SAS</span>
+            </a>
+
+            <a href="https://www.postgresql.org/download/" target="_blank" class="clientButton">
+              <div class="iconWrapConnectPage psql">
+                <%= image_tag "psql.png", alt: "Postgres SQL Logo", class: "shrinkLogo" %>
+              </div>
+              <span class="circleButtons">psql</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
 
     <% if user_signed_in? %>
       <%= render 'credentials/credentials' %>
