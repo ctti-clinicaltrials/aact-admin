@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :notices
-      get "/notices/:id/send_notice" => "notices#send_notice"
+    get "/notices/:id/send_notice" => "notices#send_notice"
+    get "dashboard", to: "database_usage#dashboard", as: :dashboard
   end
 
   # Adding these routes connects those requests to the appropriate actions of the errors controller.
