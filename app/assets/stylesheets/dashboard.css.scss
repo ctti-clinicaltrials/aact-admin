@@ -1,6 +1,6 @@
 .dashboard-wrapper {
   max-width: 1200px;
-  margin: 24px auto 0 auto;
+  margin: 16px auto 0 auto;
 
 
   .title {
@@ -68,7 +68,6 @@
       }
     }
 
-    // Use CSS Grid for equal spacing
     .date-range-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -77,27 +76,16 @@
     }
   }
 
-  // Table styling
   .table {
     thead th {
-      font-size: 14px; // Smaller font size for headers
-      font-weight: 600; // Reduce font weight
-      padding: 8px 12px; // Reduce padding
+      font-size: 15px;
+      font-weight: 600;
+      padding: 8px 12px;
     }
 
     tbody td {
-      font-size: 13px; // Keep body text readable
-      padding: 8px 12px; // Match header padding
-    }
-
-    // Style for clickable date links
-    .text-decoration-none {
-      color: #224989;
-
-      &:hover {
-        color: #1b3b73;
-        text-decoration: underline !important;
-      }
+      font-size: 14px;
+      padding: 8px 12px;
     }
   }
 }
