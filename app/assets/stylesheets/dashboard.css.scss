@@ -1,7 +1,7 @@
 .dashboard-wrapper {
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  margin: 24px auto 0 auto;
+
 
   .title {
     text-align: center;
@@ -27,6 +27,17 @@
       background-color: #f9fafb;
       border-bottom: 1px solid #e5e7eb;
     }
+  }
+
+  .custom-link {
+    font-size: 14px;
+    color: #224989;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .custom-link:hover {
+    color: #871621;
   }
 
   // Date range form styling
@@ -63,6 +74,30 @@
       grid-template-columns: 1fr 1fr 1fr;
       gap: 12px;
       align-items: end;
+    }
+  }
+
+  // Table styling
+  .table {
+    thead th {
+      font-size: 14px; // Smaller font size for headers
+      font-weight: 600; // Reduce font weight
+      padding: 8px 12px; // Reduce padding
+    }
+
+    tbody td {
+      font-size: 13px; // Keep body text readable
+      padding: 8px 12px; // Match header padding
+    }
+
+    // Style for clickable date links
+    .text-decoration-none {
+      color: #224989;
+
+      &:hover {
+        color: #1b3b73;
+        text-decoration: underline !important;
+      }
     }
   }
 }

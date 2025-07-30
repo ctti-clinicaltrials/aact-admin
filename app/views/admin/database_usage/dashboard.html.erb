@@ -86,7 +86,11 @@
             <tbody>
             <% @metrics.each do |metric| %>
                 <tr>
-                <td class="text-center"><%= Date.parse(metric['date']).strftime('%b %d, %Y') %></td>
+                <td class="text-center">
+                  <%= link_to Date.parse(metric['date']).strftime('%b %d, %Y'),
+                      admin_daily_usage_path(date: metric['date']),
+                      class: "custom-link" %>
+                </td>
                 <td class="text-end"><%= number_with_delimiter(metric['total_queries']) %></td>
                 <td class="text-end"><%= number_with_precision(metric['avg_query_duration_ms'], precision: 0) %></td>
                 <td class="text-end"><%= number_with_delimiter(metric['total_duration_ms'].to_i) %></td>

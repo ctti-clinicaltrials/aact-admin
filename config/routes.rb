@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :notices
     get "/notices/:id/send_notice" => "notices#send_notice"
     get "dashboard", to: "database_usage#dashboard", as: :dashboard
+    get "daily_usage/:date", to: "database_usage#daily_usage", as: :daily_usage
   end
 
   # Adding these routes connects those requests to the appropriate actions of the errors controller.

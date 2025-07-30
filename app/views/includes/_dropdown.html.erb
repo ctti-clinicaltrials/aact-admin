@@ -1,5 +1,5 @@
 <% if user_signed_in? and current_user.admin? %>
-    <div class="nav-svg nav-svg-no-margin dropdown"> 
+    <div class="nav-svg nav-svg-no-margin dropdown">
         <svg height="74" width="175" class="dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <polygon points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#759dcb" />
           <text
@@ -8,6 +8,7 @@
           >Hi, <%= current_user.first_name.length > 10 ? "#{current_user.first_name[0].capitalize}#{current_user.last_name[0].capitalize}" : current_user.first_name.capitalize %></text>
         </svg>
  <div class="dropdown-menu dropdown-offset" aria-labelledby="navbarDropdown">
+    <%= link_to "Dashboard", admin_dashboard_path, class:"dropdown-item"%>
     <%= link_to "Data Definitions", data_definitions_path, class:"dropdown-item"%>
     <%= link_to "Events", events_path, class:"dropdown-item"%>
     <%= link_to "Notices", admin_notices_path, class:"dropdown-item"%>
@@ -21,9 +22,9 @@
     <div class="dropdown-divider"></div>
     <%= link_to "Edit Profile", edit_user_registration_path, class:"dropdown-item"%>
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete, class:"dropdown-item"%>
-    
+
     <% elsif user_signed_in? %>
-   <div class="nav-svg nav-svg-no-margin dropdown"> 
+   <div class="nav-svg nav-svg-no-margin dropdown">
         <svg height="74" width="298" class="dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <polygon points="0,0 255,0 297,37 255,74 0,74 25,37" style="fill:#759dcb" />
           <text
@@ -58,6 +59,6 @@
         </svg>
         </div>
 
-</div>   
-</div>   
+</div>
+</div>
 <% end %>
