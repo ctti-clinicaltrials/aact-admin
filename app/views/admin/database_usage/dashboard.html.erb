@@ -28,16 +28,17 @@
   <% if @metrics.present? %>
     <!-- Summary Card -->
     <div class="card mb-4 summary-card">
-      <div class="card-header">
-        <%# TODO: add number of days in the range %>
-        <div class="fw-medium">Usage Summary: <span class="date-range-info"><%= @date_range %></span></div>
-      </div>
+        <div class="card-header">
+            <div class="fw-medium">Usage Summary:
+                <span class="date-range-info"><%= @date_range %> (<%= @total_days %> days)</span>
+            </div>
+        </div>
       <div class="card-body py-3">
         <div class="row g-3">
           <div class="col-md-4">
             <div class="border rounded p-2 text-center">
               <div class="text-muted small mb-1">Total Queries</div>
-              <div class="fs-5 fw-bold">
+              <div class="fs-6 fw-bold">
                 <%= number_with_delimiter(@use_pagination ? @all_metrics.sum { |m| m['total_queries'] } : @metrics.sum { |m| m['total_queries'] }) %>
               </div>
             </div>
@@ -45,7 +46,7 @@
           <div class="col-md-4">
             <div class="border rounded p-2 text-center">
               <div class="text-muted small mb-1">Max Daily Users</div>
-              <div class="fs-5 fw-bold">
+              <div class="fs-6 fw-bold">
                 <%= (@use_pagination ? @all_metrics : @metrics).map { |m| m['unique_users'] }.max %>
               </div>
             </div>
@@ -53,9 +54,9 @@
           <div class="col-md-4">
             <div class="border rounded p-2 text-center">
               <div class="text-muted small mb-1">Avg Query Duration</div>
-              <div class="fs-5 fw-bold">
+              <div class="fs-6 fw-bold">
                 <% all_data = @use_pagination ? @all_metrics : @metrics %>
-                <%= number_with_precision(all_data.sum { |m| m['avg_query_duration_ms'] } / all_data.size, precision: 2) %> ms
+                <%= number_with_precision(all_data.sum { |m| m['avg_query_duration_ms'] } / all_data.size, precision: 0) %> ms
               </div>
             </div>
           </div>
@@ -73,26 +74,26 @@
         <div class="table-responsive">
           <table class="table table-striped table-hover mb-0">
             <thead class="table-light">
-              <tr>
-                <th>Date</th>
-                <th class="text-end">Total Queries</th>
-                <th class="text-end">Avg Duration (ms)</th>
-                <th class="text-end">Total Duration (ms)</th>
-                <th class="text-end">Unique Users</th>
-                <th class="text-end">Queries/User</th>
-              </tr>
+                <tr>
+                    <th class="small text-center">Date</th>
+                    <th class="small text-end">Total Queries</th>
+                    <th class="small text-end">Avg Duration (ms)</th>
+                    <th class="small text-end">Total Duration (ms)</th>
+                    <th class="small text-end">Unique Users</th>
+                    <th class="small text-end">Queries/User</th>
+                </tr>
             </thead>
             <tbody>
-              <% @metrics.sort_by { |metric| Date.parse(metric['date']) }.reverse.each do |metric| %>
+            <% @metrics.each do |metric| %>
                 <tr>
-                  <td><%= Date.parse(metric['date']).strftime('%b %d, %Y') %></td>
-                  <td class="text-end"><%= number_with_delimiter(metric['total_queries']) %></td>
-                  <td class="text-end"><%= number_with_precision(metric['avg_query_duration_ms'], precision: 2) %></td>
-                  <td class="text-end"><%= number_with_delimiter(metric['total_duration_ms'].to_i) %></td>
-                  <td class="text-end"><%= metric['unique_users'] %></td>
-                  <td class="text-end"><%= number_with_precision(metric['queries_per_user'], precision: 2) %></td>
+                <td class="text-center"><%= Date.parse(metric['date']).strftime('%b %d, %Y') %></td>
+                <td class="text-end"><%= number_with_delimiter(metric['total_queries']) %></td>
+                <td class="text-end"><%= number_with_precision(metric['avg_query_duration_ms'], precision: 0) %></td>
+                <td class="text-end"><%= number_with_delimiter(metric['total_duration_ms'].to_i) %></td>
+                <td class="text-end"><%= metric['unique_users'] %></td>
+                <td class="text-end"><%= number_with_precision(metric['queries_per_user'], precision: 0) %></td>
                 </tr>
-              <% end %>
+            <% end %>
             </tbody>
           </table>
         </div>

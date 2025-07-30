@@ -30,6 +30,13 @@ class AactApiClient
     HTTParty.get("#{@api_url}/snapshots?type=#{type}", headers: json_headers)
   end
 
+  # DATABASE USAGE
+  def get_database_usage(period:, start_date:, end_date:)
+    params = { period: period, start_date: start_date, end_date: end_date }
+    query_string = URI.encode_www_form(params)
+    HTTParty.get("#{@api_url}/analytics/database_usage?#{query_string}", headers: json_headers)
+  end
+
   private
 
   def csv_headers
