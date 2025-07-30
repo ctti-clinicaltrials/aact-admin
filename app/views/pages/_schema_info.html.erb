@@ -2,34 +2,33 @@
   <section class="namingConventions" >
     <h4 id='namingConventions'>Naming Conventions</h4>
     <ul class='regularDisplay'>
-      <li>Table names are plural (e.g., <i>studies, facilities, interventions</i>).</li>
-      <li>Column names are singular (e.g., <i>description, phase, name</i>).</li>
-      <li>Multi-word names use underscores (e.g., <i>mesh_term, study_first_submitted_date</i>).</li>
-      <li>Case is ignored by PostgreSQL; <i>Studies</i>, <i>STUDIES</i>, and <i>studies</i> are equivalent.</li>
-      <li>Study design data from ClinicalTrials.gov use tables prefixed with <i>Design_</i>, distinguishing them from results tables (e.g., <i>Design_Groups</i> vs. <i>Result_Groups</i>).</li>
-      <li>Tables and columns use full names, avoiding abbreviations (e.g., <i>description</i> not <i>desc</i>).</li>
-      <li>Redundant wording is avoided (e.g., <i>Studies.source</i> instead of <i>Studies.study_source</i>).</li>
-      <li id='idInformation'>Columns ending with <i>_id</i> are foreign keys, linking the child table to the parent table's <i>id</i> column. For example:<br>
-        <i>Child_Table.parent_table_id = Parent_Table.id</i><br>
-        A row in <i>Facility_Contacts</i> links to its facility via <i>facility_id</i>:<br>
-        <i>Facility_Contacts.facility_id = Facilities.id</i>
+      <li>Table names are all plural. (ie. <i>studies, facilities, interventions,</i> etc.)</li>
+      <li>Column names are all singular. (ie. <i>description, phase, name</i>, etc.)</li>
+      <li>Table/column names derived from multiple words are delimited with underscores. (ie. <i>mesh_term, study_first_submitted_date, number_of_groups</i>, etc.)</li>
+      <li>Information about study design entered into ClinicalTrials.gov during registration is stored in AACT tables prefixed with <i>design_</i> to distinguish it from the results data. For example, the <i>design_groups</i> table contains registry information about anticipated participant groups, whereas the <i>result_groups</i> table contains information that was entered after the study has completed to describe actual participant groups. <i>design_outcomes</i> contains information about the outcomes to be measured and <i>outcomes</i> contains info about the actual outcomes reported when the study completed.</li>
+      <li>Where possible, tables & columns are given fully qualified names; abbreviations are avoided. (ie. <i>description</i> rather than <i>desc</i>; <i>category</i> rather than <i>ctgry</i>)</li>
+      <li>Unnecessary and duplicate verbiage is avoided. For example: <i>studies.source</i> instead of <i>studies.study_source</i></li>
+      <li id='idInformation'>Columns that end with <i>_id</i> represent foreign keys. The prefix to the <i>_id</i> suffix is always the singular name of the parent table to which the child table is related. These foreign keys always link to the <i>id</i> column of the parent table.</p>
+        <p><i>child_table.parent_table_id = parent_tables.id</i></p>
+        <p>For example, a row in <i>facility_contacts</i> links to it’s facility through the <i>facility_id</i> column.</p>
+        <p><i>facility_contacts.facility_id = facilities.id</i>
       </li>
     </ul>
 
     <h4 id='structure_conventions'>Structural Conventions</h4>
     <ul class='regularDisplay'>
-      <li>All tables include an <i>nct_id</i> column linking rows to the related study in the <i>Studies</i> table. (The schema diagram omits some lines to reduce complexity.)<br>
-        Example: <i>Studies.nct_id = Outcomes.nct_id</i> links outcomes to their study.</li>
-      <li>Every table has a primary key named <i>id</i>, except <i>Studies</i>, which uses <i>nct_id</i> as its primary key.</li>
+      <li>All tables include an <i>nct_id</i> column linking rows to the related study in the <i>studies</i> table.<br>
+        Example: <i>studies.nct_id = outcomes.nct_id</i> links outcomes to their study.</li>
+      <li>Every table has a primary key named <i>id</i>, except <i>studies</i>, which uses <i>nct_id</i> as its primary key.</li>
       <li>Columns ending in <i>_date</i> contain date-type values.</li>
-      <li>Columns with month/year dates are stored as strings with a <i>_month_year</i> suffix; an estimated date (using the 1st day of the month) is in an adjacent <i>_date</i> column. (Applies to <i>Studies</i> table.)</li>
-      <li>Derived or calculated values are stored in the <i>Calculated_Values</i> table.</li>
+      <li>Columns with month/year dates are stored as strings with a <i>_month_year</i> suffix; an estimated date (using the 1st day of the month) is in an adjacent <i>_date</i> column. (Applies to <i>studies</i> table.)</li>
+      <li>Derived or calculated values are stored in the <i>calculated_values</i> table.</li>
     </ul>
 
-    <p>While these conventions are rigorously applied, exceptions exist. For example, the table <i>References</i> would have been preferred over <i>Study_References</i>, but since <i>References</i> is a PostgreSQL reserved word, <i>Study_References</i> is used instead.</p>
+    <p>While these conventions are rigorously applied, exceptions exist. For example, the table <i>references</i> would have been preferred over <i>study_references</i>, but since <i>references</i> is a PostgreSQL reserved word, <i>study_references</i> is used instead.</p>
 
     <h2 id='arms_groups'>How are arms/groups identified?</h2>
-    <div class="info-box"> 
+    <div class="gray-box"> 
       <p>AACT simplifies arm and group data for easier analysis while preserving data integrity.</p>
 
       <p>The National Library of Medicine (NLM) defines:</p>
@@ -41,9 +40,9 @@
       <p>Observational studies use “groups” and interventional studies use “arms,” but AACT standardizes on “group(s)” for clarity.</p>
 
       <h4>Participant Groups: Registry vs. Results</h4>
-      <p>Registry info on participant groups is stored in <i>Design_Groups</i>. Post-study, actual group data are in <i>Result_Groups</i>. These tables are not linked in AACT.</p>
+      <p>Registry info on participant groups is stored in <i>design_groups</i>. Post-study, actual group data are in <i>result_groups</i>. These tables are not linked in AACT.</p>
 
-      <p>Most results in ClinicalTrials.gov are organized by participant group. Except <i>Result_Contacts</i> and <i>Result_Agreements</i>, all results tables relate to groups.</p>
+      <p>Most results in ClinicalTrials.gov are organized by participant group. Except <i>result_contacts</i> and <i>result_agreements</i>, all results tables relate to groups.</p>
 
       <p>AACT categorizes results into:</p>
       <ul class='regularDisplay'>
@@ -53,8 +52,8 @@
         <li>Reported Events</li>
       </ul>
 
-      <p>The <i>Result_Groups</i> table aggregates all groups linked to these results. Related tables (e.g., <i>Outcomes</i>, <i>Baseline_Measures</i>) reference <i>Result_Groups</i> via <i>result_group_id</i>.<br>
-      Example: <i>Outcomes.result_group_id = Result_Groups.id</i>.</p>
+      <p>The <i>result_groups</i> table aggregates all groups linked to these results. Related tables (e.g., <i>outcomes</i>, <i>Baseline_Measures</i>) reference <i>result_groups</i> via <i>result_group_id</i>.<br>
+      Example: <i>outcomes.result_group_id = result_groups.id</i>.</p>
 
       <p>ClinicalTrials.gov assigns each group/result a unique identifier per study, starting with two letters for result type (BG, OG, EG, FG) followed by a three-digit code.</p>
 
@@ -96,7 +95,7 @@
     <h2>Information about dates</h2>
     <p>Initially, ClinicalTrials.gov recorded only month and year (without day) for key dates like start date, completion date, primary completion date, and verification date. Because some dates lack day information, AACT stores these fields as character strings rather than date types, limiting their use in calculations (e.g., study duration or date comparisons).</p>
 
-    <p>To address this, each date element in the <i>Studies</i> table has two columns:</p>
+    <p>To address this, each date element in the <i>studies</i> table has two columns:</p>
     <ol>
       <li>A character-type column showing the original ClinicalTrials.gov value.</li>
       <li>A date-type column suitable for calculations.</li>
@@ -104,7 +103,7 @@
 
     <p>When only month and year are provided, the date-type column defaults to the first day of that month. For example, “June 2014” is stored as “June 2014” in the character column and as “06/01/2014” in the date column.</p>
 
-    <div id='pending_results' class="info-box"> 
+    <div id='pending_results' class="gray-box"> 
       <h2>Information about dates related to pending results</h2>
       <p>On May 9, 2018, NLM added the <i>pending_results</i> section to the ClinicalTrials.gov API. It tracks dates for result submissions undergoing quality control (QC) review before public posting.</p>
 
@@ -128,22 +127,22 @@
 
 
     <div id='trial_sites'>
-      <h2>Information about trial sites (Facilities and Countries)</h2>
-      <p>The <i>Facilities</i> table stores information about organizations where the study is or was conducted, reflecting data from ClinicalTrials.gov at download time.</p>
+      <h2>Information about trial sites (facilities and countries)</h2>
+      <p>The <i>facilities</i> table stores information about organizations where the study is or was conducted, reflecting data from ClinicalTrials.gov at download time.</p>
 
-      <p>Contact details (name, email, phone) for a facility’s primary and optional backup contacts are available only if the facility’s status (<i>Facilities.status</i>) is ‘<i>Recruiting</i>’ or ‘<i>Not yet recruiting</i>’ and if provided by the data submitter. This information is stored in the <i>Facility_Contacts</i> table, a child of <i>Facilities</i>. Contact info is removed when a facility stops recruiting or when the overall study status (<i>Studies.overall_status</i>) indicates recruitment completion.</p>
+      <p>Contact details (name, email, phone) for a facility’s primary and optional backup contacts are available only if the facility’s status (<i>facilities.status</i>) is ‘<i>Recruiting</i>’ or ‘<i>Not yet recruiting</i>’ and if provided by the data submitter. This information is stored in the <i>facility_contacts</i> table, a child of <i>facilities</i>. Contact info is removed when a facility stops recruiting or when the overall study status (<i>studies.overall_status</i>) indicates recruitment completion.</p>
 
-      <p>Similarly, investigator names and roles at facilities (stored in <i>Facility_Investigators</i>, another child table) are available under the same conditions and are removed once recruiting ends.</p>
+      <p>Similarly, investigator names and roles at facilities (stored in <i>facility_investigators</i>, another child table) are available under the same conditions and are removed once recruiting ends.</p>
 
-      <p>The <i>Countries</i> table lists unique countries per study, including those currently and previously associated. The <i>removed</i> column flags countries no longer linked to the study. This occurs when all facilities in a country are deleted from a study, which may happen for various reasons, such as incorrect data or uninitiated sites.</p>
+      <p>The <i>countries</i> table lists unique countries per study, including those currently and previously associated. The <i>removed</i> column flags countries no longer linked to the study. This occurs when all facilities in a country are deleted from a study, which may happen for various reasons, such as incorrect data or uninitiated sites.</p>
 
-      <p>Since removed facilities do not appear in <i>Facilities</i>, analysts can use the <i>Countries</i> table (including those marked as removed) to supplement trial location data, especially for studies that have completed enrollment.</p>
+      <p>Since removed facilities do not appear in <i>facilities</i>, analysts can use the <i>countries</i> table (including those marked as removed) to supplement trial location data, especially for studies that have completed enrollment.</p>
 
-      <p>For identifying countries with participant enrollment, using either <i>Facilities</i> or <i>Countries</i> (where <i>removed</i> is false) provides equivalent results.</p>
+      <p>For identifying countries with participant enrollment, using either <i>facilities</i> or <i>countries</i> (where <i>removed</i> is false) provides equivalent results.</p>
     </div>
 
 
-    <div id='delayed_results'class="info-box"> 
+    <div id='delayed_results'class="gray-box"> 
       <h2>“Delayed Results” data elements in AACT</h2>
       <p>A responsible party may delay the results submission deadline for up to two years if one of these conditions applies:</p>
 
@@ -152,7 +151,7 @@
         <li>The trial’s sponsor has filed or will file within one year an FDA application for approval, licensure, or clearance of the new use studied. Extensions may be granted for good cause.</li>
       </ul>
 
-      <p>Studies with certification or extension requests record the submission date in <i>Studies.disposition_first_submitted_date</i>.</p>
+      <p>Studies with certification or extension requests record the submission date in <i>studies.disposition_first_submitted_date</i>.</p>
     </div>
 
   </section>
