@@ -7,24 +7,21 @@
       <div class="fw-medium">Select Date Range</div>
     </div>
     <div class="card-body">
-      <%= form_tag admin_dashboard_path, method: :get, class: 'date-range-form' do %>
-        <div class="row g-3 align-items-end">
-          <div class="col-md-4">
-            <%= label_tag :start_date, "Start Date", class: "form-label" %>
-            <%= date_field_tag :start_date, @start_date, class: "form-control" %>
-          </div>
-
-          <div class="col-md-4">
-            <%= label_tag :end_date, "End Date", class: "form-label" %>
-            <%= date_field_tag :end_date, @end_date, class: "form-control" %>
-          </div>
-
-          <div class="col-md-4">
-            <%= submit_tag "Apply", class: "btn btn-primary me-2" %>
-            <%= link_to "Reset to Last 10 Days", admin_dashboard_path, class: "btn btn-outline-secondary" %>
-          </div>
-        </div>
-      <% end %>
+        <%= form_tag admin_dashboard_path, method: :get, class: 'date-range-form' do %>
+            <div class="date-range-grid">
+                <div>
+                    <%= label_tag :start_date, "Start Date", class: "form-label small" %>
+                    <%= date_field_tag :start_date, @start_date, class: "form-control form-control-sm" %>
+                </div>
+                <div>
+                    <%= label_tag :end_date, "End Date", class: "form-label small" %>
+                    <%= date_field_tag :end_date, @end_date, class: "form-control form-control-sm" %>
+                </div>
+                <div>
+                    <%= submit_tag "Apply", class: "snapshots-action-button primary" %>
+                </div>
+            </div>
+        <% end %>
     </div>
   </div>
 
@@ -32,13 +29,8 @@
     <!-- Summary Card -->
     <div class="card mb-4 summary-card">
       <div class="card-header">
-        <div class="fw-medium">Usage Summary</div>
-        <div class="date-range-info">
-          <span>Showing data for <%= @date_range %></span>
-          <% if @use_pagination %>
-            <small class="text-muted">Page <%= params[:page] || 1 %> of <%= @paginated_metrics.total_pages %></small>
-          <% end %>
-        </div>
+        <%# TODO: add number of days in the range %>
+        <div class="fw-medium">Usage Summary: <span class="date-range-info"><%= @date_range %></span></div>
       </div>
       <div class="card-body py-3">
         <div class="row g-3">
@@ -48,9 +40,6 @@
               <div class="fs-5 fw-bold">
                 <%= number_with_delimiter(@use_pagination ? @all_metrics.sum { |m| m['total_queries'] } : @metrics.sum { |m| m['total_queries'] }) %>
               </div>
-              <% if @use_pagination %>
-                <small class="text-muted">Full range total</small>
-              <% end %>
             </div>
           </div>
           <div class="col-md-4">
@@ -59,9 +48,6 @@
               <div class="fs-5 fw-bold">
                 <%= (@use_pagination ? @all_metrics : @metrics).map { |m| m['unique_users'] }.max %>
               </div>
-              <% if @use_pagination %>
-                <small class="text-muted">Full range max</small>
-              <% end %>
             </div>
           </div>
           <div class="col-md-4">
@@ -71,9 +57,6 @@
                 <% all_data = @use_pagination ? @all_metrics : @metrics %>
                 <%= number_with_precision(all_data.sum { |m| m['avg_query_duration_ms'] } / all_data.size, precision: 2) %> ms
               </div>
-              <% if @use_pagination %>
-                <small class="text-muted">Full range avg</small>
-              <% end %>
             </div>
           </div>
         </div>

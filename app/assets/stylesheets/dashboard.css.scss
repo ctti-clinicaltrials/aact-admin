@@ -6,7 +6,7 @@
   .title {
     text-align: center;
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 500;
     color: #374151;
     margin-bottom: 20px;
   }
@@ -14,7 +14,6 @@
   .date-range-info {
     font-size: 15px;
     color: #4b5563;
-    display: flex;
     justify-content: space-between;
     align-items: center;
   }
@@ -35,6 +34,7 @@
     .form-label {
       font-weight: 500;
       color: #374151;
+      margin-bottom: 4px;
     }
 
     .form-control {
@@ -56,10 +56,13 @@
         border-color: #1b3b73;
       }
     }
-  }
-}
 
-// Remove the old custom pagination styles since we're using Kaminari
-.db-usage-pagination {
-  display: none;
+    // Use CSS Grid for equal spacing
+    .date-range-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      align-items: end;
+    }
+  }
 }
