@@ -62,7 +62,8 @@ class Admin::DatabaseUsageController < ApplicationController
     end
 
     # TODO: improve this URL generation
-    @pgbadger_url = "https://ctti-aact.nyc3.digitaloceanspaces.com/pgbadger/html/#{@date.strftime('%Y-%m-%d')}.html"
+    base_pgbadger_url = ENV['BASE_PGBADGER_URL']
+    @pgbadger_url = "#{base_pgbadger_url}/#{@date.strftime('%Y-%m-%d')}.html"
   end
 
   private
