@@ -1,104 +1,105 @@
 <div class="dashboard-wrapper">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <div class="title mb-1">Daily Usage: <%= @formatted_date %></div>
-    <div class="d-flex gap-2">
-      <%= link_to "Back to Dashboard", admin_dashboard_path, class: "btn btn-outline-secondary btn-sm" %>
-      <%= link_to "Full PgBadger Report", @pgbadger_url, target: "_blank", class: "btn btn-primary btn-sm" %>
-    </div>
-  </div>
-
-  <% if @users.present? %>
-    <!-- Summary Statistics -->
-    <div class="card mb-4">
-      <div class="card-header">
-        <div class="fw-medium">Daily Summary Statistics</div>
-      </div>
-      <div class="card-body py-3">
-        <div class="row g-3">
-          <div class="col-md-4">
-            <div class="border rounded p-2 text-center">
-              <div class="text-muted small mb-1">Total Users</div>
-              <div class="fs-6 fw-bold"><%= number_with_delimiter(@total_users) %></div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="border rounded p-2 text-center">
-              <div class="text-muted small mb-1">Total Queries</div>
-              <div class="fs-6 fw-bold"><%= number_with_delimiter(@total_queries) %></div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="border rounded p-2 text-center">
-              <div class="text-muted small mb-1">Avg Queries per User</div>
-              <div class="fs-6 fw-bold"><%= number_with_precision(@avg_queries_per_user, precision: 0) %></div>
-            </div>
-          </div>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <%= link_to "Back to Dashboard", admin_dashboard_path, class: "btn btn-secondary control-btn" %>
         </div>
-      </div>
-    </div>
-
-    <!-- User Activity Table -->
-    <div class="card">
-      <div class="card-header d-flex justify-content-between align-items-center">
-        <div class="fw-medium">User Activity Details</div>
-        <small class="text-muted">Sorted by query count (highest first)</small>
-      </div>
-      <div class="card-body p-0">
-        <div class="table-responsive">
-          <table class="table table-striped table-hover mb-0">
-            <thead class="table-light">
-              <tr>
-                <th class="small">#</th>
-                <th class="small">Username</th>
-                <th class="small text-end">Query Count</th>
-                <th class="small text-end">% of Total Queries</th>
-                <th class="small text-end">Total Duration (ms)</th>
-                <th class="small text-end">% of Total Duration</th>
-                <th class="small text-end">Avg Duration (ms)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @users.each_with_index do |user, index| %>
-                <tr>
-                  <td class="text-muted small"><%= index + 1 %></td>
-                  <td class="fw-medium"><%= user['username'] %></td>
-                  <td class="text-end"><%= number_with_delimiter(user['query_count']) %></td>
-                  <td class="text-end">
-                    <% percentage = (user['query_count'].to_f / @total_queries * 100) %>
-                    <%= number_with_precision(percentage, precision: 2) %>%
-                  </td>
-                  <td class="text-end"><%= number_with_delimiter(user['total_duration_ms'].to_i) %></td>
-                  <td class="text-end">
-                    <% duration_percentage = (user['total_duration_ms'].to_f / @total_duration * 100) %>
-                    <%= number_with_precision(duration_percentage, precision: 2) %>%
-                  </td>
-                  <td class="text-end"><%= number_with_precision(user['avg_query_duration_ms'], precision: 1) %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+        <div class="title mb-0 text-center">Daily Usage: <%= @formatted_date %></div>
+        <div>
+            <%= link_to "Full PgBadger Report", @pgbadger_url, target: "_blank", class: "btn btn-primary control-btn" %>
         </div>
-      </div>
-      <div class="card-footer bg-white">
-        <small class="text-muted">
-          Data shows user activity for <%= @formatted_date %>. Users are ranked by total query count.
-        </small>
-      </div>
     </div>
 
-  <% else %>
-    <div class="alert alert-warning">
-      <h4 class="alert-heading">No User Data Available</h4>
-      <p>No user activity data is available for <%= @formatted_date %>.</p>
-      <p>This could be due to:</p>
-      <ul>
-        <li>No database activity recorded for this date</li>
-        <li>Connection issues with the user usage API</li>
-        <li>The analytics service may be offline</li>
-      </ul>
-      <div class="mt-3">
-        <%= link_to "Back to Dashboard", admin_dashboard_path, class: "btn btn-primary" %>
-      </div>
-    </div>
-  <% end %>
+    <% if @users.present? %>
+        <!-- Summary Statistics -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <div class="fw-medium">Daily Summary Statistics</div>
+            </div>
+            <div class="card-body py-3">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="border rounded p-2 text-center">
+                            <div class="text-muted small mb-1">Total Users</div>
+                            <div class="fs-6 fw-bold"><%= number_with_delimiter(@total_users) %></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="border rounded p-2 text-center">
+                            <div class="text-muted small mb-1">Total Queries</div>
+                            <div class="fs-6 fw-bold"><%= number_with_delimiter(@total_queries) %></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="border rounded p-2 text-center">
+                            <div class="text-muted small mb-1">Avg Queries per User</div>
+                            <div class="fs-6 fw-bold"><%= number_with_precision(@avg_queries_per_user, precision: 0) %></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Activity Table -->
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="fw-medium">User Activity Details</div>
+                <small class="text-muted">Sorted by query count (highest first)</small>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="small">#</th>
+                                <th class="small">Username</th>
+                                <th class="small text-end">Query Count</th>
+                                <th class="small text-end">% of Total Queries</th>
+                                <th class="small text-end">Total Duration (ms)</th>
+                                <th class="small text-end">% of Total Duration</th>
+                                <th class="small text-end">Avg Duration (ms)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @users.each_with_index do |user, index| %>
+                                <tr>
+                                    <td class="text-muted small"><%= index + 1 %></td>
+                                    <td class="fw-medium"><%= user['username'] %></td>
+                                    <td class="text-end"><%= number_with_delimiter(user['query_count']) %></td>
+                                    <td class="text-end">
+                                        <% percentage = (user['query_count'].to_f / @total_queries * 100) %>
+                                        <%= number_with_precision(percentage, precision: 2) %>%
+                                    </td>
+                                    <td class="text-end"><%= number_with_delimiter(user['total_duration_ms'].to_i) %></td>
+                                    <td class="text-end">
+                                        <% duration_percentage = (user['total_duration_ms'].to_f / @total_duration * 100) %>
+                                        <%= number_with_precision(duration_percentage, precision: 2) %>%
+                                    </td>
+                                    <td class="text-end"><%= number_with_precision(user['avg_query_duration_ms'], precision: 1) %></td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer bg-white">
+                <small class="text-muted">
+                    Data shows user activity for <%= @formatted_date %>. Users are ranked by total query count.
+                </small>
+            </div>
+        </div>
+    <% else %>
+        <div class="alert alert-warning">
+            <h4 class="alert-heading">No User Data Available</h4>
+            <p>No user activity data is available for <%= @formatted_date %>.</p>
+            <p>This could be due to:</p>
+            <ul>
+                <li>No database activity recorded for this date</li>
+                <li>Connection issues with the user usage API</li>
+                <li>The analytics service may be offline</li>
+            </ul>
+            <div class="mt-3">
+                <%= link_to "Back to Dashboard", admin_dashboard_path, class: "btn btn-primary" %>
+            </div>
+        </div>
+    <% end %>
 </div>

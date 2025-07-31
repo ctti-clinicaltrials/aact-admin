@@ -1,132 +1,132 @@
 <div class="dashboard-wrapper">
-  <div class="title mb-3">Public Database Usage</div>
+    <div class="title mb-3">Public Database Usage</div>
 
-  <!-- Date Range Selector -->
-  <div class="card mb-4">
-    <div class="card-header">
-      <div class="fw-medium">Select Date Range</div>
+    <!-- Date Range Selector -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <div class="fw-medium">Select Date Range</div>
+        </div>
+        <div class="card-body">
+            <%= form_tag admin_dashboard_path, method: :get, class: 'date-range-form' do %>
+                <div class="date-range-grid">
+                    <div>
+                        <%= label_tag :start_date, "Start Date", class: "form-label small" %>
+                        <%= date_field_tag :start_date, @start_date, class: "form-control form-control-sm" %>
+                    </div>
+                    <div>
+                        <%= label_tag :end_date, "End Date", class: "form-label small" %>
+                        <%= date_field_tag :end_date, @end_date, class: "form-control form-control-sm" %>
+                    </div>
+                    <div>
+                        <%= submit_tag "Apply", class: "snapshots-action-button primary" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
     </div>
-    <div class="card-body">
-        <%= form_tag admin_dashboard_path, method: :get, class: 'date-range-form' do %>
-            <div class="date-range-grid">
-                <div>
-                    <%= label_tag :start_date, "Start Date", class: "form-label small" %>
-                    <%= date_field_tag :start_date, @start_date, class: "form-control form-control-sm" %>
+
+    <% if @metrics.present? %>
+        <!-- Summary Card -->
+        <div class="card mb-4 summary-card">
+            <div class="card-header">
+                <div class="fw-medium">Usage Summary:
+                    <span class="date-range-info"><%= @date_range %> (<%= @total_days %> days)</span>
                 </div>
-                <div>
-                    <%= label_tag :end_date, "End Date", class: "form-label small" %>
-                    <%= date_field_tag :end_date, @end_date, class: "form-control form-control-sm" %>
+            </div>
+            <div class="card-body py-3">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="border rounded p-2 text-center">
+                            <div class="text-muted small mb-1">Total Queries</div>
+                            <div class="fs-6 fw-bold">
+                                <%= number_with_delimiter(@use_pagination ? @all_metrics.sum { |m| m['total_queries'] } : @metrics.sum { |m| m['total_queries'] }) %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="border rounded p-2 text-center">
+                            <div class="text-muted small mb-1">Max Daily Users</div>
+                            <div class="fs-6 fw-bold">
+                                <%= (@use_pagination ? @all_metrics : @metrics).map { |m| m['unique_users'] }.max %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="border rounded p-2 text-center">
+                            <div class="text-muted small mb-1">Avg Query Duration</div>
+                            <div class="fs-6 fw-bold">
+                                <% all_data = @use_pagination ? @all_metrics : @metrics %>
+                                <%= number_with_precision(all_data.sum { |m| m['avg_query_duration_ms'] } / all_data.size, precision: 0) %> ms
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <%= submit_tag "Apply", class: "snapshots-action-button primary" %>
+            </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="fw-medium">Daily Database Usage Metrics</div>
+                <small class="text-muted">Data sourced from AACT public database logs. Refreshed daily.</small>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="text-center">Date</th>
+                                <th class="text-center">Unique Users</th>
+                                <th class="text-end">Total Queries</th>
+                                <th class="text-end">Queries/User</th>
+                                <th class="text-end">Total Duration (ms)</th>
+                                <th class="text-end">Avg Duration (ms)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @metrics.each do |metric| %>
+                                <tr>
+                                    <td class="text-center">
+                                        <%= link_to Date.parse(metric['date']).strftime('%b %d, %Y'),
+                                                admin_daily_usage_path(date: metric['date']),
+                                                class: "custom-link" %>
+                                    </td>
+                                    <td class="text-center"><%= metric['unique_users'] %></td>
+                                    <td class="text-end"><%= number_with_delimiter(metric['total_queries']) %></td>
+                                    <td class="text-end"><%= number_with_delimiter(number_with_precision(metric['queries_per_user'], precision: 0)) %></td>
+                                    <td class="text-end"><%= number_with_delimiter(metric['total_duration_ms'].to_i) %></td>
+                                    <td class="text-end"><%= number_with_precision(metric['avg_query_duration_ms'], precision: 0) %></td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
+        </div>
+
+        <!-- Pagination (only show if using pagination) -->
+        <% if @use_pagination %>
+            <div class="pagination-wrapper">
+                <%= paginate @paginated_metrics,
+                            params: { start_date: @start_date, end_date: @end_date },
+                            class: "pagination",
+                            inner_window: 2,
+                            outer_window: 0
+                %>
             </div>
         <% end %>
-    </div>
-  </div>
 
-  <% if @metrics.present? %>
-    <!-- Summary Card -->
-    <div class="card mb-4 summary-card">
-        <div class="card-header">
-            <div class="fw-medium">Usage Summary:
-                <span class="date-range-info"><%= @date_range %> (<%= @total_days %> days)</span>
-            </div>
+    <% else %>
+        <div class="alert alert-warning">
+            <h4 class="alert-heading">No Data Available</h4>
+            <p>No database usage data is currently available for the requested date range: <%= @date_range %></p>
+            <p>This could be due to:</p>
+            <ul>
+                <li>Connection issues with the database usage API</li>
+                <li>No recorded database activity during this period</li>
+                <li>The database usage tracking service may be offline</li>
+            </ul>
+            <p>Please try a different date range or contact the system administrator for assistance.</p>
         </div>
-      <div class="card-body py-3">
-        <div class="row g-3">
-          <div class="col-md-4">
-            <div class="border rounded p-2 text-center">
-              <div class="text-muted small mb-1">Total Queries</div>
-              <div class="fs-6 fw-bold">
-                <%= number_with_delimiter(@use_pagination ? @all_metrics.sum { |m| m['total_queries'] } : @metrics.sum { |m| m['total_queries'] }) %>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="border rounded p-2 text-center">
-              <div class="text-muted small mb-1">Max Daily Users</div>
-              <div class="fs-6 fw-bold">
-                <%= (@use_pagination ? @all_metrics : @metrics).map { |m| m['unique_users'] }.max %>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="border rounded p-2 text-center">
-              <div class="text-muted small mb-1">Avg Query Duration</div>
-              <div class="fs-6 fw-bold">
-                <% all_data = @use_pagination ? @all_metrics : @metrics %>
-                <%= number_with_precision(all_data.sum { |m| m['avg_query_duration_ms'] } / all_data.size, precision: 0) %> ms
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Data Table -->
-    <div class="card mb-4">
-      <div class="card-header d-flex justify-content-between align-items-center">
-        <div class="fw-medium">Daily Database Usage Metrics</div>
-        <small class="text-muted">Data sourced from AACT public database logs. Refreshed daily.</small>
-      </div>
-      <div class="card-body p-0">
-        <div class="table-responsive">
-          <table class="table table-striped table-hover mb-0">
-            <thead class="table-light">
-                <tr>
-                    <th class="text-center">Date</th>
-                    <th class="text-center">Unique Users</th>
-                    <th class="text-end">Total Queries</th>
-                    <th class="text-end">Queries/User</th>
-                    <th class="text-end">Total Duration (ms)</th>
-                    <th class="text-end">Avg Duration (ms)</th>
-                </tr>
-            </thead>
-            <tbody>
-            <% @metrics.each do |metric| %>
-                <tr>
-                <td class="text-center">
-                  <%= link_to Date.parse(metric['date']).strftime('%b %d, %Y'),
-                      admin_daily_usage_path(date: metric['date']),
-                      class: "custom-link" %>
-                </td>
-                <td class="text-center"><%= metric['unique_users'] %></td>
-                <td class="text-end"><%= number_with_delimiter(metric['total_queries']) %></td>
-                <td class="text-end"><%= number_with_delimiter(number_with_precision(metric['queries_per_user'], precision: 0)) %></td>
-                <td class="text-end"><%= number_with_delimiter(metric['total_duration_ms'].to_i) %></td>
-                <td class="text-end"><%= number_with_precision(metric['avg_query_duration_ms'], precision: 0) %></td>
-                </tr>
-            <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pagination (only show if using pagination) -->
-    <% if @use_pagination %>
-      <div class="pagination-wrapper">
-        <%= paginate @paginated_metrics,
-              params: { start_date: @start_date, end_date: @end_date },
-              class: "pagination",
-              inner_window: 2,
-              outer_window: 0
-        %>
-      </div>
     <% end %>
-
-  <% else %>
-    <div class="alert alert-warning">
-      <h4 class="alert-heading">No Data Available</h4>
-      <p>No database usage data is currently available for the requested date range: <%= @date_range %></p>
-      <p>This could be due to:</p>
-      <ul>
-        <li>Connection issues with the database usage API</li>
-        <li>No recorded database activity during this period</li>
-        <li>The database usage tracking service may be offline</li>
-      </ul>
-      <p>Please try a different date range or contact the system administrator for assistance.</p>
-    </div>
-  <% end %>
 </div>

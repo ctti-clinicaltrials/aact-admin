@@ -43,24 +43,11 @@ class Admin::DatabaseUsageController < ApplicationController
 
   def daily_usage
     @date = Date.parse(params[:date])
-    @formatted_date = @date.strftime('%b %d, %Y')
-    @user_data = fetch_user_usage_data(@date.to_s, @date.to_s)
+    @formatted_date = @date.strftime('%B %d, %Y')
+    @user_data = fetch_daily_usage(@date.to_s)
 
-    if @user_data.present?
-      # Extract users data based on API response structure
-      users_array = if @user_data.is_a?(Array)
-                      @user_data
-                    elsif @user_data.is_a?(Hash) && @user_data['users']
-                      @user_data['users']
-                    elsif @user_data.is_a?(Hash) && @user_data['data']
-                      @user_data['data']
-                    else
-                      [@user_data]
-                    end
-
-      # Sort users by query count in descending order
-      @users = users_array.sort_by { |user| user['query_count'] }.reverse
-
+    if @user_data.present? && @user_data['users'].present?
+      @users = @user_data['users'].sort_by { |user| user['query_count'] }.reverse
       # Calculate summary statistics
       @total_users = @users.size
       @total_queries = @users.sum { |user| user['query_count'] }
@@ -74,7 +61,7 @@ class Admin::DatabaseUsageController < ApplicationController
       @avg_queries_per_user = 0
     end
 
-    # Generate pgbadger report URL
+    # TODO: improve this URL generation
     @pgbadger_url = "https://ctti-aact.nyc3.digitaloceanspaces.com/pgbadger/html/#{@date.strftime('%Y-%m-%d')}.html"
   end
 
@@ -103,12 +90,9 @@ class Admin::DatabaseUsageController < ApplicationController
     end
   end
 
-  def fetch_user_usage_data(start_date, end_date)
+  def fetch_daily_usage(date)
     begin
-      response = @api_client.get_user_usage(
-        start_date: start_date,
-        end_date: end_date
-      )
+      response = @api_client.get_user_usage(start_date: date, end_date: date)
 
       if response.success?
         response.parsed_response

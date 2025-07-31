@@ -32,15 +32,15 @@ class AactApiClient
 
   # DATABASE USAGE
   def get_database_usage(start_date:, end_date:)
-    params = { start_date: start_date, end_date: end_date }
-    query_string = URI.encode_www_form(params)
-    HTTParty.get("#{@api_url}/analytics/database_usage?#{query_string}", headers: json_headers)
+    HTTParty.get("#{@api_url}/analytics/database_usage",
+      query: { start_date: start_date, end_date: end_date },
+      headers: json_headers)
   end
 
   def get_user_usage(start_date:, end_date:)
-    params = { start_date: start_date, end_date: end_date }
-    query_string = URI.encode_www_form(params)
-    HTTParty.get("#{@api_url}/analytics/user_usage?#{query_string}", headers: json_headers)
+    HTTParty.get("#{@api_url}/analytics/user_usage",
+      query: { start_date: start_date, end_date: end_date },
+      headers: json_headers)
   end
 
   private
