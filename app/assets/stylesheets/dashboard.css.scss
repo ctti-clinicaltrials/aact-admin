@@ -1,0 +1,91 @@
+.dashboard-wrapper {
+  max-width: 1200px;
+  margin: 16px auto 0 auto;
+
+
+  .title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 20px;
+  }
+
+  .date-range-info {
+    font-size: 15px;
+    color: #4b5563;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .summary-card {
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background-color: #f9fafb;
+      border-bottom: 1px solid #e5e7eb;
+    }
+  }
+
+  .custom-link {
+    font-size: 14px;
+    color: #224989;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .custom-link:hover {
+    color: #871621;
+  }
+
+  // Date range form styling
+  .date-range-form {
+    .form-label {
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 4px;
+    }
+
+    .form-control {
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+
+      &:focus {
+        border-color: #224989;
+        box-shadow: 0 0 0 0.2rem rgba(34, 73, 137, 0.25);
+      }
+    }
+
+    .btn-primary {
+      background-color: #224989;
+      border-color: #224989;
+
+      &:hover {
+        background-color: #1b3b73;
+        border-color: #1b3b73;
+      }
+    }
+
+    .date-range-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      align-items: end;
+    }
+  }
+
+  .table {
+    thead th {
+      font-size: 15px;
+      font-weight: 600;
+      padding: 8px 12px;
+    }
+
+    tbody td {
+      font-size: 14px;
+      padding: 8px 12px;
+    }
+  }
+}
