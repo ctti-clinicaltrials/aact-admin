@@ -271,11 +271,6 @@
   box-shadow: none;
 }
 
-.shrinkLogo{
-  padding: 20px;
-  box-sizing: border-box;
-}
-
 div.iconWrapConnectPage {
   width: 120px;    
   height: 120px;  
@@ -287,4 +282,82 @@ div.iconWrapConnectPage {
 
 div.psql {
   border: 1px solid #40668D
+}
+
+.nav-link {
+  color: #224989;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 15px;
+  transition: color 0.2s;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ef4638 !important; 
+}
+
+.connect {
+  margin-bottom: 3rem;
+  padding: 1rem;
+}
+
+.connect-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.connect-card {
+  flex: 1 1 calc(50% - 1rem); /* two cards per row with gap */
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  background-color: #fff;
+}
+
+.client-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.connect-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.connect-icon img {
+  max-width: 60px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.connect-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.connect-text p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .connect-card {
+    flex: 1 1 100%;
+  }
+
+  .connect-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 }

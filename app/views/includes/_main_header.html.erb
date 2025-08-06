@@ -8,60 +8,31 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="topNavToggler">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li>
-        <a href="/" class="nav-svg">
-          <svg height="74" width="175">
-            <polygon class="svg-polygone" points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#ef4638;" />
-            <text class="svg-text" x="50%" y="50%"> Home</text>
-          </svg>
-        </a>
+    <ul class="navbar-nav d-flex flex-row justify-content-evenly w-100">
+      <li class="nav-item mx-2">
+        <a href="/" class="nav-link">Home</a>
       </li>
-      <li>
-        <a href="/connect" class="nav-svg nav-svg-no-margin">
-          <svg height="74" width="175">
-            <polygon points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#b81237;" />
-            <text class="svg-text" x="50%" y="50%"> Connect</text>
-          </svg>
-        </a>
+      <li class="nav-item mx-2">
+        <a href="/connect" class="nav-link">Connect</a>
       </li>
-      <li>
-        <a href="/downloads" class="nav-svg nav-svg-no-margin">
-          <svg height="74" width="175">
-            <polygon points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#871621;" />
-            <text class="svg-text" x="50%" y="50%"> Download</text>
-          </svg>
-        </a>
+      <li class="nav-item mx-2">
+        <a href="/downloads" class="nav-link">Download</a>
       </li>
-      <li>
-        <a href="/learn_more" class="nav-svg nav-svg-no-margin">
-          <svg height="74" width="175">
-            <polygon points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#22356b;" />
-            <text class="svg-text" x="50%" y="50%"> Learn</text>
-          </svg>
-        </a>
+      <li class="nav-item mx-2">
+        <a href="/learn_more" class="nav-link">Learn</a>
       </li>
-      <li>
-        <a href="/shared_data" class="nav-svg nav-svg-no-margin">
-          <svg height="74" width="175">
-            <polygon points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#224989;" />
-            <text class="svg-text" x="50%" y="50%"> Shared Data</text>
-          </svg>
-        </a>
+      <li class="nav-item mx-2">
+        <a href="/shared_data" class="nav-link">Shared Data</a>
       </li>
-      <li>
-        <a href="/contactus" class="nav-svg nav-svg-no-margin">
-          <svg height="74" width="175">
-            <polygon points="0,0 150,0 175,37 150,74 0,74 25,37" style="fill:#246bb0;" />
-            <text class="svg-text" x="50%" y="50%"> Contact Us</text>
-          </svg>
-        </a>
+      <li class="nav-item mx-2">
+        <a href="/contactus" class="nav-link">Contact Us</a>
       </li>
-      <li>
-        <%= render 'includes/dropdown'%>
+      <li class="nav-item mx-2">
+        <%= render 'includes/dropdown' %>
       </li>
     </ul>
   </div>
+
 </nav>
 <% if PublicAnnouncement.count > 0 %>
   <section class='basicHero'>
