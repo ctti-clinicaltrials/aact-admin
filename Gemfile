@@ -35,6 +35,7 @@ gem 'turbolinks', '~> 5'
 gem "ffi", ">= 1.9.24"
 gem "puma"
 gem 'airbrake'
+gem 'whenever', require: false
 
 gem 'roo', '~> 2.4.0'
 gem 'string-similarity'
@@ -46,6 +47,8 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'rack-protection', '~> 1.5.5'
 # work with CSV
 gem 'httparty'
+gem 'recaptcha', require: 'recaptcha/rails'
+
 
 # user registration
  gem "devise", ">= 4.9.1"
