@@ -18,7 +18,6 @@ class UsersController < ApplicationController
       @users = User.order(Arel.sql("#{sort_by} #{asc_or_desc} NULLS LAST")).page(params[:page]).per(20)
     end
 
-    # TODO: make sure that all users can be downloaded, not just the first page or filtered response
     respond_to do |format|
       format.html
       format.csv { send_data generate_csv(@users), filename: "users-#{Date.today}.csv" }
