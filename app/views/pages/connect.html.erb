@@ -1,67 +1,124 @@
 <div>
   <h1>Connect to AACT</h1>
-    <div class="connectionTypes">
-      <a href="/playground" class="connectionCard w-100">
-        <h4>Playground</h4>
-        <p>
-        Click here to run queries on the AACT data from your web browser.
-        </p>
-        <%= fa_icon("plug") %>
-      </a>
+
+  <div class="connect">
+    <div class="connect-row">
+      <div class="connect-card">
+        <a href="/playground" class="connection-card text-decoration-none text-reset">
+          <div class="connect-content">
+            <div class="connect-icon">
+              <%= image_tag "terminal.png", alt: "Terminal Icon", class: "img-fluid" %>
+            </div>
+            <div class="connect-text">
+              <h4>Playground</h4>
+              <p>Click here to run queries on the AACT data from your web browser.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+
+      <div class="connect-card">
+        <% if user_signed_in? %>
+          <%= render 'credentials/credentials' %>
+        <% else %>
+          <a href="/users/sign_in" class="connection-card text-decoration-none text-reset">
+            <div class="connect-content">
+              <div class="connect-icon">
+                <%= image_tag "new_ctti_logo_no_words.jpg", alt: "CTTI Logo", class: "img-fluid", style: "max-height: 6rem;" %>
+              </div>
+              <div class="connect-text">
+                <h4>Sign In</h4>
+                <p>
+                  If you already have an AACT account and need a reminder of the access credentials, login and the info you need will appear here.
+                </p>
+              </div>
+            </div>
+          </a>
+        <% end %>
+      </div>
     </div>
-    <p>
-       In addition to the Playground you can use any Postgres clients. Below is some examples of clients to connect to AACT which are free and straightforward to install and set up.
-    </p>
-    <section class="connect">
-     <ul class='regularDisplay indent'>
-      <li>   
-        <a href="/pgadmin" class="connectionCard">
-        pgAdmin
-        </a>
-      </li> 
-      <li>
-        <a href="/r" class="connectionCard">
-          R and RStudio
-        </a>
-      </li> 
-      <li>
-        <a href="/sas" class="connectionCard">
-        SAS
-        </a>
-      </li>
-      <li>
-        <a href="/postgres" class="connectionCard">
-        pSQL
-        </a>
-      </li>
-    </ul>
-
-    <% if user_signed_in? %>
-      <%= render 'credentials/credentials' %>
-    <% else %>
-      <div class="connectionTypes">
-        <a href="/users/sign_up" class="connectionCard">
-
-          <h4>Create an Account to Access Cloud Database</h4>
-          <p>
-            As of May 2018, you need an AACT account to access the cloud-based database. Creating an account is easy: just click here and enter your name, 
-            an email address, and a password. Once you create an account and login, the credentials you need to access the database will be displayed here.
-          </p>
-          <%= fa_icon("plug") %>
-        </a>
-      </div>
-
-      <div class="connectionTypes">
-        <a href="/users/sign_in" class="connectionCard">
-
-          <h4>Already Have an Account?</h4>
-          <p>
-            If you already have an AACT account and need a reminder of the access credentials, login and the info you need will appear here.
-          </p>
-          <%= fa_icon("plug") %>
-        </a>
-      </div>
-    <% end %>
   </div>
-</section>
+
+
+
+  <div class="ms-3 mb-4">
+    <p>
+      The AACT database is hosted on a PostgreSQL server. A database server stores and manages the clinical trials data and makes it accessible for analysis and reporting.
+      You can connect to the AACT database using various database client tools, which help you write queries and download the data you need.
+    </p>
+    <p>
+      Below are several free and popular clients you can use to connect to AACT. We recommend visiting each tool’s official website for the latest downloads and connection instructions.
+    </p>
+  </div>
+
+  <section class="connect">
+    <div class="connect-row">
+      <div class="connect-card">
+        <a href="https://www.pgadmin.org/download/" target="_blank" class="client-link">
+          <div class="connect-content">
+            <div class="connect-icon">
+              <%= image_tag "pgadmin.png", alt: "PgAdmin Logo", class: "img-fluid" %>
+            </div>
+            <div class="connect-text">
+              <span class="connect-title">pgAdmin</span>
+              <p>
+                pgAdmin is a free, reliable, open source graphical query tool that can be used to access any PostgreSQL database.
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="connect-card">
+        <a href="https://cran.r-project.org/" target="_blank" class="client-link">
+          <div class="connect-content">
+            <div class="connect-icon">
+              <%= image_tag "RStudio.png", alt: "RStudio Logo", class: "img-fluid" %>
+            </div>
+            <div class="connect-text">
+              <span class="connect-title">R / RStudio</span>
+              <p>
+                R and RStudio are statistical computing tools used for data analysis and visualization.
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="connect-card">
+        <a href="https://documentation.sas.com/doc/en/workbenchcdc/v_001/vwbacdata/p0nc2tikruabp6n1008nkdf0buee.htm" target="_blank" class="client-link">
+          <div class="connect-content">
+            <div class="connect-icon">
+              <%= image_tag "sas.png", alt: "SAS Logo", class: "img-fluid" %>
+            </div>
+            <div class="connect-text">
+              <span class="connect-title">SAS</span>
+              <p>
+                This method for accessing the AACT database is recommended for SAS users wanting to run analyses or queries using the live database.
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="connect-card">
+        <a href="https://www.postgresql.org/download/" target="_blank" class="client-link">
+          <div class="connect-content">
+            <div class="connect-icon">
+              <%= image_tag "psql.png", alt: "Postgres SQL Logo", class: "img-fluid" %>
+            </div>
+            <div class="connect-text">
+              <span class="connect-title">pSQL</span>
+              <p>
+                The most straight forward way to access the content of ClinicalTrials.gov is by using the free postgreSQL command line query tool, pSQL, to connect to and query the AACT database.
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
 </div>

@@ -1,49 +1,72 @@
-<section class="basicHero">
-  <div class="copy">
-    <h1>Improving Public Access to Aggregate Content of ClinicalTrials.gov</h1>
+<section class="container-fluid py-5">
+  <div class="row align-items-center">
+    <div class="col-lg-7 mb-4 mb-lg-0">
+      <h1 class="fw-bold mb-4 w-75 homepage">
+        Improving Public Access to Aggregate Content of ClinicalTrials.gov
+      </h1>
 
-    <% if @notice.present? %>
-      <div class="alert alert-danger">
-        <h3><%=@notice.title%></h3>
-        <p><%=@notice.body%></p>
-       </div>
-    <%end%>
+      <% if @notice.present? %>
+        <div class="alert alert-danger mb-4">
+          <h3><%= @notice.title %></h3>
+          <p><%= @notice.body %></p>
+        </div>
+      <% end %>
 
-    <h3>What is AACT?</h3>
-    <p>AACT is a publicly available relational database that contains all information (protocol and result data elements) about every study registered in ClinicalTrials.gov. Content is downloaded from ClinicalTrials.gov daily and loaded into AACT. The Clinical Trials Transformation Initiative (CTTI) enhanced AACT in October, 2016 to include the following features:</p>
-    <ul class='regularDisplay indent'>
-      <li>Database content refreshed daily</li>
-      <li>Database directly accessible in the cloud</li>
-      <li>Static copies of the database available for download</li>
-      <li>Open source tools freely available (postgreSQL, Ruby on Rails, Tableau Public)</li>
-      <li>Source code available via <a target='_blank' href='https://github.com/ctti-clinicaltrials/aact'>Github</a></li>
-    </ul>
-  <!--
-  <p>
-    If you're interested in data extracted via the original AACT system (March, 2016 and earlier), please visit <a href="https://www.ctti-clinicaltrials.org/aact-database">the original AACT webpage</a>.
-  </p>
-  -->
+      <h3 class="fw-bold mb-3 homepage">What is AACT?</h3>
+      <p class= "w-80">
+        AACT is a publicly available relational database that contains all information
+        (protocol and result data elements) about every study registered in ClinicalTrials.gov.
+        Content is downloaded from ClinicalTrials.gov daily and loaded into AACT.
+      </p>
+    </div>
+
+    <div class="col-lg-5 d-flex justify-content-center">
+      <%= image_tag "statisticscode.png", 
+          alt: "Statistics Logo", 
+          class: "img-fluid" %>
+    </div>
+
   </div>
+</section>
 
+<section class="bg-light p-4 mb-4" style="border-radius: 1rem;">
+  <div class="container-fluid">
+    <div class="text-center">
+      <div style="display: inline-block;">
+        <h3 class="homepage fw-bold mb-4 text-center">
+          The AACT database includes the following features:
+        </h3>
+        <hr class="border-primary mb-4">
+      </div>
+    </div>
 
+    <div class="row justify-content-center text-start">
+      <div class="col-md-6">
+        <ul class="list-unstyled mx-auto" style="max-width: 400px;">
+          <li>• Database content refreshed daily</li>
+          <li>• Database directly accessible in the cloud</li>
+          <li>• Static copies of the database available for download</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-unstyled mx-auto" style="max-width: 400px;">
+          <li>• Open source tools freely available (postgreSQL, Ruby on Rails, Tableau Public)</li>
+          <li>• Source code available via 
+            <a target="_blank" href="https://github.com/ctti-clinicaltrials/aact">Github</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
 </section>
 
 <section class="homeHero container">
   <div class="heroPanelRow row">
-      <a href="/points_to_consider" class="button info_shade_light col-lg col-md">
-        <span class="type">Practical Info for Researchers and Analysts</span>
-        <span class="title">Researcher's Guide to Using AACT</span>
-        <%= fa_icon('info-circle') %>
-      </a>
       <a href='https://www.ctti-clinicaltrials.org/briefing-room/publications' target='_blank' class='button info_shade_light light col-lg col-md'>
         <span class="type">News</span>
         <span class="title">Related Publications</span>
-      </a>
-      <a href="https://www.bmj.com/content/361/bmj.k1452" target='_blank' class="button info_shade_dark col-lg col-md">
-        <span class="type">More Practical Advice</span>
-        <span class="title">How to avoid common problems when using ClinicalTrials.gov in research</span>
-        <%= fa_icon('info-circle') %>
       </a>
   </div>
 </section>
