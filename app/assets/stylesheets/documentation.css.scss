@@ -309,7 +309,7 @@ div.psql {
 }
 
 .connect-card {
-  flex: 1 1 calc(50% - 1rem); /* two cards per row with gap */
+  flex: 1 1 calc(50% - 1rem); 
   border: 1px solid #ccc;
   border-radius: 1rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -325,12 +325,12 @@ div.psql {
 
 .connect-content {
   display: flex;
-  align-items: flex-start;
-  gap: 1rem;
+  align-items: stretch;
+  gap: 3rem;
 }
 
 .connect-icon img {
-  max-width: 60px;
+  max-width: 6rem;
   height: auto;
   display: flex;
   justify-content: center;
@@ -360,4 +360,8 @@ div.psql {
     align-items: center;
     text-align: center;
   }
+}
+
+.homepage {
+  color: #22356B;
 }

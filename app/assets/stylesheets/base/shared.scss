@@ -47,11 +47,11 @@ section.connect {
 }
 
 pre {
-    background: #262626 none repeat scroll 0 0;
-    border: 1px dashed #999;
-    color: white;
+    font-family: "Roboto";
+    color: #22356B;
     overflow: auto;
-    padding: 0.5em;
+    padding: 1.5rem;
+    white-space: normal;
 }
 
 div.connectionTypes, div.downloadTypes, div.learnMoreCards {
