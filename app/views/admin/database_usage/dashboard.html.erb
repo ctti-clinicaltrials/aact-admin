@@ -21,14 +21,14 @@
                 <div class="date-range-grid">
                     <div>
                         <%= label_tag :start_date, "Start Date", class: "form-label small" %>
-                        <%= date_field_tag :start_date, @start_date, class: "form-control form-control-sm" %>
+                        <%= date_field_tag :start_date, @start_date, class: "form-control form-control-sm mb-0" %>
                     </div>
                     <div>
                         <%= label_tag :end_date, "End Date", class: "form-label small" %>
-                        <%= date_field_tag :end_date, @end_date, class: "form-control form-control-sm" %>
+                        <%= date_field_tag :end_date, @end_date, class: "form-control form-control-sm mb-0" %>
                     </div>
                     <div>
-                        <%= submit_tag "Apply", class: "snapshots-action-button primary" %>
+                        <%= submit_tag "Apply", class: "snapshots-action-button primary mb-0" %>
                     </div>
                 </div>
             <% end %>
@@ -54,7 +54,35 @@
                 </div>
             <% end %>
             <div class="card-body py-3">
+                <!-- User Statistics Row -->
                 <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="border rounded p-2 text-center">
+                            <div class="text-muted small mb-1">Avg Users/Day</div>
+                            <div class="fs-6 fw-bold">
+                                <%= number_with_precision(@avg_users_per_period, precision: 0) %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="border rounded p-2 text-center">
+                            <div class="text-muted small mb-1">Max Users/Day</div>
+                            <div class="fs-6 fw-bold">
+                                <%= @max_users_per_period %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="border rounded p-2 text-center">
+                            <div class="text-muted small mb-1">Min Users/Day</div>
+                            <div class="fs-6 fw-bold">
+                                <%= @min_users_per_period %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Query Statistics Row -->
+                <div class="row g-3 mt-0">
                     <div class="col-md-4">
                         <div class="border rounded p-2 text-center">
                             <div class="text-muted small mb-1">Total Queries</div>
@@ -65,9 +93,9 @@
                     </div>
                     <div class="col-md-4">
                         <div class="border rounded p-2 text-center">
-                            <div class="text-muted small mb-1">Max Daily Users</div>
+                            <div class="text-muted small mb-1">Avg Queries/Day</div>
                             <div class="fs-6 fw-bold">
-                                <%= @all_metrics.map { |m| m['unique_users'] }.max %>
+                                <%= number_with_delimiter(@avg_queries_per_period.round) %>
                             </div>
                         </div>
                     </div>
@@ -75,7 +103,7 @@
                         <div class="border rounded p-2 text-center">
                             <div class="text-muted small mb-1">Avg Query Duration</div>
                             <div class="fs-6 fw-bold">
-                                <%= number_with_precision(@all_metrics.sum { |m| m['avg_query_duration_ms'] } / @all_metrics.size, precision: 0) %> ms
+                                <%= @all_metrics.present? ? number_with_precision(@all_metrics.sum { |m| m['avg_query_duration_ms'] } / @all_metrics.size, precision: 0) : 0 %> ms
                             </div>
                         </div>
                     </div>
@@ -171,8 +199,6 @@ $(document).ready(function() {
     }
 
     $('#start_date, #end_date').on('change', validateDateRange);
-
-    // Initial validation
     validateDateRange();
 });
 </script>

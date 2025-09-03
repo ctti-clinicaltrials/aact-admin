@@ -78,11 +78,23 @@ class Admin::DatabaseUsageController < ApplicationController
       pagination_result = paginate_metrics(@all_metrics, @total_days)
       @metrics = pagination_result[:metrics]
       @use_pagination = pagination_result[:use_pagination]
+
+      # Calculate period-level statistics
+      @avg_users_per_period = @all_metrics.sum { |m| m['unique_users'] } / @all_metrics.size.to_f
+      @max_users_per_period = @all_metrics.map { |m| m['unique_users'] }.max
+      @min_users_per_period = @all_metrics.map { |m| m['unique_users'] }.min
+      @avg_queries_per_period = @all_metrics.sum { |m| m['total_queries'] } / @all_metrics.size.to_f
     else
       @all_metrics = []
       @metrics = []
       @date_range = format_date_range({ 'start' => @start_date, 'end' => @end_date })
       @use_pagination = false
+
+      # Set defaults for period stats when no data
+      @avg_users_per_period = 0
+      @max_users_per_period = 0
+      @min_users_per_period = 0
+      @avg_queries_per_period = 0
     end
   end
 
