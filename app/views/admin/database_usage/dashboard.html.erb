@@ -1,6 +1,16 @@
 <div class="dashboard-wrapper">
     <div class="title mb-3">Public Database Usage</div>
 
+    <!-- Flash Messages -->
+    <% if flash.any? %>
+        <% flash.each do |type, message| %>
+            <div class="alert alert-<%= type == 'error' ? 'danger' : type == 'warning' ? 'warning' : 'info' %> alert-dismissible fade show" role="alert">
+                <%= message %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% end %>
+    <% end %>
+
     <!-- Date Range Selector -->
     <div class="card mb-4">
         <div class="card-header">
@@ -11,14 +21,14 @@
                 <div class="date-range-grid">
                     <div>
                         <%= label_tag :start_date, "Start Date", class: "form-label small" %>
-                        <%= date_field_tag :start_date, @start_date, class: "form-control form-control-sm" %>
+                        <%= date_field_tag :start_date, @start_date, class: "form-control form-control-sm mb-0" %>
                     </div>
                     <div>
                         <%= label_tag :end_date, "End Date", class: "form-label small" %>
-                        <%= date_field_tag :end_date, @end_date, class: "form-control form-control-sm" %>
+                        <%= date_field_tag :end_date, @end_date, class: "form-control form-control-sm mb-0" %>
                     </div>
                     <div>
-                        <%= submit_tag "Apply", class: "snapshots-action-button primary" %>
+                        <%= submit_tag "Apply", class: "snapshots-action-button primary mb-0" %>
                     </div>
                 </div>
             <% end %>
@@ -33,21 +43,59 @@
                     <span class="date-range-info"><%= @date_range %> (<%= @total_days %> days)</span>
                 </div>
             </div>
+            <% if @has_pre_collection_dates %>
+                <div class="alert alert-info alert-sm mx-3 mt-2 mb-0">
+                    Data collection began June 6, 2025. No data available for dates before this.
+                </div>
+            <% end %>
+            <% if @has_future_dates %>
+                <div class="alert alert-info alert-sm mx-3 mt-2 mb-0">
+                    The selected range includes future dates. Current day statistics will be available tomorrow.
+                </div>
+            <% end %>
             <div class="card-body py-3">
+                <!-- User Statistics Row -->
                 <div class="row g-3">
                     <div class="col-md-4">
                         <div class="border rounded p-2 text-center">
-                            <div class="text-muted small mb-1">Total Queries</div>
+                            <div class="text-muted small mb-1">Avg Users/Day</div>
                             <div class="fs-6 fw-bold">
-                                <%= number_with_delimiter(@use_pagination ? @all_metrics.sum { |m| m['total_queries'] } : @metrics.sum { |m| m['total_queries'] }) %>
+                                <%= number_with_precision(@avg_users_per_period, precision: 0) %>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="border rounded p-2 text-center">
-                            <div class="text-muted small mb-1">Max Daily Users</div>
+                            <div class="text-muted small mb-1">Max Users/Day</div>
                             <div class="fs-6 fw-bold">
-                                <%= (@use_pagination ? @all_metrics : @metrics).map { |m| m['unique_users'] }.max %>
+                                <%= @max_users_per_period %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="border rounded p-2 text-center">
+                            <div class="text-muted small mb-1">Min Users/Day</div>
+                            <div class="fs-6 fw-bold">
+                                <%= @min_users_per_period %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Query Statistics Row -->
+                <div class="row g-3 mt-0">
+                    <div class="col-md-4">
+                        <div class="border rounded p-2 text-center">
+                            <div class="text-muted small mb-1">Total Queries</div>
+                            <div class="fs-6 fw-bold">
+                                <%= number_with_delimiter(@all_metrics.sum { |m| m['total_queries'] }) %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="border rounded p-2 text-center">
+                            <div class="text-muted small mb-1">Avg Queries/Day</div>
+                            <div class="fs-6 fw-bold">
+                                <%= number_with_delimiter(@avg_queries_per_period.round) %>
                             </div>
                         </div>
                     </div>
@@ -55,8 +103,7 @@
                         <div class="border rounded p-2 text-center">
                             <div class="text-muted small mb-1">Avg Query Duration</div>
                             <div class="fs-6 fw-bold">
-                                <% all_data = @use_pagination ? @all_metrics : @metrics %>
-                                <%= number_with_precision(all_data.sum { |m| m['avg_query_duration_ms'] } / all_data.size, precision: 0) %> ms
+                                <%= @all_metrics.present? ? number_with_precision(@all_metrics.sum { |m| m['avg_query_duration_ms'] } / @all_metrics.size, precision: 0) : 0 %> ms
                             </div>
                         </div>
                     </div>
@@ -107,7 +154,7 @@
         <!-- Pagination (only show if using pagination) -->
         <% if @use_pagination %>
             <div class="pagination-wrapper">
-                <%= paginate @paginated_metrics,
+                <%= paginate @metrics,
                             params: { start_date: @start_date, end_date: @end_date },
                             class: "pagination",
                             inner_window: 2,
@@ -119,14 +166,39 @@
     <% else %>
         <div class="alert alert-warning">
             <h4 class="alert-heading">No Data Available</h4>
-            <p>No database usage data is currently available for the requested date range: <%= @date_range %></p>
-            <p>This could be due to:</p>
-            <ul>
-                <li>Connection issues with the database usage API</li>
-                <li>No recorded database activity during this period</li>
-                <li>The database usage tracking service may be offline</li>
-            </ul>
-            <p>Please try a different date range or contact the system administrator for assistance.</p>
+            <% if @is_future_range %>
+                <p>The selected date range (<%= @date_range %>) is in the future.</p>
+            <% elsif @is_pre_collection_range %>
+                <p>The selected date range (<%= @date_range %>) is before database usage data collection began (June 6, 2025).</p>
+            <% elsif @has_future_dates %>
+                <p>The selected date range includes future dates. Current day statistics will be available tomorrow.</p>
+            <% else %>
+                <p>Something went wrong. Please try again later or contact support if the issue persists.</p>
+            <% end %>
         </div>
     <% end %>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    function validateDateRange() {
+        var startDate = new Date($('#start_date').val());
+        var endDate = new Date($('#end_date').val());
+        var submitBtn = $('.snapshots-action-button.primary');
+        var errorDiv = $('#date-range-error');
+
+        if (startDate > endDate) {
+            if (errorDiv.length === 0) {
+                $('.date-range-form').append('<div id="date-range-error" class="alert alert-danger mt-2 small">Start date cannot be after end date.</div>');
+            }
+            submitBtn.prop('disabled', true);
+        } else {
+            errorDiv.remove();
+            submitBtn.prop('disabled', false);
+        }
+    }
+
+    $('#start_date, #end_date').on('change', validateDateRange);
+    validateDateRange();
+});
+</script>
