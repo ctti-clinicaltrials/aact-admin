@@ -45,7 +45,12 @@
             </div>
             <% if @has_pre_collection_dates %>
                 <div class="alert alert-info alert-sm mx-3 mt-2 mb-0">
-                    Note: Database usage data collection began on June 6, 2025. Data shown is only from that date forward.
+                    Data collection began June 6, 2025. No data available for dates before this.
+                </div>
+            <% end %>
+            <% if @has_future_dates %>
+                <div class="alert alert-info alert-sm mx-3 mt-2 mb-0">
+                    The selected range includes future dates. Current day statistics will be available tomorrow.
                 </div>
             <% end %>
             <div class="card-body py-3">
@@ -138,22 +143,9 @@
             <% elsif @is_pre_collection_range %>
                 <p>The selected date range (<%= @date_range %>) is before database usage data collection began (June 6, 2025).</p>
             <% elsif @has_future_dates %>
-                <p>No database usage data is currently available for the requested date range: <%= @date_range %></p>
-                <p>This could be due to:</p>
-                <ul>
-                    <li>The selected date range includes future dates where data hasn't been recorded yet</li>
-                    <li>Connection issues with the database usage API</li>
-                    <li>No recorded database activity during the past portion of this period</li>
-                    <li>The database usage tracking service may be offline</li>
-                </ul>
+                <p>The selected date range includes future dates. Current day statistics will be available tomorrow.</p>
             <% else %>
-                <p>No database usage data is currently available for the requested date range: <%= @date_range %></p>
-                <p>This could be due to:</p>
-                <ul>
-                    <li>Connection issues with the database usage API</li>
-                    <li>No recorded database activity during this period</li>
-                    <li>The database usage tracking service may be offline</li>
-                </ul>
+                <p>Something went wrong. Please try again later or contact support if the issue persists.</p>
             <% end %>
         </div>
     <% end %>
