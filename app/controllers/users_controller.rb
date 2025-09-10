@@ -8,19 +8,22 @@ class UsersController < ApplicationController
 
     if params[:search].present?
       search_term = "%#{params[:search]}%"
-      @users = User.where(
+      users_scope = User.where(
         "LOWER(first_name) LIKE :search OR LOWER(last_name) LIKE :search OR LOWER(email) LIKE :search OR LOWER(username) LIKE :search",
         search: search_term.downcase
-      ).order(last_db_activity: :desc).page(params[:page]).per(20)
+      ).order(last_db_activity: :desc)
     else
       sort_by = params[:sort] || "created_at"
       asc_or_desc = params[:direction] == "asc" ? "asc" : "desc"
-      @users = User.order(Arel.sql("#{sort_by} #{asc_or_desc} NULLS LAST")).page(params[:page]).per(20)
+      users_scope = User.order(Arel.sql("#{sort_by} #{asc_or_desc} NULLS LAST"))
     end
 
     respond_to do |format|
-      format.html
-      format.csv { send_data generate_csv(@users), filename: "users-#{Date.today}.csv" }
+      format.html { @users = users_scope.page(params[:page]).per(20) }
+      format.csv do
+        @users = users_scope
+        send_data generate_csv(@users), filename: "users-#{Date.today}.csv"
+      end
     end
   end
 
